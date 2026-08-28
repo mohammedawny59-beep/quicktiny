@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://quicktinylaunch.vercel.app/sitemap.xml

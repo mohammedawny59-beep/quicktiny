@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terms — QuickTiny</title><meta name="description" content="QuickTiny terms of use."><link rel="canonical" href="https://quicktinylaunch.vercel.app/terms">
+<meta property="og:title" content="Terms — QuickTiny"><meta property="og:description" content="QuickTiny terms of use."><meta property="og:type" content="website">
+<style>
+:root{--bg:#090b10;--card:#121722;--line:#232b39;--text:#f7f8fb;--muted:#9aa6b6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:inherit}.wrap{max-width:1120px;margin:auto;padding:22px}.nav{display:flex;justify-content:space-between;align-items:center}.logo{font-size:22px;font-weight:900}
+.badge{border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:#c9d2df;font-size:13px}.hero{text-align:center;padding:74px 0 38px}
+.hero h1{font-size:clamp(38px,7vw,72px);line-height:1.02;max-width:900px;margin:12px auto}.hero p{color:var(--muted);font-size:19px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card p,.muted{color:var(--muted)}input,textarea{width:100%;background:#0b0f16;color:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin:7px 0 10px}
+textarea{min-height:120px}button,.btn{display:inline-block;background:#fff;color:#080a0e;border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer;text-decoration:none}
+.result{margin-top:12px;color:#c5cfdd;word-break:break-word}.cta{text-align:center;margin:55px 0;padding:34px;background:var(--card);border:1px solid var(--line);border-radius:22px}
+footer{margin-top:55px;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+</style></head><body><div class="wrap"><nav class="nav"><a class="logo" href="/">QuickTiny</a><span class="badge">No signup • Browser-first</span></nav><section class="hero"><h1>Terms</h1><p>QuickTiny is provided as-is. Verify outputs before relying on them. Do not use the service for unlawful activity.</p></section>
+<footer><span>© 2026 QuickTiny</span><a href="/privacy">Privacy</a><a href="/terms">Terms</a></footer></div><script>
+function count(){let t=document.querySelector('#counter').value,w=t.trim()?t.trim().split(/\s+/).length:0;document.querySelector('#countout').textContent=`${w} words · ${t.length} characters · ${t?t.split(/\n/).length:0} lines`}
+async function cleanText(){let e=document.querySelector('#clean'),t=e.value.replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim();e.value=t;try{await navigator.clipboard.writeText(t)}catch{};document.querySelector('#cleanout').textContent='Cleaned'+(navigator.clipboard?' & copied':'')}
+function slugIt(){let e=document.querySelector('#slugout');e.textContent=document.querySelector('#slug').value.toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g,'').trim().replace(/[\s_-]+/g,'-').replace(/^-+|-+$/g,'')}
+function formatJson(){let a=document.querySelector('#json'),o=document.querySelector('#jsonout');try{a.value=JSON.stringify(JSON.parse(a.value),null,2);o.textContent='✓ Valid JSON'}catch(e){o.textContent='Invalid JSON: '+e.message}}
+function caseIt(m){let e=document.querySelector('#case'); if(m==='u')e.value=e.value.toUpperCase();if(m==='l')e.value=e.value.toLowerCase();if(m==='t')e.value=e.value.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase())}
+function compress(){let f=document.querySelector('#img').files[0],o=document.querySelector('#imgout');if(!f)return;let im=new Image();im.onload=()=>{let c=document.createElement('canvas');c.width=im.width;c.height=im.height;c.getContext('2d').drawImage(im,0,0);c.toBlob(b=>{let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='quicktiny-'+f.name.replace(/\.[^.]+$/,'.jpg');a.textContent=`Download ${Math.round(b.size/1024)} KB (was ${Math.round(f.size/1024)} KB)`;o.innerHTML='';o.appendChild(a)},'image/jpeg',.72)};im.src=URL.createObjectURL(f)}
+</script></body></html>
