@@ -3,151 +3,297 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>QuickTiny — Fast Online Tools</title>
-  <meta name="description" content="Fast browser tools for images and text. Compress images, count words, clean text, format JSON and more.">
+  <title>QuickTiny — Useful Tools. Zero Friction.</title>
+  <meta name="description" content="Fast browser tools for files, images, text and everyday tasks. No signup, no subscription — free micro-tools that run entirely in your browser.">
   <link rel="canonical" href="https://quicktinyv2.vercel.app/">
-  <meta property="og:title" content="QuickTiny — Fast Online Tools">
-  <meta property="og:description" content="Small tools that finish annoying tasks instantly.">
+  <meta property="og:title" content="QuickTiny — Useful Tools. Zero Friction.">
+  <meta property="og:description" content="Fast browser tools for files, images, text and everyday tasks. No signup, no subscription — free micro-tools that run entirely in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quicktinyv2.vercel.app/">
-  <style>
-    :root{--bg:#090b10;--card:#121722;--line:#232b39;--text:#f7f8fb;--muted:#9aa6b6;--success:#3ddc84}
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
-    a{color:inherit}.wrap{max-width:1120px;margin:auto;padding:22px}.nav{display:flex;justify-content:space-between;align-items:center}
-    .logo{font-size:24px;font-weight:900}.badge{border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:#c9d2df;font-size:13px}
-    .hero{text-align:center;padding:72px 0 38px}.hero h1{font-size:clamp(38px,7vw,72px);line-height:1.02;max-width:900px;margin:12px auto}
-    .hero p{color:var(--muted);font-size:19px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}.card p,.muted{color:var(--muted)}
-    input,textarea{width:100%;background:#0b0f16;color:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin:7px 0 10px}
-    textarea{min-height:120px}button,.btn{display:inline-block;background:#fff;color:#080a0e;border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer;text-decoration:none}
-    .result{margin-top:12px;color:#c5cfdd;word-break:break-word}.pro{margin-top:55px;padding:32px;background:var(--card);border:1px solid var(--line);border-radius:22px}
-    .price{font-size:38px;font-weight:900;margin:5px 0}#paypal-button-container{max-width:420px;margin-top:22px}#proTool{display:none;margin-top:24px}
-    .success{color:var(--success);font-weight:800}.downloads a{display:block;margin:8px 0;color:#fff}
-    footer{margin-top:55px;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
-  </style>
+  <meta property="og:site_name" content="QuickTiny">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","description":"Fast browser tools for files, images, text and everyday tasks."}</script>
 </head>
 <body>
-<div class="wrap">
-  <nav class="nav"><a class="logo" href="/">QuickTiny.</a><span class="badge">No signup • Browser-first</span></nav>
-  <section class="hero"><span class="badge">Fast • Private • Free essentials</span><h1>Small tools that finish annoying tasks instantly.</h1><p>No account. No subscription wall. Use the tool and move on.</p></section>
-  <div class="grid">
-    <div class="card"><h2>Compress Image</h2><p>Reduce JPG/PNG size in your browser.</p><input id="img" type="file" accept="image/*"><button onclick="compress()">Compress image</button><div id="imgout" class="result"></div></div>
-    <div class="card"><h2>Word Counter</h2><p>Count words, characters and lines instantly.</p><textarea id="counter" oninput="count()"></textarea><div id="countout" class="result">0 words • 0 characters • 0 lines</div></div>
-    <div class="card"><h2>Clean Text</h2><p>Fix duplicate spaces and messy blank lines.</p><textarea id="clean"></textarea><button onclick="cleanText()">Clean & copy</button><div id="cleanout" class="result"></div></div>
-    <div class="card"><h2>JSON Formatter</h2><p>Format and validate JSON locally.</p><textarea id="json"></textarea><button onclick="formatJson()">Format JSON</button><div id="jsonout" class="result"></div></div>
-    <div class="card"><h2>SEO Slug Generator</h2><p>Turn a title into a clean URL slug.</p><input id="slug" placeholder="Your page title"><button onclick="slugIt()">Generate</button><div id="slugout" class="result"></div></div>
-    <div class="card"><h2>Case Converter</h2><p>Change text case instantly.</p><textarea id="case"></textarea><button onclick="caseIt('u')">UPPER</button><button onclick="caseIt('l')">lower</button><button onclick="caseIt('t')">Title</button></div>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools" class="active">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
   </div>
-  <section class="pro">
-    <span class="badge">QuickTiny Pro</span><h2>Batch Image Compressor</h2>
-    <p class="muted">Compress many images at once directly in your browser. No subscription.</p>
-    <div class="price">$4.99</div><div class="muted">One-time purchase</div>
-    <div id="paymentArea"><div id="paypal-button-container"></div><div id="paymentMessage" class="result"></div></div>
-    <div id="proTool"><p class="success">✓ QuickTiny Pro unlocked</p><input id="batchFiles" type="file" accept="image/*" multiple><button onclick="batchCompress()">Compress all images</button><div id="batchStatus" class="result"></div><div id="batchDownloads" class="downloads"></div></div>
+</header>
+<div class="wrap">
+  <section class="hero">
+    <span class="badge">Fast &middot; Private &middot; Free essentials</span>
+    <h1>Useful tools. Zero friction.</h1>
+    <p>Fast browser tools for files, images, text and everyday tasks.</p>
+    <div class="hero-badges">
+      <span class="badge">No signup</span>
+      <span class="badge">Browser-first</span>
+      <span class="badge">Privacy-friendly</span>
+    </div>
+    <div class="btn-row hero-cta">
+      <a class="btn" href="#tools">Explore tools <svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
   </section>
-  <footer><span>© 2026 QuickTiny</span><a href="/privacy">Privacy</a><a href="/terms">Terms</a></footer>
+
+  <section class="section" id="tools">
+    <div class="section-head">
+      <div>
+        <div class="section-title">All tools</div>
+        <p class="section-sub">13 free browser tools. Search or filter by category &mdash; nothing here requires an account.</p>
+      </div>
+    </div>
+    <div class="search-row">
+      <input class="search-input" id="toolSearch" type="text" placeholder="Search tools (e.g. json, password, image)..." aria-label="Search tools">
+    </div>
+    <div class="chip-row" id="catChips">
+      <button class="chip active" data-cat="All">All</button>
+      <button class="chip" data-cat="Image">Image</button>
+      <button class="chip" data-cat="Text">Text</button>
+      <button class="chip" data-cat="Data">Data</button>
+      <button class="chip" data-cat="SEO">SEO</button>
+      <button class="chip" data-cat="Utility">Utility</button>
+    </div>
+    <div class="tools-grid" id="toolsGrid">
+      <a class="tool-card" href="/compress-image" data-cat="Image" data-search="image compressor shrink jpg and png files in your browser — no upload required. image">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-5.3-5.3a2 2 0 0 0-2.8 0L4 19"/></svg></span>
+          <span class="cat-badge">Image</span>
+        </div>
+        <h3>Image Compressor</h3>
+        <p>Shrink JPG and PNG files in your browser — no upload required.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/word-counter" data-cat="Text" data-search="word counter count words, characters, sentences and lines as you type. text">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="cat-badge">Text</span>
+        </div>
+        <h3>Word Counter</h3>
+        <p>Count words, characters, sentences and lines as you type.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/clean-text" data-cat="Text" data-search="clean text remove extra spaces, tabs and blank lines from messy text. text">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="cat-badge">Text</span>
+        </div>
+        <h3>Clean Text</h3>
+        <p>Remove extra spaces, tabs and blank lines from messy text.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/json-formatter" data-cat="Data" data-search="json formatter format, validate and beautify json with clear error messages. data">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4L2.5 12 8 20M16 4l5.5 8L16 20"/></svg></span>
+          <span class="cat-badge">Data</span>
+        </div>
+        <h3>JSON Formatter</h3>
+        <p>Format, validate and beautify JSON with clear error messages.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/seo-slug-generator" data-cat="SEO" data-search="seo slug generator turn any title into a clean, url-friendly slug. seo">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M21 21l-5.2-5.2"/></svg></span>
+          <span class="cat-badge">SEO</span>
+        </div>
+        <h3>SEO Slug Generator</h3>
+        <p>Turn any title into a clean, URL-friendly slug.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/case-converter" data-cat="Text" data-search="case converter convert text to uppercase, lowercase, title case or sentence case. text">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="cat-badge">Text</span>
+        </div>
+        <h3>Case Converter</h3>
+        <p>Convert text to UPPERCASE, lowercase, Title Case or Sentence case.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/remove-duplicate-lines" data-cat="Text" data-search="remove duplicate lines delete repeated lines from a list and keep the order. text">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="cat-badge">Text</span>
+        </div>
+        <h3>Remove Duplicate Lines</h3>
+        <p>Delete repeated lines from a list and keep the order.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/sort-lines" data-cat="Text" data-search="sort lines sort a list of lines alphabetically, a→z or z→a. text">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="cat-badge">Text</span>
+        </div>
+        <h3>Sort Lines</h3>
+        <p>Sort a list of lines alphabetically, A→Z or Z→A.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/base64-encode-decode" data-cat="Data" data-search="base64 encode/decode encode text to base64 or decode base64 back to text. data">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4L2.5 12 8 20M16 4l5.5 8L16 20"/></svg></span>
+          <span class="cat-badge">Data</span>
+        </div>
+        <h3>Base64 Encode/Decode</h3>
+        <p>Encode text to Base64 or decode Base64 back to text.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/url-encode-decode" data-cat="Data" data-search="url encode/decode encode text for urls or decode encoded url strings. data">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4L2.5 12 8 20M16 4l5.5 8L16 20"/></svg></span>
+          <span class="cat-badge">Data</span>
+        </div>
+        <h3>URL Encode/Decode</h3>
+        <p>Encode text for URLs or decode encoded URL strings.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/timestamp-converter" data-cat="Utility" data-search="timestamp converter convert unix timestamps to readable dates and back. utility">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 3.5a4.5 4.5 0 0 0-5.8 5.8L3 15v6h6l5.7-5.7a4.5 4.5 0 0 0 5.8-5.8l-3 3-3-3z"/></svg></span>
+          <span class="cat-badge">Utility</span>
+        </div>
+        <h3>Timestamp Converter</h3>
+        <p>Convert Unix timestamps to readable dates and back.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/password-generator" data-cat="Utility" data-search="password generator generate strong, random passwords with custom rules. utility">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 3.5a4.5 4.5 0 0 0-5.8 5.8L3 15v6h6l5.7-5.7a4.5 4.5 0 0 0 5.8-5.8l-3 3-3-3z"/></svg></span>
+          <span class="cat-badge">Utility</span>
+        </div>
+        <h3>Password Generator</h3>
+        <p>Generate strong, random passwords with custom rules.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card tool-card-pro" href="/batch-image-compressor" data-cat="Image" data-search="batch image compressor compress dozens of images at once. quicktiny pro, one-time $4.99. image">
+        <span class="pro-chip"><svg class="pro-chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4.2 4 1 5.8L12 16l-4.8 2.8 1-5.8L4 9l5.5-.5z"/></svg>PRO</span>
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4.2 4 1 5.8L12 16l-4.8 2.8 1-5.8L4 9l5.5-.5z"/></svg></span>
+          <span class="cat-badge">Image</span>
+        </div>
+        <h3>Batch Image Compressor</h3>
+        <p>Compress dozens of images at once. QuickTiny Pro, one-time $4.99.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+    <p class="no-results" id="noResults">No tools match your search.</p>
+  </section>
+
+  <section class="pro-section" id="pro">
+    <div class="section-head">
+      <div>
+        <div class="section-title">QuickTiny Pro</div>
+        <p class="section-sub">One paid feature. No subscriptions, ever.</p>
+      </div>
+    </div>
+    <div class="pro-card">
+      <div class="pro-info">
+        <span class="badge pro-badge"><svg class="pro-badge-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4.2 4 1 5.8L12 16l-4.8 2.8 1-5.8L4 9l5.5-.5z"/></svg>Batch Image Compressor</span>
+        <h2>Compress dozens of images in one pass</h2>
+        <p class="pro-lede">The same private, in-browser compression as the free tool &mdash; scaled up for whole folders of images at once.</p>
+        <ul class="benefits pro-checklist">
+          <li>Compress many JPG and PNG images at once</li>
+          <li>Images stay on your device &mdash; nothing is uploaded</li>
+          <li>Pay once, use it forever in this browser</li>
+          <li>No subscription, no recurring charge</li>
+        </ul>
+      </div>
+      <div class="pro-buy">
+        <div class="pro-price-row">
+          <div class="price">$4.99</div>
+          <div class="price-sub">one-time payment</div>
+        </div>
+        <a class="btn btn-pro" href="/batch-image-compressor">Get QuickTiny Pro <svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="pro-trust"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure checkout via PayPal</p>
+      </div>
+    </div>
+  </section>
 </div>
-
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
 <script>
-function count(){const t=document.querySelector("#counter").value;const w=t.trim()?t.trim().split(/\s+/).length:0;document.querySelector("#countout").textContent=`${w} words • ${t.length} characters • ${t.split(/\n/).length} lines`;}
-async function cleanText(){const el=document.querySelector("#clean");el.value=el.value.replace(/[ \t]+/g," ").replace(/\n{3,}/g,"\n\n").trim();try{await navigator.clipboard.writeText(el.value);document.querySelector("#cleanout").textContent="Cleaned + copied ✓";}catch{document.querySelector("#cleanout").textContent="Cleaned ✓";}}
-function slugIt(){const value=document.querySelector("#slug").value;document.querySelector("#slugout").textContent=value.toLowerCase().normalize("NFKD").replace(/[^\w\s-]/g,"").trim().replace(/\s+/g,"-").replace(/-+/g,"-");}
-function formatJson(){const input=document.querySelector("#json");const out=document.querySelector("#jsonout");try{input.value=JSON.stringify(JSON.parse(input.value),null,2);out.textContent="✓ Valid JSON";}catch(e){out.textContent="Invalid JSON: "+e.message;}}
-function caseIt(mode){const e=document.querySelector("#case");if(mode==="u")e.value=e.value.toUpperCase();if(mode==="l")e.value=e.value.toLowerCase();if(mode==="t")e.value=e.value.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());}
-function compress(){const f=document.querySelector("#img").files[0];const out=document.querySelector("#imgout");if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement("canvas");c.width=im.width;c.height=im.height;c.getContext("2d").drawImage(im,0,0);c.toBlob(blob=>{const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="quicktiny-"+f.name.replace(/\.[^.]+$/,"")+".jpg";a.textContent=`Download compressed image (${Math.round(blob.size/1024)} KB)`;out.innerHTML="";out.appendChild(a);},"image/jpeg",0.72);};im.src=URL.createObjectURL(f);}
-function unlockPro(){localStorage.setItem("quicktiny_pro","1");document.querySelector("#proTool").style.display="block";document.querySelector("#paymentArea").style.display="none";}
-async function batchCompress(){const files=[...document.querySelector("#batchFiles").files];const downloads=document.querySelector("#batchDownloads");const status=document.querySelector("#batchStatus");downloads.innerHTML="";if(!files.length){status.textContent="Choose images first.";return;}status.textContent=`Compressing ${files.length} images...`;let done=0;for(const file of files){await new Promise(resolve=>{const img=new Image();img.onload=()=>{const canvas=document.createElement("canvas");canvas.width=img.width;canvas.height=img.height;canvas.getContext("2d").drawImage(img,0,0);canvas.toBlob(blob=>{const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="quicktiny-"+file.name.replace(/\.[^.]+$/,"")+".jpg";a.textContent=`Download ${file.name} — ${Math.round(blob.size/1024)} KB`;downloads.appendChild(a);done++;status.textContent=`Completed ${done}/${files.length}`;resolve();},"image/jpeg",0.7);};img.src=URL.createObjectURL(file);});}}
-if(localStorage.getItem("quicktiny_pro")==="1"){unlockPro();}
-</script>
-
-<script async src="https://www.paypal.com/web-sdk/v6/core" onload="initPayPal()"></script>
-<script>
-async function initPayPal(){
-  try{
-   const tokenResponse = await fetch("/api/paypal-client-token");
-const tokenData = await tokenResponse.json();
-
-if (!tokenResponse.ok || !tokenData.clientToken) {
-  throw new Error("Could not get PayPal client token");
-}
-
-const sdkInstance = await window.paypal.createInstance({
-  clientToken: tokenData.clientToken,
-  components: ["paypal-payments"],
-  pageType: "checkout"
-});
-
-    const methods = await sdkInstance.findEligibleMethods({
-      currencyCode: "USD"
+(function(){
+  var search = document.querySelector("#toolSearch");
+  var chips = document.querySelectorAll("#catChips .chip");
+  var cards = document.querySelectorAll("#toolsGrid .tool-card");
+  var noResults = document.querySelector("#noResults");
+  var activeCat = "All";
+  function apply(){
+    var q = search.value.trim().toLowerCase();
+    var visible = 0;
+    cards.forEach(function(card){
+      var matchesCat = activeCat === "All" || card.getAttribute("data-cat") === activeCat;
+      var matchesSearch = !q || card.getAttribute("data-search").indexOf(q) !== -1;
+      var show = matchesCat && matchesSearch;
+      card.style.display = show ? "" : "none";
+      if (show) visible++;
     });
-
-    if(!methods.isEligible("paypal")){
-      document.querySelector("#paymentMessage").textContent =
-        "PayPal is not available for this browser.";
-      return;
-    }
-
-    const session = sdkInstance.createPayPalOneTimePaymentSession({
-      async onApprove(data){
-        const response = await fetch("/api/paypal-capture-order",{
-          method:"POST",
-          headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({orderID:data.orderId})
-        });
-
-        const result = await response.json();
-
-        if(response.ok && result.status === "COMPLETED"){
-          unlockPro();
-        }else{
-          document.querySelector("#paymentMessage").textContent =
-            "Payment could not be confirmed.";
-        }
-      },
-
-      onCancel(){
-        document.querySelector("#paymentMessage").textContent =
-          "Payment cancelled.";
-      },
-
-      onError(err){
-        console.error(err);
-        document.querySelector("#paymentMessage").textContent =
-          "PayPal error. Please try again.";
-      }
-    });
-
-    const button = document.createElement("paypal-button");
-    button.setAttribute("type","pay");
-
-    document.querySelector("#paypal-button-container").appendChild(button);
-
-    button.addEventListener("click", async ()=>{
-      const response = await fetch("/api/paypal-create-order",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"}
-      });
-
-      const data = await response.json();
-
-      if(!response.ok || !data.id){
-        throw new Error("Could not create PayPal order");
-      }
-
-      await session.start(
-        {presentationMode:"auto"},
-        Promise.resolve({orderId:data.id})
-      );
-    });
-
-  }catch(err){
-    console.error(err);
-    document.querySelector("#paymentMessage").textContent =
-      "PayPal failed to load.";
+    noResults.style.display = visible === 0 ? "block" : "none";
   }
-}
-
+  search.addEventListener("input", apply);
+  chips.forEach(function(chip){
+    chip.addEventListener("click", function(){
+      chips.forEach(function(c){ c.classList.remove("active"); });
+      chip.classList.add("active");
+      activeCat = chip.getAttribute("data-cat");
+      apply();
+    });
+  });
+})();
 </script>
 </body>
 </html>

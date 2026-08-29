@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://quicktinylaunch.vercel.app/sitemap.xml
+
+Sitemap: https://quicktinyv2.vercel.app/sitemap.xml

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Batch Image Compressor — Compress Multiple Images | QuickTiny</title>
+  <meta name="description" content="Compress multiple JPG and PNG images at once in your browser. QuickTiny Pro is a one-time $4.99 purchase — no subscription.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/batch-image-compressor">
+  <meta property="og:title" content="Batch Image Compressor — Compress Multiple Images | QuickTiny">
+  <meta property="og:description" content="Compress multiple JPG and PNG images at once in your browser. QuickTiny Pro is a one-time $4.99 purchase — no subscription.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/batch-image-compressor">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Batch Image Compressor</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Image</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">One-time $4.99</span>
+    </div>
+    <h1>Batch Image Compressor — QuickTiny Pro</h1>
+    <p>Compress many images in one pass instead of one at a time. Batch Image Compressor is a QuickTiny Pro feature — a single one-time payment of $4.99, no subscription.</p>
+  </section>
+
+  <div class="tool-panel">
+    <div class="pro-top">
+      <div>
+        <span class="badge">QuickTiny Pro</span>
+        <div class="price">$4.99</div>
+        <div class="muted" style="color:var(--muted);font-size:14px">One-time purchase &middot; No subscription</div>
+      </div>
+    </div>
+    <p style="color:var(--text-dim);font-size:15px;max-width:60ch">Compress many JPG and PNG images in a single pass. Pay once with PayPal and unlock batch compression permanently in this browser.</p>
+    <div id="paymentArea">
+      <div id="paypal-button-container"></div>
+      <div id="paymentMessage" class="result"></div>
+    </div>
+    <div id="proTool">
+      <p class="result success">&#10003; QuickTiny Pro unlocked</p>
+      <label class="field-label" for="batchFiles">Choose images</label>
+      <input id="batchFiles" type="file" accept="image/*" multiple>
+      <div class="btn-row"><button class="btn" onclick="batchCompress()">Compress all images</button></div>
+      <div id="batchStatus" class="result"></div>
+      <div id="batchDownloads" class="downloads"></div>
+    </div>
+  </div>
+
+  <script>
+  function unlockPro(){
+    localStorage.setItem("quicktiny_pro","1");
+    document.querySelector("#proTool").style.display="block";
+    document.querySelector("#paymentArea").style.display="none";
+  }
+  async function batchCompress(){
+    var files=[...document.querySelector("#batchFiles").files];
+    var downloads=document.querySelector("#batchDownloads");
+    var status=document.querySelector("#batchStatus");
+    downloads.innerHTML="";
+    if(!files.length){status.textContent="Choose images first.";status.className="result error";return;}
+    status.textContent="Compressing "+files.length+" images...";
+    status.className="result";
+    var done=0;
+    for(const file of files){
+      await new Promise(function(resolve){
+        var img=new Image();
+        img.onload=function(){
+          var canvas=document.createElement("canvas");
+          canvas.width=img.width;canvas.height=img.height;
+          canvas.getContext("2d").drawImage(img,0,0);
+          canvas.toBlob(function(blob){
+            var a=document.createElement("a");
+            a.href=URL.createObjectURL(blob);
+            a.download="quicktiny-"+file.name.replace(/\.[^.]+$/,"")+".jpg";
+            a.textContent="Download "+file.name+" \u2014 "+Math.round(blob.size/1024)+" KB (was "+Math.round(file.size/1024)+" KB)";
+            downloads.appendChild(a);
+            done++;
+            status.textContent="Completed "+done+"/"+files.length;
+            status.className="result success";
+            resolve();
+          },"image/jpeg",0.7);
+        };
+        img.onerror=function(){ done++; status.textContent="Skipped a file that couldn't be read ("+done+"/"+files.length+")"; resolve(); };
+        img.src=URL.createObjectURL(file);
+      });
+    }
+  }
+  if(localStorage.getItem("quicktiny_pro")==="1"){unlockPro();}
+  </script>
+
+  <script async src="https://www.paypal.com/web-sdk/v6/core" onload="initPayPal()"></script>
+  <script>
+  async function initPayPal(){
+    try{
+      const tokenResponse = await fetch("/api/paypal-client-token");
+      const tokenData = await tokenResponse.json();
+
+      if (!tokenResponse.ok || !tokenData.clientToken) {
+        throw new Error("Could not get PayPal client token");
+      }
+
+      const sdkInstance = await window.paypal.createInstance({
+        clientToken: tokenData.clientToken,
+        components: ["paypal-payments"],
+        pageType: "checkout"
+      });
+
+      const methods = await sdkInstance.findEligibleMethods({
+        currencyCode: "USD"
+      });
+
+      if(!methods.isEligible("paypal")){
+        document.querySelector("#paymentMessage").textContent =
+          "PayPal is not available for this browser.";
+        return;
+      }
+
+      const session = sdkInstance.createPayPalOneTimePaymentSession({
+        async onApprove(data){
+          const response = await fetch("/api/paypal-capture-order",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({orderID:data.orderId})
+          });
+
+          const result = await response.json();
+
+          if(response.ok && result.status === "COMPLETED"){
+            unlockPro();
+          }else{
+            document.querySelector("#paymentMessage").textContent =
+              "Payment could not be confirmed.";
+          }
+        },
+
+        onCancel(){
+          document.querySelector("#paymentMessage").textContent =
+            "Payment cancelled.";
+        },
+
+        onError(err){
+          console.error(err);
+          document.querySelector("#paymentMessage").textContent =
+            "PayPal error. Please try again.";
+        }
+      });
+
+      const button = document.createElement("paypal-button");
+      button.setAttribute("type","pay");
+
+      document.querySelector("#paypal-button-container").appendChild(button);
+
+      button.addEventListener("click", async ()=>{
+        const response = await fetch("/api/paypal-create-order",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"}
+        });
+
+        const data = await response.json();
+
+        if(!response.ok || !data.id){
+          throw new Error("Could not create PayPal order");
+        }
+
+        await session.start(
+          {presentationMode:"auto"},
+          Promise.resolve({orderId:data.id})
+        );
+      });
+
+    }catch(err){
+      console.error(err);
+      document.querySelector("#paymentMessage").textContent =
+        "PayPal failed to load.";
+    }
+  }
+  </script>
+
+  <div class="content">
+    <h2>How to use Batch Image Compressor</h2>
+    <ol>
+      <li>Pay once with PayPal ($4.99, one-time).</li>
+      <li>QuickTiny Pro unlocks automatically in this browser after payment is confirmed.</li>
+      <li>Choose multiple JPG or PNG images at once.</li>
+      <li>Click &quot;Compress all images&quot; and download each result.</li>
+    </ol>
+
+    <h2>Key benefits</h2>
+    <ul class="benefits">
+      <li>Compress dozens of images in one pass instead of one at a time.</li>
+      <li>One-time payment — no subscription, no recurring charge.</li>
+      <li>Images are compressed locally in your browser, never uploaded.</li>
+      <li>Unlock persists in this browser for future visits.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Batch Image Compressor runs entirely in your browser. Your files and text are processed on your own device and are never uploaded to QuickTiny's servers. The only data sent to a server during checkout is what's required by PayPal to process payment — your images are never uploaded.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is this a subscription?</summary><p>No. Batch Image Compressor is a single one-time payment of $4.99. It does not renew or charge again.</p></details>
+    <details class="faq-item"><summary>Where is my payment processed?</summary><p>Payment is handled by PayPal. QuickTiny's server creates and confirms the order through PayPal's API and never sees or stores your card details.</p></details>
+    <details class="faq-item"><summary>Do my images get uploaded when I compress them?</summary><p>No. Batch compression happens locally in your browser using the same canvas-based method as the free Image Compressor — only the payment step involves a server.</p></details>
+    <details class="faq-item"><summary>Will Pro stay unlocked if I clear my browser data or switch devices?</summary><p>The unlock is stored in this browser's local storage. Clearing site data, switching browsers, or using a different device will require verifying your purchase again.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/compress-image">Image Compressor<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Batch Image Compressor","url":"https://quicktinyv2.vercel.app/batch-image-compressor","description":"Compress multiple JPG and PNG images at once in your browser. QuickTiny Pro is a one-time $4.99 purchase — no subscription.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"4.99","priceCurrency":"USD"},"isAccessibleForFree":false}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Batch Image Compressor","item":"https://quicktinyv2.vercel.app/batch-image-compressor"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Batch Image Compressor is a single one-time payment of $4.99. It does not renew or charge again."}},{"@type":"Question","name":"Where is my payment processed?","acceptedAnswer":{"@type":"Answer","text":"Payment is handled by PayPal. QuickTiny's server creates and confirms the order through PayPal's API and never sees or stores your card details."}},{"@type":"Question","name":"Do my images get uploaded when I compress them?","acceptedAnswer":{"@type":"Answer","text":"No. Batch compression happens locally in your browser using the same canvas-based method as the free Image Compressor — only the payment step involves a server."}},{"@type":"Question","name":"Will Pro stay unlocked if I clear my browser data or switch devices?","acceptedAnswer":{"@type":"Answer","text":"The unlock is stored in this browser's local storage. Clearing site data, switching browsers, or using a different device will require verifying your purchase again."}}]}</script>
+</body>
+</html>

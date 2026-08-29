@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Remove Duplicate Lines Online — Free Tool | QuickTiny</title>
+  <meta name="description" content="Paste a list and instantly remove duplicate lines while keeping the original order. Free, private, and processed in your browser.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/remove-duplicate-lines">
+  <meta property="og:title" content="Remove Duplicate Lines Online — Free Tool | QuickTiny">
+  <meta property="og:description" content="Paste a list and instantly remove duplicate lines while keeping the original order. Free, private, and processed in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/remove-duplicate-lines">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Remove Duplicate Lines</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Text</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>Remove Duplicate Lines Online</h1>
+    <p>Paste a list of lines — emails, URLs, keywords — and QuickTiny removes duplicates while keeping the first occurrence in its original position.</p>
+  </section>
+
+  <div class="tool-panel">
+    
+      <label class="field-label" for="dedupe">Your list</label>
+      <textarea id="dedupe" placeholder="one line per item..."></textarea>
+      <div class="checkline"><input type="checkbox" id="dedupeCase"><label for="dedupeCase">Ignore case when comparing</label></div>
+      <div class="btn-row">
+        <button class="btn" onclick="qtDedupe()">Remove duplicates</button>
+        <button class="btn btn-secondary" onclick="qtCopyDedupe()">Copy result</button>
+      </div>
+      <div id="dedupeout" class="result"></div>
+  </div>
+  <script>
+      function qtDedupe(){
+        var el = document.querySelector("#dedupe");
+        var out = document.querySelector("#dedupeout");
+        var ignoreCase = document.querySelector("#dedupeCase").checked;
+        var lines = el.value.split(/\n/);
+        var seen = {};
+        var result = [];
+        lines.forEach(function(line){
+          var key = ignoreCase ? line.toLowerCase() : line;
+          if (!Object.prototype.hasOwnProperty.call(seen, key)) {
+            seen[key] = true;
+            result.push(line);
+          }
+        });
+        var removed = lines.length - result.length;
+        el.value = result.join("\n");
+        out.textContent = removed > 0 ? ("Removed " + removed + " duplicate line" + (removed === 1 ? "" : "s") + " ✓") : "No duplicates found.";
+        out.className = removed > 0 ? "result success" : "result";
+      }
+      async function qtCopyDedupe(){
+        var el = document.querySelector("#dedupe");
+        var out = document.querySelector("#dedupeout");
+        if (!el.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
+        await qtCopy(el.value, out, "Copied");
+      }</script>
+
+  <div class="content">
+    <h2>How to use Remove Duplicate Lines</h2>
+    <ol>
+      <li>Paste your list, one item per line.</li>
+      <li>Optionally check &quot;Ignore case&quot; to treat &quot;Apple&quot; and &quot;apple&quot; as duplicates.</li>
+      <li>Click &quot;Remove duplicates&quot;.</li>
+      <li>Copy the cleaned list.</li>
+    </ol>
+
+    <h2>Key benefits</h2>
+    <ul class="benefits">
+      <li>Keeps the original order of first occurrences.</li>
+      <li>Optional case-insensitive matching.</li>
+      <li>Great for cleaning email lists, keyword lists and URLs.</li>
+      <li>Runs locally in your browser.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Remove Duplicate Lines runs entirely in your browser using local JavaScript. Your files and text are processed on your own device and are never uploaded to QuickTiny's servers.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does it keep the first or last occurrence?</summary><p>The first occurrence of each line is kept; later duplicates are removed.</p></details>
+    <details class="faq-item"><summary>Does it trim whitespace before comparing?</summary><p>No, comparison is exact (aside from the optional case-insensitive setting), so &quot;item&quot; and &quot;item &quot; with a trailing space are treated as different lines. Run Clean Text first if you need whitespace normalized.</p></details>
+    <details class="faq-item"><summary>Is empty-line handling special?</summary><p>Empty lines are treated like any other line — repeated blank lines will also be deduplicated.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/sort-lines">Sort Lines<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Remove Duplicate Lines","url":"https://quicktinyv2.vercel.app/remove-duplicate-lines","description":"Paste a list and instantly remove duplicate lines while keeping the original order. Free, private, and processed in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Remove Duplicate Lines","item":"https://quicktinyv2.vercel.app/remove-duplicate-lines"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it keep the first or last occurrence?","acceptedAnswer":{"@type":"Answer","text":"The first occurrence of each line is kept; later duplicates are removed."}},{"@type":"Question","name":"Does it trim whitespace before comparing?","acceptedAnswer":{"@type":"Answer","text":"No, comparison is exact (aside from the optional case-insensitive setting), so \"item\" and \"item \" with a trailing space are treated as different lines. Run Clean Text first if you need whitespace normalized."}},{"@type":"Question","name":"Is empty-line handling special?","acceptedAnswer":{"@type":"Answer","text":"Empty lines are treated like any other line — repeated blank lines will also be deduplicated."}}]}</script>
+</body>
+</html>

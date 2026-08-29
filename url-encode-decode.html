@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>URL Encoder &amp; Decoder Online — Free Tool | QuickTiny</title>
+  <meta name="description" content="Encode text into a URL-safe format or decode percent-encoded URLs. Free online URL encoder/decoder that runs in your browser.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/url-encode-decode">
+  <meta property="og:title" content="URL Encoder &amp; Decoder Online — Free Tool | QuickTiny">
+  <meta property="og:description" content="Encode text into a URL-safe format or decode percent-encoded URLs. Free online URL encoder/decoder that runs in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/url-encode-decode">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">URL Encode/Decode</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Data</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>URL Encode / Decode</h1>
+    <p>Percent-encode text so it's safe to use in a URL query string, or decode an already-encoded URL component back to readable text.</p>
+  </section>
+
+  <div class="tool-panel">
+    
+      <label class="field-label" for="urlenc">Text or encoded URL</label>
+      <textarea id="urlenc" placeholder="Type text to encode, or a %-encoded string to decode..."></textarea>
+      <div class="btn-row">
+        <button class="btn" onclick="qtUrlEnc('encode')">Encode</button>
+        <button class="btn btn-secondary" onclick="qtUrlEnc('decode')">Decode</button>
+        <button class="btn btn-secondary" onclick="qtCopyUrlEnc()">Copy</button>
+      </div>
+      <div id="urlencout" class="result"></div>
+  </div>
+  <script>
+      function qtUrlEnc(mode){
+        var el = document.querySelector("#urlenc");
+        var out = document.querySelector("#urlencout");
+        try {
+          el.value = mode === "encode" ? encodeURIComponent(el.value) : decodeURIComponent(el.value);
+          out.textContent = mode === "encode" ? "Encoded ✓" : "Decoded ✓";
+          out.className = "result success";
+        } catch (e) {
+          out.textContent = "Could not decode — the input isn't valid percent-encoding.";
+          out.className = "result error";
+        }
+      }
+      async function qtCopyUrlEnc(){
+        var el = document.querySelector("#urlenc");
+        var out = document.querySelector("#urlencout");
+        if (!el.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
+        await qtCopy(el.value, out, "Copied");
+      }</script>
+
+  <div class="content">
+    <h2>How to use URL Encode/Decode</h2>
+    <ol>
+      <li>Type or paste text or a URL component into the box.</li>
+      <li>Click &quot;Encode&quot; to percent-encode it, or &quot;Decode&quot; to reverse it.</li>
+      <li>Copy the result.</li>
+    </ol>
+
+    <h2>Key benefits</h2>
+    <ul class="benefits">
+      <li>Uses the browser's native, standards-compliant encoder.</li>
+      <li>Clear error for malformed encoded input.</li>
+      <li>Handy for query strings, API parameters and redirect URLs.</li>
+      <li>Runs locally in your browser.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>URL Encode/Decode runs entirely in your browser using local JavaScript. Your files and text are processed on your own device and are never uploaded to QuickTiny's servers.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>What characters get encoded?</summary><p>Reserved and unsafe characters for a URL component (like spaces, &amp;, ?, #, and non-ASCII characters) are converted to percent-encoded sequences.</p></details>
+    <details class="faq-item"><summary>Does this encode a full URL or just a component?</summary><p>It encodes the whole input as a single component, matching JavaScript's encodeURIComponent. Don't use it on a full URL that already contains :// or you'll encode those characters too.</p></details>
+    <details class="faq-item"><summary>Why does decoding sometimes fail?</summary><p>Decoding fails if the input contains a % that isn't followed by a valid two-digit hex code — that's standard URL-encoding validation.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/base64-encode-decode">Base64 Encode/Decode<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/seo-slug-generator">SEO Slug Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny URL Encode/Decode","url":"https://quicktinyv2.vercel.app/url-encode-decode","description":"Encode text into a URL-safe format or decode percent-encoded URLs. Free online URL encoder/decoder that runs in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"URL Encode/Decode","item":"https://quicktinyv2.vercel.app/url-encode-decode"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What characters get encoded?","acceptedAnswer":{"@type":"Answer","text":"Reserved and unsafe characters for a URL component (like spaces, &, ?, #, and non-ASCII characters) are converted to percent-encoded sequences."}},{"@type":"Question","name":"Does this encode a full URL or just a component?","acceptedAnswer":{"@type":"Answer","text":"It encodes the whole input as a single component, matching JavaScript's encodeURIComponent. Don't use it on a full URL that already contains :// or you'll encode those characters too."}},{"@type":"Question","name":"Why does decoding sometimes fail?","acceptedAnswer":{"@type":"Answer","text":"Decoding fails if the input contains a % that isn't followed by a valid two-digit hex code — that's standard URL-encoding validation."}}]}</script>
+</body>
+</html>

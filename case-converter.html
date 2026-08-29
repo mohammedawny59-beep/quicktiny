@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Case Converter — UPPERCASE, lowercase, Title Case | QuickTiny</title>
+  <meta name="description" content="Convert text between UPPERCASE, lowercase, Title Case and Sentence case instantly. Free online case converter, runs in your browser.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/case-converter">
+  <meta property="og:title" content="Case Converter — UPPERCASE, lowercase, Title Case | QuickTiny">
+  <meta property="og:description" content="Convert text between UPPERCASE, lowercase, Title Case and Sentence case instantly. Free online case converter, runs in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/case-converter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Case Converter</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Text</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>Case Converter — UPPERCASE, lowercase, Title Case</h1>
+    <p>Paste your text, pick a case, and QuickTiny converts it instantly — no retyping needed.</p>
+  </section>
+
+  <div class="tool-panel">
+    
+      <label class="field-label" for="case">Your text</label>
+      <textarea id="case" placeholder="Type or paste text here..."></textarea>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="qtCaseIt('u')">UPPERCASE</button>
+        <button class="btn btn-secondary" onclick="qtCaseIt('l')">lowercase</button>
+        <button class="btn btn-secondary" onclick="qtCaseIt('t')">Title Case</button>
+        <button class="btn btn-secondary" onclick="qtCaseIt('s')">Sentence case</button>
+        <button class="btn" onclick="qtCopyCase()">Copy</button>
+      </div>
+      <div id="caseout" class="result"></div>
+  </div>
+  <script>
+      function qtCaseIt(mode){
+        var e = document.querySelector("#case");
+        if (mode === "u") e.value = e.value.toUpperCase();
+        if (mode === "l") e.value = e.value.toLowerCase();
+        if (mode === "t") e.value = e.value.toLowerCase().replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+        if (mode === "s") e.value = e.value.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g, function(c){ return c.toUpperCase(); });
+      }
+      async function qtCopyCase(){
+        var e = document.querySelector("#case");
+        var out = document.querySelector("#caseout");
+        if (!e.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
+        await qtCopy(e.value, out, "Copied");
+      }</script>
+
+  <div class="content">
+    <h2>How to use Case Converter</h2>
+    <ol>
+      <li>Paste or type your text.</li>
+      <li>Click UPPERCASE, lowercase, Title Case or Sentence case.</li>
+      <li>Click Copy to copy the converted text.</li>
+    </ol>
+
+    <h2>Key benefits</h2>
+    <ul class="benefits">
+      <li>Four case styles in one tool.</li>
+      <li>Instant conversion, no page reload.</li>
+      <li>Runs locally in your browser.</li>
+      <li>Handy for headlines, names and formatting cleanup.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Case Converter runs entirely in your browser using local JavaScript. Your files and text are processed on your own device and are never uploaded to QuickTiny's servers.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>What's the difference between Title Case and Sentence case?</summary><p>Title Case capitalizes the first letter of every word. Sentence case capitalizes only the first letter of each sentence, like normal prose.</p></details>
+    <details class="faq-item"><summary>Does this handle punctuation correctly?</summary><p>Sentence case capitalizes the letter after sentence-ending punctuation (. ! ?) as well as the start of the text.</p></details>
+    <details class="faq-item"><summary>Is there a text length limit?</summary><p>No practical limit — conversion happens instantly in your browser regardless of length.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/seo-slug-generator">SEO Slug Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Case Converter","url":"https://quicktinyv2.vercel.app/case-converter","description":"Convert text between UPPERCASE, lowercase, Title Case and Sentence case instantly. Free online case converter, runs in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Case Converter","item":"https://quicktinyv2.vercel.app/case-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the difference between Title Case and Sentence case?","acceptedAnswer":{"@type":"Answer","text":"Title Case capitalizes the first letter of every word. Sentence case capitalizes only the first letter of each sentence, like normal prose."}},{"@type":"Question","name":"Does this handle punctuation correctly?","acceptedAnswer":{"@type":"Answer","text":"Sentence case capitalizes the letter after sentence-ending punctuation (. ! ?) as well as the start of the text."}},{"@type":"Question","name":"Is there a text length limit?","acceptedAnswer":{"@type":"Answer","text":"No practical limit — conversion happens instantly in your browser regardless of length."}}]}</script>
+</body>
+</html>

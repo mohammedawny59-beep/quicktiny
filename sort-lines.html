@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sort Lines Online (A-Z / Z-A) — Free Tool | QuickTiny</title>
+  <meta name="description" content="Sort any list of lines alphabetically or reverse-alphabetically in one click. Free online line sorter, runs entirely in your browser.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/sort-lines">
+  <meta property="og:title" content="Sort Lines Online (A-Z / Z-A) — Free Tool | QuickTiny">
+  <meta property="og:description" content="Sort any list of lines alphabetically or reverse-alphabetically in one click. Free online line sorter, runs entirely in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/sort-lines">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Sort Lines</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Text</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>Sort Lines — A→Z or Z→A</h1>
+    <p>Paste a list and sort it alphabetically or in reverse — useful for tidying keyword lists, file names or reference lists.</p>
+  </section>
+
+  <div class="tool-panel">
+    
+      <label class="field-label" for="sortlines">Your list</label>
+      <textarea id="sortlines" placeholder="one line per item..."></textarea>
+      <div class="checkline"><input type="checkbox" id="sortRemoveEmpty"><label for="sortRemoveEmpty">Remove empty lines</label></div>
+      <div class="btn-row">
+        <button class="btn" onclick="qtSort('asc')">Sort A → Z</button>
+        <button class="btn btn-secondary" onclick="qtSort('desc')">Sort Z → A</button>
+        <button class="btn btn-secondary" onclick="qtCopySort()">Copy result</button>
+      </div>
+      <div id="sortout" class="result"></div>
+  </div>
+  <script>
+      function qtSort(dir){
+        var el = document.querySelector("#sortlines");
+        var out = document.querySelector("#sortout");
+        var removeEmpty = document.querySelector("#sortRemoveEmpty").checked;
+        var lines = el.value.split(/\n/);
+        if (removeEmpty) lines = lines.filter(function(l){ return l.trim().length > 0; });
+        lines.sort(function(a, b){ return a.localeCompare(b, undefined, { sensitivity: "base" }); });
+        if (dir === "desc") lines.reverse();
+        el.value = lines.join("\n");
+        out.textContent = "Sorted " + lines.length + " line" + (lines.length === 1 ? "" : "s") + " ✓";
+        out.className = "result success";
+      }
+      async function qtCopySort(){
+        var el = document.querySelector("#sortlines");
+        var out = document.querySelector("#sortout");
+        if (!el.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
+        await qtCopy(el.value, out, "Copied");
+      }</script>
+
+  <div class="content">
+    <h2>How to use Sort Lines</h2>
+    <ol>
+      <li>Paste your list, one item per line.</li>
+      <li>Optionally check &quot;Remove empty lines&quot;.</li>
+      <li>Click &quot;Sort A → Z&quot; or &quot;Sort Z → A&quot;.</li>
+      <li>Copy the sorted result.</li>
+    </ol>
+
+    <h2>Key benefits</h2>
+    <ul class="benefits">
+      <li>Locale-aware alphabetical sorting, case-insensitive.</li>
+      <li>Optional empty-line removal.</li>
+      <li>Instant, no file upload.</li>
+      <li>Useful for keyword lists, references and file names.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Sort Lines runs entirely in your browser using local JavaScript. Your files and text are processed on your own device and are never uploaded to QuickTiny's servers.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is sorting case-sensitive?</summary><p>No, sorting uses case-insensitive comparison so &quot;Banana&quot; and &quot;apple&quot; sort by letter, not by capitalization.</p></details>
+    <details class="faq-item"><summary>Does it sort numbers as numbers?</summary><p>Lines are sorted as text, so &quot;10&quot; comes before &quot;2&quot; alphabetically. This tool doesn't do numeric sorting.</p></details>
+    <details class="faq-item"><summary>Can I undo a sort?</summary><p>Sorting overwrites the box, so copy your original list first if you want to keep the unsorted version.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/remove-duplicate-lines">Remove Duplicate Lines<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Sort Lines","url":"https://quicktinyv2.vercel.app/sort-lines","description":"Sort any list of lines alphabetically or reverse-alphabetically in one click. Free online line sorter, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Sort Lines","item":"https://quicktinyv2.vercel.app/sort-lines"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is sorting case-sensitive?","acceptedAnswer":{"@type":"Answer","text":"No, sorting uses case-insensitive comparison so \"Banana\" and \"apple\" sort by letter, not by capitalization."}},{"@type":"Question","name":"Does it sort numbers as numbers?","acceptedAnswer":{"@type":"Answer","text":"Lines are sorted as text, so \"10\" comes before \"2\" alphabetically. This tool doesn't do numeric sorting."}},{"@type":"Question","name":"Can I undo a sort?","acceptedAnswer":{"@type":"Answer","text":"Sorting overwrites the box, so copy your original list first if you want to keep the unsorted version."}}]}</script>
+</body>
+</html>

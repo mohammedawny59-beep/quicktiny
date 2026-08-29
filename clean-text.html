@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Clean Text — Remove Extra Spaces &amp; Line Breaks | QuickTiny</title>
+  <meta name="description" content="Paste messy text and instantly remove duplicate spaces, tabs and extra blank lines. Free, private, and processed entirely in your browser.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/clean-text">
+  <meta property="og:title" content="Clean Text — Remove Extra Spaces &amp; Line Breaks | QuickTiny">
+  <meta property="og:description" content="Paste messy text and instantly remove duplicate spaces, tabs and extra blank lines. Free, private, and processed entirely in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/clean-text">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Clean Text</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Text</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>Clean Text — Remove Extra Spaces &amp; Blank Lines</h1>
+    <p>Paste text copied from a PDF, email or spreadsheet and QuickTiny will collapse repeated spaces and tabs, and trim excess blank lines — so it's ready to reuse.</p>
+  </section>
+
+  <div class="tool-panel">
+    
+      <label class="field-label" for="clean">Your text</label>
+      <textarea id="clean" placeholder="Paste messy text here..."></textarea>
+      <div class="btn-row"><button class="btn" onclick="qtCleanText()">Clean &amp; copy</button></div>
+      <div id="cleanout" class="result"></div>
+  </div>
+  <script>
+      async function qtCleanText(){
+        var el = document.querySelector("#clean");
+        var out = document.querySelector("#cleanout");
+        var value = el.value.replace(/[ \t]+/g, " ").replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim();
+        el.value = value;
+        if (!value) { out.textContent = "Nothing to clean yet."; out.className = "result"; return; }
+        await qtCopy(value, out, "Cleaned & copied");
+      }</script>
+
+  <div class="content">
+    <h2>How to use Clean Text</h2>
+    <ol>
+      <li>Paste your text into the box.</li>
+      <li>Click &quot;Clean &amp; copy&quot;.</li>
+      <li>Extra spaces, tabs and blank lines are removed and the result is copied to your clipboard automatically.</li>
+    </ol>
+
+    <h2>Key benefits</h2>
+    <ul class="benefits">
+      <li>Fixes text pasted from PDFs, emails and spreadsheets.</li>
+      <li>Copies the cleaned result automatically.</li>
+      <li>Runs locally — nothing is uploaded.</li>
+      <li>Free with no character limit.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Clean Text runs entirely in your browser using local JavaScript. Your files and text are processed on your own device and are never uploaded to QuickTiny's servers.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>What exactly does Clean Text change?</summary><p>It collapses repeated spaces and tabs into a single space, removes trailing whitespace before line breaks, and reduces three or more consecutive blank lines to one blank line.</p></details>
+    <details class="faq-item"><summary>Will it change my wording?</summary><p>No. Only whitespace is modified — words and punctuation are left exactly as you typed them.</p></details>
+    <details class="faq-item"><summary>Does it copy automatically?</summary><p>Yes, if your browser allows clipboard access. If it's blocked, you can still select and copy the text manually from the box.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-duplicate-lines">Remove Duplicate Lines<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/sort-lines">Sort Lines<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Clean Text","url":"https://quicktinyv2.vercel.app/clean-text","description":"Paste messy text and instantly remove duplicate spaces, tabs and extra blank lines. Free, private, and processed entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Clean Text","item":"https://quicktinyv2.vercel.app/clean-text"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What exactly does Clean Text change?","acceptedAnswer":{"@type":"Answer","text":"It collapses repeated spaces and tabs into a single space, removes trailing whitespace before line breaks, and reduces three or more consecutive blank lines to one blank line."}},{"@type":"Question","name":"Will it change my wording?","acceptedAnswer":{"@type":"Answer","text":"No. Only whitespace is modified — words and punctuation are left exactly as you typed them."}},{"@type":"Question","name":"Does it copy automatically?","acceptedAnswer":{"@type":"Answer","text":"Yes, if your browser allows clipboard access. If it's blocked, you can still select and copy the text manually from the box."}}]}</script>
+</body>
+</html>

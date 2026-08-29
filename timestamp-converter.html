@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Unix Timestamp Converter — Epoch to Date | QuickTiny</title>
+  <meta name="description" content="Convert Unix timestamps to human-readable dates, or a date to a Unix timestamp. Shows local and UTC time, free and instant.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/timestamp-converter">
+  <meta property="og:title" content="Unix Timestamp Converter — Epoch to Date | QuickTiny">
+  <meta property="og:description" content="Convert Unix timestamps to human-readable dates, or a date to a Unix timestamp. Shows local and UTC time, free and instant.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/timestamp-converter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Timestamp Converter</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Utility</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>Unix Timestamp Converter</h1>
+    <p>Convert a Unix timestamp (seconds or milliseconds) to a readable date in your local time zone and UTC, or convert a date back to a timestamp.</p>
+  </section>
+
+  <div class="tool-panel">
+    
+      <div class="row-2">
+        <div>
+          <label class="field-label" for="tsInput">Unix timestamp</label>
+          <input id="tsInput" type="text" placeholder="e.g. 1735689600">
+          <div class="btn-row"><button class="btn" onclick="qtTsToDate()">Convert to date</button><button class="btn btn-secondary" onclick="qtNow()">Use current time</button></div>
+        </div>
+        <div>
+          <label class="field-label" for="dateInput">Date &amp; time (local)</label>
+          <input id="dateInput" type="datetime-local">
+          <div class="btn-row"><button class="btn" onclick="qtDateToTs()">Convert to timestamp</button></div>
+        </div>
+      </div>
+      <div id="tsout" class="result"></div>
+  </div>
+  <script>
+      function qtNow(){
+        document.querySelector("#tsInput").value = Math.floor(Date.now() / 1000);
+        qtTsToDate();
+      }
+      function qtTsToDate(){
+        var raw = document.querySelector("#tsInput").value.trim();
+        var out = document.querySelector("#tsout");
+        if (!raw || isNaN(Number(raw))) { out.textContent = "Enter a numeric timestamp."; out.className = "result error"; return; }
+        var num = Number(raw);
+        var ms = Math.abs(num) > 20000000000 ? num : num * 1000;
+        var d = new Date(ms);
+        if (isNaN(d.getTime())) { out.textContent = "That timestamp is out of range."; out.className = "result error"; return; }
+        out.innerHTML = "Local: <strong>" + d.toString() + "</strong><br>UTC: <strong>" + d.toUTCString() + "</strong>";
+        out.className = "result success";
+      }
+      function qtDateToTs(){
+        var raw = document.querySelector("#dateInput").value;
+        var out = document.querySelector("#tsout");
+        if (!raw) { out.textContent = "Pick a date and time first."; out.className = "result error"; return; }
+        var d = new Date(raw);
+        if (isNaN(d.getTime())) { out.textContent = "Invalid date."; out.className = "result error"; return; }
+        out.innerHTML = "Unix timestamp (seconds): <strong>" + Math.floor(d.getTime() / 1000) + "</strong><br>Milliseconds: <strong>" + d.getTime() + "</strong>";
+        out.className = "result success";
+      }</script>
+
+  <div class="content">
+    <h2>How to use Timestamp Converter</h2>
+    <ol>
+      <li>Enter a Unix timestamp (in seconds or milliseconds) and click &quot;Convert to date&quot;, or click &quot;Use current time&quot;.</li>
+      <li>Or pick a date and time and click &quot;Convert to timestamp&quot;.</li>
+      <li>Results show both your local time and UTC.</li>
+    </ol>
+
+    <h2>Key benefits</h2>
+    <ul class="benefits">
+      <li>Auto-detects seconds vs. milliseconds.</li>
+      <li>Shows both local time and UTC side by side.</li>
+      <li>One click to grab the current timestamp.</li>
+      <li>Runs entirely in your browser using your device's clock.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Timestamp Converter runs entirely in your browser using local JavaScript. Your files and text are processed on your own device and are never uploaded to QuickTiny's servers.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>How does it know if my timestamp is in seconds or milliseconds?</summary><p>Timestamps larger than 20,000,000,000 are treated as milliseconds; smaller values are treated as seconds. This covers all realistic dates.</p></details>
+    <details class="faq-item"><summary>What time zone is used?</summary><p>Your input date is interpreted in your browser's local time zone. The UTC value is shown alongside it for reference.</p></details>
+    <details class="faq-item"><summary>Can I convert dates before 1970?</summary><p>Yes — negative Unix timestamps representing dates before January 1, 1970 are supported.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/password-generator">Password Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/base64-encode-decode">Base64 Encode/Decode<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Timestamp Converter","url":"https://quicktinyv2.vercel.app/timestamp-converter","description":"Convert Unix timestamps to human-readable dates, or a date to a Unix timestamp. Shows local and UTC time, free and instant.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Timestamp Converter","item":"https://quicktinyv2.vercel.app/timestamp-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does it know if my timestamp is in seconds or milliseconds?","acceptedAnswer":{"@type":"Answer","text":"Timestamps larger than 20,000,000,000 are treated as milliseconds; smaller values are treated as seconds. This covers all realistic dates."}},{"@type":"Question","name":"What time zone is used?","acceptedAnswer":{"@type":"Answer","text":"Your input date is interpreted in your browser's local time zone. The UTC value is shown alongside it for reference."}},{"@type":"Question","name":"Can I convert dates before 1970?","acceptedAnswer":{"@type":"Answer","text":"Yes — negative Unix timestamps representing dates before January 1, 1970 are supported."}}]}</script>
+</body>
+</html>
