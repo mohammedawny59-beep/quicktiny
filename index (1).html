@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QuickTiny — Fast Online Tools</title>
+  <meta name="description" content="Fast browser tools for images and text. Compress images, count words, clean text, format JSON and more.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/">
+  <meta property="og:title" content="QuickTiny — Fast Online Tools">
+  <meta property="og:description" content="Small tools that finish annoying tasks instantly.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/">
+  <style>
+    :root{--bg:#090b10;--card:#121722;--line:#232b39;--text:#f7f8fb;--muted:#9aa6b6;--success:#3ddc84}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+    a{color:inherit}.wrap{max-width:1120px;margin:auto;padding:22px}.nav{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-size:24px;font-weight:900}.badge{border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:#c9d2df;font-size:13px}
+    .hero{text-align:center;padding:72px 0 38px}.hero h1{font-size:clamp(38px,7vw,72px);line-height:1.02;max-width:900px;margin:12px auto}
+    .hero p{color:var(--muted);font-size:19px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}.card p,.muted{color:var(--muted)}
+    input,textarea{width:100%;background:#0b0f16;color:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin:7px 0 10px}
+    textarea{min-height:120px}button,.btn{display:inline-block;background:#fff;color:#080a0e;border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer;text-decoration:none}
+    .result{margin-top:12px;color:#c5cfdd;word-break:break-word}.pro{margin-top:55px;padding:32px;background:var(--card);border:1px solid var(--line);border-radius:22px}
+    .price{font-size:38px;font-weight:900;margin:5px 0}#paypal-button-container{max-width:420px;margin-top:22px}#proTool{display:none;margin-top:24px}
+    .success{color:var(--success);font-weight:800}.downloads a{display:block;margin:8px 0;color:#fff}
+    footer{margin-top:55px;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav"><a class="logo" href="/">QuickTiny.</a><span class="badge">No signup • Browser-first</span></nav>
+  <section class="hero"><span class="badge">Fast • Private • Free essentials</span><h1>Small tools that finish annoying tasks instantly.</h1><p>No account. No subscription wall. Use the tool and move on.</p></section>
+  <div class="grid">
+    <div class="card"><h2>Compress Image</h2><p>Reduce JPG/PNG size in your browser.</p><input id="img" type="file" accept="image/*"><button onclick="compress()">Compress image</button><div id="imgout" class="result"></div></div>
+    <div class="card"><h2>Word Counter</h2><p>Count words, characters and lines instantly.</p><textarea id="counter" oninput="count()"></textarea><div id="countout" class="result">0 words • 0 characters • 0 lines</div></div>
+    <div class="card"><h2>Clean Text</h2><p>Fix duplicate spaces and messy blank lines.</p><textarea id="clean"></textarea><button onclick="cleanText()">Clean & copy</button><div id="cleanout" class="result"></div></div>
+    <div class="card"><h2>JSON Formatter</h2><p>Format and validate JSON locally.</p><textarea id="json"></textarea><button onclick="formatJson()">Format JSON</button><div id="jsonout" class="result"></div></div>
+    <div class="card"><h2>SEO Slug Generator</h2><p>Turn a title into a clean URL slug.</p><input id="slug" placeholder="Your page title"><button onclick="slugIt()">Generate</button><div id="slugout" class="result"></div></div>
+    <div class="card"><h2>Case Converter</h2><p>Change text case instantly.</p><textarea id="case"></textarea><button onclick="caseIt('u')">UPPER</button><button onclick="caseIt('l')">lower</button><button onclick="caseIt('t')">Title</button></div>
+  </div>
+  <section class="pro">
+    <span class="badge">QuickTiny Pro</span><h2>Batch Image Compressor</h2>
+    <p class="muted">Compress many images at once directly in your browser. No subscription.</p>
+    <div class="price">$4.99</div><div class="muted">One-time purchase</div>
+    <div id="paymentArea"><div id="paypal-button-container"></div><div id="paymentMessage" class="result"></div></div>
+    <div id="proTool"><p class="success">✓ QuickTiny Pro unlocked</p><input id="batchFiles" type="file" accept="image/*" multiple><button onclick="batchCompress()">Compress all images</button><div id="batchStatus" class="result"></div><div id="batchDownloads" class="downloads"></div></div>
+  </section>
+  <footer><span>© 2026 QuickTiny</span><a href="/privacy">Privacy</a><a href="/terms">Terms</a></footer>
+</div>
+
+<script>
+function count(){const t=document.querySelector("#counter").value;const w=t.trim()?t.trim().split(/\s+/).length:0;document.querySelector("#countout").textContent=`${w} words • ${t.length} characters • ${t.split(/\n/).length} lines`;}
+async function cleanText(){const el=document.querySelector("#clean");el.value=el.value.replace(/[ \t]+/g," ").replace(/\n{3,}/g,"\n\n").trim();try{await navigator.clipboard.writeText(el.value);document.querySelector("#cleanout").textContent="Cleaned + copied ✓";}catch{document.querySelector("#cleanout").textContent="Cleaned ✓";}}
+function slugIt(){const value=document.querySelector("#slug").value;document.querySelector("#slugout").textContent=value.toLowerCase().normalize("NFKD").replace(/[^\w\s-]/g,"").trim().replace(/\s+/g,"-").replace(/-+/g,"-");}
+function formatJson(){const input=document.querySelector("#json");const out=document.querySelector("#jsonout");try{input.value=JSON.stringify(JSON.parse(input.value),null,2);out.textContent="✓ Valid JSON";}catch(e){out.textContent="Invalid JSON: "+e.message;}}
+function caseIt(mode){const e=document.querySelector("#case");if(mode==="u")e.value=e.value.toUpperCase();if(mode==="l")e.value=e.value.toLowerCase();if(mode==="t")e.value=e.value.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());}
+function compress(){const f=document.querySelector("#img").files[0];const out=document.querySelector("#imgout");if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement("canvas");c.width=im.width;c.height=im.height;c.getContext("2d").drawImage(im,0,0);c.toBlob(blob=>{const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="quicktiny-"+f.name.replace(/\.[^.]+$/,"")+".jpg";a.textContent=`Download compressed image (${Math.round(blob.size/1024)} KB)`;out.innerHTML="";out.appendChild(a);},"image/jpeg",0.72);};im.src=URL.createObjectURL(f);}
+function unlockPro(){localStorage.setItem("quicktiny_pro","1");document.querySelector("#proTool").style.display="block";document.querySelector("#paymentArea").style.display="none";}
+async function batchCompress(){const files=[...document.querySelector("#batchFiles").files];const downloads=document.querySelector("#batchDownloads");const status=document.querySelector("#batchStatus");downloads.innerHTML="";if(!files.length){status.textContent="Choose images first.";return;}status.textContent=`Compressing ${files.length} images...`;let done=0;for(const file of files){await new Promise(resolve=>{const img=new Image();img.onload=()=>{const canvas=document.createElement("canvas");canvas.width=img.width;canvas.height=img.height;canvas.getContext("2d").drawImage(img,0,0);canvas.toBlob(blob=>{const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="quicktiny-"+file.name.replace(/\.[^.]+$/,"")+".jpg";a.textContent=`Download ${file.name} — ${Math.round(blob.size/1024)} KB`;downloads.appendChild(a);done++;status.textContent=`Completed ${done}/${files.length}`;resolve();},"image/jpeg",0.7);};img.src=URL.createObjectURL(file);});}}
+if(localStorage.getItem("quicktiny_pro")==="1"){unlockPro();}
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=BAAshc572iugMXb65MROmuZYb_P2R9aXUUAVLJyzjmXNFqxUJxEmyyOMqt5m4F4tPOoxply6boaBW7tbql&currency=USD"></script>
+<script>
+if(window.paypal&&localStorage.getItem("quicktiny_pro")!=="1"){
+  paypal.Buttons({
+    async createOrder(){
+      const response=await fetch("/api/paypal-create-order",{method:"POST",headers:{"Content-Type":"application/json"}});
+      const data=await response.json();
+      if(!response.ok||!data.id)throw new Error(data.error||"Could not create PayPal order.");
+      return data.id;
+    },
+    async onApprove(data){
+      const response=await fetch("/api/paypal-capture-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderID:data.orderID})});
+      const result=await response.json();
+      if(response.ok&&result.status==="COMPLETED"){unlockPro();}else{document.querySelector("#paymentMessage").textContent="Payment could not be confirmed. Please try again.";}
+    },
+    onCancel(){document.querySelector("#paymentMessage").textContent="Payment cancelled.";},
+    onError(err){console.error(err);document.querySelector("#paymentMessage").textContent="PayPal error. Please try again.";}
+  }).render("#paypal-button-container");
+}
+</script>
+</body>
+</html>
