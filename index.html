@@ -61,7 +61,7 @@ async function batchCompress(){const files=[...document.querySelector("#batchFil
 if(localStorage.getItem("quicktiny_pro")==="1"){unlockPro();}
 </script>
 
-<script src="https://www.paypal.com/web-sdk/v6/core"></script>
+<script async src="https://www.paypal.com/web-sdk/v6/core" onload="initPayPal()"></script>
 <script>
 async function initPayPal(){
   try{
@@ -141,9 +141,6 @@ async function initPayPal(){
   }
 }
 
-if(localStorage.getItem("quicktiny_pro")!=="1"){
-  initPayPal();
-}
 </script>
 </body>
 </html>
