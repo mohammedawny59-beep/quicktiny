@@ -46,10 +46,14 @@ export default async function handler(req, res) {
             },
           },
         ],
-        application_context: {
-          brand_name: "QuickTiny",
-          shipping_preference: "NO_SHIPPING",
-          user_action: "PAY_NOW",
+        payment_source: {
+          paypal: {
+            experience_context: {
+              brand_name: "QuickTiny",
+              shipping_preference: "NO_SHIPPING",
+              user_action: "PAY_NOW",
+            },
+          },
         },
       }),
     });
