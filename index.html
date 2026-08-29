@@ -61,24 +61,88 @@ async function batchCompress(){const files=[...document.querySelector("#batchFil
 if(localStorage.getItem("quicktiny_pro")==="1"){unlockPro();}
 </script>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAAshc572iugMXb65MROmuZYb_P2R9aXUUAVLJyzjmXNFqxUJxEmyyOMqt5m4F4tPOoxply6boaBW7tbql&currency=USD"></script>
+<script src="https://www.paypal.com/web-sdk/v6/core"></script>
 <script>
-if(window.paypal&&localStorage.getItem("quicktiny_pro")!=="1"){
-  paypal.Buttons({
-    async createOrder(){
-      const response=await fetch("/api/paypal-create-order",{method:"POST",headers:{"Content-Type":"application/json"}});
-      const data=await response.json();
-      if(!response.ok||!data.id)throw new Error(data.error||"Could not create PayPal order.");
-      return data.id;
-    },
-    async onApprove(data){
-      const response=await fetch("/api/paypal-capture-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderID:data.orderID})});
-      const result=await response.json();
-      if(response.ok&&result.status==="COMPLETED"){unlockPro();}else{document.querySelector("#paymentMessage").textContent="Payment could not be confirmed. Please try again.";}
-    },
-    onCancel(){document.querySelector("#paymentMessage").textContent="Payment cancelled.";},
-    onError(err){console.error(err);document.querySelector("#paymentMessage").textContent="PayPal error. Please try again.";}
-  }).render("#paypal-button-container");
+async function initPayPal(){
+  try{
+    const sdkInstance = await window.paypal.createInstance({
+      clientId: "BAAshc572iugMXb65MROmuZYb_P2R9aXUUAVLJyzjmXNFqxUJxEmyyOMqt5m4F4tPOoxply6boaBW7tbql",
+      components: ["paypal-payments"],
+      pageType: "checkout"
+    });
+
+    const methods = await sdkInstance.findEligibleMethods({
+      currencyCode: "USD"
+    });
+
+    if(!methods.isEligible("paypal")){
+      document.querySelector("#paymentMessage").textContent =
+        "PayPal is not available for this browser.";
+      return;
+    }
+
+    const session = sdkInstance.createPayPalOneTimePaymentSession({
+      async onApprove(data){
+        const response = await fetch("/api/paypal-capture-order",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({orderID:data.orderId})
+        });
+
+        const result = await response.json();
+
+        if(response.ok && result.status === "COMPLETED"){
+          unlockPro();
+        }else{
+          document.querySelector("#paymentMessage").textContent =
+            "Payment could not be confirmed.";
+        }
+      },
+
+      onCancel(){
+        document.querySelector("#paymentMessage").textContent =
+          "Payment cancelled.";
+      },
+
+      onError(err){
+        console.error(err);
+        document.querySelector("#paymentMessage").textContent =
+          "PayPal error. Please try again.";
+      }
+    });
+
+    const button = document.createElement("paypal-button");
+    button.setAttribute("type","pay");
+
+    document.querySelector("#paypal-button-container").appendChild(button);
+
+    button.addEventListener("click", async ()=>{
+      const response = await fetch("/api/paypal-create-order",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"}
+      });
+
+      const data = await response.json();
+
+      if(!response.ok || !data.id){
+        throw new Error("Could not create PayPal order");
+      }
+
+      await session.start(
+        {presentationMode:"auto"},
+        Promise.resolve({orderId:data.id})
+      );
+    });
+
+  }catch(err){
+    console.error(err);
+    document.querySelector("#paymentMessage").textContent =
+      "PayPal failed to load.";
+  }
+}
+
+if(localStorage.getItem("quicktiny_pro")!=="1"){
+  initPayPal();
 }
 </script>
 </body>
