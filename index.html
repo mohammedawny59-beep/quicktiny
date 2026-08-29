@@ -65,11 +65,18 @@ if(localStorage.getItem("quicktiny_pro")==="1"){unlockPro();}
 <script>
 async function initPayPal(){
   try{
-    const sdkInstance = await window.paypal.createInstance({
-      clientId: "BAAshc572iugMXb65MROmuZYb_P2R9aXUUAVLJyzjmXNFqxUJxEmyyOMqt5m4F4tPOoxply6boaBW7tbql",
-      components: ["paypal-payments"],
-      pageType: "checkout"
-    });
+   const tokenResponse = await fetch("/api/paypal-client-token");
+const tokenData = await tokenResponse.json();
+
+if (!tokenResponse.ok || !tokenData.clientToken) {
+  throw new Error("Could not get PayPal client token");
+}
+
+const sdkInstance = await window.paypal.createInstance({
+  clientToken: tokenData.clientToken,
+  components: ["paypal-payments"],
+  pageType: "checkout"
+});
 
     const methods = await sdkInstance.findEligibleMethods({
       currencyCode: "USD"
