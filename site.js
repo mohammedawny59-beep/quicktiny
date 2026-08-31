@@ -21,3 +21,11 @@ async function qtCopy(text, statusEl, label){
     if (statusEl) { statusEl.textContent = "Could not copy — select and copy manually."; statusEl.className = "result error"; }
   }
 }
+
+function qtTrack(name, data){
+  try {
+    if (typeof va === "function") {
+      data ? va("event", { name: name, data: data }) : va("event", { name: name });
+    }
+  } catch (e) {}
+}

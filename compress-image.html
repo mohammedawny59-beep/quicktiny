@@ -11,7 +11,11 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quicktinyv2.vercel.app/compress-image">
   <meta property="og:site_name" content="QuickTiny">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
   <meta name="theme-color" content="#0a0c10">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="/styles.css">
@@ -40,9 +44,10 @@
     </div>
     <h1>Compress Images Online — Free &amp; Private</h1>
     <p>Reduce the file size of your JPG and PNG images without uploading them anywhere. QuickTiny compresses images directly in your browser using the canvas API, so your files never leave your device.</p>
+    <a href="#tool" class="jump-to-tool">Try it now <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
   </section>
 
-  <div class="tool-panel">
+  <div class="tool-panel" id="tool">
     
       <div class="dropzone" id="dz" tabindex="0" role="button" aria-label="Choose an image to compress">
         <strong>Drop an image here</strong> or click to choose a file<br>
@@ -52,6 +57,7 @@
       <div id="imgout" class="result"></div>
       <div id="imgstats" class="stat-row"></div>
       <div id="imgdl"></div>
+      <div id="imgProCta"></div>
   </div>
   <script>
       var dz = document.querySelector("#dz");
@@ -105,6 +111,19 @@
             a.className = "btn";
             a.textContent = "Download compressed image";
             dl.appendChild(a);
+            var proCta = document.querySelector("#imgProCta");
+            proCta.innerHTML = "";
+            var ctaWrap = document.createElement("div");
+            ctaWrap.className = "pro-inline-cta";
+            var ctaText = document.createElement("span");
+            ctaText.textContent = "Need to compress many images at once? ";
+            var ctaLink = document.createElement("a");
+            ctaLink.href = "/batch-image-compressor";
+            ctaLink.textContent = "Batch Image Compressor — $4.99 one-time";
+            ctaLink.addEventListener("click", function(){ qtTrack("pro_cta_click", {source: "compress-image"}); });
+            ctaWrap.appendChild(ctaText);
+            ctaWrap.appendChild(ctaLink);
+            proCta.appendChild(ctaWrap);
           }, "image/jpeg", 0.72);
         };
         im.onerror = function(){
@@ -144,7 +163,7 @@
   <div class="section related-section">
     <h2 class="related-title">Related tools</h2>
     <div class="related-grid">
-      <a href="/batch-image-compressor">Batch Image Compressor<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'compress-image'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
