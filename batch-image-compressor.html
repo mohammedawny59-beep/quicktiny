@@ -85,27 +85,30 @@
     if(!files.length){status.textContent="Choose images first.";status.className="result error";return;}
     status.textContent="Compressing "+files.length+" images...";
     status.className="result";
-    var done=0;
+    var done=0, succeeded=0;
     for(const file of files){
       await new Promise(function(resolve){
         var img=new Image();
         img.onload=function(){
           var canvas=document.createElement("canvas");
           canvas.width=img.width;canvas.height=img.height;
-          canvas.getContext("2d").drawImage(img,0,0);
+          var ctx=canvas.getContext("2d");
+          ctx.fillStyle="#ffffff";
+          ctx.fillRect(0,0,canvas.width,canvas.height);
+          ctx.drawImage(img,0,0);
           canvas.toBlob(function(blob){
             var a=document.createElement("a");
             a.href=URL.createObjectURL(blob);
             a.download="quicktiny-"+file.name.replace(/\.[^.]+$/,"")+".jpg";
             a.textContent="Download "+file.name+" \u2014 "+Math.round(blob.size/1024)+" KB (was "+Math.round(file.size/1024)+" KB)";
             downloads.appendChild(a);
-            done++;
-            status.textContent="Completed "+done+"/"+files.length;
+            done++; succeeded++;
+            status.textContent="Completed "+succeeded+"/"+files.length+(done>succeeded?" ("+(done-succeeded)+" skipped)":"");
             status.className="result success";
             resolve();
           },"image/jpeg",0.7);
         };
-        img.onerror=function(){ done++; status.textContent="Skipped a file that couldn't be read ("+done+"/"+files.length+")"; resolve(); };
+        img.onerror=function(){ done++; status.textContent="Skipped a file that couldn't be read ("+succeeded+"/"+files.length+" completed so far)"; resolve(); };
         img.src=URL.createObjectURL(file);
       });
     }
@@ -178,21 +181,27 @@
 
       button.addEventListener("click", async ()=>{
         qtTrack("paypal_button_click");
-        const response = await fetch("/api/paypal-create-order",{
-          method:"POST",
-          headers:{"Content-Type":"application/json"}
-        });
+        try{
+          const response = await fetch("/api/paypal-create-order",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"}
+          });
 
-        const data = await response.json();
+          const data = await response.json();
 
-        if(!response.ok || !data.id){
-          throw new Error("Could not create PayPal order");
+          if(!response.ok || !data.id){
+            throw new Error("Could not create PayPal order");
+          }
+
+          await session.start(
+            {presentationMode:"auto"},
+            Promise.resolve({orderId:data.id})
+          );
+        }catch(err){
+          console.error(err);
+          document.querySelector("#paymentMessage").textContent =
+            "Could not start checkout. Please try again.";
         }
-
-        await session.start(
-          {presentationMode:"auto"},
-          Promise.resolve({orderId:data.id})
-        );
       });
 
     }catch(err){

@@ -64,7 +64,7 @@
         var out = document.querySelector("#dedupeout");
         var ignoreCase = document.querySelector("#dedupeCase").checked;
         var lines = el.value.split(/\n/);
-        var seen = {};
+        var seen = Object.create(null);
         var result = [];
         lines.forEach(function(line){
           var key = ignoreCase ? line.toLowerCase() : line;
