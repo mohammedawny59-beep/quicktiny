@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Private Image Compressor — No Uploads | QuickTiny</title>
+  <meta name="description" content="Compress images without uploading them anywhere. QuickTiny runs entirely in your browser using the canvas API — your files stay on your device.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/private-image-compressor">
+  <meta property="og:title" content="Private Image Compressor — No Uploads | QuickTiny">
+  <meta property="og:description" content="Compress images without uploading them anywhere. QuickTiny runs entirely in your browser using the canvas API — your files stay on your device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/private-image-compressor">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Private Image Compressor</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Nothing is uploaded</span>
+      <span class="badge">Image</span>
+      <span class="badge">One-time $4.99</span>
+    </div>
+    <h1>Compress Images Without Uploading Them</h1>
+    <p>QuickTiny compresses your images on your own device. They're never sent to a server — not for the free tool, and not for batch processing.</p>
+    <div class="btn-row">
+      <a class="btn" href="/batch-image-compressor" onclick="qtTrack('landing_batch_cta_click',{source:'privacy'})">Compress images privately</a>
+    </div>
+  </section>
+
+  <div class="content">
+    <h2>What "local processing" actually means here</h2>
+    <p>Most online image compressors work by uploading your file to a server, compressing it there, and sending back a result. QuickTiny doesn't do that. Compression happens in your browser using the HTML canvas API: your image is drawn onto a canvas element and re-exported at a lower quality, entirely on your device. The file never leaves your browser as part of that process.</p>
+
+    <h2>How it works</h2>
+    <ol>
+      <li>Choose an image (or, with Batch Pro, several at once).</li>
+      <li>Your browser draws it to a canvas and re-encodes it locally — no network request carries the image data.</li>
+      <li>Download the compressed file directly from your browser.</li>
+    </ol>
+
+    <h2>What does touch a server</h2>
+    <p>Two things, and neither is your image: loading the page itself (like any website), and, for Batch Pro, the one-time PayPal payment used to unlock it. PayPal handles that payment directly — QuickTiny's server creates and confirms the order through PayPal's API and never sees your card details, and your images are not part of that request at all.</p>
+
+    <h2>Free tool vs. Batch Pro</h2>
+    <p>The free <a href="/compress-image">Image Compressor</a> handles one image at a time, no payment or account needed. Batch Pro ($4.99 one-time) is the same local processing, extended to handle many images in one pass.</p>
+
+    <h2>Good fits for this</h2>
+    <ul class="benefits">
+      <li>Personal photos you don't want passing through a third-party server</li>
+      <li>Work or client images under confidentiality</li>
+      <li>Anyone who'd rather not upload files to an unfamiliar site just to resize them</li>
+      <li>Situations where you're offline or on an unreliable connection — no upload required</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is any part of my image ever sent to a server?</summary><p>No. The compression itself happens entirely in your browser. The only network activity related to Batch Pro is the PayPal payment step, which doesn't include your image files.</p></details>
+    <details class="faq-item"><summary>How can I verify this myself?</summary><p>You can open your browser's network tab while compressing an image and confirm there's no outgoing request carrying the file. This is a reasonable thing to check before trusting any "private" claim.</p></details>
+    <details class="faq-item"><summary>Does QuickTiny store my images anywhere?</summary><p>No. There's no server-side storage for images at all — nothing to store, since they never leave your device during compression.</p></details>
+    <details class="faq-item"><summary>Is this a subscription?</summary><p>No. QuickTiny Pro is a single one-time payment of $4.99 that unlocks batch compression permanently in that browser.</p></details>
+    <details class="faq-item"><summary>Where can I read the full privacy policy?</summary><p>See the <a href="/privacy">Privacy page</a> for the complete details on what QuickTiny does and doesn't collect.</p></details>
+  </div>
+
+  <div class="btn-row" style="margin-top:12px">
+    <a class="btn" href="/batch-image-compressor" onclick="qtTrack('landing_batch_cta_click',{source:'privacy'})">Compress images privately</a>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/compress-image">Image Compressor (free, single image)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor">Batch Image Compressor (Pro)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/privacy">Privacy Policy<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Guides</h4>
+        <a href="/compress-product-images-for-shopify">Product Images for Shopify</a>
+        <a href="/compress-images-for-wordpress">Images for WordPress</a>
+        <a href="/bulk-image-compressor-for-websites">Bulk Compressor for Websites</a>
+        <a href="/private-image-compressor">Private Image Compressor</a>
+        <a href="/compress-images-before-upload">Compress Before Upload</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Private Image Compressor","url":"https://quicktinyv2.vercel.app/private-image-compressor","description":"Compress images without uploading them anywhere. QuickTiny runs entirely in your browser using the canvas API — your files stay on your device."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Private Image Compressor","item":"https://quicktinyv2.vercel.app/private-image-compressor"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is any part of my image ever sent to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The compression itself happens entirely in your browser. The only network activity related to Batch Pro is the PayPal payment step, which doesn't include your image files."}},{"@type":"Question","name":"How can I verify this myself?","acceptedAnswer":{"@type":"Answer","text":"You can open your browser's network tab while compressing an image and confirm there's no outgoing request carrying the file."}},{"@type":"Question","name":"Does QuickTiny store my images anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. There's no server-side storage for images at all, since they never leave your device during compression."}},{"@type":"Question","name":"Is this a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. QuickTiny Pro is a single one-time payment of $4.99 that unlocks batch compression permanently in that browser."}},{"@type":"Question","name":"Where can I read the full privacy policy?","acceptedAnswer":{"@type":"Answer","text":"See the Privacy page for the complete details on what QuickTiny does and doesn't collect."}}]}</script>
+</body>
+</html>
