@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Image Upload Size Limits — Shopify, WordPress, Email | QuickTiny</title>
+  <meta name="description" content="Current file size and dimension limits for uploading images to Shopify, WordPress, and email. Sourced from each platform's own documentation, verified September 2026.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/image-upload-size-limits">
+  <meta property="og:title" content="Image Upload Size Limits — Shopify, WordPress, Email | QuickTiny">
+  <meta property="og:description" content="Current file size and dimension limits for uploading images to Shopify, WordPress, and email. Sourced from each platform's own documentation, verified September 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/image-upload-size-limits">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Image Upload Size Limits</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Reference</span>
+      <span class="badge">Verified September 2026</span>
+    </div>
+    <h1>Image Upload Size Limits: Shopify, WordPress, and Email</h1>
+    <p>Current file size and dimension limits for common destinations, sourced from each platform's own documentation — plus which ones are hard limits and which are just defaults you can change.</p>
+  </section>
+
+  <div class="content">
+    <h2>Shopify</h2>
+    <p>Per Shopify's own file-upload documentation, these are hard platform limits — every store, no exceptions:</p>
+    <ul class="benefits">
+      <li>Image file size: maximum 20 MB</li>
+      <li>Resolution: maximum 25 megapixels</li>
+      <li>Aspect ratio: between 100:1 and 1:100</li>
+      <li>Supported formats: JPEG, PNG, WEBP, HEIC, and GIF</li>
+    </ul>
+    <p>Source: <a href="https://help.shopify.com/en/manual/shopify-admin/productivity-tools/file-uploads" target="_blank" rel="noopener">Shopify Help Center — Uploading and managing files</a>.</p>
+
+    <h2>WordPress</h2>
+    <p>WordPress itself doesn't set a fixed upload limit — your hosting provider does, at the server level (via <code>upload_max_filesize</code> and <code>post_max_size</code>). In practice this commonly lands somewhere between 2 MB and a few hundred MB depending on host and plan, and WordPress Multisite specifically defaults to a much lower 1.5 MB unless a site owner raises it. There's no single correct number to quote here — check your own limit under <strong>Media &rarr; Add New</strong> in your WordPress dashboard, which displays it directly.</p>
+
+    <h2>Email attachments</h2>
+    <ul class="benefits">
+      <li>Gmail (personal accounts): 25 MB total per email, for all attachments combined. Google Workspace accounts can have a different limit set by an admin.</li>
+      <li>Outlook.com: 25 MB per message.</li>
+      <li>Microsoft 365 / Exchange (organizational accounts): commonly defaults to 35 MB per message, and an admin can raise it up to 150 MB — this varies by organization, so check with yours if it matters.</li>
+    </ul>
+    <p>Sources: <a href="https://support.google.com/mail/answer/6584" target="_blank" rel="noopener">Gmail Help — attachment limits</a>, <a href="https://support.microsoft.com/en-us/outlook/sending-limits-in-outlook-com" target="_blank" rel="noopener">Microsoft Support — sending limits in Outlook.com</a>.</p>
+    <p>One practical wrinkle: email attachments get encoded (MIME/base64) before sending, which inflates size by roughly a third. A file just under a stated limit can still get rejected — a safer target is about 25% below the number above.</p>
+
+    <h2>What this means for your images</h2>
+    <p>If you're bumping into one of these limits, compressing your images first is usually the fix — smaller file size, same picture. <a href="/compress-image">Image Compressor</a> handles one image at a time for free; <a href="/batch-image-compressor">Batch Image Compressor</a> (QuickTiny Pro, $4.99 one-time) does a whole folder in one pass.</p>
+    <p><strong>One important distinction:</strong> compression reduces file size, not pixel dimensions. If a platform's limit is about width/height (like Shopify's aspect-ratio rule, or a theme's image-dimension requirement) rather than file size, compression alone won't fix it — you'd need a separate resizing step.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does compressing an image change its dimensions?</summary><p>No. QuickTiny's compressors reduce file size at the same width and height — they don't crop, scale, or resize.</p></details>
+    <details class="faq-item"><summary>Will a 20 MB Shopify-sized image actually fit Gmail's 25 MB limit?</summary><p>It might not, once encoding overhead is factored in. Compressing it down first is the safer move if you're emailing product photos rather than uploading them directly.</p></details>
+    <details class="faq-item"><summary>How do I check my actual WordPress upload limit?</summary><p>Go to Media → Add New in your WordPress dashboard. The maximum upload size for your specific hosting setup is shown right above the upload area.</p></details>
+    <details class="faq-item"><summary>Do these numbers ever change?</summary><p>Yes — platforms adjust limits over time. These were verified against each provider's own documentation in September 2026; check the source links above if you need the current figure for something time-sensitive.</p></details>
+  </div>
+
+  <div class="btn-row" style="margin-top:12px">
+    <a class="btn" href="/batch-image-compressor" onclick="qtTrack('landing_batch_cta_click',{source:'size-limits-guide'})">Compress images before uploading</a>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/compress-image">Image Compressor (free, single image)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor">Batch Image Compressor (Pro)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/compress-product-images-for-shopify">Compress Product Images for Shopify<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/compress-images-for-wordpress">Compress Images for WordPress<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Guides</h4>
+        <a href="/compress-product-images-for-shopify">Product Images for Shopify</a>
+        <a href="/compress-images-for-wordpress">Images for WordPress</a>
+        <a href="/bulk-image-compressor-for-websites">Bulk Compressor for Websites</a>
+        <a href="/private-image-compressor">Private Image Compressor</a>
+        <a href="/compress-images-before-upload">Compress Before Upload</a>
+        <a href="/image-upload-size-limits">Upload Size Limits Reference</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Image Upload Size Limits Reference","url":"https://quicktinyv2.vercel.app/image-upload-size-limits","description":"Current file size and dimension limits for uploading images to Shopify, WordPress, and email, sourced from each platform's own documentation."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Image Upload Size Limits","item":"https://quicktinyv2.vercel.app/image-upload-size-limits"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does compressing an image change its dimensions?","acceptedAnswer":{"@type":"Answer","text":"No. QuickTiny's compressors reduce file size at the same width and height — they don't crop, scale, or resize."}},{"@type":"Question","name":"Will a 20 MB Shopify-sized image actually fit Gmail's 25 MB limit?","acceptedAnswer":{"@type":"Answer","text":"It might not, once encoding overhead is factored in. Compressing it down first is the safer move if you're emailing product photos rather than uploading them directly."}},{"@type":"Question","name":"How do I check my actual WordPress upload limit?","acceptedAnswer":{"@type":"Answer","text":"Go to Media → Add New in your WordPress dashboard. The maximum upload size for your specific hosting setup is shown right above the upload area."}},{"@type":"Question","name":"Do these numbers ever change?","acceptedAnswer":{"@type":"Answer","text":"Yes — platforms adjust limits over time. These were verified against each provider's own documentation in September 2026; check the source links if you need the current figure for something time-sensitive."}}]}</script>
+</body>
+</html>
