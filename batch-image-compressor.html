@@ -43,7 +43,7 @@
       <span class="badge">One-time $4.99</span>
     </div>
     <h1>Batch Image Compressor — QuickTiny Pro</h1>
-    <p>Compress many images in one pass instead of one at a time. Batch Image Compressor is a QuickTiny Pro feature — a single one-time payment of $4.99, no subscription.</p>
+    <p>Compress many images in one pass instead of one at a time. Every image is also checked against Shopify's real product-image limits (25 megapixels, 20 MB) and automatically resized or compressed if it would be rejected. Batch Image Compressor is a QuickTiny Pro feature — a single one-time payment of $4.99, no subscription.</p>
     <a href="#tool" class="jump-to-tool">Try it now <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
   </section>
 
@@ -65,12 +65,13 @@
       <p class="result success">&#10003; QuickTiny Pro unlocked</p>
       <label class="field-label" for="batchFiles">Choose images</label>
       <input id="batchFiles" type="file" accept="image/*" multiple>
-      <div class="btn-row"><button class="btn" onclick="batchCompress()">Compress all images</button></div>
+      <div class="btn-row"><button class="btn" onclick="batchCompress()">Check &amp; compress all images</button></div>
       <div id="batchStatus" class="result"></div>
       <div id="batchDownloads" class="downloads"></div>
     </div>
   </div>
 
+  <script src="/shopify-image-tools.js"></script>
   <script>
   function unlockPro(){
     localStorage.setItem("quicktiny_pro","1");
@@ -83,34 +84,34 @@
     var status=document.querySelector("#batchStatus");
     downloads.innerHTML="";
     if(!files.length){status.textContent="Choose images first.";status.className="result error";return;}
-    status.textContent="Compressing "+files.length+" images...";
+    status.textContent="Checking and preparing "+files.length+" images...";
     status.className="result";
-    var done=0, succeeded=0;
+    var done=0, succeeded=0, fixed=0;
     for(const file of files){
-      await new Promise(function(resolve){
-        var img=new Image();
-        img.onload=function(){
-          var canvas=document.createElement("canvas");
-          canvas.width=img.width;canvas.height=img.height;
-          var ctx=canvas.getContext("2d");
-          ctx.fillStyle="#ffffff";
-          ctx.fillRect(0,0,canvas.width,canvas.height);
-          ctx.drawImage(img,0,0);
-          canvas.toBlob(function(blob){
-            var a=document.createElement("a");
-            a.href=URL.createObjectURL(blob);
-            a.download="quicktiny-"+file.name.replace(/\.[^.]+$/,"")+".jpg";
-            a.textContent="Download "+file.name+" \u2014 "+Math.round(blob.size/1024)+" KB (was "+Math.round(file.size/1024)+" KB)";
-            downloads.appendChild(a);
-            done++; succeeded++;
-            status.textContent="Completed "+succeeded+"/"+files.length+(done>succeeded?" ("+(done-succeeded)+" skipped)":"");
-            status.className="result success";
-            resolve();
-          },"image/jpeg",0.7);
-        };
-        img.onerror=function(){ done++; status.textContent="Skipped a file that couldn't be read ("+succeeded+"/"+files.length+" completed so far)"; resolve(); };
-        img.src=URL.createObjectURL(file);
-      });
+      try{
+        var result = await qtProcessForShopify(file);
+        var label;
+        if(result.passedOriginally){
+          label = "already valid for Shopify \u2014 "+qtFormatBytes(result.finalSizeBytes);
+        }else{
+          var actions=[];
+          if(result.resized) actions.push("resized to "+result.finalWidth+"\u00d7"+result.finalHeight);
+          if(result.compressed) actions.push("compressed to "+qtFormatBytes(result.finalSizeBytes));
+          label = (result.finalPasses ? "fixed for Shopify" : "still too large")+" \u2014 "+actions.join(", ");
+          fixed++;
+        }
+        var a=document.createElement("a");
+        a.href=URL.createObjectURL(result.blob || file);
+        a.download="shopify-ready-"+file.name.replace(/\.[^.]+$/,"")+".jpg";
+        a.textContent=file.name+" \u2014 "+label+(result.finalPasses ? " \u2713" : " \u26a0");
+        downloads.appendChild(a);
+        done++; succeeded++;
+        status.textContent="Completed "+succeeded+"/"+files.length+(fixed?" ("+fixed+" fixed for Shopify)":"");
+        status.className="result success";
+      }catch(e){
+        done++;
+        status.textContent="Skipped a file that couldn't be read ("+succeeded+"/"+files.length+" completed so far)";
+      }
     }
   }
   if(localStorage.getItem("quicktiny_pro")==="1"){unlockPro();}
@@ -218,14 +219,15 @@
       <li>Pay once with PayPal ($4.99, one-time).</li>
       <li>QuickTiny Pro unlocks automatically in this browser after payment is confirmed.</li>
       <li>Choose multiple JPG or PNG images at once.</li>
-      <li>Click &quot;Compress all images&quot; and download each result.</li>
+      <li>Click &quot;Check &amp; compress all images&quot; — each one is checked against Shopify's real limits, resized or compressed only if needed, and downloaded.</li>
     </ol>
 
     <h2>Key benefits</h2>
     <ul class="benefits">
       <li>Compress dozens of images in one pass instead of one at a time.</li>
+      <li>Automatically resizes images over 25 megapixels and compresses anything over 20 MB — Shopify's verified product-image limits — leaving already-valid images untouched.</li>
       <li>One-time payment — no subscription, no recurring charge.</li>
-      <li>Images are compressed locally in your browser, never uploaded.</li>
+      <li>Images are processed locally in your browser, never uploaded.</li>
       <li>Unlock persists in this browser for future visits.</li>
     </ul>
 
@@ -236,6 +238,7 @@
     <details class="faq-item"><summary>Is this a subscription?</summary><p>No. Batch Image Compressor is a single one-time payment of $4.99. It does not renew or charge again.</p></details>
     <details class="faq-item"><summary>Where is my payment processed?</summary><p>Payment is handled by PayPal. QuickTiny's server creates and confirms the order through PayPal's API and never sees or stores your card details.</p></details>
     <details class="faq-item"><summary>Do my images get uploaded when I compress them?</summary><p>No. Batch compression happens locally in your browser using the same canvas-based method as the free Image Compressor — only the payment step involves a server.</p></details>
+    <details class="faq-item"><summary>Does this check Shopify's image limits?</summary><p>Yes. Every image is checked against Shopify's verified limits — 25 megapixels and 20 MB, tested directly against Shopify's own product-image uploader — and resized or compressed only if it would actually be rejected. Images that are already within those limits are left untouched.</p></details>
     <details class="faq-item"><summary>Will Pro stay unlocked if I clear my browser data or switch devices?</summary><p>The unlock is stored in this browser's local storage. Clearing site data, switching browsers, or using a different device will require verifying your purchase again — email quicktiny.support@gmail.com with your PayPal receipt and we'll help restore access.</p></details>
     <details class="faq-item"><summary>What if I have a question before I buy, or a problem with my purchase?</summary><p>Email quicktiny.support@gmail.com any time — we're happy to help before or after checkout.</p></details>
   </div>
@@ -298,6 +301,6 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Batch Image Compressor","url":"https://quicktinyv2.vercel.app/batch-image-compressor","description":"Compress multiple JPG and PNG images at once in your browser. QuickTiny Pro is a one-time $4.99 purchase — no subscription.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"4.99","priceCurrency":"USD"},"isAccessibleForFree":false}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Batch Image Compressor","item":"https://quicktinyv2.vercel.app/batch-image-compressor"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Batch Image Compressor is a single one-time payment of $4.99. It does not renew or charge again."}},{"@type":"Question","name":"Where is my payment processed?","acceptedAnswer":{"@type":"Answer","text":"Payment is handled by PayPal. QuickTiny's server creates and confirms the order through PayPal's API and never sees or stores your card details."}},{"@type":"Question","name":"Do my images get uploaded when I compress them?","acceptedAnswer":{"@type":"Answer","text":"No. Batch compression happens locally in your browser using the same canvas-based method as the free Image Compressor — only the payment step involves a server."}},{"@type":"Question","name":"Will Pro stay unlocked if I clear my browser data or switch devices?","acceptedAnswer":{"@type":"Answer","text":"The unlock is stored in this browser's local storage. Clearing site data, switching browsers, or using a different device will require verifying your purchase again — email quicktiny.support@gmail.com with your PayPal receipt and we'll help restore access."}},{"@type":"Question","name":"What if I have a question before I buy, or a problem with my purchase?","acceptedAnswer":{"@type":"Answer","text":"Email quicktiny.support@gmail.com any time — we're happy to help before or after checkout."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Batch Image Compressor is a single one-time payment of $4.99. It does not renew or charge again."}},{"@type":"Question","name":"Where is my payment processed?","acceptedAnswer":{"@type":"Answer","text":"Payment is handled by PayPal. QuickTiny's server creates and confirms the order through PayPal's API and never sees or stores your card details."}},{"@type":"Question","name":"Do my images get uploaded when I compress them?","acceptedAnswer":{"@type":"Answer","text":"No. Batch compression happens locally in your browser using the same canvas-based method as the free Image Compressor — only the payment step involves a server."}},{"@type":"Question","name":"Does this check Shopify's image limits?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every image is checked against Shopify's verified limits — 25 megapixels and 20 MB — and resized or compressed only if it would actually be rejected. Images already within those limits are left untouched."}},{"@type":"Question","name":"Will Pro stay unlocked if I clear my browser data or switch devices?","acceptedAnswer":{"@type":"Answer","text":"The unlock is stored in this browser's local storage. Clearing site data, switching browsers, or using a different device will require verifying your purchase again — email quicktiny.support@gmail.com with your PayPal receipt and we'll help restore access."}},{"@type":"Question","name":"What if I have a question before I buy, or a problem with my purchase?","acceptedAnswer":{"@type":"Answer","text":"Email quicktiny.support@gmail.com any time — we're happy to help before or after checkout."}}]}</script>
 </body>
 </html>
