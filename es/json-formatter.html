@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Formateador de JSON Online: Valida y Repara JSON Gratis | QuickTiny</title>
+  <meta name="description" content="Pega tu JSON para darle formato, detectar errores de sintaxis y repararlo automáticamente — incluyendo JSON de ChatGPT o Claude — gratis y sin instalar nada.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/es/json-formatter">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/json-formatter">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/json-formatter">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/json-formatter">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/json-formatter">
+  <meta property="og:title" content="Formateador de JSON Online: Valida y Repara JSON Gratis | QuickTiny">
+  <meta property="og:description" content="Pega tu JSON para darle formato, detectar errores de sintaxis y repararlo automáticamente — incluyendo JSON de ChatGPT o Claude — gratis y sin instalar nada.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/es/json-formatter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Herramientas</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacidad</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Alternar menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Inicio</a> <span>/</span><span style="color:var(--text-dim)">Formateador de JSON</span></div>
+  <div class="lang-switch">
+    <a href="/json-formatter">EN</a>
+    <a href="/es/json-formatter" class="active">ES</a>
+    <a href="/pt-br/json-formatter">PT-BR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Datos</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Procesado en tu navegador</span>
+      <span class="badge">Gratis</span>
+    </div>
+    <h1>Formateador y Validador de JSON</h1>
+    <p>Pega JSON sin formato o minificado y QuickTiny lo validará y formateará con sangría de dos espacios. Si es inválido — incluyendo problemas comunes en JSON copiado de ChatGPT o Claude — verás una explicación en lenguaje sencillo y una corrección con un clic para los casos más comunes.</p>
+    <a href="#tool" class="jump-to-tool">Pruébalo ahora <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+
+      <label class="field-label" for="json">Tu JSON</label>
+      <textarea id="json" placeholder='{"ejemplo": true}'></textarea>
+      <div class="btn-row">
+        <button class="btn" onclick="qtFormatJson()">Formatear y validar</button>
+        <button class="btn btn-secondary" onclick="qtCopyJson()">Copiar resultado</button>
+      </div>
+      <div id="jsonout" class="result"></div>
+      <div id="jsonFixArea"></div>
+  </div>
+  <script>
+      function qtExplainJsonError(text, err){
+        var msg = err.message;
+        var m = msg.match(/position (\d+)/);
+        var plain = "";
+        if (/Unexpected end of JSON input/i.test(msg)) {
+          plain = "El JSON parece incompleto — probablemente falta un } o ] de cierre, a menudo porque una respuesta se cortó a la mitad (un problema común con JSON copiado de ChatGPT o Claude). La corrección automática no puede adivinar con seguridad qué falta, así que tendrás que añadir el resto.";
+        } else if (m) {
+          var pos = parseInt(m[1], 10);
+          var before = text.slice(Math.max(0, pos - 20), pos).replace(/\s+$/, "");
+          var atChar = text[pos];
+          var afterCommaBeforeClose = /,\s*$/.test(before) && (atChar === "}" || atChar === "]");
+          if (afterCommaBeforeClose) {
+            plain = "Hay una coma sobrante justo antes de un " + atChar + " de cierre — JSON no permite una coma antes del último elemento de un objeto o array.";
+          } else if (atChar === "'") {
+            plain = "Esto parece una comilla simple — JSON requiere comillas dobles tanto para las claves como para los valores de texto.";
+          } else if (/^[A-Za-z_$]/.test(atChar || "")) {
+            plain = "Esto parece una clave o palabra sin comillas — las claves de un objeto JSON deben ir entre comillas dobles, como \"clave\" en lugar de clave.";
+          } else {
+            plain = "Revisa la posición señalada — las causas más comunes son una coma que falta, una coma de más, o una comilla que falta.";
+          }
+        }
+        return { raw: msg, plain: plain };
+      }
+
+      function qtRepairJson(text){
+        var fixes = [];
+        var normalized = "";
+        var inString = false, quoteChar = null;
+        var convertedQuotes = 0;
+        for (var i = 0; i < text.length; i++) {
+          var c = text[i];
+          if (!inString) {
+            if (c === '"' || c === "'") {
+              inString = true; quoteChar = c;
+              normalized += '"';
+              if (c === "'") convertedQuotes++;
+            } else {
+              normalized += c;
+            }
+          } else {
+            if (c === "\\" && i + 1 < text.length) {
+              var next = text[i + 1];
+              if (next === quoteChar && quoteChar === "'") {
+                normalized += "'";
+              } else {
+                normalized += c + next;
+              }
+              i++;
+            } else if (c === quoteChar) {
+              inString = false; quoteChar = null; normalized += '"';
+            } else if (c === '"' && quoteChar === "'") {
+              normalized += '\\"';
+            } else {
+              normalized += c;
+            }
+          }
+        }
+        if (convertedQuotes > 0) fixes.push("se convirtieron " + convertedQuotes + " cadena" + (convertedQuotes === 1 ? "" : "s") + " con comillas simples a comillas dobles");
+
+        var segments = [];
+        var buf = "", inStr = false;
+        for (var j = 0; j < normalized.length; j++) {
+          var ch = normalized[j];
+          if (!inStr) {
+            if (ch === '"') { segments.push({ type: "code", value: buf }); buf = '"'; inStr = true; }
+            else buf += ch;
+          } else {
+            buf += ch;
+            if (ch === "\\" && j + 1 < normalized.length) { buf += normalized[j + 1]; j++; }
+            else if (ch === '"') { segments.push({ type: "string", value: buf }); buf = ""; inStr = false; }
+          }
+        }
+        segments.push({ type: inStr ? "string" : "code", value: buf });
+
+        var trailingCommaCount = 0, unquotedKeyCount = 0;
+        var rebuilt = segments.map(function(seg){
+          if (seg.type === "string") return seg.value;
+          var v = seg.value;
+          v = v.replace(/,(\s*[}\]])/g, function(_, close){ trailingCommaCount++; return close; });
+          v = v.replace(/([{,]\s*)([A-Za-z_$][A-Za-z0-9_$]*)(\s*:)/g, function(_, pre, key, post){ unquotedKeyCount++; return pre + '"' + key + '"' + post; });
+          return v;
+        }).join("");
+
+        if (trailingCommaCount > 0) fixes.push("se eliminaron " + trailingCommaCount + " coma" + (trailingCommaCount === 1 ? "" : "s") + " sobrante" + (trailingCommaCount === 1 ? "" : "s"));
+        if (unquotedKeyCount > 0) fixes.push("se pusieron entre comillas " + unquotedKeyCount + " clave" + (unquotedKeyCount === 1 ? "" : "s") + " sin comillas");
+
+        return { text: rebuilt, fixes: fixes };
+      }
+
+      function qtFormatJson(){
+        var input = document.querySelector("#json");
+        var out = document.querySelector("#jsonout");
+        var fixArea = document.querySelector("#jsonFixArea");
+        fixArea.innerHTML = "";
+        if (!input.value.trim()) { out.textContent = "Pega primero algo de JSON."; out.className = "result"; return; }
+        try {
+          input.value = JSON.stringify(JSON.parse(input.value), null, 2);
+          out.textContent = "JSON válido ✓";
+          out.className = "result success";
+        } catch (e) {
+          var explanation = qtExplainJsonError(input.value, e);
+          out.innerHTML = "JSON inválido: " + explanation.raw + (explanation.plain ? "<br><span style=\"font-weight:500;font-size:13.5px\">" + explanation.plain + "</span>" : "");
+          out.className = "result error";
+          qtTrack("json_invalid");
+
+          var fixBtn = document.createElement("button");
+          fixBtn.className = "btn";
+          fixBtn.style.marginTop = "12px";
+          fixBtn.textContent = "Intentar corregir problemas comunes";
+          fixBtn.addEventListener("click", function(){ qtTryFixJson(input, out, fixArea); });
+          fixArea.appendChild(fixBtn);
+        }
+      }
+
+      function qtTryFixJson(input, out, fixArea){
+        var repaired = qtRepairJson(input.value);
+        try {
+          var parsed = JSON.parse(repaired.text);
+          input.value = JSON.stringify(parsed, null, 2);
+          var fixList = repaired.fixes.length ? repaired.fixes.join(", ") : "no fueron necesarios cambios automáticos";
+          out.innerHTML = "Corregido y válido ✓<br><span style=\"font-weight:500;font-size:13.5px\">" + fixList + "</span>";
+          out.className = "result success";
+          fixArea.innerHTML = "";
+          qtTrack("json_repair_success", { fixCount: repaired.fixes.length });
+        } catch (e) {
+          var explanation = qtExplainJsonError(repaired.text, e);
+          out.innerHTML = "Sigue siendo inválido tras corregir problemas comunes: " + explanation.raw + (explanation.plain ? "<br><span style=\"font-weight:500;font-size:13.5px\">" + explanation.plain + "</span>" : "") + (repaired.fixes.length ? "<br><span style=\"font-size:12.5px;color:var(--muted)\">Ya se intentó: " + repaired.fixes.join(", ") + "</span>" : "");
+          out.className = "result error";
+          qtTrack("json_repair_failed");
+        }
+      }
+
+      async function qtCopyJson(){
+        var input = document.querySelector("#json");
+        var out = document.querySelector("#jsonout");
+        if (!input.value.trim()) { out.textContent = "Todavía no hay nada que copiar."; out.className = "result"; return; }
+        await qtCopy(input.value, out, "Copiado");
+      }</script>
+
+  <div class="content">
+    <h2>Cómo corregir JSON inválido</h2>
+    <p>Cuando tu JSON no se puede analizar, QuickTiny explica por qué en lenguaje sencillo junto al error original del validador — por ejemplo, señalando una coma sobrante, una comilla simple donde debería haber una doble, o una clave sin comillas. Si el problema es uno de un puñado de casos comunes e inequívocos (comas sobrantes, cadenas con comillas simples, claves sin comillas — el tipo de cosas que aparecen constantemente en JSON copiado de ChatGPT, Claude o archivos de configuración editados a mano), haz clic en "Intentar corregir problemas comunes" y QuickTiny lo corregirá automáticamente y te dirá exactamente qué cambió. Si el JSON está incompleto — le falta un corchete de cierre porque una respuesta se cortó — QuickTiny te lo dirá en lugar de adivinar qué falta, ya que no hay forma segura de reconstruir contenido que nunca existió.</p>
+
+    <h2>Ventajas principales</h2>
+    <ul class="benefits">
+      <li>Explicaciones en lenguaje sencillo junto al error original del validador.</li>
+      <li>Corrección automática con un clic para comas sobrantes, comillas simples y claves sin comillas.</li>
+      <li>Sangría de dos espacios para un JSON legible y fácil de comparar.</li>
+      <li>Funciona localmente — tu JSON nunca se envía a un servidor, ni se registra ni se guarda.</li>
+      <li>Copia el resultado formateado con un clic.</li>
+    </ul>
+
+    <h2>Privacidad</h2>
+    <p>El Formateador de JSON funciona enteramente en tu navegador usando JavaScript local. Tu JSON se procesa en tu propio dispositivo y nunca se sube, registra ni almacena por parte de QuickTiny — ni siquiera al usar la corrección automática. No hay historial ni registro de lo que has pegado.</p>
+
+    <h2>Preguntas frecuentes</h2>
+    <details class="faq-item"><summary>¿Mis datos JSON se suben a algún sitio?</summary><p>No. El análisis, formateo y corrección automática ocurren enteramente en tu navegador. No se sube, registra ni almacena nada — QuickTiny no guarda un historial de lo que has pegado.</p></details>
+    <details class="faq-item"><summary>¿Esto puede corregir JSON inválido?</summary><p>Sí, para problemas comunes e inequívocos: comas sobrantes, comillas simples en lugar de dobles, y claves de objeto sin comillas. Haz clic en "Intentar corregir problemas comunes" después de una validación fallida y QuickTiny lo corregirá y te dirá exactamente qué cambió.</p></details>
+    <details class="faq-item"><summary>¿Esto puede corregir JSON copiado de ChatGPT o Claude?</summary><p>A menudo, sí — los problemas más comunes en JSON generado por IA (comas sobrantes, alguna comilla simple ocasional) son exactamente lo que corrige la función automática. Sin embargo, si la respuesta se cortó a la mitad, el JSON está realmente incompleto, y QuickTiny te lo dirá en lugar de adivinar contenido que nunca se generó.</p></details>
+    <details class="faq-item"><summary>¿Qué me indica el mensaje de error?</summary><p>Verás el error nativo del validador de JSON del navegador, más, cuando QuickTiny puede identificar la causa probable, una explicación en lenguaje sencillo de qué es probable que esté mal y por qué.</p></details>
+    <details class="faq-item"><summary>¿Qué no puede corregir la función automática?</summary><p>Cualquier cosa que requiera adivinar contenido que falta — como una respuesta truncada a la que le faltan los corchetes de cierre, o un valor ambiguo sin más contexto. QuickTiny solo aplica correcciones que puede hacer con certeza; nunca cambiará silenciosamente el significado de tus datos.</p></details>
+    <details class="faq-item"><summary>¿Puedo minificar JSON con esta herramienta?</summary><p>Esta herramienta se centra en formatear, validar y corregir. Para minificar, quita la sangría manualmente o usa JSON.stringify sin un argumento de espaciado en tu propio código.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Herramientas relacionadas</h2>
+    <div class="related-grid">
+      <a href="/es/base64-encode-decode">Base64 (Codificar/Decodificar)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/url-encode-decode">URL Encode/Decode<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'json-formatter-es'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Herramientas Gratis</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/es/word-counter">Contador de Palabras</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/es/json-formatter">Formateador de JSON</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Más Herramientas</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/es/base64-encode-decode">Base64 (Codificar/Decodificar)</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/es/timestamp-converter">Conversor de Timestamp</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="/">Inicio</a>
+        <a href="/privacy">Privacidad</a>
+        <a href="/terms">Términos</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>Sin registro &middot; Basado en el navegador &middot; Respeta tu privacidad</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Formateador de JSON","url":"https://quicktinyv2.vercel.app/es/json-formatter","description":"Pega tu JSON para darle formato, detectar errores de sintaxis y repararlo automáticamente — incluyendo JSON de ChatGPT o Claude — gratis y sin instalar nada.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true,"inLanguage":"es"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Formateador de JSON","item":"https://quicktinyv2.vercel.app/es/json-formatter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Mis datos JSON se suben a algún sitio?","acceptedAnswer":{"@type":"Answer","text":"No. El análisis, formateo y corrección automática ocurren enteramente en tu navegador. No se sube, registra ni almacena nada."}},{"@type":"Question","name":"¿Esto puede corregir JSON inválido?","acceptedAnswer":{"@type":"Answer","text":"Sí, para problemas comunes e inequívocos: comas sobrantes, comillas simples en lugar de dobles, y claves de objeto sin comillas."}},{"@type":"Question","name":"¿Esto puede corregir JSON copiado de ChatGPT o Claude?","acceptedAnswer":{"@type":"Answer","text":"A menudo, sí. Si la respuesta se cortó a la mitad, el JSON está realmente incompleto, y QuickTiny te lo dirá en lugar de adivinar."}},{"@type":"Question","name":"¿Qué me indica el mensaje de error?","acceptedAnswer":{"@type":"Answer","text":"Verás el error nativo del navegador más, cuando sea posible, una explicación en lenguaje sencillo de la causa probable."}},{"@type":"Question","name":"¿Qué no puede corregir la función automática?","acceptedAnswer":{"@type":"Answer","text":"Cualquier cosa que requiera adivinar contenido que falta, como una respuesta truncada. QuickTiny solo aplica correcciones que puede hacer con certeza."}},{"@type":"Question","name":"¿Puedo minificar JSON con esta herramienta?","acceptedAnswer":{"@type":"Answer","text":"Esta herramienta se centra en formatear, validar y corregir. Para minificar, usa JSON.stringify sin argumento de espaciado en tu propio código."}}]}</script>
+</body>
+</html>

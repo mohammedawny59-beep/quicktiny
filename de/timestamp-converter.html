@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Unix-Zeitstempel-Konverter: Timestamp in Datum umrechnen | QuickTiny</title>
+  <meta name="description" content="Wandle Unix-Timestamps blitzschnell in ein lesbares Datum um oder berechne aus einem Datum den passenden Zeitstempel — inklusive Zeitzone, kostenlos und ohne Werbung.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/de/timestamp-converter">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/timestamp-converter">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/timestamp-converter">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/timestamp-converter">
+  <link rel="alternate" hreflang="de" href="https://quicktinyv2.vercel.app/de/timestamp-converter">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/timestamp-converter">
+  <meta property="og:title" content="Unix-Zeitstempel-Konverter: Timestamp in Datum umrechnen | QuickTiny">
+  <meta property="og:description" content="Wandle Unix-Timestamps blitzschnell in ein lesbares Datum um oder berechne aus einem Datum den passenden Zeitstempel — inklusive Zeitzone, kostenlos und ohne Werbung.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/de/timestamp-converter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Datenschutz</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü umschalten" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Start</a> <span>/</span><span style="color:var(--text-dim)">Unix-Zeitstempel-Konverter</span></div>
+  <div class="lang-switch">
+    <a href="/timestamp-converter">EN</a>
+    <a href="/es/timestamp-converter">ES</a>
+    <a href="/pt-br/timestamp-converter">PT-BR</a>
+    <a href="/de/timestamp-converter" class="active">DE</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Utility</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Verarbeitung im Browser</span>
+      <span class="badge">Kostenlos</span>
+    </div>
+    <h1>Unix-Zeitstempel in Datum umrechnen</h1>
+    <p>Wandle einen Unix-Zeitstempel (in Sekunden oder Millisekunden) in ein lesbares Datum in deiner lokalen Zeitzone und in UTC um, oder rechne ein Datum in einen Zeitstempel um.</p>
+    <a href="#tool" class="jump-to-tool">Jetzt testen <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+
+      <div class="row-2">
+        <div>
+          <label class="field-label" for="tsInput">Unix-Zeitstempel</label>
+          <input id="tsInput" type="text" placeholder="z. B. 1735689600">
+          <div class="btn-row"><button class="btn" onclick="qtTsToDate()">In Datum umrechnen</button><button class="btn btn-secondary" onclick="qtNow()">Aktuelle Zeit verwenden</button></div>
+        </div>
+        <div>
+          <label class="field-label" for="dateInput">Datum &amp; Uhrzeit (lokal)</label>
+          <input id="dateInput" type="datetime-local">
+          <div class="btn-row"><button class="btn" onclick="qtDateToTs()">In Zeitstempel umrechnen</button></div>
+        </div>
+      </div>
+      <div id="tsout" class="result"></div>
+  </div>
+  <script>
+      function qtNow(){
+        document.querySelector("#tsInput").value = Math.floor(Date.now() / 1000);
+        qtTsToDate();
+      }
+      function qtTsToDate(){
+        var raw = document.querySelector("#tsInput").value.trim();
+        var out = document.querySelector("#tsout");
+        if (!raw || isNaN(Number(raw))) { out.textContent = "Bitte einen numerischen Zeitstempel eingeben."; out.className = "result error"; return; }
+        var num = Number(raw);
+        var ms = Math.abs(num) > 20000000000 ? num : num * 1000;
+        var d = new Date(ms);
+        if (isNaN(d.getTime())) { out.textContent = "Dieser Zeitstempel liegt außerhalb des gültigen Bereichs."; out.className = "result error"; return; }
+        out.innerHTML = "Lokal: <strong>" + d.toString() + "</strong><br>UTC: <strong>" + d.toUTCString() + "</strong>";
+        out.className = "result success";
+      }
+      function qtDateToTs(){
+        var raw = document.querySelector("#dateInput").value;
+        var out = document.querySelector("#tsout");
+        if (!raw) { out.textContent = "Bitte zuerst Datum und Uhrzeit wählen."; out.className = "result error"; return; }
+        var d = new Date(raw);
+        if (isNaN(d.getTime())) { out.textContent = "Ungültiges Datum."; out.className = "result error"; return; }
+        out.innerHTML = "Unix-Zeitstempel (Sekunden): <strong>" + Math.floor(d.getTime() / 1000) + "</strong><br>Millisekunden: <strong>" + d.getTime() + "</strong>";
+        out.className = "result success";
+      }</script>
+
+  <div class="content">
+    <h2>So verwendest du den Unix-Zeitstempel-Konverter</h2>
+    <ol>
+      <li>Gib einen Unix-Zeitstempel (in Sekunden oder Millisekunden) ein und klicke auf "In Datum umrechnen", oder klicke auf "Aktuelle Zeit verwenden".</li>
+      <li>Oder wähle ein Datum und eine Uhrzeit und klicke auf "In Zeitstempel umrechnen".</li>
+      <li>Die Ergebnisse zeigen sowohl deine lokale Zeit als auch UTC.</li>
+    </ol>
+
+    <h2>Wichtigste Vorteile</h2>
+    <ul class="benefits">
+      <li>Erkennt automatisch, ob es sich um Sekunden oder Millisekunden handelt.</li>
+      <li>Zeigt lokale Zeit und UTC nebeneinander an.</li>
+      <li>Ein Klick, um den aktuellen Zeitstempel zu erhalten.</li>
+      <li>Läuft komplett im Browser, mit der Uhr deines Geräts.</li>
+    </ul>
+
+    <h2>Datenschutz</h2>
+    <p>Der Unix-Zeitstempel-Konverter läuft komplett in deinem Browser mit lokalem JavaScript. Deine Daten werden auf deinem eigenen Gerät verarbeitet und niemals an QuickTiny-Server gesendet.</p>
+
+    <h2>Häufig gestellte Fragen</h2>
+    <details class="faq-item"><summary>Woher weiß das Tool, ob mein Zeitstempel in Sekunden oder Millisekunden vorliegt?</summary><p>Zeitstempel größer als 20.000.000.000 werden als Millisekunden behandelt, kleinere Werte als Sekunden. Das deckt alle realistischen Daten ab.</p></details>
+    <details class="faq-item"><summary>Welche Zeitzone wird verwendet?</summary><p>Dein eingegebenes Datum wird in der lokalen Zeitzone deines Browsers interpretiert. Der UTC-Wert wird daneben zur Referenz angezeigt.</p></details>
+    <details class="faq-item"><summary>Kann ich Daten vor 1970 umrechnen?</summary><p>Ja — negative Unix-Zeitstempel für Daten vor dem 1. Januar 1970 werden unterstützt.</p></details>
+    <details class="faq-item"><summary>Wie bekomme ich einen Unix-Zeitstempel in meinem Code, nicht nur hier?</summary><p>Siehe die <a href="/unix-timestamp-cheat-sheet">Unix Timestamp Cheat Sheet</a> (auf Englisch) für den genauen Aufruf in JavaScript, Python, Java, PHP, Go, Ruby, SQL, C# und der Shell — inklusive, welche Sekunden und welche Millisekunden verwenden.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Ähnliche Tools</h2>
+    <div class="related-grid">
+      <a href="/password-generator">Password Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/de/base64-encode-decode">Base64 Encoder/Decoder<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'timestamp-converter-de'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Kostenlose Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/de/word-counter">Wörter zählen</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Weitere Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/de/base64-encode-decode">Base64 Encoder/Decoder</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/de/timestamp-converter">Unix-Zeitstempel-Konverter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <a href="/">Start</a>
+        <a href="/privacy">Datenschutz</a>
+        <a href="/terms">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>Keine Anmeldung &middot; Direkt im Browser &middot; Datenschutzfreundlich</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Unix-Zeitstempel-Konverter","url":"https://quicktinyv2.vercel.app/de/timestamp-converter","description":"Wandle Unix-Timestamps blitzschnell in ein lesbares Datum um oder berechne aus einem Datum den passenden Zeitstempel — inklusive Zeitzone, kostenlos und ohne Werbung.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true,"inLanguage":"de"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Unix-Zeitstempel-Konverter","item":"https://quicktinyv2.vercel.app/de/timestamp-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Woher weiß das Tool, ob mein Zeitstempel in Sekunden oder Millisekunden vorliegt?","acceptedAnswer":{"@type":"Answer","text":"Zeitstempel größer als 20.000.000.000 werden als Millisekunden behandelt, kleinere Werte als Sekunden."}},{"@type":"Question","name":"Welche Zeitzone wird verwendet?","acceptedAnswer":{"@type":"Answer","text":"Dein eingegebenes Datum wird in der lokalen Zeitzone deines Browsers interpretiert. Der UTC-Wert wird daneben angezeigt."}},{"@type":"Question","name":"Kann ich Daten vor 1970 umrechnen?","acceptedAnswer":{"@type":"Answer","text":"Ja — negative Unix-Zeitstempel für Daten vor dem 1. Januar 1970 werden unterstützt."}},{"@type":"Question","name":"Wie bekomme ich einen Unix-Zeitstempel in meinem Code, nicht nur hier?","acceptedAnswer":{"@type":"Answer","text":"Siehe die Unix Timestamp Cheat Sheet (auf Englisch) für den genauen Aufruf in mehreren Programmiersprachen."}}]}</script>
+</body>
+</html>

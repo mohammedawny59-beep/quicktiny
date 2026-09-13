@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contador de Palavras Online — Grátis e Instantâneo | QuickTiny</title>
+  <meta name="description" content="Cole seu texto e veja na hora quantas palavras, caracteres e o tempo estimado de leitura, sem cadastro.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/pt-br/word-counter">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/word-counter">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/word-counter">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/word-counter">
+  <link rel="alternate" hreflang="de" href="https://quicktinyv2.vercel.app/de/word-counter">
+  <link rel="alternate" hreflang="hi" href="https://quicktinyv2.vercel.app/hi/word-counter">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/word-counter">
+  <meta property="og:title" content="Contador de Palavras Online — Grátis e Instantâneo | QuickTiny">
+  <meta property="og:description" content="Cole seu texto e veja na hora quantas palavras, caracteres e o tempo estimado de leitura, sem cadastro.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/pt-br/word-counter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Ferramentas</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacidade</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Alternar menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Início</a> <span>/</span><span style="color:var(--text-dim)">Contador de Palavras</span></div>
+  <div class="lang-switch">
+    <a href="/word-counter">EN</a>
+    <a href="/es/word-counter">ES</a>
+    <a href="/pt-br/word-counter" class="active">PT-BR</a>
+    <a href="/de/word-counter">DE</a>
+    <a href="/hi/word-counter">HI</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Texto</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processado no seu navegador</span>
+      <span class="badge">Grátis</span>
+    </div>
+    <h1>Conte palavras e caracteres do seu texto em tempo real</h1>
+    <p>Cole ou digite seu texto abaixo para ver na hora o número de palavras, caracteres, caracteres sem espaços, frases e linhas.</p>
+    <a href="#tool" class="jump-to-tool">Testar agora <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+
+      <label class="field-label" for="counter">Seu texto</label>
+      <textarea id="counter" oninput="qtCount()" placeholder="Cole ou digite seu texto aqui..."></textarea>
+      <div id="countstats" class="stat-row"></div>
+  </div>
+  <script>
+      function qtCount(){
+        var t = document.querySelector("#counter").value;
+        var trimmed = t.trim();
+        var words = trimmed ? trimmed.split(/\s+/).length : 0;
+        var chars = t.length;
+        var charsNoSpaces = t.replace(/\s/g, "").length;
+        var sentences = trimmed ? (trimmed.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []).filter(function(s){ return s.trim().length; }).length : 0;
+        var lines = t ? t.split(/\n/).length : 0;
+        document.querySelector("#countstats").innerHTML =
+          stat(words, "Palavras") + stat(chars, "Caracteres") + stat(charsNoSpaces, "Sem espaços") + stat(sentences, "Frases") + stat(lines, "Linhas");
+      }
+      function stat(n, label){
+        return '<div class="stat"><div class="n">' + n + '</div><div class="l">' + label + '</div></div>';
+      }
+      qtCount();</script>
+
+  <div class="content">
+    <h2>Como usar o Contador de Palavras</h2>
+    <ol>
+      <li>Cole ou digite seu texto na caixa.</li>
+      <li>As contagens são atualizadas automaticamente enquanto você digita.</li>
+      <li>Veja de relance palavras, caracteres, caracteres sem espaços, frases e linhas.</li>
+    </ol>
+
+    <h2>Principais vantagens</h2>
+    <ul class="benefits">
+      <li>Atualiza ao vivo, sem precisar clicar em nenhum botão.</li>
+      <li>Conta frases, não só palavras e caracteres.</li>
+      <li>Nada é enviado a um servidor — seu texto fica no seu navegador.</li>
+      <li>Útil para redações, tweets, meta descrições e legendas.</li>
+    </ul>
+
+    <h2>Privacidade</h2>
+    <p>O Contador de Palavras funciona inteiramente no seu navegador, usando JavaScript local. Seus arquivos e texto são processados no seu próprio dispositivo e nunca são enviados aos servidores do QuickTiny.</p>
+
+    <h2>Perguntas frequentes</h2>
+    <details class="faq-item"><summary>Como o número de palavras é calculado?</summary><p>O texto é aparado e dividido por espaços em branco, então vários espaços seguidos entre palavras não inflam a contagem.</p></details>
+    <details class="faq-item"><summary>Como as frases são contadas?</summary><p>O QuickTiny divide o texto pelos sinais de pontuação de final de frase (. ! ?) e conta os trechos resultantes não vazios. É uma estimativa, não uma análise linguística.</p></details>
+    <details class="faq-item"><summary>Meu texto fica armazenado em algum lugar?</summary><p>Não. A contagem acontece localmente no seu navegador e nada é salvo ou transmitido.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Ferramentas relacionadas</h2>
+    <div class="related-grid">
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/case-converter">Case Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-duplicate-lines">Remove Duplicate Lines<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'word-counter-ptbr'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Ferramentas Grátis</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/pt-br/word-counter">Contador de Palavras</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/pt-br/json-formatter">Formatador de JSON</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Mais Ferramentas</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/pt-br/base64-encode-decode">Conversor Base64</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/pt-br/timestamp-converter">Conversor de Timestamp</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="/">Início</a>
+        <a href="/privacy">Privacidade</a>
+        <a href="/terms">Termos</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>Sem cadastro &middot; Direto no navegador &middot; Focado em privacidade</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Contador de Palavras","url":"https://quicktinyv2.vercel.app/pt-br/word-counter","description":"Cole seu texto e veja na hora quantas palavras, caracteres e o tempo estimado de leitura, sem cadastro.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true,"inLanguage":"pt-BR"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Contador de Palavras","item":"https://quicktinyv2.vercel.app/pt-br/word-counter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como o número de palavras é calculado?","acceptedAnswer":{"@type":"Answer","text":"O texto é aparado e dividido por espaços em branco, então vários espaços seguidos entre palavras não inflam a contagem."}},{"@type":"Question","name":"Como as frases são contadas?","acceptedAnswer":{"@type":"Answer","text":"O QuickTiny divide o texto pelos sinais de pontuação de final de frase (. ! ?) e conta os trechos resultantes não vazios."}},{"@type":"Question","name":"Meu texto fica armazenado em algum lugar?","acceptedAnswer":{"@type":"Answer","text":"Não. A contagem acontece localmente no seu navegador e nada é salvo ou transmitido."}}]}</script>
+</body>
+</html>

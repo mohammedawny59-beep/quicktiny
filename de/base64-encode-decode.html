@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Base64 kodieren und dekodieren – online, kostenlos | QuickTiny</title>
+  <meta name="description" content="Kodiere oder dekodiere Text und Dateien direkt im Browser zu Base64 – auch im URL-sicheren Format (Base64URL) für Tokens und Links.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/de/base64-encode-decode">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/base64-encode-decode">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/base64-encode-decode">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/base64-encode-decode">
+  <link rel="alternate" hreflang="de" href="https://quicktinyv2.vercel.app/de/base64-encode-decode">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/base64-encode-decode">
+  <meta property="og:title" content="Base64 kodieren und dekodieren – online, kostenlos | QuickTiny">
+  <meta property="og:description" content="Kodiere oder dekodiere Text und Dateien direkt im Browser zu Base64 – auch im URL-sicheren Format (Base64URL) für Tokens und Links.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/de/base64-encode-decode">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Datenschutz</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü umschalten" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Start</a> <span>/</span><span style="color:var(--text-dim)">Base64 Encoder/Decoder</span></div>
+  <div class="lang-switch">
+    <a href="/base64-encode-decode">EN</a>
+    <a href="/es/base64-encode-decode">ES</a>
+    <a href="/pt-br/base64-encode-decode">PT-BR</a>
+    <a href="/de/base64-encode-decode" class="active">DE</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Daten</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Verarbeitung im Browser</span>
+      <span class="badge">Kostenlos</span>
+    </div>
+    <h1>Base64 Encoder/Decoder</h1>
+    <p>Wandle Klartext in Base64 um oder dekodiere eine Base64-Zeichenfolge zurück in lesbaren Text — unterstützt Unicode-Zeichen, Standard-Base64 und URL-sicheres Base64 (Base64URL), mit automatischer Erkennung, welche Variante du dekodierst.</p>
+    <a href="#tool" class="jump-to-tool">Jetzt testen <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+
+      <label class="field-label" for="b64">Text oder Base64</label>
+      <textarea id="b64" placeholder="Text zum Kodieren eingeben, oder Base64 zum Dekodieren..."></textarea>
+      <label class="checkline"><input type="checkbox" id="b64UrlSafe"> Als URL-sicheres Base64 (Base64URL) kodieren</label>
+      <div class="btn-row">
+        <button class="btn" onclick="qtB64('encode')">Kodieren</button>
+        <button class="btn btn-secondary" onclick="qtB64('decode')">Dekodieren</button>
+        <button class="btn btn-secondary" onclick="qtCopyB64()">Kopieren</button>
+      </div>
+      <div id="b64out" class="result"></div>
+  </div>
+  <script>
+      function qtB64DetectVariant(str){
+        var hasStandard = /[+/]/.test(str);
+        var hasUrlSafe = /[-_]/.test(str);
+        if (hasStandard && hasUrlSafe) return "mixed";
+        if (hasUrlSafe) return "urlsafe";
+        if (hasStandard) return "standard";
+        return "ambiguous";
+      }
+      function qtB64(mode){
+        var el = document.querySelector("#b64");
+        var out = document.querySelector("#b64out");
+        var urlSafe = document.querySelector("#b64UrlSafe").checked;
+        try {
+          if (mode === "encode") {
+            var bytes = new TextEncoder().encode(el.value);
+            var bin = "";
+            bytes.forEach(function(b){ bin += String.fromCharCode(b); });
+            var encoded = btoa(bin);
+            if (urlSafe) encoded = encoded.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+            el.value = encoded;
+            out.textContent = "Kodiert als" + (urlSafe ? " URL-sicheres Base64 (Base64URL)" : " Standard-Base64") + " ✓";
+            out.className = "result success";
+          } else {
+            var raw = el.value.trim();
+            var variant = qtB64DetectVariant(raw);
+            if (variant === "mixed") {
+              out.innerHTML = "Das sieht in keiner der beiden Formen nach gültigem Base64 aus — es mischt Standard-Zeichen (<code>+</code> <code>/</code>) mit URL-sicheren Zeichen (<code>-</code> <code>_</code>). Bitte auf Beschädigung oder zusammengefügte Fragmente prüfen.";
+              out.className = "result error";
+              return;
+            }
+            var normalized = raw;
+            if (variant === "urlsafe") normalized = normalized.replace(/-/g, "+").replace(/_/g, "/");
+            while (normalized.length % 4 !== 0) normalized += "=";
+            var bin2 = atob(normalized);
+            var arr = new Uint8Array(bin2.length);
+            for (var i = 0; i < bin2.length; i++) arr[i] = bin2.charCodeAt(i);
+            el.value = new TextDecoder().decode(arr);
+            var detectedLabel = variant === "urlsafe" ? "URL-sicheres Base64 (Base64URL)"
+              : variant === "standard" ? "Standard-Base64"
+              : "Base64 (keine +/- oder /_ Zeichen vorhanden, also gültig als Standard und als URL-sicher)";
+            out.textContent = "Dekodiert ✓ — erkannt: " + detectedLabel;
+            out.className = "result success";
+          }
+        } catch (e) {
+          out.textContent = "Konnte nicht dekodiert werden — bitte prüfen, ob die Eingabe gültiges Base64 ist.";
+          out.className = "result error";
+        }
+      }
+      async function qtCopyB64(){
+        var el = document.querySelector("#b64");
+        var out = document.querySelector("#b64out");
+        if (!el.value) { out.textContent = "Es gibt noch nichts zu kopieren."; out.className = "result"; return; }
+        await qtCopy(el.value, out, "Kopiert");
+      }</script>
+
+  <div class="content">
+    <h2>Standard-Base64 vs. URL-sicheres Base64 (Base64URL)</h2>
+    <p>Standard-Base64 verwendet <code>+</code> und <code>/</code> als letzte beiden Zeichen seines Alphabets und füllt die Ausgabe mit <code>=</code> auf. Diese Zeichen haben in URLs und Dateinamen eine besondere Bedeutung, daher ersetzt eine URL-sichere Variante — Base64URL, definiert in <a href="https://www.rfc-editor.org/rfc/rfc4648#section-5" target="_blank" rel="noopener">RFC 4648 §5</a> — sie durch <code>-</code> und <code>_</code> und lässt die Auffüllung meist weg. Base64URL begegnet dir speziell bei JWTs (JSON Web Tokens), OAuth-Tokens und überall dort, wo ein Base64-Wert sicher in einer URL oder Query-String stehen muss. Ansonsten sind beide dieselbe Kodierung — aktiviere die Checkbox oben, um URL-sicher zu kodieren, und beim Dekodieren wird automatisch erkannt, welche Variante du eingefügt hast.</p>
+
+    <h2>Wichtigste Vorteile</h2>
+    <ul class="benefits">
+      <li>Unterstützt sowohl Standard- als auch URL-sicheres Base64 (Base64URL).</li>
+      <li>Erkennt automatisch, welche Variante du dekodierst, und zeigt es an.</li>
+      <li>Unterstützt Unicode-Text, nicht nur ASCII.</li>
+      <li>Klare Fehlermeldung bei ungültigem oder gemischtem Base64.</li>
+      <li>Läuft lokal — es verlassen keine Daten deinen Browser.</li>
+      <li>Nützlich zum Debuggen von APIs, JWTs, OAuth-Tokens und Data-URIs.</li>
+    </ul>
+
+    <h2>Datenschutz</h2>
+    <p>Base64 Encoder/Decoder läuft komplett in deinem Browser mit lokalem JavaScript. Dein Text wird auf deinem eigenen Gerät verarbeitet und von QuickTiny niemals hochgeladen, protokolliert oder irgendwohin gesendet.</p>
+
+    <h2>Häufig gestellte Fragen</h2>
+    <details class="faq-item"><summary>Werden Emojis und nicht-englischer Text unterstützt?</summary><p>Ja. Text wird vor der Base64-Umwandlung UTF-8-kodiert, sodass Emojis und nicht-lateinische Schriften korrekt zurückgewandelt werden — sowohl im Standard- als auch im URL-sicheren Modus.</p></details>
+    <details class="faq-item"><summary>Was ist der Unterschied zwischen Base64 und Base64URL?</summary><p>Nur das Alphabet für zwei Zeichen, und die Auffüllung. Standard-Base64 verwendet <code>+</code> und <code>/</code> mit <code>=</code>-Auffüllung; URL-sicheres Base64 (Base64URL) verwendet stattdessen <code>-</code> und <code>_</code> und lässt die Auffüllung meist weg, damit das Ergebnis direkt in einer URL stehen kann. Die zugrunde liegende Kodierung ist ansonsten identisch.</p></details>
+    <details class="faq-item"><summary>Woher weiß der Decoder, welche Variante ich eingefügt habe?</summary><p>Er sucht nach den unterscheidenden Zeichen: <code>+</code> oder <code>/</code> bedeutet Standard-Base64, <code>-</code> oder <code>_</code> bedeutet URL-sicher. Enthält deine Zeichenfolge keines von beiden, ist sie in beiden Formen gültig und wird in jedem Fall gleich dekodiert.</p></details>
+    <details class="faq-item"><summary>Was passiert, wenn ich ungültiges Base64 dekodiere?</summary><p>Du bekommst eine klare Fehlermeldung statt unlesbarer Ausgabe oder eines stillen Fehlschlags — auch dann, wenn eine Zeichenfolge Standard- und URL-sichere Zeichen mischt, was in keiner der beiden Formen gültig ist.</p></details>
+    <details class="faq-item"><summary>Ist Base64 eine Verschlüsselung?</summary><p>Nein — Base64 ist eine Kodierung, keine Verschlüsselung. Sie kann von jedem rückgängig gemacht werden und sollte nicht zum Schutz sensibler Daten verwendet werden.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Ähnliche Tools</h2>
+    <div class="related-grid">
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/de/timestamp-converter">Unix-Zeitstempel-Konverter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/password-generator">Password Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'base64-encode-decode-de'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Kostenlose Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/de/word-counter">Wörter zählen</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Weitere Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/de/base64-encode-decode">Base64 Encoder/Decoder</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/de/timestamp-converter">Unix-Zeitstempel-Konverter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <a href="/">Start</a>
+        <a href="/privacy">Datenschutz</a>
+        <a href="/terms">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>Keine Anmeldung &middot; Direkt im Browser &middot; Datenschutzfreundlich</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Base64 Encoder/Decoder","url":"https://quicktinyv2.vercel.app/de/base64-encode-decode","description":"Kodiere oder dekodiere Text und Dateien direkt im Browser zu Base64 – auch im URL-sicheren Format (Base64URL) für Tokens und Links.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true,"inLanguage":"de"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Base64 Encoder/Decoder","item":"https://quicktinyv2.vercel.app/de/base64-encode-decode"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Werden Emojis und nicht-englischer Text unterstützt?","acceptedAnswer":{"@type":"Answer","text":"Ja. Text wird vor der Base64-Umwandlung UTF-8-kodiert, sodass Emojis und nicht-lateinische Schriften korrekt zurückgewandelt werden."}},{"@type":"Question","name":"Was ist der Unterschied zwischen Base64 und Base64URL?","acceptedAnswer":{"@type":"Answer","text":"Nur das Alphabet für zwei Zeichen und die Auffüllung. Standard nutzt + und / mit =-Auffüllung; URL-sicher nutzt - und _ und lässt die Auffüllung meist weg."}},{"@type":"Question","name":"Woher weiß der Decoder, welche Variante ich eingefügt habe?","acceptedAnswer":{"@type":"Answer","text":"Er sucht nach den unterscheidenden Zeichen: + oder / bedeutet Standard, - oder _ bedeutet URL-sicher."}},{"@type":"Question","name":"Was passiert, wenn ich ungültiges Base64 dekodiere?","acceptedAnswer":{"@type":"Answer","text":"Du bekommst eine klare Fehlermeldung, auch wenn eine Zeichenfolge Standard- und URL-sichere Zeichen mischt."}},{"@type":"Question","name":"Ist Base64 eine Verschlüsselung?","acceptedAnswer":{"@type":"Answer","text":"Nein — Base64 ist eine Kodierung, keine Verschlüsselung, und sollte nicht zum Schutz sensibler Daten verwendet werden."}}]}</script>
+</body>
+</html>

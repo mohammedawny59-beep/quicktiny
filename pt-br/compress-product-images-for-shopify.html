@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Corrigir Erro de Imagem no Shopify (Excede Pixels ou MB) | QuickTiny</title>
+  <meta name="description" content="Verifique se a foto do seu produto está dentro do limite do Shopify (25 megapixels e 20 MB) e corrija automaticamente, sem perder qualidade e grátis.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/pt-br/compress-product-images-for-shopify">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/compress-product-images-for-shopify">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/compress-product-images-for-shopify">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/compress-product-images-for-shopify">
+  <link rel="alternate" hreflang="de" href="https://quicktinyv2.vercel.app/de/compress-product-images-for-shopify">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/compress-product-images-for-shopify">
+  <meta property="og:title" content="Corrigir Erro de Imagem no Shopify (Excede Pixels ou MB) | QuickTiny">
+  <meta property="og:description" content="Verifique se a foto do seu produto está dentro do limite do Shopify (25 megapixels e 20 MB) e corrija automaticamente, sem perder qualidade e grátis.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/pt-br/compress-product-images-for-shopify">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Ferramentas</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacidade</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Alternar menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Início</a> <span>/</span><span style="color:var(--text-dim)">Corrigir Imagem para Shopify</span></div>
+  <div class="lang-switch">
+    <a href="/compress-product-images-for-shopify">EN</a>
+    <a href="/es/compress-product-images-for-shopify">ES</a>
+    <a href="/pt-br/compress-product-images-for-shopify" class="active">PT-BR</a>
+    <a href="/de/compress-product-images-for-shopify">DE</a>
+  </div>
+  <section class="hero compact flagship">
+    <div class="hero-badges">
+      <span class="badge">Imagem</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processado no seu navegador</span>
+      <span class="badge accent">Grátis</span>
+    </div>
+    <h1>Sua imagem foi recusada pelo Shopify? Corrija em segundos</h1>
+    <p>Verifique as dimensões e o tamanho do arquivo da sua imagem, corrija fotos grandes demais e baixe arquivos prontos para upload — direto no seu navegador.</p>
+    <p style="color:var(--muted);font-size:13.5px;margin-top:8px">Não é um app do Shopify. Não afiliado nem endossado pelo Shopify.</p>
+    <a href="#tool" class="jump-to-tool">Testar agora <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel flagship" id="tool">
+    <div class="dropzone" id="dz" tabindex="0" role="button" aria-label="Escolher uma imagem de produto para verificar">
+      <strong>Solte aqui uma imagem de produto</strong> ou clique para escolher um arquivo<br>
+      <span style="font-size:13px">Verificado na hora contra os limites reais do Shopify, localmente no seu navegador</span>
+    </div>
+    <input id="img" type="file" accept="image/*" class="sr-only">
+    <div id="imgout" class="result"></div>
+    <div id="imgstats" class="stat-row"></div>
+    <div id="fixArea"></div>
+  </div>
+
+  <script src="/shopify-image-tools.js"></script>
+  <script>
+  (function(){
+    var dz = document.querySelector("#dz");
+    var input = document.querySelector("#img");
+    var out = document.querySelector("#imgout");
+    var stats = document.querySelector("#imgstats");
+    var fixArea = document.querySelector("#fixArea");
+
+    dz.addEventListener("click", function(){ input.click(); });
+    dz.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ input.click(); } });
+    ["dragover","dragenter"].forEach(function(evt){
+      dz.addEventListener(evt, function(e){ e.preventDefault(); dz.classList.add("drag"); });
+    });
+    ["dragleave","drop"].forEach(function(evt){
+      dz.addEventListener(evt, function(e){ e.preventDefault(); dz.classList.remove("drag"); });
+    });
+    dz.addEventListener("drop", function(e){
+      var f = e.dataTransfer.files[0];
+      if (f) { input.files = e.dataTransfer.files; handleFile(f); }
+    });
+    input.addEventListener("change", function(){
+      var f = input.files[0];
+      if (f) handleFile(f);
+    });
+
+    async function handleFile(f){
+      fixArea.innerHTML = "";
+      stats.innerHTML = "";
+      if (!f.type || f.type.indexOf("image/") !== 0) {
+        out.textContent = "Escolha um arquivo de imagem.";
+        out.className = "result error";
+        return;
+      }
+      out.textContent = "Verificando os limites do Shopify...";
+      out.className = "result";
+
+      var source;
+      try {
+        source = await qtLoadImageSource(f);
+      } catch (e) {
+        out.textContent = "Não foi possível ler essa imagem. Tente outro arquivo.";
+        out.className = "result error";
+        return;
+      }
+      var width = source.width, height = source.height;
+      if (source.close) source.close();
+
+      var check = qtShopifyCheck(width, height, f.size);
+      var displayName = f.name.length > 24 ? f.name.slice(0, 24) + "…" : f.name;
+
+      stats.innerHTML =
+        '<div class="stat"><div class="n">' + displayName + '</div><div class="l">Arquivo</div></div>' +
+        '<div class="stat"><div class="n">' + qtFormatBytes(f.size) + '</div><div class="l">Tamanho</div></div>' +
+        '<div class="stat"><div class="n">' + width + '×' + height + '</div><div class="l">Dimensões</div></div>' +
+        '<div class="stat"><div class="n">' + qtFormatMP(check.megapixels) + '</div><div class="l">Megapixels</div></div>';
+
+      qtTrack("shopify_image_checked", { result: check.passes ? "pass" : "fail" });
+
+      if (check.passes) {
+        out.innerHTML = "&#10003; Pronta para o Shopify";
+        out.className = "result success";
+        return;
+      }
+
+      qtTrack("shopify_image_failed_check", { reason: check.reason });
+
+      var reasonLines = [];
+      if (check.dimensionFail) reasonLines.push(qtFormatMP(check.megapixels) + " — o limite testado do Shopify para imagens de produto é 25 MP.");
+      if (check.sizeFail) reasonLines.push(qtFormatBytes(f.size) + " — o limite de tamanho do Shopify é 20 MB.");
+      out.innerHTML = "&#9888; Grande demais para o Shopify<br><span style=\"font-weight:500;font-size:13.5px\">" + reasonLines.join("<br>") + "</span>";
+      out.className = "result error";
+
+      var fixBtn = document.createElement("button");
+      fixBtn.className = "btn";
+      fixBtn.style.marginTop = "12px";
+      fixBtn.textContent = "Corrigir para o Shopify";
+      fixBtn.addEventListener("click", function(){ runFix(f, check.reason, fixBtn); });
+      fixArea.appendChild(fixBtn);
+    }
+
+    async function runFix(f, reason, fixBtn){
+      fixBtn.disabled = true;
+      fixBtn.textContent = "Corrigindo...";
+      var result = await qtProcessForShopify(f);
+      fixArea.innerHTML = "";
+
+      var whatHappened = result.resized && result.compressed ? "redimensionada e comprimida"
+        : result.resized ? "redimensionada"
+        : "comprimida";
+
+      var compareHtml =
+        '<div class="row-2" style="margin-top:14px">' +
+          '<div>' +
+            '<div class="field-label">Antes</div>' +
+            '<div class="stat-row">' +
+              '<div class="stat"><div class="n">' + result.originalWidth + '×' + result.originalHeight + '</div><div class="l">Dimensões</div></div>' +
+              '<div class="stat"><div class="n">' + qtFormatMP(result.originalMegapixels) + '</div><div class="l">Megapixels</div></div>' +
+              '<div class="stat"><div class="n">' + qtFormatBytes(result.originalSizeBytes) + '</div><div class="l">Tamanho</div></div>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="field-label">Depois</div>' +
+            '<div class="stat-row">' +
+              '<div class="stat"><div class="n">' + result.finalWidth + '×' + result.finalHeight + '</div><div class="l">Dimensões</div></div>' +
+              '<div class="stat"><div class="n">' + qtFormatMP(result.finalMegapixels) + '</div><div class="l">Megapixels</div></div>' +
+              '<div class="stat"><div class="n">' + qtFormatBytes(result.finalSizeBytes) + '</div><div class="l">Tamanho</div></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+      var statusHtml = result.finalPasses
+        ? "<p class=\"result success\">&#10003; Pronta para o Shopify (" + whatHappened + ")</p>"
+        : "<p class=\"result error\">&#9888; Ainda grande demais — tente uma imagem de origem menor.</p>";
+
+      fixArea.innerHTML = compareHtml + statusHtml;
+
+      if (result.blob) {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(result.blob);
+        a.download = "quicktiny-shopify-" + f.name.replace(/\.[^.]+$/, "") + ".jpg";
+        a.className = "btn";
+        a.style.marginTop = "12px";
+        a.textContent = "Baixar imagem corrigida";
+        a.addEventListener("click", function(){ qtTrack("shopify_fixed_download", { reason: reason }); });
+        fixArea.appendChild(a);
+      }
+
+      qtTrack("shopify_image_fixed", { reason: reason });
+
+      var proCta = document.createElement("div");
+      proCta.className = "pro-inline-cta";
+      proCta.style.marginTop = "16px";
+      var ctaText = document.createElement("span");
+      ctaText.textContent = "Tem mais de uma imagem para preparar? ";
+      var ctaLink = document.createElement("a");
+      ctaLink.href = "/batch-image-compressor";
+      ctaLink.textContent = "Prepare várias imagens de produto de uma vez — $4.99 pagamento único";
+      ctaLink.addEventListener("click", function(){ qtTrack("shopify_batch_pro_cta_click", { source: "shopify-checker-ptbr" }); });
+      proCta.appendChild(ctaText);
+      proCta.appendChild(ctaLink);
+      fixArea.appendChild(proCta);
+    }
+  })();
+  </script>
+
+  <div class="content">
+    <h2>Por que o Shopify recusa fotos de produto</h2>
+    <p>O Shopify aplica dois limites independentes às imagens de produto — um limite de tamanho de arquivo e um limite de dimensão em pixels (megapixels). Testamos os dois diretamente no próprio uploader de imagens de produto do Shopify: exatamente 25,0 megapixels foi aceito, 27,04 megapixels foi recusado, e um arquivo pouco abaixo de 20 MB passou enquanto um acima de 20 MB foi recusado. Uma foto pode ter tamanho pequeno e ainda assim ser recusada por ter megapixels demais — comprimir mais não resolve isso, só redimensionar resolve. O verificador acima mostra exatamente qual limite sua imagem está ultrapassando.</p>
+
+    <h2>Como funciona</h2>
+    <ol>
+      <li>Solte uma foto de produto — nada é enviado para nenhum lugar.</li>
+      <li>O QuickTiny verifica as dimensões e o tamanho contra os limites testados do Shopify.</li>
+      <li>Se ela for recusada, clique em "Corrigir para o Shopify" para redimensionar e/ou comprimir automaticamente, e baixe o arquivo pronto para upload.</li>
+    </ol>
+
+    <h2>Por que o processamento local importa</h2>
+    <p>A verificação e a correção acontecem no seu próprio dispositivo, usando a API canvas do navegador. Suas fotos de produto nunca são enviadas aos servidores do QuickTiny — apenas o pagamento único via PayPal do Batch Pro envolve um servidor, e isso é só para cobrança, não para suas imagens.</p>
+
+    <h2>Verificador grátis vs. Batch Pro</h2>
+    <p>O verificador acima é grátis para uma imagem por vez, sem necessidade de conta. O <a href="/batch-image-compressor">Batch Pro</a> ($4.99 pagamento único) roda o mesmo processo de verificação e correção em várias imagens de uma vez — útil para uma coleção nova, uma atualização completa do catálogo, ou um lote de fotos de um ensaio.</p>
+
+    <h2>Bons casos de uso</h2>
+    <ul class="benefits">
+      <li>Verificar uma foto antes de fazer upload, para não ficar adivinhando por que o Shopify recusou</li>
+      <li>Lançar uma coleção nova com muitas fotos de produto</li>
+      <li>Substituir imagens grandes demais em um catálogo existente</li>
+      <li>Preparar fotos de alta resolução direto de uma câmera ou editor de imagens</li>
+    </ul>
+
+    <h2>Perguntas frequentes</h2>
+    <details class="faq-item"><summary>Isso se integra diretamente com o Shopify?</summary><p>Não. O QuickTiny não se conecta à sua loja Shopify nem afirma qualquer afiliação oficial com o Shopify. Você verifica e corrige suas imagens aqui, e depois faz o upload dos arquivos resultantes pelo uploader de mídia normal do Shopify.</p></details>
+    <details class="faq-item"><summary>Isso redimensiona as dimensões da imagem?</summary><p>Só quando o Shopify realmente recusaria. O QuickTiny verifica sua imagem contra os limites reais do Shopify (25 megapixels, 20 MB) e só redimensiona se ela ultrapassar o limite de megapixels — o redimensionamento sempre preserva a proporção original, nunca estica nem corta. Se sua imagem já está dentro dos limites do Shopify, as dimensões são mantidas exatamente como enviadas.</p></details>
+    <details class="faq-item"><summary>O que acontece com PNGs transparentes, como recortes de produto?</summary><p>Imagens corrigidas são exportadas como arquivos JPG, que não suportam transparência. Áreas transparentes são preenchidas com branco primeiro, então um recorte de produto transparente vai ficar sobre um fundo branco.</p></details>
+    <details class="faq-item"><summary>Estou recebendo um erro ao fazer upload no Shopify — isso corrige?</summary><p>Depende de qual dos dois limites do Shopify você está ultrapassando. Um arquivo abaixo de 20 MB ainda pode ser recusado por ter megapixels demais — isso é um problema de dimensão, não de tamanho de arquivo, e só comprimir não resolve. Use o verificador acima: ele mostra exatamente qual limite sua imagem está ultrapassando (megapixels, tamanho, ou os dois) e corrige de acordo.</p></details>
+    <details class="faq-item"><summary>Como vocês sabem que os limites reais do Shopify são 25 megapixels e 20 MB?</summary><p>Testamos diretamente no próprio uploader de imagens de produto do Shopify em vez de confiar só na documentação: exatamente 25,0 megapixels foi aceito, 27,04 megapixels foi recusado com o próprio erro do Shopify ("Exceeds 25 megapixels"), e um arquivo acima de 20 MB foi recusado ("Exceeds maximum image size of 20 MB") de forma independente dos megapixels. Esses são os limites como realmente aplicados no momento do teste, não estimativas. Veja os <a href="/shopify-image-upload-limits-test-2026">resultados completos do teste e a metodologia</a> (em inglês).</p></details>
+    <details class="faq-item"><summary>Existe um limite de quantas imagens posso verificar de uma vez?</summary><p>O verificador grátis processa uma imagem por vez. Para várias imagens de uma vez, use o Batch Pro — você pode processar quantas seu navegador conseguir lidar confortavelmente, embora lotes muito grandes possam ser mais lentos já que tudo roda no seu dispositivo.</p></details>
+    <details class="faq-item"><summary>O Batch Pro é uma assinatura?</summary><p>Não. O QuickTiny Pro é um único pagamento de $4.99 que desbloqueia o processamento em lote permanentemente naquele navegador.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Ferramentas relacionadas</h2>
+    <div class="related-grid">
+      <a href="/compress-image">Image Compressor (grátis, uma imagem)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor">Batch Image Compressor (Pro)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/image-upload-size-limits">Referência de Limites de Upload<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Ferramentas Grátis</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/pt-br/word-counter">Contador de Palavras</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/pt-br/json-formatter">Formatador de JSON</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Mais Ferramentas</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/pt-br/base64-encode-decode">Conversor Base64</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/pt-br/timestamp-converter">Conversor de Timestamp</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="/">Início</a>
+        <a href="/privacy">Privacidade</a>
+        <a href="/terms">Termos</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>Sem cadastro &middot; Direto no navegador &middot; Focado em privacidade</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Corrigir Imagem para Shopify","url":"https://quicktinyv2.vercel.app/pt-br/compress-product-images-for-shopify","description":"Verifique se a foto do seu produto está dentro do limite do Shopify (25 megapixels e 20 MB) e corrija automaticamente, sem perder qualidade e grátis.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true,"inLanguage":"pt-BR"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Corrigir Imagem para Shopify","item":"https://quicktinyv2.vercel.app/pt-br/compress-product-images-for-shopify"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Isso se integra diretamente com o Shopify?","acceptedAnswer":{"@type":"Answer","text":"Não. O QuickTiny não se conecta à sua loja Shopify nem afirma qualquer afiliação oficial com o Shopify."}},{"@type":"Question","name":"Isso redimensiona as dimensões da imagem?","acceptedAnswer":{"@type":"Answer","text":"Só quando o Shopify realmente recusaria. O QuickTiny só redimensiona se a imagem ultrapassar o limite de megapixels, sempre preservando a proporção original."}},{"@type":"Question","name":"O que acontece com PNGs transparentes, como recortes de produto?","acceptedAnswer":{"@type":"Answer","text":"Imagens corrigidas são exportadas como JPG, que não suportam transparência. Áreas transparentes ficam com fundo branco."}},{"@type":"Question","name":"Estou recebendo um erro ao fazer upload no Shopify — isso corrige?","acceptedAnswer":{"@type":"Answer","text":"Depende de qual dos dois limites você está ultrapassando. O verificador mostra exatamente qual limite sua imagem está ultrapassando e corrige de acordo."}},{"@type":"Question","name":"Como vocês sabem que os limites reais do Shopify são 25 megapixels e 20 MB?","acceptedAnswer":{"@type":"Answer","text":"Testamos diretamente no uploader de imagens de produto do Shopify: exatamente 25,0 megapixels foi aceito, 27,04 megapixels foi recusado, e um arquivo acima de 20 MB foi recusado independentemente dos megapixels."}},{"@type":"Question","name":"Existe um limite de quantas imagens posso verificar de uma vez?","acceptedAnswer":{"@type":"Answer","text":"O verificador grátis processa uma imagem por vez. Para várias de uma vez, use o Batch Pro."}},{"@type":"Question","name":"O Batch Pro é uma assinatura?","acceptedAnswer":{"@type":"Answer","text":"Não. O QuickTiny Pro é um único pagamento de $4.99 que desbloqueia o processamento em lote permanentemente naquele navegador."}}]}</script>
+</body>
+</html>

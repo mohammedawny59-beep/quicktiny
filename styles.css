@@ -217,6 +217,12 @@ input[type=file]{background:transparent;border:1px dashed var(--line-strong);pad
 .breadcrumb a:hover{color:var(--text)}
 .breadcrumb span{color:var(--line-strong)}
 
+/* Language switcher (simple, unobtrusive — plain text links under the breadcrumb) */
+.lang-switch{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:8px}
+.lang-switch a{color:var(--muted);font-weight:650;transition:color .15s}
+.lang-switch a:hover{color:var(--text)}
+.lang-switch a.active{color:var(--accent)}
+
 /* Pro section (homepage) */
 .pro-section{margin-top:64px;padding-top:48px;border-top:1px solid var(--line)}
 .pro-card{margin-top:22px;display:grid;grid-template-columns:1.6fr 1fr;gap:0;background:var(--card);border:1px solid var(--line-strong);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 70px -40px rgba(0,0,0,.7)}

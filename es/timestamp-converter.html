@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Conversor de Timestamp Unix a Fecha (y Viceversa) Gratis | QuickTiny</title>
+  <meta name="description" content="Convierte cualquier timestamp Unix (en segundos o milisegundos) a una fecha legible, o al revés, al instante y gratis.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/es/timestamp-converter">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/timestamp-converter">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/timestamp-converter">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/timestamp-converter">
+  <link rel="alternate" hreflang="de" href="https://quicktinyv2.vercel.app/de/timestamp-converter">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/timestamp-converter">
+  <meta property="og:title" content="Conversor de Timestamp Unix a Fecha (y Viceversa) Gratis | QuickTiny">
+  <meta property="og:description" content="Convierte cualquier timestamp Unix (en segundos o milisegundos) a una fecha legible, o al revés, al instante y gratis.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/es/timestamp-converter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Herramientas</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacidad</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Alternar menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Inicio</a> <span>/</span><span style="color:var(--text-dim)">Conversor de Timestamp</span></div>
+  <div class="lang-switch">
+    <a href="/timestamp-converter">EN</a>
+    <a href="/es/timestamp-converter" class="active">ES</a>
+    <a href="/pt-br/timestamp-converter">PT-BR</a>
+    <a href="/de/timestamp-converter">DE</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Utilidad</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Procesado en tu navegador</span>
+      <span class="badge">Gratis</span>
+    </div>
+    <h1>Convierte timestamps Unix a fecha en segundos</h1>
+    <p>Convierte un timestamp Unix (en segundos o milisegundos) a una fecha legible en tu zona horaria local y en UTC, o convierte una fecha a timestamp.</p>
+    <a href="#tool" class="jump-to-tool">Pruébalo ahora <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+
+      <div class="row-2">
+        <div>
+          <label class="field-label" for="tsInput">Timestamp Unix</label>
+          <input id="tsInput" type="text" placeholder="ej. 1735689600">
+          <div class="btn-row"><button class="btn" onclick="qtTsToDate()">Convertir a fecha</button><button class="btn btn-secondary" onclick="qtNow()">Usar hora actual</button></div>
+        </div>
+        <div>
+          <label class="field-label" for="dateInput">Fecha y hora (local)</label>
+          <input id="dateInput" type="datetime-local">
+          <div class="btn-row"><button class="btn" onclick="qtDateToTs()">Convertir a timestamp</button></div>
+        </div>
+      </div>
+      <div id="tsout" class="result"></div>
+  </div>
+  <script>
+      function qtNow(){
+        document.querySelector("#tsInput").value = Math.floor(Date.now() / 1000);
+        qtTsToDate();
+      }
+      function qtTsToDate(){
+        var raw = document.querySelector("#tsInput").value.trim();
+        var out = document.querySelector("#tsout");
+        if (!raw || isNaN(Number(raw))) { out.textContent = "Introduce un timestamp numérico."; out.className = "result error"; return; }
+        var num = Number(raw);
+        var ms = Math.abs(num) > 20000000000 ? num : num * 1000;
+        var d = new Date(ms);
+        if (isNaN(d.getTime())) { out.textContent = "Ese timestamp está fuera de rango."; out.className = "result error"; return; }
+        out.innerHTML = "Local: <strong>" + d.toString() + "</strong><br>UTC: <strong>" + d.toUTCString() + "</strong>";
+        out.className = "result success";
+      }
+      function qtDateToTs(){
+        var raw = document.querySelector("#dateInput").value;
+        var out = document.querySelector("#tsout");
+        if (!raw) { out.textContent = "Elige primero una fecha y hora."; out.className = "result error"; return; }
+        var d = new Date(raw);
+        if (isNaN(d.getTime())) { out.textContent = "Fecha inválida."; out.className = "result error"; return; }
+        out.innerHTML = "Timestamp Unix (segundos): <strong>" + Math.floor(d.getTime() / 1000) + "</strong><br>Milisegundos: <strong>" + d.getTime() + "</strong>";
+        out.className = "result success";
+      }</script>
+
+  <div class="content">
+    <h2>Cómo usar el Conversor de Timestamp</h2>
+    <ol>
+      <li>Introduce un timestamp Unix (en segundos o milisegundos) y haz clic en "Convertir a fecha", o haz clic en "Usar hora actual".</li>
+      <li>O elige una fecha y hora y haz clic en "Convertir a timestamp".</li>
+      <li>Los resultados muestran tanto tu hora local como UTC.</li>
+    </ol>
+
+    <h2>Ventajas principales</h2>
+    <ul class="benefits">
+      <li>Detecta automáticamente si son segundos o milisegundos.</li>
+      <li>Muestra la hora local y UTC lado a lado.</li>
+      <li>Un clic para obtener el timestamp actual.</li>
+      <li>Funciona enteramente en tu navegador usando el reloj de tu dispositivo.</li>
+    </ul>
+
+    <h2>Privacidad</h2>
+    <p>El Conversor de Timestamp funciona enteramente en tu navegador usando JavaScript local. Tus datos se procesan en tu propio dispositivo y nunca se suben a los servidores de QuickTiny.</p>
+
+    <h2>Preguntas frecuentes</h2>
+    <details class="faq-item"><summary>¿Cómo sabe si mi timestamp está en segundos o milisegundos?</summary><p>Los timestamps mayores de 20.000.000.000 se tratan como milisegundos; los valores menores se tratan como segundos. Esto cubre todas las fechas reales.</p></details>
+    <details class="faq-item"><summary>¿Qué zona horaria se usa?</summary><p>Tu fecha de entrada se interpreta en la zona horaria local de tu navegador. El valor UTC se muestra junto a ella como referencia.</p></details>
+    <details class="faq-item"><summary>¿Puedo convertir fechas anteriores a 1970?</summary><p>Sí — se admiten timestamps Unix negativos que representan fechas anteriores al 1 de enero de 1970.</p></details>
+    <details class="faq-item"><summary>¿Cómo obtengo un timestamp Unix en mi código, no solo aquí?</summary><p>Consulta la <a href="/unix-timestamp-cheat-sheet">Unix Timestamp Cheat Sheet</a> (en inglés) para ver la llamada exacta en JavaScript, Python, Java, PHP, Go, Ruby, SQL, C# y la terminal — incluyendo cuáles usan segundos y cuáles milisegundos.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Herramientas relacionadas</h2>
+    <div class="related-grid">
+      <a href="/password-generator">Password Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/es/json-formatter">Formateador de JSON<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/es/base64-encode-decode">Base64 (Codificar/Decodificar)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'timestamp-converter-es'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Herramientas Gratis</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/es/word-counter">Contador de Palabras</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/es/json-formatter">Formateador de JSON</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Más Herramientas</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/es/base64-encode-decode">Base64 (Codificar/Decodificar)</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/es/timestamp-converter">Conversor de Timestamp</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="/">Inicio</a>
+        <a href="/privacy">Privacidad</a>
+        <a href="/terms">Términos</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>Sin registro &middot; Basado en el navegador &middot; Respeta tu privacidad</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Conversor de Timestamp","url":"https://quicktinyv2.vercel.app/es/timestamp-converter","description":"Convierte cualquier timestamp Unix (en segundos o milisegundos) a una fecha legible, o al revés, al instante y gratis.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true,"inLanguage":"es"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Conversor de Timestamp","item":"https://quicktinyv2.vercel.app/es/timestamp-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo sabe si mi timestamp está en segundos o milisegundos?","acceptedAnswer":{"@type":"Answer","text":"Los timestamps mayores de 20.000.000.000 se tratan como milisegundos; los valores menores se tratan como segundos."}},{"@type":"Question","name":"¿Qué zona horaria se usa?","acceptedAnswer":{"@type":"Answer","text":"Tu fecha de entrada se interpreta en la zona horaria local de tu navegador. El valor UTC se muestra junto a ella como referencia."}},{"@type":"Question","name":"¿Puedo convertir fechas anteriores a 1970?","acceptedAnswer":{"@type":"Answer","text":"Sí — se admiten timestamps Unix negativos que representan fechas anteriores al 1 de enero de 1970."}},{"@type":"Question","name":"¿Cómo obtengo un timestamp Unix en mi código, no solo aquí?","acceptedAnswer":{"@type":"Answer","text":"Consulta la Unix Timestamp Cheat Sheet (en inglés) para ver la llamada exacta en varios lenguajes de programación."}}]}</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Wörter zählen online – kostenloser Wort- und Zeichenzähler | QuickTiny</title>
+  <meta name="description" content="Füge deinen Text ein und erhalte sofort die Anzahl der Wörter, Zeichen und Sätze – kostenlos, ohne Anmeldung, direkt im Browser.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/de/word-counter">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/word-counter">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/word-counter">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/word-counter">
+  <link rel="alternate" hreflang="de" href="https://quicktinyv2.vercel.app/de/word-counter">
+  <link rel="alternate" hreflang="hi" href="https://quicktinyv2.vercel.app/hi/word-counter">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/word-counter">
+  <meta property="og:title" content="Wörter zählen online – kostenloser Wort- und Zeichenzähler | QuickTiny">
+  <meta property="og:description" content="Füge deinen Text ein und erhalte sofort die Anzahl der Wörter, Zeichen und Sätze – kostenlos, ohne Anmeldung, direkt im Browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/de/word-counter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Datenschutz</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü umschalten" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Start</a> <span>/</span><span style="color:var(--text-dim)">Wörter zählen</span></div>
+  <div class="lang-switch">
+    <a href="/word-counter">EN</a>
+    <a href="/es/word-counter">ES</a>
+    <a href="/pt-br/word-counter">PT-BR</a>
+    <a href="/de/word-counter" class="active">DE</a>
+    <a href="/hi/word-counter">HI</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Text</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Verarbeitung im Browser</span>
+      <span class="badge">Kostenlos</span>
+    </div>
+    <h1>Wörter und Zeichen zählen</h1>
+    <p>Füge deinen Text unten ein oder tippe ihn, um sofort die Anzahl der Wörter, Zeichen, Zeichen ohne Leerzeichen, Sätze und Zeilen zu sehen.</p>
+    <a href="#tool" class="jump-to-tool">Jetzt testen <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+
+      <label class="field-label" for="counter">Dein Text</label>
+      <textarea id="counter" oninput="qtCount()" placeholder="Text hier einfügen oder eingeben..."></textarea>
+      <div id="countstats" class="stat-row"></div>
+  </div>
+  <script>
+      function qtCount(){
+        var t = document.querySelector("#counter").value;
+        var trimmed = t.trim();
+        var words = trimmed ? trimmed.split(/\s+/).length : 0;
+        var chars = t.length;
+        var charsNoSpaces = t.replace(/\s/g, "").length;
+        var sentences = trimmed ? (trimmed.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []).filter(function(s){ return s.trim().length; }).length : 0;
+        var lines = t ? t.split(/\n/).length : 0;
+        document.querySelector("#countstats").innerHTML =
+          stat(words, "Wörter") + stat(chars, "Zeichen") + stat(charsNoSpaces, "Ohne Leerzeichen") + stat(sentences, "Sätze") + stat(lines, "Zeilen");
+      }
+      function stat(n, label){
+        return '<div class="stat"><div class="n">' + n + '</div><div class="l">' + label + '</div></div>';
+      }
+      qtCount();</script>
+
+  <div class="content">
+    <h2>So verwendest du den Wörter-Zähler</h2>
+    <ol>
+      <li>Füge deinen Text in das Feld ein oder tippe ihn.</li>
+      <li>Die Zählung aktualisiert sich automatisch während du tippst.</li>
+      <li>Sieh auf einen Blick Wörter, Zeichen, Zeichen ohne Leerzeichen, Sätze und Zeilen.</li>
+    </ol>
+
+    <h2>Wichtigste Vorteile</h2>
+    <ul class="benefits">
+      <li>Aktualisiert live, ohne dass ein Button geklickt werden muss.</li>
+      <li>Zählt Sätze, nicht nur Wörter und Zeichen.</li>
+      <li>Nichts wird an einen Server gesendet — dein Text bleibt in deinem Browser.</li>
+      <li>Nützlich für Aufsätze, Tweets, Meta-Beschreibungen und Bildunterschriften.</li>
+    </ul>
+
+    <h2>Datenschutz</h2>
+    <p>Der Wörter-Zähler läuft komplett in deinem Browser mit lokalem JavaScript. Deine Dateien und Texte werden auf deinem eigenen Gerät verarbeitet und niemals an QuickTiny-Server gesendet.</p>
+
+    <h2>Häufig gestellte Fragen</h2>
+    <details class="faq-item"><summary>Wie wird die Wortanzahl berechnet?</summary><p>Der Text wird getrimmt und an Leerzeichen aufgeteilt, sodass mehrere Leerzeichen zwischen Wörtern die Zählung nicht verfälschen.</p></details>
+    <details class="faq-item"><summary>Wie werden Sätze gezählt?</summary><p>QuickTiny teilt den Text an satzbeendender Zeichensetzung (. ! ?) auf und zählt die resultierenden nicht leeren Abschnitte. Das ist eine Schätzung, keine linguistische Analyse.</p></details>
+    <details class="faq-item"><summary>Wird mein Text irgendwo gespeichert?</summary><p>Nein. Die Zählung erfolgt lokal in deinem Browser, und nichts wird gespeichert oder übertragen.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Ähnliche Tools</h2>
+    <div class="related-grid">
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/case-converter">Case Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-duplicate-lines">Remove Duplicate Lines<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'word-counter-de'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Kostenlose Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/de/word-counter">Wörter zählen</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Weitere Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/de/base64-encode-decode">Base64 Encoder/Decoder</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/de/timestamp-converter">Unix-Zeitstempel-Konverter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <a href="/">Start</a>
+        <a href="/privacy">Datenschutz</a>
+        <a href="/terms">AGB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>Keine Anmeldung &middot; Direkt im Browser &middot; Datenschutzfreundlich</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Wörter zählen","url":"https://quicktinyv2.vercel.app/de/word-counter","description":"Füge deinen Text ein und erhalte sofort die Anzahl der Wörter, Zeichen und Sätze – kostenlos, ohne Anmeldung, direkt im Browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true,"inLanguage":"de"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Wörter zählen","item":"https://quicktinyv2.vercel.app/de/word-counter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie wird die Wortanzahl berechnet?","acceptedAnswer":{"@type":"Answer","text":"Der Text wird getrimmt und an Leerzeichen aufgeteilt, sodass mehrere Leerzeichen zwischen Wörtern die Zählung nicht verfälschen."}},{"@type":"Question","name":"Wie werden Sätze gezählt?","acceptedAnswer":{"@type":"Answer","text":"QuickTiny teilt den Text an satzbeendender Zeichensetzung (. ! ?) auf und zählt die resultierenden nicht leeren Abschnitte."}},{"@type":"Question","name":"Wird mein Text irgendwo gespeichert?","acceptedAnswer":{"@type":"Answer","text":"Nein. Die Zählung erfolgt lokal in deinem Browser, und nichts wird gespeichert oder übertragen."}}]}</script>
+</body>
+</html>

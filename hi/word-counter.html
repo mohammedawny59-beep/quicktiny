@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hindi Word Counter – हिंदी शब्द और Character गिनने का Free Tool | QuickTiny</title>
+  <meta name="description" content="अपने Hindi Text के Words, Characters और Sentences को तुरंत Count करें — Essay, Article या Assignment के लिए बिल्कुल फ्री टूल, बिना किसी Sign-up के।">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/hi/word-counter">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/word-counter">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/word-counter">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/word-counter">
+  <link rel="alternate" hreflang="de" href="https://quicktinyv2.vercel.app/de/word-counter">
+  <link rel="alternate" hreflang="hi" href="https://quicktinyv2.vercel.app/hi/word-counter">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/word-counter">
+  <meta property="og:title" content="Hindi Word Counter – हिंदी शब्द और Character गिनने का Free Tool | QuickTiny">
+  <meta property="og:description" content="अपने Hindi Text के Words, Characters और Sentences को तुरंत Count करें — Essay, Article या Assignment के लिए बिल्कुल फ्री टूल, बिना किसी Sign-up के।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/hi/word-counter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu खोलें/बंद करें" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Hindi Word Counter</span></div>
+  <div class="lang-switch">
+    <a href="/word-counter">EN</a>
+    <a href="/es/word-counter">ES</a>
+    <a href="/pt-br/word-counter">PT-BR</a>
+    <a href="/de/word-counter">DE</a>
+    <a href="/hi/word-counter" class="active">HI</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Text</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>आपके Browser में ही Process होता है</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>हिंदी वर्ड काउंटर – Hindi Text के शब्द और अक्षर गिनें</h1>
+    <p>नीचे अपना Hindi Text Paste करें या Type करें और तुरंत Words, Characters, बिना Space के Characters, Sentences और Lines की Count देखें।</p>
+    <a href="#tool" class="jump-to-tool">अभी Try करें <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+
+      <label class="field-label" for="counter">आपका Text</label>
+      <textarea id="counter" oninput="qtCount()" placeholder="यहाँ अपना Text Paste करें या Type करें..."></textarea>
+      <div id="countstats" class="stat-row"></div>
+  </div>
+  <script>
+      function qtCount(){
+        var t = document.querySelector("#counter").value;
+        var trimmed = t.trim();
+        var words = trimmed ? trimmed.split(/\s+/).length : 0;
+        var chars = t.length;
+        var charsNoSpaces = t.replace(/\s/g, "").length;
+        var sentences = trimmed ? (trimmed.match(/[^.!?।]+[.!?।]+|[^.!?।]+$/g) || []).filter(function(s){ return s.trim().length; }).length : 0;
+        var lines = t ? t.split(/\n/).length : 0;
+        document.querySelector("#countstats").innerHTML =
+          stat(words, "Words") + stat(chars, "Characters") + stat(charsNoSpaces, "बिना Space") + stat(sentences, "Sentences") + stat(lines, "Lines");
+      }
+      function stat(n, label){
+        return '<div class="stat"><div class="n">' + n + '</div><div class="l">' + label + '</div></div>';
+      }
+      qtCount();</script>
+
+  <div class="content">
+    <h2>Hindi Word Counter कैसे Use करें</h2>
+    <ol>
+      <li>अपना Hindi (या किसी भी भाषा का) Text Box में Paste करें या Type करें।</li>
+      <li>Count आपके Type करते ही अपने-आप Update होती है।</li>
+      <li>Words, Characters, बिना Space के Characters, Sentences और Lines एक नज़र में देखें।</li>
+    </ol>
+
+    <h2>मुख्य फायदे</h2>
+    <ul class="benefits">
+      <li>हिंदी के Sentence-ending Punctuation (। . ! ?) दोनों को सही से पहचानता है।</li>
+      <li>बिना किसी Button पर क्लिक किए, Live Update होता है।</li>
+      <li>कुछ भी Server पर नहीं भेजा जाता — आपका Text आपके Browser में ही रहता है।</li>
+      <li>Essay, Article, Assignment या Social Media Post के लिए उपयोगी।</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Word Counter पूरी तरह आपके Browser में, Local JavaScript से चलता है। आपकी Files और Text आपके अपने Device पर ही Process होते हैं और कभी QuickTiny के Servers पर Upload नहीं होते।</p>
+
+    <h2>अक्सर पूछे जाने वाले सवाल</h2>
+    <details class="faq-item"><summary>क्या यह Hindi Text को सही से Count करता है?</summary><p>हाँ। यह Devanagari Script के शब्दों और वाक्यों को पहचानता है, जिसमें हिंदी का पूर्ण विराम चिह्न (।) भी शामिल है, अंग्रेज़ी के फुल स्टॉप की तरह ही।</p></details>
+    <details class="faq-item"><summary>Word Count कैसे Calculate होती है?</summary><p>Text को Trim करके Space के आधार पर बांटा जाता है, इसलिए दो शब्दों के बीच एक से ज़्यादा Space होने पर भी Count सही रहती है।</p></details>
+    <details class="faq-item"><summary>क्या मेरा Text कहीं Save होता है?</summary><p>नहीं। Counting पूरी तरह आपके Browser में Local होती है, और कुछ भी Save या Transmit नहीं होता।</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related Tools</h2>
+    <div class="related-grid">
+      <a href="/hi/compress-image">Image Compressor<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'word-counter-hi'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/hi/compress-image">Image Compressor</a>
+        <a href="/hi/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Hindi Word Counter","url":"https://quicktinyv2.vercel.app/hi/word-counter","description":"अपने Hindi Text के Words, Characters और Sentences को तुरंत Count करें — Essay, Article या Assignment के लिए बिल्कुल फ्री टूल।","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true,"inLanguage":"hi"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Hindi Word Counter","item":"https://quicktinyv2.vercel.app/hi/word-counter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"क्या यह Hindi Text को सही से Count करता है?","acceptedAnswer":{"@type":"Answer","text":"हाँ। यह Devanagari Script के शब्दों और वाक्यों को पहचानता है, जिसमें हिंदी का पूर्ण विराम चिह्न (।) भी शामिल है।"}},{"@type":"Question","name":"Word Count कैसे Calculate होती है?","acceptedAnswer":{"@type":"Answer","text":"Text को Trim करके Space के आधार पर बांटा जाता है।"}},{"@type":"Question","name":"क्या मेरा Text कहीं Save होता है?","acceptedAnswer":{"@type":"Answer","text":"नहीं। Counting पूरी तरह आपके Browser में Local होती है।"}}]}</script>
+</body>
+</html>
