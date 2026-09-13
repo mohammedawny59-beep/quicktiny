@@ -200,18 +200,27 @@
 
       qtTrack("shopify_image_fixed", { reason: reason });
 
-      var proCta = document.createElement("div");
-      proCta.className = "pro-inline-cta";
-      proCta.style.marginTop = "16px";
-      var ctaText = document.createElement("span");
-      ctaText.textContent = "Have more than one image to prepare? ";
-      var ctaLink = document.createElement("a");
-      ctaLink.href = "/batch-image-compressor";
-      ctaLink.textContent = "Prepare many product images at once — $4.99 one-time";
-      ctaLink.addEventListener("click", function(){ qtTrack("shopify_batch_pro_cta_click", { source: "shopify-checker" }); });
-      proCta.appendChild(ctaText);
-      proCta.appendChild(ctaLink);
-      fixArea.appendChild(proCta);
+      if (result.finalPasses) {
+        var proCta = document.createElement("div");
+        proCta.className = "pro-inline-cta";
+        proCta.style.marginTop = "16px";
+        var ctaHeading = document.createElement("p");
+        ctaHeading.style.cssText = "margin:0 0 4px;font-weight:700;color:var(--text)";
+        ctaHeading.textContent = "Have more product images? Fix the whole batch at once.";
+        var ctaMeta = document.createElement("p");
+        ctaMeta.style.cssText = "margin:0 0 12px;font-size:13px;color:var(--muted)";
+        ctaMeta.textContent = "$4.99 once · No subscription · Keep it for future batches";
+        var ctaLink = document.createElement("a");
+        ctaLink.className = "btn btn-pro";
+        ctaLink.href = "/batch-image-compressor";
+        ctaLink.textContent = "Unlock Batch Pro — $4.99 once";
+        ctaLink.addEventListener("click", function(){ qtTrack("shopify_batch_pro_cta_click", { source: "shopify-checker" }); });
+        proCta.appendChild(ctaHeading);
+        proCta.appendChild(ctaMeta);
+        proCta.appendChild(ctaLink);
+        fixArea.appendChild(proCta);
+        qtTrack("shopify_batch_pro_cta_shown", { source: "shopify-checker" });
+      }
     }
   })();
   </script>
