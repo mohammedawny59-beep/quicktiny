@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Unix Timestamp Cheat Sheet — Every Language | QuickTiny</title>
+  <meta name="description" content="Get the current Unix timestamp and convert it to a date in JavaScript, Python, Java, PHP, Go, Ruby, SQL, C#, and the shell — with seconds-vs-milliseconds and UTC/timezone notes.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/unix-timestamp-cheat-sheet">
+  <meta property="og:title" content="Unix Timestamp Cheat Sheet — Every Language | QuickTiny">
+  <meta property="og:description" content="Get the current Unix timestamp and convert it to a date in JavaScript, Python, Java, PHP, Go, Ruby, SQL, C#, and the shell — with seconds-vs-milliseconds and UTC/timezone notes.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/unix-timestamp-cheat-sheet">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Unix Timestamp Cheat Sheet</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Reference</span>
+      <span class="badge">Verified September 2026</span>
+    </div>
+    <h1>Unix Timestamp Cheat Sheet</h1>
+    <p>How to get the current Unix timestamp and convert it to a date, in every language you're likely to hit one in — plus the seconds-vs-milliseconds mix-up and UTC pitfall that cause most of the bugs.</p>
+  </section>
+
+  <div class="content">
+    <h2>Quick reference</h2>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Language / runtime</th><th>Native unit</th><th>Get current time</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>JavaScript</td><td class="wrap">milliseconds</td><td><code>Date.now()</code></td></tr>
+          <tr><td>Python</td><td class="wrap">seconds (float)</td><td><code>time.time()</code></td></tr>
+          <tr><td>Java</td><td class="wrap">milliseconds</td><td><code>System.currentTimeMillis()</code></td></tr>
+          <tr><td>PHP</td><td class="wrap">seconds</td><td><code>time()</code></td></tr>
+          <tr><td>Go</td><td class="wrap">seconds</td><td><code>time.Now().Unix()</code></td></tr>
+          <tr><td>Ruby</td><td class="wrap">seconds</td><td><code>Time.now.to_i</code></td></tr>
+          <tr><td>MySQL</td><td class="wrap">seconds</td><td><code>UNIX_TIMESTAMP()</code></td></tr>
+          <tr><td>PostgreSQL</td><td class="wrap">seconds</td><td><code>EXTRACT(EPOCH FROM NOW())</code></td></tr>
+          <tr><td>Unix shell</td><td class="wrap">seconds</td><td><code>date +%s</code></td></tr>
+          <tr><td>C# / .NET</td><td class="wrap">explicit (both)</td><td><code>DateTimeOffset.UtcNow.ToUnixTimeSeconds()</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted)">"Native unit" is what that language's most common built-in call returns by default — most languages default to seconds; JavaScript and Java default to milliseconds. This is the single most common source of 1000x-off bugs when passing a timestamp between two languages.</p>
+
+    <h2>Seconds vs. milliseconds — the fast way to tell</h2>
+    <p>A Unix timestamp in <strong>seconds</strong> is currently a 10-digit number (it stays 10 digits until the year 2286). The same instant in <strong>milliseconds</strong> is a 13-digit number. If you're eyeballing an unfamiliar timestamp and it's 13 digits, it's milliseconds — divide by 1000 before treating it as seconds, or you'll land in the year 1970-something instead of today.</p>
+
+    <h2>JavaScript</h2>
+    <pre><code>// Current time
+Date.now()                        // milliseconds, e.g. 1757757600000
+Math.floor(Date.now() / 1000)     // seconds
+
+// Timestamp -&gt; Date (expects milliseconds)
+new Date(1757757600000)
+new Date(1757757600 * 1000)       // convert from seconds first
+
+// Date -&gt; timestamp
+someDate.getTime()                          // milliseconds
+Math.floor(someDate.getTime() / 1000)       // seconds</code></pre>
+    <p><code>new Date(ts).toString()</code> prints in the browser's local time zone. Use <code>.toUTCString()</code> or <code>.toISOString()</code> when you need UTC — mixing these up is the most common source of off-by-several-hours bugs in JS date code.</p>
+
+    <h2>Python</h2>
+    <pre><code>import time
+from datetime import datetime, timezone
+
+# Current time
+time.time()                 # seconds, as a float, e.g. 1757757600.123
+int(time.time())            # seconds, as an int
+
+# Timestamp -&gt; datetime
+datetime.fromtimestamp(1757757600, tz=timezone.utc)   # UTC-aware (recommended)
+datetime.fromtimestamp(1757757600)                    # local time zone
+
+# datetime -&gt; timestamp
+some_datetime.timestamp()   # seconds (float)</code></pre>
+    <p><code>datetime.utcfromtimestamp()</code> and <code>datetime.utcnow()</code> are deprecated as of Python 3.12 in favor of the timezone-aware form above, since they silently return a "naive" datetime with no timezone attached.</p>
+
+    <h2>Java</h2>
+    <pre><code>// Current time
+System.currentTimeMillis()              // milliseconds
+Instant.now().getEpochSecond()          // seconds
+Instant.now().toEpochMilli()            // milliseconds
+
+// Timestamp -&gt; Instant
+Instant.ofEpochSecond(1757757600)
+Instant.ofEpochMilli(1757757600000L)</code></pre>
+    <p>Java has two competing conventions in active use: the legacy <code>System.currentTimeMillis()</code> (milliseconds) and the modern <code>java.time.Instant</code> API, which offers both units explicitly rather than defaulting to one — prefer <code>Instant</code> in new code specifically because it forces you to be explicit.</p>
+
+    <h2>PHP</h2>
+    <pre><code>// Current time
+time()                              // seconds
+round(microtime(true) * 1000)       // milliseconds
+
+// Timestamp -&gt; date string
+date('Y-m-d H:i:s', 1757757600)     // local time zone (per date_default_timezone_set)
+gmdate('Y-m-d H:i:s', 1757757600)   // UTC
+
+// date string -&gt; timestamp
+strtotime('2026-09-13 12:00:00')</code></pre>
+
+    <h2>Go</h2>
+    <pre><code>// Current time
+time.Now().Unix()          // seconds
+time.Now().UnixMilli()     // milliseconds (Go 1.17+)
+
+// Timestamp -&gt; time.Time
+time.Unix(1757757600, 0)             // seconds, nanoseconds
+time.UnixMilli(1757757600000)        // milliseconds (Go 1.17+)</code></pre>
+
+    <h2>Ruby</h2>
+    <pre><code># Current time
+Time.now.to_i                     # seconds
+(Time.now.to_f * 1000).to_i       # milliseconds
+
+# Timestamp -&gt; Time
+Time.at(1757757600)               # local time zone
+Time.at(1757757600).utc           # UTC</code></pre>
+
+    <h2>SQL — MySQL &amp; PostgreSQL</h2>
+    <pre><code>-- MySQL
+SELECT UNIX_TIMESTAMP();                     -- current time, seconds
+SELECT FROM_UNIXTIME(1757757600);            -- timestamp -&gt; datetime
+SELECT UNIX_TIMESTAMP(some_datetime_col);    -- datetime -&gt; timestamp
+
+-- PostgreSQL
+SELECT EXTRACT(EPOCH FROM NOW());            -- current time, seconds (numeric)
+SELECT TO_TIMESTAMP(1757757600);             -- timestamp -&gt; timestamptz (UTC)</code></pre>
+
+    <h2>Unix shell</h2>
+    <pre><code># Current time
+date +%s
+
+# Timestamp -&gt; readable date
+date -d @1757757600          # GNU/Linux
+date -r 1757757600           # macOS / BSD (different flag, same result)</code></pre>
+
+    <h2>C# / .NET</h2>
+    <pre><code>// Current time
+DateTimeOffset.UtcNow.ToUnixTimeSeconds()
+DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+
+// Timestamp -&gt; DateTimeOffset
+DateTimeOffset.FromUnixTimeSeconds(1757757600)
+DateTimeOffset.FromUnixTimeMilliseconds(1757757600000)</code></pre>
+
+    <h2>UTC and time zones</h2>
+    <p>A Unix timestamp itself has no time zone — it's a count of seconds (or milliseconds) since <strong>January 1, 1970, 00:00:00 UTC</strong>, and it represents exactly one instant regardless of where in the world you are. Time zones only enter the picture when you convert that instant into a human-readable calendar date and clock time — "2026-09-13 14:00" means a different instant depending on whether it's in UTC, US Eastern, or IST. The bugs almost always come from a conversion step silently defaulting to the server's or browser's local time zone when UTC was intended, or vice versa — the JavaScript and PHP examples above call that out at the exact line where it happens.</p>
+
+    <h2>Convert one right now</h2>
+    <p>Need to convert an actual value instead of copying a snippet? QuickTiny's <a href="/timestamp-converter">Unix Timestamp Converter</a> converts between a timestamp and a local/UTC date instantly, free, with nothing sent to a server.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Why do some languages use seconds and others milliseconds?</summary><p>There's no technical reason they had to differ — it's historical. The original Unix epoch definition from the 1970s used seconds, and most systems-level and Unix-adjacent languages (C, Python, Go, Ruby, PHP, SQL) kept that convention. JavaScript's Date object was specified in 1995 to use milliseconds for finer precision in the browser, and Java's System.currentTimeMillis() followed a similar logic. Neither is "wrong" — they just don't agree, which is why conversions between them are a common bug source.</p></details>
+    <details class="faq-item"><summary>How do I know which unit an unfamiliar timestamp is in?</summary><p>Count the digits. A current-era timestamp in seconds is 10 digits; in milliseconds it's 13 digits. A value like 1757757600 is seconds; 1757757600000 is milliseconds.</p></details>
+    <details class="faq-item"><summary>Does a Unix timestamp change if I'm in a different time zone?</summary><p>No. The timestamp itself is a single, time-zone-independent instant. Only the human-readable date/time you convert it to changes depending on which time zone you display it in.</p></details>
+    <details class="faq-item"><summary>What's the largest date a Unix timestamp can represent?</summary><p>A signed 32-bit timestamp (still used in some older systems) overflows in January 2038 — the "Year 2038 problem." Modern 64-bit timestamps, which is what all the languages above use by default today, are effectively unbounded for any practical date.</p></details>
+    <details class="faq-item"><summary>Is this page kept up to date?</summary><p>The APIs shown here are long-stable language features, not likely to change, but syntax and defaults can shift over major language versions (as happened with Python 3.12 deprecating naive-UTC helpers, noted above). If you're relying on this for something time-sensitive, cross-check against your language's current official documentation.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related</h2>
+    <div class="related-grid">
+      <a href="/timestamp-converter">Unix Timestamp Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/json-formatter">JSON Formatter &amp; Validator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/base64-encode-decode">Base64 Encode/Decode<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Unix Timestamp Cheat Sheet","description":"Get the current Unix timestamp and convert it to a date in JavaScript, Python, Java, PHP, Go, Ruby, SQL, C#, and the shell — with seconds-vs-milliseconds and UTC/timezone notes.","image":"https://quicktinyv2.vercel.app/og-image.png","datePublished":"2026-09-13","dateModified":"2026-09-13","author":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/"},"publisher":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","logo":{"@type":"ImageObject","url":"https://quicktinyv2.vercel.app/quicktiny-logo-240.png","width":240,"height":240}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://quicktinyv2.vercel.app/unix-timestamp-cheat-sheet"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Unix Timestamp Cheat Sheet","item":"https://quicktinyv2.vercel.app/unix-timestamp-cheat-sheet"}]}</script>
+</body>
+</html>

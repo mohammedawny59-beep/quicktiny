@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Base64 Encode &amp; Decode Online — Free Tool | QuickTiny</title>
-  <meta name="description" content="Encode text to Base64 or decode Base64 strings back to plain text. Free, fast, and processed entirely in your browser.">
+  <meta name="description" content="Encode text to Base64 or decode Base64 strings back to plain text — with URL-safe (Base64URL) support and automatic detection of which variant you're decoding. Free, processed entirely in your browser.">
   <link rel="canonical" href="https://quicktinyv2.vercel.app/base64-encode-decode">
   <meta property="og:title" content="Base64 Encode &amp; Decode Online — Free Tool | QuickTiny">
-  <meta property="og:description" content="Encode text to Base64 or decode Base64 strings back to plain text. Free, fast, and processed entirely in your browser.">
+  <meta property="og:description" content="Encode text to Base64 or decode Base64 strings back to plain text — with URL-safe (Base64URL) support and automatic detection of which variant you're decoding. Free, processed entirely in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quicktinyv2.vercel.app/base64-encode-decode">
   <meta property="og:site_name" content="QuickTiny">
@@ -43,14 +43,15 @@
       <span class="badge">Free</span>
     </div>
     <h1>Base64 Encode / Decode</h1>
-    <p>Convert plain text to Base64, or decode a Base64 string back to readable text — supports Unicode characters.</p>
+    <p>Convert plain text to Base64, or decode a Base64 string back to readable text — supports Unicode characters, standard and URL-safe (Base64URL) encoding, with automatic detection of which one you're decoding.</p>
     <a href="#tool" class="jump-to-tool">Try it now <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
   </section>
 
   <div class="tool-panel" id="tool">
-    
+
       <label class="field-label" for="b64">Text or Base64</label>
       <textarea id="b64" placeholder="Type text to encode, or Base64 to decode..."></textarea>
+      <label class="checkline"><input type="checkbox" id="b64UrlSafe"> Encode as URL-safe (Base64URL)</label>
       <div class="btn-row">
         <button class="btn" onclick="qtB64('encode')">Encode</button>
         <button class="btn btn-secondary" onclick="qtB64('decode')">Decode</button>
@@ -59,23 +60,49 @@
       <div id="b64out" class="result"></div>
   </div>
   <script>
+      function qtB64DetectVariant(str){
+        var hasStandard = /[+/]/.test(str);
+        var hasUrlSafe = /[-_]/.test(str);
+        if (hasStandard && hasUrlSafe) return "mixed";
+        if (hasUrlSafe) return "urlsafe";
+        if (hasStandard) return "standard";
+        return "ambiguous";
+      }
       function qtB64(mode){
         var el = document.querySelector("#b64");
         var out = document.querySelector("#b64out");
+        var urlSafe = document.querySelector("#b64UrlSafe").checked;
         try {
           if (mode === "encode") {
             var bytes = new TextEncoder().encode(el.value);
             var bin = "";
             bytes.forEach(function(b){ bin += String.fromCharCode(b); });
-            el.value = btoa(bin);
+            var encoded = btoa(bin);
+            if (urlSafe) encoded = encoded.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+            el.value = encoded;
+            out.textContent = "Encoded" + (urlSafe ? " as URL-safe Base64 (Base64URL)" : " as standard Base64") + " ✓";
+            out.className = "result success";
           } else {
-            var bin2 = atob(el.value.trim());
+            var raw = el.value.trim();
+            var variant = qtB64DetectVariant(raw);
+            if (variant === "mixed") {
+              out.innerHTML = "This doesn't look like valid Base64 in either form — it mixes standard characters (<code>+</code> <code>/</code>) with URL-safe characters (<code>-</code> <code>_</code>). Check for corruption or concatenated fragments.";
+              out.className = "result error";
+              return;
+            }
+            var normalized = raw;
+            if (variant === "urlsafe") normalized = normalized.replace(/-/g, "+").replace(/_/g, "/");
+            while (normalized.length % 4 !== 0) normalized += "=";
+            var bin2 = atob(normalized);
             var arr = new Uint8Array(bin2.length);
             for (var i = 0; i < bin2.length; i++) arr[i] = bin2.charCodeAt(i);
             el.value = new TextDecoder().decode(arr);
+            var detectedLabel = variant === "urlsafe" ? "URL-safe Base64 (Base64URL)"
+              : variant === "standard" ? "standard Base64"
+              : "Base64 (no +/- or /_ characters present, so this is valid as either standard or URL-safe)";
+            out.textContent = "Decoded ✓ — detected: " + detectedLabel;
+            out.className = "result success";
           }
-          out.textContent = mode === "encode" ? "Encoded ✓" : "Decoded ✓";
-          out.className = "result success";
         } catch (e) {
           out.textContent = "Could not decode — check that the input is valid Base64.";
           out.className = "result error";
@@ -96,20 +123,27 @@
       <li>Copy the result.</li>
     </ol>
 
+    <h2>Standard Base64 vs. URL-safe Base64 (Base64URL)</h2>
+    <p>Standard Base64 uses <code>+</code> and <code>/</code> as its last two alphabet characters and pads the output with <code>=</code>. Those characters have special meaning in URLs and filenames, so a URL-safe variant — Base64URL, defined in <a href="https://www.rfc-editor.org/rfc/rfc4648#section-5" target="_blank" rel="noopener">RFC 4648 §5</a> — replaces them with <code>-</code> and <code>_</code> and typically omits padding. You'll see Base64URL specifically in JWTs (JSON Web Tokens), OAuth tokens, and anywhere a Base64 value needs to sit safely inside a URL or query string. The two are otherwise the same encoding — check the box above to encode as URL-safe, and decoding auto-detects which variant you've pasted.</p>
+
     <h2>Key benefits</h2>
     <ul class="benefits">
+      <li>Supports both standard and URL-safe (Base64URL) encoding.</li>
+      <li>Automatically detects which variant you're decoding and tells you.</li>
       <li>Supports Unicode text, not just ASCII.</li>
-      <li>Clear error message for invalid Base64 input.</li>
+      <li>Clear error message for invalid or mixed-variant Base64 input.</li>
       <li>Runs locally — no data leaves your browser.</li>
-      <li>Useful for debugging APIs, tokens and data URIs.</li>
+      <li>Useful for debugging APIs, JWTs, OAuth tokens, and data URIs.</li>
     </ul>
 
     <h2>Privacy</h2>
-    <p>Base64 Encode/Decode runs entirely in your browser using local JavaScript. Your files and text are processed on your own device and are never uploaded to QuickTiny's servers.</p>
+    <p>Base64 Encode/Decode runs entirely in your browser using local JavaScript. Your text is processed on your own device and is never uploaded, logged, or sent anywhere by QuickTiny.</p>
 
     <h2>Frequently asked questions</h2>
-    <details class="faq-item"><summary>Does this support emoji and non-English text?</summary><p>Yes. Text is UTF-8 encoded before Base64 conversion, so emoji and non-Latin scripts round-trip correctly.</p></details>
-    <details class="faq-item"><summary>What happens if I decode invalid Base64?</summary><p>You'll see a clear error message instead of garbled output or a silent failure.</p></details>
+    <details class="faq-item"><summary>Does this support emoji and non-English text?</summary><p>Yes. Text is UTF-8 encoded before Base64 conversion, so emoji and non-Latin scripts round-trip correctly, in both standard and URL-safe mode.</p></details>
+    <details class="faq-item"><summary>What's the difference between Base64 and Base64URL?</summary><p>Only the alphabet for two characters, and padding. Standard Base64 uses <code>+</code> and <code>/</code> with <code>=</code> padding; URL-safe Base64 (Base64URL) uses <code>-</code> and <code>_</code> instead and usually skips padding, so the result is safe to place directly in a URL. The underlying encoding is identical otherwise.</p></details>
+    <details class="faq-item"><summary>How does the decoder know which variant I pasted?</summary><p>It looks for the distinguishing characters: <code>+</code> or <code>/</code> means standard Base64, <code>-</code> or <code>_</code> means URL-safe. If your string contains neither (just letters, numbers, and padding), it's valid in both forms and decodes identically either way.</p></details>
+    <details class="faq-item"><summary>What happens if I decode invalid Base64?</summary><p>You'll see a clear error message instead of garbled output or a silent failure — including when a string mixes standard and URL-safe characters, which isn't valid in either form.</p></details>
     <details class="faq-item"><summary>Is Base64 encryption?</summary><p>No — Base64 is an encoding, not encryption. It's reversible by anyone and shouldn't be used to protect sensitive data.</p></details>
   </div>
 
@@ -161,8 +195,8 @@
 <script src="/site.js"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Base64 Encode/Decode","url":"https://quicktinyv2.vercel.app/base64-encode-decode","description":"Encode text to Base64 or decode Base64 strings back to plain text. Free, fast, and processed entirely in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Base64 Encode/Decode","url":"https://quicktinyv2.vercel.app/base64-encode-decode","description":"Encode text to Base64 or decode Base64 strings back to plain text — with URL-safe (Base64URL) support and automatic detection of which variant you're decoding. Free, processed entirely in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Base64 Encode/Decode","item":"https://quicktinyv2.vercel.app/base64-encode-decode"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this support emoji and non-English text?","acceptedAnswer":{"@type":"Answer","text":"Yes. Text is UTF-8 encoded before Base64 conversion, so emoji and non-Latin scripts round-trip correctly."}},{"@type":"Question","name":"What happens if I decode invalid Base64?","acceptedAnswer":{"@type":"Answer","text":"You'll see a clear error message instead of garbled output or a silent failure."}},{"@type":"Question","name":"Is Base64 encryption?","acceptedAnswer":{"@type":"Answer","text":"No — Base64 is an encoding, not encryption. It's reversible by anyone and shouldn't be used to protect sensitive data."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this support emoji and non-English text?","acceptedAnswer":{"@type":"Answer","text":"Yes. Text is UTF-8 encoded before Base64 conversion, so emoji and non-Latin scripts round-trip correctly, in both standard and URL-safe mode."}},{"@type":"Question","name":"What's the difference between Base64 and Base64URL?","acceptedAnswer":{"@type":"Answer","text":"Only the alphabet for two characters, and padding. Standard Base64 uses + and / with = padding; URL-safe Base64 (Base64URL) uses - and _ instead and usually skips padding, so the result is safe to place directly in a URL. The underlying encoding is identical otherwise."}},{"@type":"Question","name":"How does the decoder know which variant I pasted?","acceptedAnswer":{"@type":"Answer","text":"It looks for the distinguishing characters: + or / means standard Base64, - or _ means URL-safe. If your string contains neither, it's valid in both forms and decodes identically either way."}},{"@type":"Question","name":"What happens if I decode invalid Base64?","acceptedAnswer":{"@type":"Answer","text":"You'll see a clear error message instead of garbled output or a silent failure — including when a string mixes standard and URL-safe characters, which isn't valid in either form."}},{"@type":"Question","name":"Is Base64 encryption?","acceptedAnswer":{"@type":"Answer","text":"No — Base64 is an encoding, not encryption. It's reversible by anyone and shouldn't be used to protect sensitive data."}}]}</script>
 </body>
 </html>

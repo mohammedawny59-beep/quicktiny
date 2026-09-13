@@ -266,6 +266,10 @@ footer{margin-top:72px;padding:36px 0 40px;border-top:1px solid var(--line);colo
 .data-table td.fail{color:var(--danger);font-weight:700}
 .data-table td.wrap{white-space:normal;color:var(--text-dim)}
 
+/* Multi-line code blocks (language snippets on reference pages) */
+.content pre{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:16px 18px;overflow-x:auto;margin:0}
+.content pre code{background:none;border:0;padding:0;font-size:13px;line-height:1.7;color:var(--text-dim);white-space:pre}
+
 /* Error message quotes (verbatim platform error text) */
 .error-quote{margin:14px 0;padding:14px 16px;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.25);border-left:3px solid var(--danger);border-radius:8px;font-family:var(--mono);font-size:13.5px;color:var(--text-dim);line-height:1.6}
 .error-quote strong{display:block;color:var(--danger);font-family:var(--font);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;font-weight:700}
