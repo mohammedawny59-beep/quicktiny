@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Shopify Product Image Upload Limits — 2026 Test Results | QuickTiny</title>
+  <meta name="description" content="We tested Shopify's product image upload limits directly: 25 megapixels and 20 MB, enforced independently. Real test images, real Shopify error messages, verified September 2026.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026">
+  <meta property="og:title" content="Shopify Product Image Upload Limits — 2026 Test Results | QuickTiny">
+  <meta property="og:description" content="We tested Shopify's product image upload limits directly: 25 megapixels and 20 MB, enforced independently. Real test images, real Shopify error messages, verified September 2026.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0c10'/%3E%3Ctext x='50' y='69' font-family='system-ui,Segoe UI,sans-serif' font-size='58' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Shopify Image Upload Limits Test</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Research</span>
+      <span class="badge">Verified September 2026</span>
+    </div>
+    <h1>We Tested Shopify's Product Image Upload Limits in 2026</h1>
+    <p>Shopify's own documentation states a limit. We uploaded real test images to a live Shopify store to see exactly where that limit actually kicks in, and recorded Shopify's own error messages when it didn't.</p>
+  </section>
+
+  <div class="content">
+    <h2>Short answer</h2>
+    <p>For <strong>product and collection images</strong> specifically, Shopify enforces two limits, checked independently of each other: a maximum of <strong>25 megapixels</strong> (Shopify states this as up to 5000×5000 px) and a maximum file size of <strong>20 MB</strong>. In our test, a 5000×5000 px (25.00 MP) image was accepted, and a 5200×5200 px (27.04 MP) image was rejected with an error citing megapixels specifically. Separately, a 3200×3200 px (10.24 MP) image — well under the megapixel limit — was rejected purely for being 29.9 MB. A small file can still fail on dimensions, and a low-megapixel file can still fail on size. They are not the same check.</p>
+
+    <h2>Test methodology</h2>
+    <p>We generated a set of test images at specific, known pixel dimensions and file sizes, then uploaded each one through Shopify's own product-image uploader in the Shopify admin, one image at a time. For each upload we recorded: the exact width × height, the computed megapixel count, the file size, whether Shopify accepted or rejected it, and — for rejections — Shopify's exact, verbatim error text.</p>
+    <p>This tests Shopify's <strong>product image upload path specifically</strong> — not theme images, blog images, general Files uploads, or other upload contexts elsewhere in Shopify admin, which can have different rules. Where a test image's file size wasn't the limiting factor, it's marked with a dash in the table below rather than a specific number, since it wasn't the variable being isolated in that row.</p>
+    <p>This is a single-store empirical test, not a claim about Shopify's internal source code or a guarantee that these numbers will stay fixed forever — Shopify can and does change platform limits over time. We verified the same figures against Shopify's own current help documentation (linked in the Source section below) as of the date on this page.</p>
+
+    <h2>Results</h2>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr><th>Dimensions</th><th>Megapixels</th><th>File size</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2048 × 2048 px</td><td>4.19 MP</td><td>—</td><td class="pass">Accepted</td></tr>
+          <tr><td>6000 × 4000 px</td><td>24.00 MP</td><td>—</td><td class="pass">Accepted</td></tr>
+          <tr><td>5000 × 5000 px</td><td>25.00 MP</td><td>—</td><td class="pass">Accepted</td></tr>
+          <tr><td>5200 × 5200 px</td><td>27.04 MP</td><td>—</td><td class="fail">Rejected</td></tr>
+          <tr><td>3200 × 3200 px</td><td>10.24 MP</td><td>29.9 MB</td><td class="fail">Rejected</td></tr>
+          <tr><td>4898 × 4898 px <span style="color:var(--muted);font-weight:400">(QuickTiny-fixed from the 5200×5200 file above)</span></td><td>23.99 MP</td><td>—</td><td class="pass">Accepted</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px;color:var(--muted)">"—" means file size was well under 20 MB and wasn't the limiting factor for that row.</p>
+
+    <h2>Shopify's exact error messages</h2>
+    <p>Quoted verbatim, not paraphrased:</p>
+    <div class="error-quote"><strong>5200 × 5200 px, 27.04 MP</strong>"Exceeds 25 megapixels (width × height). Resize to smaller dimensions and try again."</div>
+    <div class="error-quote"><strong>3200 × 3200 px, 29.9 MB</strong>"Exceeds maximum image size of 20 MB."</div>
+    <p>Notice the two errors reference completely different properties of the file — one talks about width × height, the other about megabytes. That's the clearest evidence that these are two separate checks, not one combined threshold.</p>
+
+    <h2>25 megapixels and 20 MB are independent limits</h2>
+    <p>The 3200×3200 image is the key data point: at 10.24 megapixels, it's less than half of the 25 MP ceiling, yet it was still rejected — because at 29.9 MB, it crossed the file-size ceiling on its own. Conversely, the 5200×5200 image was rejected for exceeding megapixels, with no mention of file size in Shopify's error at all. A photo can pass one check and fail the other. Compressing a file (reducing its byte size) does nothing to fix a megapixel rejection, and resizing dimensions does nothing to fix a pure file-size rejection — you have to know which one you're actually hitting.</p>
+
+    <h2>Why some guides say 20 megapixels, or 4472×4472</h2>
+    <p>If you search around, you'll find articles quoting a flat 20-megapixel limit, and some quoting 4472×4472 px specifically — which is worth noting because 4472 × 4472 ≈ 19,998,784 pixels, essentially exactly 20 megapixels for a square image. Our test found the actual enforced ceiling for product and collection images higher than that, at 25 megapixels / 5000×5000 px, matching what Shopify's own current product-media documentation states (linked below).</p>
+    <p>We can't verify with certainty why the 20 MP figure persists in other guides, since we don't have access to Shopify's historical documentation or internal change log. Plausible explanations, offered as reasoned hypotheses rather than confirmed fact: Shopify's stated limits have differed across different upload contexts (product/collection images vs. other file types) at different points, and some publishers may be citing an older cached figure or a different context's limit without re-testing against a live store. If precision matters for your use case, we'd recommend treating Shopify's own current documentation, linked below, as the source of truth over any third-party figure — including this page, if Shopify later changes the number again.</p>
+
+    <h2>QuickTiny's fix, verified against the same limit</h2>
+    <p>The 5200×5200 (27.04 MP) file that Shopify rejected above is the same file we ran through QuickTiny's resize logic. QuickTiny brought it down to 4898×4898 (23.99 MP) — under the 25 MP ceiling — and that specific downloaded output was then re-uploaded and accepted by Shopify, completing the rejected → fixed → accepted loop with the same file. If you want to check whether one of your own product photos would hit either of these limits, and fix it automatically if it does, QuickTiny's free <a href="/compress-product-images-for-shopify">Shopify image checker and fixer</a> runs the same check locally in your browser — no upload to QuickTiny's servers, no account required.</p>
+
+    <h2>Source</h2>
+    <p>Shopify's own current documentation states: <em>"Your product and collection images can be any size up to 5000 x 5000 px, or 25 megapixels. Product and collection images need to have a file size smaller than 20 MB to be added to Shopify."</em> — <a href="https://help.shopify.com/en/manual/products/product-media/product-media-types" target="_blank" rel="noopener">Shopify Help Center: Product media types</a>. Our test results above match these stated figures; we ran the test to confirm the documented numbers hold up against a real upload, not to contradict them.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does this apply to all images in Shopify, or just product images?</summary><p>This page documents Shopify's product and collection image upload path specifically. Other upload contexts in Shopify — theme images, blog post images, general file uploads — are governed by separate rules and weren't part of this test.</p></details>
+    <details class="faq-item"><summary>Is 25 megapixels the same as 5000×5000 pixels?</summary><p>5000×5000 is exactly 25 megapixels for a square image. Shopify's limit is a megapixel (total pixel count) ceiling, not a fixed width and height — a non-square image with different dimensions can also reach 25 megapixels, and would be treated the same way.</p></details>
+    <details class="faq-item"><summary>If my image is under 20 MB, is it guaranteed to upload?</summary><p>No. Our test showed a 5200×5200 image was rejected purely for exceeding 25 megapixels, with file size never being the issue. File size and megapixels are two separate limits — passing one doesn't mean you've passed the other.</p></details>
+    <details class="faq-item"><summary>Why did some other article say the limit is 20 megapixels?</summary><p>We can't confirm the exact reason without access to Shopify's historical documentation, but the most likely explanations are a stale figure from an older version of Shopify's docs, or a figure that applied to a different upload context. Our test, run directly against Shopify's product-image uploader in 2026, found the enforced ceiling at 25 megapixels, matching Shopify's current documentation.</p></details>
+    <details class="faq-item"><summary>Can compressing a file fix a "too many megapixels" rejection?</summary><p>Not on its own. Compression reduces file size (bytes), not pixel dimensions. If Shopify is rejecting an image for exceeding 25 megapixels, you need to resize the dimensions, not just compress the file. QuickTiny's <a href="/compress-product-images-for-shopify">Shopify checker and fixer</a> tells you which limit you're actually hitting and applies the correct fix.</p></details>
+    <details class="faq-item"><summary>Will these numbers still be accurate later?</summary><p>Platform limits can change over time. We verified these figures against Shopify's own documentation as of this page's publish date, and re-tested them directly against a live store rather than relying on documentation alone. If you're reading this well after publication, check the Shopify source link above for the current stated figure.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related</h2>
+    <div class="related-grid">
+      <a href="/compress-product-images-for-shopify">Shopify Image Checker &amp; Fixer (free)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/image-upload-size-limits">Upload Size Limits Reference<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor">Batch Image Compressor (Pro)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Guides</h4>
+        <a href="/compress-product-images-for-shopify">Product Images for Shopify</a>
+        <a href="/compress-images-for-wordpress">Images for WordPress</a>
+        <a href="/bulk-image-compressor-for-websites">Bulk Compressor for Websites</a>
+        <a href="/private-image-compressor">Private Image Compressor</a>
+        <a href="/compress-images-before-upload">Compress Before Upload</a>
+        <a href="/image-upload-size-limits">Upload Size Limits Reference</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"We Tested Shopify's Product Image Upload Limits in 2026","description":"We tested Shopify's product image upload limits directly: 25 megapixels and 20 MB, enforced independently. Real test images, real Shopify error messages, verified September 2026.","image":"https://quicktinyv2.vercel.app/og-image.png","datePublished":"2026-09-13","dateModified":"2026-09-13","author":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/"},"publisher":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","logo":{"@type":"ImageObject","url":"https://quicktinyv2.vercel.app/quicktiny-logo-240.png","width":240,"height":240}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Shopify Product Image Upload Limits Test Results (2026)","description":"Empirical test results for Shopify's product-image upload limits: pixel dimensions, megapixels, file size, upload result, and Shopify's exact error text, tested against Shopify's live product-image uploader.","url":"https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026","creator":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/"},"isAccessibleForFree":true,"temporalCoverage":"2026","keywords":["Shopify","product image upload limits","megapixel limit","file size limit","image dimensions"],"variableMeasured":["Image width and height in pixels","Image resolution in megapixels","Image file size in megabytes","Shopify upload result (accepted or rejected)","Shopify error message text"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Shopify Image Upload Limits Test","item":"https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026"}]}</script>
+</body>
+</html>
