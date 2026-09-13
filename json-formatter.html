@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>JSON Formatter &amp; Validator Online — Free | QuickTiny</title>
-  <meta name="description" content="Format, validate, and fix invalid JSON online for free — including malformed JSON from ChatGPT or Claude. Clear plain-English errors, safe automatic fixes, one-click copy.">
+  <meta name="description" content="Fix invalid JSON online for free — trailing commas, single quotes, unquoted keys, and malformed output from ChatGPT or Claude. Plain-English errors, one-click copy, runs in your browser.">
   <link rel="canonical" href="https://quicktinyv2.vercel.app/json-formatter">
   <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/json-formatter">
   <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/json-formatter">
   <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/json-formatter">
   <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/json-formatter">
   <meta property="og:title" content="JSON Formatter &amp; Validator Online — Free | QuickTiny">
-  <meta property="og:description" content="Format, validate, and fix invalid JSON online for free — including malformed JSON from ChatGPT or Claude. Clear plain-English errors, safe automatic fixes, one-click copy.">
+  <meta property="og:description" content="Fix invalid JSON online for free — trailing commas, single quotes, unquoted keys, and malformed output from ChatGPT or Claude. Plain-English errors, one-click copy, runs in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quicktinyv2.vercel.app/json-formatter">
   <meta property="og:site_name" content="QuickTiny">
@@ -217,7 +217,34 @@
     </ol>
 
     <h2>Fixing invalid JSON</h2>
-    <p>When your JSON doesn't parse, QuickTiny explains why in plain English alongside the raw parser error — for example, pointing out a trailing comma, a single quote where a double quote belongs, or an unquoted key. If the problem is one of a handful of common, unambiguous issues (trailing commas, single-quoted strings, unquoted keys — the kind that show up constantly in JSON copied from ChatGPT, Claude, or hand-edited config files), click "Try to fix common issues" and QuickTiny will correct it automatically and tell you exactly what it changed. If the JSON is incomplete — missing a closing bracket because a response got cut off — QuickTiny will say so instead of guessing at what's missing, since there's no safe way to reconstruct content that was never there.</p>
+    <p>When your JSON doesn't parse, QuickTiny explains why in plain English alongside the raw parser error — for example, pointing out a trailing comma, a single quote where a double quote belongs, or an unquoted key. If the problem is one of a handful of common, unambiguous issues (trailing commas, single-quoted strings, unquoted keys — the kind that show up constantly in JSON copied from ChatGPT, Claude, or hand-edited config files), click "Try to fix common issues" and QuickTiny will correct it automatically and tell you exactly what it changed. If the JSON is incomplete — missing a closing bracket because a response got cut off mid-generation — QuickTiny will say so instead of guessing at what's missing, since there's no safe way to reconstruct content that was never there. Severely truncated JSON isn't something any automatic fixer can safely repair.</p>
+
+    <h2>Example: fixing JSON copied from ChatGPT or Claude</h2>
+    <p>AI chat responses commonly introduce the same handful of issues: a trailing comma left in after editing a list, a stray single-quoted string, or an unquoted key typed out of habit. Here's a realistic example with all three, pasted as-is:</p>
+    <div class="row-2">
+      <div>
+        <div class="field-label">Pasted in (invalid)</div>
+        <pre><code>{
+  "name": "Alex",
+  "role": 'admin',
+  city: "Austin",
+  "tags": ["a", "b",]
+}</code></pre>
+      </div>
+      <div>
+        <div class="field-label">After "Try to fix common issues"</div>
+        <pre><code>{
+  "name": "Alex",
+  "role": "admin",
+  "city": "Austin",
+  "tags": [
+    "a",
+    "b"
+  ]
+}</code></pre>
+      </div>
+    </div>
+    <p>QuickTiny reports exactly what changed: converted 1 single-quoted string to double quotes, removed 1 trailing comma, quoted 1 unquoted key — the same three fixes, whether the JSON came from ChatGPT, Claude, or was typed by hand.</p>
 
     <h2>Key benefits</h2>
     <ul class="benefits">
@@ -293,7 +320,7 @@
 <script src="/site.js"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny JSON Formatter","url":"https://quicktinyv2.vercel.app/json-formatter","description":"Format, validate, and fix invalid JSON online for free — including malformed JSON from ChatGPT or Claude. Clear plain-English errors, safe automatic fixes, one-click copy.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny JSON Formatter","url":"https://quicktinyv2.vercel.app/json-formatter","description":"Fix invalid JSON online for free — trailing commas, single quotes, unquoted keys, and malformed output from ChatGPT or Claude. Plain-English errors, one-click copy, runs in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"JSON Formatter","item":"https://quicktinyv2.vercel.app/json-formatter"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my JSON data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Parsing, formatting, and automatic fixing all happen entirely in your browser. Nothing is uploaded, logged, or stored — QuickTiny doesn't keep a history of what you've pasted."}},{"@type":"Question","name":"Can this fix invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes, for common and unambiguous problems: trailing commas, single quotes instead of double quotes, and unquoted object keys. Click \"Try to fix common issues\" after a failed validation and QuickTiny will correct it and tell you exactly what it changed."}},{"@type":"Question","name":"Can this fix JSON copied from ChatGPT or Claude?","acceptedAnswer":{"@type":"Answer","text":"Often, yes — the most common issues in AI-generated JSON (trailing commas, occasional single quotes) are exactly what the automatic fix targets. If the response got cut off mid-way, the JSON is genuinely incomplete, and QuickTiny will tell you that rather than guess at content that was never generated."}},{"@type":"Question","name":"What does the error message tell me?","acceptedAnswer":{"@type":"Answer","text":"You'll see the browser's native JSON parse error plus, where QuickTiny can identify the likely cause, a plain-English explanation of what's probably wrong and why."}},{"@type":"Question","name":"What can't the automatic fix handle?","acceptedAnswer":{"@type":"Answer","text":"Anything that requires guessing at missing content, like a truncated response missing its closing brackets. QuickTiny only applies fixes it can make with certainty."}},{"@type":"Question","name":"Can I minify JSON with this tool?","acceptedAnswer":{"@type":"Answer","text":"This tool focuses on formatting, validating, and fixing. For minifying, remove the indentation manually or use JSON.stringify without a spacing argument in your own code."}}]}</script>
 </body>
