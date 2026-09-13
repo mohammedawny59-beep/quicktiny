@@ -1,0 +1,8 @@
+width_px,height_px,megapixels,file_size_mb,result,shopify_error_message,note
+2048,2048,4.19,,accepted,,"File size well under 20 MB; not the variable being isolated in this row."
+6000,4000,24.00,,accepted,,"File size well under 20 MB; not the variable being isolated in this row."
+5000,5000,25.00,,accepted,,"Exactly at the 25-megapixel ceiling and still accepted."
+5200,5200,27.04,,rejected,"Exceeds 25 megapixels (width x height). Resize to smaller dimensions and try again.","Rejected on megapixels; file size was not the issue."
+3200,3200,10.24,29.9,rejected,"Exceeds maximum image size of 20 MB.","Well under the megapixel limit; rejected on file size alone."
+4898,4898,23.99,,accepted,,"QuickTiny-resized output of the rejected 5200x5200 file above; the same file, re-uploaded and accepted."
+3200,3200,10.24,8.81,accepted,,"QuickTiny-compressed output of the rejected 29.9MB file above, dimensions unchanged; re-uploaded and accepted."

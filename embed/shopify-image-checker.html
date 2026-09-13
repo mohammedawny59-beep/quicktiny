@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Shopify Image Limit Checker — QuickTiny Embed</title>
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0a0c10">
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:transparent}
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color:#f4f6fa;
+      line-height:1.45;
+    }
+    .qte-card{
+      background:#12151c;
+      border:1px solid #1f2430;
+      border-radius:14px;
+      padding:16px;
+      max-width:100%;
+    }
+    .qte-dropzone{
+      border:1.5px dashed #2a3140;
+      border-radius:12px;
+      padding:20px 14px;
+      text-align:center;
+      color:#8b94a7;
+      cursor:pointer;
+      transition:border-color .15s,background .15s;
+      font-size:13.5px;
+    }
+    .qte-dropzone:hover,.qte-dropzone:focus-visible{border-color:#6f8cff}
+    .qte-dropzone.drag{border-color:#6f8cff;background:rgba(111,140,255,.08);color:#f4f6fa}
+    .qte-dropzone strong{display:block;color:#f4f6fa;font-size:14.5px;margin-bottom:2px}
+    .qte-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .qte-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .qte-stat{background:#0d0f15;border:1px solid #1f2430;border-radius:10px;padding:8px 12px;min-width:84px}
+    .qte-stat .n{font-size:15px;font-weight:800;letter-spacing:-.01em}
+    .qte-stat .l{font-size:10px;color:#8b94a7;text-transform:uppercase;letter-spacing:.05em;margin-top:1px}
+    .qte-result{margin-top:12px;font-size:13.5px;line-height:1.5;word-break:break-word}
+    .qte-result.success{color:#3ddc84;font-weight:700;padding:9px 12px;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.25);border-left:3px solid #3ddc84;border-radius:8px}
+    .qte-result.error{color:#ff6b6b;font-weight:700;padding:9px 12px;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.25);border-left:3px solid #ff6b6b;border-radius:8px}
+    .qte-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      background:#f4f6fa;color:#080a0e;border:0;border-radius:9px;
+      padding:9px 14px;font-weight:800;font-size:13px;cursor:pointer;
+      text-decoration:none;margin-top:10px;
+    }
+    .qte-btn:hover{opacity:.9}
+    .qte-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    @media (max-width:360px){.qte-compare{grid-template-columns:1fr}}
+    .qte-compare .lbl{font-size:10.5px;color:#8b94a7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+    .qte-footer{
+      margin-top:14px;padding-top:10px;border-top:1px solid #1f2430;
+      font-size:11.5px;color:#8b94a7;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;
+    }
+    .qte-footer a{color:#8199ff;text-decoration:none;font-weight:700}
+    .qte-footer a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="qte-card">
+    <div class="qte-dropzone" id="dz" tabindex="0" role="button" aria-label="Choose a product image to check">
+      <strong>Drop a product image here</strong>
+      or click to choose a file — checked locally, nothing is uploaded
+    </div>
+    <input id="img" type="file" accept="image/*" class="qte-sr-only">
+    <div id="imgout" class="qte-result" style="display:none"></div>
+    <div id="imgstats" class="qte-stats"></div>
+    <div id="fixArea"></div>
+    <div class="qte-footer">
+      <span>Shopify's real 25MP / 20MB product-image limits</span>
+      <a href="https://quicktinyv2.vercel.app/compress-product-images-for-shopify" target="_blank" rel="noopener">Powered by QuickTiny →</a>
+    </div>
+  </div>
+
+  <script src="/shopify-image-tools.js"></script>
+  <script>
+  (function(){
+    var dz = document.querySelector("#dz");
+    var input = document.querySelector("#img");
+    var out = document.querySelector("#imgout");
+    var stats = document.querySelector("#imgstats");
+    var fixArea = document.querySelector("#fixArea");
+
+    dz.addEventListener("click", function(){ input.click(); });
+    dz.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); input.click(); } });
+    ["dragover","dragenter"].forEach(function(evt){
+      dz.addEventListener(evt, function(e){ e.preventDefault(); dz.classList.add("drag"); });
+    });
+    ["dragleave","drop"].forEach(function(evt){
+      dz.addEventListener(evt, function(e){ e.preventDefault(); dz.classList.remove("drag"); });
+    });
+    dz.addEventListener("drop", function(e){
+      var f = e.dataTransfer.files[0];
+      if (f) { input.files = e.dataTransfer.files; handleFile(f); }
+    });
+    input.addEventListener("change", function(){
+      var f = input.files[0];
+      if (f) handleFile(f);
+    });
+
+    function showResult(text, cls){
+      out.style.display = "block";
+      out.innerHTML = text;
+      out.className = "qte-result" + (cls ? " " + cls : "");
+    }
+
+    async function handleFile(f){
+      fixArea.innerHTML = "";
+      stats.innerHTML = "";
+      if (!f.type || f.type.indexOf("image/") !== 0) {
+        showResult("Please choose an image file.");
+        return;
+      }
+      showResult("Checking against Shopify's limits...");
+
+      var source;
+      try {
+        source = await qtLoadImageSource(f);
+      } catch (e) {
+        showResult("Could not read that image. Try a different file.", "error");
+        return;
+      }
+      var width = source.width, height = source.height;
+      if (source.close) source.close();
+
+      var check = qtShopifyCheck(width, height, f.size);
+      var displayName = f.name.length > 20 ? f.name.slice(0, 20) + "…" : f.name;
+
+      stats.innerHTML =
+        '<div class="qte-stat"><div class="n">' + displayName + '</div><div class="l">File</div></div>' +
+        '<div class="qte-stat"><div class="n">' + qtFormatBytes(f.size) + '</div><div class="l">Size</div></div>' +
+        '<div class="qte-stat"><div class="n">' + width + '×' + height + '</div><div class="l">Dimensions</div></div>' +
+        '<div class="qte-stat"><div class="n">' + qtFormatMP(check.megapixels) + '</div><div class="l">Megapixels</div></div>';
+
+      if (check.passes) {
+        showResult("&#10003; Ready for Shopify", "success");
+        return;
+      }
+
+      var reasonLines = [];
+      if (check.dimensionFail) reasonLines.push(qtFormatMP(check.megapixels) + " — limit is 25 MP.");
+      if (check.sizeFail) reasonLines.push(qtFormatBytes(f.size) + " — limit is 20 MB.");
+      showResult("&#9888; Too large for Shopify<br>" + reasonLines.join("<br>"), "error");
+
+      var fixBtn = document.createElement("button");
+      fixBtn.className = "qte-btn";
+      fixBtn.textContent = "Fix for Shopify";
+      fixBtn.addEventListener("click", function(){ runFix(f, fixBtn); });
+      fixArea.appendChild(fixBtn);
+    }
+
+    async function runFix(f, fixBtn){
+      fixBtn.disabled = true;
+      fixBtn.textContent = "Fixing...";
+      var result = await qtProcessForShopify(f);
+      fixArea.innerHTML = "";
+
+      var compareHtml =
+        '<div class="qte-compare">' +
+          '<div><div class="lbl">Before</div><div class="qte-stat"><div class="n">' + qtFormatMP(result.originalMegapixels) + ' / ' + qtFormatBytes(result.originalSizeBytes) + '</div></div></div>' +
+          '<div><div class="lbl">After</div><div class="qte-stat"><div class="n">' + qtFormatMP(result.finalMegapixels) + ' / ' + qtFormatBytes(result.finalSizeBytes) + '</div></div></div>' +
+        '</div>';
+
+      fixArea.innerHTML = compareHtml;
+
+      if (result.blob) {
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(result.blob);
+        a.download = "shopify-ready-" + f.name.replace(/\.[^.]+$/, "") + ".jpg";
+        a.className = "qte-btn";
+        a.textContent = "Download fixed image";
+        fixArea.appendChild(a);
+      }
+
+      showResult(result.finalPasses ? "&#10003; Ready for Shopify" : "&#9888; Still too large — try a smaller source image.", result.finalPasses ? "success" : "error");
+    }
+  })();
+  </script>
+</body>
+</html>
