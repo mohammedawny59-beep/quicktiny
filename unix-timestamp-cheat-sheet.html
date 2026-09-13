@@ -63,6 +63,8 @@
           <tr><td>PostgreSQL</td><td class="wrap">seconds</td><td><code>EXTRACT(EPOCH FROM NOW())</code></td></tr>
           <tr><td>Unix shell</td><td class="wrap">seconds</td><td><code>date +%s</code></td></tr>
           <tr><td>C# / .NET</td><td class="wrap">explicit (both)</td><td><code>DateTimeOffset.UtcNow.ToUnixTimeSeconds()</code></td></tr>
+          <tr><td>Excel</td><td class="wrap">date serial (days)</td><td><code>=(NOW()-DATE(1970,1,1))*86400</code></td></tr>
+          <tr><td>Google Sheets</td><td class="wrap">date serial (days)</td><td><code>=(NOW()-DATE(1970,1,1))*86400</code></td></tr>
         </tbody>
       </table>
     </div>
@@ -168,6 +170,15 @@ DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
 // Timestamp -&gt; DateTimeOffset
 DateTimeOffset.FromUnixTimeSeconds(1757757600)
 DateTimeOffset.FromUnixTimeMilliseconds(1757757600000)</code></pre>
+
+    <h2>Excel &amp; Google Sheets</h2>
+    <pre><code>' Unix timestamp (seconds, in cell A1) -&gt; date
+=(A1/86400)+DATE(1970,1,1)
+' Format the resulting cell as Date or Date/Time to see it correctly
+
+' Date (in cell A1) -&gt; Unix timestamp
+=(A1-DATE(1970,1,1))*86400</code></pre>
+    <p>The formula is identical in Excel and Google Sheets, since both use the same underlying date-serial-number system (days since a fixed reference date). Divide by 86400 (seconds per day) to convert seconds into days, then add that to the epoch date; format the result cell as a date or date/time to display it properly instead of a raw number. If your timestamp is in milliseconds, divide by 86400000 instead.</p>
 
     <h2>UTC and time zones</h2>
     <p>A Unix timestamp itself has no time zone — it's a count of seconds (or milliseconds) since <strong>January 1, 1970, 00:00:00 UTC</strong>, and it represents exactly one instant regardless of where in the world you are. Time zones only enter the picture when you convert that instant into a human-readable calendar date and clock time — "2026-09-13 14:00" means a different instant depending on whether it's in UTC, US Eastern, or IST. The bugs almost always come from a conversion step silently defaulting to the server's or browser's local time zone when UTC was intended, or vice versa — the JavaScript and PHP examples above call that out at the exact line where it happens.</p>

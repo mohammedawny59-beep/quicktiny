@@ -86,6 +86,43 @@
       <li>Copy the result.</li>
     </ol>
 
+    <h2>Common URL encoding errors, explained</h2>
+    <p>Landed here searching for one of these exact messages? Here's what each one means and how to fix it — paste the string into the tool above.</p>
+
+    <h3>"URIError: URI malformed"</h3>
+    <div class="error-quote"><strong>JavaScript — decodeURIComponent()</strong>URIError: URI malformed</div>
+    <p>This fires when you try to decode a string that isn't valid percent-encoding — usually a stray <code>%</code> not followed by two hex digits, or a percent-encoded sequence that was cut off partway through (common when a string gets truncated or copy-pasted incompletely).</p>
+    <div class="row-2">
+      <div>
+        <div class="field-label">Broken (literal % not itself encoded)</div>
+        <pre><code>100% off</code></pre>
+      </div>
+      <div>
+        <div class="field-label">Fixed (encoded first)</div>
+        <pre><code>100%25%20off</code></pre>
+      </div>
+    </div>
+    <p>Every literal <code>%</code> in the original text needs to itself be encoded as <code>%25</code> before decoding will work — a raw <code>%</code> followed by non-hex characters is exactly what triggers this error. Paste the string above and click Encode to produce a version that decodes cleanly.</p>
+
+    <h3>%20 vs. + for encoding a space</h3>
+    <p>QuickTiny's encoder always outputs <code>%20</code> for a space, matching JavaScript's <code>encodeURIComponent</code> and the RFC 3986 percent-encoding standard used in URL paths and query values. A literal <code>+</code> for a space is a separate, older convention — <code>application/x-www-form-urlencoded</code>, used by HTML form submissions and encoders like PHP's <code>urlencode()</code> — not a different standard for the same thing. The two aren't interchangeable: decoding a <code>+</code> as a literal plus sign, or leaving a <code>%20</code> undecoded, are both common sources of "why does my URL have a plus sign / %20 in it" confusion.</p>
+
+    <h3>encodeURI vs. encodeURIComponent — which one is this?</h3>
+    <p>This tool matches <code>encodeURIComponent</code>: it encodes everything that isn't a plain letter, digit, or a small set of unreserved characters — including <code>&amp;</code>, <code>=</code>, <code>/</code>, and <code>:</code>. That's correct for encoding a single value (a query parameter, a path segment) but wrong for encoding a full URL, since it would also encode the <code>://</code> and any <code>&amp;</code> that need to stay literal for the URL to work. If you're encoding a complete URL rather than one piece of it, encode only the individual values before assembling them, not the whole string.</p>
+    <div class="row-2">
+      <div>
+        <div class="field-label">Encoding one value (correct use)</div>
+        <pre><code>a b&c</code></pre>
+      </div>
+      <div>
+        <div class="field-label">Result</div>
+        <pre><code>a%20b%26c</code></pre>
+      </div>
+    </div>
+
+    <h3>Double-encoded URL (%2520 instead of %20)</h3>
+    <p>If you see <code>%25</code> followed by what looks like another encoded sequence — like <code>%2520</code> instead of <code>%20</code> — the string has been percent-encoded twice. This usually happens when a value already containing <code>%20</code> gets passed through an encoding step a second time, re-encoding the <code>%</code> itself into <code>%25</code>. Decode it twice to recover the original value: once to turn <code>%2520</code> into <code>%20</code>, and again to turn that into an actual space.</p>
+
     <h2>Key benefits</h2>
     <ul class="benefits">
       <li>Uses the browser's native, standards-compliant encoder.</li>
@@ -101,6 +138,10 @@
     <details class="faq-item"><summary>What characters get encoded?</summary><p>Reserved and unsafe characters for a URL component (like spaces, &amp;, ?, #, and non-ASCII characters) are converted to percent-encoded sequences.</p></details>
     <details class="faq-item"><summary>Does this encode a full URL or just a component?</summary><p>It encodes the whole input as a single component, matching JavaScript's encodeURIComponent. Don't use it on a full URL that already contains :// or you'll encode those characters too.</p></details>
     <details class="faq-item"><summary>Why does decoding sometimes fail?</summary><p>Decoding fails if the input contains a % that isn't followed by a valid two-digit hex code — that's standard URL-encoding validation.</p></details>
+    <details class="faq-item"><summary>Why do I get "URIError: URI malformed" when decoding?</summary><p>The string being decoded contains a stray % that isn't followed by two valid hex digits — often a truncated or incompletely-copied percent-encoded sequence, or a literal % that was never encoded itself (as %25). Encode the original text above first, then decode that to confirm it round-trips.</p></details>
+    <details class="faq-item"><summary>What's the difference between %20 and + for a space?</summary><p>%20 is standard percent-encoding (RFC 3986), used in URL paths and query values — this tool always produces %20. A literal + for a space is a separate, older convention from HTML form submissions (application/x-www-form-urlencoded), not this kind of encoding. They aren't interchangeable when decoding.</p></details>
+    <details class="faq-item"><summary>Should I use this on a full URL or just part of it?</summary><p>Just one piece — a query parameter value or path segment. This matches JavaScript's encodeURIComponent, which encodes everything including & and : and /, so running it on a complete URL would break the :// and any & separating query parameters.</p></details>
+    <details class="faq-item"><summary>Why does my string have %2520 instead of %20?</summary><p>It's been percent-encoded twice — the first encoding's % got encoded again into %25. Decode it twice: once to get back to %20, and again to get the actual space.</p></details>
   </div>
 
   <div class="section related-section">
@@ -158,6 +199,6 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny URL Encode/Decode","url":"https://quicktinyv2.vercel.app/url-encode-decode","description":"Encode text into a URL-safe format or decode percent-encoded URLs. Free online URL encoder/decoder that runs in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"URL Encode/Decode","item":"https://quicktinyv2.vercel.app/url-encode-decode"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What characters get encoded?","acceptedAnswer":{"@type":"Answer","text":"Reserved and unsafe characters for a URL component (like spaces, &, ?, #, and non-ASCII characters) are converted to percent-encoded sequences."}},{"@type":"Question","name":"Does this encode a full URL or just a component?","acceptedAnswer":{"@type":"Answer","text":"It encodes the whole input as a single component, matching JavaScript's encodeURIComponent. Don't use it on a full URL that already contains :// or you'll encode those characters too."}},{"@type":"Question","name":"Why does decoding sometimes fail?","acceptedAnswer":{"@type":"Answer","text":"Decoding fails if the input contains a % that isn't followed by a valid two-digit hex code — that's standard URL-encoding validation."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What characters get encoded?","acceptedAnswer":{"@type":"Answer","text":"Reserved and unsafe characters for a URL component (like spaces, &, ?, #, and non-ASCII characters) are converted to percent-encoded sequences."}},{"@type":"Question","name":"Does this encode a full URL or just a component?","acceptedAnswer":{"@type":"Answer","text":"It encodes the whole input as a single component, matching JavaScript's encodeURIComponent. Don't use it on a full URL that already contains :// or you'll encode those characters too."}},{"@type":"Question","name":"Why does decoding sometimes fail?","acceptedAnswer":{"@type":"Answer","text":"Decoding fails if the input contains a % that isn't followed by a valid two-digit hex code — that's standard URL-encoding validation."}},{"@type":"Question","name":"Why do I get \"URIError: URI malformed\" when decoding?","acceptedAnswer":{"@type":"Answer","text":"The string being decoded contains a stray % that isn't followed by two valid hex digits — often a truncated or incompletely-copied percent-encoded sequence, or a literal % that was never encoded itself (as %25). Encode the original text above first, then decode that to confirm it round-trips."}},{"@type":"Question","name":"What's the difference between %20 and + for a space?","acceptedAnswer":{"@type":"Answer","text":"%20 is standard percent-encoding (RFC 3986), used in URL paths and query values — this tool always produces %20. A literal + for a space is a separate, older convention from HTML form submissions (application/x-www-form-urlencoded), not this kind of encoding. They aren't interchangeable when decoding."}},{"@type":"Question","name":"Should I use this on a full URL or just part of it?","acceptedAnswer":{"@type":"Answer","text":"Just one piece — a query parameter value or path segment. This matches JavaScript's encodeURIComponent, which encodes everything including & and : and /, so running it on a complete URL would break the :// and any & separating query parameters."}},{"@type":"Question","name":"Why does my string have %2520 instead of %20?","acceptedAnswer":{"@type":"Answer","text":"It's been percent-encoded twice — the first encoding's % got encoded again into %25. Decode it twice: once to get back to %20, and again to get the actual space."}}]}</script>
 </body>
 </html>
