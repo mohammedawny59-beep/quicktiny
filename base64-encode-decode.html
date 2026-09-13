@@ -137,6 +137,29 @@
     <h2>Standard Base64 vs. URL-safe Base64 (Base64URL)</h2>
     <p>Standard Base64 uses <code>+</code> and <code>/</code> as its last two alphabet characters and pads the output with <code>=</code>. Those characters have special meaning in URLs and filenames, so a URL-safe variant — Base64URL, defined in <a href="https://www.rfc-editor.org/rfc/rfc4648#section-5" target="_blank" rel="noopener">RFC 4648 §5</a> — replaces them with <code>-</code> and <code>_</code> and typically omits padding. You'll see Base64URL specifically in JWTs (JSON Web Tokens), OAuth tokens, and anywhere a Base64 value needs to sit safely inside a URL or query string. The two are otherwise the same encoding — check the box above to encode as URL-safe, and decoding auto-detects which variant you've pasted.</p>
 
+    <h2>Python binascii.Error: Incorrect padding</h2>
+    <div class="error-quote"><strong>Python — base64.b64decode() / base64.urlsafe_b64decode()</strong>binascii.Error: Incorrect padding</div>
+    <p>Base64 encodes input in groups of 4 characters representing 3 original bytes. When the encoded text doesn't end on a full group of 4, the standard pads it out with one or two trailing <code>=</code> characters. Python's <code>base64</code> module is strict about this — if padding is missing or wrong, it raises <code>binascii.Error: Incorrect padding</code> instead of guessing what you meant.</p>
+    <p>This comes up constantly with JWTs and OAuth tokens, because the JWT spec explicitly says to strip padding from each Base64URL segment. A token segment that's perfectly valid by JWT rules will still fail Python's decoder until you add the padding back.</p>
+    <div class="row-2">
+      <div>
+        <div class="field-label">Broken (padding stripped, JWT-style)</div>
+        <pre><code>eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsZXgifQ</code></pre>
+      </div>
+      <div>
+        <div class="field-label">Fixed (padded to a multiple of 4)</div>
+        <pre><code>eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsZXgifQ==</code></pre>
+      </div>
+    </div>
+    <p>In Python, pad the string out to a multiple of 4 before decoding:</p>
+    <pre><code>import base64
+
+s = "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFsZXgifQ"
+padded = s + "=" * (-len(s) % 4)
+base64.urlsafe_b64decode(padded)
+# b'{"sub":"1234567890","name":"Alex"}'</code></pre>
+    <p>Or skip the math: paste the unpadded string into the tool above and click Decode. QuickTiny detects the variant and adds the missing padding automatically before decoding — entirely in your browser, nothing uploaded — so a string that fails in Python's strict decoder still decodes fine here.</p>
+
     <h2>Key benefits</h2>
     <ul class="benefits">
       <li>Supports both standard and URL-safe (Base64URL) encoding.</li>
@@ -156,6 +179,7 @@
     <details class="faq-item"><summary>How does the decoder know which variant I pasted?</summary><p>It looks for the distinguishing characters: <code>+</code> or <code>/</code> means standard Base64, <code>-</code> or <code>_</code> means URL-safe. If your string contains neither (just letters, numbers, and padding), it's valid in both forms and decodes identically either way.</p></details>
     <details class="faq-item"><summary>What happens if I decode invalid Base64?</summary><p>You'll see a clear error message instead of garbled output or a silent failure — including when a string mixes standard and URL-safe characters, which isn't valid in either form.</p></details>
     <details class="faq-item"><summary>Is Base64 encryption?</summary><p>No — Base64 is an encoding, not encryption. It's reversible by anyone and shouldn't be used to protect sensitive data.</p></details>
+    <details class="faq-item"><summary>Why does Python say "Incorrect padding" when this tool decodes the same string fine?</summary><p>Python's base64 module requires exact padding and raises binascii.Error: Incorrect padding when it's missing — common with JWT segments, which strip padding by design. QuickTiny pads automatically before decoding, so a string that fails in Python decodes here with no extra steps. To fix it in Python, append "=" characters until the string's length is a multiple of 4.</p></details>
   </div>
 
   <div class="section related-section">
@@ -213,6 +237,6 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Base64 Encode/Decode","url":"https://quicktinyv2.vercel.app/base64-encode-decode","description":"Encode text to Base64 or decode Base64 strings back to plain text — with URL-safe (Base64URL) support and automatic detection of which variant you're decoding. Free, processed entirely in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Base64 Encode/Decode","item":"https://quicktinyv2.vercel.app/base64-encode-decode"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this support emoji and non-English text?","acceptedAnswer":{"@type":"Answer","text":"Yes. Text is UTF-8 encoded before Base64 conversion, so emoji and non-Latin scripts round-trip correctly, in both standard and URL-safe mode."}},{"@type":"Question","name":"What's the difference between Base64 and Base64URL?","acceptedAnswer":{"@type":"Answer","text":"Only the alphabet for two characters, and padding. Standard Base64 uses + and / with = padding; URL-safe Base64 (Base64URL) uses - and _ instead and usually skips padding, so the result is safe to place directly in a URL. The underlying encoding is identical otherwise."}},{"@type":"Question","name":"How does the decoder know which variant I pasted?","acceptedAnswer":{"@type":"Answer","text":"It looks for the distinguishing characters: + or / means standard Base64, - or _ means URL-safe. If your string contains neither, it's valid in both forms and decodes identically either way."}},{"@type":"Question","name":"What happens if I decode invalid Base64?","acceptedAnswer":{"@type":"Answer","text":"You'll see a clear error message instead of garbled output or a silent failure — including when a string mixes standard and URL-safe characters, which isn't valid in either form."}},{"@type":"Question","name":"Is Base64 encryption?","acceptedAnswer":{"@type":"Answer","text":"No — Base64 is an encoding, not encryption. It's reversible by anyone and shouldn't be used to protect sensitive data."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this support emoji and non-English text?","acceptedAnswer":{"@type":"Answer","text":"Yes. Text is UTF-8 encoded before Base64 conversion, so emoji and non-Latin scripts round-trip correctly, in both standard and URL-safe mode."}},{"@type":"Question","name":"What's the difference between Base64 and Base64URL?","acceptedAnswer":{"@type":"Answer","text":"Only the alphabet for two characters, and padding. Standard Base64 uses + and / with = padding; URL-safe Base64 (Base64URL) uses - and _ instead and usually skips padding, so the result is safe to place directly in a URL. The underlying encoding is identical otherwise."}},{"@type":"Question","name":"How does the decoder know which variant I pasted?","acceptedAnswer":{"@type":"Answer","text":"It looks for the distinguishing characters: + or / means standard Base64, - or _ means URL-safe. If your string contains neither, it's valid in both forms and decodes identically either way."}},{"@type":"Question","name":"What happens if I decode invalid Base64?","acceptedAnswer":{"@type":"Answer","text":"You'll see a clear error message instead of garbled output or a silent failure — including when a string mixes standard and URL-safe characters, which isn't valid in either form."}},{"@type":"Question","name":"Is Base64 encryption?","acceptedAnswer":{"@type":"Answer","text":"No — Base64 is an encoding, not encryption. It's reversible by anyone and shouldn't be used to protect sensitive data."}},{"@type":"Question","name":"Why does Python say \"Incorrect padding\" when this tool decodes the same string fine?","acceptedAnswer":{"@type":"Answer","text":"Python's base64 module requires exact padding and raises binascii.Error: Incorrect padding when it's missing — common with JWT segments, which strip padding by design. QuickTiny pads automatically before decoding, so a string that fails in Python decodes here with no extra steps. To fix it in Python, append \"=\" characters until the string's length is a multiple of 4."}}]}</script>
 </body>
 </html>

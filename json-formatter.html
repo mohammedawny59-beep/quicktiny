@@ -246,6 +246,53 @@
     </div>
     <p>QuickTiny reports exactly what changed: converted 1 single-quoted string to double quotes, removed 1 trailing comma, quoted 1 unquoted key — the same three fixes, whether the JSON came from ChatGPT, Claude, or was typed by hand.</p>
 
+    <h2>Common JSON error messages, explained</h2>
+    <p>Landed here searching for one of these exact messages? Here's what each one means and how to fix it — paste your JSON into the tool above and click "Try to fix common issues" instead of fixing it by hand.</p>
+
+    <h3>"Expected property name or '}' in JSON at position 1"</h3>
+    <div class="error-quote"><strong>JavaScript / Node.js — JSON.parse()</strong>Expected property name or '}' in JSON at position 1 (line 1 column 2)</div>
+    <p>This fires when the very first thing inside your opening <code>{</code> isn't a valid double-quoted key — almost always an unquoted key or a single-quoted key. Position 1 (column 2) is the character right after <code>{</code>, exactly where a key should start.</p>
+    <div class="row-2">
+      <div>
+        <div class="field-label">Broken (unquoted key)</div>
+        <pre><code>{name: "Alex"}</code></pre>
+      </div>
+      <div>
+        <div class="field-label">Fixed</div>
+        <pre><code>{"name": "Alex"}</code></pre>
+      </div>
+    </div>
+    <p>A single-quoted key in that same spot — <code>{'name': "Alex"}</code> — throws the identical error. Both are exactly what "Try to fix common issues" corrects automatically.</p>
+
+    <h3>"Unexpected token ' in JSON"</h3>
+    <div class="error-quote"><strong>JavaScript / Node.js — JSON.parse()</strong>Unexpected token ''', "{"a":'x'}" is not valid JSON</div>
+    <p>The sibling error to the one above, but for a single-quoted <em>value</em> instead of a key — JSON requires double quotes for strings everywhere, not just in keys. V8 (Chrome, Node.js) echoes back the start of your actual input in the message, so the quoted part will match whatever you pasted rather than the example above.</p>
+    <div class="row-2">
+      <div>
+        <div class="field-label">Broken (single-quoted value)</div>
+        <pre><code>{"role": 'admin'}</code></pre>
+      </div>
+      <div>
+        <div class="field-label">Fixed</div>
+        <pre><code>{"role": "admin"}</code></pre>
+      </div>
+    </div>
+
+    <h3>Python: "Expecting property name enclosed in double quotes"</h3>
+    <div class="error-quote"><strong>Python — json.loads()</strong>json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)</div>
+    <p>Python's <code>json</code> module uses this one message for all three causes above — an unquoted key, a single-quoted key, or a trailing comma — where JavaScript reports them as separate errors. The fix is the same regardless of which language eventually parses it: valid double-quoted keys and no trailing commas.</p>
+    <div class="row-2">
+      <div>
+        <div class="field-label">Broken (fails in Python)</div>
+        <pre><code>{name: 'Alex'}</code></pre>
+      </div>
+      <div>
+        <div class="field-label">Fixed</div>
+        <pre><code>{"name": "Alex"}</code></pre>
+      </div>
+    </div>
+    <p>QuickTiny's formatter runs in your browser, not Python — but the corrected JSON it produces is valid everywhere. Paste your broken JSON above, fix it once, then copy the result into your Python code. Nothing you paste is uploaded or logged.</p>
+
     <h2>Key benefits</h2>
     <ul class="benefits">
       <li>Plain-English explanations alongside the raw parser error.</li>
@@ -265,6 +312,8 @@
     <details class="faq-item"><summary>What does the error message tell me?</summary><p>You'll see the browser's native JSON parse error plus, where QuickTiny can identify the likely cause, a plain-English explanation of what's probably wrong and why.</p></details>
     <details class="faq-item"><summary>What can't the automatic fix handle?</summary><p>Anything that requires guessing at missing content — like a truncated response missing its closing brackets, or a value that's ambiguous without more context. QuickTiny only applies fixes it can make with certainty; it will never quietly change what your data means.</p></details>
     <details class="faq-item"><summary>Can I minify JSON with this tool?</summary><p>This tool focuses on formatting, validating, and fixing. For minifying, remove the indentation manually or use JSON.stringify without a spacing argument in your own code.</p></details>
+    <details class="faq-item"><summary>Why does JSON.parse() say "Expected property name or '}'" or "Unexpected token '"?</summary><p>Both mean JSON requires double quotes, not single quotes, everywhere a key or string appears. "Expected property name..." means the very first key in an object is unquoted or single-quoted; "Unexpected token '" means a string value is single-quoted. Paste your JSON above and click "Try to fix common issues" to convert single quotes and quote bare keys automatically.</p></details>
+    <details class="faq-item"><summary>Why does Python's json.loads() say "Expecting property name enclosed in double quotes"?</summary><p>Python's json module reports this one message for unquoted keys, single-quoted keys, and trailing commas alike, where JavaScript reports each differently. The underlying fix is identical regardless of language: valid double-quoted keys and no trailing commas. Fix it once in the tool above, then use the corrected output in your Python code.</p></details>
   </div>
 
   <div class="section related-section">
@@ -322,6 +371,6 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny JSON Formatter","url":"https://quicktinyv2.vercel.app/json-formatter","description":"Fix invalid JSON online for free — trailing commas, single quotes, unquoted keys, and malformed output from ChatGPT or Claude. Plain-English errors, one-click copy, runs in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"JSON Formatter","item":"https://quicktinyv2.vercel.app/json-formatter"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my JSON data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Parsing, formatting, and automatic fixing all happen entirely in your browser. Nothing is uploaded, logged, or stored — QuickTiny doesn't keep a history of what you've pasted."}},{"@type":"Question","name":"Can this fix invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes, for common and unambiguous problems: trailing commas, single quotes instead of double quotes, and unquoted object keys. Click \"Try to fix common issues\" after a failed validation and QuickTiny will correct it and tell you exactly what it changed."}},{"@type":"Question","name":"Can this fix JSON copied from ChatGPT or Claude?","acceptedAnswer":{"@type":"Answer","text":"Often, yes — the most common issues in AI-generated JSON (trailing commas, occasional single quotes) are exactly what the automatic fix targets. If the response got cut off mid-way, the JSON is genuinely incomplete, and QuickTiny will tell you that rather than guess at content that was never generated."}},{"@type":"Question","name":"What does the error message tell me?","acceptedAnswer":{"@type":"Answer","text":"You'll see the browser's native JSON parse error plus, where QuickTiny can identify the likely cause, a plain-English explanation of what's probably wrong and why."}},{"@type":"Question","name":"What can't the automatic fix handle?","acceptedAnswer":{"@type":"Answer","text":"Anything that requires guessing at missing content, like a truncated response missing its closing brackets. QuickTiny only applies fixes it can make with certainty."}},{"@type":"Question","name":"Can I minify JSON with this tool?","acceptedAnswer":{"@type":"Answer","text":"This tool focuses on formatting, validating, and fixing. For minifying, remove the indentation manually or use JSON.stringify without a spacing argument in your own code."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my JSON data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Parsing, formatting, and automatic fixing all happen entirely in your browser. Nothing is uploaded, logged, or stored — QuickTiny doesn't keep a history of what you've pasted."}},{"@type":"Question","name":"Can this fix invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes, for common and unambiguous problems: trailing commas, single quotes instead of double quotes, and unquoted object keys. Click \"Try to fix common issues\" after a failed validation and QuickTiny will correct it and tell you exactly what it changed."}},{"@type":"Question","name":"Can this fix JSON copied from ChatGPT or Claude?","acceptedAnswer":{"@type":"Answer","text":"Often, yes — the most common issues in AI-generated JSON (trailing commas, occasional single quotes) are exactly what the automatic fix targets. If the response got cut off mid-way, the JSON is genuinely incomplete, and QuickTiny will tell you that rather than guess at content that was never generated."}},{"@type":"Question","name":"What does the error message tell me?","acceptedAnswer":{"@type":"Answer","text":"You'll see the browser's native JSON parse error plus, where QuickTiny can identify the likely cause, a plain-English explanation of what's probably wrong and why."}},{"@type":"Question","name":"What can't the automatic fix handle?","acceptedAnswer":{"@type":"Answer","text":"Anything that requires guessing at missing content, like a truncated response missing its closing brackets. QuickTiny only applies fixes it can make with certainty."}},{"@type":"Question","name":"Can I minify JSON with this tool?","acceptedAnswer":{"@type":"Answer","text":"This tool focuses on formatting, validating, and fixing. For minifying, remove the indentation manually or use JSON.stringify without a spacing argument in your own code."}},{"@type":"Question","name":"Why does JSON.parse() say \"Expected property name or '}'\" or \"Unexpected token '\"?","acceptedAnswer":{"@type":"Answer","text":"Both mean JSON requires double quotes, not single quotes, everywhere a key or string appears. \"Expected property name...\" means the very first key in an object is unquoted or single-quoted; \"Unexpected token '\" means a string value is single-quoted. Paste your JSON above and click \"Try to fix common issues\" to convert single quotes and quote bare keys automatically."}},{"@type":"Question","name":"Why does Python's json.loads() say \"Expecting property name enclosed in double quotes\"?","acceptedAnswer":{"@type":"Answer","text":"Python's json module reports this one message for unquoted keys, single-quoted keys, and trailing commas alike, where JavaScript reports each differently. The underlying fix is identical regardless of language: valid double-quoted keys and no trailing commas. Fix it once in the tool above, then use the corrected output in your Python code."}}]}</script>
 </body>
 </html>
