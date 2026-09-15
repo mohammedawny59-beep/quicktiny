@@ -48,15 +48,28 @@
   </section>
 
   <div class="tool-panel" id="tool">
-    
+
       <label class="field-label" for="urlenc">Text or encoded URL</label>
       <textarea id="urlenc" placeholder="Type text to encode, or a %-encoded string to decode..."></textarea>
+      <p class="privacy-note">🔒 Your input stays in your browser — nothing is sent to a server.</p>
       <div class="btn-row">
         <button class="btn" onclick="qtUrlEnc('encode')">Encode</button>
         <button class="btn btn-secondary" onclick="qtUrlEnc('decode')">Decode</button>
         <button class="btn btn-secondary" onclick="qtCopyUrlEnc()">Copy</button>
+        <button class="btn btn-secondary" onclick="qtDiagnoseClick()">Diagnose</button>
       </div>
       <div id="urlencout" class="result"></div>
+
+      <div class="field-label" style="margin-top:18px">Or try an example</div>
+      <div class="chip-row">
+        <button class="chip" onclick="qtLoadExample('hello%2520world')">Double-encoded space</button>
+        <button class="chip" onclick="qtLoadExample('users%252F123')">Double-encoded slash</button>
+        <button class="chip" onclick="qtLoadExample('hello%2')">Malformed escape</button>
+        <button class="chip" onclick="qtLoadExample('hello+world')">Space as +</button>
+        <button class="chip" onclick="qtLoadExample('hello%20world%3Fpage%3D1')">Encoded URL component</button>
+      </div>
+
+      <div id="urlDiagnosis" hidden></div>
   </div>
   <script>
       function qtUrlEnc(mode){
@@ -76,6 +89,258 @@
         var out = document.querySelector("#urlencout");
         if (!el.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
         await qtCopy(el.value, out, "Copied");
+      }
+
+      function qtLoadExample(value){
+        var el = document.querySelector("#urlenc");
+        el.value = value;
+        qtDiagnoseClick();
+      }
+
+      /* ---------- URL Encoding Debugger (all client-side; input never leaves the browser) ---------- */
+
+      var QT_RESERVED_MAP = [
+        ["%2F", "/"], ["%3F", "?"], ["%3D", "="], ["%26", "&"], ["%23", "#"],
+        ["%3A", ":"], ["%40", "@"], ["%2C", ","], ["%3B", ";"], ["%24", "$"],
+        ["%2B", "+"], ["%25", "%"]
+      ];
+
+      function qtIsHex(c){ return /^[0-9a-fA-F]$/.test(c); }
+
+      function qtFindMalformedPercent(str){
+        var issues = [];
+        for (var i = 0; i < str.length; i++) {
+          if (str[i] !== "%") continue;
+          var h1 = str[i + 1], h2 = str[i + 2];
+          if (!h1 || !h2 || !qtIsHex(h1) || !qtIsHex(h2)) {
+            issues.push({ index: i, snippet: str.slice(i, Math.min(str.length, i + 6)) });
+          }
+        }
+        return issues;
+      }
+
+      function qtScanReserved(str){
+        var found = [];
+        var upper = str.toUpperCase();
+        for (var i = 0; i < QT_RESERVED_MAP.length; i++) {
+          var code = QT_RESERVED_MAP[i][0];
+          if (upper.indexOf(code) !== -1) found.push({ code: code, ch: QT_RESERVED_MAP[i][1] });
+        }
+        return found;
+      }
+
+      function qtBuildDecodeChain(raw, maxDepth){
+        maxDepth = maxDepth || 8;
+        var chain = [raw];
+        var current = raw;
+        var malformedAtStep = null;
+        var reservedByLevel = [];
+        for (var step = 1; step <= maxDepth; step++) {
+          reservedByLevel.push({ level: step - 1, reserved: qtScanReserved(current) });
+          var next;
+          try { next = decodeURIComponent(current); }
+          catch (e) { malformedAtStep = step; break; }
+          if (next === current) break;
+          chain.push(next);
+          current = next;
+        }
+        return {
+          chain: chain,
+          decodeCount: chain.length - 1,
+          malformedAtStep: malformedAtStep,
+          reservedByLevel: reservedByLevel,
+          maxDepthReached: malformedAtStep === null && chain.length - 1 === maxDepth
+        };
+      }
+
+      function qtDiagnose(raw){
+        if (raw === "") return { empty: true };
+
+        var hasPercent = raw.indexOf("%") !== -1;
+        var hasPlus = raw.indexOf("+") !== -1;
+        var hasLiteralSpace = raw.indexOf(" ") !== -1;
+        var hasEncodedSpace = /%20/i.test(raw);
+
+        var malformed = qtFindMalformedPercent(raw);
+        var decode = qtBuildDecodeChain(raw);
+        // A throw only means "invalid input" when it blocks decoding the raw
+        // pasted string itself (step 1). A throw at a later step just means
+        // there's nothing more to decode -- e.g. "100%25" -> "100%", where
+        // decoding "100%" again throws but that's expected, not an error.
+        var malformedTopLevel = decode.malformedAtStep === 1;
+        var likelyDoubleEncoded = decode.decodeCount >= 2;
+
+        var reservedFound = [];
+        decode.reservedByLevel.forEach(function (entry) {
+          entry.reserved.forEach(function (r) {
+            if (!reservedFound.some(function (existing) { return existing.code === r.code; })) {
+              reservedFound.push({ code: r.code, ch: r.ch, level: entry.level });
+            }
+          });
+        });
+        // %25 alone just encodes a literal "%" -- extremely common and not
+        // worth flagging as a standalone "reserved character" finding.
+        reservedFound = reservedFound.filter(function (r) { return r.code !== "%25"; });
+
+        var plusAmbiguity = hasPlus;
+        var mixedEncoding = (hasEncodedSpace && hasLiteralSpace) || (hasEncodedSpace && hasPlus);
+        var noEncodingDetected = !hasPercent && !hasPlus;
+
+        var classifications = [];
+        if (malformedTopLevel) classifications.push("MALFORMED_PERCENT_ENCODING");
+        if (likelyDoubleEncoded) classifications.push("LIKELY_DOUBLE_ENCODING");
+        if (reservedFound.length) classifications.push("ENCODED_RESERVED_CHARACTER");
+        if (plusAmbiguity) classifications.push("PLUS_AS_SPACE_AMBIGUITY");
+        if (mixedEncoding) classifications.push("MIXED_ENCODING");
+        if (!classifications.length && hasPercent) classifications.push("VALID_PERCENT_ENCODING");
+        if (!classifications.length && noEncodingDetected) classifications.push("NO_ENCODING_DETECTED");
+
+        var encodeURIResult = null, encodeURIError = null;
+        var encodeURIComponentResult = null, encodeURIComponentError = null;
+        try { encodeURIResult = encodeURI(raw); } catch (e) { encodeURIError = "Could not compute — input contains an invalid character sequence."; }
+        try { encodeURIComponentResult = encodeURIComponent(raw); } catch (e) { encodeURIComponentError = "Could not compute — input contains an invalid character sequence."; }
+
+        return {
+          empty: false, raw: raw,
+          hasPercent: hasPercent, hasPlus: hasPlus, hasLiteralSpace: hasLiteralSpace, hasEncodedSpace: hasEncodedSpace,
+          malformed: malformed, malformedTopLevel: malformedTopLevel,
+          decode: decode, likelyDoubleEncoded: likelyDoubleEncoded,
+          reservedFound: reservedFound, plusAmbiguity: plusAmbiguity, mixedEncoding: mixedEncoding,
+          noEncodingDetected: noEncodingDetected, classifications: classifications,
+          encodeURIResult: encodeURIResult, encodeURIError: encodeURIError,
+          encodeURIComponentResult: encodeURIComponentResult, encodeURIComponentError: encodeURIComponentError
+        };
+      }
+
+      var QT_CLASSIFICATION_COPY = {
+        VALID_PERCENT_ENCODING: { label: "Valid percent-encoding", tone: "local", text: "This decodes cleanly — every % is followed by two valid hex digits." },
+        NO_ENCODING_DETECTED: { label: "No encoding detected", tone: "local", text: "No % sequences or + characters found — this looks like plain, unencoded text." },
+        MALFORMED_PERCENT_ENCODING: { label: "Malformed percent-encoding", tone: "danger", text: "" },
+        LIKELY_DOUBLE_ENCODING: { label: "Likely double-encoded", tone: "accent", text: "" },
+        ENCODED_RESERVED_CHARACTER: { label: "Encoded reserved character", tone: "accent", text: "" },
+        PLUS_AS_SPACE_AMBIGUITY: { label: "+ is ambiguous here", tone: "accent", text: "A literal + can mean a plus sign, or an encoded space under the application/x-www-form-urlencoded convention (used by HTML forms) — percent-encoding itself never produces a +." },
+        MIXED_ENCODING: { label: "Mixed encoding", tone: "accent", text: "This string represents spaces inconsistently — some are %20, others are a literal space or +. Pick one convention throughout." }
+      };
+
+      function qtEsc(s){
+        var d = document.createElement("div");
+        d.textContent = s;
+        return d.innerHTML;
+      }
+
+      function qtTruncateForDisplay(s){
+        return s.length > 300 ? qtEsc(s.slice(0, 300)) + "<span style=\"color:var(--muted)\">… (truncated for display, " + s.length + " chars total)</span>" : qtEsc(s);
+      }
+
+      var qtLastDiagnosis = null;
+
+      function qtDiagnoseClick(){
+        var el = document.querySelector("#urlenc");
+        var panel = document.querySelector("#urlDiagnosis");
+        var raw = el.value;
+        qtTrack("url_debugger_used");
+
+        if (!raw) {
+          panel.hidden = false;
+          panel.innerHTML = '<div class="result">Enter a value above, or try an example, then click Diagnose.</div>';
+          qtLastDiagnosis = null;
+          return;
+        }
+
+        var d = qtDiagnose(raw);
+        qtLastDiagnosis = d;
+        panel.hidden = false;
+
+        var issueCodes = d.classifications.filter(function(c){ return c !== "VALID_PERCENT_ENCODING" && c !== "NO_ENCODING_DETECTED"; });
+        if (issueCodes.length) qtTrack("url_issue_detected", { types: issueCodes.join(",") });
+        if (d.decode.decodeCount >= 2) qtTrack("url_decode_chain_used", { steps: d.decode.decodeCount });
+
+        var html = "";
+
+        html += '<div class="diag-badges">' + d.classifications.map(function(code){
+          var c = QT_CLASSIFICATION_COPY[code];
+          return '<span class="badge ' + c.tone + '">' + qtEsc(c.label) + '</span>';
+        }).join("") + '</div>';
+
+        html += '<div class="diag-block">';
+        if (d.malformedTopLevel) {
+          var m = d.malformed[0];
+          html += '<p>' + QT_CLASSIFICATION_COPY.MALFORMED_PERCENT_ENCODING.text + ' A percent-encoded byte requires two hexadecimal characters after %. <code>' + qtEsc(m ? m.snippet : "%") + '</code> is incomplete or invalid — decoding this as-is would throw <code>URIError: URI malformed</code>. If the % itself is meant to be a literal percent sign, encode it first as <code>%25</code>.</p>';
+        } else {
+          if (d.likelyDoubleEncoded) {
+            html += '<p>' + QT_CLASSIFICATION_COPY.LIKELY_DOUBLE_ENCODING.label + ' — decoding it ' + d.decode.decodeCount + ' times changes the value each time before settling, which usually means this value was percent-encoded more than once (for example, by two layers of code each doing their own encoding step). See the decode chain below.</p>';
+          }
+          if (d.reservedFound.length) {
+            html += '<p>Contains ' + (d.reservedFound.length > 1 ? "encoded reserved characters" : "an encoded reserved character") + ': ' + d.reservedFound.map(function(r){ return '<code>' + r.code + '</code> (' + qtEsc(r.ch) + (r.level > 0 ? ", revealed after decoding once" : "") + ')'; }).join(", ") + '. That\'s expected when a value like a path segment, username, or query value needs to safely contain that character.</p>';
+          }
+          if (d.plusAmbiguity) {
+            html += '<p>' + qtEsc(QT_CLASSIFICATION_COPY.PLUS_AS_SPACE_AMBIGUITY.text) + '</p>';
+          }
+          if (d.mixedEncoding) {
+            html += '<p>' + qtEsc(QT_CLASSIFICATION_COPY.MIXED_ENCODING.text) + '</p>';
+          }
+          if (d.classifications.length === 1 && d.classifications[0] === "VALID_PERCENT_ENCODING") {
+            html += '<p>' + qtEsc(QT_CLASSIFICATION_COPY.VALID_PERCENT_ENCODING.text) + '</p>';
+          }
+          if (d.classifications.length === 1 && d.classifications[0] === "NO_ENCODING_DETECTED") {
+            html += '<p>' + qtEsc(QT_CLASSIFICATION_COPY.NO_ENCODING_DETECTED.text) + '</p>';
+          }
+        }
+        html += '</div>';
+
+        if (d.decode.chain.length > 1) {
+          html += '<div class="diag-block"><div class="field-label">Decode chain</div>';
+          d.decode.chain.forEach(function(val, i){
+            html += '<div class="diag-step"><span class="diag-step-n">' + (i === 0 ? "Input" : "Decode " + i + "×") + '</span><code>' + qtTruncateForDisplay(val) + '</code></div>';
+          });
+          if (d.decode.maxDepthReached) html += '<p style="color:var(--muted);font-size:12.5px;margin:6px 0 0">Stopped at maximum depth — this value may still contain further encoding.</p>';
+          html += '</div>';
+        }
+
+        if (d.plusAmbiguity) {
+          html += '<div class="diag-block"><div class="field-label">+ interpreted two ways</div>';
+          html += '<div class="row-2"><div><div class="field-label">As a literal +</div><pre><code>' + qtTruncateForDisplay(raw) + '</code></pre></div>';
+          html += '<div><div class="field-label">As an encoded space (form convention)</div><pre><code>' + qtTruncateForDisplay(raw.split("+").join(" ")) + '</code></pre></div></div></div>';
+        }
+
+        html += '<div class="diag-block"><div class="field-label">encodeURI() vs encodeURIComponent()</div>';
+        html += '<div class="row-2"><div><div class="field-label">encodeURI — for a full URL</div><pre><code>' + (d.encodeURIError ? qtEsc(d.encodeURIError) : qtTruncateForDisplay(d.encodeURIResult)) + '</code></pre></div>';
+        html += '<div><div class="field-label">encodeURIComponent — for one value</div><pre><code>' + (d.encodeURIComponentError ? qtEsc(d.encodeURIComponentError) : qtTruncateForDisplay(d.encodeURIComponentResult)) + '</code></pre></div></div>';
+        html += '<p style="color:var(--muted);font-size:12.5px;margin:8px 0 0">encodeURI leaves URL-structural characters like <code>: / ? & =</code> alone since they\'re meaningful in a full URL; encodeURIComponent escapes them too, since a single value shouldn\'t contain them unescaped.</p></div>';
+
+        html += '<div class="btn-row" style="margin-top:4px"><button class="btn btn-secondary" onclick="qtCopyDiagnosis()">Copy diagnosis</button></div>';
+        html += '<div id="urlDiagOut" class="result"></div>';
+
+        panel.innerHTML = html;
+      }
+
+      function qtDiagnosisText(d){
+        var lines = [];
+        lines.push("QuickTiny URL Encoding Debugger — Diagnosis");
+        lines.push("");
+        lines.push("Input: " + d.raw);
+        lines.push("Detected: " + d.classifications.map(function(c){ return QT_CLASSIFICATION_COPY[c].label; }).join(", "));
+        if (d.decode.chain.length > 1) {
+          lines.push("");
+          d.decode.chain.slice(1).forEach(function(val, i){
+            lines.push("Decode " + (i + 1) + "x: " + val);
+          });
+        }
+        if (d.reservedFound.length) {
+          lines.push("");
+          lines.push("Encoded reserved characters: " + d.reservedFound.map(function(r){ return r.code + " (" + r.ch + ")"; }).join(", "));
+        }
+        lines.push("");
+        lines.push("encodeURI: " + (d.encodeURIError || d.encodeURIResult));
+        lines.push("encodeURIComponent: " + (d.encodeURIComponentError || d.encodeURIComponentResult));
+        return lines.join("\n");
+      }
+
+      async function qtCopyDiagnosis(){
+        var out = document.querySelector("#urlDiagOut");
+        if (!qtLastDiagnosis) { if (out) { out.textContent = "Nothing to copy yet."; out.className = "result"; } return; }
+        await qtCopy(qtDiagnosisText(qtLastDiagnosis), out, "Diagnosis copied");
+        qtTrack("url_copy_diagnosis");
       }</script>
 
   <div class="content">
@@ -87,7 +352,7 @@
     </ol>
 
     <h2>Common URL encoding errors, explained</h2>
-    <p>Landed here searching for one of these exact messages? Here's what each one means and how to fix it — paste the string into the tool above.</p>
+    <p>Landed here searching for one of these exact messages? Here's what each one means and how to fix it — or paste the string into the tool above and click <strong>Diagnose</strong> for an automatic breakdown of what's happening and why.</p>
 
     <h3>"URIError: URI malformed"</h3>
     <div class="error-quote"><strong>JavaScript — decodeURIComponent()</strong>URIError: URI malformed</div>
