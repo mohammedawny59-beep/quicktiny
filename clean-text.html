@@ -62,7 +62,15 @@
         el.value = value;
         if (!value) { out.textContent = "Nothing to clean yet."; out.className = "result"; return; }
         await qtCopy(value, out, "Cleaned & copied");
-      }</script>
+      }
+
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/clean-text");
+        if (!payload) return;
+        document.querySelector("#clean").value = payload.value;
+        qtCleanText();
+      });</script>
 
   <div class="content">
     <h2>How to use Clean Text</h2>

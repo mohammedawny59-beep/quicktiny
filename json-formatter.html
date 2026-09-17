@@ -348,7 +348,21 @@
         var out = document.querySelector("#jsonout");
         if (!input.value.trim()) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
         await qtCopy(input.value, out, "Copied");
-      }</script>
+      }
+
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/json-formatter");
+        if (!payload) return;
+        document.querySelector("#json").value = payload.value;
+        if (payload.action === "repair") {
+          qtFormatJson();
+          var input = document.querySelector("#json"), out = document.querySelector("#jsonout"), fixArea = document.querySelector("#jsonFixArea");
+          qtTryFixJson(input, out, fixArea);
+        } else {
+          qtFormatJson();
+        }
+      });</script>
 
   <div class="content">
     <h2>How to use JSON Formatter</h2>

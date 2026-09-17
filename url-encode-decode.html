@@ -91,6 +91,18 @@
         await qtCopy(el.value, out, "Copied");
       }
 
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/url-encode-decode");
+        if (!payload) return;
+        document.querySelector("#urlenc").value = payload.value;
+        if (payload.action === "inspect") {
+          qtDiagnoseClick();
+        } else {
+          qtUrlEnc("decode");
+        }
+      });
+
       function qtLoadExample(value){
         var el = document.querySelector("#urlenc");
         el.value = value;

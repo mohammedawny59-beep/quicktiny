@@ -29,3 +29,23 @@ function qtTrack(name, data){
     }
   } catch (e) {}
 }
+
+/* ---------- Smart Actions handoff: pass pasted input from the homepage to a tool page ---------- */
+/* sessionStorage only -- never the URL/query string -- and consumed (removed) on first read. */
+
+var QT_HANDOFF_KEY = "qtSmartHandoff";
+
+function qtHandoffSet(payload){
+  try { sessionStorage.setItem(QT_HANDOFF_KEY, JSON.stringify(payload)); } catch (e) {}
+}
+
+function qtHandoffConsume(expectedTool){
+  try {
+    var raw = sessionStorage.getItem(QT_HANDOFF_KEY);
+    if (!raw) return null;
+    sessionStorage.removeItem(QT_HANDOFF_KEY);
+    var payload = JSON.parse(raw);
+    if (!payload || (expectedTool && payload.tool !== expectedTool)) return null;
+    return payload;
+  } catch (e) { return null; }
+}

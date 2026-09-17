@@ -124,7 +124,15 @@
         var out = document.querySelector("#b64out");
         if (!el.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
         await qtCopy(el.value, out, "Copied");
-      }</script>
+      }
+
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/base64-encode-decode");
+        if (!payload) return;
+        document.querySelector("#b64").value = payload.value;
+        qtB64(payload.action === "encode" ? "encode" : "decode");
+      });</script>
 
   <div class="content">
     <h2>How to use Base64 Encode/Decode</h2>

@@ -77,7 +77,15 @@
         var out = document.querySelector("#sortout");
         if (!el.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
         await qtCopy(el.value, out, "Copied");
-      }</script>
+      }
+
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/sort-lines");
+        if (!payload) return;
+        document.querySelector("#sortlines").value = payload.value;
+        qtSort("asc");
+      });</script>
 
   <div class="content">
     <h2>How to use Sort Lines</h2>

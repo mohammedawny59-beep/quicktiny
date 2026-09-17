@@ -83,7 +83,15 @@
         var out = document.querySelector("#dedupeout");
         if (!el.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
         await qtCopy(el.value, out, "Copied");
-      }</script>
+      }
+
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/remove-duplicate-lines");
+        if (!payload) return;
+        document.querySelector("#dedupe").value = payload.value;
+        qtDedupe();
+      });</script>
 
   <div class="content">
     <h2>How to use Remove Duplicate Lines</h2>

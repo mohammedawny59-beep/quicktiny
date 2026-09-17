@@ -51,6 +51,218 @@
     </div>
   </section>
 
+  <section class="section" id="smart-actions">
+    <div class="section-head">
+      <div>
+        <div class="section-title">QuickTiny Smart Actions</div>
+        <p class="section-sub">Paste anything. We'll figure out what you need.</p>
+      </div>
+    </div>
+    <div class="tool-panel" id="smartPanel">
+      <textarea id="smartInput" placeholder="Paste JSON, Base64, a URL-encoded string, a timestamp, or any text..."></textarea>
+      <p class="privacy-note">🔒 Detected locally in your browser. Nothing is uploaded.</p>
+      <div id="smartResult"></div>
+    </div>
+  </section>
+  <script>
+      var QT_SMART_ACTIONS = {
+        json: { label: "JSON", actions: [{ label: "Format JSON", tool: "/json-formatter", action: "format" }] },
+        messy_json: { label: "Messy / LLM JSON", actions: [{ label: "Repair & Format JSON", tool: "/json-formatter", action: "repair" }] },
+        base64: { label: "Base64", actions: [{ label: "Decode Base64", tool: "/base64-encode-decode", action: "decode" }, { label: "Encode as Base64", tool: "/base64-encode-decode", action: "encode" }] },
+        url_encoded: { label: "URL encoded", actions: [{ label: "Decode URL", tool: "/url-encode-decode", action: "decode" }, { label: "Inspect URL", tool: "/url-encode-decode", action: "inspect" }] },
+        timestamp_seconds: { label: "Unix timestamp (seconds)", actions: [{ label: "Convert Timestamp", tool: "/timestamp-converter", action: "convert" }] },
+        timestamp_ms: { label: "Unix timestamp (milliseconds)", actions: [{ label: "Convert Timestamp", tool: "/timestamp-converter", action: "convert" }] },
+        list: { label: "Multiline / list-like text", actions: [{ label: "Clean Text", tool: "/clean-text", action: "clean" }, { label: "Remove Duplicate Lines", tool: "/remove-duplicate-lines", action: "dedupe" }, { label: "Sort Lines", tool: "/sort-lines", action: "sort" }] },
+        text: { label: "Text", actions: [{ label: "Word Count", tool: "/word-counter", action: "count" }, { label: "Clean Text", tool: "/clean-text", action: "clean" }, { label: "Change Case", tool: "/case-converter", action: "case" }] }
+      };
+
+      function qtScanSpan(text, startIdx){
+        var i = startIdx;
+        while (i < text.length && /\s/.test(text[i])) i++;
+        if (i >= text.length || (text[i] !== "{" && text[i] !== "[")) return null;
+        var start = i, depth = 0, inStr = false;
+        for (; i < text.length; i++) {
+          var c = text[i];
+          if (inStr) { if (c === "\\") { i++; continue; } if (c === '"') inStr = false; continue; }
+          if (c === '"') { inStr = true; continue; }
+          if (c === "{" || c === "[") depth++;
+          else if (c === "}" || c === "]") { depth--; if (depth === 0) return { start: start, end: i + 1, complete: true }; }
+        }
+        return { start: start, end: text.length, complete: false };
+      }
+      function qtStripFenceSimple(text){
+        var lines = text.split(/\r\n|\r|\n/);
+        var s = 0, e = lines.length - 1;
+        while (s <= e && lines[s].trim() === "") s++;
+        while (e >= s && lines[e].trim() === "") e--;
+        if (s >= e) return text;
+        var openM = /^```([A-Za-z0-9_-]*)\s*$/.exec(lines[s].trim());
+        var closeM = /^```\s*$/.exec(lines[e].trim());
+        if (openM && closeM) return lines.slice(s + 1, e).join("\n");
+        return text;
+      }
+      function qtExtractJsonSpanSimple(text){
+        var firstBrace = -1;
+        for (var k = 0; k < text.length; k++) { if (text[k] === "{" || text[k] === "[") { firstBrace = k; break; } }
+        if (firstBrace === -1) return null;
+        var span = qtScanSpan(text, firstBrace);
+        if (!span || !span.complete) return null;
+        var before = text.slice(0, span.start).trim();
+        var after = text.slice(span.end).trim();
+        if (!before && !after) return null;
+        return text.slice(span.start, span.end);
+      }
+      function qtBasicCharRepairSimple(text){
+        var normalized = "", inString = false, quoteChar = null;
+        for (var i = 0; i < text.length; i++) {
+          var c = text[i];
+          if (!inString) {
+            if (c === '"' || c === "'") { inString = true; quoteChar = c; normalized += '"'; }
+            else normalized += c;
+          } else {
+            if (c === "\\" && i + 1 < text.length) { normalized += c + text[i + 1]; i++; }
+            else if (c === quoteChar) { inString = false; quoteChar = null; normalized += '"'; }
+            else if (c === '"' && quoteChar === "'") { normalized += '\\"'; }
+            else normalized += c;
+          }
+        }
+        var segments = [], buf = "", inStr = false;
+        for (var j = 0; j < normalized.length; j++) {
+          var ch = normalized[j];
+          if (!inStr) { if (ch === '"') { segments.push({ t: "code", v: buf }); buf = '"'; inStr = true; } else buf += ch; }
+          else { buf += ch; if (ch === "\\" && j + 1 < normalized.length) { buf += normalized[j + 1]; j++; } else if (ch === '"') { segments.push({ t: "string", v: buf }); buf = ""; inStr = false; } }
+        }
+        segments.push({ t: inStr ? "string" : "code", v: buf });
+        return segments.map(function(seg){
+          if (seg.t === "string") return seg.v;
+          var v = seg.v;
+          v = v.replace(/,(\s*[}\]])/g, "$1");
+          v = v.replace(/([{,]\s*)([A-Za-z_$][A-Za-z0-9_$]*)(\s*:)/g, '$1"$2"$3');
+          return v;
+        }).join("");
+      }
+      function qtTryParseObjArr(text){
+        try { var v = JSON.parse(text); return v !== null && typeof v === "object"; } catch (e) { return false; }
+      }
+      function qtCanBecomeJson(raw){
+        var candidates = [raw];
+        var fenceStripped = qtStripFenceSimple(raw);
+        if (fenceStripped !== raw) candidates.push(fenceStripped);
+        for (var i = 0; i < candidates.length; i++) {
+          var c = candidates[i];
+          var extracted = qtExtractJsonSpanSimple(c);
+          var repaired = qtBasicCharRepairSimple(extracted || c);
+          if (qtTryParseObjArr(repaired)) return true;
+        }
+        return false;
+      }
+      function qtIsPlausibleTimestamp(n){
+        var MIN_S = 1000000000, MAX_S = 4102444800;
+        var abs = Math.abs(n);
+        if (abs >= MIN_S && abs <= MAX_S) return "seconds";
+        if (abs >= MIN_S * 1000 && abs <= MAX_S * 1000) return "milliseconds";
+        return null;
+      }
+      function qtLooksLikeBase64(raw){
+        var s = raw.trim();
+        if (s.length < 12 || /\s/.test(s)) return false;
+        if (/^-?\d+$/.test(s)) return false;
+        var standard = /^[A-Za-z0-9+/]+={0,2}$/.test(s);
+        var urlsafe = /^[A-Za-z0-9_-]+={0,2}$/.test(s);
+        if (!standard && !urlsafe) return false;
+        if (!/[A-Za-z]/.test(s)) return false;
+        var body = s.replace(/=+$/, "");
+        if (body.length % 4 === 1) return false;
+        try {
+          var normalized = s.replace(/-/g, "+").replace(/_/g, "/");
+          while (normalized.length % 4 !== 0) normalized += "=";
+          var bin = atob(normalized);
+          if (!bin.length) return false;
+          var printable = 0;
+          for (var i = 0; i < bin.length; i++) {
+            var b = bin.charCodeAt(i);
+            if ((b >= 32 && b <= 126) || b === 9 || b === 10 || b === 13 || b >= 128) printable++;
+          }
+          return (printable / bin.length) >= 0.85;
+        } catch (e) { return false; }
+      }
+      function qtLooksLikeUrlEncoded(raw){
+        var s = raw.trim();
+        if (s.indexOf("%") === -1) return false;
+        for (var i = 0; i < s.length; i++) {
+          if (s[i] === "%") {
+            var h1 = s[i + 1], h2 = s[i + 2];
+            if (!h1 || !h2 || !/^[0-9a-fA-F]$/.test(h1) || !/^[0-9a-fA-F]$/.test(h2)) return false;
+          }
+        }
+        try { var decoded = decodeURIComponent(s); return decoded !== s; } catch (e) { return false; }
+      }
+      function qtLooksLikeList(raw){
+        var lines = raw.split(/\r\n|\r|\n/);
+        var nonBlank = lines.filter(function(l){ return l.trim().length > 0; });
+        if (nonBlank.length < 2) return false;
+        var avgLen = nonBlank.reduce(function(a, l){ return a + l.trim().length; }, 0) / nonBlank.length;
+        var seen = {}, hasDupe = false;
+        nonBlank.forEach(function(l){ if (seen[l]) hasDupe = true; seen[l] = true; });
+        return hasDupe || avgLen < 50;
+      }
+      function qtSmartDetect(raw){
+        var trimmed = raw.trim();
+        if (!trimmed) return null;
+        if (/^-?\d+$/.test(trimmed)) {
+          var kind = qtIsPlausibleTimestamp(Number(trimmed));
+          if (kind === "seconds") return "timestamp_seconds";
+          if (kind === "milliseconds") return "timestamp_ms";
+          return "text";
+        }
+        if (qtTryParseObjArr(trimmed)) return "json";
+        if (qtCanBecomeJson(trimmed)) return "messy_json";
+        if (qtLooksLikeBase64(trimmed)) return "base64";
+        if (qtLooksLikeUrlEncoded(trimmed)) return "url_encoded";
+        if (qtLooksLikeList(trimmed)) return "list";
+        return "text";
+      }
+
+      var qtSmartLastType = null;
+      var qtSmartUsedTracked = false;
+      var qtSmartDebounce = null;
+
+      function qtSmartRender(){
+        var input = document.querySelector("#smartInput");
+        var resultEl = document.querySelector("#smartResult");
+        var value = input.value;
+        var type = qtSmartDetect(value);
+        if (!type) { resultEl.innerHTML = ""; qtSmartLastType = null; return; }
+
+        if (!qtSmartUsedTracked) { qtTrack("smart_input_used"); qtSmartUsedTracked = true; }
+        if (type !== qtSmartLastType) { qtTrack("smart_detect_" + type); qtSmartLastType = type; }
+
+        var spec = QT_SMART_ACTIONS[type];
+        var html = '<div class="smart-detected"><span class="badge local">Detected: ' + spec.label + '</span></div>';
+        html += '<div class="btn-row" style="margin-top:12px">';
+        spec.actions.forEach(function(a, i){
+          html += '<button class="btn' + (i === 0 ? '' : ' btn-secondary') + '" data-tool="' + a.tool + '" data-action="' + a.action + '">' + a.label + '</button>';
+        });
+        html += '</div>';
+        resultEl.innerHTML = html;
+
+        resultEl.querySelectorAll("button[data-tool]").forEach(function(btn){
+          btn.addEventListener("click", function(){
+            var tool = btn.getAttribute("data-tool");
+            var action = btn.getAttribute("data-action");
+            qtTrack("smart_action_click", { tool: tool, action: action });
+            qtHandoffSet({ tool: tool, action: action, value: input.value });
+            location.href = tool;
+          });
+        });
+      }
+
+      document.querySelector("#smartInput").addEventListener("input", function(){
+        clearTimeout(qtSmartDebounce);
+        qtSmartDebounce = setTimeout(qtSmartRender, 200);
+      });
+  </script>
+
   <section class="section" id="tools">
     <div class="section-head">
       <div>

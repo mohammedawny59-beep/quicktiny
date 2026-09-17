@@ -98,7 +98,15 @@
         if (isNaN(d.getTime())) { out.textContent = "Invalid date."; out.className = "result error"; return; }
         out.innerHTML = "Unix timestamp (seconds): <strong>" + Math.floor(d.getTime() / 1000) + "</strong><br>Milliseconds: <strong>" + d.getTime() + "</strong>";
         out.className = "result success";
-      }</script>
+      }
+
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/timestamp-converter");
+        if (!payload) return;
+        document.querySelector("#tsInput").value = payload.value.trim();
+        qtTsToDate();
+      });</script>
 
   <div class="content">
     <h2>How to use Timestamp Converter</h2>

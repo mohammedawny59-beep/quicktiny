@@ -73,7 +73,15 @@
         var out = document.querySelector("#caseout");
         if (!e.value) { out.textContent = "Nothing to copy yet."; out.className = "result"; return; }
         await qtCopy(e.value, out, "Copied");
-      }</script>
+      }
+
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/case-converter");
+        if (!payload) return;
+        document.querySelector("#case").value = payload.value;
+        // No auto-run: which case (UPPER/lower/Title/Sentence) is genuinely ambiguous, so just prefill.
+      });</script>
 
   <div class="content">
     <h2>How to use Case Converter</h2>
