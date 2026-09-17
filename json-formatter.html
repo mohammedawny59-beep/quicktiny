@@ -68,31 +68,87 @@
       <div id="jsonFixArea"></div>
   </div>
   <script>
-      function qtExplainJsonError(text, err){
-        var msg = err.message;
-        var m = msg.match(/position (\d+)/);
-        var plain = "";
-        if (/Unexpected end of JSON input/i.test(msg)) {
-          plain = "The JSON looks incomplete — it's likely missing a closing } or ], often from a response that got cut off mid-way (a common issue with copy-pasted ChatGPT or Claude output). Automatic fixing can't safely guess what's missing, so you'll need to add the rest.";
-        } else if (m) {
-          var pos = parseInt(m[1], 10);
-          var before = text.slice(Math.max(0, pos - 20), pos).replace(/\s+$/, "");
-          var atChar = text[pos];
-          var afterCommaBeforeClose = /,\s*$/.test(before) && (atChar === "}" || atChar === "]");
-          if (afterCommaBeforeClose) {
-            plain = "There's a trailing comma right before a closing " + atChar + " — JSON doesn't allow a comma before the last item in an object or array.";
-          } else if (atChar === "'") {
-            plain = "This looks like a single quote — JSON requires double quotes for both keys and string values.";
-          } else if (/^[A-Za-z_$]/.test(atChar || "")) {
-            plain = "This looks like an unquoted key or word — JSON object keys must be wrapped in double quotes, like \"key\" instead of key.";
-          } else {
-            plain = "Check the highlighted position for a syntax issue — common causes are a missing comma, an extra comma, or a missing quote.";
-          }
+      /* ---------- structural helpers (engine-independent, no reliance on exact JS error strings) ---------- */
+
+      function qtStripFence(text){
+        var lines = text.split(/\r\n|\r|\n/);
+        var startIdx = 0, endIdx = lines.length - 1;
+        while (startIdx <= endIdx && lines[startIdx].trim() === "") startIdx++;
+        while (endIdx >= startIdx && lines[endIdx].trim() === "") endIdx--;
+        if (startIdx >= endIdx) return { text: text, stripped: false, lang: null };
+        var openMatch = /^```([A-Za-z0-9_-]*)\s*$/.exec(lines[startIdx].trim());
+        var closeMatch = /^```\s*$/.exec(lines[endIdx].trim());
+        if (openMatch && closeMatch) {
+          var inner = lines.slice(startIdx + 1, endIdx).join("\n");
+          return { text: inner, stripped: true, lang: openMatch[1] || null };
         }
-        return { raw: msg, plain: plain };
+        return { text: text, stripped: false, lang: null };
       }
 
-      function qtRepairJson(text){
+      // Scans one JSON object/array value starting at the first { or [ at/after startIdx.
+      function qtScanSpan(text, startIdx){
+        var i = startIdx;
+        while (i < text.length && /\s/.test(text[i])) i++;
+        if (i >= text.length || (text[i] !== "{" && text[i] !== "[")) return null;
+        var start = i;
+        var depth = 0, inStr = false;
+        for (; i < text.length; i++) {
+          var c = text[i];
+          if (inStr) {
+            if (c === "\\") { i++; continue; }
+            if (c === '"') inStr = false;
+            continue;
+          }
+          if (c === '"') { inStr = true; continue; }
+          if (c === "{" || c === "[") depth++;
+          else if (c === "}" || c === "]") { depth--; if (depth === 0) return { start: start, end: i + 1, complete: true }; }
+        }
+        return { start: start, end: text.length, complete: false, inStr: inStr, depth: depth };
+      }
+
+      // Structural truncation detector -- independent of any JS engine's exact error wording,
+      // which changes between browser versions and would otherwise silently stop matching.
+      function qtDetectTruncation(text){
+        var depth = 0, inStr = false, escaped = false, sawAny = false;
+        for (var i = 0; i < text.length; i++) {
+          var c = text[i];
+          if (inStr) {
+            if (escaped) { escaped = false; continue; }
+            if (c === "\\") { escaped = true; continue; }
+            if (c === '"') inStr = false;
+            continue;
+          }
+          if (c === '"') { inStr = true; sawAny = true; continue; }
+          if (c === "{" || c === "[") { depth++; sawAny = true; }
+          else if (c === "}" || c === "]") { depth--; sawAny = true; }
+        }
+        if (!sawAny) return false;
+        return inStr || depth > 0;
+      }
+
+      function qtSplitTopLevelJsonValues(text){
+        var i = 0, n = text.length;
+        var values = [];
+        while (i < n) {
+          while (i < n && /\s/.test(text[i])) i++;
+          if (i >= n) break;
+          var span = qtScanSpan(text, i);
+          if (!span || !span.complete) return null;
+          values.push(text.slice(span.start, span.end));
+          i = span.end;
+        }
+        if (values.length < 2) return null;
+        for (var k = 0; k < values.length; k++) {
+          try { JSON.parse(values[k]); } catch (e) { return null; }
+        }
+        return values;
+      }
+
+      // Single-quote / trailing-comma / unquoted-key repair. Only ever called on text that
+      // has already had markdown fences and surrounding prose stripped -- that ordering is
+      // what actually fixes the false-positive on a plain-English apostrophe (e.g. "Here's
+      // the JSON..."), since there's no longer any prose left for a stray ' to latch onto.
+      function qtCharLevelRepair(text){
         var fixes = [];
         var normalized = "";
         var inString = false, quoteChar = null;
@@ -157,6 +213,85 @@
         return { text: rebuilt, fixes: fixes };
       }
 
+      function qtRepairJson(rawText){
+        var fixes = [];
+        var flags = { fence: false, prose: false, multi: false };
+        var text = rawText;
+
+        var fence = qtStripFence(text);
+        if (fence.stripped) {
+          text = fence.text;
+          flags.fence = true;
+          fixes.push(fence.lang ? "removed the ```" + fence.lang + " markdown code fence" : "removed the markdown code fence");
+        }
+
+        var stillInvalid = true;
+        try { JSON.parse(text); stillInvalid = false; } catch (e) { /* fall through */ }
+
+        if (stillInvalid) {
+          // Concatenated top-level values (NDJSON-style) must be checked before prose
+          // extraction -- otherwise a second/third JSON object gets misread as trailing
+          // prose and silently discarded instead of being wrapped in an array.
+          var multi = qtSplitTopLevelJsonValues(text);
+          if (multi) {
+            flags.multi = true;
+            var arr = "[" + multi.map(function(v){ return JSON.stringify(JSON.parse(v)); }).join(",") + "]";
+            fixes.push("detected " + multi.length + " separate top-level JSON objects and wrapped them in an array");
+            return { text: arr, fixes: fixes, flags: flags };
+          }
+
+          var firstBrace = -1;
+          for (var k = 0; k < text.length; k++) {
+            if (text[k] === "{" || text[k] === "[") { firstBrace = k; break; }
+          }
+          if (firstBrace > -1) {
+            var candidate = qtScanSpan(text, firstBrace);
+            if (candidate && candidate.complete) {
+              var before = text.slice(0, candidate.start).trim();
+              var after = text.slice(candidate.end).trim();
+              if (before || after) {
+                text = text.slice(candidate.start, candidate.end);
+                flags.prose = true;
+                fixes.push("found JSON surrounded by explanatory text and removed the surrounding text");
+              }
+            }
+          }
+        }
+
+        var charLevel = qtCharLevelRepair(text);
+        fixes = fixes.concat(charLevel.fixes);
+        return { text: charLevel.text, fixes: fixes, flags: flags };
+      }
+
+      function qtExplainJsonError(text, err){
+        var msg = err.message;
+        if (qtDetectTruncation(text)) {
+          return {
+            raw: msg,
+            plain: "JSON appears incomplete — no data was invented to fill the gap. It's likely missing a closing } or ], often from a response that got cut off mid-way (a common issue with copy-pasted ChatGPT, Claude, or other AI output). You'll need the complete content; there's no safe way to guess what's missing.",
+            truncated: true
+          };
+        }
+        var m = msg.match(/position (\d+)/);
+        var plain = "";
+        if (m) {
+          var pos = parseInt(m[1], 10);
+          var before = text.slice(Math.max(0, pos - 20), pos).replace(/\s+$/, "");
+          var atChar = text[pos];
+          var afterCommaBeforeClose = /,\s*$/.test(before) && (atChar === "}" || atChar === "]");
+          if (afterCommaBeforeClose) {
+            plain = "There's a trailing comma right before a closing " + atChar + " — JSON doesn't allow a comma before the last item in an object or array.";
+          } else if (atChar === "'") {
+            plain = "This looks like a single quote — JSON requires double quotes for both keys and string values.";
+          } else if (/^[A-Za-z_$]/.test(atChar || "")) {
+            plain = "This looks like an unquoted key or word — JSON object keys must be wrapped in double quotes, like \"key\" instead of key.";
+          } else {
+            plain = "Check the highlighted position for a syntax issue — common causes are a missing comma, an extra comma, or a missing quote.";
+          }
+        }
+        return { raw: msg, plain: plain, truncated: false };
+      }
+
       function qtFormatJson(){
         var input = document.querySelector("#json");
         var out = document.querySelector("#jsonout");
@@ -172,18 +307,25 @@
           out.innerHTML = "Invalid JSON: " + explanation.raw + (explanation.plain ? "<br><span style=\"font-weight:500;font-size:13.5px\">" + explanation.plain + "</span>" : "");
           out.className = "result error";
           qtTrack("json_invalid");
+          if (explanation.truncated) qtTrack("json_truncation_detected");
 
-          var fixBtn = document.createElement("button");
-          fixBtn.className = "btn";
-          fixBtn.style.marginTop = "12px";
-          fixBtn.textContent = "Try to fix common issues";
-          fixBtn.addEventListener("click", function(){ qtTryFixJson(input, out, fixArea); });
-          fixArea.appendChild(fixBtn);
+          if (!explanation.truncated) {
+            var fixBtn = document.createElement("button");
+            fixBtn.className = "btn";
+            fixBtn.style.marginTop = "12px";
+            fixBtn.textContent = "Try to fix common issues";
+            fixBtn.addEventListener("click", function(){ qtTryFixJson(input, out, fixArea); });
+            fixArea.appendChild(fixBtn);
+          }
         }
       }
 
       function qtTryFixJson(input, out, fixArea){
+        qtTrack("json_repair_attempt");
         var repaired = qtRepairJson(input.value);
+        if (repaired.flags.fence) qtTrack("json_markdown_fence_detected");
+        if (repaired.flags.prose) qtTrack("json_surrounding_text_detected");
+        if (repaired.flags.multi) qtTrack("json_multiple_objects_detected");
         try {
           var parsed = JSON.parse(repaired.text);
           input.value = JSON.stringify(parsed, null, 2);
@@ -197,6 +339,7 @@
           out.innerHTML = "Still invalid after fixing common issues: " + explanation.raw + (explanation.plain ? "<br><span style=\"font-weight:500;font-size:13.5px\">" + explanation.plain + "</span>" : "") + (repaired.fixes.length ? "<br><span style=\"font-size:12.5px;color:var(--muted)\">Already tried: " + repaired.fixes.join(", ") + "</span>" : "");
           out.className = "result error";
           qtTrack("json_repair_failed");
+          if (explanation.truncated) qtTrack("json_truncation_detected");
         }
       }
 
@@ -217,7 +360,7 @@
     </ol>
 
     <h2>Fixing invalid JSON</h2>
-    <p>When your JSON doesn't parse, QuickTiny explains why in plain English alongside the raw parser error — for example, pointing out a trailing comma, a single quote where a double quote belongs, or an unquoted key. If the problem is one of a handful of common, unambiguous issues (trailing commas, single-quoted strings, unquoted keys — the kind that show up constantly in JSON copied from ChatGPT, Claude, or hand-edited config files), click "Try to fix common issues" and QuickTiny will correct it automatically and tell you exactly what it changed. If the JSON is incomplete — missing a closing bracket because a response got cut off mid-generation — QuickTiny will say so instead of guessing at what's missing, since there's no safe way to reconstruct content that was never there. Severely truncated JSON isn't something any automatic fixer can safely repair.</p>
+    <p>When your JSON doesn't parse, QuickTiny explains why in plain English alongside the raw parser error — for example, pointing out a trailing comma, a single quote where a double quote belongs, or an unquoted key. If the problem is one of a handful of common, unambiguous issues (trailing commas, single-quoted strings, unquoted keys, a ```json markdown code fence still wrapped around the output, explanatory text before or after the JSON, or several JSON objects pasted back to back — the kind that show up constantly in output copied from ChatGPT, Claude, or hand-edited config files), click "Try to fix common issues" and QuickTiny will correct it automatically and tell you exactly what it changed. If the JSON is incomplete — missing a closing bracket or ending mid-string because a response got cut off mid-generation — QuickTiny will say so instead of guessing at what's missing, since there's no safe way to reconstruct content that was never there. Severely truncated JSON isn't something any automatic fixer can safely repair.</p>
 
     <h2>Example: fixing JSON copied from ChatGPT or Claude</h2>
     <p>AI chat responses commonly introduce the same handful of issues: a trailing comma left in after editing a list, a stray single-quoted string, or an unquoted key typed out of habit. Here's a realistic example with all three, pasted as-is:</p>
@@ -319,12 +462,12 @@
         <pre><code>{"a": 1, "b": 2}</code></pre>
       </div>
     </div>
-    <p>Paste any of these into the tool above and you'll see JavaScript's version of the same complaint (worded differently, but pointing at the identical problem) — these three need a manual edit rather than the one-click "Try to fix common issues" button, which only handles trailing commas, single quotes, and unquoted keys. Add the missing comma or separate the concatenated objects by hand, then re-validate.</p>
+    <p>Paste any of these into the tool above and you'll see JavaScript's version of the same complaint, worded differently but pointing at the identical problem. A missing comma between two values still needs a manual edit. Concatenated JSON objects are different — "Try to fix common issues" now detects two or more complete JSON objects pasted back to back and offers to wrap them in an array instead of requiring you to split them by hand.</p>
 
     <h2>Key benefits</h2>
     <ul class="benefits">
       <li>Plain-English explanations alongside the raw parser error.</li>
-      <li>One-click automatic fix for trailing commas, single quotes, and unquoted keys.</li>
+      <li>One-click automatic fix for trailing commas, single quotes, unquoted keys, markdown code fences, surrounding explanatory text, and concatenated JSON objects.</li>
       <li>Two-space indentation for readable, diff-friendly JSON.</li>
       <li>Runs locally — your JSON is never sent to a server, logged, or stored anywhere.</li>
       <li>One-click copy of the formatted result.</li>
@@ -335,8 +478,8 @@
 
     <h2>Frequently asked questions</h2>
     <details class="faq-item"><summary>Is my JSON data uploaded anywhere?</summary><p>No. Parsing, formatting, and automatic fixing all happen entirely in your browser. Nothing is uploaded, logged, or stored — QuickTiny doesn't keep a history of what you've pasted.</p></details>
-    <details class="faq-item"><summary>Can this fix invalid JSON?</summary><p>Yes, for common and unambiguous problems: trailing commas, single quotes instead of double quotes, and unquoted object keys. Click "Try to fix common issues" after a failed validation and QuickTiny will correct it and tell you exactly what it changed.</p></details>
-    <details class="faq-item"><summary>Can this fix JSON copied from ChatGPT or Claude?</summary><p>Often, yes — the most common issues in AI-generated JSON (trailing commas, occasional single quotes) are exactly what the automatic fix targets. If the response got cut off mid-way, though, the JSON is genuinely incomplete, and QuickTiny will tell you that rather than guess at content that was never generated.</p></details>
+    <details class="faq-item"><summary>Can this fix invalid JSON?</summary><p>Yes, for common and unambiguous problems: trailing commas, single quotes instead of double quotes, unquoted object keys, a leftover markdown code fence, explanatory text before or after the JSON, and multiple JSON objects pasted back to back. Click "Try to fix common issues" after a failed validation and QuickTiny will correct it and tell you exactly what it changed.</p></details>
+    <details class="faq-item"><summary>Can this fix JSON copied from ChatGPT or Claude?</summary><p>Often, yes — the most common issues in AI-generated JSON (a ```json code fence still wrapped around the answer, a line of explanation before or after it, trailing commas, occasional single quotes) are exactly what the automatic fix targets. If the response got cut off mid-way, though, the JSON is genuinely incomplete, and QuickTiny will tell you that rather than guess at content that was never generated.</p></details>
     <details class="faq-item"><summary>What does the error message tell me?</summary><p>You'll see the browser's native JSON parse error plus, where QuickTiny can identify the likely cause, a plain-English explanation of what's probably wrong and why.</p></details>
     <details class="faq-item"><summary>What can't the automatic fix handle?</summary><p>Anything that requires guessing at missing content — like a truncated response missing its closing brackets, or a value that's ambiguous without more context. QuickTiny only applies fixes it can make with certainty; it will never quietly change what your data means.</p></details>
     <details class="faq-item"><summary>Can I minify JSON with this tool?</summary><p>This tool focuses on formatting, validating, and fixing. For minifying, remove the indentation manually or use JSON.stringify without a spacing argument in your own code.</p></details>
@@ -402,6 +545,6 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny JSON Formatter","url":"https://quicktinyv2.vercel.app/json-formatter","description":"Fix invalid JSON online for free — trailing commas, single quotes, unquoted keys, and malformed output from ChatGPT or Claude. Plain-English errors, one-click copy, runs in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"JSON Formatter","item":"https://quicktinyv2.vercel.app/json-formatter"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my JSON data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Parsing, formatting, and automatic fixing all happen entirely in your browser. Nothing is uploaded, logged, or stored — QuickTiny doesn't keep a history of what you've pasted."}},{"@type":"Question","name":"Can this fix invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes, for common and unambiguous problems: trailing commas, single quotes instead of double quotes, and unquoted object keys. Click \"Try to fix common issues\" after a failed validation and QuickTiny will correct it and tell you exactly what it changed."}},{"@type":"Question","name":"Can this fix JSON copied from ChatGPT or Claude?","acceptedAnswer":{"@type":"Answer","text":"Often, yes — the most common issues in AI-generated JSON (trailing commas, occasional single quotes) are exactly what the automatic fix targets. If the response got cut off mid-way, the JSON is genuinely incomplete, and QuickTiny will tell you that rather than guess at content that was never generated."}},{"@type":"Question","name":"What does the error message tell me?","acceptedAnswer":{"@type":"Answer","text":"You'll see the browser's native JSON parse error plus, where QuickTiny can identify the likely cause, a plain-English explanation of what's probably wrong and why."}},{"@type":"Question","name":"What can't the automatic fix handle?","acceptedAnswer":{"@type":"Answer","text":"Anything that requires guessing at missing content, like a truncated response missing its closing brackets. QuickTiny only applies fixes it can make with certainty."}},{"@type":"Question","name":"Can I minify JSON with this tool?","acceptedAnswer":{"@type":"Answer","text":"This tool focuses on formatting, validating, and fixing. For minifying, remove the indentation manually or use JSON.stringify without a spacing argument in your own code."}},{"@type":"Question","name":"Why does JSON.parse() say \"Expected property name or '}'\" or \"Unexpected token '\"?","acceptedAnswer":{"@type":"Answer","text":"Both mean JSON requires double quotes, not single quotes, everywhere a key or string appears. \"Expected property name...\" means the very first key in an object is unquoted or single-quoted; \"Unexpected token '\" means a string value is single-quoted. Paste your JSON above and click \"Try to fix common issues\" to convert single quotes and quote bare keys automatically."}},{"@type":"Question","name":"Why does Python's json.loads() say \"Expecting property name enclosed in double quotes\"?","acceptedAnswer":{"@type":"Answer","text":"Python's json module reports this one message for unquoted keys, single-quoted keys, and trailing commas alike, where JavaScript reports each differently. The underlying fix is identical regardless of language: valid double-quoted keys and no trailing commas. Fix it once in the tool above, then use the corrected output in your Python code."}},{"@type":"Question","name":"Why do I get \"Unexpected token '<'\" when parsing an API response?","acceptedAnswer":{"@type":"Answer","text":"Your code received an HTML page instead of JSON — almost always an error page (404/500) or login redirect from the API. Check the actual HTTP response in your browser's Network tab rather than trying to fix the \"JSON\" itself, since it isn't JSON at all."}},{"@type":"Question","name":"What does \"Unexpected end of JSON input\" mean?","acceptedAnswer":{"@type":"Answer","text":"The JSON was cut off partway through — often a network response that didn't finish, or AI output that hit a length limit. There's no safe way to guess the missing content, so get the complete response rather than trying to patch this one."}},{"@type":"Question","name":"Why does Python say \"Expecting value\", \"Expecting ',' delimiter\", or \"Extra data\"?","acceptedAnswer":{"@type":"Answer","text":"These cover different problems than the single-quote/unquoted-key error: a missing value, a missing comma between two key-value pairs, or extra content (often two JSON objects concatenated) after otherwise-valid JSON. Paste the JSON above to see exactly where it breaks."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my JSON data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Parsing, formatting, and automatic fixing all happen entirely in your browser. Nothing is uploaded, logged, or stored — QuickTiny doesn't keep a history of what you've pasted."}},{"@type":"Question","name":"Can this fix invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"Yes, for common and unambiguous problems: trailing commas, single quotes instead of double quotes, unquoted object keys, a leftover markdown code fence, explanatory text before or after the JSON, and multiple JSON objects pasted back to back. Click \"Try to fix common issues\" after a failed validation and QuickTiny will correct it and tell you exactly what it changed."}},{"@type":"Question","name":"Can this fix JSON copied from ChatGPT or Claude?","acceptedAnswer":{"@type":"Answer","text":"Often, yes — the most common issues in AI-generated JSON (a ```json code fence still wrapped around the answer, a line of explanation before or after it, trailing commas, occasional single quotes) are exactly what the automatic fix targets. If the response got cut off mid-way, the JSON is genuinely incomplete, and QuickTiny will tell you that rather than guess at content that was never generated."}},{"@type":"Question","name":"What does the error message tell me?","acceptedAnswer":{"@type":"Answer","text":"You'll see the browser's native JSON parse error plus, where QuickTiny can identify the likely cause, a plain-English explanation of what's probably wrong and why."}},{"@type":"Question","name":"What can't the automatic fix handle?","acceptedAnswer":{"@type":"Answer","text":"Anything that requires guessing at missing content, like a truncated response missing its closing brackets. QuickTiny only applies fixes it can make with certainty."}},{"@type":"Question","name":"Can I minify JSON with this tool?","acceptedAnswer":{"@type":"Answer","text":"This tool focuses on formatting, validating, and fixing. For minifying, remove the indentation manually or use JSON.stringify without a spacing argument in your own code."}},{"@type":"Question","name":"Why does JSON.parse() say \"Expected property name or '}'\" or \"Unexpected token '\"?","acceptedAnswer":{"@type":"Answer","text":"Both mean JSON requires double quotes, not single quotes, everywhere a key or string appears. \"Expected property name...\" means the very first key in an object is unquoted or single-quoted; \"Unexpected token '\" means a string value is single-quoted. Paste your JSON above and click \"Try to fix common issues\" to convert single quotes and quote bare keys automatically."}},{"@type":"Question","name":"Why does Python's json.loads() say \"Expecting property name enclosed in double quotes\"?","acceptedAnswer":{"@type":"Answer","text":"Python's json module reports this one message for unquoted keys, single-quoted keys, and trailing commas alike, where JavaScript reports each differently. The underlying fix is identical regardless of language: valid double-quoted keys and no trailing commas. Fix it once in the tool above, then use the corrected output in your Python code."}},{"@type":"Question","name":"Why do I get \"Unexpected token '<'\" when parsing an API response?","acceptedAnswer":{"@type":"Answer","text":"Your code received an HTML page instead of JSON — almost always an error page (404/500) or login redirect from the API. Check the actual HTTP response in your browser's Network tab rather than trying to fix the \"JSON\" itself, since it isn't JSON at all."}},{"@type":"Question","name":"What does \"Unexpected end of JSON input\" mean?","acceptedAnswer":{"@type":"Answer","text":"The JSON was cut off partway through — often a network response that didn't finish, or AI output that hit a length limit. There's no safe way to guess the missing content, so get the complete response rather than trying to patch this one."}},{"@type":"Question","name":"Why does Python say \"Expecting value\", \"Expecting ',' delimiter\", or \"Extra data\"?","acceptedAnswer":{"@type":"Answer","text":"These cover different problems than the single-quote/unquoted-key error: a missing value, a missing comma between two key-value pairs, or extra content (often two JSON objects concatenated) after otherwise-valid JSON. Paste the JSON above to see exactly where it breaks."}}]}</script>
 </body>
 </html>
