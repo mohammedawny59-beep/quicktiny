@@ -38,30 +38,18 @@
 </header>
 <div class="wrap">
   <section class="hero">
-    <span class="eyebrow">Fast &middot; Private &middot; Free essentials</span>
-    <h1>13 Browser Tools for Everyday Tasks &mdash; 12 Free, 1 Pro</h1>
-    <p>Compress images, format JSON, count words, generate passwords and more &mdash; no signup, nothing uploaded. Everything runs right in your browser.</p>
-    <div class="hero-badges">
-      <span class="badge trust">No signup</span>
-      <span class="badge trust">Browser-first</span>
-      <span class="badge trust">Privacy-friendly</span>
-    </div>
-    <div class="btn-row hero-cta">
-      <a class="btn" href="#tools">Explore tools <svg class="btn-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-  </section>
-
-  <section class="section" id="smart-actions">
-    <div class="section-head">
-      <div>
-        <div class="section-title">QuickTiny Smart Actions</div>
-        <p class="section-sub">Paste anything. We'll figure out what you need.</p>
-      </div>
-    </div>
-    <div class="tool-panel" id="smartPanel">
-      <textarea id="smartInput" placeholder="Paste JSON, Base64, a URL-encoded string, a timestamp, or any text..."></textarea>
+    <span class="eyebrow">Fast &middot; Private &middot; No signup</span>
+    <h1>Paste anything. QuickTiny finds the tool you need.</h1>
+    <p>JSON, Base64, encoded URLs, timestamps, lists, or normal text &mdash; detected locally in your browser and routed to the right tool.</p>
+    <div class="tool-panel" id="smart-actions" style="max-width:860px;margin:24px auto 0;text-align:left">
+      <textarea id="smartInput" placeholder="Paste anything... JSON, Base64, a URL-encoded string, a timestamp, or text"></textarea>
       <p class="privacy-note">🔒 Detected locally in your browser. Nothing is uploaded.</p>
       <div id="smartResult"></div>
+    </div>
+    <div class="hero-badges">
+      <span class="badge trust">13 tools &middot; 12 free, 1 Pro</span>
+      <span class="badge trust">Browser-first</span>
+      <span class="badge trust">Nothing uploaded</span>
     </div>
   </section>
   <script>
