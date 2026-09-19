@@ -1,6 +1,6 @@
 # QuickTiny
 
-13 free, browser-local tools (JSON formatter, Base64/URL encode-decode, timestamp converter, word counter, image compressor, Shopify product-image checker/fixer, and more), plus a one-time-purchase batch image compressor. Live at [quicktinyv2.vercel.app](https://quicktinyv2.vercel.app).
+13 browser-local tools &mdash; 12 free (JSON formatter, Base64/URL encode-decode, timestamp converter, word counter, image compressor, Shopify product-image checker/fixer, and more) plus a one-time-purchase batch image compressor. Live at [quicktinyv2.vercel.app](https://quicktinyv2.vercel.app).
 
 ## Reusable Shopify image-limit check
 

@@ -39,7 +39,7 @@
 <div class="wrap">
   <section class="hero">
     <span class="eyebrow">Fast &middot; Private &middot; Free essentials</span>
-    <h1>13 Free Browser Tools for Everyday Tasks</h1>
+    <h1>13 Browser Tools for Everyday Tasks &mdash; 12 Free, 1 Pro</h1>
     <p>Compress images, format JSON, count words, generate passwords and more &mdash; no signup, nothing uploaded. Everything runs right in your browser.</p>
     <div class="hero-badges">
       <span class="badge trust">No signup</span>
@@ -227,6 +227,18 @@
       var qtSmartUsedTracked = false;
       var qtSmartDebounce = null;
 
+      var QT_SMART_ACTION_EVENT_BY_TOOL = {
+        "/json-formatter": "smart_action_json",
+        "/base64-encode-decode": "smart_action_base64",
+        "/url-encode-decode": "smart_action_url",
+        "/timestamp-converter": "smart_action_timestamp",
+        "/clean-text": "smart_action_clean_text",
+        "/remove-duplicate-lines": "smart_action_dedupe",
+        "/sort-lines": "smart_action_sort",
+        "/word-counter": "smart_action_word_count",
+        "/case-converter": "smart_action_case_converter"
+      };
+
       function qtSmartRender(){
         var input = document.querySelector("#smartInput");
         var resultEl = document.querySelector("#smartResult");
@@ -234,8 +246,8 @@
         var type = qtSmartDetect(value);
         if (!type) { resultEl.innerHTML = ""; qtSmartLastType = null; return; }
 
-        if (!qtSmartUsedTracked) { qtTrack("smart_input_used"); qtSmartUsedTracked = true; }
-        if (type !== qtSmartLastType) { qtTrack("smart_detect_" + type); qtSmartLastType = type; }
+        if (!qtSmartUsedTracked) { qtTrack("smart_input_used"); qtEvent("smart_input_used"); qtSmartUsedTracked = true; }
+        if (type !== qtSmartLastType) { qtTrack("smart_detect_" + type); qtEvent("smart_detect_" + type); qtSmartLastType = type; }
 
         var spec = QT_SMART_ACTIONS[type];
         var html = '<div class="smart-detected"><span class="badge local">Detected: ' + spec.label + '</span></div>';
@@ -251,6 +263,8 @@
             var tool = btn.getAttribute("data-tool");
             var action = btn.getAttribute("data-action");
             qtTrack("smart_action_click", { tool: tool, action: action });
+            var actionEvent = QT_SMART_ACTION_EVENT_BY_TOOL[tool];
+            if (actionEvent) qtEvent(actionEvent);
             qtHandoffSet({ tool: tool, action: action, value: input.value });
             location.href = tool;
           });
@@ -267,7 +281,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">All tools</div>
-        <p class="section-sub">13 free browser tools. Search or filter by category &mdash; nothing here requires an account.</p>
+        <p class="section-sub">13 browser tools &mdash; 12 free, 1 Pro. Search or filter by category &mdash; nothing here requires an account.</p>
       </div>
     </div>
     <div class="search-row">

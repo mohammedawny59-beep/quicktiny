@@ -30,6 +30,19 @@ function qtTrack(name, data){
   } catch (e) {}
 }
 
+/* ---------- Free, first-party Smart Actions measurement (Vercel Hobby has no custom-event UI) ---------- */
+/* Fire-and-forget: a categorical event name only, never pasted content, never blocks the UI. */
+
+function qtEvent(name){
+  try {
+    fetch("/api/qt-event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ event: name })
+    }).catch(function(){});
+  } catch (e) {}
+}
+
 /* ---------- Smart Actions handoff: pass pasted input from the homepage to a tool page ---------- */
 /* sessionStorage only -- never the URL/query string -- and consumed (removed) on first read. */
 
