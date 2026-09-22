@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JSON Formatter Without Uploading Data | QuickTiny</title>
+  <meta name="description" content="Format, validate and repair JSON locally in your browser without uploading the JSON to QuickTiny. Includes privacy checks and common error guidance.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/json-formatter-without-upload">
+  <meta property="og:title" content="JSON Formatter Without Uploading Data | QuickTiny">
+  <meta property="og:description" content="Format, validate and repair JSON locally in your browser without uploading the JSON to QuickTiny. Includes privacy checks and common error guidance.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/json-formatter-without-upload">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Format JSON without uploading it","description":"Format, validate and repair JSON locally in your browser without uploading the JSON to QuickTiny. Includes privacy checks and common error guidance.","datePublished":"2026-09-22","dateModified":"2026-09-22","author":{"@type":"Person","name":"Mohammed Awny","url":"https://quicktinyv2.vercel.app/about-quicktiny"},"publisher":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","logo":{"@type":"ImageObject","url":"https://quicktinyv2.vercel.app/quicktiny-logo-240.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://quicktinyv2.vercel.app/json-formatter-without-upload"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does QuickTiny upload my JSON?","acceptedAnswer":{"@type":"Answer","text":"No. Formatting, validation and repair run in the browser. Usage measurement contains categorical events rather than the JSON value."}},{"@type":"Question","name":"Can QuickTiny repair invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"It can repair several common issues such as code fences, trailing commas, simple unquoted keys and single-quoted strings. Review repaired output before using it."}},{"@type":"Question","name":"Does the formatter use AI?","acceptedAnswer":{"@type":"Answer","text":"No. The formatter and repair steps use deterministic browser-side code."}},{"@type":"Question","name":"Should I paste API keys or production secrets?","acceptedAnswer":{"@type":"Answer","text":"No. Use an audited offline workflow for secrets even when a web tool performs processing locally."}}]}</script>
+</head>
+<body>
+<header class="site-header"><div class="wrap nav"><a class="logo" href="/">QuickTiny<span class="dot">.</span></a><div class="nav-right"><nav class="nav-links" id="navLinks"><a href="/#tools">Tools</a><a href="/batch-image-compressor">Pro</a><a href="/about-quicktiny">About</a><a href="/privacy">Privacy</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button></div></div></header>
+<main class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">JSON privacy guide</span></div>
+  <section class="hero compact"><span class="eyebrow">JSON privacy guide · Updated September 22, 2026</span><h1>Format JSON without uploading it</h1><p>QuickTiny's JSON Formatter runs in your browser. You can format, validate or repair a non-sensitive JSON snippet without sending the JSON to QuickTiny's application server.</p></section>
+  <article class="content">
+    <h2>Use the local JSON formatter</h2>
+    <ol><li>Open the <a href="/json-formatter">QuickTiny JSON Formatter</a>.</li><li>Paste the JSON you want to inspect.</li><li>Choose Format, Minify, Validate or Repair.</li><li>Review the output before copying it into an application or configuration file.</li></ol>
+    <p>You can also paste JSON into <a href="/#smart-actions">Smart Actions</a>. QuickTiny detects valid or repairable JSON and routes it to the formatter through session storage, not a URL query string.</p>
+    <h2>What the formatter can fix</h2>
+    <ul><li>Indent valid objects and arrays.</li><li>Minify valid JSON.</li><li>Identify parse errors.</li><li>Remove Markdown code fences.</li><li>Extract a complete object or array from surrounding text.</li><li>Repair common trailing commas, simple unquoted keys and single-quoted strings.</li></ul>
+    <h2>What it deliberately avoids</h2>
+    <p>Repair should not invent missing business data or reinterpret ambiguous values. QuickTiny does not use an AI model to guess the intended schema. Always compare repaired output with the source before using it.</p>
+    <h2>How to verify that JSON stays local</h2>
+    <p>Open the browser Network panel, clear existing requests, then format a distinctive non-sensitive value. The transformation should complete without an outgoing request containing that value. QuickTiny may record a categorical usage event, but it does not include the JSON content.</p>
+    <h2>Common JSON errors</h2>
+    <div class="table-scroll"><table class="data-table"><thead><tr><th>Error</th><th>Example</th><th>Typical fix</th></tr></thead><tbody>
+      <tr><td>Trailing comma</td><td><code>{"a":1,}</code></td><td>Remove the comma before the closing brace.</td></tr>
+      <tr><td>Single quotes</td><td><code>{'a':1}</code></td><td>Use double quotes for JSON strings and keys.</td></tr>
+      <tr><td>Unquoted key</td><td><code>{a:1}</code></td><td>Quote the key: <code>{"a":1}</code>.</td></tr>
+      <tr><td>Markdown fence</td><td><code>```json … ```</code></td><td>Remove the fence before parsing.</td></tr>
+    </tbody></table></div>
+    <h2>Security boundary</h2>
+    <p>Local processing does not make every browser environment trustworthy. Do not paste production credentials, private keys, authentication tokens or regulated personal data into a webpage when a dedicated offline or audited tool is required.</p>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does QuickTiny upload my JSON?</summary><p>No. Formatting, validation and repair run in the browser. Usage measurement contains categorical events rather than the JSON value.</p></details>
+    <details class="faq-item"><summary>Can QuickTiny repair invalid JSON?</summary><p>It can repair several common issues such as code fences, trailing commas, simple unquoted keys and single-quoted strings. Review repaired output before using it.</p></details>
+    <details class="faq-item"><summary>Does the formatter use AI?</summary><p>No. The formatter and repair steps use deterministic browser-side code.</p></details>
+    <details class="faq-item"><summary>Should I paste API keys or production secrets?</summary><p>No. Use an audited offline workflow for secrets even when a web tool performs processing locally.</p></details>
+    <h2>Try QuickTiny</h2>
+    <p>Use <a href="/">Smart Actions</a> to paste a non-sensitive example and let QuickTiny suggest the right browser tool, or open a tool directly from the links above.</p>
+  </article>
+</main>
+<footer><div class="wrap"><div class="footer-bottom"><span>&copy; <span data-year></span> QuickTiny</span><span><a href="/about-quicktiny">About</a> · <a href="/privacy">Privacy</a> · <a href="/llms.txt">Product facts</a></span></div></div></footer>
+<script src="/site.js"></script><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script><script defer src="/_vercel/insights/script.js"></script>
+</body></html>
