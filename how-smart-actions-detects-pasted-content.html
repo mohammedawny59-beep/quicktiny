@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>How QuickTiny Smart Actions Detects Pasted Content</title>
+  <meta name="description" content="A technical explanation of how QuickTiny distinguishes JSON, Base64, URL-encoded text, Unix timestamps, lists and plain text locally.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/how-smart-actions-detects-pasted-content">
+  <meta property="og:title" content="How QuickTiny Smart Actions Detects Pasted Content">
+  <meta property="og:description" content="A technical explanation of how QuickTiny distinguishes JSON, Base64, URL-encoded text, Unix timestamps, lists and plain text locally.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/how-smart-actions-detects-pasted-content">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How Smart Actions detects what you paste","description":"A technical explanation of how QuickTiny distinguishes JSON, Base64, URL-encoded text, Unix timestamps, lists and plain text locally.","datePublished":"2026-09-22","dateModified":"2026-09-22","author":{"@type":"Person","name":"Mohammed Awny","url":"https://quicktinyv2.vercel.app/about-quicktiny"},"publisher":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","logo":{"@type":"ImageObject","url":"https://quicktinyv2.vercel.app/quicktiny-logo-240.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://quicktinyv2.vercel.app/how-smart-actions-detects-pasted-content"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Smart Actions use an AI model?","acceptedAnswer":{"@type":"Answer","text":"No. It uses deterministic JavaScript heuristics in the browser."}},{"@type":"Question","name":"Is pasted content sent to QuickTiny?","acceptedAnswer":{"@type":"Answer","text":"No. The content classification runs locally, and measurement records only the category, not the value."}},{"@type":"Question","name":"Why can Base64 detection be difficult?","acceptedAnswer":{"@type":"Answer","text":"Many ordinary alphanumeric strings match the Base64 character set. Reliable detection needs additional checks such as length, padding, successful decoding and printable output."}},{"@type":"Question","name":"Can Smart Actions make a wrong suggestion?","acceptedAnswer":{"@type":"Answer","text":"Yes. Some formats are inherently ambiguous. QuickTiny presents suggested actions and leaves the final choice with the user."}}]}</script>
+</head>
+<body>
+<header class="site-header"><div class="wrap nav"><a class="logo" href="/">QuickTiny<span class="dot">.</span></a><div class="nav-right"><nav class="nav-links" id="navLinks"><a href="/#tools">Tools</a><a href="/batch-image-compressor">Pro</a><a href="/about-quicktiny">About</a><a href="/privacy">Privacy</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button></div></div></header>
+<main class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Technical note</span></div>
+  <section class="hero compact"><span class="eyebrow">Technical note · Updated September 22, 2026</span><h1>How Smart Actions detects what you paste</h1><p>Smart Actions uses conservative browser-side heuristics. It does not ask an AI model or upload the pasted value. Detection is useful because common formats overlap and a confident guess can be wrong.</p></section>
+  <article class="content">
+    <h2>Detection order</h2>
+    <p>Order matters. A numeric timestamp can also satisfy a loose Base64 pattern, and ordinary words can accidentally resemble encoded data. QuickTiny tests stronger signals before weaker ones:</p>
+    <ol><li>Valid JSON objects or arrays.</li><li>Fenced, wrapped or conservatively repairable JSON.</li><li>Plausible Unix timestamps in seconds or milliseconds.</li><li>URL-encoded text containing valid percent escapes.</li><li>Base64 with valid alphabet, padding and plausibly printable decoded bytes.</li><li>Multiline or list-like text.</li><li>Plain text as the fallback.</li></ol>
+    <h2>JSON and messy JSON</h2>
+    <p>QuickTiny first attempts strict JSON parsing. If that fails, it can remove a Markdown code fence, extract a complete object or array from surrounding prose, remove trailing commas and quote simple unquoted keys. The repair path stays conservative: it suggests the JSON tool and lets the user inspect the result rather than silently treating every brace as valid data.</p>
+    <h2>Unix timestamps</h2>
+    <p>A string must be numeric and fall within a plausible date range. QuickTiny distinguishes seconds from milliseconds by magnitude, preventing arbitrary account numbers or short integers from being labeled as dates.</p>
+    <h2>Base64</h2>
+    <p>Character-set matching alone produces false positives. QuickTiny also checks minimum length, padding shape, impossible remainder lengths, decoded output and the proportion of printable bytes. Pure numbers are excluded before this test.</p>
+    <h2>URL-encoded text</h2>
+    <p>The detector looks for percent-encoded byte sequences and verifies that decoding succeeds. A normal sentence containing a percent sign is therefore less likely to be mislabeled.</p>
+    <h2>Lists and plain text</h2>
+    <p>Multiline values are routed toward cleaning, sorting and duplicate removal. Everything else falls back to text actions such as word counting, cleaning and case conversion.</p>
+    <h2>Privacy and limitations</h2>
+    <p>Detection runs locally. QuickTiny records only categorical measurements such as the detected format, never the pasted value. Heuristics cannot determine intent perfectly, so Smart Actions shows suggestions rather than automatically modifying the input. If a non-sensitive example is classified incorrectly, send it to <a href="mailto:quicktiny.support@gmail.com">quicktiny.support@gmail.com</a>.</p>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does Smart Actions use an AI model?</summary><p>No. It uses deterministic JavaScript heuristics in the browser.</p></details>
+    <details class="faq-item"><summary>Is pasted content sent to QuickTiny?</summary><p>No. The content classification runs locally, and measurement records only the category, not the value.</p></details>
+    <details class="faq-item"><summary>Why can Base64 detection be difficult?</summary><p>Many ordinary alphanumeric strings match the Base64 character set. Reliable detection needs additional checks such as length, padding, successful decoding and printable output.</p></details>
+    <details class="faq-item"><summary>Can Smart Actions make a wrong suggestion?</summary><p>Yes. Some formats are inherently ambiguous. QuickTiny presents suggested actions and leaves the final choice with the user.</p></details>
+    <h2>Try QuickTiny</h2>
+    <p>Use <a href="/">Smart Actions</a> to paste a non-sensitive example and let QuickTiny suggest the right browser tool, or open a tool directly from the links above.</p>
+  </article>
+</main>
+<footer><div class="wrap"><div class="footer-bottom"><span>&copy; <span data-year></span> QuickTiny</span><span><a href="/about-quicktiny">About</a> · <a href="/privacy">Privacy</a> · <a href="/llms.txt">Product facts</a></span></div></div></footer>
+<script src="/site.js"></script><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script><script defer src="/_vercel/insights/script.js"></script>
+</body></html>

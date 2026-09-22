@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Private Browser Tools That Process Data Locally | QuickTiny</title>
+  <meta name="description" content="A practical guide to browser tools that process JSON, text, images, Base64, URLs and timestamps locally without uploading your input.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/private-browser-tools">
+  <meta property="og:title" content="Private Browser Tools That Process Data Locally | QuickTiny">
+  <meta property="og:description" content="A practical guide to browser tools that process JSON, text, images, Base64, URLs and timestamps locally without uploading your input.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/private-browser-tools">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Private browser tools that process data locally","description":"A practical guide to browser tools that process JSON, text, images, Base64, URLs and timestamps locally without uploading your input.","datePublished":"2026-09-22","dateModified":"2026-09-22","author":{"@type":"Person","name":"Mohammed Awny","url":"https://quicktinyv2.vercel.app/about-quicktiny"},"publisher":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","logo":{"@type":"ImageObject","url":"https://quicktinyv2.vercel.app/quicktiny-logo-240.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://quicktinyv2.vercel.app/private-browser-tools"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do local browser tools work without uploading my input?","acceptedAnswer":{"@type":"Answer","text":"Yes, when the transformation is implemented in client-side JavaScript. The page code runs on your device and can produce the result without sending the input to an application server."}},{"@type":"Question","name":"Can I safely paste secrets into any local tool?","acceptedAnswer":{"@type":"Answer","text":"No. Local processing reduces server exposure, but a compromised device, malicious extension or dishonest page can still capture data. Use dedicated offline tooling for production secrets and regulated data."}},{"@type":"Question","name":"Does QuickTiny store pasted Smart Actions content?","acceptedAnswer":{"@type":"Answer","text":"No. Smart Actions detection happens in the browser, and its measurement events contain categories rather than the pasted value."}},{"@type":"Question","name":"Can I verify local processing myself?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the browser Network panel while running the action and inspect outgoing requests for the input or file."}}]}</script>
+</head>
+<body>
+<header class="site-header"><div class="wrap nav"><a class="logo" href="/">QuickTiny<span class="dot">.</span></a><div class="nav-right"><nav class="nav-links" id="navLinks"><a href="/#tools">Tools</a><a href="/batch-image-compressor">Pro</a><a href="/about-quicktiny">About</a><a href="/privacy">Privacy</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button></div></div></header>
+<main class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Privacy guide</span></div>
+  <section class="hero compact"><span class="eyebrow">Privacy guide · Updated September 22, 2026</span><h1>Private browser tools that process data locally</h1><p>For small transformations, local browser processing can keep your input on your device. The useful question is not whether a site says “private,” but what the browser actually sends over the network.</p></section>
+  <article class="content">
+    <h2>Short answer</h2>
+    <p>A local browser tool performs the transformation with JavaScript already loaded in your browser. Your input does not need to be sent to an application server. QuickTiny uses this model for Smart Actions and its supported JSON, text, encoding, timestamp, password and image tools.</p>
+    <h2>Tools available locally</h2>
+    <div class="table-scroll"><table class="data-table"><thead><tr><th>Task</th><th>QuickTiny tool</th><th>Typical input</th></tr></thead><tbody>
+      <tr><td>Format or repair JSON</td><td><a href="/json-formatter">JSON Formatter</a></td><td>API responses, config snippets</td></tr>
+      <tr><td>Encode or decode Base64</td><td><a href="/base64-encode-decode">Base64 Tool</a></td><td>Text tokens and payloads</td></tr>
+      <tr><td>Encode or decode URLs</td><td><a href="/url-encode-decode">URL Tool</a></td><td>Query values and components</td></tr>
+      <tr><td>Convert Unix timestamps</td><td><a href="/timestamp-converter">Timestamp Converter</a></td><td>Seconds or milliseconds</td></tr>
+      <tr><td>Clean, sort or deduplicate text</td><td><a href="/clean-text">Clean Text</a></td><td>Lists and copied text</td></tr>
+      <tr><td>Compress an image</td><td><a href="/compress-image">Image Compressor</a></td><td>JPG, PNG and browser-readable images</td></tr>
+      <tr><td>Generate a password</td><td><a href="/password-generator">Password Generator</a></td><td>Locally generated values</td></tr>
+    </tbody></table></div>
+    <h2>How to verify a “local” claim</h2>
+    <ol><li>Read the page's privacy explanation and identify which actions require a server.</li><li>Open browser developer tools, select the Network panel, clear it, and perform the transformation.</li><li>Check that the input or file is not present in an outgoing request.</li><li>Separate analytics requests from content-processing requests: analytics may record a page or categorical event without containing your input.</li></ol>
+    <h2>What local processing does not guarantee</h2>
+    <p>Local processing reduces exposure to an application server, but it does not make a compromised device, malicious browser extension or untrusted webpage safe. Avoid pasting production secrets, private keys, passwords or regulated personal data into any website when a dedicated offline workflow is required.</p>
+    <h2>QuickTiny's measurement boundary</h2>
+    <p>QuickTiny may record page views and categorical events such as “tool action clicked” to understand whether tools work. These events do not include pasted text, generated passwords or image contents. The current <a href="/privacy">privacy policy</a> is the authoritative source.</p>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Do local browser tools work without uploading my input?</summary><p>Yes, when the transformation is implemented in client-side JavaScript. The page code runs on your device and can produce the result without sending the input to an application server.</p></details>
+    <details class="faq-item"><summary>Can I safely paste secrets into any local tool?</summary><p>No. Local processing reduces server exposure, but a compromised device, malicious extension or dishonest page can still capture data. Use dedicated offline tooling for production secrets and regulated data.</p></details>
+    <details class="faq-item"><summary>Does QuickTiny store pasted Smart Actions content?</summary><p>No. Smart Actions detection happens in the browser, and its measurement events contain categories rather than the pasted value.</p></details>
+    <details class="faq-item"><summary>Can I verify local processing myself?</summary><p>Yes. Use the browser Network panel while running the action and inspect outgoing requests for the input or file.</p></details>
+    <h2>Try QuickTiny</h2>
+    <p>Use <a href="/">Smart Actions</a> to paste a non-sensitive example and let QuickTiny suggest the right browser tool, or open a tool directly from the links above.</p>
+  </article>
+</main>
+<footer><div class="wrap"><div class="footer-bottom"><span>&copy; <span data-year></span> QuickTiny</span><span><a href="/about-quicktiny">About</a> · <a href="/privacy">Privacy</a> · <a href="/llms.txt">Product facts</a></span></div></div></footer>
+<script src="/site.js"></script><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script><script defer src="/_vercel/insights/script.js"></script>
+</body></html>

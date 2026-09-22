@@ -109,6 +109,7 @@
     if (!count) { preview.innerHTML = ""; return; }
     var isPro = localStorage.getItem("quicktiny_pro") === "1";
     var plural = count === 1 ? "image" : "images";
+    qtEvent("pro_files_selected");
     if (isPro) {
       preview.innerHTML = "<p class=\"result success\">" + count + " " + plural + " ready — click “Check &amp; compress all images” below.</p>";
     } else {
@@ -182,6 +183,8 @@
         currencyCode: "USD"
       });
 
+      qtEvent("checkout_ready");
+
       if(!methods.isEligible("paypal")){
         document.querySelector("#paymentMessage").textContent =
           "PayPal is not available for this browser.";
@@ -202,7 +205,9 @@
           if(response.ok && result.status === "COMPLETED"){
             unlockPro();
             qtTrack("checkout_completed");
+            qtEvent("checkout_completed");
           }else{
+            qtEvent("checkout_failed");
             document.querySelector("#paymentMessage").textContent =
               "Payment could not be confirmed.";
             document.querySelector("#paymentMessage").className = "result error";
@@ -210,12 +215,14 @@
         },
 
         onCancel(){
+          qtEvent("checkout_failed");
           document.querySelector("#paymentMessage").textContent =
             "Payment cancelled.";
         },
 
         onError(err){
           console.error(err);
+          qtEvent("checkout_failed");
           document.querySelector("#paymentMessage").textContent =
             "PayPal error. Please try again.";
           document.querySelector("#paymentMessage").className = "result error";
@@ -229,6 +236,7 @@
 
       button.addEventListener("click", async ()=>{
         qtTrack("paypal_button_click");
+        qtEvent("checkout_started");
         try{
           const response = await fetch("/api/paypal-create-order",{
             method:"POST",
@@ -247,6 +255,7 @@
           );
         }catch(err){
           console.error(err);
+          qtEvent("checkout_failed");
           document.querySelector("#paymentMessage").textContent =
             "Could not start checkout. Please try again.";
           document.querySelector("#paymentMessage").className = "result error";
@@ -255,6 +264,7 @@
 
     }catch(err){
       console.error(err);
+      qtEvent("checkout_failed");
       document.querySelector("#paymentMessage").textContent =
         "PayPal failed to load.";
       document.querySelector("#paymentMessage").className = "result error";

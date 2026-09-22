@@ -38,7 +38,7 @@ function qtEvent(name){
     fetch("/api/qt-event", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ event: name })
+      body: JSON.stringify({ event: name, page: location.pathname })
     }).catch(function(){});
   } catch (e) {}
 }
@@ -62,3 +62,96 @@ function qtHandoffConsume(expectedTool){
     return payload;
   } catch (e) { return null; }
 }
+
+
+/* ---------- Privacy-safe funnel measurement, sharing, install and offline return ---------- */
+(function(){
+  var path = location.pathname;
+  var panel = document.querySelector(".tool-panel");
+  var inputTracked = false;
+  var resultTracked = false;
+
+  if (path === "/batch-image-compressor") qtEvent("pro_page_viewed");
+
+  if (panel && path !== "/") {
+    panel.addEventListener("input", function(e){
+      if (inputTracked) return;
+      if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
+        inputTracked = true;
+        qtEvent("tool_input_used");
+      }
+    }, true);
+    panel.addEventListener("change", function(e){
+      if (inputTracked) return;
+      if (e.target && e.target.tagName === "INPUT") {
+        inputTracked = true;
+        qtEvent("tool_input_used");
+      }
+    }, true);
+    panel.addEventListener("click", function(e){
+      var button = e.target && e.target.closest ? e.target.closest("button") : null;
+      if (button) qtEvent("tool_action_clicked");
+    }, true);
+
+    var observer = new MutationObserver(function(){
+      if (resultTracked) return;
+      var result = panel.querySelector(".result.success, .downloads a, pre:not(:empty), textarea[readonly]");
+      if (result && (result.textContent || result.value || "").trim()) {
+        resultTracked = true;
+        qtEvent("tool_result_created");
+      }
+    });
+    observer.observe(panel, { childList: true, subtree: true, characterData: true });
+  }
+
+  document.querySelectorAll('a[href="/batch-image-compressor"]').forEach(function(link){
+    link.addEventListener("click", function(){ qtEvent("pro_page_viewed"); });
+  });
+
+  var shareButton = document.querySelector("#shareQuickTiny");
+  if (shareButton) {
+    shareButton.addEventListener("click", async function(){
+      qtEvent("share_clicked");
+      var shareData = {
+        title: "QuickTiny",
+        text: "Fast, private browser tools with Smart Actions — no signup.",
+        url: "https://quicktinyv2.vercel.app/"
+      };
+      try {
+        if (navigator.share) await navigator.share(shareData);
+        else await navigator.clipboard.writeText(shareData.url);
+        shareButton.textContent = navigator.share ? "Shared ✓" : "Link copied ✓";
+        qtEvent("share_completed");
+      } catch (e) {}
+    });
+  }
+
+  var installPrompt = null;
+  var installButton = document.querySelector("#installQuickTiny");
+  window.addEventListener("beforeinstallprompt", function(e){
+    e.preventDefault();
+    installPrompt = e;
+    if (installButton) installButton.hidden = false;
+    qtEvent("install_prompt_shown");
+  });
+  if (installButton) {
+    installButton.addEventListener("click", async function(){
+      if (!installPrompt) return;
+      qtEvent("install_clicked");
+      installPrompt.prompt();
+      var choice = await installPrompt.userChoice;
+      if (choice && choice.outcome === "accepted") {
+        installButton.textContent = "Installed ✓";
+        installButton.disabled = true;
+        qtEvent("install_completed");
+      }
+      installPrompt = null;
+    });
+  }
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function(){
+      navigator.serviceWorker.register("/sw.js").catch(function(){});
+    });
+  }
+})();
