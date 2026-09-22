@@ -1,0 +1,45 @@
+{
+  "name": "QuickTiny — Private Browser Tools",
+  "short_name": "QuickTiny",
+  "description": "Fast browser tools with Smart Actions. Process JSON, text, images and everyday data locally with no signup.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0a0c10",
+  "theme_color": "#0a0c10",
+  "categories": [
+    "utilities",
+    "productivity",
+    "developer"
+  ],
+  "icons": [
+    {
+      "src": "/quicktiny-app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Smart Actions",
+      "short_name": "Paste",
+      "url": "/#smart-actions"
+    },
+    {
+      "name": "JSON Formatter",
+      "short_name": "JSON",
+      "url": "/json-formatter"
+    },
+    {
+      "name": "Image Compressor",
+      "short_name": "Compress",
+      "url": "/compress-image"
+    },
+    {
+      "name": "Timestamp Converter",
+      "short_name": "Timestamp",
+      "url": "/timestamp-converter"
+    }
+  ]
+}
