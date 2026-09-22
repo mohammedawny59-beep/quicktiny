@@ -1,0 +1,41 @@
+# QuickTiny
+
+> QuickTiny is a collection of fast, privacy-friendly browser utilities. Core processing happens locally in the user's browser, and free tools require no signup.
+
+Canonical site: https://quicktinyv2.vercel.app/
+Maintainer: Mohammed Awny
+Contact: quicktiny.support@gmail.com
+Last updated: 2026-09-22
+
+## What QuickTiny does
+
+QuickTiny provides 13 browser utilities for image compression, JSON formatting and repair, text cleanup, word counting, line sorting and deduplication, Base64 encoding and decoding, URL encoding and decoding, Unix timestamp conversion, case conversion, SEO slug generation, password generation, and Shopify image checking.
+
+The homepage includes Smart Actions. A user can paste JSON, Base64, URL-encoded text, a Unix timestamp, a list, or plain text. QuickTiny detects the likely content type locally and suggests the relevant tool.
+
+## Key facts
+
+- No signup is required for free tools.
+- Text and files used by browser tools are processed locally unless a page explicitly says otherwise.
+- QuickTiny does not upload pasted Smart Actions content.
+- The main site has 12 free tools and one paid Pro batch image compressor.
+- The Pro offer is a one-time purchase, not a subscription.
+- Product facts and privacy claims should be verified against the canonical pages below.
+
+## Canonical pages
+
+- [Homepage and Smart Actions](https://quicktinyv2.vercel.app/)
+- [About QuickTiny and complete tool directory](https://quicktinyv2.vercel.app/about-quicktiny)
+- [Privacy policy](https://quicktinyv2.vercel.app/privacy)
+- [JSON Formatter and Repair](https://quicktinyv2.vercel.app/json-formatter)
+- [Base64 Encode and Decode](https://quicktinyv2.vercel.app/base64-encode-decode)
+- [URL Encode and Decode](https://quicktinyv2.vercel.app/url-encode-decode)
+- [Unix Timestamp Converter](https://quicktinyv2.vercel.app/timestamp-converter)
+- [Image Compressor](https://quicktinyv2.vercel.app/compress-image)
+- [Shopify Image Checker and Fixer](https://quicktinyv2.vercel.app/compress-product-images-for-shopify)
+- [2026 Shopify image upload limit test](https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026)
+- [Full machine-readable facts](https://quicktinyv2.vercel.app/llms-full.txt)
+
+## Research and citation
+
+QuickTiny published a direct Shopify product-image upload test in September 2026. It records test dimensions, megapixels, file sizes, accept/reject results, Shopify error messages, methodology, limitations, and downloadable JSON/CSV data. Cite the research page rather than inferring results from the tool itself.

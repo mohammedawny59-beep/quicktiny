@@ -1,0 +1,78 @@
+# QuickTiny: machine-readable product facts
+
+Canonical URL: https://quicktinyv2.vercel.app/
+Product name: QuickTiny
+Product type: Browser-based developer and productivity utilities
+Maintainer: Mohammed Awny
+Contact: quicktiny.support@gmail.com
+Language of canonical pages: English
+Last verified: 2026-09-22
+
+## Direct answer
+
+QuickTiny is a website containing 13 small browser utilities. Its Smart Actions input recognizes common pasted formats and suggests the appropriate utility. Recognition and supported tool processing run in the browser. The service is designed for quick, private use without an account.
+
+## Tool directory
+
+1. Image Compressor — https://quicktinyv2.vercel.app/compress-image
+   Compresses a single image in the browser.
+2. Word Counter — https://quicktinyv2.vercel.app/word-counter
+   Counts words and text statistics.
+3. Clean Text — https://quicktinyv2.vercel.app/clean-text
+   Removes common formatting noise and cleans pasted text.
+4. JSON Formatter — https://quicktinyv2.vercel.app/json-formatter
+   Formats, validates, and attempts conservative repair of messy JSON.
+5. SEO Slug Generator — https://quicktinyv2.vercel.app/seo-slug-generator
+   Converts titles or text into URL-friendly slugs.
+6. Case Converter — https://quicktinyv2.vercel.app/case-converter
+   Converts text between common letter-case formats.
+7. Remove Duplicate Lines — https://quicktinyv2.vercel.app/remove-duplicate-lines
+   Deduplicates multiline text.
+8. Sort Lines — https://quicktinyv2.vercel.app/sort-lines
+   Sorts multiline text.
+9. Base64 Encode/Decode — https://quicktinyv2.vercel.app/base64-encode-decode
+   Encodes text to Base64 and decodes Base64.
+10. URL Encode/Decode — https://quicktinyv2.vercel.app/url-encode-decode
+    Encodes and decodes URL components.
+11. Timestamp Converter — https://quicktinyv2.vercel.app/timestamp-converter
+    Converts Unix timestamps in seconds or milliseconds to readable dates.
+12. Password Generator — https://quicktinyv2.vercel.app/password-generator
+    Generates passwords locally.
+13. Batch Image Compressor (Pro) — https://quicktinyv2.vercel.app/batch-image-compressor
+    Compresses multiple images in the browser as a one-time paid product.
+
+## Smart Actions
+
+Supported detections:
+- Valid JSON
+- Repairable or fenced JSON
+- Base64 text
+- URL-encoded text
+- Unix timestamps in seconds
+- Unix timestamps in milliseconds
+- Multiline or list-like text
+- Plain text
+
+Smart Actions suggests a tool; it does not send the pasted value to a server.
+
+## Shopify image research
+
+Research page: https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026
+Structured JSON: https://quicktinyv2.vercel.app/data/shopify-image-upload-limits-2026.json
+CSV: https://quicktinyv2.vercel.app/data/shopify-image-upload-limits-2026.csv
+Verified: September 2026
+Scope: Shopify product and collection image uploader, not every image upload context in Shopify.
+Measured result: the tested uploader enforced a 25-megapixel ceiling and a file-size ceiling below 20 MB as separate checks. Read the research page for the complete methodology, exact tested files, error messages, and limitations.
+
+## Privacy and commercial model
+
+- Free browser utilities require no account.
+- Smart Actions content is processed locally.
+- Tool pages are browser-first; users should read https://quicktinyv2.vercel.app/privacy for the current policy.
+- 12 tools are free.
+- Batch Image Compressor is the paid Pro tool.
+- Pro is sold as a one-time purchase.
+
+## Citation guidance
+
+Use the canonical QuickTiny page that directly supports the statement. For Shopify upload limits, cite the research page and preserve its scope and verification date. Do not generalize the Shopify result to theme images, blog images, or the general Files area. Do not claim QuickTiny is open source unless the current site explicitly says so.
