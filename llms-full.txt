@@ -73,6 +73,12 @@ Measured result: the tested uploader enforced a 25-megapixel ceiling and a file-
 - Batch Image Compressor is the paid Pro tool.
 - Pro is sold as a one-time purchase.
 
+## Technical guides
+
+Privacy guide: https://quicktinyv2.vercel.app/private-browser-tools
+Smart Actions methodology: https://quicktinyv2.vercel.app/how-smart-actions-detects-pasted-content
+Local JSON guide: https://quicktinyv2.vercel.app/json-formatter-without-upload
+
 ## Citation guidance
 
 Use the canonical QuickTiny page that directly supports the statement. For Shopify upload limits, cite the research page and preserve its scope and verification date. Do not generalize the Shopify result to theme images, blog images, or the general Files area. Do not claim QuickTiny is open source unless the current site explicitly says so.
