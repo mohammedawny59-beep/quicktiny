@@ -36,6 +36,12 @@ The homepage includes Smart Actions. A user can paste JSON, Base64, URL-encoded 
 - [2026 Shopify image upload limit test](https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026)
 - [Full machine-readable facts](https://quicktinyv2.vercel.app/llms-full.txt)
 
+## Guides and technical explanations
+
+- [Private browser tools that process data locally](https://quicktinyv2.vercel.app/private-browser-tools)
+- [How Smart Actions detects pasted content](https://quicktinyv2.vercel.app/how-smart-actions-detects-pasted-content)
+- [JSON formatter without uploading data](https://quicktinyv2.vercel.app/json-formatter-without-upload)
+
 ## Research and citation
 
 QuickTiny published a direct Shopify product-image upload test in September 2026. It records test dimensions, megapixels, file sizes, accept/reject results, Shopify error messages, methodology, limitations, and downloadable JSON/CSV data. Cite the research page rather than inferring results from the tool itself.
