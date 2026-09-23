@@ -9,7 +9,7 @@ Paste JSON, text, a URL, or an image and get the right browser tool quickly. Qui
 | Format, validate, or repair common JSON mistakes | [JSON Formatter](https://quicktinyv2.vercel.app/json-formatter?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
 | Compress one JPG or PNG without uploading it | [Image Compressor](https://quicktinyv2.vercel.app/compress-image?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
 | Count words and characters | [Word Counter](https://quicktinyv2.vercel.app/word-counter?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
-| Encode or decode Base64 text | [Base64](https://quicktinyv2.vercel.app/base64?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
+| Encode or decode Base64 text | [Base64](https://quicktinyv2.vercel.app/base64-encode-decode?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
 | Sort a list of lines | [Sort Lines](https://quicktinyv2.vercel.app/sort-lines?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
 
 Or [open all 13 tools](https://quicktinyv2.vercel.app/?utm_source=github&utm_medium=readme&utm_campaign=tool_links). The batch compressor is the only paid feature; the 12 tools above and on the site are free.
