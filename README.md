@@ -1,10 +1,24 @@
 # QuickTiny
 
-13 browser-local tools &mdash; 12 free (JSON formatter, Base64/URL encode-decode, timestamp converter, word counter, image compressor, Shopify product-image checker/fixer, and more) plus a one-time-purchase batch image compressor. Live at [quicktinyv2.vercel.app](https://quicktinyv2.vercel.app).
+Paste JSON, text, a URL, or an image and get the right browser tool quickly. QuickTiny has **12 free tools** that need no account, plus a separate **$4.99 one-time Pro batch image compressor**. Text and image processing happens in your browser.
+
+**Try a free tool directly:**
+
+| Task | Tool |
+| --- | --- |
+| Format, validate, or repair common JSON mistakes | [JSON Formatter](https://quicktinyv2.vercel.app/json-formatter?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
+| Compress one JPG or PNG without uploading it | [Image Compressor](https://quicktinyv2.vercel.app/compress-image?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
+| Count words and characters | [Word Counter](https://quicktinyv2.vercel.app/word-counter?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
+| Encode or decode Base64 text | [Base64](https://quicktinyv2.vercel.app/base64?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
+| Sort a list of lines | [Sort Lines](https://quicktinyv2.vercel.app/sort-lines?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
+
+Or [open all 13 tools](https://quicktinyv2.vercel.app/?utm_source=github&utm_medium=readme&utm_campaign=tool_links). The batch compressor is the only paid feature; the 12 tools above and on the site are free.
+
+**One useful edge case:** If `fetch(...).json()` reports `Unexpected token '<'`, the API probably returned an HTML page. Check the HTTP response and URL before trying to repair JSON. For actual JSON syntax errors, [the formatter explains the error and offers fixes for common, safe cases](https://quicktinyv2.vercel.app/json-formatter?utm_source=github&utm_medium=readme&utm_campaign=tool_links).
 
 ## Reusable Shopify image-limit check
 
-`check-shopify-image-limits.js` is a tiny, dependency-free function other developers are welcome to copy into their own projects. It checks an image's dimensions and file size against Shopify's verified product/collection image upload limits (25 megapixels, 20 MB — tested directly against Shopify's own uploader; see [the full test results and dataset](https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026)).
+`check-shopify-image-limits.js` is a tiny, dependency-free function other developers are welcome to copy into their own projects. It checks an image's dimensions and file size against Shopify's product/collection image upload limits (25 megapixels, under 20 MB — see [the test results and dataset](https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026)).
 
 ```js
 checkShopifyProductImageLimits({ width: 5200, height: 5200, bytes: 12000000 });
