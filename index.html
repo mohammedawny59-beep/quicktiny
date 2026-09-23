@@ -241,7 +241,7 @@
         var type = qtSmartDetect(value);
         if (!type) { resultEl.innerHTML = ""; qtSmartLastType = null; return; }
 
-        if (!qtSmartUsedTracked) { qtTrack("smart_input_used"); qtEvent("smart_input_used"); qtSmartUsedTracked = true; }
+        if (!qtSmartUsedTracked) { qtTrack("smart_input_used"); qtEvent("smart_input_used"); qtSmartUsedTracked = true; var shareBtn = document.querySelector("#shareQuickTiny"); if (shareBtn) shareBtn.hidden = false; }
         if (type !== qtSmartLastType) { qtTrack("smart_detect_" + type); qtEvent("smart_detect_" + type); qtSmartLastType = type; }
 
         var spec = QT_SMART_ACTIONS[type];
@@ -424,7 +424,7 @@
     </div>
     <p class="no-results" id="noResults">No tools match your search.</p>
     <div class="btn-row" style="justify-content:center;margin-top:28px">
-      <button class="btn btn-secondary" id="shareQuickTiny" type="button">Share QuickTiny</button>
+      <button class="btn btn-secondary" id="shareQuickTiny" type="button" hidden>Share QuickTiny</button>
     </div>
   </section>
 
