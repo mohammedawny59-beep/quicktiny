@@ -13,6 +13,60 @@
   yearEls.forEach(function(el){ el.textContent = year; });
 })();
 
+/* ---------- Scroll-reveal + animated stat counters (premium redesign) ---------- */
+(function(){
+  var targets = document.querySelectorAll(
+    ".tool-card, .card:not(.tool-panel .card), .pro-card, .faq-item, .related-grid a, .content > h2, .stat, .section-head"
+  );
+  if (!targets.length) return;
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion || typeof IntersectionObserver === "undefined") {
+    targets.forEach(function(el){ el.classList.add("reveal", "in"); });
+    return;
+  }
+
+  targets.forEach(function(el, i){
+    el.classList.add("reveal");
+    el.style.transitionDelay = Math.min(i % 8, 6) * 45 + "ms";
+  });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+  targets.forEach(function(el){ io.observe(el); });
+
+  /* Animated number counters for elements marked data-count-to="N" */
+  var counters = document.querySelectorAll("[data-count-to]");
+  if (counters.length && typeof IntersectionObserver !== "undefined") {
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        cio.unobserve(entry.target);
+        var el = entry.target;
+        var end = parseFloat(el.getAttribute("data-count-to"));
+        var suffix = el.getAttribute("data-count-suffix") || "";
+        var start = 0, dur = 900, t0 = null;
+        function step(ts){
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(start + (end - start) * eased) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function(el){ cio.observe(el); });
+  }
+})();
+
 async function qtCopy(text, statusEl, label){
   try{
     await navigator.clipboard.writeText(text);
