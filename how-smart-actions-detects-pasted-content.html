@@ -13,17 +13,17 @@
   <meta property="og:site_name" content="QuickTiny">
   <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#08080b">
+  <meta name="theme-color" content="#0b0a08">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How Smart Actions detects what you paste","description":"A technical explanation of how QuickTiny distinguishes JSON, Base64, URL-encoded text, Unix timestamps, lists and plain text locally.","datePublished":"2026-09-22","dateModified":"2026-09-22","author":{"@type":"Person","name":"Mohammed Awny","url":"https://quicktinyv2.vercel.app/about-quicktiny"},"publisher":{"@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","logo":{"@type":"ImageObject","url":"https://quicktinyv2.vercel.app/quicktiny-logo-240.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://quicktinyv2.vercel.app/how-smart-actions-detects-pasted-content"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Smart Actions use an AI model?","acceptedAnswer":{"@type":"Answer","text":"No. It uses deterministic JavaScript heuristics in the browser."}},{"@type":"Question","name":"Is pasted content sent to QuickTiny?","acceptedAnswer":{"@type":"Answer","text":"No. The content classification runs locally, and measurement records only the category, not the value."}},{"@type":"Question","name":"Why can Base64 detection be difficult?","acceptedAnswer":{"@type":"Answer","text":"Many ordinary alphanumeric strings match the Base64 character set. Reliable detection needs additional checks such as length, padding, successful decoding and printable output."}},{"@type":"Question","name":"Can Smart Actions make a wrong suggestion?","acceptedAnswer":{"@type":"Answer","text":"Yes. Some formats are inherently ambiguous. QuickTiny presents suggested actions and leaves the final choice with the user."}}]}</script>
 </head>
 <body>
-<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
 <header class="site-header"><div class="wrap nav"><a class="logo" href="/">QuickTiny<span class="dot">.</span></a><div class="nav-right"><nav class="nav-links" id="navLinks"><a href="/#tools">Tools</a><a href="/batch-image-compressor">Pro</a><a href="/about-quicktiny">About</a><a href="/privacy">Privacy</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button></div></div></header>
