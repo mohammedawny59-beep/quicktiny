@@ -129,6 +129,9 @@
 
       var check = qtShopifyCheck(width, height, f.size);
       var displayName = f.name.length > 20 ? f.name.slice(0, 20) + "…" : f.name;
+      displayName = displayName.replace(/[&<>"']/g, function (char) {
+        return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[char];
+      });
 
       stats.innerHTML =
         '<div class="qte-stat"><div class="n">' + displayName + '</div><div class="l">File</div></div>' +
