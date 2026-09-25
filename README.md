@@ -28,3 +28,18 @@ checkShopifyProductImageLimits({ width: 5200, height: 5200, bytes: 12000000 });
 Works in the browser (`<script src="check-shopify-image-limits.js">`) or in Node (`require("./check-shopify-image-limits")`). No dependencies, no build step.
 
 Scope: Shopify's product and collection image upload path specifically. Other Shopify upload contexts (theme assets, blog images, general Files uploads) use different limits — don't assume this function's thresholds apply there without checking.
+
+## Embed the free Shopify image checker
+
+Publishers writing for Shopify merchants can embed the single-image checker on a resource page without an account or an API key. The visitor chooses a product photo in their own browser; the image is not uploaded to QuickTiny. The checker reports whether the file exceeds the product/collection image limits and offers a local fix for an oversized image.
+
+```html
+<iframe
+  src="https://quicktinyv2.vercel.app/embed/shopify-image-checker"
+  title="Shopify product image limit checker"
+  loading="lazy"
+  style="width:100%;height:340px;border:0"
+></iframe>
+```
+
+[Try the stand-alone checker](https://quicktinyv2.vercel.app/compress-product-images-for-shopify) before embedding. The checker is not a Shopify app and is not affiliated with Shopify. Its 25 MP / 20 MB checks apply to product and collection images, not every image uploader in Shopify. Editorial inclusion is optional; no paid placement or reciprocal link is requested.
