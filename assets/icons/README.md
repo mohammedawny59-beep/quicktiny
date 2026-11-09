@@ -18,3 +18,8 @@ transparent WebP (per-row background removal, floor reflection faded) and resize
 | `mouse.webp` | Mouse Test |
 | `target.webp` | Sensitivity Converter |
 | `crown.webp` | Fancy Name Generator / زخرفة الأسماء |
+| `qr.webp` | QR Code Generator |
+| `megaphone.webp` | UTM Builder |
+| `frames.webp` | Social Image Resizer |
+| `magnifier.webp` | SERP & Social Preview |
+| `palette.webp` | Brand Color Palette |
