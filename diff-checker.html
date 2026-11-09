@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Diff Checker — Compare Text, Code &amp; JSON Online | QuickTiny</title>
+  <meta name="description" content="Compare two texts or files side by side with word-level highlights. Ignore whitespace or case, compare JSON with sorted keys, download a .patch. Nothing uploaded.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/diff-checker">
+  <meta property="og:title" content="Diff Checker — Compare Text, Code &amp; JSON Online | QuickTiny">
+  <meta property="og:description" content="Compare two texts or files side by side with word-level highlights. Ignore whitespace or case, compare JSON with sorted keys, download a .patch. Nothing uploaded.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/diff-checker">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .df-in{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:760px){.df-in{grid-template-columns:1fr}}
+    .df-in textarea{min-height:200px;font:13px/1.55 var(--mono);white-space:pre;overflow:auto;tab-size:4}
+    .df-in textarea.df-drop{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(59,226,255,.2)}
+    .df-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .df-file{font-size:12.5px;color:#9fa3ff;cursor:pointer}
+    .df-file input{display:none}
+    .df-opts{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:10px;align-items:center}
+    .df-opts .checkline{margin:4px 0}
+    .df-opts select{width:auto}
+    #dfStats{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 10px}
+    #dfStats span{font-size:12.5px;font-weight:600;padding:4px 11px;border-radius:99px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--text-dim)}
+    #dfStats .df-add{color:#7ff0b0;border-color:rgba(127,240,176,.35)} #dfStats .df-del{color:#ff9a9a;border-color:rgba(255,154,154,.35)}
+    #dfStats .df-same{color:#7ff0b0} #dfStats .df-dim{color:var(--muted);font-weight:500}
+    #dfOut{border:1px solid var(--line);border-radius:14px;overflow:auto;max-height:640px;background:rgba(0,0,0,.25)}
+    .df-empty{padding:28px;text-align:center;color:var(--muted);margin:0}
+    .df-table{width:100%;border-collapse:collapse;font:12.5px/1.55 var(--mono);table-layout:fixed}
+    .df-ncol{width:46px}
+    .df-table td{padding:1px 8px;vertical-align:top}
+    .df-n{color:var(--muted);text-align:end;user-select:none;opacity:.7;border-inline-end:1px solid rgba(255,255,255,.05)}
+    .df-c{white-space:pre-wrap;overflow-wrap:anywhere;color:#d9dbf5}
+    .df-split .df-c:nth-child(2){border-inline-end:1px solid var(--line)}
+    .df-rm{background:rgba(255,90,90,.12)} .df-ad{background:rgba(60,220,140,.11)}
+    .df-blank{background:repeating-linear-gradient(135deg,rgba(255,255,255,.02) 0 6px,transparent 6px 12px)}
+    .df-table del{background:rgba(255,90,90,.42);color:#fff;text-decoration:none;border-radius:3px}
+    .df-table ins{background:rgba(60,220,140,.40);color:#fff;text-decoration:none;border-radius:3px}
+    .df-sign{display:inline-block;width:14px;color:var(--muted);user-select:none}
+    .df-rm .df-sign{color:#ff9a9a} .df-ad .df-sign{color:#7ff0b0}
+    .df-fold td{padding:0;background:rgba(107,107,255,.07)}
+    .df-fold button{all:unset;cursor:pointer;display:block;width:100%;padding:5px 12px;color:#9fa3ff;font:600 12px var(--font, inherit);text-align:center}
+    .df-fold button:hover{background:rgba(107,107,255,.12)}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Diff Checker</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Developer</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Nothing uploaded</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>Diff Checker — Compare Text, Code and JSON</h1>
+    <p>Paste or drop two versions and see exactly what changed — line by line with the changed words highlighted, side by side or unified. Ignore case or whitespace, compare JSON with keys sorted, and download a real <code>.patch</code> file. Your text stays in your browser.</p>
+    <a href="#tool" class="jump-to-tool">Compare now <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="df-in">
+      <div>
+        <div class="df-head"><label class="field-label" for="dfA">Original</label><label class="df-file">Open file…<input type="file" id="dfFileA"></label></div>
+        <textarea id="dfA" spellcheck="false" placeholder="Paste or drop the original text here">{
+  "name": "quicktiny",
+  "version": "1.4.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "test": "node test.js"
+  }
+}</textarea>
+      </div>
+      <div>
+        <div class="df-head"><label class="field-label" for="dfB">Changed</label><label class="df-file">Open file…<input type="file" id="dfFileB"></label></div>
+        <textarea id="dfB" spellcheck="false" placeholder="Paste or drop the new version here">{
+  "name": "quicktiny",
+  "version": "1.5.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "lint": "eslint .",
+    "test": "node --test"
+  }
+}</textarea>
+      </div>
+    </div>
+    <div class="df-opts">
+      <select id="dfView" aria-label="View"><option value="split">Side by side</option><option value="unified">Unified</option></select>
+      <div class="checkline"><input type="checkbox" id="dfOnly" checked><label for="dfOnly">Fold unchanged lines</label></div>
+      <div class="checkline"><input type="checkbox" id="dfWs"><label for="dfWs">Ignore whitespace</label></div>
+      <div class="checkline"><input type="checkbox" id="dfCase"><label for="dfCase">Ignore case</label></div>
+      <div class="checkline"><input type="checkbox" id="dfBlank"><label for="dfBlank">Ignore blank lines</label></div>
+      <div class="checkline"><input type="checkbox" id="dfJson"><label for="dfJson">JSON: sort keys first</label></div>
+    </div>
+    <div id="dfStats"></div>
+    <div id="dfOut"></div>
+    <div class="btn-row" style="margin-top:12px">
+      <button class="btn" type="button" id="dfPatch">Download .patch</button>
+      <button class="btn btn-secondary" type="button" id="dfCopy">Copy unified diff</button>
+      <button class="btn btn-secondary" type="button" id="dfSwap">Swap sides</button>
+      <button class="btn btn-secondary" type="button" id="dfClear">Clear</button>
+    </div>
+    <div id="dfStatus" class="result" aria-live="polite"></div>
+  </div>
+  <script src="/diff-checker.js"></script>
+
+  <div class="content">
+    <h2>What makes this diff checker useful</h2>
+    <ul class="benefits">
+      <li><strong>Word-level highlights</strong> — inside a changed line you see exactly which words changed, not just that the line is different.</li>
+      <li><strong>JSON-aware</strong> — turn on “sort keys” and two JSON files that only differ in key order compare as identical.</li>
+      <li><strong>Real patches</strong> — the .patch file is a standard unified diff that <code>git apply</code> and <code>patch</code> accept.</li>
+      <li><strong>Fast and private</strong> — it uses the same Myers algorithm as git, runs in your browser and handles tens of thousands of lines. Nothing is uploaded, so it's safe for contracts, configs and code.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Can I compare two files?</summary><p>Yes — drag a file onto either box or use “Open file…”. Any text format works: code, CSV, Markdown, logs, JSON, XML. Files up to 20 MB.</p></details>
+    <details class="faq-item"><summary>Can I compare Word or PDF documents?</summary><p>Copy the text out of each document and paste it. The checker compares plain text, so formatting isn't included.</p></details>
+    <details class="faq-item"><summary>What does “ignore whitespace” do?</summary><p>Lines that only differ in spaces, tabs or indentation count as the same — handy after re-formatting code.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More developer tools</h2>
+    <div class="related-grid">
+      <a href="/regex-tester">Regex Tester<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/jwt-decoder">JWT Decoder<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-duplicate-lines">Remove Duplicate Lines<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Diff Checker","url":"https://quicktinyv2.vercel.app/diff-checker","description":"Compare two texts or files side by side with word-level highlights. Ignore whitespace or case, compare JSON with sorted keys, download a .patch. Nothing uploaded.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Diff Checker","item":"https://quicktinyv2.vercel.app/diff-checker"}]}</script>
+</body>
+</html>

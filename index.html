@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="hero-badges">
-      <span class="badge trust">25 tools &middot; 24 free, 1 Pro</span>
+      <span class="badge trust">29 tools &middot; 28 free, 1 Pro</span>
       <span class="badge trust">Browser-first</span>
       <span class="badge trust">Nothing uploaded</span>
     </div>
@@ -88,7 +88,8 @@
         base64: { label: "Base64", actions: [{ label: "Decode Base64", tool: "/base64-encode-decode", action: "decode" }, { label: "Encode as Base64", tool: "/base64-encode-decode", action: "encode" }] },
         url_encoded: { label: "URL encoded", actions: [{ label: "Decode URL", tool: "/url-encode-decode", action: "decode" }, { label: "Inspect URL", tool: "/url-encode-decode", action: "inspect" }] },
         url: { label: "URL", actions: [{ label: "Inspect URL", tool: "/url-encode-decode", action: "inspect" }, { label: "Encode URL", tool: "/url-encode-decode", action: "encode" }] },
-        jwt: { label: "JWT token", actions: [{ label: "Decode JWT payload", tool: "/base64-encode-decode", action: "decode", value: "jwtPayload" }, { label: "Decode JWT header", tool: "/base64-encode-decode", action: "decode", value: "jwtHeader" }] },
+        jwt: { label: "JWT token", actions: [{ label: "Open in JWT Decoder", tool: "/jwt-decoder", action: "decode" }, { label: "Decode JWT payload", tool: "/base64-encode-decode", action: "decode", value: "jwtPayload" }, { label: "Decode JWT header", tool: "/base64-encode-decode", action: "decode", value: "jwtHeader" }] },
+        cron: { label: "Cron schedule", actions: [{ label: "Explain this cron schedule", tool: "/cron-explainer", action: "explain" }] },
         date: { label: "Date / time", actions: [{ label: "Convert to Unix timestamp", tool: "/timestamp-converter", action: "convert" }] },
         title: { label: "Short text / title", actions: [{ label: "Make SEO Slug", tool: "/seo-slug-generator", action: "slug" }, { label: "Change Case", tool: "/case-converter", action: "case" }, { label: "Word Count", tool: "/word-counter", action: "count" }] },
         timestamp_seconds: { label: "Unix timestamp (seconds)", actions: [{ label: "Convert Timestamp", tool: "/timestamp-converter", action: "convert" }] },
@@ -274,6 +275,16 @@
         // The slug generator keeps Latin letters/digits only, so only offer it when that yields a slug.
         return (s.match(/[A-Za-z]/g) || []).length >= s.replace(/\s/g, "").length * 0.6;
       }
+      function qtLooksLikeCron(raw){
+        var s = raw.trim();
+        if (/^@(yearly|annually|monthly|weekly|daily|midnight|hourly|reboot)$/i.test(s)) return true;
+        var p = s.split(/\s+/);
+        if (p.length < 5 || p.length > 6 || s.indexOf("\n") !== -1) return false;
+        // every field: digits, * ? , / - # L, or month/day names; and at least one wildcard
+        var tok = /^(?:[\d*?,\/#L-]|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC|SUN|MON|TUE|WED|THU|FRI|SAT)+$/i;
+        if (!p.every(function(x){ return tok.test(x); })) return false;
+        return p.some(function(x){ return /[*?]/.test(x); });
+      }
       function qtSmartDetect(raw){
         var trimmed = raw.trim();
         if (!trimmed) return null;
@@ -287,6 +298,7 @@
         if (qtLooksLikeJwt(trimmed)) return "jwt";
         if (qtLooksLikeUrl(trimmed)) return qtLooksLikeUrlEncoded(trimmed) ? "url_encoded" : "url";
         if (qtLooksLikeDate(trimmed)) return "date";
+        if (qtLooksLikeCron(trimmed)) return "cron";
         if (qtCanBecomeJson(trimmed)) return "messy_json";
         if (qtLooksLikeBase64(trimmed)) return "base64";
         if (qtLooksLikeUrlEncoded(trimmed)) return "url_encoded";
@@ -310,7 +322,9 @@
         "/sort-lines": "smart_action_sort",
         "/word-counter": "smart_action_word_count",
         "/case-converter": "smart_action_case_converter",
-        "/seo-slug-generator": "smart_action_seo_slug"
+        "/seo-slug-generator": "smart_action_seo_slug",
+        "/jwt-decoder": "smart_action_jwt",
+        "/cron-explainer": "smart_action_cron"
       };
 
       function qtSmartRender(){
@@ -357,7 +371,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">All tools</div>
-        <p class="section-sub">25 browser tools &mdash; 24 free, 1 Pro. Search or filter by category &mdash; nothing here requires an account.</p>
+        <p class="section-sub">29 browser tools &mdash; 28 free, 1 Pro. Search or filter by category &mdash; nothing here requires an account.</p>
       </div>
     </div>
     <div class="search-row">
@@ -372,6 +386,7 @@
       <button class="chip" data-cat="Utility">Utility</button>
       <button class="chip" data-cat="Marketing">Marketing</button>
       <button class="chip" data-cat="Gaming">Gaming</button>
+      <button class="chip" data-cat="Developer">Developer</button>
     </div>
     <div class="tools-grid" id="toolsGrid">
       <a class="tool-card" href="/product-photo-studio" data-cat="Image" data-search="product photo studio remove background white background resize product photos for shopify amazon instagram ai image">
@@ -482,6 +497,46 @@
         </div>
         <h3>Fancy Name Generator</h3>
         <p>Stylish gamer names for PUBG, Free Fire and Fortnite &mdash; 亗 Name 亗, script, gothic. Arabic too.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/regex-tester" data-cat="Developer" data-search="regex tester regular expression regexp test match groups replace explain javascript python developer">
+        
+        <div class="tc-head">
+          <span class="tc-icon tc-3d"><img src="/assets/icons/regex.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
+          <span class="cat-badge">Developer &middot; New</span>
+        </div>
+        <h3>Regex Tester</h3>
+        <p>Live matches, groups and a plain-English explanation. Code for JS, Python, PHP, Java.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/diff-checker" data-cat="Developer" data-search="diff checker compare text files code json difference side by side patch developer">
+        
+        <div class="tc-head">
+          <span class="tc-icon tc-3d"><img src="/assets/icons/diff.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
+          <span class="cat-badge">Developer &middot; New</span>
+        </div>
+        <h3>Diff Checker</h3>
+        <p>Compare text, code or JSON side by side with word-level highlights. Export a .patch.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/jwt-decoder" data-cat="Developer" data-search="jwt decoder json web token decode verify signature expiry claims bearer auth developer">
+        
+        <div class="tc-head">
+          <span class="tc-icon tc-3d"><img src="/assets/icons/token.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
+          <span class="cat-badge">Developer &middot; New</span>
+        </div>
+        <h3>JWT Decoder</h3>
+        <p>Decode tokens, check expiry, spot red flags and verify HS/RS/ES signatures.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/cron-explainer" data-cat="Developer" data-search="cron expression explainer crontab schedule next run times parser generator developer">
+        
+        <div class="tc-head">
+          <span class="tc-icon tc-3d"><img src="/assets/icons/clock.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
+          <span class="cat-badge">Developer &middot; New</span>
+        </div>
+        <h3>Cron Explainer</h3>
+        <p>Cron expressions in plain English with the next 10 run times in your time zone.</p>
         <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <a class="tool-card" href="/compress-image" data-cat="Image" data-search="image compressor shrink jpg and png files in your browser — no upload required. image">
@@ -717,6 +772,10 @@
         <a href="/social-image-resizer">Social Image Resizer</a>
         <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
         <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
       </div>
       <div class="footer-col">
         <h4>Guides</h4>
