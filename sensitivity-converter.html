@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sensitivity Converter — Valorant, CS2, Apex, Overwatch 2, CoD | QuickTiny</title>
+  <meta name="description" content="Convert mouse sensitivity between Valorant, CS2, Apex Legends, Overwatch 2, Call of Duty, Rainbow Six Siege and Fortnite. See cm/360 and eDPI. Free and instant.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/sensitivity-converter">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/compress-image">
+  <meta property="og:title" content="Sensitivity Converter — Valorant, CS2, Apex, Overwatch 2, CoD | QuickTiny">
+  <meta property="og:description" content="Convert mouse sensitivity between Valorant, CS2, Apex Legends, Overwatch 2, Call of Duty, Rainbow Six Siege and Fortnite. See cm/360 and eDPI. Free and instant.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/sensitivity-converter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    #mtTabs{margin-bottom:18px}
+    .mt-area{position:relative;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation;cursor:pointer;min-height:260px;border-radius:20px;border:1px solid rgba(123,123,255,.3);background:radial-gradient(600px 260px at 50% 0,rgba(107,107,255,.18),transparent 70%),rgba(0,0,0,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:background .15s,border-color .15s}
+    .mt-area strong{font:800 clamp(24px,4vw,38px)/1.1 var(--font);letter-spacing:-.03em}
+    .mt-area span{color:var(--text-dim);margin-top:8px;font-size:14.5px}
+    .mt-area.live{border-color:rgba(59,226,255,.6)}
+    .mt-ripple{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:rgba(59,226,255,.8);pointer-events:none;animation:mtRip .5s ease-out forwards}
+    @keyframes mtRip{to{transform:scale(9);opacity:0}}
+    .mt-rx.wait{background:rgba(255,92,112,.22);border-color:rgba(255,122,138,.6)}
+    .mt-rx.go{background:rgba(45,224,166,.3);border-color:#2de0a6}
+    .mt-rx.early{background:rgba(255,200,90,.16);border-color:rgba(255,200,90,.6)}
+    .mt-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
+    @media (max-width:600px){.mt-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .mt-stats .stat{min-width:0}
+    #rxResults{list-style:none;padding:0;margin:14px 0 0;display:flex;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--text-dim)}
+    #rxResults li{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:6px 12px}
+    #rxResults li.muted{color:var(--muted)}
+    .mt-area.flash{animation:mtFlash .5s}
+    @keyframes mtFlash{0%{background:rgba(255,122,138,.35)}100%{}}
+    .mt-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+    .mt-table th,.mt-table td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left}
+    .mt-table th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+    .mt-table .good{color:#7ff5c4;font-weight:700}.mt-table .bad{color:#ff9aa6;font-weight:700}
+    [dir=rtl] .mt-table th,[dir=rtl] .mt-table td{text-align:right}
+    .sc-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:16px;align-items:center}
+    @media (max-width:760px){.sc-grid{grid-template-columns:1fr}.sc-swap{justify-self:center}}
+    .sc-swap .btn{border-radius:50%;width:46px;height:46px;padding:0;font-size:20px}
+    .sc-big{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.18),rgba(59,226,255,.08));border:1px solid rgba(123,123,255,.35)}
+    .sc-big span{color:var(--text-dim);font-size:14px;flex-basis:100%;margin-bottom:-8px}
+    .sc-big b{font:800 46px/1 var(--font);letter-spacing:-.03em;background:var(--grad-text);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+    .mt-table tr.hl td{color:#fff;background:rgba(107,107,255,.12)}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Sensitivity Converter</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Gaming</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>Sensitivity Converter — Valorant, CS2, Apex, Overwatch &amp; More</h1>
+    <p>Switching games? Keep the exact same aim. Convert your mouse sensitivity between Valorant, CS2, Apex Legends, Overwatch 2, Call of Duty, Rainbow Six Siege and Fortnite, and see your cm/360 and eDPI.</p>
+    <a href="#tool" class="jump-to-tool">Convert my sens <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="sc-grid">
+      <div>
+        <label class="field-label" for="scFrom">From game</label>
+        <select id="scFrom"></select>
+        <div class="row-2">
+          <div><label class="field-label" for="scSens">Your sensitivity</label><input type="text" id="scSens" value="0.35" inputmode="decimal" autocomplete="off"></div>
+          <div><label class="field-label" for="scDpi">Mouse DPI</label><input type="number" id="scDpi" value="800" min="50" step="50"></div>
+        </div>
+      </div>
+      <div class="sc-swap"><button class="btn btn-secondary" type="button" id="scSwap" aria-label="Swap games">⇄</button></div>
+      <div>
+        <label class="field-label" for="scTo">To game</label>
+        <select id="scTo"></select>
+        <label class="field-label" for="scDpiTo">New DPI (if you're changing it)</label>
+        <input type="number" id="scDpiTo" value="800" min="50" step="50">
+      </div>
+    </div>
+    <div id="scOut" aria-live="polite"></div>
+    <div id="scCopyStatus" class="result"></div>
+    <label class="field-label" style="margin-top:18px">Same aim in every game</label>
+    <table class="mt-table"><tbody id="scTable"></tbody></table>
+  </div>
+  <script src="/sensitivity-converter.js"></script>
+
+  <div class="content">
+    <h2>How the conversion works</h2>
+    <p>Every game turns the camera a fixed number of degrees per mouse count at sensitivity 1 (its "yaw"). Matching your aim means matching the physical distance you move the mouse for a full 360° turn — your <strong>cm/360</strong>. The converter computes your cm/360 in the first game and finds the sensitivity that gives the same distance in the second.</p>
+    <ul class="benefits">
+      <li><strong>cm/360</strong> = 360 ÷ (DPI × sensitivity × yaw) × 2.54</li>
+      <li><strong>eDPI</strong> = DPI × sensitivity — handy for comparing players in the same game.</li>
+      <li>Changing DPI? Enter the new DPI and you keep the same feel.</li>
+    </ul>
+
+    <h2>Notes per game</h2>
+    <ul class="benefits">
+      <li>Converts hip-fire (look) sensitivity. Scoped/ADS multipliers differ by game and are not included.</li>
+      <li>Rainbow Six Siege assumes the default MouseSensitivityMultiplierUnit (0.02) in GameSettings.ini.</li>
+      <li>Fortnite uses the X-axis sensitivity percentage shown in its settings.</li>
+      <li>Turn off "enhance pointer precision" (mouse acceleration) in Windows for consistent aim.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>How do I convert Valorant sensitivity to CS2?</summary><p>Multiply your Valorant sensitivity by about 3.18 (0.07 ÷ 0.022). For example, Valorant 0.35 at 800 DPI is CS2 1.114 — the converter does this for you.</p></details>
+    <details class="faq-item"><summary>What's a good cm/360?</summary><p>Most tactical-shooter pros (CS2, Valorant) sit around 35–55 cm/360. Faster games like Apex or Overwatch tend toward 20–35 cm. Lower cm/360 means faster turning.</p></details>
+    <details class="faq-item"><summary>Why does it feel slightly different after converting?</summary><p>The 360° distance matches exactly, but field of view differs between games, so small aim adjustments can feel different. Give it a few sessions.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More gamer tools</h2>
+    <div class="related-grid">
+      <a href="/mouse-test">Mouse Test: CPS, Reaction, Polling Rate<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/controller-tester">Controller Tester<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/fancy-name-generator">Fancy Gamer Name Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Sensitivity Converter","url":"https://quicktinyv2.vercel.app/sensitivity-converter","description":"Convert mouse sensitivity between Valorant, CS2, Apex Legends, Overwatch 2, Call of Duty, Rainbow Six Siege and Fortnite. See cm/360 and eDPI. Free and instant.","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Sensitivity Converter","item":"https://quicktinyv2.vercel.app/sensitivity-converter"}]}</script>
+</body>
+</html>

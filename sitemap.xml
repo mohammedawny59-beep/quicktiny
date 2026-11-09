@@ -67,6 +67,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://quicktinyv2.vercel.app/controller-tester</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quicktinyv2.vercel.app/mouse-test</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quicktinyv2.vercel.app/sensitivity-converter</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quicktinyv2.vercel.app/fancy-name-generator</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://quicktinyv2.vercel.app/ar/name-decorator</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://quicktinyv2.vercel.app/word-counter</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
