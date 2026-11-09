@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Controller Tester — Test PS5, Xbox &amp; Gamepad Buttons and Stick Drift | QuickTiny</title>
+  <meta name="description" content="Free online controller tester: check every button, trigger and analog stick on PS5, PS4, Xbox, Switch Pro or any gamepad, run a stick drift test and test vibration. Nothing to install.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/controller-tester">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/compress-image">
+  <meta property="og:title" content="Controller Tester — Test PS5, Xbox &amp; Gamepad Buttons and Stick Drift | QuickTiny">
+  <meta property="og:description" content="Free online controller tester: check every button, trigger and analog stick on PS5, PS4, Xbox, Switch Pro or any gamepad, run a stick drift test and test vibration. Nothing to install.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/controller-tester">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .ct-empty{text-align:center;padding:42px 18px;border:1.5px dashed rgba(123,123,255,.35);border-radius:18px;color:var(--text-dim)}
+    .ct-empty .pulse{width:14px;height:14px;border-radius:50%;background:var(--cyan);margin:0 auto 14px;box-shadow:0 0 0 0 rgba(59,226,255,.6);animation:ctPulse 1.6s infinite}
+    @keyframes ctPulse{to{box-shadow:0 0 0 18px rgba(59,226,255,0)}}
+    .ct-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;margin-top:14px}
+    @media (max-width:860px){.ct-grid{grid-template-columns:1fr}}
+    .ct-pad svg{width:100%;height:auto;display:block}
+    .ct-pad .body{fill:rgba(255,255,255,.05);stroke:rgba(255,255,255,.18);stroke-width:1.5}
+    .ct-pad [data-btn]{fill:rgba(255,255,255,.07);stroke:rgba(255,255,255,.22);stroke-width:1.2;transition:fill .06s}
+    .ct-pad [data-btn].on{fill:#7b7bff;stroke:#bfc0ff;filter:drop-shadow(0 0 6px rgba(123,123,255,.9))}
+    .ct-pad text{fill:#c9cbff;font:600 9px var(--font);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+    .ct-pad [data-stick]{fill:#3be2ff}
+    .ct-sticks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .ct-stick{background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}
+    .ct-stick canvas{width:100%;max-width:170px;aspect-ratio:1;display:block;margin:0 auto}
+    .ct-stick .v{font:12px var(--mono);color:var(--muted);margin-top:6px;white-space:pre}
+    .ct-trig{display:flex;gap:12px;margin-top:12px}
+    .ct-trig > div{flex:1;background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;align-items:center;gap:10px}
+    .ct-bar{width:14px;height:56px;border-radius:7px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
+    .ct-bar i{position:absolute;left:0;right:0;bottom:0;height:0;background:var(--grad)}
+    .ct-trig b{font:700 18px var(--font)}
+    .ct-trig span{display:block;font-size:12px;color:var(--muted)}
+    .ct-drift{padding:10px 14px;border-radius:12px;margin-top:8px;font-size:14px;border:1px solid}
+    .ct-drift span{display:block;font-size:12.5px;opacity:.8;font-family:var(--mono);margin-top:2px}
+    .ct-drift.good{color:#7ff5c4;border-color:rgba(61,220,148,.35);background:rgba(61,220,148,.07)}
+    .ct-drift.warn{color:#ffd88a;border-color:rgba(255,200,90,.35);background:rgba(255,200,90,.07)}
+    .ct-drift.bad{color:#ff9aa6;border-color:rgba(255,122,138,.4);background:rgba(255,122,138,.08)}
+    .ct-raw{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+    .ct-raw pre{background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:12px;padding:12px;font:12px/1.6 var(--mono);color:var(--text-dim);margin:0;max-height:300px;overflow:auto}
+    #ctMeta{font-size:12.5px;color:var(--muted);margin:2px 0 0}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Controller Tester</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Gaming</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>Controller Tester — Check Buttons, Triggers &amp; Stick Drift</h1>
+    <p>Plug in or pair your PS5, PS4, Xbox, Switch Pro or any USB/Bluetooth gamepad and test every button, analog trigger and stick live. Run a stick-drift check and a vibration test — no download, nothing to install.</p>
+    <a href="#tool" class="jump-to-tool">Test my controller <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="ct-empty" id="ctEmpty">
+      <div class="pulse"></div>
+      <strong>Connect a controller, then press any button.</strong><br>
+      <span style="font-size:14px">Browsers only reveal a gamepad after you press a button on it — that's a privacy protection.</span>
+    </div>
+
+    <div id="ctLive" hidden>
+      <label class="field-label" for="ctPad">Controller</label>
+      <select id="ctPad"></select>
+      <p id="ctMeta"></p>
+
+      <div class="ct-grid">
+        <div class="ct-pad" aria-label="Live controller diagram">
+          <svg viewBox="0 0 400 250" role="img" aria-label="Gamepad with live button highlights">
+            <rect data-btn="6" x="58" y="6" width="74" height="18" rx="9"/><text x="95" y="15">LT</text>
+            <rect data-btn="7" x="268" y="6" width="74" height="18" rx="9"/><text x="305" y="15">RT</text>
+            <rect data-btn="4" x="52" y="30" width="86" height="16" rx="8"/><text x="95" y="38">LB</text>
+            <rect data-btn="5" x="262" y="30" width="86" height="16" rx="8"/><text x="305" y="38">RB</text>
+            <path class="body" d="M78 52 H322 C368 52 392 92 396 146 C400 206 382 244 352 244 C326 244 314 222 300 200 L282 172 H118 L100 200 C86 222 74 244 48 244 C18 244 0 206 4 146 C8 92 32 52 78 52 Z"/>
+            <rect data-btn="12" x="72" y="80" width="18" height="22" rx="4"/>
+            <rect data-btn="13" x="72" y="124" width="18" height="22" rx="4"/>
+            <rect data-btn="14" x="48" y="103" width="22" height="20" rx="4"/>
+            <rect data-btn="15" x="92" y="103" width="22" height="20" rx="4"/>
+            <circle data-btn="3" cx="320" cy="84" r="13"/><text x="320" y="84">Y</text>
+            <circle data-btn="0" cx="320" cy="140" r="13"/><text x="320" y="140">A</text>
+            <circle data-btn="2" cx="292" cy="112" r="13"/><text x="292" y="112">X</text>
+            <circle data-btn="1" cx="348" cy="112" r="13"/><text x="348" y="112">B</text>
+            <rect data-btn="8" x="160" y="82" width="26" height="14" rx="7"/><text x="173" y="105" style="font-size:7px">BACK</text>
+            <rect data-btn="9" x="214" y="82" width="26" height="14" rx="7"/><text x="227" y="105" style="font-size:7px">START</text>
+            <circle data-btn="16" cx="200" cy="128" r="11"/><text x="200" y="128" style="font-size:7px">HOME</text>
+            <circle data-btn="10" cx="140" cy="160" r="22"/><circle data-stick="L" cx="140" cy="160" r="7"/>
+            <circle data-btn="11" cx="260" cy="160" r="22"/><circle data-stick="R" cx="260" cy="160" r="7"/>
+          </svg>
+          <div class="ct-trig">
+            <div><div class="ct-bar"><i id="ctLT"></i></div><div><b id="ctLTv">0%</b><span>Left trigger</span></div></div>
+            <div><div class="ct-bar"><i id="ctRT"></i></div><div><b id="ctRTv">0%</b><span>Right trigger</span></div></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="ct-sticks">
+            <div class="ct-stick"><canvas id="ctLCanvas" width="340" height="340" aria-label="Left stick position"></canvas><div class="v" id="ctLVal"></div></div>
+            <div class="ct-stick"><canvas id="ctRCanvas" width="340" height="340" aria-label="Right stick position"></canvas><div class="v" id="ctRVal"></div></div>
+          </div>
+          <label class="field-label" style="margin-top:16px">Stick drift test</label>
+          <p style="font-size:13.5px;color:var(--text-dim);margin:0 0 8px">Let go of both sticks, then run the test. It watches them for 3 seconds.</p>
+          <div class="btn-row"><button class="btn" type="button" id="ctDriftBtn">Run drift test</button></div>
+          <div id="ctDriftOut" aria-live="polite"></div>
+
+          <label class="field-label" style="margin-top:16px">Vibration</label>
+          <div class="btn-row">
+            <button class="btn btn-secondary" type="button" id="ctRumbleBoth">Both motors</button>
+            <button class="btn btn-secondary" type="button" id="ctRumbleStrong">Strong (left)</button>
+            <button class="btn btn-secondary" type="button" id="ctRumbleWeak">Weak (right)</button>
+          </div>
+          <div id="ctRumbleOut" class="result" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top:16px"><button class="btn btn-secondary" type="button" id="ctRawToggle">Show raw values</button></div>
+      <div class="ct-raw" id="ctRaw" hidden><pre id="ctRawAxes"></pre><pre id="ctRawBtns"></pre></div>
+    </div>
+  </div>
+  <script src="/controller-tester.js"></script>
+
+  <div class="content">
+    <h2>How to test your controller</h2>
+    <ol>
+      <li>Connect your controller by USB or Bluetooth.</li>
+      <li>Press any button — the browser then shows it here.</li>
+      <li>Press every button and pull both triggers: each one lights up on the diagram, and triggers show 0–100%.</li>
+      <li>Move both sticks in full circles: the trail should reach the outer ring evenly.</li>
+      <li>Let go and run the drift test, then try vibration.</li>
+    </ol>
+
+    <h2>What is stick drift?</h2>
+    <p>Stick drift is when an analog stick reports movement while you're not touching it — your character walks or the camera turns on its own. It's common on worn PS5 DualSense, Xbox and Switch Joy-Con sticks. The drift test measures how far each stick sits from centre at rest:</p>
+    <ul class="benefits">
+      <li><strong>Under 5%</strong> — normal; games ignore this with a deadzone.</li>
+      <li><strong>5–12%</strong> — slight drift; usually fine, but raise the in-game deadzone if you notice creep.</li>
+      <li><strong>Over 12%</strong> — real drift; cleaning, recalibrating or replacing the stick module usually fixes it.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Why doesn't my controller show up?</summary><p>Browsers hide gamepads until you press a button on one, so a website can't fingerprint you by the devices you own. Press any button. If it still doesn't appear, reconnect it, or try Chrome or Edge.</p></details>
+    <details class="faq-item"><summary>Does it work with PS5 DualSense and Xbox controllers?</summary><p>Yes — any controller your browser recognises works. Most PS4, PS5, Xbox and Switch Pro controllers use the standard layout shown in the diagram; for others, use "Show raw values" to see every button and axis.</p></details>
+    <details class="faq-item"><summary>Why can't I test vibration?</summary><p>Vibration needs browser support (Chrome and Edge have it; Firefox and Safari mostly don't) and a controller that exposes its motors.</p></details>
+    <details class="faq-item"><summary>Is anything sent to a server?</summary><p>No. The tester reads your controller with the browser's Gamepad API and everything stays on your device.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More gamer tools</h2>
+    <div class="related-grid">
+      <a href="/mouse-test">Mouse Test: CPS, Reaction, Polling Rate<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/sensitivity-converter">Sensitivity Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/fancy-name-generator">Fancy Gamer Name Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Controller Tester","url":"https://quicktinyv2.vercel.app/controller-tester","description":"Free online controller tester: check every button, trigger and analog stick on PS5, PS4, Xbox, Switch Pro or any gamepad, run a stick drift test and test vibration. Nothing to install.","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Controller Tester","item":"https://quicktinyv2.vercel.app/controller-tester"}]}</script>
+</body>
+</html>

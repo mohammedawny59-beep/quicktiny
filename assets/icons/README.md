@@ -14,3 +14,7 @@ transparent WebP (per-row background removal, floor reflection faded) and resize
 | `key.webp` | Timestamp Converter, Password Generator |
 | `gem.webp` | Batch Image Compressor (Pro) |
 | `sneaker.webp` | Product Photo Studio |
+| `controller.webp` | Controller Tester |
+| `mouse.webp` | Mouse Test |
+| `target.webp` | Sensitivity Converter |
+| `crown.webp` | Fancy Name Generator / زخرفة الأسماء |
