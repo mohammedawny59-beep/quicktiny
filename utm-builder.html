@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>UTM Builder — Campaign URL Builder for Google Analytics | QuickTiny</title>
+  <meta name="description" content="Build UTM-tagged campaign links for Google Analytics, or one link per channel at once. Naming checks keep reports clean. Copy, export CSV, or turn a link into a QR code.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/utm-builder">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/compress-image">
+  <meta property="og:title" content="UTM Builder — Campaign URL Builder for Google Analytics | QuickTiny">
+  <meta property="og:description" content="Build UTM-tagged campaign links for Google Analytics, or one link per channel at once. Naming checks keep reports clean. Copy, export CSV, or turn a link into a QR code.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/utm-builder">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .utm-out{margin-top:16px;padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    #utmOut{font:14px/1.6 var(--mono);color:#e3e5ff;word-break:break-all;display:block}
+    #utmOut.empty{color:var(--muted)}
+    #utmParts{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+    #utmParts span{font-size:12px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:99px;padding:3px 10px;color:var(--text-dim)}
+    #utmParts b{color:#9fa3ff;margin-right:4px}
+    #utmWarn{margin:10px 0 0;padding-left:18px;font-size:13px;color:#ffd88a;line-height:1.6}
+    #utmWarn:empty{display:none}
+    .utm-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:12px;margin-top:8px;background:rgba(255,255,255,.025)}
+    .utm-row code{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:none;border:0;font-size:12.5px}
+    .utm-ch{font-size:13px;font-weight:700;min-width:96px}
+    .utm-mini{padding:5px 12px !important;font-size:12.5px !important}
+    .utm-section{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:16px;background:rgba(255,255,255,.02)}
+    #utmPresets,#utmChannels{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+    #utmPresets .chip,#utmChannels .chip{padding:5px 11px;font-size:12.5px}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">UTM Builder</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Marketing</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>UTM Builder — Campaign Links That Keep Your Analytics Clean</h1>
+    <p>Build UTM-tagged links for Google Analytics in seconds — or a whole set at once, one per channel. Built-in naming checks catch the mistakes that split your reports, like "Facebook" vs "facebook". Turn any link into a QR code with one click.</p>
+    <a href="#tool" class="jump-to-tool">Build a link <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <label class="field-label" for="utmUrl">Page link</label>
+    <input type="text" id="utmUrl" value="https://example.com/summer-sale" autocomplete="off" spellcheck="false">
+    <label class="field-label">Quick fill source &amp; medium</label>
+    <div id="utmPresets"></div>
+    <div class="row-2">
+      <div><label class="field-label" for="utm_source">Source <code>utm_source</code> *</label><input type="text" id="utm_source" placeholder="instagram" autocomplete="off"></div>
+      <div><label class="field-label" for="utm_medium">Medium <code>utm_medium</code> *</label><input type="text" id="utm_medium" placeholder="social" autocomplete="off"></div>
+      <div><label class="field-label" for="utm_campaign">Campaign <code>utm_campaign</code></label><input type="text" id="utm_campaign" value="summer_sale" autocomplete="off"></div>
+      <div><label class="field-label" for="utm_content">Content <code>utm_content</code></label><input type="text" id="utm_content" placeholder="video_ad_a" autocomplete="off"></div>
+      <div><label class="field-label" for="utm_term">Term <code>utm_term</code></label><input type="text" id="utm_term" placeholder="running shoes" autocomplete="off"></div>
+      <div><label class="field-label" for="utm_id">Campaign ID <code>utm_id</code></label><input type="text" id="utm_id" placeholder="2026_q4_01" autocomplete="off"></div>
+    </div>
+    <div class="checkline"><input type="checkbox" id="utmLower" checked><label for="utmLower">Force lowercase (recommended)</label></div>
+    <div class="checkline"><input type="checkbox" id="utmSpaces" checked><label for="utmSpaces">Replace spaces with _</label></div>
+
+    <div class="utm-out">
+      <code id="utmOut"></code>
+      <div id="utmParts"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn" type="button" id="utmCopy">Copy link</button>
+        <button class="btn btn-secondary" type="button" id="utmQr">Make a QR code →</button>
+        <button class="btn btn-secondary" type="button" id="utmOpen">Test link ↗</button>
+      </div>
+    </div>
+    <ul id="utmWarn"></ul>
+    <div id="utmStatus" class="result" aria-live="polite"></div>
+
+    <div class="utm-section">
+      <label class="field-label">Campaign matrix — one link per channel</label>
+      <p style="font-size:13.5px;color:var(--text-dim);margin:0">Pick every channel you'll post this campaign on. Each link gets the right source and medium, sharing your campaign name.</p>
+      <div id="utmChannels"></div>
+      <div id="utmMatrixWrap" hidden>
+        <div id="utmMatrix"></div>
+        <div class="btn-row" style="margin-top:10px"><button class="btn btn-secondary" type="button" id="utmMatrixCopy">Copy all</button><button class="btn btn-secondary" type="button" id="utmMatrixCsv">Download CSV</button></div>
+      </div>
+    </div>
+
+    <div class="utm-section" id="utmHistWrap" hidden>
+      <label class="field-label">Your recent links (saved in this browser)</label>
+      <div id="utmHist"></div>
+      <div class="btn-row" style="margin-top:10px"><button class="btn btn-secondary" type="button" id="utmClearHist">Clear history</button></div>
+    </div>
+  </div>
+  <script src="/utm-builder.js"></script>
+
+  <div class="content">
+    <h2>What each UTM parameter means</h2>
+    <ul class="benefits">
+      <li><strong>utm_source</strong> — where the visitor came from: <code>instagram</code>, <code>newsletter</code>, <code>google</code>.</li>
+      <li><strong>utm_medium</strong> — the type of channel: <code>social</code>, <code>email</code>, <code>cpc</code>, <code>qr</code>.</li>
+      <li><strong>utm_campaign</strong> — the campaign name: <code>summer_sale</code>, <code>eid_2026</code>.</li>
+      <li><strong>utm_content</strong> — which ad, button or version: <code>video_a</code>, <code>banner_top</code>.</li>
+      <li><strong>utm_term</strong> — the paid keyword. <strong>utm_id</strong> — a campaign ID for cost imports.</li>
+    </ul>
+
+    <h2>Naming rules that keep reports clean</h2>
+    <ul class="benefits">
+      <li>Always lowercase — Google Analytics is case-sensitive.</li>
+      <li>No spaces — use <code>_</code> or <code>-</code>.</li>
+      <li>Pick one spelling per channel and reuse it. The builder warns you if a new value is close to one you used before.</li>
+      <li>Don't add UTM tags to internal links on your own site — they restart the session.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Where do I see the results?</summary><p>In Google Analytics 4: Reports → Acquisition → Traffic acquisition, then switch the dimension to Session source / medium or Session campaign.</p></details>
+    <details class="faq-item"><summary>Do UTM links hurt SEO?</summary><p>No, as long as your pages have a canonical tag (most sites do). Use UTM links in ads, emails, social posts and QR codes — not in internal navigation.</p></details>
+    <details class="faq-item"><summary>Is my data stored?</summary><p>Only in your own browser (the recent-links list), so you can reuse names. Nothing is sent to a server.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More marketing tools</h2>
+    <div class="related-grid">
+      <a href="/qr-code-generator">QR Code Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/meta-tag-preview">SERP &amp; Social Preview<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/social-image-resizer">Social Image Resizer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny UTM Builder","url":"https://quicktinyv2.vercel.app/utm-builder","description":"Build UTM-tagged campaign links for Google Analytics, or one link per channel at once. Naming checks keep reports clean. Copy, export CSV, or turn a link into a QR code.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"UTM Builder","item":"https://quicktinyv2.vercel.app/utm-builder"}]}</script>
+</body>
+</html>

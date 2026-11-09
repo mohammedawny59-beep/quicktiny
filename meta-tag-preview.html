@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SERP &amp; Social Preview — Google Snippet and Open Graph Checker | QuickTiny</title>
+  <meta name="description" content="Preview how your page looks in Google (desktop and mobile) and on Facebook, LinkedIn, X and WhatsApp. Pixel-accurate title width, import from HTML, copy meta tags.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/meta-tag-preview">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/compress-image">
+  <meta property="og:title" content="SERP &amp; Social Preview — Google Snippet and Open Graph Checker | QuickTiny">
+  <meta property="og:description" content="Preview how your page looks in Google (desktop and mobile) and on Facebook, LinkedIn, X and WhatsApp. Pixel-accurate title width, import from HTML, copy meta tags.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/meta-tag-preview">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .mp-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px}
+    @media (max-width:900px){.mp-grid{grid-template-columns:1fr}}
+    .mp-meter{position:relative;height:24px;border-radius:8px;background:rgba(255,255,255,.05);overflow:hidden;margin:-8px 0 14px;font-size:12px}
+    .mp-meter i{position:absolute;left:0;top:0;bottom:0;background:rgba(255,255,255,.12)}
+    .mp-meter.ok i{background:rgba(61,220,148,.35)}.mp-meter.warn i{background:rgba(255,200,90,.4)}.mp-meter.bad i{background:rgba(255,122,138,.45)}
+    .mp-meter span{position:relative;display:block;padding:4px 10px;color:var(--text-dim)}
+    .mp-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:16px 0 6px}
+    .mp-card{background:#fff;color:#202124;border-radius:12px;padding:16px;font-family:Arial,Helvetica,sans-serif}
+    .g-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+    .g-fav{width:26px;height:26px;border-radius:50%;background:#f1f3f4;border:1px solid #dadce0;display:grid;place-items:center;font-size:12px;color:#5f6368;flex:none}
+    .g-site{font-size:14px;color:#202124;line-height:1.3}.g-url{font-size:12px;color:#4d5156;line-height:1.3}
+    .g-title{font-size:20px;line-height:1.3;color:#1a0dab;max-width:600px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    /* Desktop snippet is pinned to Google's real 600 px column so the cut-off matches the meter. */
+    #mpGoogle{overflow-x:auto}
+    #mpGoogle .g-title,#mpGoogle .g-desc{width:600px;max-width:none}
+    .g-title.m{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:18px;max-width:360px}
+    .g-desc{font-size:14px;line-height:1.58;color:#4d5156;max-width:600px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .g-desc.m{-webkit-line-clamp:3;max-width:360px}
+    .mp-social{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:600px){.mp-social{grid-template-columns:1fr}}
+    .s-card{background:#fff;color:#1c1e21;border-radius:10px;overflow:hidden;border:1px solid #dddfe2;font-family:Helvetica,Arial,sans-serif}
+    .s-img{aspect-ratio:1.91/1;background:#e4e6eb center/cover no-repeat}
+    .s-img.empty{display:grid;place-items:center;color:#8a8d91;font-size:13px}
+    .s-body{padding:10px 12px}.s-body.fb{background:#f0f2f5}
+    .s-host{font-size:12px;color:#65676b;text-transform:none}
+    .s-title{font-size:16px;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:2px 0}
+    .s-desc{font-size:14px;color:#65676b;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+    .x-card{background:#000;color:#e7e9ea;border-radius:16px;padding:0;font-family:Helvetica,Arial,sans-serif;border:1px solid #2f3336;overflow:hidden}
+    .x-wrap{position:relative}.x-wrap .s-img{border-radius:0}
+    .x-host{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.75);color:#fff;font-size:12px;padding:2px 6px;border-radius:4px}
+    .x-title{padding:8px 12px;font-size:14px;color:#71767b}
+    .wa{background:#0b141a;padding:14px;border-radius:12px}
+    .wa-bubble{background:#005c4b;border-radius:10px;padding:5px;max-width:330px;margin-left:auto;font-family:Helvetica,Arial,sans-serif}
+    .wa-card{background:rgba(0,0,0,.2);border-radius:8px;overflow:hidden}
+    .wa-img{aspect-ratio:1.91/1;background:center/cover no-repeat}
+    .wa-body{padding:8px 10px}.wa-title{color:#e9edef;font-weight:700;font-size:14px}.wa-desc{color:#aebac1;font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.wa-host{color:#8696a0;font-size:12px;margin-top:2px}
+    .wa-link{color:#53bdeb;font-size:13.5px;padding:6px 6px 2px;word-break:break-all}
+    #mpCode{display:block;white-space:pre;overflow:auto;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:12px;padding:14px;font:12.5px/1.65 var(--mono);color:#cfd2ff;max-height:340px}
+    #mpTips{margin:8px 0 0;padding-left:18px;font-size:13px;color:#ffd88a;line-height:1.6}
+    #mpTips:empty{display:none}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">SERP &amp; Social Preview</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Marketing</span><span class="badge">SEO</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>SERP &amp; Social Preview — See Your Page in Google, Facebook, X &amp; WhatsApp</h1>
+    <p>Write your title and description and see exactly how they'll look in Google (desktop and mobile) and when someone shares your link on Facebook, LinkedIn, X or WhatsApp. Title width is measured in pixels like Google does. Paste your page's HTML to import its current tags, then copy the improved meta tags.</p>
+    <a href="#tool" class="jump-to-tool">Preview my page <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="mp-grid">
+      <div>
+        <details class="faq-item" style="margin-bottom:14px"><summary>Import from my page's HTML</summary>
+          <p style="margin-bottom:8px">Open your page, press Ctrl+U (view source), copy everything and paste it here.</p>
+          <textarea id="mpHtml" placeholder="&lt;html&gt;&lt;head&gt;&lt;title&gt;…" spellcheck="false" style="min-height:110px"></textarea>
+          <div class="btn-row"><button class="btn btn-secondary" type="button" id="mpImport">Import tags</button></div>
+          <div id="mpImportStatus" class="result"></div>
+        </details>
+        <label class="field-label" for="mpUrl">Page URL</label>
+        <input type="text" id="mpUrl" value="https://quicktinyv2.vercel.app/qr-code-generator" autocomplete="off">
+        <label class="field-label" for="mpTitle">Title <span id="mpTitleCount" style="float:right;text-transform:none;letter-spacing:0"></span></label>
+        <input type="text" id="mpTitle" value="Free QR Code Generator — Custom Design, Logo, Never Expires" autocomplete="off" dir="auto">
+        <div class="mp-meter" id="mpTitleMeter"></div>
+        <label class="field-label" for="mpDesc">Meta description</label>
+        <textarea id="mpDesc" dir="auto" style="min-height:90px;font-family:inherit">Create custom QR codes with logo, colors and frames that never expire. Every code is scan-tested. Free, no sign-up.</textarea>
+        <div class="mp-meter" id="mpDescMeter"></div>
+        <div class="row-2">
+          <div><label class="field-label" for="mpSite">Site name</label><input type="text" id="mpSite" value="QuickTiny" autocomplete="off"></div>
+          <div><label class="field-label" for="mpHandle">X / Twitter handle</label><input type="text" id="mpHandle" placeholder="@yourbrand" autocomplete="off"></div>
+        </div>
+        <label class="field-label" for="mpImg">Share image (to preview)</label>
+        <input type="file" id="mpImg" accept="image/*">
+        <label class="field-label" for="mpImgUrl">Share image URL (for the og:image tag)</label>
+        <input type="text" id="mpImgUrl" placeholder="https://yoursite.com/og-image.png" autocomplete="off">
+        <ul id="mpTips"></ul>
+      </div>
+      <div>
+        <div class="mp-label">Google — desktop</div><div class="mp-card" id="mpGoogle"></div>
+        <div class="mp-label">Google — mobile</div><div class="mp-card" id="mpGoogleM" style="max-width:400px"></div>
+        <div class="mp-social">
+          <div><div class="mp-label">Facebook</div><div class="s-card" id="mpFacebook"></div></div>
+          <div><div class="mp-label">LinkedIn</div><div class="s-card" id="mpLinkedIn"></div></div>
+          <div><div class="mp-label">X / Twitter</div><div class="x-card" id="mpX"></div></div>
+          <div><div class="mp-label">WhatsApp</div><div class="wa"><div class="wa-bubble" id="mpWhatsApp"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mp-label" style="margin-top:22px">Your meta tags — paste inside &lt;head&gt;</div>
+    <code id="mpCode"></code>
+    <div class="btn-row" style="margin-top:10px"><button class="btn" type="button" id="mpCopy">Copy tags</button></div>
+    <div id="mpCopyStatus" class="result"></div>
+  </div>
+  <script src="/meta-tag-preview.js"></script>
+
+  <div class="content">
+    <h2>Why pixel width matters</h2>
+    <p>Google cuts titles by width, not by character count — "WWWW" takes far more room than "iiii". The meter measures your title in the same font and size Google uses on desktop (about 600 px), so you can see the cut-off before it happens.</p>
+    <h2>Tips for titles and descriptions that get clicks</h2>
+    <ul class="benefits">
+      <li>Put the main keyword near the start of the title.</li>
+      <li>Give a reason to click: free, fast, a number, a result.</li>
+      <li>Keep descriptions around 120–155 characters and write them for people, not robots.</li>
+      <li>Use a 1200×630 share image — it fits Facebook, LinkedIn, X and WhatsApp.</li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does Google always use my description?</summary><p>No — Google sometimes writes its own snippet from your page when it fits the search better. A clear, relevant description makes it much more likely yours is used.</p></details>
+    <details class="faq-item"><summary>Why didn't my share image import?</summary><p>For privacy, this page doesn't contact other websites. Upload the image file to preview it; the og:image URL is still added to your tags.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More marketing tools</h2>
+    <div class="related-grid">
+      <a href="/social-image-resizer">Social Image Resizer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/seo-slug-generator">SEO Slug Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/utm-builder">UTM Builder<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny SERP and Social Preview","url":"https://quicktinyv2.vercel.app/meta-tag-preview","description":"Preview how your page looks in Google (desktop and mobile) and on Facebook, LinkedIn, X and WhatsApp. Pixel-accurate title width, import from HTML, copy meta tags.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"SERP &amp; Social Preview","item":"https://quicktinyv2.vercel.app/meta-tag-preview"}]}</script>
+</body>
+</html>
