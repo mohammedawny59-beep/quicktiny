@@ -1,6 +1,6 @@
 # QuickTiny
 
-Paste JSON, text, a URL, or an image and get the right browser tool quickly. QuickTiny has **12 free tools** that need no account, plus a separate **$4.99 one-time Pro batch image compressor**. Text and image processing happens in your browser.
+Paste JSON, text, a URL, or an image and get the right browser tool quickly. QuickTiny has **13 free tools** that need no account, plus a separate **$4.99 one-time Pro batch image compressor**. Text and image processing happens in your browser.
 
 **Try a free tool directly:**
 
@@ -12,7 +12,7 @@ Paste JSON, text, a URL, or an image and get the right browser tool quickly. Qui
 | Encode or decode Base64 text | [Base64](https://quicktinyv2.vercel.app/base64-encode-decode?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
 | Sort a list of lines | [Sort Lines](https://quicktinyv2.vercel.app/sort-lines?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
 
-Or [open all 13 tools](https://quicktinyv2.vercel.app/?utm_source=github&utm_medium=readme&utm_campaign=tool_links). The batch compressor is the only paid feature; the 12 tools above and on the site are free.
+Or [open all 14 tools](https://quicktinyv2.vercel.app/?utm_source=github&utm_medium=readme&utm_campaign=tool_links). The batch compressor is the only paid feature; the free tools above and on the site are free.
 
 **One useful edge case:** If `fetch(...).json()` reports `Unexpected token '<'`, the API probably returned an HTML page. Check the HTTP response and URL before trying to repair JSON. For actual JSON syntax errors, [the formatter explains the error and offers fixes for common, safe cases](https://quicktinyv2.vercel.app/json-formatter?utm_source=github&utm_medium=readme&utm_campaign=tool_links).
 
