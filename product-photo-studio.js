@@ -320,6 +320,8 @@ document.addEventListener("DOMContentLoaded", function() {
   dz.addEventListener("drop", function(e){ if (e.dataTransfer.files[0]) qtStudioLoadFile(e.dataTransfer.files[0]); });
   input.addEventListener("change", function(){ if (input.files[0]) qtStudioLoadFile(input.files[0]); });
 
+  if (window.QT_PRESET && window.QT_PRESET.removeBg) qtStudioEl("studioRemoveBg").checked = true;
+  if (window.QT_PRESET && window.QT_PRESET.preset) qtStudioEl("studioPreset").value = window.QT_PRESET.preset;
   qtStudioEl("studioRemoveBg").addEventListener("change", function(e){
     if (e.target.checked) qtStudioRunRemoval();
     else { qtStudio.cutout = null; qtStudioStatus(""); qtStudioRender(); }

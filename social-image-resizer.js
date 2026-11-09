@@ -25,7 +25,7 @@
     ["wa-status", "WhatsApp", "Status", 1080, 1920, true],
     ["og", "Website", "Link preview (Open Graph)", 1200, 630]
   ];
-  var DEFAULT_ON = ["ig-square", "ig-portrait", "ig-story", "fb-post", "x-post", "li-post", "yt-thumb"];
+  var DEFAULT_ON = (window.QT_PRESET && window.QT_PRESET.sizes) || ["ig-square", "ig-portrait", "ig-story", "fb-post", "x-post", "li-post", "yt-thumb"];
 
   var src = null, fileName = "image", focal = { x: 0.5, y: 0.5 };
 

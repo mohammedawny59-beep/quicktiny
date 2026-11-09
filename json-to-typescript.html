@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JSON to TypeScript — Generate Interfaces From JSON | QuickTiny</title>
+  <meta name="description" content="Paste JSON and get TypeScript interfaces with optional and nullable fields inferred from every array item. Free, instant, nothing uploaded.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/json-to-typescript">
+  <meta property="og:title" content="JSON to TypeScript — Generate Interfaces From JSON | QuickTiny">
+  <meta property="og:description" content="Paste JSON and get TypeScript interfaces with optional and nullable fields inferred from every array item. Free, instant, nothing uploaded.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/json-to-typescript">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script>window.QT_PRESET = {"mode": "ts"};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">JSON to TypeScript</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Data</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>JSON to TypeScript Interface Generator</h1>
+    <p>Paste an API response and get clean TypeScript interfaces. Fields missing from some array items become optional, mixed values become unions, and nested objects get their own named interfaces.</p>
+    <a href="#tool" class="jump-to-tool">Try it now <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="row-2">
+      <div>
+        <label class="field-label" for="jcMode">Convert</label>
+        <select id="jcMode">
+          <option value="ts">JSON → TypeScript interfaces</option>
+          <option value="zod">JSON → Zod schema</option>
+          <option value="csv">JSON → CSV</option>
+          <option value="csv2json">CSV → JSON</option>
+        </select>
+      </div>
+      <div id="jcNameWrap">
+        <label class="field-label" for="jcName">Root type name</label>
+        <input type="text" id="jcName" value="Root" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <label class="field-label" id="jcInLabel" for="jcIn" style="margin-top:14px">JSON input</label>
+    <textarea id="jcIn" spellcheck="false"></textarea>
+    <label class="field-label" for="jcOut" style="margin-top:14px">Output</label>
+    <textarea id="jcOut" readonly spellcheck="false"></textarea>
+    <div class="btn-row">
+      <button class="btn" id="jcCopy" type="button">Copy</button>
+      <button class="btn btn-secondary" id="jcDownload" type="button">Download</button>
+    </div>
+    <div id="jcStatus" class="result" aria-live="polite"></div>
+  </div>
+  <script src="/json-converter.js"></script>
+
+  <div class="content">
+    <h2>Example</h2><p><code>[{"id":1,"name":"Ada"},{"id":2,"age":30}]</code> becomes an interface with <code>id: number</code>, <code>name?: string</code> and <code>age?: number</code>.</p><h2>Quick answers</h2><details class="faq-item"><summary>Can I get a Zod schema instead?</summary><p>Yes — switch the mode to JSON → Zod schema.</p></details>
+    <h2>How to use JSON Converter</h2>
+    <ol>
+      <li>Choose what to convert to: TypeScript, Zod, CSV &mdash; or CSV to JSON.</li>
+      <li>Paste your JSON (or CSV). The output updates as you type.</li>
+      <li>Copy it or download it as a file.</li>
+    </ol>
+
+    <h2>What makes the types accurate</h2>
+    <ul class="benefits">
+      <li><strong>Looks at every item in an array</strong>, not just the first: a field missing from some objects becomes optional (<code>age?: number</code>), and mixed values become unions (<code>number | string</code>).</li>
+      <li><strong>Handles <code>null</code></strong> as <code>| null</code> in TypeScript and <code>.nullable()</code> in Zod.</li>
+      <li><strong>Names nested types</strong> from their keys &mdash; <code>orders</code> becomes <code>Order</code>, <code>categories</code> becomes <code>Category</code>.</li>
+      <li><strong>Zod output compiles as-is</strong>, with schemas declared before they're used and a matching <code>z.infer</code> type.</li>
+    </ul>
+
+    <h2>CSV details</h2>
+    <ul class="benefits">
+      <li>Nested objects become dotted columns (<code>meta.score</code>); every key across all rows gets a column.</li>
+      <li>Cells starting with <code>=</code>, <code>+</code>, <code>-</code> or <code>@</code> are escaped so spreadsheets don't run them as formulas.</li>
+      <li>CSV → JSON detects comma, semicolon or tab delimiters, handles quoted values and line breaks, and keeps codes like <code>01234</code> as text.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is my JSON sent to a server?</summary><p>No. Conversion happens in your browser; nothing you paste is uploaded or stored.</p></details>
+    <details class="faq-item"><summary>Which Zod version is the output for?</summary><p>It uses the core API (<code>z.object</code>, <code>z.array</code>, <code>z.union</code>, <code>.optional()</code>, <code>.nullable()</code>) that works in Zod 3 and Zod 4.</p></details>
+    <details class="faq-item"><summary>My JSON has an error — what now?</summary><p>Open it in the <a href="/json-formatter">JSON Formatter</a>, which explains the error and can repair common problems like trailing commas or single quotes.</p></details>
+    <details class="faq-item"><summary>What does an empty array become?</summary><p><code>unknown[]</code> in TypeScript and <code>z.array(z.unknown())</code> in Zod, because there's nothing to infer from. Paste a sample with at least one item for a precise type.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/base64-encode-decode">Base64 Encode/Decode<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/url-encode-decode">URL Encode/Decode<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/pdf-tools">PDF Tools</a>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny JSON Converter","url":"https://quicktinyv2.vercel.app/json-to-typescript","description":"Convert JSON to TypeScript interfaces or a Zod schema with optional and nullable fields inferred from every item, or JSON to CSV and back. Free and private.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"JSON Converter","item":"https://quicktinyv2.vercel.app/json-to-typescript"}]}</script>
+</body>
+</html>

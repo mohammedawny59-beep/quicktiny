@@ -163,6 +163,7 @@
     });
     var hash = location.hash.replace("#", "");
     if (["cps", "reaction", "double-click", "polling"].indexOf(hash) !== -1) showTab(hash);
+    else if (window.QT_PRESET && window.QT_PRESET.tab) showTab(window.QT_PRESET.tab);
 
     $("cpsArea").addEventListener("pointerdown", cpsClick);
     $("cpsDur").addEventListener("change", cpsReset);

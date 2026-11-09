@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YouTube Thumbnail Size (1280×720) — Resize Your Image | QuickTiny</title>
+  <meta name="description" content="Resize an image to the YouTube thumbnail size 1280×720 (16:9) and channel banner 2560×1440. Focal-point crop, free download.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/youtube-thumbnail-size">
+  <meta property="og:title" content="YouTube Thumbnail Size (1280×720) — Resize Your Image | QuickTiny">
+  <meta property="og:description" content="Resize an image to the YouTube thumbnail size 1280×720 (16:9) and channel banner 2560×1440. Focal-point crop, free download.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/youtube-thumbnail-size">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .sr-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;margin-top:16px}
+    @media (max-width:860px){.sr-top{grid-template-columns:1fr}}
+    #srSource{position:relative;display:inline-block;cursor:crosshair;border-radius:14px;overflow:hidden;border:1px solid var(--line);max-width:100%}
+    #srSource canvas{display:block;max-width:100%;height:auto}
+    #srFocal{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px rgba(91,91,255,.9),0 0 16px rgba(59,226,255,.9);pointer-events:none;transition:left .15s,top .15s}
+    #srSizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 16px;margin-top:8px}
+    .sr-group b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
+    .sr-group .checkline{margin:3px 0;font-size:13.5px}
+    .sr-dim{color:var(--muted);font-size:12px}
+    #srGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:18px}
+    .sr-card{border:1px solid var(--line);border-radius:16px;padding:12px;background:rgba(255,255,255,.03);display:flex;flex-direction:column;gap:8px}
+    .sr-thumb{height:180px;display:flex;align-items:center;justify-content:center;background:repeating-conic-gradient(rgba(255,255,255,.04) 0 25%,transparent 0 50%) 0 0/16px 16px;border-radius:10px}
+    .sr-thumb canvas{max-width:100%;max-height:180px;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+    .sr-meta b{display:block;font-size:13px}.sr-meta span{font-size:12px;color:var(--muted)}
+    .sr-dl{padding:7px 12px !important;font-size:13px !important}
+    input[type=range]{width:100%}
+    input[type=color]{width:100%;height:40px;padding:3px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.25)}
+  </style>
+  <script>window.QT_PRESET = {"sizes": ["yt-thumb", "yt-banner"]};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">YouTube Thumbnail Size</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Marketing</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Never uploaded</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>YouTube Thumbnail Size: 1280 × 720 px</h1>
+    <p>YouTube recommends 1280 × 720 pixels (16:9) for thumbnails. Drop your image, set the focal point on your face or product, and download a perfectly sized thumbnail — plus the 2560 × 1440 channel banner if you need it.</p>
+    <a href="#tool" class="jump-to-tool">Resize my image <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="dropzone" id="srDz" tabindex="0" role="button" aria-label="Choose an image">
+      <strong>Drop one image here</strong> or click to choose<br><span style="font-size:13px">JPG, PNG or WebP — it never leaves your device</span>
+    </div>
+    <input id="srFile" type="file" accept="image/*" class="sr-only">
+    <div id="srStatus" class="result" aria-live="polite"></div>
+
+    <div id="srWork" hidden>
+      <div class="sr-top">
+        <div>
+          <label class="field-label">Focal point — click the most important spot</label>
+          <div id="srSource"></div>
+        </div>
+        <div>
+          <label class="field-label" for="srMode">How to fit each size</label>
+          <select id="srMode">
+            <option value="cover">Crop to fill (keeps the focal point)</option>
+            <option value="blur">Fit whole image on a blurred background</option>
+            <option value="color">Fit whole image on a color</option>
+          </select>
+          <div id="srColorWrap" hidden><label class="field-label" for="srColor">Background color</label><input type="color" id="srColor" value="#ffffff"></div>
+          <div class="row-2">
+            <div><label class="field-label" for="srFormat">Format</label><select id="srFormat"><option value="jpeg">JPG</option><option value="png">PNG</option><option value="webp">WebP</option></select></div>
+            <div><label class="field-label" for="srQuality">Quality: <span id="srQVal">90</span></label><input type="range" id="srQuality" min="60" max="100" value="90"></div>
+          </div>
+          <div class="checkline"><input type="checkbox" id="srSafe" checked><label for="srSafe">Show Story / TikTok safe zones (red = covered by the app's buttons)</label></div>
+        </div>
+      </div>
+
+      <label class="field-label" style="margin-top:18px">Sizes</label>
+      <div class="btn-row" style="margin:0 0 6px"><button class="btn btn-secondary" type="button" id="srAllOn" style="padding:6px 12px;font-size:13px">Select all</button><button class="btn btn-secondary" type="button" id="srAllOff" style="padding:6px 12px;font-size:13px">Clear</button></div>
+      <div id="srSizes"></div>
+      <div class="btn-row" style="margin-top:16px"><button class="btn" type="button" id="srAll">Download all as ZIP</button></div>
+      <div id="srGrid"></div>
+    </div>
+  </div>
+  <script src="/shopify-image-tools.js"></script>
+  <script src="/social-image-resizer.js"></script>
+
+
+  <div class="content">
+    <h2>Thumbnail checklist</h2><ul class='benefits'><li>1280 × 720 px, 16:9.</li><li>Under 2 MB — choose JPG at 85–90% quality.</li><li>Big, readable text and a clear face or object.</li></ul><h2>Quick answers</h2><details class="faq-item"><summary>Why 1280×720?</summary><p>It's YouTube's recommended size; smaller images look blurry on TVs and large screens.</p></details>
+    <h2>What makes it better than a basic resizer</h2>
+    <ul class="benefits">
+      <li><strong>Focal point:</strong> click the face or product once and every crop — square, story, banner — keeps it in frame.</li>
+      <li><strong>Blurred-background fit:</strong> show the whole photo in a different shape without black bars, like Instagram does.</li>
+      <li><strong>Safe zones:</strong> see which parts of a Story, Reel or TikTok are hidden behind the app's buttons before you post.</li>
+      <li><strong>17 sizes, one ZIP:</strong> named by platform and size, ready to schedule.</li>
+      <li><strong>Private:</strong> everything happens in your browser.</li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Are these the official sizes?</summary><p>They're the sizes each platform recommends for upload as of 2026. Platforms change layouts often, so check their help pages for new formats.</p></details>
+    <details class="faq-item"><summary>JPG, PNG or WebP?</summary><p>JPG for photos (smallest), PNG for graphics with text or transparency, WebP for websites.</p></details>
+    <details class="faq-item"><summary>Will it upscale small images?</summary><p>Yes, if a size is larger than your original, but upscaled images look softer. Start with the largest original you have.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More marketing tools</h2>
+    <div class="related-grid">
+      <a href="/qr-code-generator">QR Code Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/product-photo-studio">Product Photo Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/color-palette-extractor">Brand Color Palette<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Social Image Resizer","url":"https://quicktinyv2.vercel.app/youtube-thumbnail-size","description":"Resize one image for Instagram, TikTok, Facebook, X, LinkedIn, YouTube, Pinterest and WhatsApp at once. Focal-point crop, blurred-background fit, story safe zones, ZIP download.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Social Image Resizer","item":"https://quicktinyv2.vercel.app/youtube-thumbnail-size"}]}</script>
+</body>
+</html>

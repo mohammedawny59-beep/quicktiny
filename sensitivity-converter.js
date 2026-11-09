@@ -53,7 +53,9 @@ function qtRound(v, dp) { var f = Math.pow(10, dp); return Math.round(v * f) / f
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    fill($("scFrom"), "valorant"); fill($("scTo"), "cs2");
+    var QP = window.QT_PRESET || {};
+    fill($("scFrom"), QP.from && qtGame(QP.from) ? QP.from : "valorant"); fill($("scTo"), QP.to && qtGame(QP.to) ? QP.to : "cs2");
+    if (QP.sens) $("scSens").value = QP.sens;
     var h = location.hash.replace("#", "").split("/");
     if (h.length === 5 && qtGame(h[0]) && qtGame(h[3])) { $("scFrom").value = h[0]; $("scSens").value = h[1]; $("scDpi").value = h[2]; $("scTo").value = h[3]; $("scDpiTo").value = h[4]; }
     ["scFrom", "scTo", "scSens", "scDpi", "scDpiTo"].forEach(function (id) { $(id).addEventListener("input", run); $(id).addEventListener("change", run); });

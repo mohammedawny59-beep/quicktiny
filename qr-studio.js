@@ -501,6 +501,9 @@
     $("qrBulkRun").addEventListener("click", runBulk);
     $("qrBulkFile").addEventListener("change", function () { var f = this.files[0]; if (!f) return; f.text().then(function (t) { $("qrBulkInput").value = t; }); });
 
+    var QP = window.QT_PRESET || {};
+    if (QP.type && TYPES[QP.type]) state.type = QP.type;
+    if (QP.pane) showPane(QP.pane);
     writeDesign(); renderFields(); render();
   });
 

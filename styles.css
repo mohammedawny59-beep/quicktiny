@@ -482,3 +482,7 @@ footer::after{background:radial-gradient(ellipse at top,rgba(91,91,255,.22),tran
 [dir=rtl] .data-table th,[dir=rtl] .data-table td{text-align:right}
 [dir=rtl] .nav-links{align-items:flex-end}
 [dir=rtl] code,[dir=rtl] .ltr{direction:ltr;unicode-bidi:isolate}
+
+/* popular task links */
+.task-links{display:flex;flex-wrap:wrap;gap:8px}
+.task-links a.chip{text-decoration:none;display:inline-block}
