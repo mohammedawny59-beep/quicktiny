@@ -1,8 +1,15 @@
 // QuickTiny PDF Tools — merge, extract/remove pages, rotate, images → PDF.
 // Uses pdf-lib (MIT) in the browser; files are never uploaded.
+// Messages go through qtL() so translated pages can set window.QT_STRINGS.
 
 var QT_PDFLIB_URL = "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";
 var qtPdfLibPromise = null;
+
+// qtL("Merged {n} files", {n: 3}) → translated (if window.QT_STRINGS has it) and filled in.
+function qtL(text, vars) {
+  var t = (window.QT_STRINGS && window.QT_STRINGS[text]) || text;
+  return t.replace(/\{(\w+)\}/g, function(m, k){ return vars && vars[k] !== undefined ? vars[k] : m; });
+}
 
 function qtLoadPdfLib() {
   if (window.PDFLib) return Promise.resolve(window.PDFLib);
@@ -11,7 +18,7 @@ function qtLoadPdfLib() {
       var s = document.createElement("script");
       s.src = QT_PDFLIB_URL;
       s.onload = function(){ resolve(window.PDFLib); };
-      s.onerror = function(){ qtPdfLibPromise = null; reject(new Error("Could not load the PDF engine. Check your connection and try again.")); };
+      s.onerror = function(){ qtPdfLibPromise = null; reject(new Error(qtL("Could not load the PDF engine. Check your connection and try again."))); };
       document.head.appendChild(s);
     });
   }
@@ -30,14 +37,20 @@ function qtReadBytes(file) {
   return file.arrayBuffer().then(function(b){ return new Uint8Array(b); });
 }
 
+// Translated pages can set window.QT_PAGES_LABEL(n) for languages with richer plural rules.
+function qtPagesLabel(n) {
+  if (typeof window.QT_PAGES_LABEL === "function") return window.QT_PAGES_LABEL(n);
+  return n === 1 ? qtL("1 page") : qtL("{n} pages", { n: n });
+}
+
 async function qtOpenPdf(file) {
   var PDFLib = await qtLoadPdfLib();
   var bytes = await qtReadBytes(file);
   try {
     return await PDFLib.PDFDocument.load(bytes, { updateMetadata: false });
   } catch (e) {
-    if (/encrypt/i.test(e && e.message)) throw new Error("“" + file.name + "” is password-protected. Remove the password first, then try again.");
-    throw new Error("“" + file.name + "” doesn't look like a valid PDF.");
+    if (/encrypt/i.test(e && e.message)) throw new Error(qtL("“{name}” is password-protected. Remove the password first, then try again.", { name: file.name }));
+    throw new Error(qtL("“{name}” doesn't look like a valid PDF.", { name: file.name }));
   }
 }
 
@@ -49,7 +62,7 @@ function qtDownloadLink(container, bytes, filename, label) {
   a.href = URL.createObjectURL(blob);
   a.download = filename;
   a.className = "btn";
-  a.textContent = (label || "Download") + " (" + qtFormatBytes(blob.size) + ")";
+  a.textContent = (label || qtL("Download")) + " (" + qtFormatBytes(blob.size) + ")";
   container.appendChild(a);
   return a;
 }
@@ -57,18 +70,47 @@ function qtDownloadLink(container, bytes, filename, label) {
 // "1-3, 5, 8-" → zero-based page indexes (sorted, unique), validated against pageCount.
 function qtParseRanges(text, pageCount) {
   var out = [], seen = {};
-  var parts = String(text || "").split(",").map(function(p){ return p.trim(); }).filter(Boolean);
-  if (!parts.length) throw new Error("Enter the pages you want, e.g. 1-3, 5");
+  var parts = String(text || "").replace(/،/g, ",").split(",").map(function(p){ return p.trim(); }).filter(Boolean);
+  if (!parts.length) throw new Error(qtL("Enter the pages you want, e.g. 1-3, 5"));
   parts.forEach(function(part) {
     var m = /^(\d+)?\s*(-)?\s*(\d+)?$/.exec(part);
-    if (!m || (!m[1] && !m[3])) throw new Error("“" + part + "” isn't a page or range. Use e.g. 1-3, 5, 8-");
+    if (!m || (!m[1] && !m[3])) throw new Error(qtL("“{part}” isn't a page or range. Use e.g. 1-3, 5, 8-", { part: part }));
     var start = m[1] ? Number(m[1]) : 1;
     var end = m[2] ? (m[3] ? Number(m[3]) : pageCount) : start;
-    if (start < 1 || end < 1 || start > pageCount || end > pageCount) throw new Error("This PDF has " + pageCount + " pages — “" + part + "” is out of range.");
+    if (start < 1 || end < 1 || start > pageCount || end > pageCount) throw new Error(qtL("This PDF has {n} pages — “{part}” is out of range.", { n: pageCount, part: part }));
     if (end < start) { var t = start; start = end; end = t; }
     for (var p = start; p <= end; p++) if (!seen[p]) { seen[p] = true; out.push(p - 1); }
   });
   return out.sort(function(a, b){ return a - b; });
+}
+
+// Shared list renderer for the merge and images lists (reorder + remove).
+function qtRenderFileList(listId, items, labelOf, onChange) {
+  var list = $pdf(listId);
+  list.innerHTML = "";
+  items.forEach(function(item, i) {
+    var li = document.createElement("li");
+    li.className = "pdf-item";
+    var name = document.createElement("span");
+    name.className = "pdf-name";
+    name.textContent = (i + 1) + ". " + labelOf(item);
+    li.appendChild(name);
+    var fileName = (item.file || item).name;
+    [["↑", -1, "Move up {name}"], ["↓", 1, "Move down {name}"]].forEach(function(cfg) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "btn btn-secondary pdf-mini"; b.textContent = cfg[0];
+      b.setAttribute("aria-label", qtL(cfg[2], { name: fileName }));
+      b.disabled = (cfg[1] < 0 && i === 0) || (cfg[1] > 0 && i === items.length - 1);
+      b.addEventListener("click", function(){ var j = i + cfg[1]; var t = items[i]; items[i] = items[j]; items[j] = t; onChange(); });
+      li.appendChild(b);
+    });
+    var rm = document.createElement("button");
+    rm.type = "button"; rm.className = "btn btn-secondary pdf-mini"; rm.textContent = "✕";
+    rm.setAttribute("aria-label", qtL("Remove {name}", { name: fileName }));
+    rm.addEventListener("click", function(){ items.splice(i, 1); onChange(); });
+    li.appendChild(rm);
+    list.appendChild(li);
+  });
 }
 
 // ---------- Merge ----------
@@ -76,49 +118,30 @@ function qtParseRanges(text, pageCount) {
 var qtMergeFiles = [];
 
 function qtRenderMergeList() {
-  var list = $pdf("mergeList");
-  list.innerHTML = "";
-  qtMergeFiles.forEach(function(item, i) {
-    var li = document.createElement("li");
-    li.className = "pdf-item";
-    var name = document.createElement("span");
-    name.className = "pdf-name";
-    name.textContent = (i + 1) + ". " + item.file.name + (item.pages ? " — " + item.pages + " page" + (item.pages === 1 ? "" : "s") : "");
-    li.appendChild(name);
-    [["↑", -1, "Move up"], ["↓", 1, "Move down"]].forEach(function(cfg) {
-      var b = document.createElement("button");
-      b.type = "button"; b.className = "btn btn-secondary pdf-mini"; b.textContent = cfg[0]; b.setAttribute("aria-label", cfg[2] + " " + item.file.name);
-      b.disabled = (cfg[1] < 0 && i === 0) || (cfg[1] > 0 && i === qtMergeFiles.length - 1);
-      b.addEventListener("click", function(){ var j = i + cfg[1]; var t = qtMergeFiles[i]; qtMergeFiles[i] = qtMergeFiles[j]; qtMergeFiles[j] = t; qtRenderMergeList(); });
-      li.appendChild(b);
-    });
-    var rm = document.createElement("button");
-    rm.type = "button"; rm.className = "btn btn-secondary pdf-mini"; rm.textContent = "✕"; rm.setAttribute("aria-label", "Remove " + item.file.name);
-    rm.addEventListener("click", function(){ qtMergeFiles.splice(i, 1); qtRenderMergeList(); });
-    li.appendChild(rm);
-    list.appendChild(li);
-  });
+  qtRenderFileList("mergeList", qtMergeFiles, function(item){
+    return item.file.name + (item.pages ? " — " + qtPagesLabel(item.pages) : "");
+  }, qtRenderMergeList);
   $pdf("mergeBtn").disabled = qtMergeFiles.length < 2;
 }
 
 async function qtAddMergeFiles(files) {
   $pdf("mergeOut").innerHTML = "";
-  qtPdfStatus("mergeStatus", "Reading files...");
+  qtPdfStatus("mergeStatus", qtL("Reading files..."));
   var errors = [];
   for (var i = 0; i < files.length; i++) {
     var f = files[i];
-    if (!/pdf$/i.test(f.type) && !/\.pdf$/i.test(f.name)) { errors.push("“" + f.name + "” isn't a PDF."); continue; }
+    if (!/pdf$/i.test(f.type) && !/\.pdf$/i.test(f.name)) { errors.push(qtL("“{name}” isn't a PDF.", { name: f.name })); continue; }
     try { var doc = await qtOpenPdf(f); qtMergeFiles.push({ file: f, pages: doc.getPageCount() }); }
     catch (e) { errors.push(e.message); }
   }
   qtRenderMergeList();
   if (errors.length) qtPdfStatus("mergeStatus", errors.join(" "), "error");
-  else qtPdfStatus("mergeStatus", qtMergeFiles.length < 2 ? "Add at least one more PDF to merge." : "Ready — reorder if needed, then merge.");
+  else qtPdfStatus("mergeStatus", qtMergeFiles.length < 2 ? qtL("Add at least one more PDF to merge.") : qtL("Ready — reorder if needed, then merge."));
 }
 
 async function qtMerge() {
   var out = $pdf("mergeOut"); out.innerHTML = "";
-  qtPdfStatus("mergeStatus", "Merging...");
+  qtPdfStatus("mergeStatus", qtL("Merging..."));
   try {
     var PDFLib = await qtLoadPdfLib();
     var merged = await PDFLib.PDFDocument.create();
@@ -128,8 +151,8 @@ async function qtMerge() {
       pages.forEach(function(p){ merged.addPage(p); });
     }
     var bytes = await merged.save();
-    qtDownloadLink(out, bytes, "merged.pdf", "Download merged PDF");
-    qtPdfStatus("mergeStatus", "Merged " + qtMergeFiles.length + " files into " + merged.getPageCount() + " pages ✓", "success");
+    qtDownloadLink(out, bytes, "merged.pdf", qtL("Download merged PDF"));
+    qtPdfStatus("mergeStatus", qtL("Merged {files} files into {pages} ✓", { files: qtMergeFiles.length, pages: qtPagesLabel(merged.getPageCount()) }), "success");
     qtTrack("pdf_merge");
   } catch (e) { qtPdfStatus("mergeStatus", e.message, "error"); }
 }
@@ -144,7 +167,7 @@ async function qtLoadPagesFile(file) {
     var doc = await qtOpenPdf(file);
     qtPagesFile = file; qtPagesCount = doc.getPageCount();
     $pdf("pagesControls").hidden = false;
-    qtPdfStatus("pagesStatus", "“" + file.name + "” has " + qtPagesCount + " page" + (qtPagesCount === 1 ? "" : "s") + ".");
+    qtPdfStatus("pagesStatus", qtL("“{name}” has {pages}.", { name: file.name, pages: qtPagesLabel(qtPagesCount) }));
   } catch (e) { qtPagesFile = null; $pdf("pagesControls").hidden = true; qtPdfStatus("pagesStatus", e.message, "error"); }
 }
 
@@ -160,9 +183,9 @@ async function qtRunPages() {
         var one = await PDFLib.PDFDocument.create();
         var pg = await one.copyPages(src, [i]);
         one.addPage(pg[0]);
-        qtDownloadLink(out, await one.save(), base + "-page-" + (i + 1) + ".pdf", "Page " + (i + 1));
+        qtDownloadLink(out, await one.save(), base + "-page-" + (i + 1) + ".pdf", qtL("Page {n}", { n: i + 1 }));
       }
-      qtPdfStatus("pagesStatus", "Split into " + qtPagesCount + " files ✓", "success");
+      qtPdfStatus("pagesStatus", qtL("Split into {n} files ✓", { n: qtPagesCount }), "success");
       qtTrack("pdf_split");
       return;
     }
@@ -170,12 +193,14 @@ async function qtRunPages() {
     var keep = mode === "remove"
       ? src.getPageIndices().filter(function(i){ return picked.indexOf(i) === -1; })
       : picked;
-    if (!keep.length) throw new Error("That would leave no pages.");
+    if (!keep.length) throw new Error(qtL("That would leave no pages."));
     var doc = await PDFLib.PDFDocument.create();
     var pages = await doc.copyPages(src, keep);
     pages.forEach(function(p){ doc.addPage(p); });
-    qtDownloadLink(out, await doc.save(), base + (mode === "remove" ? "-trimmed" : "-extract") + ".pdf", "Download PDF");
-    qtPdfStatus("pagesStatus", (mode === "remove" ? "Removed " + picked.length + " page(s), kept " : "Extracted ") + keep.length + " page(s) ✓", "success");
+    qtDownloadLink(out, await doc.save(), base + (mode === "remove" ? "-trimmed" : "-extract") + ".pdf", qtL("Download PDF"));
+    qtPdfStatus("pagesStatus", mode === "remove"
+      ? qtL("Removed {removed}, kept {kept} ✓", { removed: qtPagesLabel(picked.length), kept: qtPagesLabel(keep.length) })
+      : qtL("Extracted {kept} ✓", { kept: qtPagesLabel(keep.length) }), "success");
     qtTrack(mode === "remove" ? "pdf_remove_pages" : "pdf_extract");
   } catch (e) { qtPdfStatus("pagesStatus", e.message, "error"); }
 }
@@ -190,7 +215,7 @@ async function qtLoadRotateFile(file) {
     var doc = await qtOpenPdf(file);
     qtRotateFile = file; qtRotateCount = doc.getPageCount();
     $pdf("rotateControls").hidden = false;
-    qtPdfStatus("rotateStatus", "“" + file.name + "” has " + qtRotateCount + " page" + (qtRotateCount === 1 ? "" : "s") + ".");
+    qtPdfStatus("rotateStatus", qtL("“{name}” has {pages}.", { name: file.name, pages: qtPagesLabel(qtRotateCount) }));
   } catch (e) { qtRotateFile = null; $pdf("rotateControls").hidden = true; qtPdfStatus("rotateStatus", e.message, "error"); }
 }
 
@@ -206,8 +231,8 @@ async function qtRunRotate() {
       var page = doc.getPage(i);
       page.setRotation(PDFLib.degrees((page.getRotation().angle + angle) % 360));
     });
-    qtDownloadLink(out, await doc.save(), qtBaseName(qtRotateFile.name) + "-rotated.pdf", "Download rotated PDF");
-    qtPdfStatus("rotateStatus", "Rotated " + targets.length + " page(s) by " + angle + "° ✓", "success");
+    qtDownloadLink(out, await doc.save(), qtBaseName(qtRotateFile.name) + "-rotated.pdf", qtL("Download rotated PDF"));
+    qtPdfStatus("rotateStatus", qtL("Rotated {pages} by {angle}° ✓", { pages: qtPagesLabel(targets.length), angle: angle }), "success");
     qtTrack("pdf_rotate");
   } catch (e) { qtPdfStatus("rotateStatus", e.message, "error"); }
 }
@@ -218,26 +243,7 @@ var qtImgFiles = [];
 var QT_PAGE_SIZES = { a4: [595.28, 841.89], letter: [612, 792] };
 
 function qtRenderImgList() {
-  var list = $pdf("imgList");
-  list.innerHTML = "";
-  qtImgFiles.forEach(function(f, i) {
-    var li = document.createElement("li");
-    li.className = "pdf-item";
-    var name = document.createElement("span"); name.className = "pdf-name"; name.textContent = (i + 1) + ". " + f.name;
-    li.appendChild(name);
-    [["↑", -1, "Move up"], ["↓", 1, "Move down"]].forEach(function(cfg) {
-      var b = document.createElement("button");
-      b.type = "button"; b.className = "btn btn-secondary pdf-mini"; b.textContent = cfg[0]; b.setAttribute("aria-label", cfg[2] + " " + f.name);
-      b.disabled = (cfg[1] < 0 && i === 0) || (cfg[1] > 0 && i === qtImgFiles.length - 1);
-      b.addEventListener("click", function(){ var j = i + cfg[1]; var t = qtImgFiles[i]; qtImgFiles[i] = qtImgFiles[j]; qtImgFiles[j] = t; qtRenderImgList(); });
-      li.appendChild(b);
-    });
-    var rm = document.createElement("button");
-    rm.type = "button"; rm.className = "btn btn-secondary pdf-mini"; rm.textContent = "✕"; rm.setAttribute("aria-label", "Remove " + f.name);
-    rm.addEventListener("click", function(){ qtImgFiles.splice(i, 1); qtRenderImgList(); });
-    li.appendChild(rm);
-    list.appendChild(li);
-  });
+  qtRenderFileList("imgList", qtImgFiles, function(f){ return f.name; }, qtRenderImgList);
   $pdf("imgBtn").disabled = !qtImgFiles.length;
 }
 
@@ -258,7 +264,7 @@ async function qtEmbedImage(doc, file) {
 
 async function qtRunImages() {
   var out = $pdf("imgOut"); out.innerHTML = "";
-  qtPdfStatus("imgStatus", "Building PDF...");
+  qtPdfStatus("imgStatus", qtL("Building PDF..."));
   try {
     var PDFLib = await qtLoadPdfLib();
     var doc = await PDFLib.PDFDocument.create();
@@ -267,7 +273,7 @@ async function qtRunImages() {
     for (var i = 0; i < qtImgFiles.length; i++) {
       var img;
       try { img = await qtEmbedImage(doc, qtImgFiles[i]); }
-      catch (e) { throw new Error("Couldn't read “" + qtImgFiles[i].name + "” as an image."); }
+      catch (e) { throw new Error(qtL("Couldn't read “{name}” as an image.", { name: qtImgFiles[i].name })); }
       var pw, ph;
       if (sizeKey === "fit") { pw = img.width + margin * 2; ph = img.height + margin * 2; }
       else {
@@ -279,8 +285,8 @@ async function qtRunImages() {
       var w = img.width * scale, h = img.height * scale;
       page.drawImage(img, { x: (pw - w) / 2, y: (ph - h) / 2, width: w, height: h });
     }
-    qtDownloadLink(out, await doc.save(), "images.pdf", "Download PDF");
-    qtPdfStatus("imgStatus", "Created a " + qtImgFiles.length + "-page PDF ✓", "success");
+    qtDownloadLink(out, await doc.save(), "images.pdf", qtL("Download PDF"));
+    qtPdfStatus("imgStatus", qtL("Created a PDF with {pages} ✓", { pages: qtPagesLabel(qtImgFiles.length) }), "success");
     qtTrack("pdf_from_images");
   } catch (e) { qtPdfStatus("imgStatus", e.message, "error"); }
 }
@@ -327,7 +333,7 @@ document.addEventListener("DOMContentLoaded", function() {
     files.forEach(function(f){ if (/^image\//.test(f.type)) qtImgFiles.push(f); });
     $pdf("imgOut").innerHTML = "";
     qtRenderImgList();
-    qtPdfStatus("imgStatus", qtImgFiles.length ? "Ready — reorder if needed, then create the PDF." : "Choose JPG, PNG or WebP images.", qtImgFiles.length ? "" : "error");
+    qtPdfStatus("imgStatus", qtImgFiles.length ? qtL("Ready — reorder if needed, then create the PDF.") : qtL("Choose JPG, PNG or WebP images."), qtImgFiles.length ? "" : "error");
   });
   $pdf("imgBtn").addEventListener("click", qtRunImages);
 });

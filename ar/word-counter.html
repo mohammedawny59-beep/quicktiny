@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>عداد الكلمات العربي — حساب عدد الكلمات والحروف مجانًا | QuickTiny</title>
+  <meta name="description" content="احسب عدد الكلمات والحروف (مع المسافات وبدونها وبدون التشكيل) والجمل والفقرات في نصك العربي فورًا. مجاني وبدون تسجيل، ونصك لا يغادر جهازك.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/word-counter">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/word-counter">
+  <link rel="alternate" hreflang="es" href="https://quicktinyv2.vercel.app/es/word-counter">
+  <link rel="alternate" hreflang="pt-BR" href="https://quicktinyv2.vercel.app/pt-br/word-counter">
+  <link rel="alternate" hreflang="de" href="https://quicktinyv2.vercel.app/de/word-counter">
+  <link rel="alternate" hreflang="hi" href="https://quicktinyv2.vercel.app/hi/word-counter">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/word-counter">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/word-counter">
+  <meta property="og:title" content="عداد الكلمات العربي — حساب عدد الكلمات والحروف مجانًا | QuickTiny">
+  <meta property="og:description" content="احسب عدد الكلمات والحروف (مع المسافات وبدونها وبدون التشكيل) والجمل والفقرات في نصك العربي فورًا. مجاني وبدون تسجيل، ونصك لا يغادر جهازك.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/word-counter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#171310">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23171310'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%233a63e0' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%233a63e0' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">عداد الكلمات</span></div>
+  <div class="lang-switch">
+    <a href="/word-counter">EN</a>
+    <a href="/es/word-counter">ES</a>
+    <a href="/pt-br/word-counter">PT-BR</a>
+    <a href="/de/word-counter">DE</a>
+    <a href="/hi/word-counter">HI</a>
+    <a href="/ar/word-counter" class="active">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">نص</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>يعمل داخل متصفحك</span>
+      <span class="badge">مجاني</span>
+    </div>
+    <h1>عداد الكلمات العربي — احسب عدد الكلمات والحروف</h1>
+    <p>الصق نصك العربي أو اكتبه بالأسفل لتعرف فورًا عدد الكلمات والحروف (مع المسافات وبدونها وبدون التشكيل) والجمل والفقرات. مناسب للمقالات والأبحاث والتكليفات ومنشورات التواصل الاجتماعي.</p>
+    <a href="#tool" class="jump-to-tool">جرّبه الآن <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+      <label class="field-label" for="counter">نصك</label>
+      <textarea id="counter" dir="auto" placeholder="الصق نصك هنا أو ابدأ الكتابة..."></textarea>
+      <div id="countstats" class="stat-row"></div>
+  </div>
+  <script>
+      // Arabic diacritics (tashkeel) and tatweel, excluded from the "without tashkeel" count.
+      var QT_TASHKEEL = /[ؐ-ًؚ-ٰٟۖ-ۭـ]/g;
+      function qtArCount(t){
+        var trimmed = t.trim();
+        return {
+          words: trimmed ? trimmed.split(/\s+/).filter(function(w){ return /[\p{L}\p{N}]/u.test(w); }).length : 0,
+          chars: t.length,
+          noSpaces: t.replace(/\s/g, "").length,
+          noTashkeel: t.replace(/\s/g, "").replace(QT_TASHKEEL, "").length,
+          sentences: trimmed ? (trimmed.match(/[^.!?؟؛…\n]+([.!?؟؛…]+|$)/gm) || []).filter(function(s){ return /[\p{L}\p{N}]/u.test(s); }).length : 0,
+          paragraphs: trimmed ? trimmed.split(/\n\s*\n/).filter(function(p){ return p.trim(); }).length : 0
+        };
+      }
+      function qtCount(){
+        var c = qtArCount(document.querySelector("#counter").value);
+        document.querySelector("#countstats").innerHTML =
+          stat(c.words, "الكلمات") + stat(c.chars, "الحروف مع المسافات") + stat(c.noSpaces, "الحروف بدون مسافات") +
+          stat(c.noTashkeel, "الحروف بدون تشكيل") + stat(c.sentences, "الجمل") + stat(c.paragraphs, "الفقرات");
+      }
+      function stat(n, label){
+        return '<div class="stat"><div class="n">' + n + '</div><div class="l">' + label + '</div></div>';
+      }
+      document.querySelector("#counter").addEventListener("input", qtCount);
+      qtCount();</script>
+
+  <div class="content">
+    <h2>طريقة الاستخدام</h2>
+    <ol>
+      <li>الصق نصك العربي (أو بأي لغة) في المربع، أو ابدأ الكتابة مباشرة.</li>
+      <li>تتحدث الأرقام تلقائيًا أثناء الكتابة.</li>
+      <li>شاهد عدد الكلمات والحروف والجمل والفقرات في لمحة.</li>
+    </ol>
+
+    <h2>مصمم للنص العربي</h2>
+    <ul class="benefits">
+      <li>يتعرف على علامات الترقيم العربية: علامة الاستفهام «؟» والفاصلة المنقوطة «؛» إلى جانب النقطة وعلامة التعجب.</li>
+      <li>يحسب الحروف <strong>بدون التشكيل</strong> (الفتحة والضمة والكسرة والشدة والسكون والتنوين والتطويل) &mdash; مفيد عندما يكون الحد بعدد الحروف.</li>
+      <li>لا يحسب الرموز المنفصلة (مثل «-» أو «•») ككلمات.</li>
+      <li>نصك لا يغادر جهازك ولا يُحفظ في أي مكان.</li>
+    </ul>
+
+    <h2>الخصوصية</h2>
+    <p>يعمل عداد الكلمات بالكامل داخل متصفحك. نصك لا يُرسل إلى خوادم QuickTiny ولا يتم حفظه.</p>
+
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>كيف يتم حساب الكلمات؟</summary><p>يتم تقسيم النص عند المسافات وفواصل الأسطر، ويُحسب كل جزء يحتوي على حرف أو رقم كلمة واحدة. لذلك لا تؤثر المسافات المتكررة على النتيجة.</p></details>
+    <details class="faq-item"><summary>هل «و» المتصلة بالكلمة تُحسب كلمة منفصلة؟</summary><p>لا. «وقال» تُحسب كلمة واحدة كما تُكتب، وهي الطريقة المعتادة في عدّ الكلمات للمقالات والتكليفات.</p></details>
+    <details class="faq-item"><summary>ما الفرق بين «حرف بدون مسافات» و«حرف بدون تشكيل»؟</summary><p>الأول يحذف المسافات فقط، والثاني يحذف المسافات وعلامات التشكيل والتطويل أيضًا، فيعطيك عدد الحروف الفعلية.</p></details>
+    <details class="faq-item"><summary>هل يتم حفظ نصي؟</summary><p>لا. العدّ يتم محليًا في متصفحك ولا يتم حفظ أو إرسال أي شيء.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات ذات صلة</h2>
+    <div class="related-grid">
+      <a href="/ar/pdf-tools">أدوات PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/compress-image">ضغط الصور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/seo-slug-generator">مولّد الروابط (Slug)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>أدوات بالعربية</h4>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h4>أدوات أخرى (بالإنجليزية)</h4>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>QuickTiny</h4>
+        <a href="/">الرئيسية</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny عداد الكلمات العربي", "url": "https://quicktinyv2.vercel.app/ar/word-counter", "description": "احسب عدد الكلمات والحروف (مع المسافات وبدونها وبدون التشكيل) والجمل والفقرات في نصك العربي فورًا. مجاني وبدون تسجيل، ونصك لا يغادر جهازك.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "عداد الكلمات", "item": "https://quicktinyv2.vercel.app/ar/word-counter"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "كيف يتم حساب الكلمات؟", "acceptedAnswer": {"@type": "Answer", "text": "يتم تقسيم النص عند المسافات وفواصل الأسطر، ويُحسب كل جزء يحتوي على حرف أو رقم كلمة واحدة."}}, {"@type": "Question", "name": "ما الفرق بين «حرف بدون مسافات» و«حرف بدون تشكيل»؟", "acceptedAnswer": {"@type": "Answer", "text": "الأول يحذف المسافات فقط، والثاني يحذف المسافات وعلامات التشكيل والتطويل أيضًا."}}, {"@type": "Question", "name": "هل يتم حفظ نصي؟", "acceptedAnswer": {"@type": "Answer", "text": "لا. العدّ يتم محليًا في متصفحك ولا يتم حفظ أو إرسال أي شيء."}}]}</script>
+</body>
+</html>
