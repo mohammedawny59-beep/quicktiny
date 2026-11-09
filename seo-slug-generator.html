@@ -56,16 +56,32 @@
   <div class="tool-panel" id="tool">
     
       <label class="field-label" for="slug">Page title</label>
-      <input id="slug" type="text" placeholder="e.g. 10 Best Coffee Shops in Austin" oninput="qtSlugIt()">
-      <div id="slugout" class="result"></div>
+      <input id="slug" type="text" dir="auto" placeholder="e.g. 10 Best Coffee Shops in Austin" oninput="qtSlugIt()">
+      <div class="checkline" style="margin-top:10px"><input type="checkbox" id="slugUnicode"><label for="slugUnicode">Keep Arabic and other non-Latin letters (e.g. <span lang="ar">\u0623\u0641\u0636\u0644-\u0645\u0642\u0627\u0647\u064a-\u0627\u0644\u0642\u0627\u0647\u0631\u0629</span>)</label></div>
+      <div id="slugout" class="result" dir="auto"></div>
       <div class="btn-row"><button class="btn btn-secondary" onclick="qtCopySlug()">Copy slug</button></div>
   </div>
   <script>
+      var qtSlugUnicodeTouched = false;
+      // Arabic tashkeel + tatweel are dropped from Unicode slugs; letters and digits are kept.
+      var QT_SLUG_MARKS = /[\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed\u0640]/g;
+      function qtMakeSlug(value, keepUnicode){
+        if (keepUnicode) {
+          return value.toLowerCase().normalize("NFKC").replace(QT_SLUG_MARKS, "")
+            .replace(/[^\p{L}\p{N}\s_-]/gu, "").trim().replace(/[\s_-]+/g, "-").replace(/^-+|-+$/g, "");
+        }
+        return value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s-]/g, "").trim().replace(/[\s_-]+/g, "-").replace(/^-+|-+$/g, "");
+      }
       function qtSlugIt(){
         var value = document.querySelector("#slug").value;
-        var slug = value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s-]/g, "").trim().replace(/[\s_-]+/g, "-").replace(/^-+|-+$/g, "");
+        var box = document.querySelector("#slugUnicode");
+        // Turn Unicode mode on automatically when the title has any non-Latin letters (Arabic, etc.);
+        // accented Latin like "Café" stays ASCII.
+        if (!qtSlugUnicodeTouched) box.checked = /(?=\p{L})\P{Script=Latin}/u.test(value);
+        var slug = qtMakeSlug(value, box.checked);
         document.querySelector("#slugout").textContent = slug || "Start typing a title above...";
       }
+      document.querySelector("#slugUnicode").addEventListener("change", function(){ qtSlugUnicodeTouched = true; qtSlugIt(); });
       async function qtCopySlug(){
         var out = document.querySelector("#slugout");
         var text = out.textContent;

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ضغط الصور وتقليل حجمها مجانًا بدون رفع | QuickTiny</title>
+  <meta name="description" content="قلّل حجم صور JPG وPNG مجانًا داخل متصفحك بدون رفعها إلى أي موقع. شاهد الحجم الأصلي والحجم بعد الضغط ونسبة التوفير فورًا.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/compress-image">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/compress-image">
+  <link rel="alternate" hreflang="hi" href="https://quicktinyv2.vercel.app/hi/compress-image">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/compress-image">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/compress-image">
+  <meta property="og:title" content="ضغط الصور وتقليل حجمها مجانًا بدون رفع | QuickTiny">
+  <meta property="og:description" content="قلّل حجم صور JPG وPNG مجانًا داخل متصفحك بدون رفعها إلى أي موقع. شاهد الحجم الأصلي والحجم بعد الضغط ونسبة التوفير فورًا.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/compress-image">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#171310">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23171310'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%233a63e0' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%233a63e0' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">ضغط الصور</span></div>
+  <div class="lang-switch">
+    <a href="/compress-image">EN</a>
+    <a href="/hi/compress-image">HI</a>
+    <a href="/ar/compress-image" class="active">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">صور</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>يعمل داخل متصفحك</span>
+      <span class="badge">مجاني</span>
+    </div>
+    <h1>ضغط الصور وتقليل حجمها مجانًا — بدون رفع</h1>
+    <p>قلّل حجم صور JPG وPNG دون رفعها إلى أي موقع. يضغط QuickTiny الصورة داخل متصفحك مباشرة، فلا تغادر صورتك جهازك أبدًا. مثالي لرفع الصور على المواقع الحكومية والجامعية والمتاجر التي تشترط حجمًا معينًا.</p>
+    <a href="#tool" class="jump-to-tool">جرّبه الآن <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+      <div class="dropzone" id="dz" tabindex="0" role="button" aria-label="اختر صورة لضغطها">
+        <strong>اسحب الصورة إلى هنا</strong> أو اضغط لاختيار ملف<br>
+        <span style="font-size:13px">JPG أو PNG &mdash; تتم المعالجة على جهازك</span>
+      </div>
+      <input id="img" type="file" accept="image/*" class="sr-only">
+      <div id="imgout" class="result" aria-live="polite"></div>
+      <div id="imgstats" class="stat-row"></div>
+      <div id="imgdl"></div>
+      <div id="imgProCta"></div>
+  </div>
+  <script>
+      var dz = document.querySelector("#dz");
+      var input = document.querySelector("#img");
+      var out = document.querySelector("#imgout");
+      var stats = document.querySelector("#imgstats");
+      var dl = document.querySelector("#imgdl");
+      dz.addEventListener("click", function(){ input.click(); });
+      dz.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ input.click(); } });
+      ["dragover","dragenter"].forEach(function(evt){
+        dz.addEventListener(evt, function(e){ e.preventDefault(); dz.classList.add("drag"); });
+      });
+      ["dragleave","drop"].forEach(function(evt){
+        dz.addEventListener(evt, function(e){ e.preventDefault(); dz.classList.remove("drag"); });
+      });
+      dz.addEventListener("drop", function(e){
+        var f = e.dataTransfer.files[0];
+        if (f) { input.files = e.dataTransfer.files; handleFile(f); }
+      });
+      input.addEventListener("change", function(){
+        var f = input.files[0];
+        if (f) handleFile(f);
+      });
+      function kb(n){ return Math.round(n / 1024) + " KB"; }
+      function statBox(n, label){ return '<div class="stat"><div class="n" dir="ltr">' + n + '</div><div class="l">' + label + '</div></div>'; }
+      function handleFile(f){
+        stats.innerHTML = ""; dl.innerHTML = "";
+        if (!f.type || f.type.indexOf("image/") !== 0) {
+          out.textContent = "اختر ملف صورة من فضلك (JPG أو PNG).";
+          out.className = "result error";
+          return;
+        }
+        out.textContent = "جارٍ الضغط...";
+        out.className = "result";
+        var originalSize = f.size;
+        var im = new Image();
+        im.onload = function(){
+          var c = document.createElement("canvas");
+          c.width = im.width; c.height = im.height;
+          var ctx = c.getContext("2d");
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, c.width, c.height);
+          ctx.drawImage(im, 0, 0);
+          c.toBlob(function(blob){
+            // If re-encoding made it bigger, the original is already well compressed.
+            var already = blob.size >= originalSize;
+            var finalBlob = already ? f : blob;
+            var savedPct = Math.max(0, Math.round((1 - finalBlob.size / originalSize) * 100));
+            out.textContent = already ? "صورتك مضغوطة بالفعل — لم نجد طريقة لتصغيرها أكثر دون فقد واضح في الجودة." : "تم الضغط ✓";
+            out.className = "result success";
+            stats.innerHTML = statBox(kb(originalSize), "الحجم الأصلي") + statBox(kb(finalBlob.size), "بعد الضغط") + statBox(savedPct + "%", "نسبة التوفير");
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(finalBlob);
+            a.download = already ? f.name : "quicktiny-" + f.name.replace(/\.[^.]+$/, "") + ".jpg";
+            a.className = "btn";
+            a.textContent = "تنزيل الصورة";
+            dl.appendChild(a);
+            var proCta = document.querySelector("#imgProCta");
+            proCta.innerHTML = "";
+            var ctaWrap = document.createElement("div");
+            ctaWrap.className = "pro-inline-cta";
+            var ctaText = document.createElement("span");
+            ctaText.textContent = "تريد ضغط صور كثيرة مرة واحدة؟ ";
+            var ctaLink = document.createElement("a");
+            ctaLink.href = "/batch-image-compressor";
+            ctaLink.textContent = "Batch Image Compressor — ‎$4.99 دفعة واحدة";
+            ctaLink.addEventListener("click", function(){ qtTrack("pro_cta_click", {source: "compress-image-ar"}); });
+            ctaWrap.appendChild(ctaText);
+            ctaWrap.appendChild(ctaLink);
+            proCta.appendChild(ctaWrap);
+          }, "image/jpeg", 0.72);
+        };
+        im.onerror = function(){
+          out.textContent = "تعذّرت قراءة هذه الصورة. جرّب ملفًا آخر.";
+          out.className = "result error";
+        };
+        im.src = URL.createObjectURL(f);
+      }</script>
+
+  <div class="content">
+    <h2>طريقة الاستخدام</h2>
+    <ol>
+      <li>اضغط على المربع (أو اسحب الملف إليه) واختر صورة JPG أو PNG.</li>
+      <li>يضغط QuickTiny الصورة فورًا داخل متصفحك.</li>
+      <li>قارن الحجم الأصلي بالحجم بعد الضغط ونسبة التوفير.</li>
+      <li>اضغط «تنزيل الصورة» لحفظها.</li>
+    </ol>
+
+    <h2>المزايا</h2>
+    <ul class="benefits">
+      <li>بدون رفع &mdash; صورتك لا تغادر جهازك.</li>
+      <li>نتيجة فورية بدون انتظار في طابور على خادم.</li>
+      <li>مجاني بدون تسجيل وبدون علامة مائية.</li>
+      <li>يعمل على الكمبيوتر والجوال.</li>
+    </ul>
+
+    <h2>الخصوصية</h2>
+    <p>تعمل أداة ضغط الصور بالكامل داخل متصفحك باستخدام JavaScript. تتم معالجة ملفاتك على جهازك ولا يتم رفعها إلى خوادم QuickTiny.</p>
+
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل يتم رفع صوري إلى خادم؟</summary><p>لا. تعمل الأداة بالكامل داخل متصفحك باستخدام Canvas، ولا تُرسل صورتك إلى أي مكان.</p></details>
+    <details class="faq-item"><summary>ما الصيغ المدعومة؟</summary><p>أي صيغة يستطيع متصفحك قراءتها، مثل JPG وPNG وWebP. يتم حفظ الصورة المضغوطة بصيغة JPG.</p></details>
+    <details class="faq-item"><summary>لماذا لم يصغر حجم صورتي؟</summary><p>إذا كانت الصورة مضغوطة جيدًا من الأصل، فلن يقلل الضغط مرة أخرى حجمها؛ وفي هذه الحالة نعطيك الصورة الأصلية كما هي بدلًا من ملف أكبر.</p></details>
+    <details class="faq-item"><summary>أريد ضغط صور كثيرة مرة واحدة</summary><p>استخدم Batch Image Compressor (QuickTiny Pro) لضغط عدة صور دفعة واحدة.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات ذات صلة</h2>
+    <div class="related-grid">
+      <a href="/ar/pdf-tools">أدوات PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/product-photo-studio">إزالة خلفية صور المنتجات (Product Photo Studio)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'compress-image-ar'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>أدوات بالعربية</h4>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h4>أدوات أخرى (بالإنجليزية)</h4>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>QuickTiny</h4>
+        <a href="/">الرئيسية</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny ضغط الصور", "url": "https://quicktinyv2.vercel.app/ar/compress-image", "description": "قلّل حجم صور JPG وPNG مجانًا داخل متصفحك بدون رفعها إلى أي موقع. شاهد الحجم الأصلي والحجم بعد الضغط ونسبة التوفير فورًا.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "ضغط الصور", "item": "https://quicktinyv2.vercel.app/ar/compress-image"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "هل يتم رفع صوري إلى خادم؟", "acceptedAnswer": {"@type": "Answer", "text": "لا. تعمل الأداة بالكامل داخل متصفحك باستخدام Canvas، ولا تُرسل صورتك إلى أي مكان."}}, {"@type": "Question", "name": "ما الصيغ المدعومة؟", "acceptedAnswer": {"@type": "Answer", "text": "أي صيغة يستطيع متصفحك قراءتها، مثل JPG وPNG وWebP. يتم حفظ الصورة المضغوطة بصيغة JPG."}}, {"@type": "Question", "name": "لماذا لم يصغر حجم صورتي؟", "acceptedAnswer": {"@type": "Answer", "text": "إذا كانت الصورة مضغوطة جيدًا من الأصل، نعطيك الصورة الأصلية كما هي بدلًا من ملف أكبر."}}]}</script>
+</body>
+</html>

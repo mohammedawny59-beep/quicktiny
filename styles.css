@@ -340,3 +340,17 @@ footer::after{content:"";position:absolute;top:-1px;left:50%;translate:-50% 0;wi
 @media (prefers-reduced-motion:reduce){
   .stat,.result:not(:empty){animation:none}
 }
+
+/* ---------- Right-to-left pages (Arabic) ---------- */
+[dir=rtl] body{font-family:"Segoe UI",Tahoma,"Noto Sans Arabic","Geeza Pro",Arial,sans-serif}
+[dir=rtl] .hero.compact{text-align:right}
+[dir=rtl] .content h2,[dir=rtl] .related-title{padding-left:0;border-left:0;padding-right:16px;border-right:2px solid var(--accent)}
+[dir=rtl] .content ol,[dir=rtl] .content ul{padding-left:0;padding-right:22px}
+[dir=rtl] .go-ico,[dir=rtl] .jump-ico.go-ico{transform:scaleX(-1)}
+[dir=rtl] .tool-card:hover .go-ico{transform:scaleX(-1) translateX(4px)}
+[dir=rtl] .pro-chip{right:auto;left:14px}
+[dir=rtl] .footer-col h4::after{left:auto;right:0}
+[dir=rtl] .price-once{margin-left:0;margin-right:4px}
+[dir=rtl] .data-table th,[dir=rtl] .data-table td{text-align:right}
+[dir=rtl] .nav-links{align-items:flex-end}
+[dir=rtl] code,[dir=rtl] .ltr{direction:ltr;unicode-bidi:isolate}
