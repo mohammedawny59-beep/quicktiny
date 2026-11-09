@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cron Expression Explainer — Plain English &amp; Next Run Times | QuickTiny</title>
+  <meta name="description" content="Translate cron expressions into plain English and see the next 10 run times in your time zone or UTC. Supports crontab, seconds, @daily macros, L and #. Free.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/cron-explainer">
+  <meta property="og:title" content="Cron Expression Explainer — Plain English &amp; Next Run Times | QuickTiny">
+  <meta property="og:description" content="Translate cron expressions into plain English and see the next 10 run times in your time zone or UTC. Supports crontab, seconds, @daily macros, L and #. Free.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/cron-explainer">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    #crIn{font:600 22px/1.3 var(--mono);letter-spacing:.04em;padding:16px 18px;text-align:center}
+    #crIn.cr-bad{border-color:rgba(255,90,90,.6)}
+    #crPresets{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
+    #crPresets .chip{padding:5px 11px;font-size:12.5px}
+    .cr-desc{margin-top:16px;padding:18px 20px;border-radius:16px;font-size:20px;font-weight:700;line-height:1.4;background:linear-gradient(135deg,rgba(107,107,255,.18),rgba(59,226,255,.07));border:1px solid rgba(123,123,255,.35)}
+    .cr-desc.cr-err{font-size:15px;font-weight:600;color:#ffb3b3;background:rgba(255,90,90,.08);border-color:rgba(255,90,90,.35)}
+    #crFields{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+    .cr-f{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:rgba(255,255,255,.025);display:flex;flex-direction:column;gap:3px;min-width:0}
+    .cr-f code{align-self:flex-start;font-size:15px;color:#3be2ff;background:rgba(59,226,255,.08);border-color:rgba(59,226,255,.25)}
+    .cr-f b{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+    .cr-f span{font-size:13px;color:var(--text);overflow-wrap:anywhere}
+    .cr-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;margin-top:16px}
+    @media(max-width:860px){.cr-grid{grid-template-columns:1fr}}
+    .cr-box{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:rgba(255,255,255,.02);min-width:0}
+    .cr-box h3{margin:0 0 10px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+    .cr-box h3 select{width:auto;font-size:12.5px;padding:5px 8px;text-transform:none;letter-spacing:0}
+    #crNext{list-style:none;margin:0;padding:0;counter-reset:n}
+    #crNext li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.07)}
+    .cr-when{font-weight:600;font-variant-numeric:tabular-nums}
+    .cr-rel{font-size:12.5px;color:#9fa3ff;text-align:end;white-space:nowrap}
+    .cr-alt{grid-column:1/-1;font-size:12px;color:var(--muted)}
+    .cr-dim{color:var(--muted);font-size:13.5px}
+    #crNotes{margin:0;padding-inline-start:18px;font-size:13.5px;line-height:1.55;color:var(--text-dim)}
+    #crNotes li{margin-bottom:6px}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Cron Explainer</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Developer</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>Cron Expression Explainer — Plain English &amp; Next Run Times</h1>
+    <p>Paste a cron schedule and read it in plain English, see every field broken down, and get the next 10 run times in your time zone or UTC. Supports crontab, 6-field schedules with seconds, <code>@daily</code>-style macros, month and day names, and <code>L</code> / <code>#</code> from Quartz, Spring and AWS.</p>
+    <a href="#tool" class="jump-to-tool">Explain a schedule <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <label class="field-label" for="crIn">Cron expression</label>
+    <input type="text" id="crIn" value="*/10 9-17 * * 1-5" autocomplete="off" spellcheck="false">
+    <div id="crPresets"></div>
+    <div id="crDesc" class="cr-desc" aria-live="polite"></div>
+    <div id="crFields"></div>
+    <div class="cr-grid">
+      <div class="cr-box">
+        <h3>Next 10 runs <select id="crTz" aria-label="Time zone"><option value="local">Your time</option><option value="utc">UTC (servers, GitHub Actions)</option></select></h3>
+        <ol id="crNext"></ol>
+      </div>
+      <div class="cr-box"><h3>Good to know</h3><ul id="crNotes"></ul></div>
+    </div>
+    <div class="btn-row" style="margin-top:12px">
+      <button class="btn" type="button" id="crCopy">Copy expression</button>
+      <button class="btn btn-secondary" type="button" id="crCopyDesc">Copy description</button>
+    </div>
+    <div id="crStatus" class="result" aria-live="polite"></div>
+  </div>
+  <script src="/cron-explainer.js"></script>
+
+  <div class="content">
+    <h2>Cron syntax in 30 seconds</h2>
+    <p>A standard cron expression has five fields: <code>minute hour day-of-month month day-of-week</code>.</p>
+    <ul class="benefits">
+      <li><span><code>*</code> every value · <code>5</code> exactly 5 · <code>1-5</code> a range · <code>1,15</code> a list · <code>*/15</code> every 15th</span></li>
+      <li><span>Months can be <code>JAN</code>–<code>DEC</code>, days <code>SUN</code>–<code>SAT</code>. Sunday is <code>0</code> or <code>7</code>.</span></li>
+      <li><span><code>@hourly</code>, <code>@daily</code>, <code>@weekly</code>, <code>@monthly</code>, <code>@yearly</code> and <code>@reboot</code> are shortcuts.</span></li>
+      <li><span>A sixth field at the start means seconds (node-cron, Spring). <code>L</code> = last day, <code>5L</code> = last Friday, <code>1#2</code> = second Monday.</span></li>
+    </ul>
+
+    <h2>The gotcha that surprises everyone</h2>
+    <p>If you restrict <strong>both</strong> day-of-month and day-of-week, classic cron runs when <em>either</em> matches. <code>0 0 13 * 5</code> runs on every 13th <em>and</em> every Friday — not only on Friday the 13th. The explainer warns you when this applies.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Which time zone does my cron job use?</summary><p>The server's — usually UTC on cloud servers, GitHub Actions, Vercel and AWS. Switch the list to UTC to see when it really runs, with your local time underneath.</p></details>
+    <details class="faq-item"><summary>Does this work for Quartz expressions?</summary><p>Mostly: 6 and 7-field schedules, <code>?</code>, <code>L</code> and <code>#</code> are understood. One difference: Quartz numbers weekdays 1–7 starting Sunday, while this follows crontab (0–6). Use day names like <code>MON</code> to avoid confusion.</p></details>
+    <details class="faq-item"><summary>Why does GitHub Actions run my schedule late?</summary><p>Scheduled workflows run in UTC, can't run more often than every 5 minutes, and are delayed when GitHub is busy — especially at the top of the hour. Pick an odd minute like <code>17</code> instead of <code>0</code>.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More developer tools</h2>
+    <div class="related-grid">
+      <a href="/timestamp-converter">Timestamp Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/regex-tester">Regex Tester<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/jwt-decoder">JWT Decoder<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/diff-checker">Diff Checker<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Cron Explainer","url":"https://quicktinyv2.vercel.app/cron-explainer","description":"Translate cron expressions into plain English and see the next 10 run times in your time zone or UTC. Supports crontab, seconds, @daily macros, L and #. Free.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Cron Explainer","item":"https://quicktinyv2.vercel.app/cron-explainer"}]}</script>
+</body>
+</html>

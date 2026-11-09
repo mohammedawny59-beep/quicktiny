@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JWT Decoder &amp; Verifier — Decode, Check Expiry, Verify Signature | QuickTiny</title>
+  <meta name="description" content="Decode JSON Web Tokens, see expiry in your time zone, spot security red flags and verify HS256, RS256, PS256 and ES256 signatures with a secret, PEM or JWKS. Runs in your browser.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/jwt-decoder">
+  <meta property="og:title" content="JWT Decoder &amp; Verifier — Decode, Check Expiry, Verify Signature | QuickTiny">
+  <meta property="og:description" content="Decode JSON Web Tokens, see expiry in your time zone, spot security red flags and verify HS256, RS256, PS256 and ES256 signatures with a secret, PEM or JWKS. Runs in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/jwt-decoder">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    #jwIn{min-height:110px;font:13px/1.55 var(--mono);word-break:break-all}
+    #jwErr{color:#ff9a9a;font-size:13.5px;margin-top:8px;min-height:1px}
+    #jwColor{margin-top:10px;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.3);border:1px solid var(--line);font:12.5px/1.6 var(--mono);word-break:break-all}
+    #jwColor:empty{display:none}
+    .jw-p0{color:#ff8fb1}.jw-p1{color:#b9a6ff}.jw-p2{color:#3be2ff}.jw-dot{color:#fff;font-weight:700}
+    .jw-status{margin-top:16px;padding:12px 16px;border-radius:14px;font-weight:700;font-size:15px;border:1px solid var(--line)}
+    .jw-valid{background:rgba(60,220,140,.10);border-color:rgba(60,220,140,.4);color:#8af5bd}
+    .jw-expired{background:rgba(255,90,90,.10);border-color:rgba(255,90,90,.45);color:#ffa3a3}
+    .jw-early,.jw-nodates{background:rgba(255,200,90,.08);border-color:rgba(255,200,90,.4);color:#ffd88a}
+    .jw-jwe{background:rgba(107,107,255,.12);border-color:rgba(107,107,255,.4);color:#c9cbff}
+    #jwWarn{list-style:none;padding:0;margin:10px 0 0}
+    #jwWarn li{font-size:13.5px;line-height:1.5;padding:8px 12px;border-radius:10px;margin-top:6px}
+    #jwWarn .jw-bad{background:rgba(255,90,90,.10);color:#ffb3b3;border:1px solid rgba(255,90,90,.3)}
+    #jwWarn .jw-warn{background:rgba(255,200,90,.07);color:#ffe0a0;border:1px solid rgba(255,200,90,.25)}
+    .jw-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:16px;margin-top:16px}
+    @media(max-width:860px){.jw-grid{grid-template-columns:1fr}}
+    .jw-box{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:rgba(255,255,255,.02);min-width:0}
+    .jw-box h3{margin:0 0 10px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+    .jw-box h3 button{all:unset;cursor:pointer;font-size:12px;color:#9fa3ff;letter-spacing:0;text-transform:none}
+    .jw-h h3{color:#ff8fb1}.jw-pl h3{color:#b9a6ff}
+    .jw-json{margin:0;padding:12px;border-radius:10px;background:rgba(0,0,0,.3);font:12.5px/1.6 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:320px;overflow:auto}
+    .jw-k{color:#9fd0ff}.jw-s{color:#a8f0c6}.jw-n{color:#ffcf8a}.jw-l{color:#ff9ad5}
+    .jw-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+    .jw-tbl td{padding:7px 6px;border-top:1px solid rgba(255,255,255,.06);vertical-align:top}
+    .jw-tbl td:first-child{white-space:nowrap}
+    .jw-tbl td:last-child{color:var(--text-dim);font-size:12.5px}
+    .jw-v{font-family:var(--mono);font-size:12.5px;overflow-wrap:anywhere}
+    .jw-time{font-size:12px;color:var(--text-dim);margin-top:3px}.jw-time b{color:#c9cbff}
+    #jwKey{font:12.5px/1.5 var(--mono);min-height:70px}
+    .jw-verify{margin-top:10px;font-weight:600;font-size:14px}
+    .jw-ok{color:#8af5bd}.jw-bad{color:#ffa3a3}
+    #jwAlg{font-family:var(--mono);color:#3be2ff}
+    .jw-sign textarea{font:12.5px/1.5 var(--mono);min-height:120px}
+    .jw-sign summary{cursor:pointer;font-weight:700}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">JWT Decoder</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Developer</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Token never leaves your browser</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>JWT Decoder &amp; Verifier — Read, Check and Verify Tokens</h1>
+    <p>Paste a JSON Web Token to see its header and claims, when it expires (in your time zone), and any security red flags. Verify the signature with a secret, a PEM public key or a JWKS — HS, RS, PS and ES algorithms — all with your browser's built-in crypto.</p>
+    <a href="#tool" class="jump-to-tool">Decode a token <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <label class="field-label" for="jwIn">Encoded token</label>
+    <textarea id="jwIn" spellcheck="false" placeholder="eyJhbGciOi… (a “Bearer ” prefix is fine)"></textarea>
+    <div class="btn-row" style="margin-top:8px"><button class="btn btn-secondary" type="button" id="jwDemo">Load example</button><button class="btn btn-secondary" type="button" id="jwClear">Clear</button></div>
+    <div id="jwErr" aria-live="polite"></div>
+    <div id="jwColor"></div>
+
+    <div id="jwOut" hidden>
+      <div id="jwStatus" class="jw-status" aria-live="polite"></div>
+      <ul id="jwWarn"></ul>
+      <div class="jw-grid">
+        <div class="jw-box jw-h"><h3>Header <button type="button" id="jwCopyHeader">Copy</button></h3><pre class="jw-json" id="jwHeader"></pre><table class="jw-tbl"><tbody id="jwHeaderTable"></tbody></table></div>
+        <div class="jw-box jw-pl"><h3>Payload <button type="button" id="jwCopyPayload">Copy</button></h3><pre class="jw-json" id="jwPayload"></pre><table class="jw-tbl"><tbody id="jwClaims"></tbody></table></div>
+      </div>
+      <div id="jwCopyStatus" class="result" aria-live="polite"></div>
+      <div class="jw-box" id="jwVerifyBox" style="margin-top:16px">
+        <h3 style="color:#3be2ff">Verify signature · <span id="jwAlg"></span></h3>
+        <label class="field-label" for="jwKey" id="jwKeyLabel">Secret</label>
+        <textarea id="jwKey" spellcheck="false" autocomplete="off"></textarea>
+        <div class="checkline" id="jwB64Wrap"><input type="checkbox" id="jwB64"><label for="jwB64">Secret is Base64 encoded</label></div>
+        <div id="jwVerifyOut" class="jw-verify" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <details class="jw-box jw-sign" style="margin-top:16px">
+      <summary>Create a test token (HS256 / HS384 / HS512)</summary>
+      <p style="font-size:13.5px;color:var(--text-dim)">Edit the claims and sign a token for local testing. Change <code>"alg"</code> in the header to pick HS384 or HS512.</p>
+      <div class="jw-grid" style="margin-top:6px">
+        <div><label class="field-label" for="jwEditHeader">Header</label><textarea id="jwEditHeader" spellcheck="false">{"alg":"HS256","typ":"JWT"}</textarea></div>
+        <div><label class="field-label" for="jwEditPayload">Payload</label><textarea id="jwEditPayload" spellcheck="false">{}</textarea></div>
+      </div>
+      <label class="field-label" for="jwSignSecret">Secret</label>
+      <input type="text" id="jwSignSecret" value="change-me-to-a-long-random-secret" autocomplete="off" spellcheck="false" style="font-family:var(--mono)">
+      <div class="btn-row" style="margin-top:10px"><button class="btn" type="button" id="jwSign">Sign token</button></div>
+      <div id="jwSignErr" style="color:#ff9a9a;font-size:13.5px;margin-top:6px"></div>
+    </details>
+  </div>
+  <script src="/jwt-decoder.js"></script>
+
+  <div class="content">
+    <h2>What you get that a plain decoder doesn't show</h2>
+    <ul class="benefits">
+      <li><strong>Times you can read</strong> — <code>exp</code>, <code>iat</code> and <code>nbf</code> in your own time zone and as “expires in 42 min”, updating live.</li>
+      <li><strong>Security red flags</strong> — <code>alg: none</code>, missing or very long expiry, millisecond timestamps, remote key URLs and passwords or card numbers sitting in the payload.</li>
+      <li><strong>Every claim explained</strong> — standard and common OpenID / Azure AD claims get a short description.</li>
+      <li><strong>Real verification</strong> — HS256/384/512, RS256/384/512, PS256/384/512 and ES256/384/512 with a secret, PEM public key, JWK or a whole JWKS (matched by <code>kid</code>).</li>
+    </ul>
+
+    <h2>Is it safe to paste a real token?</h2>
+    <p>Decoding and verification run entirely in this page with the Web Crypto API — the token, secret and keys are never sent anywhere, and nothing is stored. Still, treat production tokens like passwords: prefer test tokens, and never paste a <em>private</em> key into any website.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is a JWT encrypted?</summary><p>No. A normal JWT (JWS) is only Base64URL-encoded and signed — anyone holding it can read the payload. The signature proves who issued it and that it wasn't changed. Encrypted tokens (JWE) have five parts and can't be read without the key.</p></details>
+    <details class="faq-item"><summary>Where do I find the public key?</summary><p>Most identity providers publish it at <code>/.well-known/jwks.json</code> (the <code>jwks_uri</code> in their OpenID configuration). Paste the whole JSON — the right key is picked by the token's <code>kid</code>.</p></details>
+    <details class="faq-item"><summary>Why is my token “expired” when it just worked?</summary><p>Check your computer's clock — expiry is compared to your device time. Servers usually allow a minute or two of clock skew.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More developer tools</h2>
+    <div class="related-grid">
+      <a href="/base64-encode-decode">Base64 Encode/Decode<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/timestamp-converter">Timestamp Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/cron-explainer">Cron Explainer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny JWT Decoder","url":"https://quicktinyv2.vercel.app/jwt-decoder","description":"Decode JSON Web Tokens, see expiry in your time zone, spot security red flags and verify HS256, RS256, PS256 and ES256 signatures with a secret, PEM or JWKS. Runs in your browser.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"JWT Decoder","item":"https://quicktinyv2.vercel.app/jwt-decoder"}]}</script>
+</body>
+</html>

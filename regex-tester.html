@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Regex Tester — Test &amp; Explain Regular Expressions Online | QuickTiny</title>
+  <meta name="description" content="Test regex with live highlighting, capture groups and a replace preview. Plain-English explanation of every token, code export for JavaScript, Python, PHP and Java. Free and private.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/regex-tester">
+  <meta property="og:title" content="Regex Tester — Test &amp; Explain Regular Expressions Online | QuickTiny">
+  <meta property="og:description" content="Test regex with live highlighting, capture groups and a replace preview. Plain-English explanation of every token, code export for JavaScript, Python, PHP and Java. Free and private.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/regex-tester">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .rx-pat{display:flex;align-items:stretch;border:1px solid var(--line-strong);border-radius:14px;background:rgba(0,0,0,.25);overflow:hidden}
+    .rx-pat span{font:600 18px/1 var(--mono);color:var(--muted);padding:14px 4px 14px 14px;display:flex;align-items:center}
+    .rx-pat #rxSlashF{padding:14px 14px 14px 4px;color:#9fa3ff}
+    #rxPattern{flex:1;min-width:0;border:0 !important;background:transparent !important;font:500 16px/1.4 var(--mono);padding:12px 2px !important;box-shadow:none !important}
+    #rxPattern.rx-bad{color:#ff8f8f}
+    #rxFlags,#rxLib{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+    #rxFlags .chip{font-family:var(--mono);min-width:38px;text-align:center}
+    #rxLib .chip{padding:5px 11px;font-size:12.5px}
+    .rx-editor{position:relative;margin-top:6px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.22);height:220px}
+    .rx-editor textarea,.rx-editor pre{position:absolute;inset:0;margin:0;padding:14px;font:14px/1.6 var(--mono);white-space:pre-wrap;word-wrap:break-word;overflow:auto;border:0;border-radius:14px;letter-spacing:0;tab-size:4}
+    .rx-editor pre{color:transparent;pointer-events:none;background:transparent}
+    .rx-editor textarea{background:transparent !important;color:var(--text);resize:none;caret-color:#fff;box-shadow:none !important}
+    .rx-editor mark{color:transparent;border-radius:3px}
+    .rx-m0{background:rgba(107,107,255,.45);box-shadow:0 0 0 1px rgba(150,150,255,.7)}
+    .rx-m1{background:rgba(59,226,255,.32);box-shadow:0 0 0 1px rgba(59,226,255,.6)}
+    .rx-zero{display:inline-block;width:2px;height:1.2em;margin:0 -1px;vertical-align:text-bottom;background:#ffd88a}
+    .rx-count{font-size:13.5px;font-weight:600;color:var(--text-dim);margin-top:10px}
+    .rx-count.rx-ok{color:#7ff0b0}.rx-count.rx-err{color:#ff9a9a;font-weight:500}
+    .rx-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    @media(max-width:860px){.rx-grid{grid-template-columns:1fr}}
+    .rx-box{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:rgba(255,255,255,.02);min-width:0}
+    .rx-box h3{margin:0 0 10px;font-size:14px;letter-spacing:.02em;color:var(--text-dim);text-transform:uppercase}
+    #rxExplain{list-style:none;margin:0;padding:0;max-height:340px;overflow:auto}
+    #rxExplain li{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px dashed rgba(255,255,255,.06);font-size:13.5px;line-height:1.45}
+    #rxExplain code{flex:0 0 auto;max-width:45%;overflow-wrap:anywhere;color:#c9cbff;background:rgba(107,107,255,.14);border:1px solid rgba(107,107,255,.3)}
+    .rx-table{width:100%;border-collapse:collapse;font-size:13px}
+    .rx-table th{text-align:start;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+    .rx-table td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;overflow-wrap:anywhere}
+    .rx-tablewrap{max-height:320px;overflow:auto}
+    .rx-g{display:inline-flex;gap:6px;margin:0 6px 4px 0;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+    .rx-g b{color:#9fa3ff}.rx-dim{color:var(--muted);font-size:13px}
+    #rxReplaced,#rxCodeOut{margin:8px 0 0;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.3);border:1px solid var(--line);font:13px/1.55 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow:auto;min-height:44px}
+    .rx-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .rx-row select{width:auto}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Regex Tester</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Developer</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>Regex Tester — Live Matches, Plain-English Explanation</h1>
+    <p>Test JavaScript regular expressions with live highlighting, capture groups, a replace preview and a line-by-line explanation of what your pattern does. Copy ready-made code for JavaScript, Python, PHP or Java. A runaway pattern is stopped after 1.5 seconds instead of freezing your tab.</p>
+    <a href="#tool" class="jump-to-tool">Test a regex <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <label class="field-label" for="rxPattern">Regular expression</label>
+    <div class="rx-pat"><span>/</span><input type="text" id="rxPattern" value="(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})" autocomplete="off" spellcheck="false" aria-label="Regular expression pattern"><span id="rxSlashF">/g</span></div>
+    <div id="rxFlags" role="group" aria-label="Flags"></div>
+    <label class="field-label">Common patterns</label>
+    <div id="rxLib"></div>
+    <label class="field-label" for="rxText">Test text</label>
+    <div class="rx-editor">
+      <pre id="rxHighlight" aria-hidden="true"></pre>
+      <textarea id="rxText" spellcheck="false">Invoices: 2026-11-09 paid, 2026-12-01 due, 2027-01-15 draft.
+Not a date: 2026-1-9 or 26/11/2026.</textarea>
+    </div>
+    <div id="rxCount" class="rx-count" aria-live="polite"></div>
+    <div class="checkline"><input type="checkbox" id="rxReplaceOn"><label for="rxReplaceOn">Replace mode</label></div>
+    <div id="rxReplaceWrap" hidden>
+      <label class="field-label" for="rxReplace">Replace with <span class="rx-dim">— use $1, $&lt;name&gt;, $&amp;</span></label>
+      <input type="text" id="rxReplace" value="$&lt;day&gt;/$&lt;month&gt;/$&lt;year&gt;" autocomplete="off" spellcheck="false" style="font-family:var(--mono)">
+      <pre id="rxReplaced"></pre>
+      <div class="btn-row" style="margin-top:8px"><button class="btn btn-secondary" type="button" id="rxCopyOut">Copy result</button></div>
+    </div>
+
+    <div class="rx-grid">
+      <div class="rx-box"><h3>What it means</h3><ul id="rxExplain"></ul></div>
+      <div class="rx-box"><h3>Matches &amp; groups</h3><div class="rx-tablewrap" id="rxTable"></div></div>
+    </div>
+    <div class="rx-box" style="margin-top:16px">
+      <h3>Use it in code</h3>
+      <div class="rx-row">
+        <select id="rxLang" aria-label="Language"><option value="js">JavaScript</option><option value="py">Python</option><option value="php">PHP</option><option value="java">Java</option></select>
+        <button class="btn btn-secondary" type="button" id="rxCopyCode">Copy code</button>
+        <button class="btn btn-secondary" type="button" id="rxCopyRe">Copy /regex/</button>
+        <button class="btn btn-secondary" type="button" id="rxShare">Copy share link</button>
+      </div>
+      <pre id="rxCodeOut"></pre>
+    </div>
+    <div id="rxStatus" class="result" aria-live="polite"></div>
+  </div>
+  <script src="/regex-tester.js"></script>
+
+  <div class="content">
+    <h2>Why this regex tester is different</h2>
+    <ul class="benefits">
+      <li><strong>It explains your pattern</strong> — every token, group and quantifier in plain English, nested the way the engine reads it.</li>
+      <li><strong>It can't freeze your browser</strong> — matching runs in a background worker and is stopped after 1.5 s, so catastrophic backtracking shows a clear warning instead of a hung tab.</li>
+      <li><strong>Code you can paste</strong> — JavaScript, Python (named groups converted to <code>(?P&lt;name&gt;)</code>), PHP and Java strings with the escaping done for you.</li>
+      <li><strong>Private</strong> — your pattern and text never leave the page. Share links keep everything in the URL fragment, which isn't sent to any server.</li>
+    </ul>
+
+    <h2>Regex cheat sheet</h2>
+    <ul class="benefits">
+      <li><span><code>\d</code> digit · <code>\w</code> letter/digit/_ · <code>\s</code> whitespace · <code>.</code> any character · <code>\b</code> word boundary</span></li>
+      <li><span><code>*</code> 0+ · <code>+</code> 1+ · <code>?</code> optional · <code>{2,5}</code> 2 to 5 · add <code>?</code> to make it lazy: <code>.*?</code></span></li>
+      <li><span><code>[abc]</code> one of · <code>[^abc]</code> none of · <code>(…)</code> group · <code>(?:…)</code> non-capturing · <code>(?&lt;name&gt;…)</code> named</span></li>
+      <li><span><code>(?=…)</code> followed by · <code>(?!…)</code> not followed by · <code>(?&lt;=…)</code> preceded by · <code>\p{Script=Arabic}</code> with the <code>u</code> flag</span></li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Which regex flavor does this use?</summary><p>Your browser's JavaScript engine (ECMAScript 2024), including named groups, lookbehind and Unicode properties. Most patterns work the same in Python, PHP (PCRE) and Java; the code export converts the syntax that differs.</p></details>
+    <details class="faq-item"><summary>Why does my pattern only find one match?</summary><p>Without the <code>g</code> (global) flag JavaScript stops after the first match. Turn on <strong>g</strong> to see them all.</p></details>
+    <details class="faq-item"><summary>What is catastrophic backtracking?</summary><p>Patterns like <code>(a+)+$</code> can take exponential time on text that almost matches. Real servers have gone down because of it. Here the test is stopped after 1.5 seconds and you're told why — rewrite the nested quantifier to fix it.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More developer tools</h2>
+    <div class="related-grid">
+      <a href="/diff-checker">Diff Checker<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/jwt-decoder">JWT Decoder<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/cron-explainer">Cron Explainer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/json-formatter">JSON Formatter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Regex Tester","url":"https://quicktinyv2.vercel.app/regex-tester","description":"Test regex with live highlighting, capture groups and a replace preview. Plain-English explanation of every token, code export for JavaScript, Python, PHP and Java. Free and private.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Regex Tester","item":"https://quicktinyv2.vercel.app/regex-tester"}]}</script>
+</body>
+</html>
