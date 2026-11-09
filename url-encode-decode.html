@@ -104,6 +104,8 @@
         document.querySelector("#urlenc").value = payload.value;
         if (payload.action === "inspect") {
           qtDiagnoseClick();
+        } else if (payload.action === "encode") {
+          qtUrlEnc("encode");
         } else {
           qtUrlEnc("decode");
         }
