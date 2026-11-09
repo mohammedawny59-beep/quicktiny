@@ -23,3 +23,6 @@ transparent WebP (per-row background removal, floor reflection faded) and resize
 | `frames.webp` | Social Image Resizer |
 | `magnifier.webp` | SERP & Social Preview |
 | `palette.webp` | Brand Color Palette |
+| `coins.webp` | تفقيط المبالغ (/ar/tafqeet) |
+| `calendar.webp` | تحويل التاريخ (/ar/hijri-converter) |
+| `keyboard.webp` | مصحح لغة الكيبورد (/ar/keyboard-fix) |
