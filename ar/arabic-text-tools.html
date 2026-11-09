@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>إزالة التشكيل من النص العربي وتنظيف النص | QuickTiny</title>
+  <meta name="description" content="احذف التشكيل والتطويل من النص العربي، وحّد الهمزات والألف، حوّل الأرقام بين ١٢٣ و123، ونظّف المسافات. مجاني وبدون رفع.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/arabic-text-tools">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/arabic-text-tools">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/ar/arabic-text-tools">
+  <meta property="og:title" content="إزالة التشكيل من النص العربي وتنظيف النص | QuickTiny">
+  <meta property="og:description" content="احذف التشكيل والتطويل من النص العربي، وحّد الهمزات والألف، حوّل الأرقام بين ١٢٣ و123، ونظّف المسافات. مجاني وبدون رفع.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/arabic-text-tools">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .tf-out{margin-top:16px;padding:20px 22px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    #tfOut{font:700 clamp(19px,2.6vw,26px)/1.8 "Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif;color:#eef0ff;min-height:40px}
+    #tfFig{font:13px var(--mono);color:var(--muted);direction:ltr;text-align:right}
+    #tfNum{font-size:22px;direction:ltr;text-align:right}
+    .ar-ex{display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 12px}
+    .ar-ex .chip{padding:5px 11px;font-size:13px}
+    .hj-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:760px){.hj-grid{grid-template-columns:1fr}}
+    .hj-box{border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.03)}
+    .hj-box h3{margin:0 0 10px;font-size:16px}
+    .hj-res{margin-top:6px;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.3);min-height:58px}
+    .hj-res b{display:block;font-size:21px}.hj-res span{font-size:13px;color:var(--text-dim)}
+    .hj-h{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:8px}
+    #hjToday{padding:12px 16px;border-radius:14px;border:1px solid rgba(59,226,255,.3);background:rgba(59,226,255,.06);margin-bottom:16px;font-size:15px}
+    .hj-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:10px}
+    @media (max-width:600px){.hj-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .hj-stats .stat{min-width:0}
+    .hj-note{font-size:14px;color:var(--text-dim);margin-top:10px}
+    .kb-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:start}
+    @media (max-width:760px){.kb-grid{grid-template-columns:1fr}}
+    #kbIn,#kbOut,#atIn,#atOut{min-height:170px;font:17px/1.8 "Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif}
+    #kbDir{font-size:13px;color:var(--cyan);text-align:center;margin-top:44px}
+    .at-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:2px 16px;margin:6px 0 12px}
+    #atStats{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">أدوات النص العربي</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">نص</span><span class="badge local">يعمل داخل متصفحك</span><span class="badge">مجاني</span><span class="badge">جديد</span></div>
+    <h1>إزالة التشكيل من النص العربي — وتنظيف النص وتحويل الأرقام</h1>
+    <p>احذف التشكيل (الحركات) والتطويل من أي نص عربي بضغطة، ووحّد الهمزات والألف والتاء المربوطة لتسهيل البحث والفرز، وحوّل الأرقام بين العربية (123) والهندية (١٢٣)، ونظّف المسافات وعلامات الترقيم.</p>
+    <a href="#tool" class="jump-to-tool">نظّف النص <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+  <div class="tool-panel" id="tool">
+    <label class="field-label">إعدادات جاهزة</label>
+    <div class="ar-ex">
+      <button class="chip" type="button" data-preset="tashkeel,tatweel">إزالة التشكيل والتطويل</button>
+      <button class="chip" type="button" data-preset="tashkeel,tatweel,alef,yaa,taa,hamza,spaces">تجهيز للبحث والفرز</button>
+      <button class="chip" type="button" data-preset="toIndic,punct,spaces">تنسيق للطباعة العربية</button>
+      <button class="chip" type="button" data-preset="toLatin,spaces">أرقام لاتينية 123</button>
+    </div>
+    <div class="at-opts">
+      <div class="checkline"><input type="checkbox" id="at_tashkeel" checked><label for="at_tashkeel">إزالة التشكيل (الفتحة، الضمة، الشدة…)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_tatweel" checked><label for="at_tatweel">إزالة التطويل (ـــ)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_alef"><label for="at_alef">توحيد الألف (أ إ آ ← ا)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_yaa"><label for="at_yaa">الألف المقصورة ← ياء (ى ← ي)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_taa"><label for="at_taa">التاء المربوطة ← هاء (ة ← ه)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_hamza"><label for="at_hamza">توحيد الهمزة (ؤ ← و، ئ ← ي)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_toIndic"><label for="at_toIndic">أرقام هندية (123 ← ١٢٣)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_toLatin"><label for="at_toLatin">أرقام لاتينية (١٢٣ ← 123)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_punct"><label for="at_punct">علامات ترقيم عربية (, ; ? ← ، ؛ ؟)</label></div>
+      <div class="checkline"><input type="checkbox" id="at_spaces"><label for="at_spaces">تنظيف المسافات الزائدة</label></div>
+    </div>
+    <div class="row-2">
+      <div><label class="field-label" for="atIn">النص الأصلي</label><textarea id="atIn" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ — مـرحـبـاً بكم في موقعنا</textarea></div>
+      <div><label class="field-label" for="atOut">النتيجة</label><textarea id="atOut" dir="rtl" readonly></textarea></div>
+    </div>
+    <div id="atStats"></div>
+    <div class="btn-row"><button class="btn" type="button" id="atCopy">نسخ النتيجة</button></div>
+    <div id="atStatus" class="result"></div>
+  </div>
+  <script src="/arabic-text-tools.js"></script>
+  <div class="content">
+    <h2>متى أحتاج هذه الأداة؟</h2>
+    <ul class="benefits">
+      <li>نسخ نص مشكول من مصدر وتريد نشره بدون حركات.</li>
+      <li>تجهيز قائمة أسماء أو منتجات للبحث، حتى يجد «احمد» كلمة «أحمد».</li>
+      <li>توحيد الأرقام قبل لصقها في Excel أو نظام محاسبي.</li>
+      <li>تنظيف نص منسوخ من PDF مليء بالمسافات الزائدة.</li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل تغيير التاء المربوطة إلى هاء صحيح إملائيًا؟</summary><p>لا، هو للبحث والفرز فقط وليس للنشر. لهذا هو غير مفعّل افتراضيًا.</p></details>
+  </div>
+  <div class="section related-section"><h2 class="related-title">أدوات عربية أخرى</h2><div class="related-grid">
+    <a href="/ar/keyboard-fix">مصحح لغة الكيبورد<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="/ar/word-counter">عداد الكلمات<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a href="/ar/tafqeet">تفقيط المبالغ<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div></div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>أدوات بالعربية</h4>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h4>أدوات أخرى (بالإنجليزية)</h4>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>QuickTiny</h4>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny أدوات النص العربي", "url": "https://quicktinyv2.vercel.app/ar/arabic-text-tools", "description": "احذف التشكيل والتطويل من النص العربي، وحّد الهمزات والألف، حوّل الأرقام بين ١٢٣ و123، ونظّف المسافات. مجاني وبدون رفع.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "أدوات النص العربي", "item": "https://quicktinyv2.vercel.app/ar/arabic-text-tools"}]}</script>
+</body>
+</html>
