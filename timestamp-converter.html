@@ -69,7 +69,7 @@
       <div class="row-2">
         <div>
           <label class="field-label" for="tsInput">Unix timestamp</label>
-          <input id="tsInput" type="text" placeholder="e.g. 1735689600">
+          <input id="tsInput" type="text" placeholder="e.g. 1735689600 or 2025-01-01T00:00:00Z">
           <div class="btn-row"><button class="btn" onclick="qtTsToDate()">Convert to date</button><button class="btn btn-secondary" onclick="qtNow()">Use current time</button></div>
         </div>
         <div>
@@ -88,7 +88,17 @@
       function qtTsToDate(){
         var raw = document.querySelector("#tsInput").value.trim();
         var out = document.querySelector("#tsout");
-        if (!raw || isNaN(Number(raw))) { out.textContent = "Enter a numeric timestamp."; out.className = "result error"; return; }
+        if (raw && isNaN(Number(raw))) {
+          // Also accept a date string (ISO 8601 or RFC 2822) and convert it the other way.
+          var parsed = new Date(/^\d{4}-\d{2}-\d{2} \d/.test(raw) ? raw.replace(" ", "T") : raw);
+          if (/\d{4}/.test(raw) && !isNaN(parsed.getTime())) {
+            out.innerHTML = "Unix timestamp (seconds): <strong>" + Math.floor(parsed.getTime() / 1000) + "</strong><br>Milliseconds: <strong>" + parsed.getTime() + "</strong><br>UTC: <strong>" + parsed.toUTCString() + "</strong>" +
+              (/[zZ]|[+-]\d{2}:?\d{2}$|GMT|UTC/.test(raw) || /^\d{4}-\d{2}-\d{2}$/.test(raw) ? "" : "<br><span style=\"font-size:13px\">No timezone given, so this was read as your local time.</span>");
+            out.className = "result success";
+            return;
+          }
+        }
+        if (!raw || isNaN(Number(raw))) { out.textContent = "Enter a numeric timestamp or a date (e.g. 2025-01-31T10:00:00Z)."; out.className = "result error"; return; }
         var num = Number(raw);
         var ms = Math.abs(num) > 20000000000 ? num : num * 1000;
         var d = new Date(ms);

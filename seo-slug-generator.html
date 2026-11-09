@@ -72,7 +72,14 @@
         if (!text || text.indexOf("Start typing") === 0) { return; }
         await qtCopy(text, out, "Copied");
       }
-      qtSlugIt();</script>
+      qtSlugIt();
+      document.addEventListener("DOMContentLoaded", function qtConsumeSmartHandoff(){
+        if (typeof qtHandoffConsume !== "function") return;
+        var payload = qtHandoffConsume("/seo-slug-generator");
+        if (!payload) return;
+        document.querySelector("#slug").value = payload.value.trim();
+        qtSlugIt();
+      });</script>
 
   <div class="content">
     <h2>How to use SEO Slug Generator</h2>

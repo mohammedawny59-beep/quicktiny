@@ -79,6 +79,10 @@
         messy_json: { label: "Messy / LLM JSON", actions: [{ label: "Repair & Format JSON", tool: "/json-formatter", action: "repair" }] },
         base64: { label: "Base64", actions: [{ label: "Decode Base64", tool: "/base64-encode-decode", action: "decode" }, { label: "Encode as Base64", tool: "/base64-encode-decode", action: "encode" }] },
         url_encoded: { label: "URL encoded", actions: [{ label: "Decode URL", tool: "/url-encode-decode", action: "decode" }, { label: "Inspect URL", tool: "/url-encode-decode", action: "inspect" }] },
+        url: { label: "URL", actions: [{ label: "Inspect URL", tool: "/url-encode-decode", action: "inspect" }, { label: "Encode URL", tool: "/url-encode-decode", action: "encode" }] },
+        jwt: { label: "JWT token", actions: [{ label: "Decode JWT payload", tool: "/base64-encode-decode", action: "decode", value: "jwtPayload" }, { label: "Decode JWT header", tool: "/base64-encode-decode", action: "decode", value: "jwtHeader" }] },
+        date: { label: "Date / time", actions: [{ label: "Convert to Unix timestamp", tool: "/timestamp-converter", action: "convert" }] },
+        title: { label: "Short text / title", actions: [{ label: "Make SEO Slug", tool: "/seo-slug-generator", action: "slug" }, { label: "Change Case", tool: "/case-converter", action: "case" }, { label: "Word Count", tool: "/word-counter", action: "count" }] },
         timestamp_seconds: { label: "Unix timestamp (seconds)", actions: [{ label: "Convert Timestamp", tool: "/timestamp-converter", action: "convert" }] },
         timestamp_ms: { label: "Unix timestamp (milliseconds)", actions: [{ label: "Convert Timestamp", tool: "/timestamp-converter", action: "convert" }] },
         list: { label: "Multiline / list-like text", actions: [{ label: "Clean Text", tool: "/clean-text", action: "clean" }, { label: "Remove Duplicate Lines", tool: "/remove-duplicate-lines", action: "dedupe" }, { label: "Sort Lines", tool: "/sort-lines", action: "sort" }] },
@@ -215,6 +219,53 @@
         nonBlank.forEach(function(l){ if (seen[l]) hasDupe = true; seen[l] = true; });
         return hasDupe || avgLen < 50;
       }
+      function qtB64UrlDecode(seg){
+        var s = seg.replace(/-/g, "+").replace(/_/g, "/");
+        while (s.length % 4) s += "=";
+        return atob(s);
+      }
+      function qtLooksLikeJwt(raw){
+        var s = raw.trim();
+        var m = /^(eyJ[A-Za-z0-9_-]+)\.(eyJ[A-Za-z0-9_-]+)\.([A-Za-z0-9_-]*)$/.exec(s);
+        if (!m) return false;
+        try {
+          var header = JSON.parse(qtB64UrlDecode(m[1]));
+          JSON.parse(qtB64UrlDecode(m[2]));
+          return !!header && typeof header === "object" && ("alg" in header || "typ" in header);
+        } catch (e) { return false; }
+      }
+      function qtJwtSegment(raw, which){
+        var parts = raw.trim().split(".");
+        return which === "jwtHeader" ? parts[0] : parts[1];
+      }
+      function qtLooksLikeUrl(raw){
+        var s = raw.trim();
+        if (/\s/.test(s) || s.length > 4000) return false;
+        if (!/^(https?:\/\/|www\.)/i.test(s)) return false;
+        try {
+          var u = new URL(/^www\./i.test(s) ? "https://" + s : s);
+          return /\./.test(u.hostname) || u.hostname === "localhost";
+        } catch (e) { return false; }
+      }
+      function qtLooksLikeDate(raw){
+        var s = raw.trim();
+        if (s.length > 40 || s.indexOf("\n") !== -1) return false;
+        // ISO 8601 (2025-01-31, 2025-01-31T10:00:00Z, 2025-01-31 10:00:00+02:00) or RFC 2822 / toUTCString style
+        var iso = /^\d{4}-\d{2}-\d{2}([T ]\d{2}:\d{2}(:\d{2}(\.\d{1,9})?)?\s*(Z|[+-]\d{2}:?\d{2}|UTC|GMT)?)?$/i.test(s);
+        var rfc = /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s+\d{1,2}\s+[A-Za-z]{3}\s+\d{4}\s+\d{2}:\d{2}(:\d{2})?\s*(GMT|UTC|Z|[+-]\d{4})?$/i.test(s);
+        if (!iso && !rfc) return false;
+        return !isNaN(new Date(iso ? s.replace(" ", "T") : s).getTime());
+      }
+      function qtLooksLikeTitle(raw){
+        var s = raw.trim();
+        if (s.indexOf("\n") !== -1 || s.length < 8 || s.length > 120) return false;
+        var words = s.split(/\s+/);
+        if (words.length < 2 || words.length > 16) return false;
+        // A heading-like line: mostly letters, no sentence that runs on.
+        if (/[.!?;,]$/.test(s) || (s.match(/[.!?]/g) || []).length > 1) return false;
+        // The slug generator keeps Latin letters/digits only, so only offer it when that yields a slug.
+        return (s.match(/[A-Za-z]/g) || []).length >= s.replace(/\s/g, "").length * 0.6;
+      }
       function qtSmartDetect(raw){
         var trimmed = raw.trim();
         if (!trimmed) return null;
@@ -225,10 +276,14 @@
           return "text";
         }
         if (qtTryParseObjArr(trimmed)) return "json";
+        if (qtLooksLikeJwt(trimmed)) return "jwt";
+        if (qtLooksLikeUrl(trimmed)) return qtLooksLikeUrlEncoded(trimmed) ? "url_encoded" : "url";
+        if (qtLooksLikeDate(trimmed)) return "date";
         if (qtCanBecomeJson(trimmed)) return "messy_json";
         if (qtLooksLikeBase64(trimmed)) return "base64";
         if (qtLooksLikeUrlEncoded(trimmed)) return "url_encoded";
         if (qtLooksLikeList(trimmed)) return "list";
+        if (qtLooksLikeTitle(trimmed)) return "title";
         return "text";
       }
 
@@ -245,7 +300,8 @@
         "/remove-duplicate-lines": "smart_action_dedupe",
         "/sort-lines": "smart_action_sort",
         "/word-counter": "smart_action_word_count",
-        "/case-converter": "smart_action_case_converter"
+        "/case-converter": "smart_action_case_converter",
+        "/seo-slug-generator": "smart_action_seo_slug"
       };
 
       function qtSmartRender(){
@@ -262,7 +318,7 @@
         var html = '<div class="smart-detected"><span class="badge local">Detected: ' + spec.label + '</span></div>';
         html += '<div class="btn-row" style="margin-top:12px">';
         spec.actions.forEach(function(a, i){
-          html += '<button class="btn' + (i === 0 ? '' : ' btn-secondary') + '" data-tool="' + a.tool + '" data-action="' + a.action + '">' + a.label + '</button>';
+          html += '<button class="btn' + (i === 0 ? '' : ' btn-secondary') + '" data-tool="' + a.tool + '" data-action="' + a.action + '" data-value="' + (a.value || "") + '">' + a.label + '</button>';
         });
         html += '</div>';
         resultEl.innerHTML = html;
@@ -274,7 +330,9 @@
             qtTrack("smart_action_click", { tool: tool, action: action });
             var actionEvent = QT_SMART_ACTION_EVENT_BY_TOOL[tool];
             if (actionEvent) qtEvent(actionEvent);
-            qtHandoffSet({ tool: tool, action: action, value: input.value });
+            var which = btn.getAttribute("data-value");
+            var value = which ? qtJwtSegment(input.value, which) : input.value;
+            qtHandoffSet({ tool: tool, action: action, value: value });
             location.href = tool;
           });
         });
