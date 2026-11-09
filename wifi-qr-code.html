@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Wi-Fi QR Code Generator — Guests Join Without Typing | QuickTiny</title>
+  <meta name="description" content="Create a QR code that connects phones to your Wi-Fi in one scan. Add your logo and a “Scan for Wi-Fi” frame. Free, never expires, nothing uploaded.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/wifi-qr-code">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/wifi-qr-code">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/wifi-qr-code">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/wifi-qr-code">
+  <meta property="og:title" content="Wi-Fi QR Code Generator — Guests Join Without Typing | QuickTiny">
+  <meta property="og:description" content="Create a QR code that connects phones to your Wi-Fi in one scan. Add your logo and a “Scan for Wi-Fi” frame. Free, never expires, nothing uploaded.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/wifi-qr-code">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .qr-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:26px;align-items:start}
+    @media (max-width:900px){.qr-layout{grid-template-columns:1fr}}
+    .qr-side{position:sticky;top:86px}
+    @media (max-width:900px){.qr-side{position:static}}
+    .qr-stage{border-radius:22px;padding:22px;background:repeating-conic-gradient(rgba(255,255,255,.05) 0 25%,transparent 0 50%) 0 0/22px 22px,rgba(0,0,0,.25);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;min-height:320px}
+    #qrPreview{width:100%;max-width:340px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45))}
+    #qrPreview svg{width:100%;height:auto;display:block}
+    .qr-empty{color:var(--muted);text-align:center;padding:60px 10px;font-size:14px}
+    .qr-scan{margin-top:12px;padding:10px 14px;border-radius:12px;font-size:14px;font-weight:700;min-height:20px}
+    .qr-scan:empty{display:none}
+    .qr-scan.ok{color:#7ff5c4;background:rgba(61,220,148,.08);border:1px solid rgba(61,220,148,.35)}
+    .qr-scan.bad{color:#ff9aa6;background:rgba(255,122,138,.08);border:1px solid rgba(255,122,138,.4)}
+    .qr-scan.busy{color:var(--text-dim);background:rgba(255,255,255,.04);border:1px solid var(--line)}
+    #qrWarn{margin:8px 0 0;padding:0 0 0 18px;font-size:13px;color:#ffd88a}
+    #qrWarn:empty{display:none}
+    #qrMeta{font-size:12px;color:var(--muted);margin-top:8px}
+    #qrPayload{font:12px/1.5 var(--mono);color:var(--muted);background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-top:8px;max-height:90px;overflow:auto;white-space:pre-wrap;word-break:break-all}
+    #qrPayload:empty{display:none}
+    .qr-dl{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+    .qr-dl select{margin:0}
+    #qrPanes{margin-bottom:16px}
+    #qrTypes{margin-bottom:12px}
+    #qrTypes .chip{padding:6px 12px}
+    .qr-group{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px;background:rgba(255,255,255,.025)}
+    .qr-group > .field-label:first-child{margin-top:0}
+    .qr-colors{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+    .qr-colors input[type=color]{width:100%;height:40px;padding:3px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.25);margin:4px 0 0;cursor:pointer}
+    .qr-chiprow{display:flex;gap:8px;flex-wrap:wrap}
+    #qrTemplates{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px}
+    .qr-tpl{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:8px;cursor:pointer;color:var(--text-dim);font:600 12px var(--font);transition:border-color .2s,transform .2s}
+    .qr-tpl:hover{border-color:rgba(123,123,255,.6);transform:translateY(-2px)}
+    .qr-tpl svg{width:100%;height:auto;display:block;border-radius:8px;margin-bottom:6px}
+    .qr-promise{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .qr-promise span{font-size:12px;color:#8ff0ff;background:rgba(59,226,255,.07);border:1px solid rgba(59,226,255,.25);border-radius:99px;padding:4px 10px}
+    input[type=range]{width:100%}
+  </style>
+  <script>window.QT_PRESET = {"type": "wifi"};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Wi-Fi QR Code</span></div>
+  <div class="lang-switch">
+    <a href="/wifi-qr-code" class="active">EN</a>
+    <a href="/ar/wifi-qr-code" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Marketing</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Made in your browser</span>
+      <span class="badge">Free forever</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>Wi-Fi QR Code Generator</h1>
+    <p>Print one code and guests join your Wi-Fi by pointing their camera at it — no spelling out passwords. Perfect for cafés, offices, rentals and home.</p>
+    <a href="#tool" class="jump-to-tool">Create my QR code <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="qr-layout">
+      <div>
+        <div class="chip-row" id="qrPanes" role="tablist">
+          <button class="chip active" type="button" data-pane="content" role="tab" aria-selected="true">Content</button>
+          <button class="chip" type="button" data-pane="design" role="tab" aria-selected="false">Design</button>
+          <button class="chip" type="button" data-pane="logo" role="tab" aria-selected="false">Logo &amp; frame</button>
+          <button class="chip" type="button" data-pane="bulk" role="tab" aria-selected="false">Bulk (CSV)</button>
+        </div>
+
+        <section class="qr-pane" id="qrPane-content">
+          <div class="qr-chiprow" id="qrTypes"></div>
+          <div id="qrFields"></div>
+          <div class="qr-group" id="qrUtmWrap" style="margin-top:12px">
+            <div class="checkline"><input type="checkbox" id="qrUtmOn"><label for="qrUtmOn"><strong>Add UTM tracking</strong> — see in Google Analytics how many people scanned</label></div>
+            <div id="qrUtmFields" class="row-2" hidden></div>
+          </div>
+        </section>
+
+        <section class="qr-pane" id="qrPane-design" hidden>
+          <label class="field-label">Templates</label>
+          <div id="qrTemplates" style="margin-bottom:14px"></div>
+          <div class="qr-group">
+            <label class="field-label">Dot style</label>
+            <div class="qr-chiprow" id="qrShapes">
+              <button class="chip" type="button" data-shape="square">Square</button>
+              <button class="chip" type="button" data-shape="rounded">Rounded</button>
+              <button class="chip" type="button" data-shape="fluid">Fluid</button>
+              <button class="chip" type="button" data-shape="dots">Dots</button>
+              <button class="chip" type="button" data-shape="diamond">Diamond</button>
+            </div>
+            <label class="field-label" style="margin-top:14px">Corner (eye) style</label>
+            <div class="qr-chiprow" id="qrEyes">
+              <button class="chip" type="button" data-eye="square">Square</button>
+              <button class="chip" type="button" data-eye="rounded">Rounded</button>
+              <button class="chip" type="button" data-eye="circle">Circle</button>
+              <button class="chip" type="button" data-eye="leaf">Leaf</button>
+            </div>
+          </div>
+          <div class="qr-group">
+            <div class="qr-colors">
+              <div><label class="field-label" for="qrFg">Code color</label><input type="color" id="qrFg"></div>
+              <div><label class="field-label" for="qrGrad">Gradient</label><select id="qrGrad" style="margin:4px 0 0"><option value="none">None</option><option value="linear">Linear</option><option value="radial">Radial</option></select></div>
+              <div id="qrFg2Wrap"><label class="field-label" for="qrFg2">Second color</label><input type="color" id="qrFg2"></div>
+              <div><label class="field-label" for="qrBg">Background</label><input type="color" id="qrBg"></div>
+              <div id="qrEyeColorWrap"><label class="field-label" for="qrEyeColor">Corner color</label><input type="color" id="qrEyeColor"></div>
+            </div>
+            <div class="checkline" style="margin-top:12px"><input type="checkbox" id="qrEyeSame"><label for="qrEyeSame">Corners use the code color</label></div>
+            <div class="checkline"><input type="checkbox" id="qrTransparent"><label for="qrTransparent">Transparent background (PNG/SVG)</label></div>
+          </div>
+          <div class="qr-group row-2">
+            <div><label class="field-label" for="qrMargin">Quiet zone: <span id="qrMarginVal"></span></label><input type="range" id="qrMargin" min="0" max="8" step="1"></div>
+            <div><label class="field-label" for="qrEcc">Error correction</label><select id="qrEcc"><option value="auto">Auto</option><option value="L">L — 7%</option><option value="M">M — 15%</option><option value="Q">Q — 25%</option><option value="H">H — 30%</option></select></div>
+          </div>
+        </section>
+
+        <section class="qr-pane" id="qrPane-logo" hidden>
+          <div class="qr-group">
+            <label class="field-label" for="qrLogo">Logo in the center</label>
+            <input type="file" id="qrLogo" accept="image/*">
+            <div id="qrLogoOpts">
+              <label class="field-label" for="qrLogoSize">Logo size: <span id="qrLogoSizeVal"></span></label>
+              <input type="range" id="qrLogoSize" min="12" max="30" step="1">
+              <div class="checkline"><input type="checkbox" id="qrLogoPlate"><label for="qrLogoPlate">White plate behind the logo</label></div>
+              <div class="btn-row"><button class="btn btn-secondary" type="button" id="qrLogoRemove">Remove logo</button></div>
+            </div>
+          </div>
+          <div class="qr-group">
+            <label class="field-label" for="qrFrame">Frame and call to action</label>
+            <select id="qrFrame"><option value="none">No frame</option><option value="label">Label below</option><option value="badge">Badge</option><option value="text">Text only</option></select>
+            <div id="qrFrameOpts">
+              <label class="field-label" for="qrFrameText">Text</label>
+              <input type="text" id="qrFrameText" maxlength="28" dir="auto">
+              <div class="qr-colors">
+                <div><label class="field-label" for="qrFrameColor">Frame color</label><input type="color" id="qrFrameColor"></div>
+                <div><label class="field-label" for="qrFrameTextColor">Text color</label><input type="color" id="qrFrameTextColor"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="qr-pane" id="qrPane-bulk" hidden>
+          <p style="color:var(--text-dim);font-size:14px;margin-top:0">One link or text per line. Optional second column = file name. Every code uses your current design and is scan-tested.</p>
+          <textarea id="qrBulkInput" placeholder="https://shop.example/p/1, product-1&#10;https://shop.example/p/2, product-2" spellcheck="false"></textarea>
+          <input type="file" id="qrBulkFile" accept=".csv,.txt,text/csv,text/plain">
+          <div class="row-2" style="margin-top:8px">
+            <div><label class="field-label" for="qrBulkFormat">Format</label><select id="qrBulkFormat"><option value="png">PNG</option><option value="svg">SVG</option></select></div>
+            <div class="checkline" style="align-self:center"><input type="checkbox" id="qrBulkUtm"><label for="qrBulkUtm">Add my UTM tags to links</label></div>
+          </div>
+          <div class="btn-row"><button class="btn" type="button" id="qrBulkRun">Create ZIP</button></div>
+          <div id="qrBulkStatus" class="result" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <aside class="qr-side">
+        <div class="qr-stage"><div id="qrPreview" aria-live="polite"></div></div>
+        <div class="qr-scan" id="qrScan" aria-live="polite"></div>
+        <ul id="qrWarn"></ul>
+        <div id="qrMeta"></div>
+        <div id="qrPayload"></div>
+        <div class="qr-dl">
+          <select id="qrSize" aria-label="Image size"><option value="512">512 px</option><option value="1024" selected>1024 px</option><option value="2048">2048 px</option><option value="4096">4096 px (print)</option></select>
+          <button class="btn" type="button" id="qrDlPng">Download PNG</button>
+          <button class="btn btn-secondary" type="button" id="qrDlSvg">Download SVG</button>
+          <button class="btn btn-secondary" type="button" id="qrCopy">Copy image</button>
+        </div>
+        <div class="btn-row" style="margin-top:8px"><button class="btn btn-secondary" type="button" id="qrSaveStyle" style="width:100%">Save my style</button></div>
+        <div class="qr-promise"><span>Never expires</span><span>No tracking</span><span>No sign-up</span><span>Made in your browser</span></div>
+      </aside>
+    </div>
+  </div>
+  <script src="/vendor/qrcode-generator.js"></script>
+  <script src="/vendor/jsQR.js"></script>
+  <script src="/qr-studio.js"></script>
+
+
+  <div class="content">
+    <h2>How Wi-Fi QR codes work</h2><p>The code stores your network name, password and security type in the standard format phones understand. iPhone and Android cameras show a “Join network” prompt. Your password is turned into the code inside your browser and never sent to us.</p><h2>Tips</h2><ul class='benefits'><li>Use the frame with “SCAN FOR WI-FI” so people know what it is.</li><li>If you change your password, make a new code.</li></ul><h2>Quick answers</h2><details class="faq-item"><summary>Is my Wi-Fi password stored anywhere?</summary><p>No. The code is generated in your browser; we never see your password.</p></details><details class="faq-item"><summary>Does it work on iPhone?</summary><p>Yes — the built-in Camera app reads Wi-Fi QR codes on iOS 11 and later, and Android cameras do too.</p></details>
+    <h2>Why this QR generator is different</h2>
+    <ul class="benefits">
+      <li><strong>Never expires.</strong> Many "free" QR sites create a redirect link that stops working unless you pay — after the menus and flyers are printed. Our codes contain your link directly, so they work forever.</li>
+      <li><strong>Scan-tested automatically.</strong> After every change the code is decoded in your browser and compared with your content. If a color, shape or logo makes it unreadable, you'll know before printing.</li>
+      <li><strong>Designer controls.</strong> Five dot styles, four corner styles, separate corner color, linear or radial gradients, transparent background, a logo with an optional plate, and a frame with your own call to action — in any language.</li>
+      <li><strong>Built-in UTM tracking.</strong> Add utm_source, utm_medium and utm_campaign so Google Analytics shows how many visits came from the QR code — without a tracking redirect.</li>
+      <li><strong>Bulk mode.</strong> Paste up to 500 links (or upload a CSV) and download them all as PNG or SVG in one ZIP, each one scan-tested.</li>
+      <li><strong>Print-ready.</strong> Vector SVG and PNG up to 4096 px. Nothing is uploaded, and there's no sign-up.</li>
+    </ul>
+
+    <h2>Tips for codes that always scan</h2>
+    <ul class="benefits">
+      <li>Keep strong contrast: a dark code on a light background works best.</li>
+      <li>Leave the quiet zone (white border) at 2 or more modules.</li>
+      <li>With a logo, keep it at 25% or less — error correction switches to H automatically.</li>
+      <li>Print at least 2 × 2 cm (0.8 in); bigger if people scan from far away.</li>
+      <li>Shorter links make simpler, easier-to-scan codes.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Do these QR codes expire?</summary><p>No. They're static codes: your link or text is stored inside the code itself, not behind our server. They'll keep working as long as the destination exists.</p></details>
+    <details class="faq-item"><summary>Can I track how many people scan?</summary><p>Turn on UTM tracking. Your analytics tool (Google Analytics, Meta, etc.) then shows visits with source "qr". We don't track anything ourselves.</p></details>
+    <details class="faq-item"><summary>How do Wi-Fi QR codes work?</summary><p>Phones read the network name and password from the code and offer to join — no typing. They work on modern iPhone and Android cameras.</p></details>
+    <details class="faq-item"><summary>Can I use the codes commercially?</summary><p>Yes — on menus, packaging, ads, business cards, anything. No attribution is needed.</p></details>
+    <details class="faq-item"><summary>What does the scan test check?</summary><p>It renders your exact design, reads it with a QR decoder, and confirms the result matches your content character for character. Real-world scanning also depends on print size, lighting and the phone, so a quick test with your own phone is still a good idea.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More marketing tools</h2>
+    <div class="related-grid">
+      <a href="/utm-builder">UTM Builder<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/social-image-resizer">Social Image Resizer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/meta-tag-preview">SERP &amp; Social Preview<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny QR Code Generator","url":"https://quicktinyv2.vercel.app/wifi-qr-code","description":"Create custom QR codes with logo, colors, gradients and frames that never expire. Links with UTM, Wi-Fi, WhatsApp, vCard, events. Every code is scan-tested. Bulk CSV to ZIP.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"QR Code Generator","item":"https://quicktinyv2.vercel.app/wifi-qr-code"}]}</script>
+</body>
+</html>

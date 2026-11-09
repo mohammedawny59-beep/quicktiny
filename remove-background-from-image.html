@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Remove Background From Image Free — No Upload, On-Device AI | QuickTiny</title>
+  <meta name="description" content="Remove the background from product photos with AI that runs on your device — nothing is uploaded. Put it on white or transparent, resize for Shopify or Amazon.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/remove-background-from-image">
+  <meta property="og:title" content="Remove Background From Image Free — No Upload, On-Device AI | QuickTiny">
+  <meta property="og:description" content="Remove the background from product photos with AI that runs on your device — nothing is uploaded. Put it on white or transparent, resize for Shopify or Amazon.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/remove-background-from-image">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .studio-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;margin-top:18px}
+    @media (max-width:760px){.studio-grid{grid-template-columns:1fr}}
+    .studio-preview-wrap{background:rgba(127,127,127,.08);border:1px solid var(--line-strong);border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center;min-height:260px}
+    #studioPreview{max-width:100%;max-height:520px;border-radius:8px;display:block}
+    #studioPreview.checker{background-color:#fff;background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+    .studio-controls .field-label{margin-top:14px}
+    .studio-controls input[type=range]{width:100%}
+    .studio-ai{border:1px solid var(--line-strong);border-radius:12px;padding:12px 14px}
+    .studio-ai small{display:block;color:var(--muted);margin-top:4px;font-size:12.5px}
+    .studio-progress{height:8px;border-radius:99px;background:rgba(127,127,127,.2);overflow:hidden;margin-top:10px}
+    #studioProgressBar{height:100%;width:2%;background:currentColor;transition:width .2s}
+    #studioProgressLabel{font-size:12.5px;color:var(--muted);margin-top:6px}
+    #studioInfo{font-size:14px;color:var(--text-dim);margin-top:10px;line-height:1.6}
+  </style>
+  <script>window.QT_PRESET = {"removeBg": true};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Remove Background</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Image</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Processed in your browser</span>
+      <span class="badge">Free</span>
+      <span class="badge">New</span>
+    </div>
+    <h1>Remove Background From an Image — Free and Private</h1>
+    <p>Cut out the subject of your photo with an AI model that runs inside your browser — your image is never uploaded. Then place it on pure white, a color or a transparent PNG.</p>
+    <a href="#tool" class="jump-to-tool">Try it now <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="dropzone" id="studioDz" tabindex="0" role="button" aria-label="Choose a product photo">
+      <strong>Drop a product photo here</strong> or click to choose a file<br>
+      <span style="font-size:13px">JPG, PNG or WebP &mdash; processed locally, never uploaded</span>
+    </div>
+    <input id="studioFile" type="file" accept="image/*" class="sr-only">
+    <div id="studioStatus" class="result" aria-live="polite"></div>
+    <div id="studioProgress" hidden>
+      <div class="studio-progress"><div id="studioProgressBar"></div></div>
+      <div id="studioProgressLabel"></div>
+    </div>
+
+    <div class="studio-grid" id="studioControls" hidden>
+      <div class="studio-controls">
+        <div class="studio-ai">
+          <div class="checkline"><input type="checkbox" id="studioRemoveBg"><label for="studioRemoveBg"><strong>Remove background (AI)</strong></label></div>
+          <small>Runs on your device. The first time, your browser downloads the AI engine and model once (about 19 MB). Takes 1&ndash;3 seconds per photo on most laptops.</small>
+        </div>
+
+        <label class="field-label" for="studioPreset">Size</label>
+        <select id="studioPreset">
+          <option value="shopify">Shopify &mdash; 2048 &times; 2048 square</option>
+          <option value="amazon">Amazon main image &mdash; 2000 &times; 2000 on pure white</option>
+          <option value="landscape">Landscape 4:3 &mdash; 2400 &times; 1800</option>
+          <option value="instagram">Instagram &mdash; 1080 &times; 1080</option>
+          <option value="original">Fit to product (keep proportions)</option>
+        </select>
+
+        <label class="field-label" for="studioBg">Background</label>
+        <select id="studioBg">
+          <option value="white">Pure white (#FFFFFF)</option>
+          <option value="transparent">Transparent (PNG / WebP)</option>
+          <option value="color">Custom color</option>
+        </select>
+        <div id="studioColorWrap" hidden style="margin-top:8px"><input type="color" id="studioColor" value="#f3f1ec" aria-label="Background color"></div>
+
+        <label class="field-label" for="studioPadding">Margin around product: <span id="studioPaddingVal">8%</span></label>
+        <input type="range" id="studioPadding" min="0" max="25" value="8">
+
+        <div class="checkline" style="margin-top:12px"><input type="checkbox" id="studioShadow"><label for="studioShadow">Soft shadow under product (with background removal)</label></div>
+
+        <label class="field-label" for="studioFormat">Format</label>
+        <select id="studioFormat">
+          <option value="jpeg">JPG &mdash; smallest, best for stores</option>
+          <option value="webp">WebP</option>
+          <option value="png">PNG &mdash; lossless</option>
+        </select>
+      </div>
+      <div>
+        <div class="studio-preview-wrap"><img id="studioPreview" alt="Preview of the finished product photo" hidden></div>
+        <div id="studioInfo"></div>
+        <div class="btn-row" style="margin-top:12px"><a class="btn" id="studioDownload" hidden>Download image</a></div>
+      </div>
+    </div>
+  </div>
+  <script src="/shopify-image-tools.js"></script>
+  <script src="/product-photo-studio.js"></script>
+
+  <div class="content">
+    <h2>Why on-device?</h2><p>Most background removers upload your photo to their servers and charge for full resolution. Here the AI model downloads once (about 19 MB) and works offline in your browser, at full resolution, for free.</p><h2>Quick answers</h2><details class="faq-item"><summary>What works best?</summary><p>Products and objects on a plain, contrasting background. Fine hair and glass are harder.</p></details><details class="faq-item"><summary>Can I get a transparent PNG?</summary><p>Yes — choose “Transparent” background and PNG format.</p></details>
+    <h2>How to use Product Photo Studio</h2>
+    <ol>
+      <li>Drop in a product photo &mdash; a phone picture on a table works fine.</li>
+      <li>Turn on <strong>Remove background</strong> to cut the product out with on-device AI (optional).</li>
+      <li>Pick a size: Shopify square, Amazon main image, landscape 4:3, Instagram, or fit to the product.</li>
+      <li>Choose a background and margin, then download a JPG, WebP or PNG.</li>
+    </ol>
+
+    <h2>Why it's different</h2>
+    <ul class="benefits">
+      <li><strong>Private:</strong> the AI model runs in your browser. Your photos are never uploaded &mdash; unlike most background removers.</li>
+      <li><strong>Free, full resolution:</strong> no credits, no watermark, no low-res preview.</li>
+      <li><strong>Store-ready:</strong> the product is centered with an even margin, and every export stays within Shopify's verified 25 MP / 20 MB product-image limits.</li>
+      <li><strong>Amazon-friendly:</strong> the Amazon preset forces a pure white (#FFFFFF) background with the product filling most of the frame.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Product Photo Studio processes your image entirely on your device. When you turn on background removal, your browser downloads an open-source AI model (U&sup2;-Net, Apache 2.0 license) from QuickTiny and the ONNX Runtime engine from jsDelivr &mdash; only the model and code are downloaded; your photo is never sent anywhere.</p>
+
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is my photo uploaded to remove the background?</summary><p>No. The background-removal model runs inside your browser. Only the model itself is downloaded (once, then cached); your photo stays on your device.</p></details>
+    <details class="faq-item"><summary>Why is the first background removal slow?</summary><p>The first time, your browser downloads the AI engine and model (about 19 MB). After that each photo usually takes 1&ndash;3 seconds on a laptop, a little longer on a phone.</p></details>
+    <details class="faq-item"><summary>Does it work on my phone?</summary><p>Yes. Framing, resizing and white backgrounds work everywhere, and AI background removal runs on the CPU, so it works on phones too &mdash; just a little slower than on a laptop.</p></details>
+    <details class="faq-item"><summary>What does Amazon require for main images?</summary><p>Amazon asks for a pure white background (RGB 255,255,255) with the product filling about 85% of the frame. The Amazon preset uses pure white and an 8% margin by default; always check Amazon's current guidelines for your category.</p></details>
+    <details class="faq-item"><summary>How well does it handle hair, glass or fine edges?</summary><p>The model is very good with solid products. Very fine hair, fur, transparent glass and products the same color as the background can show rough edges &mdash; a plain, contrasting background in the original photo gives the best result.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">Related tools</h2>
+    <div class="related-grid">
+      <a href="/compress-product-images-for-shopify">Check Shopify Image Limits<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/compress-image">Image Compressor<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/batch-image-compressor" class="related-pro" onclick="qtTrack('pro_cta_click',{source:'product-photo-studio'})"><span>Batch Image Compressor<span class="pro-tag">PRO &middot; $4.99</span></span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/pdf-tools">PDF Tools</a>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Product Photo Studio","url":"https://quicktinyv2.vercel.app/remove-background-from-image","description":"Remove the background from product photos, center them on white and resize for Shopify, Amazon or Instagram — free, in your browser, with nothing uploaded.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Product Photo Studio","item":"https://quicktinyv2.vercel.app/remove-background-from-image"}]}</script>
+</body>
+</html>

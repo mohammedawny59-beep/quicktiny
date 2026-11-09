@@ -272,6 +272,7 @@ if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded
     a.click();
   });
 
+  if (window.QT_PRESET && window.QT_PRESET.mode) document.getElementById("jcMode").value = window.QT_PRESET.mode;
   var params = location.hash.replace("#", "");
   if (["ts", "zod", "csv", "csv2json"].indexOf(params) !== -1) document.getElementById("jcMode").value = params;
 

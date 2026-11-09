@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>مقاس ستوري انستقرام 1080×1920 — غيّر مقاس صورتك | QuickTiny</title>
+  <meta name="description" content="حوّل أي صورة إلى مقاس ستوري انستقرام 1080×1920 (9:16) مع نقطة تركيز أو خلفية ضبابية، وشاهد المناطق الآمنة. مجاني.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/instagram-story-size">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/instagram-story-size">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/instagram-story-size">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/instagram-story-size">
+  <meta property="og:title" content="مقاس ستوري انستقرام 1080×1920 — غيّر مقاس صورتك | QuickTiny">
+  <meta property="og:description" content="حوّل أي صورة إلى مقاس ستوري انستقرام 1080×1920 (9:16) مع نقطة تركيز أو خلفية ضبابية، وشاهد المناطق الآمنة. مجاني.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/instagram-story-size">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .sr-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;margin-top:16px}
+    @media (max-width:860px){.sr-top{grid-template-columns:1fr}}
+    #srSource{position:relative;display:inline-block;cursor:crosshair;border-radius:14px;overflow:hidden;border:1px solid var(--line);max-width:100%}
+    #srSource canvas{display:block;max-width:100%;height:auto}
+    #srFocal{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px rgba(91,91,255,.9),0 0 16px rgba(59,226,255,.9);pointer-events:none;transition:left .15s,top .15s}
+    #srSizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 16px;margin-top:8px}
+    .sr-group b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
+    .sr-group .checkline{margin:3px 0;font-size:13.5px}
+    .sr-dim{color:var(--muted);font-size:12px}
+    #srGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:18px}
+    .sr-card{border:1px solid var(--line);border-radius:16px;padding:12px;background:rgba(255,255,255,.03);display:flex;flex-direction:column;gap:8px}
+    .sr-thumb{height:180px;display:flex;align-items:center;justify-content:center;background:repeating-conic-gradient(rgba(255,255,255,.04) 0 25%,transparent 0 50%) 0 0/16px 16px;border-radius:10px}
+    .sr-thumb canvas{max-width:100%;max-height:180px;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+    .sr-meta b{display:block;font-size:13px}.sr-meta span{font-size:12px;color:var(--muted)}
+    .sr-dl{padding:7px 12px !important;font-size:13px !important}
+    input[type=range]{width:100%}
+    input[type=color]{width:100%;height:40px;padding:3px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.25)}
+  </style>
+  <script>window.QT_PRESET = {"sizes": ["ig-story", "tt-video", "fb-story", "wa-status"]};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">مقاس ستوري انستقرام</span></div>
+  <div class="lang-switch">
+    <a href="/instagram-story-size">EN</a>
+    <a href="/ar/instagram-story-size" lang="ar" class="active">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">تسويق</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>لا تُرفع صورك</span>
+      <span class="badge">مجاني</span>
+    </div>
+    <h1>مقاس ستوري انستقرام: 1080 × 1920 بكسل</h1>
+    <p>مقاس ستوري وريلز انستقرام هو 1080 × 1920 بكسل (9:16). ارفع أي صورة لتغيير مقاسها مع الحفاظ على الموضوع داخل الإطار، أو اعرضها كاملة على خلفية ضبابية، وشاهد المناطق التي تغطيها أزرار انستقرام.</p>
+    <a href="#tool" class="jump-to-tool">غيّر مقاس صورتي <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <script>window.QT_STRINGS = {"Choose an image file.": "اختر ملف صورة.", "Done — {n} images in one ZIP ✓": "تم — {n} صور في ملف ZIP واحد ✓", "Download": "تنزيل", "Preparing {i} of {n}…": "جارٍ تجهيز {i} من {n}…", "{w}×{h} px — click the most important spot to set the focal point.": "{w}×{h} بكسل — اضغط على أهم جزء في الصورة لتحديد نقطة التركيز.", "Channel banner": "غلاف القناة", "Header": "صورة الغلاف", "Link preview (Open Graph)": "معاينة الرابط (Open Graph)", "Page cover": "غلاف الصفحة", "Pin (2:3)": "دبوس (2:3)", "Post (portrait 4:5)": "منشور طولي (4:5)", "Post (square)": "منشور مربع", "Post image": "صورة منشور", "Profile banner": "غلاف الملف الشخصي", "Profile photo": "صورة الملف الشخصي", "Shared image / link": "صورة مشاركة / رابط", "Status": "الحالة", "Story": "ستوري", "Story / Reel": "ستوري / ريلز", "Thumbnail": "الصورة المصغّرة", "Video / cover": "فيديو / غلاف", "Website": "موقع إلكتروني", "Facebook": "Facebook", "Instagram": "Instagram", "LinkedIn": "LinkedIn", "Pinterest": "Pinterest", "TikTok": "TikTok", "WhatsApp": "WhatsApp", "X / Twitter": "X / Twitter", "YouTube": "YouTube"};</script>
+  <div class="tool-panel" id="tool">
+    <div class="dropzone" id="srDz" tabindex="0" role="button" aria-label="اختر صورة">
+      <strong>اسحب صورة واحدة إلى هنا</strong> أو اضغط للاختيار<br><span style="font-size:13px">JPG أو PNG أو WebP — لا تغادر جهازك أبدًا</span>
+    </div>
+    <input id="srFile" type="file" accept="image/*" class="sr-only">
+    <div id="srStatus" class="result" aria-live="polite"></div>
+
+    <div id="srWork" hidden>
+      <div class="sr-top">
+        <div>
+          <label class="field-label">نقطة التركيز — اضغط على أهم جزء</label>
+          <div id="srSource"></div>
+        </div>
+        <div>
+          <label class="field-label" for="srMode">طريقة ملاءمة كل مقاس</label>
+          <select id="srMode">
+            <option value="cover">قص لملء المقاس (مع الحفاظ على نقطة التركيز)</option>
+            <option value="blur">الصورة كاملة على خلفية ضبابية</option>
+            <option value="color">الصورة كاملة على لون</option>
+          </select>
+          <div id="srColorWrap" hidden><label class="field-label" for="srColor">لون الخلفية</label><input type="color" id="srColor" value="#ffffff"></div>
+          <div class="row-2">
+            <div><label class="field-label" for="srFormat">الصيغة</label><select id="srFormat"><option value="jpeg">JPG</option><option value="png">PNG</option><option value="webp">WebP</option></select></div>
+            <div><label class="field-label" for="srQuality">الجودة: <span id="srQVal">90</span></label><input type="range" id="srQuality" min="60" max="100" value="90"></div>
+          </div>
+          <div class="checkline"><input type="checkbox" id="srSafe" checked><label for="srSafe">إظهار المناطق الآمنة للستوري وتيك توك (الأحمر = تغطيه أزرار التطبيق)</label></div>
+        </div>
+      </div>
+
+      <label class="field-label" style="margin-top:18px">المقاسات</label>
+      <div class="btn-row" style="margin:0 0 6px"><button class="btn btn-secondary" type="button" id="srAllOn" style="padding:6px 12px;font-size:13px">تحديد الكل</button><button class="btn btn-secondary" type="button" id="srAllOff" style="padding:6px 12px;font-size:13px">إلغاء الكل</button></div>
+      <div id="srSizes"></div>
+      <div class="btn-row" style="margin-top:16px"><button class="btn" type="button" id="srAll">تنزيل الكل في ملف ZIP</button></div>
+      <div id="srGrid"></div>
+    </div>
+  </div>
+  <script src="/shopify-image-tools.js"></script>
+  <script src="/social-image-resizer.js"></script>
+
+
+  <div class="content">
+    <h2>المناطق الآمنة في الستوري</h2><p>أبعد النصوص والوجوه عن أعلى ~14% (صورة الحساب وشريط التقدم) وأسفل ~20% (خانة الرد والأزرار). المنطقة الحمراء توضح ذلك.</p><p>نفس المقاس يصلح لتيك توك وستوري فيسبوك وحالة واتساب.</p><h2>أسئلة سريعة</h2><details class="faq-item"><summary>ما أفضل صيغة للستوري؟</summary><p>JPG للصور العادية، وPNG للتصاميم التي فيها نصوص.</p></details>
+    <h2>ما الذي يميّزها؟</h2>
+    <ul class="benefits">
+      <li><strong>نقطة التركيز:</strong> اضغط على الوجه أو المنتج مرة واحدة، وكل القصّات — مربع، ستوري، غلاف — تحافظ عليه داخل الصورة.</li>
+      <li><strong>خلفية ضبابية:</strong> اعرض الصورة كاملة بشكل مختلف بدون أشرطة سوداء، مثل إنستقرام.</li>
+      <li><strong>المناطق الآمنة:</strong> اعرف أي أجزاء الستوري والريلز وتيك توك تختفي خلف أزرار التطبيق قبل النشر.</li>
+      <li><strong>17 مقاسًا في ملف واحد:</strong> بأسماء واضحة جاهزة للجدولة.</li>
+      <li><strong>خصوصية كاملة:</strong> كل شيء يتم داخل متصفحك.</li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل هذه المقاسات الرسمية؟</summary><p>هي المقاسات التي توصي بها المنصات للرفع في 2026. المنصات تغيّر تصميمها باستمرار، فراجع صفحات المساعدة لديها عند ظهور أشكال جديدة.</p></details>
+    <details class="faq-item"><summary>JPG أم PNG أم WebP؟</summary><p>JPG للصور العادية (الأصغر حجمًا)، PNG للتصاميم التي فيها نصوص أو شفافية، وWebP للمواقع.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/qr-code-generator">إنشاء باركود QR<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/compress-image">ضغط الصور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/color-palette-extractor">ألوان البراند (Color Palette)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>أدوات بالعربية</h4>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h4>أدوات أخرى (بالإنجليزية)</h4>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>QuickTiny</h4>
+        <a href="/">الرئيسية</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny مقاسات صور السوشيال", "url": "https://quicktinyv2.vercel.app/ar/instagram-story-size", "description": "غيّر مقاس صورتك لإنستقرام وتيك توك وفيسبوك وX ولينكدإن ويوتيوب وبنترست وواتساب دفعة واحدة. نقطة تركيز، خلفية ضبابية، مناطق آمنة للستوري، وتنزيل ZIP.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "مقاسات صور السوشيال ميديا", "item": "https://quicktinyv2.vercel.app/ar/instagram-story-size"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "هل هذه المقاسات الرسمية؟", "acceptedAnswer": {"@type": "Answer", "text": "هي المقاسات التي توصي بها المنصات للرفع في 2026، والمنصات تغيّر تصميمها باستمرار."}}, {"@type": "Question", "name": "JPG أم PNG أم WebP؟", "acceptedAnswer": {"@type": "Answer", "text": "JPG للصور العادية، PNG للتصاميم التي فيها نصوص أو شفافية، وWebP للمواقع."}}]}</script>
+</body>
+</html>

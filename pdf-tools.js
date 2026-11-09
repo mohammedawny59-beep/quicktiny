@@ -317,7 +317,11 @@ document.addEventListener("DOMContentLoaded", function() {
     b.addEventListener("click", function(){ qtShowPdfTab(b.getAttribute("data-tab")); history.replaceState(null, "", "#" + b.getAttribute("data-tab")); });
   });
   var hash = location.hash.replace("#", "");
+  // Landing pages (e.g. /merge-pdf) set window.QT_PRESET; a #hash still wins.
+  var QP = window.QT_PRESET || {};
   if (["merge", "pages", "rotate", "images"].indexOf(hash) !== -1) qtShowPdfTab(hash);
+  else if (QP.tab) qtShowPdfTab(QP.tab);
+  if (QP.pagesMode) { $pdf("pagesMode").value = QP.pagesMode; $pdf("pagesRangeWrap").hidden = QP.pagesMode === "split"; }
 
   qtWireDrop("mergeDz", "mergeFiles", qtAddMergeFiles);
   $pdf("mergeBtn").addEventListener("click", qtMerge);

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>إنشاء باركود واتساب — رابط محادثة برسالة جاهزة | QuickTiny</title>
+  <meta name="description" content="اصنع باركود يفتح محادثة واتساب مع رقمك ورسالة جاهزة مثل «أريد الطلب». مثالي للمطاعم والمتاجر والمنيو. مجاني ولا ينتهي.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/whatsapp-qr-code">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/whatsapp-qr-code">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/whatsapp-qr-code">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/whatsapp-qr-code">
+  <meta property="og:title" content="إنشاء باركود واتساب — رابط محادثة برسالة جاهزة | QuickTiny">
+  <meta property="og:description" content="اصنع باركود يفتح محادثة واتساب مع رقمك ورسالة جاهزة مثل «أريد الطلب». مثالي للمطاعم والمتاجر والمنيو. مجاني ولا ينتهي.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/whatsapp-qr-code">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .qr-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:26px;align-items:start}
+    @media (max-width:900px){.qr-layout{grid-template-columns:1fr}}
+    .qr-side{position:sticky;top:86px}
+    @media (max-width:900px){.qr-side{position:static}}
+    .qr-stage{border-radius:22px;padding:22px;background:repeating-conic-gradient(rgba(255,255,255,.05) 0 25%,transparent 0 50%) 0 0/22px 22px,rgba(0,0,0,.25);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;min-height:320px}
+    #qrPreview{width:100%;max-width:340px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45))}
+    #qrPreview svg{width:100%;height:auto;display:block}
+    .qr-empty{color:var(--muted);text-align:center;padding:60px 10px;font-size:14px}
+    .qr-scan{margin-top:12px;padding:10px 14px;border-radius:12px;font-size:14px;font-weight:700;min-height:20px}
+    .qr-scan:empty{display:none}
+    .qr-scan.ok{color:#7ff5c4;background:rgba(61,220,148,.08);border:1px solid rgba(61,220,148,.35)}
+    .qr-scan.bad{color:#ff9aa6;background:rgba(255,122,138,.08);border:1px solid rgba(255,122,138,.4)}
+    .qr-scan.busy{color:var(--text-dim);background:rgba(255,255,255,.04);border:1px solid var(--line)}
+    #qrWarn{margin:8px 0 0;padding:0 0 0 18px;font-size:13px;color:#ffd88a}
+    #qrWarn:empty{display:none}
+    #qrMeta{font-size:12px;color:var(--muted);margin-top:8px}
+    #qrPayload{font:12px/1.5 var(--mono);color:var(--muted);background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin-top:8px;max-height:90px;overflow:auto;white-space:pre-wrap;word-break:break-all}
+    #qrPayload:empty{display:none}
+    .qr-dl{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+    .qr-dl select{margin:0}
+    #qrPanes{margin-bottom:16px}
+    #qrTypes{margin-bottom:12px}
+    #qrTypes .chip{padding:6px 12px}
+    .qr-group{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px;background:rgba(255,255,255,.025)}
+    .qr-group > .field-label:first-child{margin-top:0}
+    .qr-colors{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+    .qr-colors input[type=color]{width:100%;height:40px;padding:3px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.25);margin:4px 0 0;cursor:pointer}
+    .qr-chiprow{display:flex;gap:8px;flex-wrap:wrap}
+    #qrTemplates{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px}
+    .qr-tpl{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:8px;cursor:pointer;color:var(--text-dim);font:600 12px var(--font);transition:border-color .2s,transform .2s}
+    .qr-tpl:hover{border-color:rgba(123,123,255,.6);transform:translateY(-2px)}
+    .qr-tpl svg{width:100%;height:auto;display:block;border-radius:8px;margin-bottom:6px}
+    .qr-promise{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .qr-promise span{font-size:12px;color:#8ff0ff;background:rgba(59,226,255,.07);border:1px solid rgba(59,226,255,.25);border-radius:99px;padding:4px 10px}
+    input[type=range]{width:100%}
+  </style>
+  <script>window.QT_PRESET = {"type": "whatsapp"};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">باركود واتساب</span></div>
+  <div class="lang-switch">
+    <a href="/whatsapp-qr-code">EN</a>
+    <a href="/ar/whatsapp-qr-code" lang="ar" class="active">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">تسويق</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>يعمل داخل متصفحك</span>
+      <span class="badge">مجاني للأبد</span>
+    </div>
+    <h1>إنشاء باركود واتساب</h1>
+    <p>يمسح العميل الكود فيفتح محادثة واتساب معك مباشرة ورسالة مثل «مرحبًا، أريد الطلب» مكتوبة مسبقًا. مثالي للمنيو والتغليف وبطاقات العمل.</p>
+    <a href="#tool" class="jump-to-tool">اصنع الكود الآن <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <script>window.QT_STRINGS = {"Add at least one line.": "أضف سطرًا واحدًا على الأقل.", "Address": "العنوان", "All passed the scan test ✓": "كل الأكواد نجحت في اختبار المسح ✓", "Call": "اتصال", "Campaign": "الحملة", "Check rows {rows}: they didn't pass the scan test with this design.": "راجع الأسطر {rows}: لم تنجح في اختبار المسح بهذا التصميم.", "Company": "الشركة", "Contact card": "بطاقة اتصال", "Content": "المحتوى", "Copied ✓": "تم النسخ ✓", "Copy image": "نسخ الصورة", "Copy not supported": "النسخ غير مدعوم", "Creating {i} of {n}…": "جارٍ إنشاء {i} من {n}…", "Done — {n} codes in qr-codes.zip.": "تم — {n} كود في الملف qr-codes.zip.", "Email": "بريد إلكتروني", "Ends": "ينتهي", "Event": "فعالية", "Event name": "اسم الفعالية", "Fill in the details to create your QR code": "اكتب البيانات لإنشاء الكود", "First name": "الاسم الأول", "Hidden network": "شبكة مخفية", "Job title": "المسمى الوظيفي", "Last name": "اسم العائلة", "Latitude": "خط العرض", "Light code on a dark background — some older scanner apps can't read inverted codes.": "كود فاتح على خلفية داكنة — بعض تطبيقات المسح القديمة لا تقرأ الأكواد المعكوسة.", "Link": "الرابط", "Location": "موقع", "Longitude": "خط الطول", "Low contrast between code and background ({r}:1). Aim for 4:1 or more.": "التباين ضعيف بين الكود والخلفية ({r}:1). الأفضل 4:1 أو أكثر.", "Medium": "الوسيلة", "Message": "الرسالة", "Network name (SSID)": "اسم الشبكة (SSID)", "No password": "بدون كلمة مرور", "Password": "كلمة المرور", "Phone": "رقم الهاتف", "Phone with country code": "الرقم مع رمز الدولة", "Pre-filled message": "رسالة جاهزة", "SMS": "رسالة SMS", "Save my style": "احفظ تصميمي", "Security": "نوع الحماية", "Source": "المصدر", "Starts": "يبدأ", "Style saved ✓": "تم حفظ التصميم ✓", "Subject": "الموضوع", "Term": "الكلمة المفتاحية", "Testing scan…": "جارٍ اختبار المسح…", "Text": "نص", "To": "إلى", "Too much content for one QR code — shorten it.": "المحتوى أطول من أن يتسع في كود واحد — اختصره.", "Transparent background: place it on a light surface when printing.": "خلفية شفافة: اطبعه على سطح فاتح.", "Up to 500 codes at a time.": "حتى 500 كود في المرة الواحدة.", "Version {v} · {n}×{n} modules · error correction {e}": "الإصدار {v} · {n}×{n} وحدة · تصحيح الأخطاء {e}", "Website": "رابط موقع", "WhatsApp": "واتساب", "Wi-Fi": "واي فاي", "or a place / address": "أو اسم مكان / عنوان", "✓ Scan test passed — reads exactly your content": "✓ نجح اختبار المسح — يقرأ المحتوى بالضبط", "✗ Doesn't scan reliably — increase contrast, use square shapes or a smaller logo": "✗ لا يُقرأ بشكل موثوق — زِد التباين أو استخدم أشكالًا مربعة أو شعارًا أصغر", "✗ Scans, but reads different content": "✗ يُقرأ لكن بمحتوى مختلف", "Classic": "كلاسيك", "Midnight": "ليلي", "Insta": "إنستا", "Mint": "نعناعي", "Gold": "ذهبي", "Mono dots": "نقاط"};</script>
+  <div class="tool-panel" id="tool">
+    <div class="qr-layout">
+      <div>
+        <div class="chip-row" id="qrPanes" role="tablist">
+          <button class="chip active" type="button" data-pane="content" role="tab" aria-selected="true">المحتوى</button>
+          <button class="chip" type="button" data-pane="design" role="tab" aria-selected="false">التصميم</button>
+          <button class="chip" type="button" data-pane="logo" role="tab" aria-selected="false">الشعار والإطار</button>
+          <button class="chip" type="button" data-pane="bulk" role="tab" aria-selected="false">بالجملة (CSV)</button>
+        </div>
+
+        <section class="qr-pane" id="qrPane-content">
+          <div class="qr-chiprow" id="qrTypes"></div>
+          <div id="qrFields"></div>
+          <div class="qr-group" id="qrUtmWrap" style="margin-top:12px">
+            <div class="checkline"><input type="checkbox" id="qrUtmOn"><label for="qrUtmOn"><strong>إضافة تتبّع UTM</strong> — لتعرف في Google Analytics كم شخصًا مسح الكود</label></div>
+            <div id="qrUtmFields" class="row-2" hidden></div>
+          </div>
+        </section>
+
+        <section class="qr-pane" id="qrPane-design" hidden>
+          <label class="field-label">قوالب جاهزة</label>
+          <div id="qrTemplates" style="margin-bottom:14px"></div>
+          <div class="qr-group">
+            <label class="field-label">شكل النقاط</label>
+            <div class="qr-chiprow" id="qrShapes">
+              <button class="chip" type="button" data-shape="square">مربع</button>
+              <button class="chip" type="button" data-shape="rounded">مستدير</button>
+              <button class="chip" type="button" data-shape="fluid">انسيابي</button>
+              <button class="chip" type="button" data-shape="dots">نقاط</button>
+              <button class="chip" type="button" data-shape="diamond">ماسي</button>
+            </div>
+            <label class="field-label" style="margin-top:14px">شكل الزوايا</label>
+            <div class="qr-chiprow" id="qrEyes">
+              <button class="chip" type="button" data-eye="square">مربع</button>
+              <button class="chip" type="button" data-eye="rounded">مستدير</button>
+              <button class="chip" type="button" data-eye="circle">دائري</button>
+              <button class="chip" type="button" data-eye="leaf">ورقة</button>
+            </div>
+          </div>
+          <div class="qr-group">
+            <div class="qr-colors">
+              <div><label class="field-label" for="qrFg">لون الكود</label><input type="color" id="qrFg"></div>
+              <div><label class="field-label" for="qrGrad">تدرّج</label><select id="qrGrad" style="margin:4px 0 0"><option value="none">بدون</option><option value="linear">خطي</option><option value="radial">دائري متدرّج</option></select></div>
+              <div id="qrFg2Wrap"><label class="field-label" for="qrFg2">اللون الثاني</label><input type="color" id="qrFg2"></div>
+              <div><label class="field-label" for="qrBg">الخلفية</label><input type="color" id="qrBg"></div>
+              <div id="qrEyeColorWrap"><label class="field-label" for="qrEyeColor">لون الزوايا</label><input type="color" id="qrEyeColor"></div>
+            </div>
+            <div class="checkline" style="margin-top:12px"><input type="checkbox" id="qrEyeSame"><label for="qrEyeSame">الزوايا بنفس لون الكود</label></div>
+            <div class="checkline"><input type="checkbox" id="qrTransparent"><label for="qrTransparent">خلفية شفافة (PNG/SVG)</label></div>
+          </div>
+          <div class="qr-group row-2">
+            <div><label class="field-label" for="qrMargin">الهامش الأبيض: <span id="qrMarginVal"></span></label><input type="range" id="qrMargin" min="0" max="8" step="1"></div>
+            <div><label class="field-label" for="qrEcc">تصحيح الأخطاء</label><select id="qrEcc"><option value="auto">تلقائي</option><option value="L">L — 7%</option><option value="M">M — 15%</option><option value="Q">Q — 25%</option><option value="H">H — 30%</option></select></div>
+          </div>
+        </section>
+
+        <section class="qr-pane" id="qrPane-logo" hidden>
+          <div class="qr-group">
+            <label class="field-label" for="qrLogo">شعار في المنتصف</label>
+            <input type="file" id="qrLogo" accept="image/*">
+            <div id="qrLogoOpts">
+              <label class="field-label" for="qrLogoSize">حجم الشعار: <span id="qrLogoSizeVal"></span></label>
+              <input type="range" id="qrLogoSize" min="12" max="30" step="1">
+              <div class="checkline"><input type="checkbox" id="qrLogoPlate"><label for="qrLogoPlate">خلفية بيضاء خلف الشعار</label></div>
+              <div class="btn-row"><button class="btn btn-secondary" type="button" id="qrLogoRemove">إزالة الشعار</button></div>
+            </div>
+          </div>
+          <div class="qr-group">
+            <label class="field-label" for="qrFrame">إطار وعبارة تحفيزية</label>
+            <select id="qrFrame"><option value="none">بدون إطار</option><option value="label">عبارة بالأسفل</option><option value="badge">شارة</option><option value="text">نص فقط</option></select>
+            <div id="qrFrameOpts">
+              <label class="field-label" for="qrFrameText">النص</label>
+              <input type="text" id="qrFrameText" maxlength="28" dir="auto">
+              <div class="qr-colors">
+                <div><label class="field-label" for="qrFrameColor">لون الإطار</label><input type="color" id="qrFrameColor"></div>
+                <div><label class="field-label" for="qrFrameTextColor">لون النص</label><input type="color" id="qrFrameTextColor"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="qr-pane" id="qrPane-bulk" hidden>
+          <p style="color:var(--text-dim);font-size:14px;margin-top:0">رابط أو نص في كل سطر. العمود الثاني (اختياري) = اسم الملف. كل كود يستخدم تصميمك الحالي ويُختبر مسحه.</p>
+          <textarea id="qrBulkInput" placeholder="https://shop.example/p/1, product-1&#10;https://shop.example/p/2, product-2" spellcheck="false"></textarea>
+          <input type="file" id="qrBulkFile" accept=".csv,.txt,text/csv,text/plain">
+          <div class="row-2" style="margin-top:8px">
+            <div><label class="field-label" for="qrBulkFormat">الصيغة</label><select id="qrBulkFormat"><option value="png">PNG</option><option value="svg">SVG</option></select></div>
+            <div class="checkline" style="align-self:center"><input type="checkbox" id="qrBulkUtm"><label for="qrBulkUtm">أضف وسوم UTM للروابط</label></div>
+          </div>
+          <div class="btn-row"><button class="btn" type="button" id="qrBulkRun">إنشاء ملف ZIP</button></div>
+          <div id="qrBulkStatus" class="result" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <aside class="qr-side">
+        <div class="qr-stage"><div id="qrPreview" aria-live="polite"></div></div>
+        <div class="qr-scan" id="qrScan" aria-live="polite"></div>
+        <ul id="qrWarn"></ul>
+        <div id="qrMeta"></div>
+        <div id="qrPayload"></div>
+        <div class="qr-dl">
+          <select id="qrSize" aria-label="حجم الصورة"><option value="512">512 px</option><option value="1024" selected>1024 px</option><option value="2048">2048 px</option><option value="4096">4096 px (للطباعة)</option></select>
+          <button class="btn" type="button" id="qrDlPng">تنزيل PNG</button>
+          <button class="btn btn-secondary" type="button" id="qrDlSvg">تنزيل SVG</button>
+          <button class="btn btn-secondary" type="button" id="qrCopy">نسخ الصورة</button>
+        </div>
+        <div class="btn-row" style="margin-top:8px"><button class="btn btn-secondary" type="button" id="qrSaveStyle" style="width:100%">احفظ تصميمي</button></div>
+        <div class="qr-promise"><span>لا ينتهي أبدًا</span><span>بدون تتبّع</span><span>بدون تسجيل</span><span>يُصنع داخل متصفحك</span></div>
+      </aside>
+    </div>
+  </div>
+  <script src="/vendor/qrcode-generator.js"></script>
+  <script src="/vendor/jsQR.js"></script>
+  <script src="/qr-studio.js"></script>
+
+
+  <div class="content">
+    <h2>ماذا تحتاج؟</h2><ul class='benefits'><li>رقمك مع رمز الدولة (مثل +962…).</li><li>رسالة جاهزة اختيارية — تدعم العربية.</li></ul><h2>أسئلة سريعة</h2><details class="faq-item"><summary>هل يعمل مع واتساب للأعمال؟</summary><p>نعم، مع أي رقم واتساب أو واتساب للأعمال.</p></details>
+    <h2>لماذا هذا المولّد مختلف؟</h2>
+    <ul class="benefits">
+      <li><strong>لا ينتهي أبدًا:</strong> مواقع كثيرة تصنع كودًا «ديناميكيًا» يتوقف عن العمل إذا لم تدفع — بعد أن تكون طبعت المنيو والبوسترات. أكوادنا تحتوي رابطك مباشرة فتعمل للأبد.</li>
+      <li><strong>اختبار مسح تلقائي:</strong> بعد كل تعديل يُقرأ الكود داخل متصفحك ويُقارن بمحتواك، فتعرف قبل الطباعة إن كان اللون أو الشكل أو الشعار يمنع قراءته.</li>
+      <li><strong>تحكم كامل بالتصميم:</strong> خمسة أشكال للنقاط، أربعة للزوايا، تدرّجات لونية، خلفية شفافة، شعار، وإطار بعبارة باللغة العربية.</li>
+      <li><strong>تتبّع UTM مدمج:</strong> لتعرف من Google Analytics كم زيارة جاءت من الكود — بدون أي رابط وسيط.</li>
+      <li><strong>إنشاء بالجملة:</strong> الصق حتى 500 رابط (مثل روابط منتجاتك) ونزّلها كلها في ملف ZIP واحد.</li>
+      <li><strong>جاهز للطباعة:</strong> SVG بجودة لا نهائية أو PNG حتى 4096 بكسل.</li>
+    </ul>
+    <h2>نصائح لكود يُقرأ دائمًا</h2>
+    <ul class="benefits">
+      <li>تباين قوي: كود داكن على خلفية فاتحة.</li>
+      <li>اترك هامشًا أبيض حول الكود (2 أو أكثر).</li>
+      <li>الشعار لا يزيد عن 25% — وتصحيح الأخطاء يتحول إلى H تلقائيًا.</li>
+      <li>لا تطبعه أصغر من 2 × 2 سم.</li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل ينتهي الباركود بعد فترة؟</summary><p>لا. الكود ثابت ويحتوي رابطك أو نصك بداخله، وليس عبر خوادمنا، فيبقى يعمل طالما الرابط نفسه يعمل.</p></details>
+    <details class="faq-item"><summary>كيف أعرف عدد من مسح الكود؟</summary><p>فعّل تتبّع UTM، وستظهر الزيارات في Google Analytics بمصدر qr. نحن لا نتتبّع أي شيء.</p></details>
+    <details class="faq-item"><summary>كيف يعمل باركود الواي فاي؟</summary><p>الهاتف يقرأ اسم الشبكة وكلمة المرور من الكود ويعرض الاتصال مباشرة بدون كتابة — يعمل مع كاميرا آيفون وأندرويد الحديثة.</p></details>
+    <details class="faq-item"><summary>هل يمكنني استخدامه تجاريًا؟</summary><p>نعم، على المنيو والتغليف والإعلانات وبطاقات العمل وغيرها، بدون أي إشارة لنا.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات تسويق أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/social-image-resizer">مقاسات صور السوشيال ميديا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/utm-builder">UTM Builder<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/pdf-tools">أدوات PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>أدوات بالعربية</h4>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h4>أدوات أخرى (بالإنجليزية)</h4>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h4>QuickTiny</h4>
+        <a href="/">الرئيسية</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny إنشاء باركود QR", "url": "https://quicktinyv2.vercel.app/ar/whatsapp-qr-code", "description": "اصنع باركود QR مجاني لرابط أو واي فاي أو واتساب أو بطاقة اتصال، مع شعارك وألوانك وإطار بعبارة عربية. لا ينتهي أبدًا، ويُختبر مسحه تلقائيًا. إنشاء بالجملة من CSV.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "إنشاء باركود QR", "item": "https://quicktinyv2.vercel.app/ar/whatsapp-qr-code"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "هل ينتهي الباركود بعد فترة؟", "acceptedAnswer": {"@type": "Answer", "text": "لا. الكود ثابت ويحتوي رابطك أو نصك بداخله، فيبقى يعمل طالما الرابط نفسه يعمل."}}, {"@type": "Question", "name": "كيف أعرف عدد من مسح الكود؟", "acceptedAnswer": {"@type": "Answer", "text": "فعّل تتبّع UTM، وستظهر الزيارات في Google Analytics بمصدر qr."}}, {"@type": "Question", "name": "كيف يعمل باركود الواي فاي؟", "acceptedAnswer": {"@type": "Answer", "text": "الهاتف يقرأ اسم الشبكة وكلمة المرور من الكود ويعرض الاتصال مباشرة بدون كتابة."}}]}</script>
+</body>
+</html>
