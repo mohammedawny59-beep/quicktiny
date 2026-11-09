@@ -22,9 +22,7 @@
   <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
   <meta name="theme-color" content="#05060f">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -60,7 +58,7 @@
   </section>
 
   <section class="section" id="tools">
-    <div class="section-head"><div><div class="section-title">الأدوات العربية</div><p class="section-sub">كل أداة تعمل محليًا في متصفحك، بدون حساب.</p></div></div>
+    <div class="section-head"><div><h2 class="section-title">الأدوات العربية</h2><p class="section-sub">كل أداة تعمل محليًا في متصفحك، بدون حساب.</p></div></div>
     <div class="tools-grid" id="arGrid">
       <a class="tool-card" href="/ar/tafqeet" data-search="تفقيط المبالغ تفقيط ارقام كتابة المبلغ بالحروف شيك فاتورة ريال دينار">
         <div class="tc-head">
@@ -157,7 +155,7 @@
   </section>
 
   <section class="section" id="popular">
-    <div class="section-head"><div><div class="section-title">مهام شائعة</div><p class="section-sub">ادخل مباشرة للمهمة — تفتح الأداة جاهزة على الوضع المناسب.</p></div></div>
+    <div class="section-head"><div><h2 class="section-title">مهام شائعة</h2><p class="section-sub">ادخل مباشرة للمهمة — تفتح الأداة جاهزة على الوضع المناسب.</p></div></div>
     <nav class="task-links" aria-label="مهام شائعة">
       <a class="chip" href="/ar/merge-pdf">دمج ملفات PDF</a>
       <a class="chip" href="/ar/split-pdf">تقسيم PDF</a>
@@ -169,7 +167,7 @@
   </section>
 
   <section class="section">
-    <div class="section-head"><div><div class="section-title">أدوات أخرى (واجهتها بالإنجليزية)</div><p class="section-sub">تعمل بنفس الطريقة — مجانية وخاصة.</p></div></div>
+    <div class="section-head"><div><h2 class="section-title">أدوات أخرى (واجهتها بالإنجليزية)</h2><p class="section-sub">تعمل بنفس الطريقة — مجانية وخاصة.</p></div></div>
     <div class="related-grid">
 <a href="/product-photo-studio"><span style="display:flex;align-items:center;gap:10px"><img src="/assets/icons/sneaker.webp" alt="" width="34" height="34" loading="lazy" style="clip-path:inset(0 0 19% 0)">إزالة خلفية الصور (Product Photo Studio)</span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 <a href="/controller-tester"><span style="display:flex;align-items:center;gap:10px"><img src="/assets/icons/controller.webp" alt="" width="34" height="34" loading="lazy" style="clip-path:inset(0 0 19% 0)">اختبار يد التحكم</span><svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -197,7 +195,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>أدوات بالعربية</h4>
+        <h2 class="fc-title">أدوات بالعربية</h2>
         <a href="/ar/tafqeet">تفقيط المبالغ</a>
         <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
         <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
@@ -211,7 +209,7 @@
         <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
       </div>
       <div class="footer-col">
-        <h4>أدوات أخرى (بالإنجليزية)</h4>
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
         <a href="/product-photo-studio">Product Photo Studio</a>
         <a href="/json-formatter">JSON Formatter</a>
         <a href="/json-converter">JSON Converter</a>
@@ -221,7 +219,7 @@
         <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
       </div>
       <div class="footer-col">
-        <h4>QuickTiny</h4>
+        <h2 class="fc-title">QuickTiny</h2>
         <a href="/ar">الرئيسية</a>
         <a href="/">English</a>
         <a href="/privacy">الخصوصية</a>
