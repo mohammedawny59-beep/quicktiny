@@ -13,6 +13,24 @@
   yearEls.forEach(function(el){ el.textContent = year; });
 })();
 
+/* ---------- Cursor spotlight on tool cards (sets --mx/--my; CSS draws the light) ---------- */
+(function(){
+  if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  var frame = null, last = null;
+  document.addEventListener("pointermove", function(e){
+    var card = e.target && e.target.closest ? e.target.closest(".tool-card") : null;
+    if (!card) return;
+    last = { card: card, x: e.clientX, y: e.clientY };
+    if (frame) return;
+    frame = requestAnimationFrame(function(){
+      frame = null;
+      var r = last.card.getBoundingClientRect();
+      last.card.style.setProperty("--mx", (last.x - r.left) + "px");
+      last.card.style.setProperty("--my", (last.y - r.top) + "px");
+    });
+  }, { passive: true });
+})();
+
 /* ---------- Scroll-reveal + animated stat counters (premium redesign) ---------- */
 (function(){
   var targets = document.querySelectorAll(

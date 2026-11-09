@@ -20,12 +20,12 @@
   <meta name="twitter:title" content="QuickTiny — Paste Anything. Find the Right Tool.">
   <meta name="twitter:description" content="Paste JSON, Base64, encoded URLs, timestamps, lists or text. QuickTiny detects it locally and routes you to the right browser tool. No signup.">
   <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
-  <meta name="theme-color" content="#171310">
+  <meta name="theme-color" content="#05060f">
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23171310'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%233a63e0' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%233a63e0' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","description":"Fast browser tools for files, images, text and everyday tasks."}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"QuickTiny","url":"https://quicktinyv2.vercel.app/","logo":"https://quicktinyv2.vercel.app/quicktiny-logo-240.png","description":"QuickTiny is a set of free, browser-based utility tools for images, text, and everyday data tasks. All processing happens locally in the browser; no signup is required for any free tool."}</script>
@@ -47,9 +47,13 @@
   </div>
 </header>
 <div class="wrap">
-  <section class="hero">
+  <section class="hero hero-enter">
+    <img class="hero-float f1" src="/assets/icons/pdf.webp" alt="" width="118" height="118" aria-hidden="true">
+    <img class="hero-float f2" src="/assets/icons/image.webp" alt="" width="132" height="132" aria-hidden="true">
+    <img class="hero-float f3" src="/assets/icons/data.webp" alt="" width="92" height="92" aria-hidden="true">
+    <img class="hero-float f4" src="/assets/icons/text.webp" alt="" width="96" height="96" aria-hidden="true">
     <span class="eyebrow">Fast &middot; Private &middot; No signup</span>
-    <h1>Paste anything. QuickTiny finds the tool you need.</h1>
+    <h1>Paste anything.<br><span class="grad">Get the right tool.</span></h1>
     <p>JSON, Base64, encoded URLs, timestamps, lists, or normal text &mdash; detected locally in your browser and routed to the right tool.</p>
     <div class="tool-panel" id="smart-actions" style="max-width:860px;margin:24px auto 0;text-align:left">
       <textarea id="smartInput" placeholder="Paste anything... JSON, Base64, a URL-encoded string, a timestamp, or text"></textarea>
@@ -367,7 +371,7 @@
       <a class="tool-card" href="/product-photo-studio" data-cat="Image" data-search="product photo studio remove background white background resize product photos for shopify amazon instagram ai image">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/sneaker.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Image &middot; New</span>
         </div>
         <h3>Product Photo Studio</h3>
@@ -377,7 +381,7 @@
       <a class="tool-card" href="/pdf-tools" data-cat="Utility" data-search="pdf tools merge pdf split pdf extract pages delete pages rotate pdf images to pdf jpg to pdf combine pdf utility">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 14h8M8 17h5"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/pdf.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">PDF &middot; New</span>
         </div>
         <h3>PDF Tools</h3>
@@ -387,7 +391,7 @@
       <a class="tool-card" href="/compress-image" data-cat="Image" data-search="image compressor shrink jpg and png files in your browser — no upload required. image">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="M21 15.5l-5.3-5.3a2 2 0 0 0-2.8 0L4 19"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/image.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Image</span>
         </div>
         <h3>Image Compressor</h3>
@@ -397,7 +401,7 @@
       <a class="tool-card" href="/word-counter" data-cat="Text" data-search="word counter count words, characters, sentences and lines as you type. text">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/text.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Text</span>
         </div>
         <h3>Word Counter</h3>
@@ -407,7 +411,7 @@
       <a class="tool-card" href="/clean-text" data-cat="Text" data-search="clean text remove extra spaces, tabs and blank lines from messy text. text">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/text.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Text</span>
         </div>
         <h3>Clean Text</h3>
@@ -417,7 +421,7 @@
       <a class="tool-card" href="/json-converter" data-cat="Data" data-search="json converter json to typescript interface json to zod schema json to csv csv to json types data developer">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4H6a2 2 0 0 0-2 2v4l-2 2 2 2v4a2 2 0 0 0 2 2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v4l2 2-2 2v4a2 2 0 0 1-2 2h-2"/><path d="M10 12h4"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/data.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Data &middot; New</span>
         </div>
         <h3>JSON Converter</h3>
@@ -427,7 +431,7 @@
       <a class="tool-card" href="/json-formatter" data-cat="Data" data-search="json formatter format, validate and beautify json with clear error messages. data">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4L2.5 12 8 20M16 4l5.5 8L16 20"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/data.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Data</span>
         </div>
         <h3>JSON Formatter</h3>
@@ -437,7 +441,7 @@
       <a class="tool-card" href="/seo-slug-generator" data-cat="SEO" data-search="seo slug generator turn any title into a clean, url-friendly slug. seo">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M21 21l-5.2-5.2"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/link.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">SEO</span>
         </div>
         <h3>SEO Slug Generator</h3>
@@ -447,7 +451,7 @@
       <a class="tool-card" href="/case-converter" data-cat="Text" data-search="case converter convert text to uppercase, lowercase, title case or sentence case. text">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/text.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Text</span>
         </div>
         <h3>Case Converter</h3>
@@ -457,7 +461,7 @@
       <a class="tool-card" href="/remove-duplicate-lines" data-cat="Text" data-search="remove duplicate lines delete repeated lines from a list and keep the order. text">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/text.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Text</span>
         </div>
         <h3>Remove Duplicate Lines</h3>
@@ -467,7 +471,7 @@
       <a class="tool-card" href="/sort-lines" data-cat="Text" data-search="sort lines sort a list of lines alphabetically, a→z or z→a. text">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/text.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Text</span>
         </div>
         <h3>Sort Lines</h3>
@@ -477,7 +481,7 @@
       <a class="tool-card" href="/base64-encode-decode" data-cat="Data" data-search="base64 encode/decode encode text to base64 or decode base64 back to text. data">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4L2.5 12 8 20M16 4l5.5 8L16 20"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/data.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Data</span>
         </div>
         <h3>Base64 Encode/Decode</h3>
@@ -487,7 +491,7 @@
       <a class="tool-card" href="/url-encode-decode" data-cat="Data" data-search="url encode/decode encode text for urls or decode encoded url strings. data">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4L2.5 12 8 20M16 4l5.5 8L16 20"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/data.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Data</span>
         </div>
         <h3>URL Encode/Decode</h3>
@@ -497,7 +501,7 @@
       <a class="tool-card" href="/timestamp-converter" data-cat="Utility" data-search="timestamp converter convert unix timestamps to readable dates and back. utility">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 3.5a4.5 4.5 0 0 0-5.8 5.8L3 15v6h6l5.7-5.7a4.5 4.5 0 0 0 5.8-5.8l-3 3-3-3z"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/key.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Utility</span>
         </div>
         <h3>Timestamp Converter</h3>
@@ -507,7 +511,7 @@
       <a class="tool-card" href="/password-generator" data-cat="Utility" data-search="password generator generate strong, random passwords with custom rules. utility">
         
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 3.5a4.5 4.5 0 0 0-5.8 5.8L3 15v6h6l5.7-5.7a4.5 4.5 0 0 0 5.8-5.8l-3 3-3-3z"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/key.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Utility</span>
         </div>
         <h3>Password Generator</h3>
@@ -517,7 +521,7 @@
       <a class="tool-card tool-card-pro" href="/batch-image-compressor" data-cat="Image" data-search="batch image compressor compress dozens of images at once. quicktiny pro, one-time $4.99. image">
         <span class="pro-chip"><svg class="pro-chip-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4.2 4 1 5.8L12 16l-4.8 2.8 1-5.8L4 9l5.5-.5z"/></svg>PRO</span>
         <div class="tc-head">
-          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4.2 4 1 5.8L12 16l-4.8 2.8 1-5.8L4 9l5.5-.5z"/></svg></span>
+          <span class="tc-icon tc-3d"><img src="/assets/icons/gem.webp" alt="" width="58" height="58" loading="lazy" decoding="async"></span>
           <span class="cat-badge">Image</span>
         </div>
         <h3>Batch Image Compressor</h3>
