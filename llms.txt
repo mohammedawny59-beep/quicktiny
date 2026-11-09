@@ -9,7 +9,7 @@ Last updated: 2026-09-22
 
 ## What QuickTiny does
 
-QuickTiny provides 14 browser utilities for image compression, JSON formatting and repair, text cleanup, word counting, line sorting and deduplication, Base64 encoding and decoding, URL encoding and decoding, Unix timestamp conversion, case conversion, SEO slug generation, password generation, Shopify image checking, and product photo background removal.
+QuickTiny provides 15 browser utilities for image compression, JSON formatting and repair, text cleanup, word counting, line sorting and deduplication, Base64 encoding and decoding, URL encoding and decoding, Unix timestamp conversion, case conversion, SEO slug generation, password generation, Shopify image checking, product photo background removal, and PDF merging, splitting and conversion.
 
 The homepage includes Smart Actions. A user can paste JSON, Base64, URL-encoded text, a Unix timestamp, a list, or plain text. QuickTiny detects the likely content type locally and suggests the relevant tool.
 
@@ -18,7 +18,7 @@ The homepage includes Smart Actions. A user can paste JSON, Base64, URL-encoded 
 - No signup is required for free tools.
 - Text and files used by browser tools are processed locally unless a page explicitly says otherwise.
 - QuickTiny does not upload pasted Smart Actions content.
-- The main site has 13 free tools and one paid Pro batch image compressor.
+- The main site has 14 free tools and one paid Pro batch image compressor.
 - The Pro offer is a one-time purchase, not a subscription.
 - Product facts and privacy claims should be verified against the canonical pages below.
 
