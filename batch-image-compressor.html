@@ -83,9 +83,18 @@
     <div id="paymentArea">
       <div id="paypal-button-container"></div>
       <div id="paymentMessage" class="result"></div>
+      <details class="restore-box" id="restoreBox" style="margin-top:16px">
+        <summary>Already bought Pro? Restore it here</summary>
+        <p style="color:var(--text-dim);font-size:14px">Paste your QuickTiny license key, or the <strong>Transaction ID</strong> from your PayPal receipt email.</p>
+        <label class="field-label sr-only" for="restoreInput">License key or PayPal Transaction ID</label>
+        <input class="search-input" id="restoreInput" type="text" autocomplete="off" spellcheck="false" placeholder="QT-... or PayPal Transaction ID">
+        <div class="btn-row"><button class="btn" type="button" id="restoreBtn">Restore Pro</button></div>
+        <div id="restoreMessage" class="result"></div>
+      </details>
     </div>
     <div id="proTool">
       <p class="result success">&#10003; QuickTiny Pro unlocked &mdash; no additional payment needed in this browser. Use the images you already chose above, or pick new ones.</p>
+      <p id="licenseInfo" style="color:var(--text-dim);font-size:14px;display:none">Your license key (save it to restore Pro on another browser or device):<br><code id="licenseKey" style="word-break:break-all"></code> <button class="btn" type="button" id="copyLicense" style="padding:4px 10px;font-size:13px">Copy</button> <span id="copyLicenseStatus"></span></p>
       <div class="btn-row"><button class="btn" onclick="batchCompress()">Check &amp; compress all images</button></div>
       <div id="batchStatus" class="result"></div>
       <div id="batchDownloads" class="downloads"></div>
@@ -113,7 +122,7 @@
     var preview = document.querySelector("#batchPreview");
     var count = batchInput.files.length;
     if (!count) { preview.innerHTML = ""; return; }
-    var isPro = localStorage.getItem("quicktiny_pro") === "1";
+    var isPro = qtProUnlocked;
     var plural = count === 1 ? "image" : "images";
     qtEvent("pro_files_selected");
     if (isPro) {
@@ -123,13 +132,133 @@
     }
   }
 
-  function unlockPro(){
-    localStorage.setItem("quicktiny_pro","1");
+  /* ---------- Pro license: issued and verified by the server, not a local flag ---------- */
+  var QT_LICENSE_KEY = "quicktiny_license";
+  var QT_LICENSE_CHECKED = "quicktiny_license_checked";
+  var QT_RECHECK_MS = 3 * 24 * 60 * 60 * 1000;   // re-verify with the server every 3 days
+  var QT_OFFLINE_GRACE_MS = 30 * 24 * 60 * 60 * 1000; // stay unlocked offline up to 30 days
+  var qtProUnlocked = false;
+
+  function lsGet(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v){ try { localStorage.setItem(k, v); } catch (e) {} }
+  function lsDel(k){ try { localStorage.removeItem(k); } catch (e) {} }
+
+  function showLicense(license){
+    if (!license) return;
+    document.querySelector("#licenseKey").textContent = license;
+    document.querySelector("#licenseInfo").style.display = "block";
+  }
+
+  function unlockPro(license){
+    qtProUnlocked = true;
     document.querySelector("#proTool").style.display="block";
     document.querySelector("#paymentArea").style.display="none";
+    showLicense(license);
     updateBatchPreview();
   }
+
+  function lockPro(message){
+    qtProUnlocked = false;
+    document.querySelector("#proTool").style.display="none";
+    document.querySelector("#paymentArea").style.display="block";
+    if (message) {
+      var m = document.querySelector("#restoreMessage");
+      m.textContent = message; m.className = "result error";
+      document.querySelector("#restoreBox").open = true;
+    }
+    updateBatchPreview();
+  }
+
+  function saveLicense(license){
+    lsSet(QT_LICENSE_KEY, license);
+    lsSet(QT_LICENSE_CHECKED, String(Date.now()));
+    lsDel("quicktiny_pro");
+  }
+
+  async function verifyLicense(license){
+    var response = await fetch("/api/verify-license", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ license: license })
+    });
+    if (!response.ok) throw new Error("verify unavailable");
+    return response.json();
+  }
+
+  async function initLicense(){
+    var license = lsGet(QT_LICENSE_KEY);
+    if (!license) {
+      if (lsGet("quicktiny_pro") === "1") {
+        var m = document.querySelector("#restoreMessage");
+        m.textContent = "QuickTiny Pro now uses a license key. If you bought Pro earlier, paste the Transaction ID from your PayPal receipt below to restore it — no extra payment.";
+        m.className = "result";
+        document.querySelector("#restoreBox").open = true;
+      }
+      return;
+    }
+    var lastChecked = Number(lsGet(QT_LICENSE_CHECKED)) || 0;
+    var age = Date.now() - lastChecked;
+    if (age < QT_RECHECK_MS) { unlockPro(license); return; }
+    try {
+      var result = await verifyLicense(license);
+      if (result.valid) {
+        lsSet(QT_LICENSE_CHECKED, String(Date.now()));
+        unlockPro(license);
+      } else {
+        lsDel(QT_LICENSE_KEY); lsDel(QT_LICENSE_CHECKED);
+        lockPro(result.reason === "refunded"
+          ? "This Pro purchase was refunded, so Pro has been locked."
+          : "Your saved license key could not be verified. Restore it below or contact support.");
+      }
+    } catch (e) {
+      // Server/PayPal unreachable: don't punish a paying user for an outage.
+      if (age < QT_OFFLINE_GRACE_MS) unlockPro(license);
+      else lockPro("Couldn't verify your license right now. Please check your connection and reload.");
+    }
+  }
+
+  async function restorePro(){
+    var input = document.querySelector("#restoreInput").value.trim();
+    var msg = document.querySelector("#restoreMessage");
+    var btn = document.querySelector("#restoreBtn");
+    if (!input) { msg.textContent = "Paste a license key or PayPal Transaction ID."; msg.className = "result error"; return; }
+    btn.disabled = true;
+    msg.textContent = "Checking..."; msg.className = "result";
+    try {
+      var license = null;
+      if (/^QT-/i.test(input)) {
+        var v = await verifyLicense(input);
+        if (v.valid) license = input;
+        else throw new Error(v.reason === "refunded" ? "This purchase was refunded." : "That license key isn't valid.");
+      } else {
+        var response = await fetch("/api/restore-license", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ transactionId: input })
+        });
+        var data = await response.json().catch(function(){ return {}; });
+        if (!response.ok || !data.license) throw new Error(data.error || "Could not restore Pro.");
+        license = data.license;
+      }
+      saveLicense(license);
+      msg.textContent = ""; msg.className = "result";
+      unlockPro(license);
+    } catch (e) {
+      msg.textContent = (e && e.message && e.message !== "verify unavailable") ? e.message : "Could not reach the server. Please try again.";
+      msg.className = "result error";
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  document.querySelector("#restoreBtn").addEventListener("click", restorePro);
+  document.querySelector("#restoreInput").addEventListener("keydown", function(e){ if (e.key === "Enter") restorePro(); });
+  document.querySelector("#copyLicense").addEventListener("click", function(){
+    qtCopy(document.querySelector("#licenseKey").textContent, document.querySelector("#copyLicenseStatus"), "Copied");
+  });
+
   async function batchCompress(){
+    if(!qtProUnlocked){ return; }
     var files=[...document.querySelector("#batchFiles").files];
     var downloads=document.querySelector("#batchDownloads");
     var status=document.querySelector("#batchStatus");
@@ -165,7 +294,7 @@
       }
     }
   }
-  if(localStorage.getItem("quicktiny_pro")==="1"){unlockPro();}
+  initLicense();
   </script>
 
   <script async src="https://www.paypal.com/web-sdk/v6/core" onload="initPayPal()"></script>
@@ -206,10 +335,11 @@
             body:JSON.stringify({orderID:data.orderId})
           });
 
-          const result = await response.json();
+          const result = await response.json().catch(function(){ return {}; });
 
-          if(response.ok && result.status === "COMPLETED"){
-            unlockPro();
+          if(response.ok && result.status === "COMPLETED" && result.license){
+            saveLicense(result.license);
+            unlockPro(result.license);
             qtTrack("checkout_completed");
             qtEvent("checkout_completed");
           }else{
@@ -305,7 +435,7 @@
     <details class="faq-item"><summary>Where is my payment processed?</summary><p>Payment is handled by PayPal. QuickTiny's server creates and confirms the order through PayPal's API and never sees or stores your card details.</p></details>
     <details class="faq-item"><summary>Do my images get uploaded when I compress them?</summary><p>No. Batch compression happens locally in your browser using the same canvas-based method as the free Image Compressor — only the payment step involves a server.</p></details>
     <details class="faq-item"><summary>Does this check Shopify's image limits?</summary><p>Yes. Every image is checked against Shopify's verified limits — 25 megapixels and 20 MB, tested directly against Shopify's own product-image uploader — and resized or compressed only if it would actually be rejected. Images that are already within those limits are left untouched.</p></details>
-    <details class="faq-item"><summary>Will Pro stay unlocked if I clear my browser data or switch devices?</summary><p>The unlock is stored in this browser's local storage. Clearing site data, switching browsers, or using a different device will require verifying your purchase again — email quicktiny.support@gmail.com with your PayPal receipt and we'll help restore access.</p></details>
+    <details class="faq-item"><summary>Will Pro stay unlocked if I clear my browser data or switch devices?</summary><p>After payment you get a license key, saved in this browser and shown on the page so you can copy it. On a new browser or device, or after clearing site data, open this page and use “Already bought Pro? Restore it here” with your license key or the Transaction ID from your PayPal receipt — no extra payment. If anything goes wrong, email quicktiny.support@gmail.com.</p></details>
     <details class="faq-item"><summary>What if I have a question before I buy, or a problem with my purchase?</summary><p>Email quicktiny.support@gmail.com any time — we're happy to help before or after checkout.</p></details>
   </div>
 
@@ -372,6 +502,6 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Batch Image Compressor","url":"https://quicktinyv2.vercel.app/batch-image-compressor","description":"Compress multiple JPG and PNG images at once in your browser. QuickTiny Pro is a one-time $4.99 purchase — no subscription.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"4.99","priceCurrency":"USD"},"isAccessibleForFree":false}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Batch Image Compressor","item":"https://quicktinyv2.vercel.app/batch-image-compressor"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Batch Image Compressor is a single one-time payment of $4.99. It does not renew or charge again."}},{"@type":"Question","name":"I don't compress images often — why would I buy this?","acceptedAnswer":{"@type":"Answer","text":"Batch Pro isn't a subscription because it doesn't assume daily use — it's a single $4.99 payment made once, unlocked permanently in that browser for whenever the next batch of images comes along."}},{"@type":"Question","name":"Where is my payment processed?","acceptedAnswer":{"@type":"Answer","text":"Payment is handled by PayPal. QuickTiny's server creates and confirms the order through PayPal's API and never sees or stores your card details."}},{"@type":"Question","name":"Do my images get uploaded when I compress them?","acceptedAnswer":{"@type":"Answer","text":"No. Batch compression happens locally in your browser using the same canvas-based method as the free Image Compressor — only the payment step involves a server."}},{"@type":"Question","name":"Does this check Shopify's image limits?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every image is checked against Shopify's verified limits — 25 megapixels and 20 MB — and resized or compressed only if it would actually be rejected. Images already within those limits are left untouched."}},{"@type":"Question","name":"Will Pro stay unlocked if I clear my browser data or switch devices?","acceptedAnswer":{"@type":"Answer","text":"The unlock is stored in this browser's local storage. Clearing site data, switching browsers, or using a different device will require verifying your purchase again — email quicktiny.support@gmail.com with your PayPal receipt and we'll help restore access."}},{"@type":"Question","name":"What if I have a question before I buy, or a problem with my purchase?","acceptedAnswer":{"@type":"Answer","text":"Email quicktiny.support@gmail.com any time — we're happy to help before or after checkout."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Batch Image Compressor is a single one-time payment of $4.99. It does not renew or charge again."}},{"@type":"Question","name":"I don't compress images often — why would I buy this?","acceptedAnswer":{"@type":"Answer","text":"Batch Pro isn't a subscription because it doesn't assume daily use — it's a single $4.99 payment made once, unlocked permanently in that browser for whenever the next batch of images comes along."}},{"@type":"Question","name":"Where is my payment processed?","acceptedAnswer":{"@type":"Answer","text":"Payment is handled by PayPal. QuickTiny's server creates and confirms the order through PayPal's API and never sees or stores your card details."}},{"@type":"Question","name":"Do my images get uploaded when I compress them?","acceptedAnswer":{"@type":"Answer","text":"No. Batch compression happens locally in your browser using the same canvas-based method as the free Image Compressor — only the payment step involves a server."}},{"@type":"Question","name":"Does this check Shopify's image limits?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every image is checked against Shopify's verified limits — 25 megapixels and 20 MB — and resized or compressed only if it would actually be rejected. Images already within those limits are left untouched."}},{"@type":"Question","name":"Will Pro stay unlocked if I clear my browser data or switch devices?","acceptedAnswer":{"@type":"Answer","text":"After payment you get a license key, saved in this browser and shown on the page so you can copy it. On a new browser or device, or after clearing site data, open this page and use “Already bought Pro? Restore it here” with your license key or the Transaction ID from your PayPal receipt — no extra payment. If anything goes wrong, email quicktiny.support@gmail.com."}},{"@type":"Question","name":"What if I have a question before I buy, or a problem with my purchase?","acceptedAnswer":{"@type":"Answer","text":"Email quicktiny.support@gmail.com any time — we're happy to help before or after checkout."}}]}</script>
 </body>
 </html>
