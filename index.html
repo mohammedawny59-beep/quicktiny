@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="hero-badges">
-      <span class="badge trust">15 tools &middot; 14 free, 1 Pro</span>
+      <span class="badge trust">16 tools &middot; 15 free, 1 Pro</span>
       <span class="badge trust">Browser-first</span>
       <span class="badge trust">Nothing uploaded</span>
     </div>
@@ -68,14 +68,14 @@
       <button class="btn btn-secondary" id="installQuickTiny" type="button" hidden>Install QuickTiny</button>
     </div>
     <div class="stat-row" style="justify-content:center;margin-top:36px">
-      <div class="stat"><div class="n" data-count-to="15">15</div><div class="l">Tools</div></div>
+      <div class="stat"><div class="n" data-count-to="16">16</div><div class="l">Tools</div></div>
       <div class="stat"><div class="n" data-count-to="100" data-count-suffix="%">100%</div><div class="l">Client-side</div></div>
       <div class="stat"><div class="n" data-count-to="0">0</div><div class="l">Signups required</div></div>
     </div>
   </section>
   <script>
       var QT_SMART_ACTIONS = {
-        json: { label: "JSON", actions: [{ label: "Format JSON", tool: "/json-formatter", action: "format" }] },
+        json: { label: "JSON", actions: [{ label: "Format JSON", tool: "/json-formatter", action: "format" }, { label: "JSON → TypeScript", tool: "/json-converter", action: "ts" }, { label: "JSON → CSV", tool: "/json-converter", action: "csv" }] },
         messy_json: { label: "Messy / LLM JSON", actions: [{ label: "Repair & Format JSON", tool: "/json-formatter", action: "repair" }] },
         base64: { label: "Base64", actions: [{ label: "Decode Base64", tool: "/base64-encode-decode", action: "decode" }, { label: "Encode as Base64", tool: "/base64-encode-decode", action: "encode" }] },
         url_encoded: { label: "URL encoded", actions: [{ label: "Decode URL", tool: "/url-encode-decode", action: "decode" }, { label: "Inspect URL", tool: "/url-encode-decode", action: "inspect" }] },
@@ -293,6 +293,7 @@
 
       var QT_SMART_ACTION_EVENT_BY_TOOL = {
         "/json-formatter": "smart_action_json",
+        "/json-converter": "smart_action_json",
         "/base64-encode-decode": "smart_action_base64",
         "/url-encode-decode": "smart_action_url",
         "/timestamp-converter": "smart_action_timestamp",
@@ -348,7 +349,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">All tools</div>
-        <p class="section-sub">15 browser tools &mdash; 14 free, 1 Pro. Search or filter by category &mdash; nothing here requires an account.</p>
+        <p class="section-sub">16 browser tools &mdash; 15 free, 1 Pro. Search or filter by category &mdash; nothing here requires an account.</p>
       </div>
     </div>
     <div class="search-row">
@@ -411,6 +412,16 @@
         </div>
         <h3>Clean Text</h3>
         <p>Remove extra spaces, tabs and blank lines from messy text.</p>
+        <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="tool-card" href="/json-converter" data-cat="Data" data-search="json converter json to typescript interface json to zod schema json to csv csv to json types data developer">
+        
+        <div class="tc-head">
+          <span class="tc-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4H6a2 2 0 0 0-2 2v4l-2 2 2 2v4a2 2 0 0 0 2 2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v4l2 2-2 2v4a2 2 0 0 1-2 2h-2"/><path d="M10 12h4"/></svg></span>
+          <span class="cat-badge">Data &middot; New</span>
+        </div>
+        <h3>JSON Converter</h3>
+        <p>JSON to TypeScript interfaces, Zod schema or CSV &mdash; and CSV back to JSON.</p>
         <span class="go">Open tool <svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <a class="tool-card" href="/json-formatter" data-cat="Data" data-search="json formatter format, validate and beautify json with clear error messages. data">
@@ -559,6 +570,7 @@
         <a href="/word-counter">Word Counter</a>
         <a href="/clean-text">Clean Text</a>
         <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
         <a href="/seo-slug-generator">SEO Slug Generator</a>
         <a href="/case-converter">Case Converter</a>
       </div>
