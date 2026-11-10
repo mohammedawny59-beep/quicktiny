@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>QuickTiny — new tools and guides</title>
+  <link>https://quicktinyv2.vercel.app/</link>
+  <description>New free browser tools and practical guides from QuickTiny. Everything runs in your browser — no upload, no sign-up.</description>
+  <language>en</language>
+  <lastBuildDate>Tue, 10 Nov 2026 09:00:00 +0000</lastBuildDate>
+  <atom:link href="https://quicktinyv2.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>WebP to PNG Converter — Keep Transparency, Free</title>
+    <link>https://quicktinyv2.vercel.app/webp-to-png</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/webp-to-png</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert WebP to PNG in your browser and keep transparent backgrounds. Batch conversion, ZIP download, no upload.</description>
+  </item>
+  <item>
+    <title>WebP to JPG Converter — Free &amp; Private</title>
+    <link>https://quicktinyv2.vercel.app/webp-to-jpg</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/webp-to-jpg</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert WebP images to JPG in your browser. Batch convert, pick a background color for transparent areas, download as ZIP. Nothing uploaded.</description>
+  </item>
+  <item>
+    <title>Resize Image Online — Change Width, Height or Percent, Free</title>
+    <link>https://quicktinyv2.vercel.app/resize-image</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/resize-image</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Resize photos to an exact width, height or percentage in your browser. Batch resize, keep aspect ratio, convert format at the same time. No upload.</description>
+  </item>
+  <item>
+    <title>Ramadan Timetable 2027 (1448) — Suhoor &amp; Iftar Times for Your City</title>
+    <link>https://quicktinyv2.vercel.app/ramadan-timetable</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ramadan-timetable</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Printable Ramadan 2027 timetable for your city: Imsak (suhoor ends), Fajr, Iftar (Maghrib) and Isha for every day of the month, plus a countdown to Ramadan and Eid.</description>
+  </item>
+  <item>
+    <title>Qibla Direction — Find the Qibla From Your Location</title>
+    <link>https://quicktinyv2.vercel.app/qibla-direction</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/qibla-direction</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Find the Qibla direction from your current location or city in degrees from north, plus the distance to the Kaaba and today's prayer times. Free, no app needed.</description>
+  </item>
+  <item>
+    <title>Pregnancy Due Date Calculator — How Many Weeks Pregnant Am I?</title>
+    <link>https://quicktinyv2.vercel.app/pregnancy-due-date-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/pregnancy-due-date-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Estimate your due date from your last period (with cycle length) or conception date, see how many weeks pregnant you are and key milestone dates. Free and private.</description>
+  </item>
+  <item>
+    <title>Prayer Times Today — Accurate Salah Times, Qibla &amp; Ramadan Timetable</title>
+    <link>https://quicktinyv2.vercel.app/prayer-times</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/prayer-times</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Accurate prayer times for your city or location with next-prayer countdown, Qibla direction, monthly timetable and printable Ramadan timetable. Umm al-Qura, MWL, ISNA, Egyptian methods.</description>
+  </item>
+  <item>
+    <title>PNG to JPG Converter — Smaller Files, Free</title>
+    <link>https://quicktinyv2.vercel.app/png-to-jpg</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/png-to-jpg</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert PNG images to JPG to shrink file size for email and uploads. Choose quality and background color, batch convert, no upload.</description>
+  </item>
+  <item>
+    <title>Percentage Calculator — Percent Of, Increase, Decrease &amp; Discount</title>
+    <link>https://quicktinyv2.vercel.app/percentage-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/percentage-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Free percentage calculator: X% of Y, what percent X is of Y, percent increase or decrease, and price after discount or tax. Instant results with the formula.</description>
+  </item>
+  <item>
+    <title>PDF to JPG Converter — Every Page as an Image, Free</title>
+    <link>https://quicktinyv2.vercel.app/pdf-to-jpg</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/pdf-to-jpg</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert PDF pages to JPG, PNG or WebP images at 72, 150 or 300 DPI. Pick pages, download one by one or as a ZIP. Free, private, nothing uploaded.</description>
+  </item>
+  <item>
+    <title>Loan Calculator — Monthly Payment, Total Interest &amp; Real APR</title>
+    <link>https://quicktinyv2.vercel.app/loan-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/loan-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Calculate monthly loan payments, total interest and a yearly schedule. Compare flat-rate offers with their real APR, including fees. Free, instant.</description>
+  </item>
+  <item>
+    <title>JPG to WebP Converter — Faster Websites, Free</title>
+    <link>https://quicktinyv2.vercel.app/jpg-to-webp</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/jpg-to-webp</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert JPG and PNG images to WebP for faster websites — typically 25–35% smaller. Batch, resize, ZIP download, no upload.</description>
+  </item>
+  <item>
+    <title>JPG to PNG Converter — Free, Batch, No Upload</title>
+    <link>https://quicktinyv2.vercel.app/jpg-to-png</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/jpg-to-png</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert JPG photos to PNG in your browser. Batch convert and download as ZIP. Free, private, nothing uploaded.</description>
+  </item>
+  <item>
+    <title>Image Converter — HEIC to JPG, WebP to PNG &amp; More, Free</title>
+    <link>https://quicktinyv2.vercel.app/image-converter</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/image-converter</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert HEIC, WebP, AVIF, PNG and JPG images in your browser — batch, resize, ZIP download. Nothing uploaded, GPS data removed. Free, no sign-up.</description>
+  </item>
+  <item>
+    <title>HEIC to JPG Converter — Free, Batch, No Upload</title>
+    <link>https://quicktinyv2.vercel.app/heic-to-jpg</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/heic-to-jpg</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert iPhone HEIC photos to JPG in your browser — many at once, ZIP download, GPS data removed. Works on Windows, Android and Mac. No upload, no sign-up.</description>
+  </item>
+  <item>
+    <title>How to Calculate Percentage Increase and Decrease (With Examples)</title>
+    <link>https://quicktinyv2.vercel.app/guides/percentage-increase-decrease</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides/percentage-increase-decrease</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Percentage increase and decrease explained: the formula, worked examples, reverse percentages, percentage points vs percent, and why -20% then +20% doesn't get you back.</description>
+  </item>
+  <item>
+    <title>Flat Rate vs APR: How to Compare Personal Loan Offers (With Examples)</title>
+    <link>https://quicktinyv2.vercel.app/guides/flat-rate-vs-apr</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides/flat-rate-vs-apr</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Flat interest rate vs APR explained with examples: why a 4% flat rate costs about 7.5% APR, how to compare personal loan offers, and the formulas for monthly payments.</description>
+  </item>
+  <item>
+    <title>How to Convert HEIC to JPG on Windows (Free, No Software)</title>
+    <link>https://quicktinyv2.vercel.app/guides/convert-heic-to-jpg-windows</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides/convert-heic-to-jpg-windows</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Step-by-step: convert iPhone HEIC photos to JPG on Windows 10/11 for free — in the browser with no install, with the Photos app, or by changing iPhone settings. Batch conversion included.</description>
+  </item>
+  <item>
+    <title>How to Compress a Photo Under 100 KB for Online Forms (Without Blurring It)</title>
+    <link>https://quicktinyv2.vercel.app/guides/compress-photo-under-100kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides/compress-photo-under-100kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Compress a photo to under 100 KB, 50 KB or 20 KB for job, exam and visa forms without blurring it: size vs dimensions, the KB vs KiB trap, recommended sizes and mistakes to avoid.</description>
+  </item>
+  <item>
+    <title>Guides — Practical How-Tos With Worked Examples</title>
+    <link>https://quicktinyv2.vercel.app/guides</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Practical guides with worked examples: converting HEIC to JPG, compressing photos for forms, comparing loan offers, calculating percentages and more.</description>
+  </item>
+  <item>
+    <title>Discount Calculator — Price After % Off and How Much You Save</title>
+    <link>https://quicktinyv2.vercel.app/discount-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/discount-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Find the sale price after a percentage discount and how much you save. Also works for adding tax or tips. Instant, free, no sign-up.</description>
+  </item>
+  <item>
+    <title>Days Between Dates Calculator — Count Days, Weeks, Working Days</title>
+    <link>https://quicktinyv2.vercel.app/days-between-dates</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/days-between-dates</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Count the days between two dates with years, months, weeks, working days and hours, or add and subtract days from a date. Free, instant.</description>
+  </item>
+  <item>
+    <title>Compress PDF — Reduce PDF File Size Free, No Upload</title>
+    <link>https://quicktinyv2.vercel.app/compress-pdf</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-pdf</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Shrink scanned and image-heavy PDFs for email and upload limits. Three compression levels, black &amp; white option, see the size before you download. Nothing uploaded.</description>
+  </item>
+  <item>
+    <title>Compress Image to 20KB, 50KB, 100KB, 200KB — Exact Size, Free</title>
+    <link>https://quicktinyv2.vercel.app/compress-image-to-kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Reduce photo file size to an exact KB limit for job, exam and visa forms — 20 KB, 50 KB, 100 KB, 200 KB. Best quality that fits, batch, no upload.</description>
+  </item>
+  <item>
+    <title>Compress Image to 50 KB Online — Free, Best Quality</title>
+    <link>https://quicktinyv2.vercel.app/compress-image-to-50kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-50kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Reduce a photo to under 50 KB for passport-size photos and job portals. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
+  </item>
+  <item>
+    <title>Compress Image to 500 KB Online — Free, Best Quality</title>
+    <link>https://quicktinyv2.vercel.app/compress-image-to-500kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-500kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Reduce a photo to under 500 KB for email, listings and website uploads. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
+  </item>
+  <item>
+    <title>Compress Image to 20 KB Online — Free, Best Quality</title>
+    <link>https://quicktinyv2.vercel.app/compress-image-to-20kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-20kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Reduce a photo to under 20 KB for signatures and exam application photos. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
+  </item>
+  <item>
+    <title>Compress Image to 200 KB Online — Free, Best Quality</title>
+    <link>https://quicktinyv2.vercel.app/compress-image-to-200kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-200kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Reduce a photo to under 200 KB for visa applications and ID uploads. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
+  </item>
+  <item>
+    <title>Compress Image to 1 MB Online — Free, Best Quality</title>
+    <link>https://quicktinyv2.vercel.app/compress-image-to-1mb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-1mb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Reduce a photo to under 1 MB for upload limits like “max 1 MB”. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
+  </item>
+  <item>
+    <title>Compress Image to 100 KB Online — Free, Best Quality</title>
+    <link>https://quicktinyv2.vercel.app/compress-image-to-100kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-100kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Reduce a photo to under 100 KB for government, university and visa forms. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
+  </item>
+  <item>
+    <title>BMI Calculator — Body Mass Index &amp; Healthy Weight for Your Height</title>
+    <link>https://quicktinyv2.vercel.app/bmi-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/bmi-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Calculate your BMI in kg/cm or lb/ft, see your WHO category on a visual scale and the healthy weight range for your height. Free and private.</description>
+  </item>
+  <item>
+    <title>YouTube Thumbnail Size (1280×720) — Resize Your Image</title>
+    <link>https://quicktinyv2.vercel.app/youtube-thumbnail-size</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/youtube-thumbnail-size</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Resize an image to the YouTube thumbnail size 1280×720 (16:9) and channel banner 2560×1440. Focal-point crop, free download.</description>
+  </item>
+  <item>
+    <title>Wi-Fi QR Code Generator — Guests Join Without Typing</title>
+    <link>https://quicktinyv2.vercel.app/wifi-qr-code</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/wifi-qr-code</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Create a QR code that connects phones to your Wi-Fi in one scan. Add your logo and a “Scan for Wi-Fi” frame. Free, never expires, nothing uploaded.</description>
+  </item>
+  <item>
+    <title>WhatsApp QR Code Generator — Start a Chat With One Scan</title>
+    <link>https://quicktinyv2.vercel.app/whatsapp-qr-code</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/whatsapp-qr-code</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Make a QR code that opens a WhatsApp chat with your number and a pre-filled message. Great for shops, menus and flyers. Free and never expires.</description>
+  </item>
+  <item>
+    <title>vCard QR Code — Business Card QR to Save Your Contact</title>
+    <link>https://quicktinyv2.vercel.app/vcard-qr-code</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/vcard-qr-code</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Create a QR code that saves your name, phone, email, company and website to a phone's contacts in one tap. Free, private, never expires.</description>
+  </item>
+  <item>
+    <title>Valorant to CS2 Sensitivity Converter — Exact Same Aim</title>
+    <link>https://quicktinyv2.vercel.app/valorant-to-cs2-sensitivity</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/valorant-to-cs2-sensitivity</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert your Valorant sensitivity to CS2 instantly (multiply by 3.18). See cm/360 and eDPI, and change DPI if you need. Free.</description>
+  </item>
+  <item>
+    <title>UTM Builder — Campaign URL Builder for Google Analytics</title>
+    <link>https://quicktinyv2.vercel.app/utm-builder</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/utm-builder</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Build UTM-tagged campaign links for Google Analytics, or one link per channel at once. Naming checks keep reports clean. Copy, export CSV, or turn a link into a QR code.</description>
+  </item>
+  <item>
+    <title>Split PDF — Separate Every Page Into Its Own File</title>
+    <link>https://quicktinyv2.vercel.app/split-pdf</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/split-pdf</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Split a PDF into single pages or extract a page range like 1-3, 5, 8- — free, in your browser, nothing uploaded.</description>
+  </item>
+  <item>
+    <title>Social Media Image Resizer — Instagram, TikTok, YouTube &amp; More</title>
+    <link>https://quicktinyv2.vercel.app/social-image-resizer</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/social-image-resizer</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Resize one image for Instagram, TikTok, Facebook, X, LinkedIn, YouTube, Pinterest and WhatsApp at once. Focal-point crop, blurred-background fit, story safe zones, ZIP download.</description>
+  </item>
+  <item>
+    <title>Sensitivity Converter — Valorant, CS2, Apex, Overwatch 2, CoD</title>
+    <link>https://quicktinyv2.vercel.app/sensitivity-converter</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/sensitivity-converter</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert mouse sensitivity between Valorant, CS2, Apex Legends, Overwatch 2, Call of Duty, Rainbow Six Siege and Fortnite. See cm/360 and eDPI. Free and instant.</description>
+  </item>
+</channel>
+</rss>

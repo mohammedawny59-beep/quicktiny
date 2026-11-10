@@ -60,4 +60,8 @@ for sl in spec.get("sitemap", []):
         add += "  <url>\n    <loc>%s</loc>\n    <lastmod>2026-11-10</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n" % u
 wr("sitemap.xml", m.replace("</urlset>", add + "</urlset>"))
 log.append("sitemap +%d" % add.count("<url>"))
+# Keep the RSS feeds in step with the sitemap.
+import subprocess
+subprocess.run([sys.executable, "-I", os.path.join(os.path.dirname(os.path.abspath(__file__)), "feeds.py"), "."], check=False, stdout=subprocess.DEVNULL)
+log.append("feeds rebuilt")
 print("; ".join(log))
