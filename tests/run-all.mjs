@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 const dir = path.dirname(fileURLToPath(import.meta.url));
-const files = fs.readdirSync(dir).filter((f) => /\.test\.js$/.test(f)).sort().concat(["site-check.mjs"]);
+const files = fs.readdirSync(dir).filter((f) => /\.test\.m?js$/.test(f)).sort().concat(["site-check.mjs"]);
 let failed = 0;
 for (const f of files) {
   const t0 = Date.now();

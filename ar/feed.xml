@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>QuickTiny بالعربي — أدوات وشروحات جديدة</title>
+  <link>https://quicktinyv2.vercel.app/ar</link>
+  <description>أدوات مجانية جديدة وشروحات عملية من QuickTiny — كل شيء يعمل داخل متصفحك بدون رفع وبدون تسجيل.</description>
+  <language>ar</language>
+  <lastBuildDate>Tue, 10 Nov 2026 09:00:00 +0000</lastBuildDate>
+  <atom:link href="https://quicktinyv2.vercel.app/ar/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>قراءة باركود الفاتورة الضريبية والتحقق منه — QR هيئة الزكاة</title>
+    <link>https://quicktinyv2.vercel.app/ar/zatca-qr-reader</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/zatca-qr-reader</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>ارفع صورة رمز QR لأي فاتورة ضريبية سعودية لتعرف اسم البائع ورقمه الضريبي والتاريخ والإجمالي والضريبة، وتحقق من صحة الصيغة وحساب الـ15%. مجاني وداخل متصفحك.</description>
+  </item>
+  <item>
+    <title>حاسبة الزكاة — زكاة المال والذهب والفضة ونصاب الزكاة</title>
+    <link>https://quicktinyv2.vercel.app/ar/zakat-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/zakat-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب زكاة المال والذهب بأعياره والفضة وعروض التجارة مع خصم الديون، وتعرّف هل بلغ مالك النصاب (85 غرام ذهب أو 595 غرام فضة). النتيجة بالأرقام والحروف. مجانية وخاصة.</description>
+  </item>
+  <item>
+    <title>حاسبة ضريبة القيمة المضافة 15% — إضافة واستخراج الضريبة</title>
+    <link>https://quicktinyv2.vercel.app/ar/vat-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/vat-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب ضريبة القيمة المضافة للسعودية 15% والإمارات 5% والبحرين وعُمان والأردن ومصر: أضف الضريبة أو استخرجها من سعر شامل، لبند أو فاتورة كاملة، مع المبلغ بالحروف. مجانية.</description>
+  </item>
+  <item>
+    <title>إنشاء فاتورة ضريبية مبسطة مع QR هيئة الزكاة — مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/tax-invoice-generator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/tax-invoice-generator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>اصنع فاتورة ضريبية مبسطة بالعربي مع رمز QR بصيغة هيئة الزكاة والضريبة والجمارك، ضريبة 15% والمبلغ بالحروف، واطبعها PDF. بدون تسجيل وبدون علامة مائية، واقرأ رموز الفواتير وتحقق منها.</description>
+  </item>
+  <item>
+    <title>إمساكية رمضان 1448 — مواعيد الإمساك والإفطار لمدينتك</title>
+    <link>https://quicktinyv2.vercel.app/ar/ramadan-imsakiya</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/ramadan-imsakiya</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>إمساكية رمضان 1448 هـ لمدينتك: وقت الإمساك والفجر والمغرب (الإفطار) والعشاء لكل أيام الشهر، قابلة للطباعة، مع العد التنازلي لرمضان والعيد.</description>
+  </item>
+  <item>
+    <title>اتجاه القبلة من موقعي — بالدرجات والبوصلة</title>
+    <link>https://quicktinyv2.vercel.app/ar/qibla-direction</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/qibla-direction</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>اعرف اتجاه القبلة من موقعك الحالي أو مدينتك بالدرجات من الشمال، والمسافة إلى الكعبة المشرفة، مع مواقيت الصلاة. مجاني وبدون تطبيق.</description>
+  </item>
+  <item>
+    <title>حاسبة الحمل والولادة — موعد الولادة وعمر الحمل بالأسابيع</title>
+    <link>https://quicktinyv2.vercel.app/ar/pregnancy-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/pregnancy-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسبي موعد الولادة المتوقع وعمر الحمل بالأسابيع من آخر دورة أو تاريخ الإخصاب، مع مواعيد المراحل المهمة بالميلادي والهجري. مجانية وخاصة.</description>
+  </item>
+  <item>
+    <title>مواقيت الصلاة اليوم — أوقات الصلاة واتجاه القبلة وإمساكية رمضان</title>
+    <link>https://quicktinyv2.vercel.app/ar/prayer-times</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/prayer-times</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>مواقيت الصلاة اليوم بدقة لمدينتك أو موقعك: الفجر والظهر والعصر والمغرب والعشاء، مع العد التنازلي للأذان واتجاه القبلة والجدول الشهري وإمساكية رمضان للطباعة. بتقويم أم القرى وطرق الحساب المعتمدة.</description>
+  </item>
+  <item>
+    <title>حاسبة النسبة المئوية — حساب النسبة والزيادة والخصم أونلاين</title>
+    <link>https://quicktinyv2.vercel.app/ar/percentage-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/percentage-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حاسبة نسبة مئوية مجانية: كم يساوي X% من Y، نسبة رقم من رقم، نسبة الزيادة والنقصان، والسعر بعد الخصم أو الضريبة. نتائج فورية مع طريقة الحساب.</description>
+  </item>
+  <item>
+    <title>تحويل PDF إلى JPG — كل صفحة صورة مجانًا وبدون رفع</title>
+    <link>https://quicktinyv2.vercel.app/ar/pdf-to-jpg</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/pdf-to-jpg</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حوّل صفحات PDF إلى صور JPG أو PNG بدقة حتى 300 DPI، اختر الصفحات ونزّلها واحدة واحدة أو في ملف ZIP. مجاني وبدون رفع ملفاتك.</description>
+  </item>
+  <item>
+    <title>كتابة الأرقام بالحروف العربية — تحويل الرقم إلى كلمات</title>
+    <link>https://quicktinyv2.vercel.app/ar/number-to-words</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/number-to-words</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حوّل أي رقم إلى كلمات عربية صحيحة نحويًا: للشيكات والفواتير والعقود، بالريال والدرهم والدينار والجنيه أو بدون عملة. مجاني وفوري.</description>
+  </item>
+  <item>
+    <title>حاسبة التمويل الشخصي والقروض — القسط الشهري والنسبة الحقيقية</title>
+    <link>https://quicktinyv2.vercel.app/ar/loan-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/loan-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب قسط التمويل الشخصي أو القرض الشهري وإجمالي الأرباح، وقارن النسبة الثابتة (المرابحة) بالنسبة السنوية الحقيقية APR مع جدول سنوي. مجانية.</description>
+  </item>
+  <item>
+    <title>تحويل صيغ الصور — HEIC إلى JPG وWebP إلى PNG مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/image-converter</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/image-converter</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حوّل صور HEIC من الآيفون وWebP وAVIF وPNG وJPG داخل متصفحك — عدة صور مرة واحدة، تغيير المقاس، تنزيل ZIP. بدون رفع، ويحذف بيانات الموقع GPS.</description>
+  </item>
+  <item>
+    <title>تحويل صور HEIC إلى JPG — صور الآيفون مجانًا وبدون رفع</title>
+    <link>https://quicktinyv2.vercel.app/ar/heic-to-jpg</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/heic-to-jpg</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حوّل صور الآيفون HEIC إلى JPG داخل متصفحك — عدة صور مرة واحدة، تنزيل ZIP، ويحذف بيانات الموقع. يعمل على ويندوز وأندرويد. بدون رفع وبدون تسجيل.</description>
+  </item>
+  <item>
+    <title>طريقة حساب ضريبة القيمة المضافة 15% واستخراجها من السعر الشامل</title>
+    <link>https://quicktinyv2.vercel.app/ar/guides/vat-15-calculation</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides/vat-15-calculation</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>شرح حساب ضريبة القيمة المضافة 15% في السعودية: إضافة الضريبة للسعر، واستخراج الضريبة من السعر الشامل بالقسمة على 1.15، والخطأ الشائع، مع أمثلة محسوبة.</description>
+  </item>
+  <item>
+    <title>كيف أعمل فاتورة ضريبية مبسطة مع رمز QR هيئة الزكاة — المتطلبات والخطوات</title>
+    <link>https://quicktinyv2.vercel.app/ar/guides/simplified-tax-invoice-qr</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides/simplified-tax-invoice-qr</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>دليل إصدار الفاتورة الضريبية المبسطة في السعودية مع رمز QR بصيغة هيئة الزكاة والضريبة والجمارك: محتويات الفاتورة، الحقول الخمسة في الرمز، الفرق بين المرحلة الأولى والثانية.</description>
+  </item>
+  <item>
+    <title>طريقة حساب مكافأة نهاية الخدمة في السعودية بالأمثلة (استقالة وإنهاء)</title>
+    <link>https://quicktinyv2.vercel.app/ar/guides/saudi-end-of-service-calculation</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides/saudi-end-of-service-calculation</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>شرح طريقة حساب مكافأة نهاية الخدمة في السعودية وفق المادة 84 و85 و87 من نظام العمل: نصف شهر عن أول 5 سنوات وشهر عن كل سنة بعدها، وأثر الاستقالة، بأمثلة محسوبة.</description>
+  </item>
+  <item>
+    <title>كيف أصغر حجم الصورة إلى 100 كيلوبايت للتقديم على الوظائف والجامعات</title>
+    <link>https://quicktinyv2.vercel.app/ar/guides/reduce-image-size-100kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides/reduce-image-size-100kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>طريقة تصغير حجم الصورة إلى 100 أو 200 أو 50 كيلوبايت لمنصات التوظيف والجامعات والتأشيرات بدون فقدان الوضوح، والفرق بين حجم الملف وأبعاد الصورة، وأخطاء شائعة.</description>
+  </item>
+  <item>
+    <title>كيف أحول صور الآيفون HEIC إلى JPG على ويندوز وأندرويد — 3 طرق مجانية</title>
+    <link>https://quicktinyv2.vercel.app/ar/guides/heic-to-jpg-windows-android</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides/heic-to-jpg-windows-android</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>شرح خطوة بخطوة لتحويل صور HEIC من الآيفون إلى JPG على ويندوز وأندرويد مجانًا وبدون برامج، ولماذا تظهر هذه الصيغة، وكيف تجعل الآيفون يحفظ الصور JPG مباشرة.</description>
+  </item>
+  <item>
+    <title>طريقة حساب زكاة الذهب عيار 21 و18 و24 بالأمثلة ونصاب الذهب</title>
+    <link>https://quicktinyv2.vercel.app/ar/guides/gold-zakat-calculation</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides/gold-zakat-calculation</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>شرح طريقة حساب زكاة الذهب: نصاب 85 غرامًا من الذهب الخالص، تحويل عيار 21 و18 إلى عيار 24، ضم النقود، وأمثلة محسوبة خطوة بخطوة، مع حكم ذهب الزينة.</description>
+  </item>
+  <item>
+    <title>أدلة وشروحات عملية بالأمثلة — الزكاة والضريبة ونهاية الخدمة والصور</title>
+    <link>https://quicktinyv2.vercel.app/ar/guides</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>شروحات عملية بأمثلة محسوبة: حساب زكاة الذهب، ضريبة القيمة المضافة، مكافأة نهاية الخدمة، الفاتورة الضريبية، تحويل صور الآيفون وتصغير الصور للتقديم.</description>
+  </item>
+  <item>
+    <title>حاسبة مكافأة نهاية الخدمة — السعودية والإمارات 2026</title>
+    <link>https://quicktinyv2.vercel.app/ar/end-of-service-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/end-of-service-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب مكافأة نهاية الخدمة وفق نظام العمل السعودي والقانون الإماراتي: مدة الخدمة، أثر الاستقالة، الحد الأقصى، وخطوات الحساب مع المبلغ بالحروف. مجانية وبدون تسجيل.</description>
+  </item>
+  <item>
+    <title>حاسبة الخصم — السعر بعد الخصم وكم توفّر</title>
+    <link>https://quicktinyv2.vercel.app/ar/discount-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/discount-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب السعر بعد خصم بنسبة مئوية وكم توفّر بالضبط، أو أضف الضريبة والبقشيش. فورية ومجانية وبدون تسجيل.</description>
+  </item>
+  <item>
+    <title>حساب الأيام بين تاريخين — كم يوم بين تاريخين؟</title>
+    <link>https://quicktinyv2.vercel.app/ar/days-between-dates</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/days-between-dates</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب عدد الأيام بين تاريخين بالسنوات والأشهر والأسابيع وأيام العمل، وأضف أو اطرح أيامًا من أي تاريخ، مع التاريخ الهجري. مجاني وفوري.</description>
+  </item>
+  <item>
+    <title>ضغط ملف PDF — تصغير حجم PDF مجانًا وبدون رفع</title>
+    <link>https://quicktinyv2.vercel.app/ar/compress-pdf</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-pdf</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>صغّر حجم ملفات PDF الممسوحة والمليئة بالصور للإيميل وحدود الرفع في المواقع الحكومية. ثلاث درجات ضغط وخيار أبيض وأسود، داخل متصفحك وبدون رفع.</description>
+  </item>
+  <item>
+    <title>تصغير حجم الصورة إلى 100 كيلوبايت أو أي حجم — مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/compress-image-to-kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>صغّر حجم الصورة إلى حجم محدد بالكيلوبايت لمنصات التوظيف والجامعات والتأشيرات: 20 أو 50 أو 100 أو 200 كيلوبايت بأفضل جودة ممكنة. عدة صور، وبدون رفع.</description>
+  </item>
+  <item>
+    <title>تصغير حجم الصورة إلى 50 كيلوبايت — مجانًا وبأفضل جودة</title>
+    <link>https://quicktinyv2.vercel.app/ar/compress-image-to-50kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-50kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>صغّر حجم الصورة إلى أقل من 50 كيلوبايت لـصور الهوية الشخصية ومنصات التوظيف. أعلى جودة ممكنة ضمن الحد مع الحفاظ على التناسب، لعدة صور مرة واحدة. بدون رفع وبدون تسجيل.</description>
+  </item>
+  <item>
+    <title>تصغير حجم الصورة إلى 200 كيلوبايت — مجانًا وبأفضل جودة</title>
+    <link>https://quicktinyv2.vercel.app/ar/compress-image-to-200kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-200kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>صغّر حجم الصورة إلى أقل من 200 كيلوبايت لـطلبات التأشيرة ورفع الهويات. أعلى جودة ممكنة ضمن الحد مع الحفاظ على التناسب، لعدة صور مرة واحدة. بدون رفع وبدون تسجيل.</description>
+  </item>
+  <item>
+    <title>تصغير حجم الصورة إلى 100 كيلوبايت — مجانًا وبأفضل جودة</title>
+    <link>https://quicktinyv2.vercel.app/ar/compress-image-to-100kb</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-100kb</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>صغّر حجم الصورة إلى أقل من 100 كيلوبايت لـالمنصات الحكومية والجامعات والتأشيرات. أعلى جودة ممكنة ضمن الحد مع الحفاظ على التناسب، لعدة صور مرة واحدة. بدون رفع وبدون تسجيل.</description>
+  </item>
+  <item>
+    <title>حاسبة كتلة الجسم BMI والوزن المثالي حسب الطول</title>
+    <link>https://quicktinyv2.vercel.app/ar/bmi-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/bmi-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب مؤشر كتلة الجسم BMI بالكيلو والسنتيمتر، واعرف تصنيفك حسب منظمة الصحة العالمية والوزن المثالي لطولك. مجانية وخاصة.</description>
+  </item>
+  <item>
+    <title>حساب العمر بالهجري والميلادي — كم عمري بالضبط؟</title>
+    <link>https://quicktinyv2.vercel.app/ar/age-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/age-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب عمرك بالسنوات والأشهر والأيام بالتقويم الميلادي والهجري، وكم يومًا عشت، وموعد عيد ميلادك القادم. مجاني وفوري.</description>
+  </item>
+  <item>
+    <title>عداد الكلمات العربي — حساب عدد الكلمات والحروف مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/word-counter</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/word-counter</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب عدد الكلمات والحروف (مع المسافات وبدونها وبدون التشكيل) والجمل والفقرات في نصك العربي فورًا. مجاني وبدون تسجيل، ونصك لا يغادر جهازك.</description>
+  </item>
+  <item>
+    <title>إنشاء باركود واي فاي — اتصال الضيوف بدون كتابة كلمة المرور</title>
+    <link>https://quicktinyv2.vercel.app/ar/wifi-qr-code</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/wifi-qr-code</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>اصنع باركود QR يوصل الجوال بشبكة الواي فاي بمسحة واحدة. أضف شعارك وإطار «امسح للاتصال». مجاني ولا ينتهي.</description>
+  </item>
+  <item>
+    <title>إنشاء باركود واتساب — رابط محادثة برسالة جاهزة</title>
+    <link>https://quicktinyv2.vercel.app/ar/whatsapp-qr-code</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/whatsapp-qr-code</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>اصنع باركود يفتح محادثة واتساب مع رقمك ورسالة جاهزة مثل «أريد الطلب». مثالي للمطاعم والمتاجر والمنيو. مجاني ولا ينتهي.</description>
+  </item>
+  <item>
+    <title>تفقيط المبالغ — تحويل الأرقام إلى كلمات للشيكات والفواتير</title>
+    <link>https://quicktinyv2.vercel.app/ar/tafqeet</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/tafqeet</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>تفقيط الأرقام إلى حروف عربية صحيحة نحويًا للشيكات والفواتير: ريال، درهم، دينار، جنيه، ليرة، دولار مع الهللات والفلوس. مجاني وفوري.</description>
+  </item>
+  <item>
+    <title>تقسيم ملف PDF إلى صفحات منفصلة — مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/split-pdf</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/split-pdf</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>قسّم ملف PDF إلى ملف لكل صفحة أو استخرج صفحات محددة مثل 1-3, 5. مجاني وبدون رفع ملفاتك.</description>
+  </item>
+  <item>
+    <title>مقاسات صور السوشيال ميديا — إنستقرام وتيك توك ويوتيوب من صورة واحدة</title>
+    <link>https://quicktinyv2.vercel.app/ar/social-image-resizer</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/social-image-resizer</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>غيّر مقاس صورتك لإنستقرام وتيك توك وفيسبوك وX ولينكدإن ويوتيوب وبنترست وواتساب دفعة واحدة. نقطة تركيز، خلفية ضبابية، مناطق آمنة للستوري، وتنزيل ZIP.</description>
+  </item>
+  <item>
+    <title>إنشاء باركود QR مجاني — بتصميمك وشعارك ولا ينتهي</title>
+    <link>https://quicktinyv2.vercel.app/ar/qr-code-generator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/qr-code-generator</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>اصنع باركود QR مجاني لرابط أو واي فاي أو واتساب أو بطاقة اتصال، مع شعارك وألوانك وإطار بعبارة عربية. لا ينتهي أبدًا، ويُختبر مسحه تلقائيًا. إنشاء بالجملة من CSV.</description>
+  </item>
+  <item>
+    <title>أدوات PDF مجانية — دمج وتقسيم وتدوير وتحويل الصور إلى PDF</title>
+    <link>https://quicktinyv2.vercel.app/ar/pdf-tools</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/pdf-tools</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>دمج ملفات PDF واستخراج الصفحات أو حذفها وتقسيم وتدوير الملفات وتحويل الصور إلى PDF مجانًا داخل متصفحك — بدون تسجيل وبدون رفع ملفاتك.</description>
+  </item>
+  <item>
+    <title>زخرفة أسماء ببجي وفري فاير — أسماء مزخرفة للألعاب</title>
+    <link>https://quicktinyv2.vercel.app/ar/name-decorator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/name-decorator</guid>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+    <description>زخرفة أسماء ببجي وفري فاير بالعربي والإنجليزي: تطويل، رموز مثل 亗 و꧁꧂، وخطوط مزخرفة. انسخ الاسم بضغطة واحدة. مجاني وبدون تسجيل.</description>
+  </item>
+</channel>
+</rss>

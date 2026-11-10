@@ -1,0 +1,56 @@
+name: Social
+
+# Announces newly added pages (new entries in sitemap.xml) on social channels after each deploy.
+# Posts only to channels whose secrets are set (see tools/README.md → "Automatic social posts").
+# With no secrets it runs as a dry run and only logs what it would post.
+on:
+  push:
+    branches: [main]
+    paths: [sitemap.xml]
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Comma-separated page URLs to announce now (optional)"
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: social
+  cancel-in-progress: false
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for the Vercel deployment
+        if: github.event_name == 'push'
+        run: sleep 180
+      - name: Announce new pages
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHAT_ID_AR: ${{ secrets.TELEGRAM_CHAT_ID_AR }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
+          LINKEDIN_AUTHOR: ${{ secrets.LINKEDIN_AUTHOR }}
+          SOCIAL_LANGS: ${{ vars.SOCIAL_LANGS }}
+        run: |
+          if [ -n "${{ github.event.inputs.urls }}" ]; then
+            node tools/social_post.mjs --urls "${{ github.event.inputs.urls }}"
+          else
+            node tools/social_post.mjs --since ${{ github.event.before }}
+          fi
