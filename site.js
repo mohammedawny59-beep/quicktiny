@@ -587,3 +587,39 @@ function qtCountTo(el, to, fmt, dur){
     nr.insertBefore(btn, nr.querySelector(".menu-toggle"));
   }
 })();
+
+/* ---------- Light / dark theme toggle (the choice is saved; otherwise the device setting is followed) ---------- */
+(function(){
+  var root = document.documentElement, AR = (root.lang || "").indexOf("ar") === 0;
+  function saved(){ try { return localStorage.getItem("qt-theme"); } catch (e) { return null; } }
+  function sys(){ return window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"; }
+  function cur(){ return root.getAttribute("data-theme") || "dark"; }
+  var SUN = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
+  var MOON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>';
+  var btn = null;
+  function paint(){
+    var t = cur();
+    var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute("content", t === "light" ? "#f5f6fc" : "#05060f");
+    if (!btn) return;
+    btn.innerHTML = t === "light" ? MOON : SUN;
+    var label = t === "light" ? (AR ? "الوضع الداكن" : "Dark mode") : (AR ? "الوضع الفاتح" : "Light mode");
+    btn.setAttribute("aria-label", label); btn.title = label;
+  }
+  function set(t, remember){
+    root.classList.add("qt-theme-anim");
+    root.setAttribute("data-theme", t);
+    if (remember) { try { localStorage.setItem("qt-theme", t); } catch (e) {} }
+    paint();
+    setTimeout(function(){ root.classList.remove("qt-theme-anim"); }, 420);
+  }
+  if (!root.getAttribute("data-theme")) root.setAttribute("data-theme", saved() || sys());
+  var nr = document.querySelector(".nav-right");
+  if (nr) {
+    btn = document.createElement("button"); btn.type = "button"; btn.className = "qt-theme";
+    btn.addEventListener("click", function(){ set(cur() === "light" ? "dark" : "light", true); if (typeof qtEvent === "function") qtEvent("theme_toggled"); });
+    nr.insertBefore(btn, nr.querySelector(".qk-btn") || nr.querySelector(".menu-toggle"));
+  }
+  paint();
+  // Follow the device setting live until the visitor picks a theme.
+  if (window.matchMedia) { var mq = matchMedia("(prefers-color-scheme: light)"); var on = function(){ if (!saved()) set(sys(), false); }; if (mq.addEventListener) mq.addEventListener("change", on); }
+})();
