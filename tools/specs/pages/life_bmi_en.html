@@ -1,0 +1,31 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">BMI Calculator</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Health</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>BMI Calculator — Body Mass Index and Healthy Weight</h1>
+    <p>Calculate your body mass index in metric or imperial units, see where it falls on the WHO scale, and the healthy weight range for your height.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="lc-grid"><div><label class="field-label" for="bmUnits">Units</label><select id="bmUnits"><option value="met">kg / cm</option><option value="imp">lb / ft + in</option></select></div></div>
+    <div class="lc-grid" id="bmMetric" style="margin-top:10px"><div><label class="field-label" for="bmKg">Weight (kg)</label><input type="text" inputmode="decimal" id="bmKg" value="70"></div><div><label class="field-label" for="bmCm">Height (cm)</label><input type="text" inputmode="decimal" id="bmCm" value="175"></div></div>
+    <div class="lc-grid" id="bmImperial" hidden style="margin-top:10px"><div><label class="field-label" for="bmLb">Weight (lb)</label><input type="text" inputmode="decimal" id="bmLb" value="154"></div><div><label class="field-label" for="bmFt">Height (ft)</label><input type="text" inputmode="numeric" id="bmFt" value="5"></div><div><label class="field-label" for="bmIn">(in)</label><input type="text" inputmode="decimal" id="bmIn" value="9"></div></div>
+    <div class="lc-out"><div class="lc-big" id="bmVal">—</div><div id="bmCat" class="bm-cat"></div><div class="bm-scale"><span id="bmPin"></span></div><div class="lc-sub" id="bmRange"></div></div>
+    <p class="lc-note">BMI is a screening number for adults 18+. It doesn't distinguish muscle from fat and isn't a diagnosis — talk to a doctor about your health.</p>
+  </div>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>BMI categories (WHO, adults)</h2><ul class="benefits"><li><span>Below 18.5 — underweight</span></li><li><span>18.5 – 24.9 — healthy weight</span></li><li><span>25 – 29.9 — overweight</span></li><li><span>30 and above — obesity (class I 30–34.9, II 35–39.9, III 40+)</span></li></ul>
+    <h2>Frequently asked questions</h2><details class="faq-item"><summary>How is BMI calculated?</summary><p>Weight in kilograms divided by height in metres squared. 70 kg at 1.75 m = 70 ÷ 3.0625 = 22.9.</p></details><details class="faq-item"><summary>Is BMI accurate for athletes?</summary><p>Not always — muscle is heavy, so muscular people can show as “overweight”. Waist size is a useful second check.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/days-between-dates">Days Between Dates<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/pregnancy-due-date-calculator">Due Date Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

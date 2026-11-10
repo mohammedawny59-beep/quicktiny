@@ -1,0 +1,15 @@
+{"en_cards": [
+  {"slug": "days-between-dates", "icon": "calendar", "cat": "Utility", "badge": "Utility &middot; New", "name": "Days Between Dates", "desc": "Days, weeks, working days and months between two dates &mdash; or add days to a date.", "search": "days between dates calculator count days date difference working days add days utility"},
+  {"slug": "loan-calculator", "icon": "coins", "cat": "Utility", "badge": "Finance &middot; New", "name": "Loan Calculator", "desc": "Monthly payment, total interest and the real APR of flat-rate offers.", "search": "loan calculator monthly payment interest apr flat rate personal loan mortgage finance utility"},
+  {"slug": "bmi-calculator", "icon": "target", "cat": "Utility", "badge": "Health &middot; New", "name": "BMI Calculator", "desc": "Body mass index with WHO category and healthy weight for your height.", "search": "bmi calculator body mass index healthy weight health utility"},
+  {"slug": "pregnancy-due-date-calculator", "icon": "calendar", "cat": "Utility", "badge": "Health &middot; New", "name": "Due Date Calculator", "desc": "Pregnancy due date, weeks pregnant and key milestone dates.", "search": "pregnancy due date calculator weeks pregnant conception health utility"}],
+ "ar_cards": [
+  {"slug": "ar/pregnancy-calculator", "icon": "calendar", "badge": "صحة · جديد", "name": "حاسبة الحمل والولادة", "desc": "موعد الولادة وعمر الحمل بالأسابيع، بالميلادي والهجري.", "search": "حاسبة الحمل موعد الولادة عمر الحمل بالاسابيع"},
+  {"slug": "ar/bmi-calculator", "icon": "target", "badge": "صحة · جديد", "name": "حاسبة كتلة الجسم", "desc": "مؤشر كتلة الجسم BMI والوزن المثالي لطولك.", "search": "حاسبة كتلة الجسم bmi الوزن المثالي"},
+  {"slug": "ar/loan-calculator", "icon": "coins", "badge": "تمويل · جديد", "name": "حاسبة التمويل الشخصي", "desc": "القسط الشهري والأرباح والنسبة الحقيقية APR للتمويل الثابت.", "search": "حاسبة التمويل الشخصي القرض القسط الشهري مرابحة"},
+  {"slug": "ar/days-between-dates", "icon": "calendar", "badge": "تاريخ · جديد", "name": "حساب الأيام بين تاريخين", "desc": "عدد الأيام والأسابيع وأيام العمل بين تاريخين.", "search": "حساب الايام بين تاريخين كم يوم عدد الايام"}],
+ "footer": [["days-between-dates", "Days Between Dates"], ["loan-calculator", "Loan Calculator"], ["bmi-calculator", "BMI Calculator"], ["pregnancy-due-date-calculator", "Due Date Calculator"]],
+ "popular_en": [["days-between-dates", "Days between dates"], ["loan-calculator", "Loan calculator"], ["bmi-calculator", "BMI calculator"]],
+ "popular_ar": [["ar/pregnancy-calculator", "حاسبة الحمل"], ["ar/loan-calculator", "حاسبة التمويل"], ["ar/days-between-dates", "حساب الأيام بين تاريخين"], ["ar/bmi-calculator", "حاسبة كتلة الجسم"]],
+ "sitemap": ["days-between-dates", "ar/days-between-dates", "bmi-calculator", "ar/bmi-calculator", "pregnancy-due-date-calculator", "ar/pregnancy-calculator", "loan-calculator", "ar/loan-calculator"],
+ "count_add": 4}

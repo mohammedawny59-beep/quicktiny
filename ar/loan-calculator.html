@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>حاسبة التمويل الشخصي والقروض — القسط الشهري والنسبة الحقيقية | QuickTiny</title>
+  <meta name="description" content="احسب قسط التمويل الشخصي أو القرض الشهري وإجمالي الأرباح، وقارن النسبة الثابتة (المرابحة) بالنسبة السنوية الحقيقية APR مع جدول سنوي. مجانية.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/loan-calculator">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/loan-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/loan-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/loan-calculator">
+  <meta property="og:title" content="حاسبة التمويل الشخصي والقروض — القسط الشهري والنسبة الحقيقية | QuickTiny">
+  <meta property="og:description" content="احسب قسط التمويل الشخصي أو القرض الشهري وإجمالي الأرباح، وقارن النسبة الثابتة (المرابحة) بالنسبة السنوية الحقيقية APR مع جدول سنوي. مجانية.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/loan-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/loan-ar.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/loan-ar.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .lc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px}
+    .lc-grid input,.lc-grid select{width:100%}
+    .lc-out{margin-top:16px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .lc-big{font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+    .lc-sub{color:var(--text-dim);font-size:15px;margin-top:6px}
+    .lc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px;margin-top:14px}
+    .lc-stat{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+    .lc-stat span{display:block;font-size:12px;color:var(--muted)}.lc-stat b{font-size:18px;font-variant-numeric:tabular-nums}
+    .lc-sec{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:16px;background:rgba(255,255,255,.02)}
+    .lc-sec h2{margin:0 0 10px;font-size:15px;color:var(--text-dim)}
+    .lc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.lc-chips .chip{padding:5px 11px;font-size:12.5px}
+    .lc-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+    .lc-table th,.lc-table td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:start;font-variant-numeric:tabular-nums}
+    .lc-table th{color:var(--muted);font-weight:600}
+    .lc-scroll{overflow-x:auto}
+    .bm-scale{position:relative;height:14px;border-radius:99px;margin:18px 0 6px;background:linear-gradient(90deg,#4fa3ff 0 14%,#3ddc97 14% 40%,#ffd166 40% 60%,#ff8c5a 60% 80%,#ff5a6e 80%)}
+    [dir=rtl] .bm-scale{background:linear-gradient(-90deg,#4fa3ff 0 14%,#3ddc97 14% 40%,#ffd166 40% 60%,#ff8c5a 60% 80%,#ff5a6e 80%)}
+    #bmPin{position:absolute;top:-6px;width:4px;height:26px;border-radius:3px;background:#fff;box-shadow:0 0 0 2px #05060f;transform:translateX(-50%)}
+    [dir=rtl] #bmPin{transform:translateX(50%)}
+    .bm-cat{font-size:20px;font-weight:700}.bm-normal{color:#7ff0b0}.bm-under{color:#8fc3ff}.bm-over{color:#ffd88a}.bm-ob1,.bm-ob2,.bm-ob3{color:#ffa3a3}
+    .pg-track{height:10px;border-radius:99px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden}
+    #pgBar{height:100%;background:var(--grad);border-radius:99px;width:0}
+    .lc-note{font-size:13px;color:var(--text-dim);margin-top:10px;line-height:1.6}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة التمويل والقروض</span></div>
+  <div class="lang-switch">
+    <a href="/loan-calculator">EN</a>
+    <a href="/ar/loan-calculator" class="active">AR</a>
+  </div>
+
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">تمويل</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حاسبة التمويل الشخصي والقروض — القسط الشهري والتكلفة الحقيقية</h1>
+    <p>احسب القسط الشهري وإجمالي ما ستدفعه في التمويل الشخصي أو القرض، مع جدول سنوي، وقارن عروض النسبة الثابتة (المرابحة) بالنسبة السنوية الحقيقية APR التي تكشف التكلفة الفعلية.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="lc-grid">
+      <div><label class="field-label" for="lnAmt">مبلغ التمويل</label><input type="text" inputmode="decimal" id="lnAmt" value="100000"></div>
+      <div><label class="field-label" for="lnRate">النسبة السنوية %</label><input type="text" inputmode="decimal" id="lnRate" value="3"></div>
+      <div><label class="field-label" for="lnYears">المدة (سنوات)</label><input type="text" inputmode="numeric" id="lnYears" value="5"></div>
+      <div><label class="field-label" for="lnMonths">+ أشهر</label><input type="text" inputmode="numeric" id="lnMonths" value="0"></div>
+      <div><label class="field-label" for="lnMethod">نوع النسبة</label><select id="lnMethod"><option value="flat">ثابتة / مرابحة (Flat)</option><option value="reducing">متناقصة (APR)</option></select></div>
+      <div><label class="field-label" for="lnFee">رسوم إدارية (اختياري)</label><input type="text" inputmode="decimal" id="lnFee" value="0"></div></div>
+    <div class="lc-out"><div class="lc-sub">القسط الشهري</div><div class="lc-big" id="lnMonthly">—</div>
+      <div class="lc-stats"><div class="lc-stat"><span>إجمالي المدفوع</span><b id="lnTotal">—</b></div><div class="lc-stat"><span>إجمالي الأرباح/الفوائد</span><b id="lnInt">—</b></div><div class="lc-stat"><span>النسبة السنوية الحقيقية APR</span><b id="lnApr">—</b></div></div>
+      <p class="lc-note" id="lnAprNote" hidden>النسبة الثابتة تُحسب على كامل المبلغ طوال المدة، لذلك تكون النسبة الحقيقية تقريبًا ضعفها — قارن العروض دائمًا بالـ APR.</p></div>
+    <div class="lc-sec"><h2>الجدول السنوي</h2><div class="lc-scroll"><table class="lc-table"><thead><tr><th>السنة</th><th>المدفوع</th><th>من الأصل</th><th>الأرباح</th><th>المتبقي</th></tr></thead><tbody id="lnSched"></tbody></table></div></div>
+    <p class="lc-note">النتائج تقديرية للمقارنة — العقد والرسوم والتأمين لدى البنك تحدد المبلغ النهائي.</p>
+  </div>
+  <script src="/hijri.js"></script>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>الفرق بين النسبة الثابتة والمتناقصة</h2><ul class="benefits"><li><span><strong>الثابتة (المرابحة):</strong> تُحسب الأرباح على المبلغ الأصلي كاملًا طوال المدة. تمويل 100,000 بنسبة 3% لمدة 5 سنوات = 15,000 أرباح.</span></li><li><span><strong>المتناقصة (APR):</strong> تُحسب على المتبقي فقط فتقل كل شهر. نسبة 3% ثابتة لـ 5 سنوات تعادل تقريبًا 5.6% متناقصة.</span></li></ul>
+    <h2>أسئلة شائعة</h2><details class="faq-item"><summary>كيف أحسب قسط التمويل الشخصي؟</summary><p>في النسبة الثابتة: (المبلغ + المبلغ × النسبة × السنوات) ÷ عدد الأشهر. مثال: (100,000 + 15,000) ÷ 60 = 1,916.67 شهريًا.</p></details><details class="faq-item"><summary>ما هي النسبة السنوية APR؟</summary><p>التكلفة الحقيقية للتمويل سنويًا بعد احتساب طريقة السداد والرسوم، وهي الأفضل لمقارنة عروض البنوك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/percentage-calculator">حاسبة النسبة المئوية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/vat-calculator">حاسبة ضريبة القيمة المضافة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/end-of-service-calculator">حاسبة نهاية الخدمة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny حاسبة التمويل", "url": "https://quicktinyv2.vercel.app/ar/loan-calculator", "description": "احسب قسط التمويل الشخصي أو القرض الشهري وإجمالي الأرباح، وقارن النسبة الثابتة (المرابحة) بالنسبة السنوية الحقيقية APR مع جدول سنوي. مجانية.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "حاسبة التمويل والقروض", "item": "https://quicktinyv2.vercel.app/ar/loan-calculator"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "كيف أحسب قسط التمويل الشخصي؟", "acceptedAnswer": {"@type": "Answer", "text": "بالنسبة الثابتة: (المبلغ + المبلغ × النسبة × السنوات) ÷ عدد الأشهر."}}, {"@type": "Question", "name": "ما الفرق بين النسبة الثابتة والمتناقصة؟", "acceptedAnswer": {"@type": "Answer", "text": "الثابتة تُحسب على كامل المبلغ طوال المدة، والمتناقصة على المتبقي فقط، لذلك الثابتة أغلى فعليًا."}}]}</script>
+</body>
+</html>

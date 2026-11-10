@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حاسبة ضريبة القيمة المضافة — QuickTiny Embed</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://quicktinyv2.vercel.app/ar/vat-calculator">
+<style>*,*::before,*::after{box-sizing:border-box}html,body{margin:0;background:transparent}
+body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Roboto,Arial,sans-serif;color:#eef0fb;line-height:1.5;font-size:14px}
+.card{background:#10131c;border:1px solid #232838;border-radius:14px;padding:14px}
+h1{font-size:16px;margin:0 0 10px}
+label{display:block;font-size:12px;color:#9aa3b8;margin:8px 0 4px}
+input,select{width:100%;background:#0a0c12;border:1px solid #2a3142;color:#eef0fb;border-radius:9px;padding:8px 10px;font:inherit}
+input:focus,select:focus{outline:2px solid #6b6bff;outline-offset:0}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.out{margin-top:12px;padding:12px;border-radius:12px;background:linear-gradient(135deg,rgba(107,107,255,.18),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+.row{display:flex;justify-content:space-between;gap:8px;padding:2px 0}.row b{direction:ltr;font-variant-numeric:tabular-nums}
+.big{font-size:24px;font-weight:800;direction:ltr;font-variant-numeric:tabular-nums}
+.words{font-size:12.5px;color:#cfd3ff;margin-top:4px}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:11.5px;color:#7d869b}
+.foot a{color:#9fa3ff;text-decoration:none}
+.btn,.vt-del{cursor:pointer;background:#1b2030;border:1px solid #2a3142;color:#eef0fb;border-radius:9px;padding:6px 10px;font:inherit;font-size:12.5px}
+table{width:100%;border-collapse:collapse}td{padding:2px}.vt-table td:nth-child(2){width:60px}.vt-table td:nth-child(3){width:90px}.vt-table td:nth-child(4){width:70px;font-size:12px;color:#9aa3b8;direction:ltr;text-align:right}.vt-table td:nth-child(5){width:30px}.vt-table th{display:none}
+.vt-qty,.vt-price,.cl-num{direction:ltr;text-align:right}
+.pc-card{border:1px solid #232838;border-radius:12px;padding:10px;margin-top:8px}.pc-card h2{font-size:13px;color:#9aa3b8;margin:0 0 6px}
+.pc-line{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.pc-line input{width:84px;text-align:center}.pc-line select{width:auto}
+.pc-res{display:flex;justify-content:space-between;align-items:center;margin-top:6px}.pc-r{font-size:20px;font-weight:800;direction:ltr}.pc-f{font-size:11px;color:#7d869b;direction:ltr}.pc-copy{display:none}
+[hidden]{display:none!important}</style>
+</head>
+<body><div class="card" id="tool">
+<h1>حاسبة ضريبة القيمة المضافة</h1>
+<div class="g"><div><label for="vtCountry">الدولة</label><select id="vtCountry"></select></div><div><label for="vtMode">الأسعار</label><select id="vtMode"><option value="exc">قبل الضريبة</option><option value="inc">شاملة الضريبة</option></select></div>
+<div id="vtRateWrap" hidden><label for="vtRate">النسبة %</label><input id="vtRate" class="cl-num" value="15"></div><div id="vtCurWrap" hidden><label for="vtCur">العملة</label><select id="vtCur"></select></div></div>
+<table class="vt-table" style="margin-top:8px"><tbody id="vtRows"></tbody></table><button type="button" class="btn" id="vtAdd" style="margin-top:6px">+ بند</button>
+<div class="out"><div class="row"><span>قبل الضريبة</span><b><span id="vtNet"></span> <span class="vt-cur"></span></b></div><div class="row"><span>الضريبة (<span id="vtRateLbl"></span>)</span><b><span id="vtVat"></span> <span class="vt-cur"></span></b></div>
+<div class="big"><span id="vtTotal"></span> <span class="vt-cur"></span></div><div class="words" id="vtWords"></div><div class="words" id="vtHint" hidden></div></div>
+<div class="foot"><button type="button" class="btn" id="vtCopy">نسخ</button><span id="vtStatus"></span><a href="https://quicktinyv2.vercel.app/ar/vat-calculator?utm_source=embed&amp;utm_medium=widget" target="_blank" rel="noopener">بواسطة QuickTiny ↗</a></div>
+</div>
+<script>function qtCopy(t,el,l){try{navigator.clipboard.writeText(t);if(el)el.textContent=(l||"Copied")+" ✓"}catch(e){}}function qtTrack(){}</script>
+<script src="/tafqeet.js"></script><script src="/ar-calcs.js"></script>
+<script>(function(){function h(){try{parent.postMessage({qtEmbed:"vat-calculator",height:document.documentElement.scrollHeight},"*")}catch(e){}}addEventListener("load",h);new ResizeObserver(h).observe(document.body)})();</script>
+</body>
+</html>

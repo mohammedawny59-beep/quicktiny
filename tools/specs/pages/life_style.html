@@ -1,0 +1,25 @@
+  <style>
+    .lc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px}
+    .lc-grid input,.lc-grid select{width:100%}
+    .lc-out{margin-top:16px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .lc-big{font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+    .lc-sub{color:var(--text-dim);font-size:15px;margin-top:6px}
+    .lc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px;margin-top:14px}
+    .lc-stat{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+    .lc-stat span{display:block;font-size:12px;color:var(--muted)}.lc-stat b{font-size:18px;font-variant-numeric:tabular-nums}
+    .lc-sec{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:16px;background:rgba(255,255,255,.02)}
+    .lc-sec h2{margin:0 0 10px;font-size:15px;color:var(--text-dim)}
+    .lc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.lc-chips .chip{padding:5px 11px;font-size:12.5px}
+    .lc-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+    .lc-table th,.lc-table td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:start;font-variant-numeric:tabular-nums}
+    .lc-table th{color:var(--muted);font-weight:600}
+    .lc-scroll{overflow-x:auto}
+    .bm-scale{position:relative;height:14px;border-radius:99px;margin:18px 0 6px;background:linear-gradient(90deg,#4fa3ff 0 14%,#3ddc97 14% 40%,#ffd166 40% 60%,#ff8c5a 60% 80%,#ff5a6e 80%)}
+    [dir=rtl] .bm-scale{background:linear-gradient(-90deg,#4fa3ff 0 14%,#3ddc97 14% 40%,#ffd166 40% 60%,#ff8c5a 60% 80%,#ff5a6e 80%)}
+    #bmPin{position:absolute;top:-6px;width:4px;height:26px;border-radius:3px;background:#fff;box-shadow:0 0 0 2px #05060f;transform:translateX(-50%)}
+    [dir=rtl] #bmPin{transform:translateX(50%)}
+    .bm-cat{font-size:20px;font-weight:700}.bm-normal{color:#7ff0b0}.bm-under{color:#8fc3ff}.bm-over{color:#ffd88a}.bm-ob1,.bm-ob2,.bm-ob3{color:#ffa3a3}
+    .pg-track{height:10px;border-radius:99px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden}
+    #pgBar{height:100%;background:var(--grad);border-radius:99px;width:0}
+    .lc-note{font-size:13px;color:var(--text-dim);margin-top:10px;line-height:1.6}
+  </style>

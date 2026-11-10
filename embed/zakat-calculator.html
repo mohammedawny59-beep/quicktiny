@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حاسبة الزكاة — QuickTiny Embed</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://quicktinyv2.vercel.app/ar/zakat-calculator">
+<style>*,*::before,*::after{box-sizing:border-box}html,body{margin:0;background:transparent}
+body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Roboto,Arial,sans-serif;color:#eef0fb;line-height:1.5;font-size:14px}
+.card{background:#10131c;border:1px solid #232838;border-radius:14px;padding:14px}
+h1{font-size:16px;margin:0 0 10px}
+label{display:block;font-size:12px;color:#9aa3b8;margin:8px 0 4px}
+input,select{width:100%;background:#0a0c12;border:1px solid #2a3142;color:#eef0fb;border-radius:9px;padding:8px 10px;font:inherit}
+input:focus,select:focus{outline:2px solid #6b6bff;outline-offset:0}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.out{margin-top:12px;padding:12px;border-radius:12px;background:linear-gradient(135deg,rgba(107,107,255,.18),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+.row{display:flex;justify-content:space-between;gap:8px;padding:2px 0}.row b{direction:ltr;font-variant-numeric:tabular-nums}
+.big{font-size:24px;font-weight:800;direction:ltr;font-variant-numeric:tabular-nums}
+.words{font-size:12.5px;color:#cfd3ff;margin-top:4px}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:11.5px;color:#7d869b}
+.foot a{color:#9fa3ff;text-decoration:none}
+.btn,.vt-del{cursor:pointer;background:#1b2030;border:1px solid #2a3142;color:#eef0fb;border-radius:9px;padding:6px 10px;font:inherit;font-size:12.5px}
+table{width:100%;border-collapse:collapse}td{padding:2px}.vt-table td:nth-child(2){width:60px}.vt-table td:nth-child(3){width:90px}.vt-table td:nth-child(4){width:70px;font-size:12px;color:#9aa3b8;direction:ltr;text-align:right}.vt-table td:nth-child(5){width:30px}.vt-table th{display:none}
+.vt-qty,.vt-price,.cl-num{direction:ltr;text-align:right}
+.pc-card{border:1px solid #232838;border-radius:12px;padding:10px;margin-top:8px}.pc-card h2{font-size:13px;color:#9aa3b8;margin:0 0 6px}
+.pc-line{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.pc-line input{width:84px;text-align:center}.pc-line select{width:auto}
+.pc-res{display:flex;justify-content:space-between;align-items:center;margin-top:6px}.pc-r{font-size:20px;font-weight:800;direction:ltr}.pc-f{font-size:11px;color:#7d869b;direction:ltr}.pc-copy{display:none}
+[hidden]{display:none!important}</style>
+</head>
+<body><div class="card" id="tool">
+<h1>حاسبة الزكاة</h1>
+<div class="g"><div><label for="zkCur">العملة</label><select id="zkCur"><option value="SAR">ريال سعودي</option><option value="AED">درهم إماراتي</option><option value="KWD">دينار كويتي</option><option value="QAR">ريال قطري</option><option value="JOD">دينار أردني</option><option value="EGP">جنيه مصري</option><option value="USD">دولار</option></select></div>
+<div><label for="zkGoldPrice">سعر غرام ذهب 24</label><input id="zkGoldPrice" class="cl-num" placeholder="420"></div><div><label for="zkSilverPrice">سعر غرام الفضة</label><input id="zkSilverPrice" class="cl-num"></div>
+<div><label for="zkBasis">النصاب</label><select id="zkBasis"><option value="gold">ذهب 85غ</option><option value="silver">فضة 595غ</option></select></div>
+<div><label for="zkCash">النقود</label><input id="zkCash" class="cl-num"></div><div><label for="zkG24">ذهب 24 (غ)</label><input id="zkG24" class="cl-num"></div><div><label for="zkG21">ذهب 21 (غ)</label><input id="zkG21" class="cl-num"></div><div><label for="zkG18">ذهب 18 (غ)</label><input id="zkG18" class="cl-num"></div>
+<div hidden><input id="zkG22"><input id="zkSilver"><input id="zkTrade"><input id="zkRecv"><input id="zkInvest"></div><div><label for="zkDebts">ديون عليك</label><input id="zkDebts" class="cl-num"></div></div>
+<div class="out" id="zkResult"><div class="row"><span>صافي المال</span><b><span id="zkNetV"></span> <span class="zk-cur"></span></b></div><div class="row"><span>النصاب</span><b><span id="zkNisab"></span></b></div><div hidden><span id="zkAssets"></span><span id="zkPure"></span></div>
+<div class="big" id="zkAmount"></div><div class="words" id="zkWords"></div><div class="words" id="zkMsg"></div></div>
+<div class="foot"><button type="button" class="btn" id="zkCopy">نسخ</button><span id="zkStatus"></span><a href="https://quicktinyv2.vercel.app/ar/zakat-calculator?utm_source=embed&amp;utm_medium=widget" target="_blank" rel="noopener">بواسطة QuickTiny ↗</a></div>
+</div>
+<script>function qtCopy(t,el,l){try{navigator.clipboard.writeText(t);if(el)el.textContent=(l||"Copied")+" ✓"}catch(e){}}function qtTrack(){}</script>
+<script src="/tafqeet.js"></script><script src="/ar-calcs.js"></script>
+<script>(function(){function h(){try{parent.postMessage({qtEmbed:"zakat-calculator",height:document.documentElement.scrollHeight},"*")}catch(e){}}addEventListener("load",h);new ResizeObserver(h).observe(document.body)})();</script>
+</body>
+</html>

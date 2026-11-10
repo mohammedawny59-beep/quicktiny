@@ -81,6 +81,7 @@ function qtAge(birth, today) {
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    if (!$("hjHm")) return; // hijri.js is also loaded as a library by other pages
     var sel = $("hjHm"); QT_HIJRI_MONTHS.forEach(function (n, i) { var o = document.createElement("option"); o.value = i + 1; o.textContent = (i + 1) + " — " + n; sel.appendChild(o); });
     var t = today();
     $("hjG").value = iso(t.g); $("hjHy").value = t.h.y; $("hjHm").value = t.h.m; $("hjHd").value = t.h.d;

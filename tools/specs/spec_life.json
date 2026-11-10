@@ -1,0 +1,18 @@
+{"pages": [
+ {"slug": "ar/days-between-dates", "title": "حساب الأيام بين تاريخين — كم يوم بين تاريخين؟ | QuickTiny", "desc": "احسب عدد الأيام بين تاريخين بالسنوات والأشهر والأسابيع وأيام العمل، وأضف أو اطرح أيامًا من أي تاريخ، مع التاريخ الهجري. مجاني وفوري.",
+  "app_name": "QuickTiny حساب الأيام بين تاريخين", "crumb": "حساب الأيام بين تاريخين", "category": "UtilitiesApplication", "body": "pages/life_dates_ar.html", "style": "pages/life_style.html",
+  "alternates": [["en", "days-between-dates"], ["ar", "ar/days-between-dates"], ["x-default", "days-between-dates"]], "switch": [["EN", "days-between-dates"], ["AR", "ar/days-between-dates"]],
+  "faq": [["كيف أحسب عدد الأيام بين تاريخين؟", "اختر تاريخ البداية والنهاية فيظهر العدد فورًا بالأيام والأسابيع والأشهر وأيام العمل."]]},
+ {"slug": "ar/bmi-calculator", "title": "حاسبة كتلة الجسم BMI والوزن المثالي حسب الطول | QuickTiny", "desc": "احسب مؤشر كتلة الجسم BMI بالكيلو والسنتيمتر، واعرف تصنيفك حسب منظمة الصحة العالمية والوزن المثالي لطولك. مجانية وخاصة.",
+  "app_name": "QuickTiny حاسبة كتلة الجسم", "crumb": "حاسبة كتلة الجسم", "category": "HealthApplication", "body": "pages/life_bmi_ar.html", "style": "pages/life_style.html",
+  "alternates": [["en", "bmi-calculator"], ["ar", "ar/bmi-calculator"], ["x-default", "bmi-calculator"]], "switch": [["EN", "bmi-calculator"], ["AR", "ar/bmi-calculator"]],
+  "faq": [["كيف أحسب كتلة الجسم؟", "الوزن بالكيلوغرام مقسومًا على مربع الطول بالمتر."], ["ما هو الوزن المثالي؟", "الوزن الذي يجعل مؤشر كتلة الجسم بين 18.5 و24.9."]]},
+ {"slug": "ar/pregnancy-calculator", "title": "حاسبة الحمل والولادة — موعد الولادة وعمر الحمل بالأسابيع | QuickTiny", "desc": "احسبي موعد الولادة المتوقع وعمر الحمل بالأسابيع من آخر دورة أو تاريخ الإخصاب، مع مواعيد المراحل المهمة بالميلادي والهجري. مجانية وخاصة.",
+  "app_name": "QuickTiny حاسبة الحمل", "crumb": "حاسبة الحمل", "category": "HealthApplication", "body": "pages/life_due_ar.html", "style": "pages/life_style.html",
+  "alternates": [["en", "pregnancy-due-date-calculator"], ["ar", "ar/pregnancy-calculator"], ["x-default", "pregnancy-due-date-calculator"]], "switch": [["EN", "pregnancy-due-date-calculator"], ["AR", "ar/pregnancy-calculator"]],
+  "faq": [["كيف أحسب موعد الولادة؟", "أول يوم من آخر دورة + 280 يومًا، مع تعديل حسب طول الدورة."]]},
+ {"slug": "ar/loan-calculator", "title": "حاسبة التمويل الشخصي والقروض — القسط الشهري والنسبة الحقيقية | QuickTiny", "desc": "احسب قسط التمويل الشخصي أو القرض الشهري وإجمالي الأرباح، وقارن النسبة الثابتة (المرابحة) بالنسبة السنوية الحقيقية APR مع جدول سنوي. مجانية.",
+  "app_name": "QuickTiny حاسبة التمويل", "crumb": "حاسبة التمويل والقروض", "category": "FinanceApplication", "body": "pages/life_loan_ar.html", "style": "pages/life_style.html",
+  "alternates": [["en", "loan-calculator"], ["ar", "ar/loan-calculator"], ["x-default", "loan-calculator"]], "switch": [["EN", "loan-calculator"], ["AR", "ar/loan-calculator"]],
+  "faq": [["كيف أحسب قسط التمويل الشخصي؟", "بالنسبة الثابتة: (المبلغ + المبلغ × النسبة × السنوات) ÷ عدد الأشهر."], ["ما الفرق بين النسبة الثابتة والمتناقصة؟", "الثابتة تُحسب على كامل المبلغ طوال المدة، والمتناقصة على المتبقي فقط، لذلك الثابتة أغلى فعليًا."]]}
+]}

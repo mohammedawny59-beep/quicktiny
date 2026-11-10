@@ -1,0 +1,39 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Days Between Dates</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Date & time</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Days Between Two Dates — Calculator</h1>
+    <p>Count the days between any two dates — with years, months, weeks, working days and hours — or add and subtract days from a date. Handy for deadlines, notice periods, trips and countdowns.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="lc-grid">
+      <div><label class="field-label" for="dtA">Start date</label><input type="date" id="dtA"></div>
+      <div><label class="field-label" for="dtB">End date</label><input type="date" id="dtB"></div>
+      <div><label class="field-label" for="dtWeekend">Weekend</label><select id="dtWeekend"><option value="0,6">Saturday + Sunday</option><option value="5,6">Friday + Saturday</option><option value="5">Friday only</option><option value="0">Sunday only</option></select></div>
+    </div>
+    <div class="checkline"><input type="checkbox" id="dtInc"><label for="dtInc">Include the end date (+1 day)</label></div>
+    <div class="lc-out"><div class="lc-big"><span id="dtDays">—</span> days</div><div class="lc-sub"><span id="dtYmd"></span> <span id="dtDir"></span></div>
+      <div class="lc-stats"><div class="lc-stat"><span>Weeks</span><b id="dtWeeks">—</b></div><div class="lc-stat"><span>Working days</span><b id="dtWork">—</b></div><div class="lc-stat"><span>Hours</span><b id="dtHours">—</b></div></div></div>
+    <div class="lc-sec"><h2>Add or subtract days</h2><div class="lc-grid">
+      <div><label class="field-label" for="dtBase">From</label><input type="date" id="dtBase"></div>
+      <div><label class="field-label" for="dtOp">Operation</label><select id="dtOp"><option value="add">Add</option><option value="sub">Subtract</option></select></div>
+      <div><label class="field-label" for="dtN">Days</label><input type="text" inputmode="numeric" id="dtN" value="90"></div></div>
+      <div class="lc-big" style="font-size:22px;margin-top:12px" id="dtAdd">—</div></div>
+  </div>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>How the count works</h2><ul class="benefits"><li><span>By default the start date counts and the end date doesn't (like “nights” on a trip). Tick “include the end date” to count both.</span></li><li><span>Working days skip the weekend you choose — Saturday/Sunday or Friday/Saturday. Public holidays aren't removed.</span></li><li><span>Leap years are handled automatically.</span></li></ul>
+    <h2>Frequently asked questions</h2><details class="faq-item"><summary>How many days until New Year?</summary><p>Set the start date to today and the end date to January 1 — the result updates instantly.</p></details><details class="faq-item"><summary>What date is 90 days from today?</summary><p>Use “Add or subtract days”: from today, add 90.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/timestamp-converter">Timestamp Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/cron-explainer">Cron Explainer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
