@@ -169,7 +169,7 @@
   </div>
 </footer>
 <script src="/site.js"></script>
-<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Due Date Calculator","url":"https://quicktinyv2.vercel.app/pregnancy-due-date-calculator","description":"Estimate your due date from your last period (with cycle length) or conception date, see how many weeks pregnant you are and key milestone dates. Free and private.","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Due Date Calculator","item":"https://quicktinyv2.vercel.app/pregnancy-due-date-calculator"}]}</script>

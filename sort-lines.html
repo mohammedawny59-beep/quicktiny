@@ -193,7 +193,7 @@
   </div>
 </footer>
 <script src="/site.js"></script>
-<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Sort Lines","url":"https://quicktinyv2.vercel.app/sort-lines","description":"Sort any list of lines alphabetically or reverse-alphabetically in one click. Free online line sorter, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Sort Lines","item":"https://quicktinyv2.vercel.app/sort-lines"}]}</script>
