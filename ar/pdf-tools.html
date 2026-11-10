@@ -32,6 +32,15 @@
     .pdf-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
     .pdf-mini{padding:4px 10px !important;font-size:13px !important;min-width:0}
     .pdf-out{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .pdf-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px;width:100%}
+    .pdf-thumb{display:flex;flex-direction:column;gap:6px;padding:8px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);text-decoration:none;color:var(--text-dim);font-size:12px}
+    .pdf-thumb:hover{border-color:var(--line-strong);color:var(--text)}
+    .pdf-thumb img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff;border-radius:6px}
+    .pdf-cmp-res{width:100%;padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .pdf-cmp-nums{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:18px;direction:ltr}
+    .pdf-cmp-nums b{font-size:26px}.pdf-cmp-nums .arr{color:var(--muted)}
+    .pdf-cmp-nums .pct.good{color:#7ff0b0;font-weight:800}.pdf-cmp-nums .pct.bad{color:#ffd88a;font-weight:800}
+    .pdf-warn{font-size:13.5px;color:var(--text-dim);margin:12px 0 0;line-height:1.6}
   </style>
 </head>
 <body>
@@ -74,6 +83,8 @@
       <button class="chip" data-tab="pages" role="tab" aria-selected="false">استخراج / حذف / تقسيم الصفحات</button>
       <button class="chip" data-tab="rotate" role="tab" aria-selected="false">تدوير</button>
       <button class="chip" data-tab="images" role="tab" aria-selected="false">صور ← PDF</button>
+      <button class="chip" data-tab="toimg" role="tab" aria-selected="false">PDF ← صور JPG</button>
+      <button class="chip" data-tab="compress" role="tab" aria-selected="false">ضغط PDF</button>
     </div>
 
     <section class="pdf-panel" id="panel-merge">
@@ -157,6 +168,42 @@
       <div id="imgStatus" class="result" aria-live="polite"></div>
       <div id="imgOut" class="pdf-out"></div>
     </section>
+
+    <section class="pdf-panel" id="panel-toimg" hidden>
+      <div class="dropzone" id="toimgDz" tabindex="0" role="button">
+        <strong>اسحب ملف PDF هنا</strong> أو اضغط للاختيار<br><span style="font-size:13px">كل صفحة تتحول إلى صورة</span>
+      </div>
+      <input tabindex="-1" aria-label="اختيار ملف" id="toimgFile" type="file" accept="application/pdf,.pdf" class="sr-only">
+      <div id="toimgStatus" class="result" aria-live="polite"></div>
+      <div id="toimgControls" hidden>
+        <div class="row-2">
+          <div><label class="field-label" for="toimgFormat">صيغة الصور</label>
+            <select id="toimgFormat"><option value="jpg">JPG</option><option value="png">PNG (أوضح للنصوص)</option><option value="webp">WebP (الأصغر)</option></select></div>
+          <div><label class="field-label" for="toimgDpi">الدقة</label>
+            <select id="toimgDpi"><option value="72">72 DPI — معاينة</option><option value="150" selected>150 DPI — واضحة على الشاشة</option><option value="300">300 DPI — جودة طباعة</option></select></div>
+        </div>
+        <label class="field-label" for="toimgRange">الصفحات (اتركه فارغًا لكل الصفحات)</label>
+        <input type="text" id="toimgRange" placeholder="مثال: 1-3, 5" autocomplete="off" dir="ltr">
+        <div class="btn-row"><button class="btn" id="toimgBtn" type="button">حوّل إلى صور</button></div>
+      </div>
+      <div id="toimgOut" class="pdf-out"></div>
+    </section>
+
+    <section class="pdf-panel" id="panel-compress" hidden>
+      <div class="dropzone" id="cmpDz" tabindex="0" role="button">
+        <strong>اسحب ملف PDF هنا</strong> أو اضغط للاختيار<br><span style="font-size:13px">الأفضل للملفات الممسوحة ضوئيًا والمليئة بالصور</span>
+      </div>
+      <input tabindex="-1" aria-label="اختيار ملف" id="cmpFile" type="file" accept="application/pdf,.pdf" class="sr-only">
+      <div id="cmpStatus" class="result" aria-live="polite"></div>
+      <div id="cmpControls" hidden>
+        <label class="field-label" for="cmpLevel">درجة الضغط</label>
+        <select id="cmpLevel"><option value="strong">قوي — أصغر حجم (96 DPI)</option><option value="balanced" selected>متوازن — مناسب للإيميل (140 DPI)</option><option value="light">خفيف — أفضل جودة (200 DPI)</option></select>
+        <div class="checkline"><input type="checkbox" id="cmpGray"><label for="cmpGray">أبيض وأسود (حجم أصغر)</label></div>
+        <p class="pdf-warn">طريقة العمل: كل صفحة تُعاد رسمها كصورة مضغوطة، فيصغر حجم الملفات الممسوحة والصور كثيرًا. لكن النص في الملف الجديد لا يمكن تحديده أو البحث فيه وتُحذف الروابط — احتفظ بالأصل إن احتجت ذلك.</p>
+        <div class="btn-row"><button class="btn" id="cmpBtn" type="button">اضغط الملف</button></div>
+      </div>
+      <div id="cmpOut" class="pdf-out"></div>
+    </section>
   </div>
   <script>
   // Arabic number agreement: 1 صفحة واحدة، 2 صفحتان، 3–10 صفحات، 11+ صفحة
@@ -194,11 +241,24 @@
     "Building PDF...": "جارٍ إنشاء ملف PDF...",
     "Created a PDF with {pages} ✓": "تم إنشاء ملف PDF ({pages}) ✓",
     "Ready — reorder if needed, then create the PDF.": "جاهز — رتّب الصور إن أردت ثم أنشئ الملف.",
-    "Choose JPG, PNG or WebP images.": "اختر صورًا بصيغة JPG أو PNG أو WebP."
+    "Choose JPG, PNG or WebP images.": "اختر صورًا بصيغة JPG أو PNG أو WebP.",
+    "Choose a PDF file.": "اختر ملف PDF.",
+    "Reading {name}…": "جارٍ قراءة {name}…",
+    "Rendering page {i} of {n}…": "جارٍ تحويل الصفحة {i} من {n}…",
+    "Page {i}": "صفحة {i}",
+    "Download all as ZIP": "تنزيل الكل ZIP",
+    "Done — {n} images. Click a page to download it.": "تم — {n} صورة. اضغط على أي صفحة لتنزيلها.",
+    "Compressing page {i} of {n}…": "جارٍ ضغط الصفحة {i} من {n}…",
+    "Download compressed PDF": "تنزيل الملف المضغوط",
+    "This PDF is already well compressed — the new file isn't meaningfully smaller. Keep your original, or try “Strong”.": "هذا الملف مضغوط جيدًا أصلًا — الملف الجديد ليس أصغر بشكل ملحوظ. احتفظ بالأصل أو جرّب «قوي».",
+    "Done — {pct}% smaller.": "تم — أصغر بنسبة {pct}%.",
+    "Your browser couldn't encode this format.": "المتصفح لم يستطع إنشاء هذه الصيغة."
   };
   </script>
   <script src="/shopify-image-tools.js"></script>
   <script src="/pdf-tools.js"></script>
+  <script src="/qt-zip.js"></script>
+  <script src="/pdf-render.js"></script>
 
   <div class="content">
     <h2>طريقة الاستخدام</h2>
