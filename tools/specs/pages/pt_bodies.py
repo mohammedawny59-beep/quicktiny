@@ -24,12 +24,23 @@ STYLE = """  <style>
     @media(max-width:760px){.pt-row{grid-template-columns:1fr}}
     .pt-box{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:rgba(255,255,255,.02)}
     .pt-box h2{margin:0 0 10px;font-size:15px;color:var(--text-dim)}
-    .pt-qibla{display:flex;align-items:center;gap:18px}
-    .pt-compass{width:110px;height:110px;border-radius:50%;border:2px solid var(--line-strong);position:relative;flex:none;background:radial-gradient(circle,rgba(255,255,255,.04),transparent 70%)}
-    .pt-compass::before{content:"N";position:absolute;top:4px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;color:var(--muted)}
+    .pt-qibla{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+    .pt-compass{width:150px;height:150px;border-radius:50%;position:relative;flex:none;background:radial-gradient(circle,rgba(255,255,255,.05),transparent 70%);transition:transform .25s linear}
+    .pt-compass .pt-ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--line-strong)}
+    .pt-c{position:absolute;font-size:12px;font-weight:800;color:var(--muted);line-height:1;direction:ltr}
+    .pt-c.n{top:6px;left:50%;transform:translateX(-50%);color:#ff8f8f}.pt-c.s{bottom:6px;left:50%;transform:translateX(-50%)}
+    .pt-c.e{right:7px;top:50%;transform:translateY(-50%)}.pt-c.w{left:7px;top:50%;transform:translateY(-50%)}
     #ptNeedle{position:absolute;inset:0;transition:transform .4s}
-    #ptNeedle::before{content:"";position:absolute;left:50%;top:12px;width:4px;height:44px;margin-left:-2px;border-radius:3px;background:var(--grad)}
-    #ptNeedle::after{content:"🕋";position:absolute;left:50%;top:-2px;transform:translateX(-50%);font-size:16px}
+    #ptNeedle::before{content:"";position:absolute;left:50%;top:26px;width:4px;height:50px;margin-left:-2px;border-radius:3px;background:var(--grad)}
+    #ptNeedle::after{content:"🕋";position:absolute;left:50%;top:6px;transform:translateX(-50%);font-size:20px}
+    .pt-hub{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#fff}
+    .pt-compass.pt-on{box-shadow:0 0 0 3px rgba(59,226,255,.35)}
+    .pt-compass.pt-aligned{box-shadow:0 0 0 4px rgba(60,220,140,.7)}
+    #ptFrom{font-size:13px;color:var(--text-dim);margin-top:4px}
+    #ptFrom.pt-warn{color:#ffd88a}
+    #ptCompassMsg{font-size:14px;font-weight:700;margin-top:8px;min-height:1px}
+    #ptCompassMsg.ok{color:#7ff0b0}
+    .pt-howto{font-size:12.5px;color:var(--text-dim);margin-top:8px;line-height:1.6}
     #ptQibla{font-size:26px;font-weight:800;direction:ltr;display:inline-block}
     #ptCount{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
     .pt-ev{padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);text-align:center}
@@ -64,7 +75,7 @@ T = {
  "en": dict(home="/", homeL="Home", crumb="Prayer Times", badge="Islamic", h1="Prayer Times Today — Fajr, Dhuhr, Asr, Maghrib, Isha",
    p="Accurate daily prayer times for your city or exact location, with the next prayer countdown, Qibla direction, a monthly timetable and a printable Ramadan timetable. Calculated on your device with official methods (Umm al-Qura, MWL, Egyptian, ISNA and more).",
    search="City", ph="Type a city, e.g. London", geo="Use my location", method="Calculation method", asr="Asr", asr1="Standard (Shafi'i, Maliki, Hanbali)", asr2="Hanafi", h12="12-hour clock",
-   qibla="Qibla direction", qiblaNote="degrees clockwise from true north · distance to the Kaaba:", events="Countdown", month="Monthly timetable", printM="Print", ramadan="Ramadan", printR="Print timetable",
+   qibla="Qibla direction", live="Live compass (phone)", howto="Without the live compass: lay the phone flat and turn it until N on the dial points north, then face the 🕋 arrow — or turn until your phone's compass app shows the degree above.", qiblaNote="degrees clockwise from true north · distance to the Kaaba:", events="Countdown", month="Monthly timetable", printM="Print", ramadan="Ramadan", printR="Print timetable",
    cols=["Day", "Hijri", "Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"], rcols=["Day", "Date", "Imsak", "Fajr", "Dhuhr", "Asr", "Iftar (Maghrib)", "Isha"],
    content="""<h2>How are these prayer times calculated?</h2>
     <ul class="benefits"><li><span>From the sun's position for your coordinates and date, using the method's Fajr and Isha angles (e.g. Umm al-Qura: Fajr 18.5°, Isha 90 minutes after Maghrib, 120 in Ramadan).</span></li>
@@ -78,7 +89,7 @@ T = {
  "ar": dict(home="/ar", homeL="الرئيسية", crumb="مواقيت الصلاة", badge="إسلامي", h1="مواقيت الصلاة اليوم — الفجر والظهر والعصر والمغرب والعشاء",
    p="مواقيت صلاة دقيقة لمدينتك أو لموقعك الحالي، مع العد التنازلي للصلاة القادمة، واتجاه القبلة، وجدول شهري، وإمساكية رمضان قابلة للطباعة. تُحسب على جهازك بالطرق المعتمدة (أم القرى، رابطة العالم الإسلامي، الهيئة المصرية وغيرها).",
    search="المدينة", ph="اكتب اسم المدينة، مثل الرياض", geo="استخدم موقعي", method="طريقة الحساب", asr="العصر", asr1="الجمهور (الشافعي والمالكي والحنبلي)", asr2="الحنفي", h12="نظام 12 ساعة",
-   qibla="اتجاه القبلة", qiblaNote="درجة باتجاه عقارب الساعة من الشمال الحقيقي · المسافة إلى الكعبة:", events="العد التنازلي", month="الجدول الشهري", printM="طباعة", ramadan="إمساكية رمضان", printR="طباعة الإمساكية",
+   qibla="اتجاه القبلة", live="بوصلة حية (للجوال)", howto="بدون البوصلة الحية: ضع الجوال مسطحًا وأدره حتى يشير حرف N في الدائرة إلى الشمال، ثم اتجه نحو سهم 🕋 — أو افتح تطبيق البوصلة في جوالك واستدر حتى تظهر الدرجة المكتوبة أعلاه.", qiblaNote="درجة باتجاه عقارب الساعة من الشمال الحقيقي · المسافة إلى الكعبة:", events="العد التنازلي", month="الجدول الشهري", printM="طباعة", ramadan="إمساكية رمضان", printR="طباعة الإمساكية",
    cols=["اليوم", "الهجري", "الفجر", "الشروق", "الظهر", "العصر", "المغرب", "العشاء"], rcols=["اليوم", "التاريخ", "الإمساك", "الفجر", "الظهر", "العصر", "المغرب (الإفطار)", "العشاء"],
    content="""<h2>كيف تُحسب مواقيت الصلاة؟</h2>
     <ul class="benefits"><li><span>من موقع الشمس حسب إحداثيات مدينتك والتاريخ، بزوايا الفجر والعشاء الخاصة بكل طريقة (أم القرى: الفجر 18.5° والعشاء بعد المغرب بـ90 دقيقة، و120 دقيقة في رمضان).</span></li>
@@ -117,7 +128,9 @@ for lang, t in T.items():
     <div class="pt-head"><div><h2 id="ptPlace"></h2><div id="ptDate"></div></div><div id="ptNext" aria-live="polite"></div></div>
     <div id="ptGrid"></div>
     <div class="pt-row">
-      <div class="pt-box"><h2>{t['qibla']}</h2><div class="pt-qibla"><div class="pt-compass"><div id="ptNeedle"></div></div><div><div id="ptQibla"></div><div style="font-size:12.5px;color:var(--text-dim)">{t['qiblaNote']} <b id="ptKm"></b></div></div></div></div>
+      <div class="pt-box"><h2>{t['qibla']}</h2><div class="pt-qibla"><div class="pt-compass" id="ptDial"><span class="pt-ring"></span><span class="pt-c n">N</span><span class="pt-c e">E</span><span class="pt-c s">S</span><span class="pt-c w">W</span><div id="ptNeedle"></div><span class="pt-hub"></span></div><div style="flex:1;min-width:180px"><div id="ptQibla"></div><div id="ptFrom"></div><div style="font-size:12.5px;color:var(--text-dim)">{t['qiblaNote']} <b id="ptKm"></b></div>
+        <button type="button" class="btn btn-secondary" id="ptCompassBtn" style="margin-top:10px">🧭 {t['live']}</button><div id="ptCompassMsg" aria-live="polite"></div></div></div>
+        <p class="pt-howto" id="ptHowto">{t['howto']}</p></div>
       <div class="pt-box"><h2>{t['events']}</h2><div id="ptCount"></div></div>
     </div>
     <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>{t['month']}</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth"><button type="button" class="btn btn-secondary" data-print="month">{t['printM']}</button></div></div>

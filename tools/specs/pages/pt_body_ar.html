@@ -19,7 +19,9 @@
     <div class="pt-head"><div><h2 id="ptPlace"></h2><div id="ptDate"></div></div><div id="ptNext" aria-live="polite"></div></div>
     <div id="ptGrid"></div>
     <div class="pt-row">
-      <div class="pt-box"><h2>اتجاه القبلة</h2><div class="pt-qibla"><div class="pt-compass"><div id="ptNeedle"></div></div><div><div id="ptQibla"></div><div style="font-size:12.5px;color:var(--text-dim)">درجة باتجاه عقارب الساعة من الشمال الحقيقي · المسافة إلى الكعبة: <b id="ptKm"></b></div></div></div></div>
+      <div class="pt-box"><h2>اتجاه القبلة</h2><div class="pt-qibla"><div class="pt-compass" id="ptDial"><span class="pt-ring"></span><span class="pt-c n">N</span><span class="pt-c e">E</span><span class="pt-c s">S</span><span class="pt-c w">W</span><div id="ptNeedle"></div><span class="pt-hub"></span></div><div style="flex:1;min-width:180px"><div id="ptQibla"></div><div id="ptFrom"></div><div style="font-size:12.5px;color:var(--text-dim)">درجة باتجاه عقارب الساعة من الشمال الحقيقي · المسافة إلى الكعبة: <b id="ptKm"></b></div>
+        <button type="button" class="btn btn-secondary" id="ptCompassBtn" style="margin-top:10px">🧭 بوصلة حية (للجوال)</button><div id="ptCompassMsg" aria-live="polite"></div></div></div>
+        <p class="pt-howto" id="ptHowto">بدون البوصلة الحية: ضع الجوال مسطحًا وأدره حتى يشير حرف N في الدائرة إلى الشمال، ثم اتجه نحو سهم 🕋 — أو افتح تطبيق البوصلة في جوالك واستدر حتى تظهر الدرجة المكتوبة أعلاه.</p></div>
       <div class="pt-box"><h2>العد التنازلي</h2><div id="ptCount"></div></div>
     </div>
     <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>الجدول الشهري</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth"><button type="button" class="btn btn-secondary" data-print="month">طباعة</button></div></div>
