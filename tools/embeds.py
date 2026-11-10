@@ -5,7 +5,7 @@ import io, os, sys, re
 root = sys.argv[1]; os.chdir(root)
 B = "https://quicktinyv2.vercel.app"
 CSS = """*,*::before,*::after{box-sizing:border-box}html,body{margin:0;background:transparent}
-body{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Roboto,Arial,sans-serif;color:#eef0fb;line-height:1.5;font-size:14px}
+body{font-family:system-ui,-apple-system,"QT Arabic","Segoe UI",Tahoma,Roboto,Arial,sans-serif;color:#eef0fb;line-height:1.5;font-size:14px}
 .card{background:#10131c;border:1px solid #232838;border-radius:14px;padding:14px}
 h1{font-size:16px;margin:0 0 10px}
 label{display:block;font-size:12px;color:#9aa3b8;margin:8px 0 4px}

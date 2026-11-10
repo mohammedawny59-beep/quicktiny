@@ -51,7 +51,7 @@
     var hint = el("p", "privacy-note hd-hint", T.hint);
     var out = el("div", "hd-out"); out.setAttribute("aria-live", "polite");
     box.appendChild(row); box.appendChild(hint); box.appendChild(out);
-    if (host.id === "smart-actions") host.appendChild(box); else host.parentNode.insertBefore(box, host.nextSibling);
+    if (host.id === "smart-actions") host.appendChild(box); else { box.style.maxWidth = "640px"; box.style.margin = "14px auto 0"; host.parentNode.insertBefore(box, host.nextSibling); }
     var input = box.querySelector("#homeFile");
     pick.addEventListener("click", function(){ input.click(); });
     input.addEventListener("change", function(){ if (input.files.length) handle([].slice.call(input.files)); input.value = ""; });
