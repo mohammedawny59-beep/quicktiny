@@ -1,0 +1,149 @@
+[
+ {
+  "base": "compress-image-to-kb",
+  "slug": "compress-image-to-20kb",
+  "preset": {
+   "kb": 20
+  },
+  "crumb": "Compress to 20 KB",
+  "title": "Compress Image to 20 KB Online — Free, Best Quality | QuickTiny",
+  "desc": "Reduce a photo to under 20 KB for signatures and exam application photos. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.",
+  "h1": "Compress Image to 20 KB",
+  "intro": "Need a photo under 20 KB for signatures and exam application photos? Drop it here — the tool finds the highest quality that fits under 20 KB and keeps the proportions. Everything happens in your browser.",
+  "about": "<h2>Why 20 KB?</h2><p>Many exam and recruitment portals cap scanned signatures at 10–20 KB and photos at 20–50 KB. At 20 KB the image is scaled to roughly 300–400 px wide so text and faces stay readable.</p><h2>Steps</h2><ol><li>The size is already set to 20 KB.</li><li>Drop one or more photos (JPG, PNG, WebP).</li><li>Download each photo or all of them as a ZIP — every file is guaranteed to be under 20 KB.</li></ol>",
+  "faq": [
+   [
+    "Is the result really under 20 KB?",
+    "Yes. 20 KB is treated as 20,000 bytes, which is under the limit whether a site counts 1,000 or 1,024 bytes per KB."
+   ],
+   [
+    "Does it work on my phone?",
+    "Yes — it runs in mobile browsers, and photos never leave your device."
+   ]
+  ]
+ },
+ {
+  "base": "compress-image-to-kb",
+  "slug": "compress-image-to-50kb",
+  "preset": {
+   "kb": 50
+  },
+  "crumb": "Compress to 50 KB",
+  "title": "Compress Image to 50 KB Online — Free, Best Quality | QuickTiny",
+  "desc": "Reduce a photo to under 50 KB for passport-size photos and job portals. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.",
+  "h1": "Compress Image to 50 KB",
+  "intro": "Need a photo under 50 KB for passport-size photos and job portals? Drop it here — the tool finds the highest quality that fits under 50 KB and keeps the proportions. Everything happens in your browser.",
+  "about": "<h2>Why 50 KB?</h2><p>50 KB is a common limit for passport-size photos on job, university and government portals. Most photos fit at their original size with slightly lower quality, or at about 600 px wide.</p><h2>Steps</h2><ol><li>The size is already set to 50 KB.</li><li>Drop one or more photos (JPG, PNG, WebP).</li><li>Download each photo or all of them as a ZIP — every file is guaranteed to be under 50 KB.</li></ol>",
+  "faq": [
+   [
+    "Is the result really under 50 KB?",
+    "Yes. 50 KB is treated as 50,000 bytes, which is under the limit whether a site counts 1,000 or 1,024 bytes per KB."
+   ],
+   [
+    "Does it work on my phone?",
+    "Yes — it runs in mobile browsers, and photos never leave your device."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/compress-image-to-50kb"
+  }
+ },
+ {
+  "base": "compress-image-to-kb",
+  "slug": "compress-image-to-100kb",
+  "preset": {
+   "kb": 100
+  },
+  "crumb": "Compress to 100 KB",
+  "title": "Compress Image to 100 KB Online — Free, Best Quality | QuickTiny",
+  "desc": "Reduce a photo to under 100 KB for government, university and visa forms. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.",
+  "h1": "Compress Image to 100 KB",
+  "intro": "Need a photo under 100 KB for government, university and visa forms? Drop it here — the tool finds the highest quality that fits under 100 KB and keeps the proportions. Everything happens in your browser.",
+  "about": "<h2>Why 100 KB?</h2><p>“Under 100 KB” is the most common photo limit on application forms. A typical phone photo fits at around 800–1000 px wide with good quality.</p><h2>Steps</h2><ol><li>The size is already set to 100 KB.</li><li>Drop one or more photos (JPG, PNG, WebP).</li><li>Download each photo or all of them as a ZIP — every file is guaranteed to be under 100 KB.</li></ol>",
+  "faq": [
+   [
+    "Is the result really under 100 KB?",
+    "Yes. 100 KB is treated as 100,000 bytes, which is under the limit whether a site counts 1,000 or 1,024 bytes per KB."
+   ],
+   [
+    "Does it work on my phone?",
+    "Yes — it runs in mobile browsers, and photos never leave your device."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/compress-image-to-100kb"
+  }
+ },
+ {
+  "base": "compress-image-to-kb",
+  "slug": "compress-image-to-200kb",
+  "preset": {
+   "kb": 200
+  },
+  "crumb": "Compress to 200 KB",
+  "title": "Compress Image to 200 KB Online — Free, Best Quality | QuickTiny",
+  "desc": "Reduce a photo to under 200 KB for visa applications and ID uploads. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.",
+  "h1": "Compress Image to 200 KB",
+  "intro": "Need a photo under 200 KB for visa applications and ID uploads? Drop it here — the tool finds the highest quality that fits under 200 KB and keeps the proportions. Everything happens in your browser.",
+  "about": "<h2>Why 200 KB?</h2><p>200 KB keeps photos sharp enough for ID checks — usually 1200–1600 px wide — while staying under the limit of most visa and identity portals.</p><h2>Steps</h2><ol><li>The size is already set to 200 KB.</li><li>Drop one or more photos (JPG, PNG, WebP).</li><li>Download each photo or all of them as a ZIP — every file is guaranteed to be under 200 KB.</li></ol>",
+  "faq": [
+   [
+    "Is the result really under 200 KB?",
+    "Yes. 200 KB is treated as 200,000 bytes, which is under the limit whether a site counts 1,000 or 1,024 bytes per KB."
+   ],
+   [
+    "Does it work on my phone?",
+    "Yes — it runs in mobile browsers, and photos never leave your device."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/compress-image-to-200kb"
+  }
+ },
+ {
+  "base": "compress-image-to-kb",
+  "slug": "compress-image-to-500kb",
+  "preset": {
+   "kb": 500
+  },
+  "crumb": "Compress to 500 KB",
+  "title": "Compress Image to 500 KB Online — Free, Best Quality | QuickTiny",
+  "desc": "Reduce a photo to under 500 KB for email, listings and website uploads. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.",
+  "h1": "Compress Image to 500 KB",
+  "intro": "Need a photo under 500 KB for email, listings and website uploads? Drop it here — the tool finds the highest quality that fits under 500 KB and keeps the proportions. Everything happens in your browser.",
+  "about": "<h2>Why 500 KB?</h2><p>500 KB is a sweet spot for email attachments, marketplace listings and CMS uploads: full-HD photos with no visible quality loss.</p><h2>Steps</h2><ol><li>The size is already set to 500 KB.</li><li>Drop one or more photos (JPG, PNG, WebP).</li><li>Download each photo or all of them as a ZIP — every file is guaranteed to be under 500 KB.</li></ol>",
+  "faq": [
+   [
+    "Is the result really under 500 KB?",
+    "Yes. 500 KB is treated as 500,000 bytes, which is under the limit whether a site counts 1,000 or 1,024 bytes per KB."
+   ],
+   [
+    "Does it work on my phone?",
+    "Yes — it runs in mobile browsers, and photos never leave your device."
+   ]
+  ]
+ },
+ {
+  "base": "compress-image-to-kb",
+  "slug": "compress-image-to-1mb",
+  "preset": {
+   "kb": 1000
+  },
+  "crumb": "Compress to 1 MB",
+  "title": "Compress Image to 1 MB Online — Free, Best Quality | QuickTiny",
+  "desc": "Reduce a photo to under 1 MB for upload limits like “max 1 MB”. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.",
+  "h1": "Compress Image to 1 MB",
+  "intro": "Need a photo under 1 MB for upload limits like “max 1 MB”? Drop it here — the tool finds the highest quality that fits under 1 MB and keeps the proportions. Everything happens in your browser.",
+  "about": "<h2>Why 1 MB?</h2><p>Lots of sites cap uploads at 1 MB. Most phone photos fit at full resolution with high quality, so you lose almost nothing.</p><h2>Steps</h2><ol><li>The size is already set to 1 MB.</li><li>Drop one or more photos (JPG, PNG, WebP).</li><li>Download each photo or all of them as a ZIP — every file is guaranteed to be under 1 MB.</li></ol>",
+  "faq": [
+   [
+    "Is the result really under 1 MB?",
+    "Yes. 1 MB is treated as 1,000,000 bytes, which is under the limit whether a site counts 1,000 or 1,024 bytes per KB."
+   ],
+   [
+    "Does it work on my phone?",
+    "Yes — it runs in mobile browsers, and photos never leave your device."
+   ]
+  ]
+ }
+]

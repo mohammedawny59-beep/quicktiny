@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>حاسبة الخصم — السعر بعد الخصم وكم توفّر | QuickTiny</title>
+  <meta name="description" content="احسب السعر بعد خصم بنسبة مئوية وكم توفّر بالضبط، أو أضف الضريبة والبقشيش. فورية ومجانية وبدون تسجيل.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/discount-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/discount-calculator">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/discount-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/discount-calculator">
+  <meta property="og:title" content="حاسبة الخصم — السعر بعد الخصم وكم توفّر | QuickTiny">
+  <meta property="og:description" content="احسب السعر بعد خصم بنسبة مئوية وكم توفّر بالضبط، أو أضف الضريبة والبقشيش. فورية ومجانية وبدون تسجيل.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/discount-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/percent-ar.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/percent-ar.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .pc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px}
+    .pc-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:rgba(255,255,255,.025)}
+    .pc-card.pc-focus{border-color:rgba(123,123,255,.6);box-shadow:0 0 0 3px rgba(107,107,255,.15)}
+    .pc-card h2{margin:0 0 12px;font-size:15px;color:var(--text-dim)}
+    .pc-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:16px}
+    .pc-line input{width:110px;text-align:center;font-size:17px;font-weight:600;direction:ltr}
+    .pc-line select{width:auto}
+    .pc-res{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.3)}
+    .pc-r{font-size:26px;font-weight:800;direction:ltr;font-variant-numeric:tabular-nums}
+    .pc-up{color:#7ff0b0}.pc-down{color:#ffb3b3}
+    .pc-f{font:12.5px var(--mono);color:var(--muted);margin-top:6px;direction:ltr;text-align:start}
+    .pc-copy{all:unset;cursor:pointer;font-size:12.5px;color:#9fa3ff;padding:4px 8px;border-radius:8px}
+    .pc-copy:hover{background:rgba(107,107,255,.15)}
+  </style>
+  <script>window.QT_PRESET = {"focus": "pc4p"};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة الخصم</span></div>
+  <div class="lang-switch">
+    <a href="/discount-calculator">EN</a>
+    <a href="/ar/discount-calculator" lang="ar" class="active">AR</a>
+  </div>
+
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">رياضيات</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حاسبة الخصم — السعر بعد التخفيض وقيمة التوفير</h1>
+    <p>في موسم التخفيضات؟ اكتب السعر الأصلي ونسبة الخصم لترى السعر النهائي وكم توفّر. وإذا كان هناك خصمان متتاليان فاحسبهما واحدًا بعد الآخر — خصم 20% ثم 10% يساوي 28% وليس 30%.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="pc-grid">
+      <div class="pc-card"><h2>كم يساوي X% من Y؟</h2><div class="pc-line">كم يساوي <input type="text" inputmode="decimal" id="pc1p" value="15"> % من <input type="text" inputmode="decimal" id="pc1x" value="200"> ؟</div><div class="pc-res"><span class="pc-r" id="pc1r">—</span><button type="button" class="pc-copy" data-copy="pc1r">نسخ</button></div><div class="pc-f" id="pc1f"></div></div>
+      <div class="pc-card"><h2>كم نسبة X من Y؟</h2><div class="pc-line"><input type="text" inputmode="decimal" id="pc2a" value="30"> كم نسبته من <input type="text" inputmode="decimal" id="pc2b" value="200"> ؟</div><div class="pc-res"><span class="pc-r" id="pc2r">—</span><button type="button" class="pc-copy" data-copy="pc2r">نسخ</button></div><div class="pc-f" id="pc2f"></div></div>
+      <div class="pc-card"><h2>نسبة التغيّر (زيادة أو نقصان)</h2><div class="pc-line">من <input type="text" inputmode="decimal" id="pc3a" value="80"> إلى <input type="text" inputmode="decimal" id="pc3b" value="100"></div><div class="pc-res"><span class="pc-r" id="pc3r">—</span><button type="button" class="pc-copy" data-copy="pc3r">نسخ</button></div><div class="pc-f" id="pc3f"></div></div>
+      <div class="pc-card"><h2>إضافة أو خصم نسبة (خصم، ضريبة، بقشيش)</h2><div class="pc-line"><input type="text" inputmode="decimal" id="pc4x" value="200"> <select id="pc4dir"><option value="down">− خصم</option><option value="up">+ إضافة</option></select> <input type="text" inputmode="decimal" id="pc4p" value="25"> %</div><div class="pc-res"><span class="pc-r" id="pc4r">—</span><button type="button" class="pc-copy" data-copy="pc4r">نسخ</button></div><div class="pc-f" id="pc4f"></div></div>
+    </div>
+    <div id="pcStatus" class="result" aria-live="polite"></div>
+  </div>
+  <script>window.QT_STRINGS = {increase:"زيادة",decrease:"نقصان",added:"المضاف",saved:"توفّر",copied:"تم النسخ"};</script>
+  <script src="/percent.js"></script>
+
+  <div class="content">
+    <h2>أمثلة سريعة</h2><ul class='benefits'><li><span>200 بخصم 25% = 150 (توفّر 50).</span></li><li><span>خصم 50% ثم 20% إضافي = خصم 60% إجمالًا.</span></li></ul><h2>أسئلة سريعة</h2><details class="faq-item"><summary>كيف أحسب السعر بعد الخصم؟</summary><p>السعر بعد الخصم = السعر × (1 − نسبة الخصم ÷ 100)، والتوفير = السعر الأصلي − السعر بعد الخصم.</p></details>
+    <h2>قوانين النسبة المئوية</h2>
+    <ul class="benefits">
+      <li><span><strong>X% من Y</strong> = X ÷ 100 × Y. مثال: 15% من 200 = 30.</span></li>
+      <li><span><strong>نسبة X من Y</strong> = X ÷ Y × 100. مثال: 30 من 200 = 15%.</span></li>
+      <li><span><strong>نسبة التغيّر</strong> = (الجديد − القديم) ÷ القديم × 100. من 80 إلى 100 = زيادة 25%، ومن 100 إلى 80 = نقصان 20%.</span></li>
+      <li><span><strong>السعر بعد الخصم</strong> = السعر × (1 − نسبة الخصم ÷ 100). 200 بخصم 25% = 150.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>كيف أحسب النسبة المئوية للدرجات؟</summary><p>استخدم «كم نسبة X من Y»: درجتك ÷ الدرجة الكاملة × 100. مثال: 45 من 50 = 90%.</p></details>
+    <details class="faq-item"><summary>كيف أحسب ضريبة القيمة المضافة؟</summary><p>استخدم «إضافة نسبة» بنسبة الضريبة، أو <a href="/ar/vat-calculator">حاسبة ضريبة القيمة المضافة</a> للفواتير واستخراج الضريبة من سعر شامل.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">حاسبات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/discount-calculator">حاسبة الخصم<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/vat-calculator">حاسبة ضريبة القيمة المضافة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/zakat-calculator">حاسبة الزكاة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny حاسبة النسبة المئوية", "url": "https://quicktinyv2.vercel.app/ar/discount-calculator", "description": "حاسبة نسبة مئوية مجانية: كم يساوي X% من Y، نسبة رقم من رقم، نسبة الزيادة والنقصان، والسعر بعد الخصم أو الضريبة. نتائج فورية مع طريقة الحساب.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "حاسبة النسبة المئوية", "item": "https://quicktinyv2.vercel.app/ar/discount-calculator"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "كيف أحسب النسبة المئوية؟", "acceptedAnswer": {"@type": "Answer", "text": "النسبة = الجزء ÷ الكل × 100. مثال: 30 من 200 = 15%."}}, {"@type": "Question", "name": "كيف أحسب نسبة الزيادة؟", "acceptedAnswer": {"@type": "Answer", "text": "(القيمة الجديدة − القديمة) ÷ القديمة × 100."}}]}</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Discount Calculator — Price After % Off and How Much You Save | QuickTiny</title>
+  <meta name="description" content="Find the sale price after a percentage discount and how much you save. Also works for adding tax or tips. Instant, free, no sign-up.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/discount-calculator">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/discount-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/discount-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/discount-calculator">
+  <meta property="og:title" content="Discount Calculator — Price After % Off and How Much You Save | QuickTiny">
+  <meta property="og:description" content="Find the sale price after a percentage discount and how much you save. Also works for adding tax or tips. Instant, free, no sign-up.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/discount-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/percent.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/percent.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .pc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px}
+    .pc-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:rgba(255,255,255,.025)}
+    .pc-card.pc-focus{border-color:rgba(123,123,255,.6);box-shadow:0 0 0 3px rgba(107,107,255,.15)}
+    .pc-card h2{margin:0 0 12px;font-size:15px;color:var(--text-dim)}
+    .pc-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:16px}
+    .pc-line input{width:110px;text-align:center;font-size:17px;font-weight:600;direction:ltr}
+    .pc-line select{width:auto}
+    .pc-res{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.3)}
+    .pc-r{font-size:26px;font-weight:800;direction:ltr;font-variant-numeric:tabular-nums}
+    .pc-up{color:#7ff0b0}.pc-down{color:#ffb3b3}
+    .pc-f{font:12.5px var(--mono);color:var(--muted);margin-top:6px;direction:ltr;text-align:start}
+    .pc-copy{all:unset;cursor:pointer;font-size:12.5px;color:#9fa3ff;padding:4px 8px;border-radius:8px}
+    .pc-copy:hover{background:rgba(107,107,255,.15)}
+  </style>
+  <script>window.QT_PRESET = {"focus": "pc4p"};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Discount Calculator</span></div>
+  <div class="lang-switch">
+    <a href="/discount-calculator" class="active">EN</a>
+    <a href="/ar/discount-calculator" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Math</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Discount Calculator — Sale Price and Savings</h1>
+    <p>Shopping a sale? Enter the original price and the discount to see the final price and how much you save. Stacked discounts? Run them one after the other — 20% then 10% is 28% off, not 30%.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="pc-grid">
+      <div class="pc-card"><h2>What is X% of Y?</h2><div class="pc-line">What is <input type="text" inputmode="decimal" id="pc1p" value="15"> % of <input type="text" inputmode="decimal" id="pc1x" value="200"> ?</div><div class="pc-res"><span class="pc-r" id="pc1r">—</span><button type="button" class="pc-copy" data-copy="pc1r">Copy</button></div><div class="pc-f" id="pc1f"></div></div>
+      <div class="pc-card"><h2>X is what percent of Y?</h2><div class="pc-line"><input type="text" inputmode="decimal" id="pc2a" value="30"> is what % of <input type="text" inputmode="decimal" id="pc2b" value="200"> ?</div><div class="pc-res"><span class="pc-r" id="pc2r">—</span><button type="button" class="pc-copy" data-copy="pc2r">Copy</button></div><div class="pc-f" id="pc2f"></div></div>
+      <div class="pc-card"><h2>Percentage change (increase / decrease)</h2><div class="pc-line">From <input type="text" inputmode="decimal" id="pc3a" value="80"> to <input type="text" inputmode="decimal" id="pc3b" value="100"></div><div class="pc-res"><span class="pc-r" id="pc3r">—</span><button type="button" class="pc-copy" data-copy="pc3r">Copy</button></div><div class="pc-f" id="pc3f"></div></div>
+      <div class="pc-card"><h2>Add or subtract a percentage (discount, tax, tip)</h2><div class="pc-line"><input type="text" inputmode="decimal" id="pc4x" value="200"> <select id="pc4dir"><option value="down">− minus</option><option value="up">+ plus</option></select> <input type="text" inputmode="decimal" id="pc4p" value="25"> %</div><div class="pc-res"><span class="pc-r" id="pc4r">—</span><button type="button" class="pc-copy" data-copy="pc4r">Copy</button></div><div class="pc-f" id="pc4f"></div></div>
+    </div>
+    <div id="pcStatus" class="result" aria-live="polite"></div>
+  </div>
+  <script src="/percent.js"></script>
+
+  <div class="content">
+    <h2>Quick examples</h2><ul class='benefits'><li><span>200 with 25% off = 150 (you save 50).</span></li><li><span>89.99 with 15% off = 76.49.</span></li><li><span>20% off then an extra 10% off = 28% off in total.</span></li></ul><h2>Quick answers</h2><details class="faq-item"><summary>How do I calculate a discount?</summary><p>Sale price = price × (1 − discount ÷ 100). Savings = price − sale price.</p></details>
+    <h2>Percentage formulas</h2>
+    <ul class="benefits">
+      <li><span><strong>X% of Y</strong> = X ÷ 100 × Y. Example: 15% of 200 = 30.</span></li>
+      <li><span><strong>X is what % of Y</strong> = X ÷ Y × 100. Example: 30 of 200 = 15%.</span></li>
+      <li><span><strong>Percent change</strong> = (new − old) ÷ old × 100. From 80 to 100 = +25%; from 100 to 80 = −20%.</span></li>
+      <li><span><strong>Discount</strong>: price × (1 − discount ÷ 100). 200 with 25% off = 150.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Why is a 20% drop not undone by a 20% rise?</summary><p>Because the second percentage is taken from a smaller number: 100 − 20% = 80, and 80 + 20% = 96. To get back to 100 you need +25%.</p></details>
+    <details class="faq-item"><summary>How do I calculate VAT?</summary><p>Use “add a percentage” with your VAT rate, or the dedicated <a href="/ar/vat-calculator">VAT calculator</a> (Arabic) for invoices and extracting VAT from a total.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/discount-calculator">Discount Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/timestamp-converter">Timestamp Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Percentage Calculator","url":"https://quicktinyv2.vercel.app/discount-calculator","description":"Free percentage calculator: X% of Y, what percent X is of Y, percent increase or decrease, and price after discount or tax. Instant results with the formula.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Percentage Calculator","item":"https://quicktinyv2.vercel.app/discount-calculator"}]}</script>
+</body>
+</html>

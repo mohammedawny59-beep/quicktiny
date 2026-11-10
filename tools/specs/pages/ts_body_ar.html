@@ -1,0 +1,63 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">ضغط الصورة إلى حجم معين</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">صور</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>بدون رفع</span>
+      <span class="badge">مجاني</span>
+    </div>
+    <h1>ضغط الصورة إلى حجم معين — 20 أو 50 أو 100 أو 200 كيلوبايت</h1>
+    <p>منصات التوظيف والجامعات والتأشيرات والخدمات الحكومية تطلب غالبًا «ألا يزيد حجم الصورة عن 100 كيلوبايت». اختر الحجم واسحب صورك لتحصل على أوضح صورة ممكنة ضمن الحد — داخل متصفحك وبدون رفع.</p>
+    <a href="#tool" class="jump-to-tool">اضغط الآن <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="ts-target">
+      <div><label class="field-label" for="tsKb">أقصى حجم للملف</label><input type="text" inputmode="decimal" id="tsKb" value="100"></div>
+      <div><label class="field-label" for="tsUnit">KB / MB</label><select id="tsUnit"><option value="kb">KB</option><option value="mb">MB</option></select></div>
+      <div><label class="field-label" for="tsFormat">الصيغة</label><select id="tsFormat"><option value="jpg">JPG</option><option value="webp">WebP</option></select></div>
+      <div><label class="field-label" for="tsMaxW">أقصى عرض (اختياري، بكسل)</label><input type="number" id="tsMaxW" min="1" style="width:130px"></div>
+      <div><label class="field-label" for="tsMaxH">أقصى ارتفاع (اختياري، بكسل)</label><input type="number" id="tsMaxH" min="1" style="width:130px"></div>
+    </div>
+    <div id="tsPresets"><button type="button" class="chip" data-kb="20">20 KB</button><button type="button" class="chip" data-kb="50">50 KB</button><button type="button" class="chip active" data-kb="100">100 KB</button><button type="button" class="chip" data-kb="150">150 KB</button><button type="button" class="chip" data-kb="200">200 KB</button><button type="button" class="chip" data-kb="300">300 KB</button><button type="button" class="chip" data-kb="500">500 KB</button><button type="button" class="chip" data-kb="1000">1 MB</button><button type="button" class="chip" data-kb="2000">2 MB</button></div>
+    <div class="dropzone" id="tsDrop" tabindex="0" role="button" style="margin-top:16px">
+      <strong>اسحب الصور هنا</strong> أو اضغط للاختيار — ويمكنك اللصق<br><span style="font-size:13px">JPG وPNG وWebP وGIF · عدة صور مرة واحدة</span>
+    </div>
+    <input id="tsFile" type="file" accept="image/*" multiple class="sr-only" tabindex="-1" aria-label="file">
+    <ul id="tsList" aria-live="polite"></ul>
+    <div id="tsBar" hidden>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" type="button" id="tsZip" disabled>تنزيل الكل (ZIP)</button>
+        <button class="btn btn-secondary" type="button" id="tsRedo">أعد بحجم جديد</button>
+        <button class="btn btn-secondary" type="button" id="tsClear">مسح</button>
+      </div>
+    </div>
+  </div>
+  <script>window.QT_STRINGS = {waiting:"بالانتظار…",working:"نبحث عن أفضل جودة ضمن الحد…",download:"تنزيل",under:"أقل من",quality:"الجودة",already:"حجمها مناسب أصلًا — لم تتغير",cannot:"تعذّر تصغير الصورة إلى هذا الحجم — جرّب حدًا أكبر.",cantRead:"المتصفح لا يستطيع قراءة الملف كصورة (HEIC؟ حوّله إلى JPG أولًا)."};</script>
+  <script src="/qt-zip.js"></script>
+  <script src="/target-size.js"></script>
+
+  <div class="content">
+    <h2>كيف تعمل الأداة؟</h2>
+    <ul class="benefits">
+      <li><strong>أفضل جودة ضمن الحد</strong> — تبحث عن أعلى جودة ممكنة تحت الحجم المطلوب بدل التخمين، فتبقى الصورة واضحة قدر الإمكان.</li>
+      <li><strong>تصغّر الأبعاد عند الحاجة فقط</strong> — إذا لم تكفِ الجودة الأقل تُصغّر الصورة تدريجيًا مع الحفاظ على تناسبها.</li>
+      <li><strong>مقبولة في كل المنصات</strong> — نعتبر 100 كيلوبايت = 100,000 بايت، فيبقى الملف تحت الحد مهما كانت طريقة المنصة في الحساب.</li>
+      <li><strong>خصوصية</strong> — صور الهوية والمستندات لا تغادر جهازك.</li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>كيف أصغّر حجم الصورة إلى 100 كيلوبايت؟</summary><p>اختر 100 KB، واسحب الصورة، ونزّل الناتج — يظهر لك الحجم النهائي والجودة والأبعاد.</p></details>
+    <details class="faq-item"><summary>المنصة تطلب أبعادًا محددة أيضًا، ماذا أفعل؟</summary><p>اكتب أقصى عرض وارتفاع (مثل 200 × 230)، فتُوضع الصورة داخل هذه الأبعاد أولًا ثم تُضغط إلى الحجم المطلوب.</p></details>
+    <details class="faq-item"><summary>كيف أضغط ملف PDF؟</summary><p>استخدم <a href="/ar/compress-pdf">ضغط ملف PDF</a> — مناسب للمستندات الممسوحة ضوئيًا.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات صور أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/image-converter">تحويل صيغ الصور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/compress-image">ضغط الصور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/compress-pdf">ضغط ملف PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

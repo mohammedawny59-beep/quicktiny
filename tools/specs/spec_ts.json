@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/compress-image-to-kb", "title": "تصغير حجم الصورة إلى 100 كيلوبايت أو أي حجم — مجانًا | QuickTiny",
+  "desc": "صغّر حجم الصورة إلى حجم محدد بالكيلوبايت لمنصات التوظيف والجامعات والتأشيرات: 20 أو 50 أو 100 أو 200 كيلوبايت بأفضل جودة ممكنة. عدة صور، وبدون رفع.",
+  "app_name": "QuickTiny ضغط الصورة إلى حجم معين", "crumb": "ضغط الصورة إلى حجم معين", "category": "MultimediaApplication", "body": "pages/ts_body_ar.html", "style": "pages/ts_style.html",
+  "alternates": [["en", "compress-image-to-kb"], ["ar", "ar/compress-image-to-kb"], ["x-default", "compress-image-to-kb"]],
+  "switch": [["EN", "compress-image-to-kb"], ["AR", "ar/compress-image-to-kb"]],
+  "faq": [["كيف أصغر حجم الصورة إلى 100 كيلوبايت؟", "اختر 100 كيلوبايت في الأداة واسحب الصورة، فتحصل على أعلى جودة ممكنة ضمن هذا الحجم دون رفع الصورة."], ["هل تقل جودة الصورة؟", "تبحث الأداة عن أعلى جودة تناسب الحجم، ولا تصغّر الأبعاد إلا عند الحاجة."]]}
+]}

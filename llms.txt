@@ -5,20 +5,28 @@
 Canonical site: https://quicktinyv2.vercel.app/
 Maintainer: Mohammed Awny
 Contact: quicktiny.support@gmail.com
-Last updated: 2026-09-22
+Last updated: 2026-11-10
 
 ## What QuickTiny does
 
-QuickTiny provides 25 browser utilities for image compression, JSON formatting and repair, JSON to TypeScript/Zod/CSV conversion, text cleanup, word counting, line sorting and deduplication, Base64 encoding and decoding, URL encoding and decoding, Unix timestamp conversion, case conversion, SEO slug generation, password generation, Shopify image checking, product photo background removal, PDF merging, splitting and conversion, marketing tools (QR code studio, UTM builder, social image resizer, SERP and social preview, brand color palette), and gamer tools (controller tester, mouse/CPS test, sensitivity converter, fancy name generator).
+QuickTiny provides 32 browser tools in English (31 free, 1 paid Pro batch compressor) plus 17 Arabic tools at /ar. Categories:
 
-The homepage includes Smart Actions. A user can paste JSON, Base64, URL-encoded text, a Unix timestamp, a list, or plain text. QuickTiny detects the likely content type locally and suggests the relevant tool.
+- Image: image converter (HEIC/HEIF, WebP, AVIF, PNG, JPG; batch + resize), compress image to an exact size (20/50/100/200 KB…), image compressor, product photo studio with on-device background removal, social image resizer.
+- PDF: merge, split, extract/delete pages, rotate, images to PDF, PDF to JPG/PNG, compress PDF.
+- Developer: JSON formatter/repair, JSON to TypeScript/Zod/CSV, regex tester with plain-English explanation, diff checker with .patch export, JWT decoder and signature verifier, cron expression explainer, Base64, URL encoding, Unix timestamps.
+- Text & utility: word counter, clean text, case converter, sort/dedupe lines, password generator, percentage and discount calculator.
+- Marketing: QR code studio (logo, Wi-Fi, WhatsApp, vCard, bulk), UTM builder, SERP & social preview, brand color palette.
+- Gaming: controller tester, mouse/CPS/reaction test, sensitivity converter, fancy name generator.
+- Arabic (/ar): Saudi simplified tax invoice generator with ZATCA (Fatoora) phase-1 QR and a QR reader/verifier, VAT calculator (Arab-country rates), zakat calculator, end-of-service calculator (Saudi and UAE labor law), tafqeet (numbers to Arabic words), Hijri–Gregorian converter and age calculator, keyboard-language fixer, Arabic text cleanup, plus Arabic versions of the PDF, QR, image and social tools.
+
+The homepage includes Smart Actions. A user can paste JSON, Base64, URL-encoded text, a Unix timestamp, a JWT, a cron expression, a list, or plain text. QuickTiny detects the likely content type locally and suggests the relevant tool.
 
 ## Key facts
 
 - No signup is required for free tools.
 - Text and files used by browser tools are processed locally unless a page explicitly says otherwise.
 - QuickTiny does not upload pasted Smart Actions content.
-- The main site has 24 free tools and one paid Pro batch image compressor.
+- The English site has 31 free tools and one paid Pro batch image compressor; the Arabic tools are free.
 - The Pro offer is a one-time purchase, not a subscription.
 - Product facts and privacy claims should be verified against the canonical pages below.
 
@@ -34,6 +42,22 @@ The homepage includes Smart Actions. A user can paste JSON, Base64, URL-encoded 
 - [Image Compressor](https://quicktinyv2.vercel.app/compress-image)
 - [Shopify Image Checker and Fixer](https://quicktinyv2.vercel.app/compress-product-images-for-shopify)
 - [2026 Shopify image upload limit test](https://quicktinyv2.vercel.app/shopify-image-upload-limits-test-2026)
+- [Image Converter (HEIC, WebP, PNG, JPG)](https://quicktinyv2.vercel.app/image-converter)
+- [Compress image to a specific size in KB](https://quicktinyv2.vercel.app/compress-image-to-kb)
+- [PDF tools: merge, split, compress, PDF to JPG](https://quicktinyv2.vercel.app/pdf-tools)
+- [QR Code Generator](https://quicktinyv2.vercel.app/qr-code-generator)
+- [Regex Tester](https://quicktinyv2.vercel.app/regex-tester)
+- [Diff Checker](https://quicktinyv2.vercel.app/diff-checker)
+- [JWT Decoder and Verifier](https://quicktinyv2.vercel.app/jwt-decoder)
+- [Cron Expression Explainer](https://quicktinyv2.vercel.app/cron-explainer)
+- [Percentage Calculator](https://quicktinyv2.vercel.app/percentage-calculator)
+- [Arabic tools home](https://quicktinyv2.vercel.app/ar)
+- [Saudi tax invoice generator with ZATCA QR (Arabic)](https://quicktinyv2.vercel.app/ar/tax-invoice-generator)
+- [VAT calculator (Arabic)](https://quicktinyv2.vercel.app/ar/vat-calculator)
+- [Zakat calculator (Arabic)](https://quicktinyv2.vercel.app/ar/zakat-calculator)
+- [End-of-service calculator, Saudi and UAE (Arabic)](https://quicktinyv2.vercel.app/ar/end-of-service-calculator)
+- [Tafqeet: numbers to Arabic words](https://quicktinyv2.vercel.app/ar/tafqeet)
+- [Hijri–Gregorian converter and age calculator (Arabic)](https://quicktinyv2.vercel.app/ar/hijri-converter)
 - [Full machine-readable facts](https://quicktinyv2.vercel.app/llms-full.txt)
 
 ## Guides and technical explanations

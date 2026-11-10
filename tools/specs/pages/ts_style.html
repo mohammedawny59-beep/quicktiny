@@ -1,0 +1,26 @@
+  <style>
+    .ic-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px;align-items:end}
+    .ic-opts select,.ic-opts input[type=number]{width:100%}
+    .ic-opts input[type=color]{width:100%;height:42px;padding:3px;border-radius:10px;border:1px solid var(--line);background:transparent}
+    #icQuality{width:100%;accent-color:var(--accent)}
+    #icList{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+    .ic-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}
+    .ic-thumb{width:56px;height:56px;border-radius:10px;overflow:hidden;background:repeating-conic-gradient(rgba(255,255,255,.06) 0 25%,transparent 0 50%) 0 0/12px 12px;display:flex;align-items:center;justify-content:center}
+    .ic-thumb img{width:100%;height:100%;object-fit:cover}
+    .ic-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
+    .ic-meta b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .ic-st{font-size:12.5px;color:var(--text-dim)}
+    .ic-fail .ic-st{color:#ff9a9a}
+    .ic-down{color:#7ff0b0;font-weight:700}.ic-up{color:#ffd88a;font-weight:700}.ic-dim{color:var(--muted)}
+    .ic-dl{padding:8px 14px !important;font-size:13px !important}
+    #icBar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+    #icCount{font-size:13px;color:var(--text-dim);margin-inline-start:auto}
+    .ic-privacy{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text-dim);margin-top:12px}
+    @media(max-width:520px){.ic-row{grid-template-columns:44px minmax(0,1fr)}.ic-thumb{width:44px;height:44px}.ic-act{grid-column:1/-1}.ic-dl{width:100%;text-align:center}}
+    .ts-target{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+    .ts-target input{width:120px;font-size:22px;font-weight:700;text-align:center}
+    .ts-target select{width:auto}
+    #tsPresets{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+    #tsPresets .chip{padding:6px 12px}
+    #tsList{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+  </style>

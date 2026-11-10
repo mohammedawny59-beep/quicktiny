@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/percentage-calculator", "title": "حاسبة النسبة المئوية — حساب النسبة والزيادة والخصم أونلاين | QuickTiny",
+  "desc": "حاسبة نسبة مئوية مجانية: كم يساوي X% من Y، نسبة رقم من رقم، نسبة الزيادة والنقصان، والسعر بعد الخصم أو الضريبة. نتائج فورية مع طريقة الحساب.",
+  "app_name": "QuickTiny حاسبة النسبة المئوية", "crumb": "حاسبة النسبة المئوية", "category": "UtilitiesApplication", "body": "pages/pc_body_ar.html", "style": "pages/pc_style.html",
+  "alternates": [["en", "percentage-calculator"], ["ar", "ar/percentage-calculator"], ["x-default", "percentage-calculator"]],
+  "switch": [["EN", "percentage-calculator"], ["AR", "ar/percentage-calculator"]],
+  "faq": [["كيف أحسب النسبة المئوية؟", "النسبة = الجزء ÷ الكل × 100. مثال: 30 من 200 = 15%."], ["كيف أحسب نسبة الزيادة؟", "(القيمة الجديدة − القديمة) ÷ القديمة × 100."]]}
+]}

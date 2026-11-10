@@ -93,3 +93,11 @@ function qtAge(birth, today) {
 })();
 
 if (typeof module !== "undefined") module.exports = { qtToHijri: qtToHijri, qtFromHijri: qtFromHijri, qtAge: qtAge };
+
+// Landing pages (e.g. /ar/age-calculator) can put the age calculator first.
+if (typeof document !== "undefined") document.addEventListener("DOMContentLoaded", function () {
+  var P = window.QT_PRESET || {}, birth = document.getElementById("hjBirth"), tool = document.getElementById("tool");
+  if (P.focus !== "age" || !birth || !tool) return;
+  var box = birth.closest(".hj-box");
+  if (box) { tool.insertBefore(box, tool.firstChild); box.style.margin = "0 0 18px"; }
+});

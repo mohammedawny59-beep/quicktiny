@@ -1,0 +1,68 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Compress Image to KB</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Image</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Nothing uploaded</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>Compress Image to a Specific Size — 20 KB, 50 KB, 100 KB, 200 KB</h1>
+    <p>Upload forms for jobs, exams, visas and government portals often say “photo must be under 100 KB”. Pick the size, drop your photos, and get the sharpest image that still fits — in your browser, without uploading anything.</p>
+    <a href="#tool" class="jump-to-tool">Compress now <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="ts-target">
+      <div><label class="field-label" for="tsKb">Maximum file size</label><input type="text" inputmode="decimal" id="tsKb" value="100"></div>
+      <div><label class="field-label" for="tsUnit">KB / MB</label><select id="tsUnit"><option value="kb">KB</option><option value="mb">MB</option></select></div>
+      <div><label class="field-label" for="tsFormat">Format</label><select id="tsFormat"><option value="jpg">JPG</option><option value="webp">WebP</option></select></div>
+      <div><label class="field-label" for="tsMaxW">Max width (optional, px)</label><input type="number" id="tsMaxW" min="1" style="width:130px"></div>
+      <div><label class="field-label" for="tsMaxH">Max height (optional, px)</label><input type="number" id="tsMaxH" min="1" style="width:130px"></div>
+    </div>
+    <div id="tsPresets"><button type="button" class="chip" data-kb="20">20 KB</button><button type="button" class="chip" data-kb="50">50 KB</button><button type="button" class="chip active" data-kb="100">100 KB</button><button type="button" class="chip" data-kb="150">150 KB</button><button type="button" class="chip" data-kb="200">200 KB</button><button type="button" class="chip" data-kb="300">300 KB</button><button type="button" class="chip" data-kb="500">500 KB</button><button type="button" class="chip" data-kb="1000">1 MB</button><button type="button" class="chip" data-kb="2000">2 MB</button></div>
+    <div class="dropzone" id="tsDrop" tabindex="0" role="button" style="margin-top:16px">
+      <strong>Drop photos here</strong> or click to choose — you can also paste<br><span style="font-size:13px">JPG, PNG, WebP, GIF · many at once</span>
+    </div>
+    <input id="tsFile" type="file" accept="image/*" multiple class="sr-only" tabindex="-1" aria-label="file">
+    <ul id="tsList" aria-live="polite"></ul>
+    <div id="tsBar" hidden>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" type="button" id="tsZip" disabled>Download all (ZIP)</button>
+        <button class="btn btn-secondary" type="button" id="tsRedo">Run again with new size</button>
+        <button class="btn btn-secondary" type="button" id="tsClear">Clear</button>
+      </div>
+    </div>
+  </div>
+  <script src="/qt-zip.js"></script>
+  <script src="/target-size.js"></script>
+
+  <div class="content">
+    <h2>How it works</h2>
+    <ul class="benefits">
+      <li><strong>Best quality that fits</strong> — it searches for the highest JPEG quality under your limit instead of guessing, so your photo stays as sharp as possible.</li>
+      <li><strong>Shrinks only when needed</strong> — if a photo can't fit even at lower quality, it's scaled down step by step, keeping its proportions.</li>
+      <li><strong>Safe for every form</strong> — “100 KB” is treated as 100,000 bytes, so the file is under the limit whether the site counts 1,000 or 1,024 bytes per KB.</li>
+      <li><strong>Private</strong> — ID photos and documents never leave your device.</li>
+    </ul>
+    <h2>Common size limits</h2>
+    <ul class="benefits">
+      <li><span>Passport and visa photos on many portals: 50–240 KB.</span></li>
+      <li><span>Job and exam applications: often 20–100 KB for photos and 10–50 KB for signatures.</span></li>
+      <li><span>Email-friendly photos: 200–500 KB.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Will my photo look bad at 20 KB?</summary><p>It's scaled to a smaller size so it stays clear — a 20 KB photo is usually around 300–450 px wide, which is what most forms expect anyway.</p></details>
+    <details class="faq-item"><summary>The form also needs exact dimensions — what do I do?</summary><p>Fill in max width and height (for example 200 × 230). The photo is fitted inside that box first, then compressed to the size limit.</p></details>
+    <details class="faq-item"><summary>Can I compress a PDF to 100 KB?</summary><p>Use <a href="/compress-pdf">Compress PDF</a> — it works best on scanned documents.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More image tools</h2>
+    <div class="related-grid">
+      <a href="/image-converter">Image Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/compress-image">Image Compressor<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/compress-pdf">Compress PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/resize-image">Resize Image<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
