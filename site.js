@@ -422,3 +422,27 @@ function qtCompareButton(li, before, after, o){
                                 : (ar ? "✓ عادت الإحصاءات لهذا المتصفح" : "✓ Analytics re-enabled for this browser");
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ qtToast(msg); }); else qtToast(msg);
 })();
+
+/* ---------- Page transitions: the clicked tool card's title morphs into the next page's heading ---------- */
+(function(){
+  if (!("onpageswap" in window)) return;
+  var clicked = null;
+  document.addEventListener("click", function(e){
+    var a = e.target && e.target.closest ? e.target.closest("a.tool-card, .yours-chip, .related-grid a") : null;
+    clicked = a && !e.defaultPrevented ? a : null;
+  }, true);
+  window.addEventListener("pageswap", function(e){
+    if (!e.viewTransition || !clicked) return;
+    var t = clicked.querySelector("h3") || clicked;
+    t.style.viewTransitionName = "qt-title";
+  });
+  window.addEventListener("pagereveal", function(e){
+    if (!e.viewTransition) return;
+    var h1 = document.querySelector(".hero h1");
+    if (!h1) return;
+    h1.style.viewTransitionName = "qt-title";
+    e.viewTransition.finished.finally(function(){ h1.style.viewTransitionName = ""; });
+  });
+  // Coming back with the browser's back button: clear the name so the next click works.
+  window.addEventListener("pageshow", function(){ document.querySelectorAll('[style*="qt-title"]').forEach(function(el){ el.style.viewTransitionName = ""; }); });
+})();

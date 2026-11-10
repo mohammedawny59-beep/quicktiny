@@ -1,6 +1,10 @@
 /* Self-hosted fonts (OFL): no third-party request, no render-blocking stylesheet */
 @font-face{font-family:"Sora";font-style:normal;font-weight:400 800;font-display:swap;src:url(/fonts/sora-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/jetbrains-mono-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* IBM Plex Sans Arabic (OFL-1.1, fonts/IBM-Plex-Sans-Arabic-OFL.txt), Arabic glyphs only and only on Arabic pages. */
+@font-face{font-family:"QT Arabic";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ibm-plex-sans-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+@font-face{font-family:"QT Arabic";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/ibm-plex-sans-arabic-600.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+@font-face{font-family:"QT Arabic";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/ibm-plex-sans-arabic-700.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
 /* QuickTiny design system v6 — same quiet-luxury bones (single accent, serif display, no AI-gradient
    cliché) but brighter, more saturated, and with real motion back in: v5 read as gloomy/flat, so this
    raises surface luminance, pushes both accents to a punchier vivid tone, and gives the background
@@ -39,6 +43,8 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html[lang="ar"]{--font:"Sora","QT Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;--font-ui:"QT Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+html[lang="ar"] .hero h1,html[lang="ar"] .section-title{letter-spacing:0;line-height:1.25}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-ui);line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;position:relative}
 body{overflow-x:hidden}
 a{color:inherit;text-decoration:none}
@@ -572,3 +578,14 @@ h2.section-title{margin:0;line-height:1.2}
 .cq.busy + .result,.cq.busy ~ .stat-row .cq-live .n{opacity:.55;transition:opacity .15s}
 .result.warn{color:#ffd166;font-weight:700;padding:10px 14px;background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.25);border-radius:12px}
 @media (prefers-reduced-motion:reduce){.cq{animation:none}}
+
+/* ---------- Page transitions (cross-document View Transitions; ignored by browsers without support) ---------- */
+@view-transition{navigation:auto}
+.site-header{view-transition-name:qt-header}
+::view-transition-old(root){animation:qtVtOut .22s cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:qtVtIn .32s cubic-bezier(.16,1,.3,1) both}
+::view-transition-group(qt-title){animation-duration:.38s;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+::view-transition-old(qt-title),::view-transition-new(qt-title){height:100%;object-fit:contain;object-position:left top}
+@keyframes qtVtOut{to{opacity:0;transform:translateY(-8px)}}
+@keyframes qtVtIn{from{opacity:0;transform:translateY(12px)}}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
