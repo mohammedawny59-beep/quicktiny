@@ -492,3 +492,48 @@ footer::after{background:radial-gradient(ellipse at top,rgba(91,91,255,.22),tran
 .task-links a.chip{text-decoration:none;display:inline-block}
 
 h2.section-title{margin:0;line-height:1.2}
+
+/* ---------- Homepage: drop-a-file router, favorites, recently used, toast ---------- */
+.home-drop{margin-top:14px;border:1.5px dashed rgba(123,123,255,.35);border-radius:16px;padding:14px 16px;background:rgba(107,107,255,.04);transition:border-color .2s,background .2s}
+.home-drop:hover{border-color:var(--cyan);background:rgba(59,226,255,.05)}
+.hd-row{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;color:var(--text-dim);font-size:14.5px}
+.hd-row strong{color:var(--text)}
+.hd-ico{width:34px;height:34px;display:inline-grid;place-items:center;border-radius:10px;background:rgba(59,226,255,.1);color:var(--cyan);animation:hdBob 2.6s ease-in-out infinite}
+.hd-ico svg{width:20px;height:20px}
+@keyframes hdBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.hd-pick{padding:8px 14px;font-size:13.5px}
+.hd-hint{text-align:center;margin:8px 0 0}
+.hd-out:empty{display:none}
+.hd-out{margin-top:12px;animation:hdIn .35s cubic-bezier(.16,1,.3,1)}
+@keyframes hdIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hd-file{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.hd-thumb{width:52px;height:52px;border-radius:9px;object-fit:cover;flex:none;background:var(--card-solid)}
+.hd-badge{display:grid;place-items:center;font-weight:800;font-size:12px;color:var(--cyan);border:1px solid rgba(59,226,255,.3)}
+.hd-meta{display:flex;flex-direction:column;min-width:0}
+.hd-meta strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.hd-meta span{color:var(--muted);font-size:13px}
+.hd-q{margin:12px 0 0;font-weight:700;color:var(--text)}
+.hd-actions{margin-top:8px}
+.hd-actions .btn{animation:hdIn .4s cubic-bezier(.16,1,.3,1) both}
+.home-overlay{position:fixed;inset:0;z-index:999;display:grid;place-items:center;background:rgba(5,7,20,.72);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .18s}
+.home-overlay.on{opacity:1}
+.ho-card{border:2px dashed var(--cyan);border-radius:22px;padding:42px 48px;font-size:20px;font-weight:800;color:var(--text);background:rgba(59,226,255,.06);transform:scale(.96);transition:transform .25s cubic-bezier(.16,1,.3,1);max-width:calc(100% - 32px);text-align:center}
+.home-overlay.on .ho-card{transform:scale(1)}
+.fav-star{margin-inline-start:auto;width:30px;height:30px;display:inline-grid;place-items:center;border-radius:50%;cursor:pointer;color:var(--muted);opacity:.55;transition:opacity .2s,color .2s,background .2s;position:relative;z-index:2}
+.fav-star svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.tool-card:hover .fav-star,.fav-star:focus-visible{opacity:1}
+.fav-star:hover{background:rgba(255,255,255,.06);color:#ffd166}
+.fav-star.on{opacity:1;color:#ffd166}
+.fav-star.on svg{fill:currentColor}
+.fav-star.pop{animation:favPop .45s cubic-bezier(.16,1,.3,1)}
+@keyframes favPop{0%{transform:scale(1)}40%{transform:scale(1.35) rotate(-12deg)}100%{transform:scale(1)}}
+.yours .section-head{align-items:flex-end}
+.yours-clear{padding:7px 12px;font-size:12.5px}
+.yours-h{font-size:14px;color:var(--text-dim);margin:14px 0 8px;font-weight:700}
+.yours-row{display:flex;flex-wrap:wrap;gap:10px}
+.yours-chip{display:inline-flex;align-items:center;gap:9px;padding:8px 14px 8px 9px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);font-weight:600;font-size:14px;transition:border-color .2s,transform .2s,background .2s;animation:hdIn .35s cubic-bezier(.16,1,.3,1) both}
+.yours-chip:hover{border-color:var(--accent);background:var(--card-hover);transform:translateY(-2px)}
+.yours-chip img{width:28px;height:28px}
+.qt-toast{position:fixed;left:50%;bottom:24px;z-index:1000;transform:translate(-50%,20px);opacity:0;padding:11px 18px;border-radius:999px;background:#12163a;border:1px solid rgba(59,226,255,.4);color:var(--text);font-weight:700;box-shadow:0 14px 40px -12px rgba(0,0,0,.7);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1)}
+.qt-toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){.hd-ico,.hd-out,.hd-actions .btn,.yours-chip,.fav-star.pop{animation:none}}
