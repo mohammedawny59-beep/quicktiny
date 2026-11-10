@@ -973,7 +973,7 @@
 </footer>
 <script src="/site.js"></script>
 <script src="/home.js" defer></script>
-<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script>
 (function(){

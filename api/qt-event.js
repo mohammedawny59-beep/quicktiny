@@ -39,7 +39,18 @@ const ALLOWED_EVENTS = new Set([
   "install_prompt_shown",
   "install_clicked",
   "install_completed",
-  "copy_used"
+  "copy_used",
+  "home_file_dropped",
+  "home_file_opened",
+  "home_file_image",
+  "home_file_images",
+  "home_file_heic",
+  "home_file_pdf",
+  "home_file_pdfs",
+  "fav_added",
+  "compare_opened",
+  "ramadan_share",
+  "analytics_opt_out"
 ]);
 
 function cleanPage(value) {

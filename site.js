@@ -407,3 +407,18 @@ function qtCompareButton(li, before, after, o){
   });
   return b;
 }
+
+/* ---------- Owner opt-out: open any page with #qt-notrack once per browser to stop counting your own visits ---------- */
+(function(){
+  var h = location.hash;
+  if (h !== "#qt-notrack" && h !== "#qt-track") return;
+  try {
+    if (h === "#qt-notrack") { localStorage.setItem("va-disable", "1"); qtEvent("analytics_opt_out"); }
+    else localStorage.removeItem("va-disable");
+  } catch (e) { return; }
+  history.replaceState(null, "", location.pathname + location.search);
+  var ar = (document.documentElement.lang || "").indexOf("ar") === 0;
+  var msg = h === "#qt-notrack" ? (ar ? "✓ لن تُحتسب زياراتك من هذا المتصفح" : "✓ Your visits from this browser won't be counted")
+                                : (ar ? "✓ عادت الإحصاءات لهذا المتصفح" : "✓ Analytics re-enabled for this browser");
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ qtToast(msg); }); else qtToast(msg);
+})();
