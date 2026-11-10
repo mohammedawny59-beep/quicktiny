@@ -1,0 +1,11 @@
+{"en_cards": [{"slug": "image-converter", "icon": "convert", "cat": "Image", "badge": "Image &middot; New", "name": "Image Converter",
+  "desc": "HEIC, WebP, AVIF, PNG and JPG &mdash; batch convert and resize. Strips GPS data, no upload.",
+  "search": "image converter heic to jpg webp to png png to jpg jpg to webp avif resize image convert photos iphone image"}],
+ "ar_cards": [{"slug": "ar/image-converter", "icon": "convert", "badge": "صور · جديد", "name": "تحويل صيغ الصور",
+  "desc": "HEIC من الآيفون وWebP وPNG إلى JPG — عدة صور مرة واحدة وبدون رفع.",
+  "search": "تحويل صيغ الصور heic الى jpg صور الايفون webp png تغيير مقاس الصور"}],
+ "footer": [["image-converter", "Image Converter"]],
+ "popular_en": [["heic-to-jpg", "HEIC to JPG"], ["webp-to-jpg", "WebP to JPG"], ["png-to-jpg", "PNG to JPG"], ["jpg-to-webp", "JPG to WebP"], ["resize-image", "Resize image"]],
+ "popular_ar": [["ar/heic-to-jpg", "تحويل HEIC إلى JPG"]],
+ "sitemap": ["image-converter", "ar/image-converter", "heic-to-jpg", "ar/heic-to-jpg", "webp-to-jpg", "webp-to-png", "png-to-jpg", "jpg-to-png", "jpg-to-webp", "resize-image"],
+ "count_add": 1}

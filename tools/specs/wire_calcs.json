@@ -1,0 +1,6 @@
+{"ar_cards": [
+  {"slug": "ar/end-of-service-calculator", "icon": "briefcase", "badge": "موارد بشرية · جديد", "name": "حاسبة مكافأة نهاية الخدمة", "desc": "السعودية والإمارات: أثر الاستقالة والحد الأقصى وخطوات الحساب.", "search": "حاسبة مكافأة نهاية الخدمة نظام العمل السعودي الاماراتي استقالة"},
+  {"slug": "ar/zakat-calculator", "icon": "zakat", "badge": "زكاة · جديد", "name": "حاسبة الزكاة", "desc": "زكاة المال والذهب بأعياره والفضة والتجارة، ونصاب الزكاة.", "search": "حاسبة الزكاة زكاة المال الذهب الفضة النصاب"},
+  {"slug": "ar/vat-calculator", "icon": "receipt", "badge": "محاسبة · جديد", "name": "حاسبة ضريبة القيمة المضافة", "desc": "إضافة واستخراج الضريبة 15% و5% لفاتورة كاملة مع المبلغ بالحروف.", "search": "حاسبة ضريبة القيمة المضافة 15% استخراج الضريبة فاتورة"}],
+ "popular_ar": [["ar/vat-calculator", "حساب الضريبة 15%"], ["ar/zakat-calculator", "حساب الزكاة"], ["ar/end-of-service-calculator", "مكافأة نهاية الخدمة"]],
+ "sitemap": ["ar/vat-calculator", "ar/zakat-calculator", "ar/end-of-service-calculator"]}
