@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ضغط ملف PDF — تصغير حجم PDF مجانًا وبدون رفع | QuickTiny</title>
+  <meta name="description" content="صغّر حجم ملفات PDF الممسوحة والمليئة بالصور للإيميل وحدود الرفع في المواقع الحكومية. ثلاث درجات ضغط وخيار أبيض وأسود، داخل متصفحك وبدون رفع.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/compress-pdf">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/compress-pdf">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/compress-pdf">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/compress-pdf">
+  <meta property="og:title" content="ضغط ملف PDF — تصغير حجم PDF مجانًا وبدون رفع | QuickTiny">
+  <meta property="og:description" content="صغّر حجم ملفات PDF الممسوحة والمليئة بالصور للإيميل وحدود الرفع في المواقع الحكومية. ثلاث درجات ضغط وخيار أبيض وأسود، داخل متصفحك وبدون رفع.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/compress-pdf">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image-ar.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    #pdfTabs{margin-bottom:18px}
+    .pdf-panel .field-label{margin-top:14px}
+    .pdf-list{list-style:none;padding:0;margin:14px 0 0}
+    .pdf-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line-strong);border-radius:10px;margin-bottom:8px}
+    .pdf-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+    .pdf-mini{padding:4px 10px !important;font-size:13px !important;min-width:0}
+    .pdf-out{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .pdf-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px;width:100%}
+    .pdf-thumb{display:flex;flex-direction:column;gap:6px;padding:8px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);text-decoration:none;color:var(--text-dim);font-size:12px}
+    .pdf-thumb:hover{border-color:var(--line-strong);color:var(--text)}
+    .pdf-thumb img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff;border-radius:6px}
+    .pdf-cmp-res{width:100%;padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .pdf-cmp-nums{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:18px;direction:ltr}
+    .pdf-cmp-nums b{font-size:26px}.pdf-cmp-nums .arr{color:var(--muted)}
+    .pdf-cmp-nums .pct.good{color:#7ff0b0;font-weight:800}.pdf-cmp-nums .pct.bad{color:#ffd88a;font-weight:800}
+    .pdf-warn{font-size:13.5px;color:var(--text-dim);margin:12px 0 0;line-height:1.6}
+  </style>
+  <script>window.QT_PRESET = {"tab": "compress"};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">ضغط ملف PDF</span></div>
+  <div class="lang-switch">
+    <a href="/compress-pdf">EN</a>
+    <a href="/ar/compress-pdf" lang="ar" class="active">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">PDF</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>يعمل داخل متصفحك</span>
+      <span class="badge">مجاني</span>
+    </div>
+    <h1>ضغط ملف PDF — صغّر الملفات الممسوحة لترسلها بسهولة</h1>
+    <p>العقود الممسوحة وملفات صور الجوال والتقارير المليئة بالصور غالبًا أكبر من أن تُرسل بالإيميل أو تُرفع على المنصات. اضغطها هنا داخل متصفحك دون إرسال مستنداتك لأحد، وشاهد كم صغر حجمها.</p>
+    <a href="#tool" class="jump-to-tool">جرّبها الآن <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="chip-row" id="pdfTabs" role="tablist">
+      <button class="chip active" data-tab="merge" role="tab" aria-selected="true">دمج ملفات PDF</button>
+      <button class="chip" data-tab="pages" role="tab" aria-selected="false">استخراج / حذف / تقسيم الصفحات</button>
+      <button class="chip" data-tab="rotate" role="tab" aria-selected="false">تدوير</button>
+      <button class="chip" data-tab="images" role="tab" aria-selected="false">صور ← PDF</button>
+      <button class="chip" data-tab="toimg" role="tab" aria-selected="false">PDF ← صور JPG</button>
+      <button class="chip" data-tab="compress" role="tab" aria-selected="false">ضغط PDF</button>
+    </div>
+
+    <section class="pdf-panel" id="panel-merge">
+      <div class="dropzone" id="mergeDz" tabindex="0" role="button">
+        <strong>اسحب ملفات PDF إلى هنا</strong> أو اضغط للاختيار<br><span style="font-size:13px">أضف ملفين أو أكثر &mdash; ويمكنك ترتيبها بالأسفل</span>
+      </div>
+      <input tabindex="-1" aria-label="Choose file" id="mergeFiles" type="file" accept="application/pdf,.pdf" multiple class="sr-only">
+      <ul class="pdf-list" id="mergeList"></ul>
+      <div class="btn-row"><button class="btn" id="mergeBtn" type="button" disabled>دمج الملفات</button></div>
+      <div id="mergeStatus" class="result" aria-live="polite"></div>
+      <div id="mergeOut" class="pdf-out"></div>
+    </section>
+
+    <section class="pdf-panel" id="panel-pages" hidden>
+      <div class="dropzone" id="pagesDz" tabindex="0" role="button">
+        <strong>اسحب ملف PDF إلى هنا</strong> أو اضغط للاختيار
+      </div>
+      <input tabindex="-1" aria-label="Choose file" id="pagesFile" type="file" accept="application/pdf,.pdf" class="sr-only">
+      <div id="pagesStatus" class="result" aria-live="polite"></div>
+      <div id="pagesControls" hidden>
+        <label class="field-label" for="pagesMode">ماذا تريد أن تفعل؟</label>
+        <select id="pagesMode">
+          <option value="extract">الإبقاء على هذه الصفحات فقط (استخراج)</option>
+          <option value="remove">حذف هذه الصفحات</option>
+          <option value="split">تقسيم إلى ملف PDF لكل صفحة</option>
+        </select>
+        <div id="pagesRangeWrap">
+          <label class="field-label" for="pagesRange">الصفحات</label>
+          <input type="text" id="pagesRange" placeholder="مثال: 1-3, 5, 8-" autocomplete="off" dir="ltr">
+        </div>
+        <div class="btn-row"><button class="btn" id="pagesBtn" type="button">إنشاء الملف</button></div>
+      </div>
+      <div id="pagesOut" class="pdf-out"></div>
+    </section>
+
+    <section class="pdf-panel" id="panel-rotate" hidden>
+      <div class="dropzone" id="rotateDz" tabindex="0" role="button">
+        <strong>اسحب ملف PDF إلى هنا</strong> أو اضغط للاختيار
+      </div>
+      <input tabindex="-1" aria-label="Choose file" id="rotateFile" type="file" accept="application/pdf,.pdf" class="sr-only">
+      <div id="rotateStatus" class="result" aria-live="polite"></div>
+      <div id="rotateControls" hidden>
+        <label class="field-label" for="rotateAngle">التدوير</label>
+        <select id="rotateAngle">
+          <option value="90">90° مع عقارب الساعة</option>
+          <option value="180">180°</option>
+          <option value="270">90° عكس عقارب الساعة</option>
+        </select>
+        <label class="field-label" for="rotateRange">الصفحات (اتركها فارغة لتدوير كل الصفحات)</label>
+        <input type="text" id="rotateRange" placeholder="مثال: 2, 4-6" autocomplete="off" dir="ltr">
+        <div class="btn-row"><button class="btn" id="rotateBtn" type="button">تدوير الصفحات</button></div>
+      </div>
+      <div id="rotateOut" class="pdf-out"></div>
+    </section>
+
+    <section class="pdf-panel" id="panel-images" hidden>
+      <div class="dropzone" id="imgDz" tabindex="0" role="button">
+        <strong>اسحب الصور إلى هنا</strong> أو اضغط للاختيار<br><span style="font-size:13px">JPG أو PNG أو WebP &mdash; صفحة لكل صورة</span>
+      </div>
+      <input tabindex="-1" aria-label="Choose file" id="imgFiles" type="file" accept="image/*" multiple class="sr-only">
+      <ul class="pdf-list" id="imgList"></ul>
+      <div class="row-2">
+        <div>
+          <label class="field-label" for="imgPageSize">حجم الصفحة</label>
+          <select id="imgPageSize">
+            <option value="a4">A4</option>
+            <option value="letter">US Letter</option>
+            <option value="fit">بنفس حجم الصورة</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label" for="imgMargin">الهامش</label>
+          <select id="imgMargin">
+            <option value="0">بدون</option>
+            <option value="10" selected>صغير (10 مم)</option>
+            <option value="20">كبير (20 مم)</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn" id="imgBtn" type="button" disabled>إنشاء ملف PDF</button></div>
+      <div id="imgStatus" class="result" aria-live="polite"></div>
+      <div id="imgOut" class="pdf-out"></div>
+    </section>
+
+    <section class="pdf-panel" id="panel-toimg" hidden>
+      <div class="dropzone" id="toimgDz" tabindex="0" role="button">
+        <strong>اسحب ملف PDF هنا</strong> أو اضغط للاختيار<br><span style="font-size:13px">كل صفحة تتحول إلى صورة</span>
+      </div>
+      <input tabindex="-1" aria-label="اختيار ملف" id="toimgFile" type="file" accept="application/pdf,.pdf" class="sr-only">
+      <div id="toimgStatus" class="result" aria-live="polite"></div>
+      <div id="toimgControls" hidden>
+        <div class="row-2">
+          <div><label class="field-label" for="toimgFormat">صيغة الصور</label>
+            <select id="toimgFormat"><option value="jpg">JPG</option><option value="png">PNG (أوضح للنصوص)</option><option value="webp">WebP (الأصغر)</option></select></div>
+          <div><label class="field-label" for="toimgDpi">الدقة</label>
+            <select id="toimgDpi"><option value="72">72 DPI — معاينة</option><option value="150" selected>150 DPI — واضحة على الشاشة</option><option value="300">300 DPI — جودة طباعة</option></select></div>
+        </div>
+        <label class="field-label" for="toimgRange">الصفحات (اتركه فارغًا لكل الصفحات)</label>
+        <input type="text" id="toimgRange" placeholder="مثال: 1-3, 5" autocomplete="off" dir="ltr">
+        <div class="btn-row"><button class="btn" id="toimgBtn" type="button">حوّل إلى صور</button></div>
+      </div>
+      <div id="toimgOut" class="pdf-out"></div>
+    </section>
+
+    <section class="pdf-panel" id="panel-compress" hidden>
+      <div class="dropzone" id="cmpDz" tabindex="0" role="button">
+        <strong>اسحب ملف PDF هنا</strong> أو اضغط للاختيار<br><span style="font-size:13px">الأفضل للملفات الممسوحة ضوئيًا والمليئة بالصور</span>
+      </div>
+      <input tabindex="-1" aria-label="اختيار ملف" id="cmpFile" type="file" accept="application/pdf,.pdf" class="sr-only">
+      <div id="cmpStatus" class="result" aria-live="polite"></div>
+      <div id="cmpControls" hidden>
+        <label class="field-label" for="cmpLevel">درجة الضغط</label>
+        <select id="cmpLevel"><option value="strong">قوي — أصغر حجم (96 DPI)</option><option value="balanced" selected>متوازن — مناسب للإيميل (140 DPI)</option><option value="light">خفيف — أفضل جودة (200 DPI)</option></select>
+        <div class="checkline"><input type="checkbox" id="cmpGray"><label for="cmpGray">أبيض وأسود (حجم أصغر)</label></div>
+        <p class="pdf-warn">طريقة العمل: كل صفحة تُعاد رسمها كصورة مضغوطة، فيصغر حجم الملفات الممسوحة والصور كثيرًا. لكن النص في الملف الجديد لا يمكن تحديده أو البحث فيه وتُحذف الروابط — احتفظ بالأصل إن احتجت ذلك.</p>
+        <div class="btn-row"><button class="btn" id="cmpBtn" type="button">اضغط الملف</button></div>
+      </div>
+      <div id="cmpOut" class="pdf-out"></div>
+    </section>
+  </div>
+  <script>
+  // Arabic number agreement: 1 صفحة واحدة، 2 صفحتان، 3–10 صفحات، 11+ صفحة
+  window.QT_PAGES_LABEL = function(n){ return n === 1 ? "صفحة واحدة" : n === 2 ? "صفحتان" : (n % 100 >= 3 && n % 100 <= 10) ? n + " صفحات" : n + " صفحة"; };
+  window.QT_STRINGS = {
+    "Could not load the PDF engine. Check your connection and try again.": "تعذّر تحميل محرّك PDF. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.",
+    "1 page": "صفحة واحدة",
+    "{n} pages": "{n} صفحات",
+    "“{name}” is password-protected. Remove the password first, then try again.": "الملف «{name}» محمي بكلمة مرور. أزل كلمة المرور أولًا ثم حاول مرة أخرى.",
+    "“{name}” doesn't look like a valid PDF.": "الملف «{name}» لا يبدو ملف PDF صالحًا.",
+    "Download": "تنزيل",
+    "Enter the pages you want, e.g. 1-3, 5": "اكتب الصفحات التي تريدها، مثال: 1-3, 5",
+    "“{part}” isn't a page or range. Use e.g. 1-3, 5, 8-": "«{part}» ليس رقم صفحة أو نطاقًا صحيحًا. استخدم مثلًا: 1-3, 5, 8-",
+    "This PDF has {n} pages — “{part}” is out of range.": "عدد صفحات هذا الملف {n} — «{part}» خارج النطاق.",
+    "Move up {name}": "نقل «{name}» لأعلى",
+    "Move down {name}": "نقل «{name}» لأسفل",
+    "Remove {name}": "إزالة «{name}»",
+    "Reading files...": "جارٍ قراءة الملفات...",
+    "“{name}” isn't a PDF.": "الملف «{name}» ليس PDF.",
+    "Add at least one more PDF to merge.": "أضف ملف PDF آخر على الأقل للدمج.",
+    "Ready — reorder if needed, then merge.": "جاهز — رتّب الملفات إن أردت ثم اضغط دمج.",
+    "Merging...": "جارٍ الدمج...",
+    "Download merged PDF": "تنزيل الملف المدمج",
+    "Merged {files} files into {pages} ✓": "تم دمج الملفات ({files}) — الملف الناتج: {pages} ✓",
+    "“{name}” has {pages}.": "الملف «{name}»: {pages}.",
+    "Page {n}": "صفحة {n}",
+    "Split into {n} files ✓": "تم التقسيم إلى ملفات منفصلة ({n}) ✓",
+    "That would leave no pages.": "هذا سيحذف كل الصفحات.",
+    "Download PDF": "تنزيل PDF",
+    "Removed {removed}, kept {kept} ✓": "المحذوف: {removed} — المتبقي: {kept} ✓",
+    "Extracted {kept} ✓": "الصفحات المستخرجة: {kept} ✓",
+    "Download rotated PDF": "تنزيل الملف بعد التدوير",
+    "Rotated {pages} by {angle}° ✓": "تم التدوير بزاوية {angle}° — الصفحات: {pages} ✓",
+    "Couldn't read “{name}” as an image.": "تعذّرت قراءة «{name}» كصورة.",
+    "Building PDF...": "جارٍ إنشاء ملف PDF...",
+    "Created a PDF with {pages} ✓": "تم إنشاء ملف PDF ({pages}) ✓",
+    "Ready — reorder if needed, then create the PDF.": "جاهز — رتّب الصور إن أردت ثم أنشئ الملف.",
+    "Choose JPG, PNG or WebP images.": "اختر صورًا بصيغة JPG أو PNG أو WebP.",
+    "Choose a PDF file.": "اختر ملف PDF.",
+    "Reading {name}…": "جارٍ قراءة {name}…",
+    "Rendering page {i} of {n}…": "جارٍ تحويل الصفحة {i} من {n}…",
+    "Page {i}": "صفحة {i}",
+    "Download all as ZIP": "تنزيل الكل ZIP",
+    "Done — {n} images. Click a page to download it.": "تم — {n} صورة. اضغط على أي صفحة لتنزيلها.",
+    "Compressing page {i} of {n}…": "جارٍ ضغط الصفحة {i} من {n}…",
+    "Download compressed PDF": "تنزيل الملف المضغوط",
+    "This PDF is already well compressed — the new file isn't meaningfully smaller. Keep your original, or try “Strong”.": "هذا الملف مضغوط جيدًا أصلًا — الملف الجديد ليس أصغر بشكل ملحوظ. احتفظ بالأصل أو جرّب «قوي».",
+    "Done — {pct}% smaller.": "تم — أصغر بنسبة {pct}%.",
+    "Your browser couldn't encode this format.": "المتصفح لم يستطع إنشاء هذه الصيغة."
+  };
+  </script>
+  <script src="/shopify-image-tools.js"></script>
+  <script src="/pdf-tools.js"></script>
+  <script src="/qt-zip.js"></script>
+  <script src="/pdf-render.js"></script>
+
+  <div class="content">
+    <h2>ملاحظة صريحة عن طريقة الضغط</h2><p>كل صفحة تُعاد رسمها كصورة مضغوطة، وهذا ما يصغّر الملفات الممسوحة كثيرًا — غالبًا 70–90%. المقابل: النص في الملف الجديد لا يمكن تحديده أو البحث فيه وتُحذف الروابط. أما الملفات النصية فقد لا تصغر، وستخبرك الأداة بذلك.</p><h2>أسئلة سريعة</h2><details class="faq-item"><summary>هل هو آمن للمستندات السرية؟</summary><p>نعم، الملف يُعالج داخل متصفحك ولا يُرفع إلى أي خادم.</p></details><details class="faq-item"><summary>لماذا لم يصغر ملفي؟</summary><p>ملفات النص صغيرة أصلًا، وتحويلها لصور لا يصغّرها. احتفظ بالأصل.</p></details>
+    <h2>طريقة الاستخدام</h2>
+    <ol>
+      <li>اختر الأداة: دمج، أو استخراج / حذف / تقسيم الصفحات، أو تدوير، أو تحويل الصور إلى PDF.</li>
+      <li>اسحب ملفاتك إلى المربع. لا يتم رفع أي شيء &mdash; المعالجة تتم داخل متصفحك.</li>
+      <li>حدّد الصفحات أو الخيارات، ثم نزّل الملف الجديد.</li>
+    </ol>
+
+    <h2>لماذا أداة PDF خاصة؟</h2>
+    <ul class="benefits">
+      <li>أغلب مواقع PDF ترفع ملفك إلى خوادمها. العقود وكشوف الحسابات والفواتير وصور الهوية لا يجب أن تغادر جهازك.</li>
+      <li>بدون تسجيل، بدون حد لحجم الملف، وبدون علامة مائية.</li>
+      <li>سريعة: لا رفع ولا انتظار، فقط تنزيل الملف النهائي.</li>
+    </ul>
+
+    <h2>الخصوصية</h2>
+    <p>تعمل أدوات PDF بالكامل داخل متصفحك باستخدام مكتبة pdf-lib مفتوحة المصدر (رخصة MIT) التي يتم تحميلها من jsDelivr. يتم تنزيل كود المكتبة فقط؛ ملفاتك وصورك لا تُرسل إلى أي مكان.</p>
+
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل يتم رفع ملفاتي؟</summary><p>لا. الدمج والتقسيم والتدوير والتحويل كلها تتم داخل متصفحك، ولا يستلم QuickTiny ملفاتك أبدًا.</p></details>
+    <details class="faq-item"><summary>كيف أكتب أرقام الصفحات؟</summary><p>افصل بينها بفاصلة واستخدم الشرطة للنطاق: <code>1-3, 5, 8-</code> تعني الصفحات 1 و2 و3 و5 ومن 8 حتى النهاية. يمكنك أيضًا استخدام الفاصلة العربية «،».</p></details>
+    <details class="faq-item"><summary>هل تفتح ملفات PDF المحمية بكلمة مرور؟</summary><p>ليس بعد. أزل كلمة المرور من برنامج قراءة PDF أولًا ثم استخدم الأدوات هنا.</p></details>
+    <details class="faq-item"><summary>هل يقلّ جودة الملف عند الدمج؟</summary><p>لا. يتم نسخ الصفحات كما هي، فيبقى النص قابلًا للتحديد وتحتفظ الصور بجودتها الأصلية.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات ذات صلة</h2>
+    <div class="related-grid">
+      <a href="/ar/compress-image">ضغط الصور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/word-counter">عداد الكلمات<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/product-photo-studio">Product Photo Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/">الرئيسية</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny أدوات PDF", "url": "https://quicktinyv2.vercel.app/ar/compress-pdf", "description": "دمج ملفات PDF واستخراج الصفحات أو حذفها وتقسيم وتدوير الملفات وتحويل الصور إلى PDF مجانًا داخل متصفحك — بدون تسجيل وبدون رفع ملفاتك.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "أدوات PDF", "item": "https://quicktinyv2.vercel.app/ar/compress-pdf"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "هل يتم رفع ملفاتي؟", "acceptedAnswer": {"@type": "Answer", "text": "لا. الدمج والتقسيم والتدوير والتحويل كلها تتم داخل متصفحك، ولا يستلم QuickTiny ملفاتك أبدًا."}}, {"@type": "Question", "name": "كيف أكتب أرقام الصفحات؟", "acceptedAnswer": {"@type": "Answer", "text": "افصل بينها بفاصلة واستخدم الشرطة للنطاق: 1-3, 5, 8- تعني الصفحات 1 و2 و3 و5 ومن 8 حتى النهاية."}}, {"@type": "Question", "name": "هل تفتح ملفات PDF المحمية بكلمة مرور؟", "acceptedAnswer": {"@type": "Answer", "text": "ليس بعد. أزل كلمة المرور من برنامج قراءة PDF أولًا ثم استخدم الأدوات هنا."}}, {"@type": "Question", "name": "هل يقلّ جودة الملف عند الدمج؟", "acceptedAnswer": {"@type": "Answer", "text": "لا. يتم نسخ الصفحات كما هي، فيبقى النص قابلًا للتحديد وتحتفظ الصور بجودتها الأصلية."}}]}</script>
+</body>
+</html>

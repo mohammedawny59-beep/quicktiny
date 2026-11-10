@@ -31,6 +31,15 @@
     .pdf-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
     .pdf-mini{padding:4px 10px !important;font-size:13px !important;min-width:0}
     .pdf-out{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .pdf-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px;width:100%}
+    .pdf-thumb{display:flex;flex-direction:column;gap:6px;padding:8px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);text-decoration:none;color:var(--text-dim);font-size:12px}
+    .pdf-thumb:hover{border-color:var(--line-strong);color:var(--text)}
+    .pdf-thumb img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff;border-radius:6px}
+    .pdf-cmp-res{width:100%;padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .pdf-cmp-nums{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:18px;direction:ltr}
+    .pdf-cmp-nums b{font-size:26px}.pdf-cmp-nums .arr{color:var(--muted)}
+    .pdf-cmp-nums .pct.good{color:#7ff0b0;font-weight:800}.pdf-cmp-nums .pct.bad{color:#ffd88a;font-weight:800}
+    .pdf-warn{font-size:13.5px;color:var(--text-dim);margin:12px 0 0;line-height:1.6}
   </style>
 </head>
 <body>
@@ -74,6 +83,8 @@
       <button class="chip" data-tab="pages" role="tab" aria-selected="false">Extract / delete / split pages</button>
       <button class="chip" data-tab="rotate" role="tab" aria-selected="false">Rotate</button>
       <button class="chip" data-tab="images" role="tab" aria-selected="false">Images → PDF</button>
+      <button class="chip" data-tab="toimg" role="tab" aria-selected="false">PDF → JPG</button>
+      <button class="chip" data-tab="compress" role="tab" aria-selected="false">Compress PDF</button>
     </div>
 
     <section class="pdf-panel" id="panel-merge">
@@ -157,9 +168,47 @@
       <div id="imgStatus" class="result" aria-live="polite"></div>
       <div id="imgOut" class="pdf-out"></div>
     </section>
+
+    <section class="pdf-panel" id="panel-toimg" hidden>
+      <div class="dropzone" id="toimgDz" tabindex="0" role="button">
+        <strong>Drop a PDF here</strong> or click to choose<br><span style="font-size:13px">Every page becomes an image</span>
+      </div>
+      <input tabindex="-1" aria-label="Choose file" id="toimgFile" type="file" accept="application/pdf,.pdf" class="sr-only">
+      <div id="toimgStatus" class="result" aria-live="polite"></div>
+      <div id="toimgControls" hidden>
+        <div class="row-2">
+          <div><label class="field-label" for="toimgFormat">Image format</label>
+            <select id="toimgFormat"><option value="jpg">JPG</option><option value="png">PNG (sharpest text)</option><option value="webp">WebP (smallest)</option></select></div>
+          <div><label class="field-label" for="toimgDpi">Resolution</label>
+            <select id="toimgDpi"><option value="72">72 DPI — screen preview</option><option value="150" selected>150 DPI — sharp on screen</option><option value="300">300 DPI — print quality</option></select></div>
+        </div>
+        <label class="field-label" for="toimgRange">Pages (leave empty for all)</label>
+        <input type="text" id="toimgRange" placeholder="e.g. 1-3, 5" autocomplete="off">
+        <div class="btn-row"><button class="btn" id="toimgBtn" type="button">Convert to images</button></div>
+      </div>
+      <div id="toimgOut" class="pdf-out"></div>
+    </section>
+
+    <section class="pdf-panel" id="panel-compress" hidden>
+      <div class="dropzone" id="cmpDz" tabindex="0" role="button">
+        <strong>Drop a PDF here</strong> or click to choose<br><span style="font-size:13px">Best for scans and image-heavy PDFs</span>
+      </div>
+      <input tabindex="-1" aria-label="Choose file" id="cmpFile" type="file" accept="application/pdf,.pdf" class="sr-only">
+      <div id="cmpStatus" class="result" aria-live="polite"></div>
+      <div id="cmpControls" hidden>
+        <label class="field-label" for="cmpLevel">Compression</label>
+        <select id="cmpLevel"><option value="strong">Strong — smallest file (96 DPI)</option><option value="balanced" selected>Balanced — good for email (140 DPI)</option><option value="light">Light — best quality (200 DPI)</option></select>
+        <div class="checkline"><input type="checkbox" id="cmpGray"><label for="cmpGray">Black &amp; white (even smaller)</label></div>
+        <p class="pdf-warn">How it works: each page is re-drawn as a compressed image, which shrinks scans and photos a lot. Text in the new PDF can't be selected or searched, and links are removed — keep your original if you need those.</p>
+        <div class="btn-row"><button class="btn" id="cmpBtn" type="button">Compress PDF</button></div>
+      </div>
+      <div id="cmpOut" class="pdf-out"></div>
+    </section>
   </div>
   <script src="/shopify-image-tools.js"></script>
   <script src="/pdf-tools.js"></script>
+  <script src="/qt-zip.js"></script>
+  <script src="/pdf-render.js"></script>
 
   <div class="content">
     <h2>How to use PDF Tools</h2>
