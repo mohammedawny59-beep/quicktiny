@@ -1,0 +1,59 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">كم باقي على رمضان</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">رمضان</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>كم باقي على رمضان؟ عداد رمضان والإفطار والسحور</h1>
+    <p>عدّاد تنازلي مباشر لبداية شهر رمضان في مدينتك، وفي رمضان يتحول تلقائيًا إلى عداد ثانية بثانية لموعد الإفطار (أذان المغرب) ونهاية السحور (أذان الفجر)، مع عدد ساعات الصيام اليوم.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="rc-card" id="rcCard" aria-live="polite">
+      <div class="rc-stars" aria-hidden="true"></div>
+      <div class="rc-top"><label for="rcCity">المدينة</label><select id="rcCity"></select></div>
+      <div class="rc-label" id="rcLabel">…</div>
+      <div class="rc-digits"><div class="rc-u" id="rcDBox"><b id="rcD">0</b><span>يوم</span></div><div class="rc-u"><b id="rcH">00</b><span>ساعة</span></div><div class="rc-u"><b id="rcM">00</b><span>دقيقة</span></div><div class="rc-u"><b id="rcS">00</b><span>ثانية</span></div></div>
+      <div class="rc-bar" id="rcBar" hidden><div class="rc-bar-track"><div class="rc-bar-fill" id="rcBarFill"></div></div><div class="rc-bar-txt" id="rcBarTxt"></div></div>
+      <div class="rc-today" id="rcToday"></div>
+      <div class="rc-actions"><button type="button" class="btn" id="rcShare">شارك العدّاد</button></div>
+      <div id="rcStatus" class="result" aria-live="polite"></div>
+    </div>
+    <div class="rc-info">
+      <div class="rc-i"><span>بداية رمضان (المتوقعة)</span><b id="rcStart">—</b></div>
+      <div class="rc-i"><span>عيد الفطر (المتوقع)</span><b id="rcEid">—</b></div>
+      <div class="rc-i"><span>الإمساك اليوم</span><b class="ltr" id="rcImsak">—</b></div>
+      <div class="rc-i"><span>الفجر اليوم</span><b class="ltr" id="rcFajr">—</b></div>
+      <div class="rc-i"><span>المغرب (الإفطار) اليوم</span><b class="ltr" id="rcMaghrib">—</b></div>
+      <div class="rc-i"><span>ساعات الصيام اليوم</span><b id="rcFast">—</b></div>
+    </div>
+    <p class="rc-note">التواريخ حسب تقويم أم القرى، والبداية الفعلية لرمضان والعيد تُعلن بعد تحري الهلال وقد تختلف يومًا في بلدك. <a id="rcLink" href="/ar/prayer-times">…</a></p>
+  </div>
+  <script src="/hijri.js"></script>
+  <script src="/prayer-cities.js"></script>
+  <script src="/prayer-times.js"></script>
+  <script src="/ramadan.js"></script>
+
+  <div class="content">
+    <h2>كيف يعمل العداد؟</h2>
+    <ul class="benefits">
+      <li><span>قبل رمضان يعدّ تنازليًا حتى ليلة 1 رمضان بتوقيت مدينتك حسب تقويم أم القرى.</span></li>
+      <li><span>في رمضان يتحول تلقائيًا: إلى <strong>الإفطار</strong> (المغرب) في النهار، وإلى <strong>نهاية السحور</strong> (الفجر) في الليل.</span></li>
+      <li><span>المواقيت محسوبة بالطريقة الرسمية لكل مدينة (أم القرى للسعودية، الهيئة المصرية لمصر، وهكذا).</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>متى رمضان 2027؟</summary><p>حسب تقويم أم القرى يوافق 1 رمضان 1448 هـ يوم الاثنين 8 فبراير 2027، فتكون أول تراويح مساء الأحد 7 فبراير. الموعد الرسمي يُعلن بعد تحري الهلال.</p></details>
+    <details class="faq-item"><summary>كم باقي على الفطور اليوم؟</summary><p>اختر مدينتك وسيظهر وقت أذان المغرب اليوم، وفي رمضان يظهر عداد مباشر حتى الإفطار.</p></details>
+    <details class="faq-item"><summary>متى ينتهي السحور؟</summary><p>ينتهي السحور بأذان الفجر، وتعرض الإمساكيات وقت الإمساك قبله بنحو 10 دقائق احتياطًا.</p></details>
+    <details class="faq-item"><summary>هل يُرسل موقعي؟</summary><p>لا. تختار مدينتك من القائمة وكل الحسابات تتم في متصفحك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">المزيد لرمضان</h2>
+    <div class="related-grid">
+      <a href="/ar/ramadan-imsakiya">إمساكية رمضان<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/zakat-al-fitr-calculator">حساب زكاة الفطر<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/prayer-times">مواقيت الصلاة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/qibla-direction">اتجاه القبلة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

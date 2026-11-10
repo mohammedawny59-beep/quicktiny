@@ -8,6 +8,13 @@
   <lastBuildDate>Tue, 10 Nov 2026 09:00:00 +0000</lastBuildDate>
   <atom:link href="https://quicktinyv2.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Zakat al-Fitr Calculator 2027 — Fitrana in kg &amp; Cash</title>
+    <link>https://quicktinyv2.vercel.app/zakat-al-fitr-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/zakat-al-fitr-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Calculate zakat al-fitr (fitrana) for your family: one sa' per person (about 2.5-3 kg), its value at your local price or the official cash amount, plus a fidya calculator.</description>
+  </item>
+  <item>
     <title>Weighted Grade Calculator — Course Grade &amp; Final Exam Needed</title>
     <link>https://quicktinyv2.vercel.app/weighted-grade-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/weighted-grade-calculator</guid>
@@ -41,6 +48,13 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ramadan-timetable</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Printable Ramadan 2027 timetable for your city: Imsak (suhoor ends), Fajr, Iftar (Maghrib) and Isha for every day of the month, plus a countdown to Ramadan and Eid.</description>
+  </item>
+  <item>
+    <title>Ramadan Countdown 2027 — Days Until Ramadan, Iftar &amp; Suhoor Timer</title>
+    <link>https://quicktinyv2.vercel.app/ramadan-countdown</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ramadan-countdown</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>How many days until Ramadan 2027? A live countdown for your city, then a second-by-second iftar and suhoor timer during Ramadan with today's Imsak, Maghrib and fasting hours.</description>
   </item>
   <item>
     <title>Qibla Direction — Find the Qibla From Your Location</title>
@@ -272,20 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/valorant-to-cs2-sensitivity</guid>
     <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
     <description>Convert your Valorant sensitivity to CS2 instantly (multiply by 3.18). See cm/360 and eDPI, and change DPI if you need. Free.</description>
-  </item>
-  <item>
-    <title>UTM Builder — Campaign URL Builder for Google Analytics</title>
-    <link>https://quicktinyv2.vercel.app/utm-builder</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/utm-builder</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Build UTM-tagged campaign links for Google Analytics, or one link per channel at once. Naming checks keep reports clean. Copy, export CSV, or turn a link into a QR code.</description>
-  </item>
-  <item>
-    <title>Split PDF — Separate Every Page Into Its Own File</title>
-    <link>https://quicktinyv2.vercel.app/split-pdf</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/split-pdf</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Split a PDF into single pages or extract a page range like 1-3, 5, 8- — free, in your browser, nothing uploaded.</description>
   </item>
 </channel>
 </rss>

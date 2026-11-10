@@ -22,6 +22,13 @@
     <description>احسب زكاة المال والذهب بأعياره والفضة وعروض التجارة مع خصم الديون، وتعرّف هل بلغ مالك النصاب (85 غرام ذهب أو 595 غرام فضة). النتيجة بالأرقام والحروف. مجانية وخاصة.</description>
   </item>
   <item>
+    <title>حساب زكاة الفطر 2027 — المقدار بالكيلو والقيمة النقدية</title>
+    <link>https://quicktinyv2.vercel.app/ar/zakat-al-fitr-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/zakat-al-fitr-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب زكاة الفطر عن أسرتك: صاع لكل فرد (نحو 2.5 إلى 3 كغ)، قيمتها بسعر بلدك أو بالمبلغ النقدي الرسمي، مع حاسبة فدية الصيام. مجانًا وبدون تسجيل.</description>
+  </item>
+  <item>
     <title>حساب النسبة الموزونة — ثانوي وقدرات وتحصيلي</title>
     <link>https://quicktinyv2.vercel.app/ar/weighted-percentage-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/weighted-percentage-calculator</guid>
@@ -48,6 +55,13 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/ramadan-imsakiya</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>إمساكية رمضان 1448 هـ لمدينتك: وقت الإمساك والفجر والمغرب (الإفطار) والعشاء لكل أيام الشهر، قابلة للطباعة، مع العد التنازلي لرمضان والعيد.</description>
+  </item>
+  <item>
+    <title>كم باقي على رمضان 2027؟ عداد رمضان والإفطار والسحور</title>
+    <link>https://quicktinyv2.vercel.app/ar/ramadan-countdown</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/ramadan-countdown</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>عداد تنازلي مباشر: كم باقي على رمضان 1448 في مدينتك، وفي رمضان كم باقي على الإفطار والسحور بالثانية، مع الإمساك والمغرب وساعات الصيام اليوم.</description>
   </item>
   <item>
     <title>اتجاه القبلة من موقعي — بالدرجات والبوصلة</title>
@@ -272,20 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/split-pdf</guid>
     <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
     <description>قسّم ملف PDF إلى ملف لكل صفحة أو استخرج صفحات محددة مثل 1-3, 5. مجاني وبدون رفع ملفاتك.</description>
-  </item>
-  <item>
-    <title>مقاسات صور السوشيال ميديا — إنستقرام وتيك توك ويوتيوب من صورة واحدة</title>
-    <link>https://quicktinyv2.vercel.app/ar/social-image-resizer</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/social-image-resizer</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>غيّر مقاس صورتك لإنستقرام وتيك توك وفيسبوك وX ولينكدإن ويوتيوب وبنترست وواتساب دفعة واحدة. نقطة تركيز، خلفية ضبابية، مناطق آمنة للستوري، وتنزيل ZIP.</description>
-  </item>
-  <item>
-    <title>إنشاء باركود QR مجاني — بتصميمك وشعارك ولا ينتهي</title>
-    <link>https://quicktinyv2.vercel.app/ar/qr-code-generator</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/qr-code-generator</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>اصنع باركود QR مجاني لرابط أو واي فاي أو واتساب أو بطاقة اتصال، مع شعارك وألوانك وإطار بعبارة عربية. لا ينتهي أبدًا، ويُختبر مسحه تلقائيًا. إنشاء بالجملة من CSV.</description>
   </item>
 </channel>
 </rss>

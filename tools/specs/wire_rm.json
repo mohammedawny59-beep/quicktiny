@@ -1,0 +1,11 @@
+{"en_cards": [
+  {"slug": "ramadan-countdown", "icon": "ramadan", "cat": "Utility", "badge": "Ramadan &middot; New", "name": "Ramadan Countdown", "desc": "Days until Ramadan for your city, then a live iftar and suhoor timer.", "search": "ramadan countdown days until ramadan 2027 iftar time suhoor timer eid countdown utility"},
+  {"slug": "zakat-al-fitr-calculator", "icon": "zakat", "cat": "Utility", "badge": "Ramadan &middot; New", "name": "Zakat al-Fitr Calculator", "desc": "Fitrana for your family in kg and cash, plus fidya for missed fasts.", "search": "zakat al fitr calculator fitrana fitra how much per person fidya ramadan utility"}],
+ "ar_cards": [
+  {"slug": "ar/zakat-al-fitr-calculator", "icon": "zakat", "badge": "رمضان · جديد", "name": "حساب زكاة الفطر", "desc": "زكاة الفطر عن أسرتك بالكيلو والقيمة النقدية، وفدية الصيام.", "search": "حساب زكاة الفطر مقدار زكاة الفطر صاع كيلو فدية الصيام رمضان"},
+  {"slug": "ar/ramadan-countdown", "icon": "ramadan", "badge": "رمضان · جديد", "name": "كم باقي على رمضان", "desc": "عداد تنازلي لرمضان، وفي رمضان عداد الإفطار والسحور لمدينتك.", "search": "كم باقي على رمضان عداد رمضان كم باقي على الفطور الافطار السحور العيد"}],
+ "footer": [["ramadan-countdown", "Ramadan Countdown"], ["zakat-al-fitr-calculator", "Zakat al-Fitr Calculator"]],
+ "popular_en": [["ramadan-countdown", "Days until Ramadan"]],
+ "popular_ar": [["ar/ramadan-countdown", "كم باقي على رمضان"], ["ar/zakat-al-fitr-calculator", "حساب زكاة الفطر"]],
+ "sitemap": ["ramadan-countdown", "ar/ramadan-countdown", "zakat-al-fitr-calculator", "ar/zakat-al-fitr-calculator"],
+ "count_add": 2}

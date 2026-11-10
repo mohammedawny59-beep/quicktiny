@@ -1,0 +1,16 @@
+{"pages": [
+ {"slug": "ar/ramadan-countdown", "title": "كم باقي على رمضان 2027؟ عداد رمضان والإفطار والسحور | QuickTiny",
+  "desc": "عداد تنازلي مباشر: كم باقي على رمضان 1448 في مدينتك، وفي رمضان كم باقي على الإفطار والسحور بالثانية، مع الإمساك والمغرب وساعات الصيام اليوم.",
+  "app_name": "QuickTiny عداد رمضان", "crumb": "كم باقي على رمضان", "category": "UtilitiesApplication", "body": "pages/rm_count_ar.html", "style": "pages/rm_style.html",
+  "alternates": [["en", "ramadan-countdown"], ["ar", "ar/ramadan-countdown"], ["x-default", "ramadan-countdown"]],
+  "switch": [["EN", "ramadan-countdown"], ["AR", "ar/ramadan-countdown"]],
+  "faq": [["متى رمضان 2027؟", "حسب تقويم أم القرى يوافق 1 رمضان 1448 هـ يوم الاثنين 8 فبراير 2027، والموعد الرسمي يُعلن بعد تحري الهلال."],
+          ["متى ينتهي السحور؟", "ينتهي السحور بأذان الفجر، وتعرض الإمساكيات وقت الإمساك قبله بنحو 10 دقائق احتياطًا."]]},
+ {"slug": "ar/zakat-al-fitr-calculator", "title": "حساب زكاة الفطر 2027 — المقدار بالكيلو والقيمة النقدية | QuickTiny",
+  "desc": "احسب زكاة الفطر عن أسرتك: صاع لكل فرد (نحو 2.5 إلى 3 كغ)، قيمتها بسعر بلدك أو بالمبلغ النقدي الرسمي، مع حاسبة فدية الصيام. مجانًا وبدون تسجيل.",
+  "app_name": "QuickTiny حساب زكاة الفطر", "crumb": "حساب زكاة الفطر", "category": "UtilitiesApplication", "body": "pages/rm_fitr_ar.html", "style": "pages/rm_style.html",
+  "alternates": [["en", "zakat-al-fitr-calculator"], ["ar", "ar/zakat-al-fitr-calculator"], ["x-default", "zakat-al-fitr-calculator"]],
+  "switch": [["EN", "zakat-al-fitr-calculator"], ["AR", "ar/zakat-al-fitr-calculator"]],
+  "faq": [["كم مقدار زكاة الفطر للشخص الواحد؟", "صاع من قوت البلد، ويقدّر بنحو 2.5 إلى 3 كغ، ومن يخرجها نقدًا يعتمد المبلغ الرسمي المعلن في بلده."],
+          ["متى آخر وقت لإخراج زكاة الفطر؟", "قبل صلاة عيد الفطر، ويجوز إخراجها قبل العيد بيوم أو يومين."]]}
+]}

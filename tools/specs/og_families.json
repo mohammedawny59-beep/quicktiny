@@ -576,5 +576,27 @@
    "ar/gpa-calculator",
    "ar/weighted-percentage-calculator"
   ]
+ },
+ {
+  "key": "ramadan",
+  "icon": "ramadan",
+  "lang": "en",
+  "title": "Ramadan Countdown & Zakat al-Fitr",
+  "sub": "Days until Ramadan · iftar timer · fitrana",
+  "pages": [
+   "ramadan-countdown",
+   "zakat-al-fitr-calculator"
+  ]
+ },
+ {
+  "key": "ramadan-ar",
+  "icon": "ramadan",
+  "lang": "ar",
+  "title": "كم باقي على رمضان؟",
+  "sub": "عداد الإفطار والسحور · زكاة الفطر",
+  "pages": [
+   "ar/ramadan-countdown",
+   "ar/zakat-al-fitr-calculator"
+  ]
  }
 ]
