@@ -1,0 +1,572 @@
+[
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/riyadh",
+  "preset": {
+   "city": "riyadh"
+  },
+  "crumb": "Prayer Times in Riyadh",
+  "title": "Prayer Times in Riyadh Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Riyadh, Saudi Arabia: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Umm al-Qura method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Riyadh Today",
+  "intro": "Salah times for Riyadh, Saudi Arabia today with a live countdown to the next adhan. Calculated with the Umm al-Qura method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Riyadh</h2><ul class='benefits'><li><span>Coordinates: 24.7136, 46.6753</span></li><li><span>Method: Umm al-Qura</span></li><li><span>Qibla direction: 243.8° from true north — about 790 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Riyadh are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Riyadh?",
+    "The Umm al-Qura method, which is standard in Saudi Arabia. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/riyadh"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/jeddah",
+  "preset": {
+   "city": "jeddah"
+  },
+  "crumb": "Prayer Times in Jeddah",
+  "title": "Prayer Times in Jeddah Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Jeddah, Saudi Arabia: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Umm al-Qura method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Jeddah Today",
+  "intro": "Salah times for Jeddah, Saudi Arabia today with a live countdown to the next adhan. Calculated with the Umm al-Qura method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Jeddah</h2><ul class='benefits'><li><span>Coordinates: 21.4858, 39.1925</span></li><li><span>Method: Umm al-Qura</span></li><li><span>Qibla direction: 96.0° from true north — about 66 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Jeddah are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Jeddah?",
+    "The Umm al-Qura method, which is standard in Saudi Arabia. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/jeddah"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/mecca",
+  "preset": {
+   "city": "mecca"
+  },
+  "crumb": "Prayer Times in Mecca",
+  "title": "Prayer Times in Mecca Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Mecca, Saudi Arabia: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Umm al-Qura method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Mecca Today",
+  "intro": "Salah times for Mecca, Saudi Arabia today with a live countdown to the next adhan. Calculated with the Umm al-Qura method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Mecca</h2><ul class='benefits'><li><span>Coordinates: 21.4225, 39.8262</span></li><li><span>Method: Umm al-Qura</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Mecca are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Mecca?",
+    "The Umm al-Qura method, which is standard in Saudi Arabia. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/mecca"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/medina",
+  "preset": {
+   "city": "medina"
+  },
+  "crumb": "Prayer Times in Medina",
+  "title": "Prayer Times in Medina Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Medina, Saudi Arabia: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Umm al-Qura method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Medina Today",
+  "intro": "Salah times for Medina, Saudi Arabia today with a live countdown to the next adhan. Calculated with the Umm al-Qura method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Medina</h2><ul class='benefits'><li><span>Coordinates: 24.4672, 39.6111</span></li><li><span>Method: Umm al-Qura</span></li><li><span>Qibla direction: 176.2° from true north — about 339 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Medina are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Medina?",
+    "The Umm al-Qura method, which is standard in Saudi Arabia. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/medina"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/dubai",
+  "preset": {
+   "city": "dubai"
+  },
+  "crumb": "Prayer Times in Dubai",
+  "title": "Prayer Times in Dubai Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Dubai, UAE: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (UAE (Dubai) method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Dubai Today",
+  "intro": "Salah times for Dubai, UAE today with a live countdown to the next adhan. Calculated with the UAE (Dubai) method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Dubai</h2><ul class='benefits'><li><span>Coordinates: 25.2048, 55.2708</span></li><li><span>Method: UAE (Dubai)</span></li><li><span>Qibla direction: 258.2° from true north — about 1,631 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Dubai are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Dubai?",
+    "The UAE (Dubai) method, which is standard in UAE. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/dubai"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/abu-dhabi",
+  "preset": {
+   "city": "abu-dhabi"
+  },
+  "crumb": "Prayer Times in Abu Dhabi",
+  "title": "Prayer Times in Abu Dhabi Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Abu Dhabi, UAE: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (UAE (Dubai) method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Abu Dhabi Today",
+  "intro": "Salah times for Abu Dhabi, UAE today with a live countdown to the next adhan. Calculated with the UAE (Dubai) method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Abu Dhabi</h2><ul class='benefits'><li><span>Coordinates: 24.4539, 54.3773</span></li><li><span>Method: UAE (Dubai)</span></li><li><span>Qibla direction: 260.2° from true north — about 1,527 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Abu Dhabi are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Abu Dhabi?",
+    "The UAE (Dubai) method, which is standard in UAE. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/abu-dhabi"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/kuwait-city",
+  "preset": {
+   "city": "kuwait-city"
+  },
+  "crumb": "Prayer Times in Kuwait City",
+  "title": "Prayer Times in Kuwait City Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Kuwait City, Kuwait: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Kuwait method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Kuwait City Today",
+  "intro": "Salah times for Kuwait City, Kuwait today with a live countdown to the next adhan. Calculated with the Kuwait method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Kuwait City</h2><ul class='benefits'><li><span>Coordinates: 29.3759, 47.9774</span></li><li><span>Method: Kuwait</span></li><li><span>Qibla direction: 224.6° from true north — about 1,204 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Kuwait City are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Kuwait City?",
+    "The Kuwait method, which is standard in Kuwait. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/kuwait-city"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/doha",
+  "preset": {
+   "city": "doha"
+  },
+  "crumb": "Prayer Times in Doha",
+  "title": "Prayer Times in Doha Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Doha, Qatar: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Qatar method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Doha Today",
+  "intro": "Salah times for Doha, Qatar today with a live countdown to the next adhan. Calculated with the Qatar method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Doha</h2><ul class='benefits'><li><span>Coordinates: 25.2854, 51.5310</span></li><li><span>Method: Qatar</span></li><li><span>Qibla direction: 252.6° from true north — about 1,269 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Doha are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Doha?",
+    "The Qatar method, which is standard in Qatar. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/doha"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/muscat",
+  "preset": {
+   "city": "muscat"
+  },
+  "crumb": "Prayer Times in Muscat",
+  "title": "Prayer Times in Muscat Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Muscat, Oman: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Muslim World League method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Muscat Today",
+  "intro": "Salah times for Muscat, Oman today with a live countdown to the next adhan. Calculated with the Muslim World League method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Muscat</h2><ul class='benefits'><li><span>Coordinates: 23.5880, 58.3829</span></li><li><span>Method: Muslim World League</span></li><li><span>Qibla direction: 266.4° from true north — about 1,920 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Muscat are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Muscat?",
+    "The Muslim World League method, which is standard in Oman. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/muscat"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/amman",
+  "preset": {
+   "city": "amman"
+  },
+  "crumb": "Prayer Times in Amman",
+  "title": "Prayer Times in Amman Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Amman, Jordan: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Jordan Ministry of Awqaf method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Amman Today",
+  "intro": "Salah times for Amman, Jordan today with a live countdown to the next adhan. Calculated with the Jordan Ministry of Awqaf method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Amman</h2><ul class='benefits'><li><span>Coordinates: 31.9539, 35.9106</span></li><li><span>Method: Jordan Ministry of Awqaf</span></li><li><span>Qibla direction: 160.7° from true north — about 1,234 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Amman are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Amman?",
+    "The Jordan Ministry of Awqaf method, which is standard in Jordan. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/amman"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/jerusalem",
+  "preset": {
+   "city": "jerusalem"
+  },
+  "crumb": "Prayer Times in Jerusalem",
+  "title": "Prayer Times in Jerusalem Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Jerusalem, Palestine: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Jordan Ministry of Awqaf method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Jerusalem Today",
+  "intro": "Salah times for Jerusalem, Palestine today with a live countdown to the next adhan. Calculated with the Jordan Ministry of Awqaf method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Jerusalem</h2><ul class='benefits'><li><span>Coordinates: 31.7683, 35.2137</span></li><li><span>Method: Jordan Ministry of Awqaf</span></li><li><span>Qibla direction: 157.2° from true north — about 1,238 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Jerusalem are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Jerusalem?",
+    "The Jordan Ministry of Awqaf method, which is standard in Palestine. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/jerusalem"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/cairo",
+  "preset": {
+   "city": "cairo"
+  },
+  "crumb": "Prayer Times in Cairo",
+  "title": "Prayer Times in Cairo Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Cairo, Egypt: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Egyptian General Authority of Survey method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Cairo Today",
+  "intro": "Salah times for Cairo, Egypt today with a live countdown to the next adhan. Calculated with the Egyptian General Authority of Survey method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Cairo</h2><ul class='benefits'><li><span>Coordinates: 30.0444, 31.2357</span></li><li><span>Method: Egyptian General Authority of Survey</span></li><li><span>Qibla direction: 136.1° from true north — about 1,287 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Cairo are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Cairo?",
+    "The Egyptian General Authority of Survey method, which is standard in Egypt. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/cairo"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/casablanca",
+  "preset": {
+   "city": "casablanca"
+  },
+  "crumb": "Prayer Times in Casablanca",
+  "title": "Prayer Times in Casablanca Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Casablanca, Morocco: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Morocco Ministry of Habous method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Casablanca Today",
+  "intro": "Salah times for Casablanca, Morocco today with a live countdown to the next adhan. Calculated with the Morocco Ministry of Habous method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Casablanca</h2><ul class='benefits'><li><span>Coordinates: 33.5731, -7.5898</span></li><li><span>Method: Morocco Ministry of Habous</span></li><li><span>Qibla direction: 93.7° from true north — about 4,824 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Casablanca are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Casablanca?",
+    "The Morocco Ministry of Habous method, which is standard in Morocco. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/casablanca"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/istanbul",
+  "preset": {
+   "city": "istanbul"
+  },
+  "crumb": "Prayer Times in Istanbul",
+  "title": "Prayer Times in Istanbul Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Istanbul, Turkey: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Diyanet method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Istanbul Today",
+  "intro": "Salah times for Istanbul, Turkey today with a live countdown to the next adhan. Calculated with the Diyanet method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Istanbul</h2><ul class='benefits'><li><span>Coordinates: 41.0082, 28.9784</span></li><li><span>Method: Diyanet</span></li><li><span>Qibla direction: 151.6° from true north — about 2,405 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Istanbul are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Istanbul?",
+    "The Diyanet method, which is standard in Turkey. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/istanbul"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/london",
+  "preset": {
+   "city": "london"
+  },
+  "crumb": "Prayer Times in London",
+  "title": "Prayer Times in London Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in London, United Kingdom: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Muslim World League method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in London Today",
+  "intro": "Salah times for London, United Kingdom today with a live countdown to the next adhan. Calculated with the Muslim World League method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About London</h2><ul class='benefits'><li><span>Coordinates: 51.5074, -0.1278</span></li><li><span>Method: Muslim World League</span></li><li><span>Qibla direction: 119.0° from true north — about 4,794 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for London are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for London?",
+    "The Muslim World League method, which is standard in United Kingdom. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/london"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/paris",
+  "preset": {
+   "city": "paris"
+  },
+  "crumb": "Prayer Times in Paris",
+  "title": "Prayer Times in Paris Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Paris, France: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (UOIF method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Paris Today",
+  "intro": "Salah times for Paris, France today with a live countdown to the next adhan. Calculated with the UOIF method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Paris</h2><ul class='benefits'><li><span>Coordinates: 48.8566, 2.3522</span></li><li><span>Method: UOIF</span></li><li><span>Qibla direction: 119.2° from true north — about 4,496 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Paris are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Paris?",
+    "The UOIF method, which is standard in France. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/paris"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/berlin",
+  "preset": {
+   "city": "berlin"
+  },
+  "crumb": "Prayer Times in Berlin",
+  "title": "Prayer Times in Berlin Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Berlin, Germany: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (Muslim World League method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Berlin Today",
+  "intro": "Salah times for Berlin, Germany today with a live countdown to the next adhan. Calculated with the Muslim World League method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Berlin</h2><ul class='benefits'><li><span>Coordinates: 52.5200, 13.4050</span></li><li><span>Method: Muslim World League</span></li><li><span>Qibla direction: 136.7° from true north — about 4,130 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Berlin are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Berlin?",
+    "The Muslim World League method, which is standard in Germany. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/berlin"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/new-york",
+  "preset": {
+   "city": "new-york"
+  },
+  "crumb": "Prayer Times in New York",
+  "title": "Prayer Times in New York Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in New York, USA: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (ISNA method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in New York Today",
+  "intro": "Salah times for New York, USA today with a live countdown to the next adhan. Calculated with the ISNA method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About New York</h2><ul class='benefits'><li><span>Coordinates: 40.7128, -74.0060</span></li><li><span>Method: ISNA</span></li><li><span>Qibla direction: 58.5° from true north — about 10,306 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for New York are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for New York?",
+    "The ISNA method, which is standard in USA. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/new-york"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/toronto",
+  "preset": {
+   "city": "toronto"
+  },
+  "crumb": "Prayer Times in Toronto",
+  "title": "Prayer Times in Toronto Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Toronto, Canada: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (ISNA method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Toronto Today",
+  "intro": "Salah times for Toronto, Canada today with a live countdown to the next adhan. Calculated with the ISNA method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Toronto</h2><ul class='benefits'><li><span>Coordinates: 43.6532, -79.3832</span></li><li><span>Method: ISNA</span></li><li><span>Qibla direction: 54.6° from true north — about 10,496 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Toronto are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Toronto?",
+    "The ISNA method, which is standard in Canada. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/toronto"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/jakarta",
+  "preset": {
+   "city": "jakarta"
+  },
+  "crumb": "Prayer Times in Jakarta",
+  "title": "Prayer Times in Jakarta Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Jakarta, Indonesia: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (MUIS / JAKIM method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Jakarta Today",
+  "intro": "Salah times for Jakarta, Indonesia today with a live countdown to the next adhan. Calculated with the MUIS / JAKIM method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Jakarta</h2><ul class='benefits'><li><span>Coordinates: -6.2088, 106.8456</span></li><li><span>Method: MUIS / JAKIM</span></li><li><span>Qibla direction: 295.2° from true north — about 7,920 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Jakarta are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Jakarta?",
+    "The MUIS / JAKIM method, which is standard in Indonesia. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/jakarta"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/kuala-lumpur",
+  "preset": {
+   "city": "kuala-lumpur"
+  },
+  "crumb": "Prayer Times in Kuala Lumpur",
+  "title": "Prayer Times in Kuala Lumpur Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Kuala Lumpur, Malaysia: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (MUIS / JAKIM method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Kuala Lumpur Today",
+  "intro": "Salah times for Kuala Lumpur, Malaysia today with a live countdown to the next adhan. Calculated with the MUIS / JAKIM method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Kuala Lumpur</h2><ul class='benefits'><li><span>Coordinates: 3.1390, 101.6869</span></li><li><span>Method: MUIS / JAKIM</span></li><li><span>Qibla direction: 292.5° from true north — about 6,974 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Kuala Lumpur are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Kuala Lumpur?",
+    "The MUIS / JAKIM method, which is standard in Malaysia. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/kuala-lumpur"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/karachi",
+  "preset": {
+   "city": "karachi"
+  },
+  "crumb": "Prayer Times in Karachi",
+  "title": "Prayer Times in Karachi Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Karachi, Pakistan: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (University of Islamic Sciences, Karachi method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Karachi Today",
+  "intro": "Salah times for Karachi, Pakistan today with a live countdown to the next adhan. Calculated with the University of Islamic Sciences, Karachi method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Karachi</h2><ul class='benefits'><li><span>Coordinates: 24.8607, 67.0011</span></li><li><span>Method: University of Islamic Sciences, Karachi</span></li><li><span>Qibla direction: 267.7° from true north — about 2,800 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Karachi are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Karachi?",
+    "The University of Islamic Sciences, Karachi method, which is standard in Pakistan. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/karachi"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/lahore",
+  "preset": {
+   "city": "lahore"
+  },
+  "crumb": "Prayer Times in Lahore",
+  "title": "Prayer Times in Lahore Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Lahore, Pakistan: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (University of Islamic Sciences, Karachi method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Lahore Today",
+  "intro": "Salah times for Lahore, Pakistan today with a live countdown to the next adhan. Calculated with the University of Islamic Sciences, Karachi method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Lahore</h2><ul class='benefits'><li><span>Coordinates: 31.5204, 74.3587</span></li><li><span>Method: University of Islamic Sciences, Karachi</span></li><li><span>Qibla direction: 260.4° from true north — about 3,598 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Lahore are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Lahore?",
+    "The University of Islamic Sciences, Karachi method, which is standard in Pakistan. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/lahore"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "prayer-times/dhaka",
+  "preset": {
+   "city": "dhaka"
+  },
+  "crumb": "Prayer Times in Dhaka",
+  "title": "Prayer Times in Dhaka Today — Fajr, Maghrib, Isha & Ramadan Timetable | QuickTiny",
+  "desc": "Today's prayer times in Dhaka, Bangladesh: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (University of Islamic Sciences, Karachi method), with next-prayer countdown, Qibla direction, monthly and Ramadan timetables.",
+  "h1": "Prayer Times in Dhaka Today",
+  "intro": "Salah times for Dhaka, Bangladesh today with a live countdown to the next adhan. Calculated with the University of Islamic Sciences, Karachi method used locally — you can change the method or Asr calculation in the settings.",
+  "about": "<h2>About Dhaka</h2><ul class='benefits'><li><span>Coordinates: 23.8103, 90.4125</span></li><li><span>Method: University of Islamic Sciences, Karachi</span></li><li><span>Qibla direction: 277.6° from true north — about 5,172 km to the Kaaba</span></li></ul><p>The monthly timetable and a printable Ramadan timetable for Dhaka are further down the page.</p>",
+  "faq": [
+   [
+    "Which method is used for Dhaka?",
+    "The University of Islamic Sciences, Karachi method, which is standard in Bangladesh. You can switch methods in the settings."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/prayer-times/dhaka"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "ramadan-timetable",
+  "preset": {
+   "tab": "ramadan"
+  },
+  "crumb": "Ramadan Timetable",
+  "title": "Ramadan Timetable 2027 (1448) — Suhoor &amp; Iftar Times for Your City | QuickTiny",
+  "desc": "Printable Ramadan 2027 timetable for your city: Imsak (suhoor ends), Fajr, Iftar (Maghrib) and Isha for every day of the month, plus a countdown to Ramadan and Eid.",
+  "h1": "Ramadan Timetable 2027 (1448 AH)",
+  "intro": "Pick your city to get the full Ramadan timetable — Imsak, Fajr, Dhuhr, Asr, Iftar (Maghrib) and Isha for every day — and print it or save it as PDF. You'll also see how many days are left until Ramadan and Eid al-Fitr.",
+  "about": "<h2>Good to know</h2><ul class='benefits'><li><span>Ramadan 1448 is expected to start around 8 February 2027 (Umm al-Qura); local moon sighting may shift it by a day.</span></li><li><span>Imsak is 10 minutes before Fajr.</span></li></ul>",
+  "faq": [
+   [
+    "When does Ramadan 2027 start?",
+    "Around 8 February 2027 according to the Umm al-Qura calendar; the official start depends on the moon sighting in your country."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/ramadan-imsakiya"
+  }
+ },
+ {
+  "base": "prayer-times",
+  "slug": "qibla-direction",
+  "preset": {},
+  "crumb": "Qibla Direction",
+  "title": "Qibla Direction — Find the Qibla From Your Location | QuickTiny",
+  "desc": "Find the Qibla direction from your current location or city in degrees from north, plus the distance to the Kaaba and today's prayer times. Free, no app needed.",
+  "h1": "Qibla Direction From Your Location",
+  "intro": "Tap “Use my location” or pick your city to see the Qibla direction in degrees from true north and the distance to the Kaaba. Turn until your phone's compass shows that number.",
+  "about": "<h2>Tips</h2><ul class='benefits'><li><span>Hold the phone flat and away from metal or electronics.</span></li><li><span>The direction follows the shortest path on the globe (great circle) — from North America it points north-east.</span></li></ul>",
+  "faq": [
+   [
+    "Why does the Qibla from America point north-east?",
+    "Because the shortest route on a globe isn't a straight line on a flat map."
+   ]
+  ],
+  "alts": {
+   "ar": "ar/qibla-direction"
+  }
+ }
+]

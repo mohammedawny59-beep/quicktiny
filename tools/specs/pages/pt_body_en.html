@@ -1,0 +1,54 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Prayer Times</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Islamic</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Calculated on your device</span><span class="badge">Free</span></div>
+    <h1>Prayer Times Today — Fajr, Dhuhr, Asr, Maghrib, Isha</h1>
+    <p>Accurate daily prayer times for your city or exact location, with the next prayer countdown, Qibla direction, a monthly timetable and a printable Ramadan timetable. Calculated on your device with official methods (Umm al-Qura, MWL, Egyptian, ISNA and more).</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="pt-bar">
+      <div><label class="field-label" for="ptSearch">City</label><input type="text" id="ptSearch" list="ptCities" placeholder="Type a city, e.g. London" autocomplete="off"><datalist id="ptCities"></datalist></div>
+      <div><button type="button" class="btn btn-secondary" id="ptGeo">📍 Use my location</button></div>
+      <div><label class="field-label" for="ptMethod">Calculation method</label><select id="ptMethod"></select></div>
+      <div><label class="field-label" for="ptAsr">Asr</label><select id="ptAsr"><option value="1">Standard (Shafi'i, Maliki, Hanbali)</option><option value="2">Hanafi</option></select></div>
+    </div>
+    <div id="ptGeoMsg" aria-live="polite"></div>
+    <div class="checkline"><input type="checkbox" id="ptH12"><label for="ptH12">12-hour clock</label></div>
+    <div class="pt-head"><div><h2 id="ptPlace"></h2><div id="ptDate"></div></div><div id="ptNext" aria-live="polite"></div></div>
+    <div id="ptGrid"></div>
+    <div class="pt-row">
+      <div class="pt-box"><h2>Qibla direction</h2><div class="pt-qibla"><div class="pt-compass"><div id="ptNeedle"></div></div><div><div id="ptQibla"></div><div style="font-size:12.5px;color:var(--text-dim)">degrees clockwise from true north · distance to the Kaaba: <b id="ptKm"></b></div></div></div></div>
+      <div class="pt-box"><h2>Countdown</h2><div id="ptCount"></div></div>
+    </div>
+    <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>Monthly timetable</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth"><button type="button" class="btn btn-secondary" data-print="month">Print</button></div></div>
+      <div class="pt-tablewrap"><table class="pt-table"><thead><tr><th>Day</th><th>Hijri</th><th>Fajr</th><th>Sunrise</th><th>Dhuhr</th><th>Asr</th><th>Maghrib</th><th>Isha</th></tr></thead><tbody id="ptMonthBody"></tbody></table></div></div>
+    <div class="pt-sec pt-print" id="ptRamadan"><div class="pt-sec-head"><h2 id="ptRamadanTitle">Ramadan</h2><button type="button" class="btn" data-print="ramadan">Print timetable</button></div>
+      <div class="pt-tablewrap"><table class="pt-table"><thead><tr><th>Day</th><th>Date</th><th>Imsak</th><th>Fajr</th><th>Dhuhr</th><th>Asr</th><th>Iftar (Maghrib)</th><th>Isha</th></tr></thead><tbody id="ptRamadanBody"></tbody></table></div></div>
+    <div id="ptMeta"></div>
+  </div>
+  <script src="/hijri.js"></script>
+  <script src="/prayer-cities.js"></script>
+  <script src="/prayer-times.js"></script>
+
+  <div class="content">
+    <h2>How are these prayer times calculated?</h2>
+    <ul class="benefits"><li><span>From the sun's position for your coordinates and date, using the method's Fajr and Isha angles (e.g. Umm al-Qura: Fajr 18.5°, Isha 90 minutes after Maghrib, 120 in Ramadan).</span></li>
+    <li><span>Official minute adjustments are included where countries publish them (Jordan, UAE, Morocco, Turkey).</span></li>
+    <li><span>Checked against a widely used reference service: within 0–2 minutes for most cities and methods (Asr can differ by up to 3 minutes at high latitudes).</span></li>
+    <li><span>Imsak is shown 10 minutes before Fajr. Always follow your local mosque or official authority if they differ.</span></li></ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Which method should I choose?</summary><p>The tool picks your country's usual method automatically. Saudi Arabia uses Umm al-Qura, Egypt the Egyptian Authority, North America ISNA, and most of Europe the Muslim World League.</p></details>
+    <details class="faq-item"><summary>Does it need my location?</summary><p>Only if you tap “Use my location” — the coordinates stay in your browser. You can just pick a city instead.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/ar/prayer-times">مواقيت الصلاة (Arabic)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/hijri-converter">Hijri converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/zakat-calculator">Zakat calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

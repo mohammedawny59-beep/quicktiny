@@ -1,0 +1,138 @@
+{
+ "en_cards": [
+  {
+   "slug": "prayer-times",
+   "icon": "clock",
+   "cat": "Utility",
+   "badge": "Islamic &middot; New",
+   "name": "Prayer Times",
+   "desc": "Today's salah times, next-prayer countdown, Qibla and a printable Ramadan timetable.",
+   "search": "prayer times salah namaz fajr maghrib isha qibla ramadan timetable imsak iftar utility"
+  }
+ ],
+ "ar_cards": [
+  {
+   "slug": "ar/prayer-times",
+   "icon": "clock",
+   "badge": "إسلامي · جديد",
+   "name": "مواقيت الصلاة",
+   "desc": "أوقات الصلاة اليوم والعد التنازلي للأذان واتجاه القبلة وإمساكية رمضان.",
+   "search": "مواقيت الصلاة اوقات الصلاة الاذان الفجر المغرب امساكية رمضان القبلة"
+  }
+ ],
+ "footer": [
+  [
+   "prayer-times",
+   "Prayer Times"
+  ]
+ ],
+ "popular_en": [
+  [
+   "prayer-times",
+   "Prayer times"
+  ],
+  [
+   "ramadan-timetable",
+   "Ramadan timetable"
+  ],
+  [
+   "qibla-direction",
+   "Qibla direction"
+  ]
+ ],
+ "popular_ar": [
+  [
+   "ar/prayer-times",
+   "مواقيت الصلاة"
+  ],
+  [
+   "ar/ramadan-imsakiya",
+   "إمساكية رمضان"
+  ],
+  [
+   "ar/qibla-direction",
+   "اتجاه القبلة"
+  ]
+ ],
+ "sitemap": [
+  "prayer-times",
+  "ar/prayer-times",
+  "ar/ramadan-imsakiya",
+  "ramadan-timetable",
+  "ar/qibla-direction",
+  "qibla-direction",
+  "ar/prayer-times/riyadh",
+  "ar/prayer-times/jeddah",
+  "ar/prayer-times/mecca",
+  "ar/prayer-times/medina",
+  "ar/prayer-times/dammam",
+  "ar/prayer-times/khobar",
+  "ar/prayer-times/taif",
+  "ar/prayer-times/abha",
+  "ar/prayer-times/tabuk",
+  "ar/prayer-times/buraidah",
+  "ar/prayer-times/dubai",
+  "ar/prayer-times/abu-dhabi",
+  "ar/prayer-times/sharjah",
+  "ar/prayer-times/kuwait-city",
+  "ar/prayer-times/doha",
+  "ar/prayer-times/manama",
+  "ar/prayer-times/muscat",
+  "ar/prayer-times/amman",
+  "ar/prayer-times/irbid",
+  "ar/prayer-times/zarqa",
+  "ar/prayer-times/jerusalem",
+  "ar/prayer-times/gaza",
+  "ar/prayer-times/beirut",
+  "ar/prayer-times/damascus",
+  "ar/prayer-times/baghdad",
+  "ar/prayer-times/cairo",
+  "ar/prayer-times/alexandria",
+  "ar/prayer-times/giza",
+  "ar/prayer-times/khartoum",
+  "ar/prayer-times/tripoli",
+  "ar/prayer-times/casablanca",
+  "ar/prayer-times/rabat",
+  "ar/prayer-times/marrakesh",
+  "ar/prayer-times/algiers",
+  "ar/prayer-times/oran",
+  "ar/prayer-times/tunis",
+  "ar/prayer-times/sanaa",
+  "ar/prayer-times/istanbul",
+  "ar/prayer-times/london",
+  "ar/prayer-times/paris",
+  "ar/prayer-times/berlin",
+  "ar/prayer-times/new-york",
+  "ar/prayer-times/toronto",
+  "ar/prayer-times/jakarta",
+  "ar/prayer-times/kuala-lumpur",
+  "ar/prayer-times/karachi",
+  "ar/prayer-times/lahore",
+  "ar/prayer-times/dhaka",
+  "prayer-times/riyadh",
+  "prayer-times/jeddah",
+  "prayer-times/mecca",
+  "prayer-times/medina",
+  "prayer-times/dubai",
+  "prayer-times/abu-dhabi",
+  "prayer-times/kuwait-city",
+  "prayer-times/doha",
+  "prayer-times/muscat",
+  "prayer-times/amman",
+  "prayer-times/jerusalem",
+  "prayer-times/cairo",
+  "prayer-times/casablanca",
+  "prayer-times/istanbul",
+  "prayer-times/london",
+  "prayer-times/paris",
+  "prayer-times/berlin",
+  "prayer-times/new-york",
+  "prayer-times/toronto",
+  "prayer-times/jakarta",
+  "prayer-times/kuala-lumpur",
+  "prayer-times/karachi",
+  "prayer-times/lahore",
+  "prayer-times/dhaka"
+ ],
+ "count_add": 1
+}

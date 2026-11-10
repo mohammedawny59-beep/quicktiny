@@ -1,0 +1,55 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">مواقيت الصلاة</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">إسلامي</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تُحسب على جهازك</span><span class="badge">مجاني</span></div>
+    <h1>مواقيت الصلاة اليوم — الفجر والظهر والعصر والمغرب والعشاء</h1>
+    <p>مواقيت صلاة دقيقة لمدينتك أو لموقعك الحالي، مع العد التنازلي للصلاة القادمة، واتجاه القبلة، وجدول شهري، وإمساكية رمضان قابلة للطباعة. تُحسب على جهازك بالطرق المعتمدة (أم القرى، رابطة العالم الإسلامي، الهيئة المصرية وغيرها).</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="pt-bar">
+      <div><label class="field-label" for="ptSearch">المدينة</label><input type="text" id="ptSearch" list="ptCities" placeholder="اكتب اسم المدينة، مثل الرياض" autocomplete="off"><datalist id="ptCities"></datalist></div>
+      <div><button type="button" class="btn btn-secondary" id="ptGeo">📍 استخدم موقعي</button></div>
+      <div><label class="field-label" for="ptMethod">طريقة الحساب</label><select id="ptMethod"></select></div>
+      <div><label class="field-label" for="ptAsr">العصر</label><select id="ptAsr"><option value="1">الجمهور (الشافعي والمالكي والحنبلي)</option><option value="2">الحنفي</option></select></div>
+    </div>
+    <div id="ptGeoMsg" aria-live="polite"></div>
+    <div class="checkline"><input type="checkbox" id="ptH12"><label for="ptH12">نظام 12 ساعة</label></div>
+    <div class="pt-head"><div><h2 id="ptPlace"></h2><div id="ptDate"></div></div><div id="ptNext" aria-live="polite"></div></div>
+    <div id="ptGrid"></div>
+    <div class="pt-row">
+      <div class="pt-box"><h2>اتجاه القبلة</h2><div class="pt-qibla"><div class="pt-compass"><div id="ptNeedle"></div></div><div><div id="ptQibla"></div><div style="font-size:12.5px;color:var(--text-dim)">درجة باتجاه عقارب الساعة من الشمال الحقيقي · المسافة إلى الكعبة: <b id="ptKm"></b></div></div></div></div>
+      <div class="pt-box"><h2>العد التنازلي</h2><div id="ptCount"></div></div>
+    </div>
+    <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>الجدول الشهري</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth"><button type="button" class="btn btn-secondary" data-print="month">طباعة</button></div></div>
+      <div class="pt-tablewrap"><table class="pt-table"><thead><tr><th>اليوم</th><th>الهجري</th><th>الفجر</th><th>الشروق</th><th>الظهر</th><th>العصر</th><th>المغرب</th><th>العشاء</th></tr></thead><tbody id="ptMonthBody"></tbody></table></div></div>
+    <div class="pt-sec pt-print" id="ptRamadan"><div class="pt-sec-head"><h2 id="ptRamadanTitle">إمساكية رمضان</h2><button type="button" class="btn" data-print="ramadan">طباعة الإمساكية</button></div>
+      <div class="pt-tablewrap"><table class="pt-table"><thead><tr><th>اليوم</th><th>التاريخ</th><th>الإمساك</th><th>الفجر</th><th>الظهر</th><th>العصر</th><th>المغرب (الإفطار)</th><th>العشاء</th></tr></thead><tbody id="ptRamadanBody"></tbody></table></div></div>
+    <div id="ptMeta"></div>
+  </div>
+  <script src="/hijri.js"></script>
+  <script src="/prayer-cities.js"></script>
+  <script src="/prayer-times.js"></script>
+
+  <div class="content">
+    <h2>كيف تُحسب مواقيت الصلاة؟</h2>
+    <ul class="benefits"><li><span>من موقع الشمس حسب إحداثيات مدينتك والتاريخ، بزوايا الفجر والعشاء الخاصة بكل طريقة (أم القرى: الفجر 18.5° والعشاء بعد المغرب بـ90 دقيقة، و120 دقيقة في رمضان).</span></li>
+    <li><span>نطبّق التعديلات الرسمية بالدقائق في الدول التي تعتمدها (الأردن، الإمارات، المغرب، تركيا).</span></li>
+    <li><span>قارنّا النتائج بخدمة مرجعية واسعة الاستخدام: الفرق بين 0 و2 دقيقة لأغلب المدن والطرق.</span></li>
+    <li><span>الإمساك قبل الفجر بعشر دقائق. اتبع دائمًا مسجدك أو الجهة الرسمية في بلدك عند وجود اختلاف.</span></li></ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>أي طريقة حساب أختار؟</summary><p>تختار الأداة طريقة بلدك تلقائيًا: السعودية أم القرى، مصر الهيئة المصرية، الأردن وزارة الأوقاف، وهكذا. ويمكنك تغييرها.</p></details>
+    <details class="faq-item"><summary>هل تحتاج الأداة موقعي؟</summary><p>فقط إذا ضغطت «استخدم موقعي»، والإحداثيات تبقى في متصفحك. يمكنك اختيار مدينتك من القائمة بدلًا من ذلك.</p></details>
+    <details class="faq-item"><summary>متى يبدأ رمضان والعيد؟</summary><p>التواريخ المعروضة حسب تقويم أم القرى، والإعلان الرسمي يعتمد على رؤية الهلال في بلدك وقد يختلف يومًا.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/hijri-converter">التاريخ الهجري<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/zakat-calculator">حاسبة الزكاة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/days-between-dates">حساب الأيام بين تاريخين<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
