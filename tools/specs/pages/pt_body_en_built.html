@@ -19,7 +19,9 @@
     <div class="pt-head"><div><h2 id="ptPlace"></h2><div id="ptDate"></div></div><div id="ptNext" aria-live="polite"></div></div>
     <div id="ptGrid"></div>
     <div class="pt-row">
-      <div class="pt-box"><h2>Qibla direction</h2><div class="pt-qibla"><div class="pt-compass"><div id="ptNeedle"></div></div><div><div id="ptQibla"></div><div style="font-size:12.5px;color:var(--text-dim)">degrees clockwise from true north · distance to the Kaaba: <b id="ptKm"></b></div></div></div></div>
+      <div class="pt-box"><h2>Qibla direction</h2><div class="pt-qibla"><div class="pt-compass" id="ptDial"><span class="pt-ring"></span><span class="pt-c n">N</span><span class="pt-c e">E</span><span class="pt-c s">S</span><span class="pt-c w">W</span><div id="ptNeedle"></div><span class="pt-hub"></span></div><div style="flex:1;min-width:180px"><div id="ptQibla"></div><div id="ptFrom"></div><div style="font-size:12.5px;color:var(--text-dim)">degrees clockwise from true north · distance to the Kaaba: <b id="ptKm"></b></div>
+        <button type="button" class="btn btn-secondary" id="ptCompassBtn" style="margin-top:10px">🧭 Live compass (phone)</button><div id="ptCompassMsg" aria-live="polite"></div></div></div>
+        <p class="pt-howto" id="ptHowto">Without the live compass: lay the phone flat and turn it until N on the dial points north, then face the 🕋 arrow — or turn until your phone's compass app shows the degree above.</p></div>
       <div class="pt-box"><h2>Countdown</h2><div id="ptCount"></div></div>
     </div>
     <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>Monthly timetable</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth"><button type="button" class="btn btn-secondary" data-print="month">Print</button></div></div>

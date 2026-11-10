@@ -120,7 +120,37 @@ function qtTzOffset(tz, y, m, d) {
                  : { fajr: "Fajr", sunrise: "Sunrise", dhuhr: "Dhuhr", asr: "Asr", maghrib: "Maghrib", isha: "Isha", imsak: "Imsak" };
   var ORDER = ["fajr", "sunrise", "dhuhr", "asr", "maghrib", "isha"];
   var store = { get: function (k) { try { return JSON.parse(localStorage.getItem("qt_" + k) || "null"); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem("qt_" + k, JSON.stringify(v)); } catch (e) {} } };
-  var loc = null, tick = null;
+  var loc = null, tick = null, qiblaDeg = 0, heading = null, liveOn = false;
+  // ---- Live compass: rotate the dial with the phone so the 🕋 arrow points at the real Qibla ----
+  function onHeading(h) {
+    if (h == null || isNaN(h)) return;
+    var so = (screen.orientation && screen.orientation.angle) || window.orientation || 0;
+    heading = (h + so + 360) % 360;
+    var dial = $("ptDial"); dial.style.transform = "rotate(" + (-heading) + "deg)";
+    var diff = ((qiblaDeg - heading + 540) % 360) - 180, msg = $("ptCompassMsg");
+    if (Math.abs(diff) <= 5) { msg.textContent = AR ? "✓ أنت باتجاه القبلة" : "✓ You're facing the Qibla"; msg.className = "ok"; dial.classList.add("pt-aligned"); }
+    else { msg.textContent = AR ? "استدر " + Math.round(Math.abs(diff)) + "° " + (diff > 0 ? "لليمين" : "لليسار") : "Turn " + Math.round(Math.abs(diff)) + "° " + (diff > 0 ? "right" : "left"); msg.className = ""; dial.classList.remove("pt-aligned"); }
+  }
+  function onOrient(e) {
+    if (typeof e.webkitCompassHeading === "number") return onHeading(e.webkitCompassHeading); // iOS: degrees from north
+    if (e.absolute && typeof e.alpha === "number") return onHeading(360 - e.alpha);            // Android: alpha is counter-clockwise
+  }
+  function startCompass() {
+    var msg = $("ptCompassMsg"), got = false;
+    var go = function () {
+      liveOn = true; $("ptDial").classList.add("pt-on");
+      msg.textContent = AR ? "ضع الجوال مسطحًا وحرّكه على شكل 8 لمعايرة البوصلة…" : "Hold the phone flat (move it in a figure 8 to calibrate)…"; msg.className = "";
+      var h = function (e) { got = true; onOrient(e); };
+      if ("ondeviceorientationabsolute" in window) window.addEventListener("deviceorientationabsolute", h);
+      else window.addEventListener("deviceorientation", h);
+      setTimeout(function () { if (!got || heading === null) { msg.textContent = AR ? "جهازك لا يرسل اتجاه البوصلة — استخدم الطريقة اليدوية أدناه." : "This device doesn't report a compass heading — use the manual method below."; $("ptDial").classList.remove("pt-on"); } }, 2500);
+      qtTrack("qibla_live");
+    };
+    if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === "function") {
+      DeviceOrientationEvent.requestPermission().then(function (r) { if (r === "granted") go(); else { msg.textContent = AR ? "لم يُسمح بالوصول للبوصلة." : "Compass access was not allowed."; } }).catch(function () { msg.textContent = AR ? "تعذّر تشغيل البوصلة." : "Couldn't start the compass."; });
+    } else if (window.DeviceOrientationEvent) go();
+    else msg.textContent = AR ? "متصفحك لا يدعم البوصلة." : "Your browser doesn't support the compass.";
+  }
 
   function isRamadan(y, m, d) { return typeof qtToHijri === "function" && qtToHijri(new Date(Date.UTC(y, m - 1, d))).m === 9; }
   function timesFor(y, m, d) {
@@ -153,6 +183,12 @@ function qtTzOffset(tz, y, m, d) {
     $("ptNext").innerHTML = (AR ? "الصلاة القادمة: " : "Next: ") + "<b>" + NAMES[nextName] + "</b> " + (AR ? "بعد " : "in ") + '<span class="pt-cd">' + String(hh).padStart(2, "0") + ":" + String(mm).padStart(2, "0") + ":" + String(ss).padStart(2, "0") + "</span>";
     var q = qtQibla(loc.lat, loc.lng);
     $("ptQibla").textContent = q.toFixed(1) + "°"; $("ptNeedle").style.transform = "rotate(" + q + "deg)";
+    qiblaDeg = q;
+    var from = $("ptFrom");
+    if (from) {
+      from.textContent = (AR ? "محسوب من: " : "From: ") + loc.name + (loc.isDefault ? (AR ? " — ليس موقعك؟ اختر مدينتك أو اضغط «استخدم موقعي»" : " — not where you are? Pick your city or tap “Use my location”") : "");
+      from.className = loc.isDefault ? "pt-warn" : "";
+    }
     $("ptKm").textContent = Math.round(qtKaabaKm(loc.lat, loc.lng)).toLocaleString("en-US") + (AR ? " كم" : " km");
     $("ptMeta").textContent = QT_PT_METHODS[$("ptMethod").value].name[lang] + " · " + loc.lat.toFixed(4) + ", " + loc.lng.toFixed(4) + " · " + loc.tz;
   }
@@ -226,13 +262,14 @@ function qtTzOffset(tz, y, m, d) {
     $("ptMethod").addEventListener("change", function () { store.set("pt_method_manual", 1); store.set("pt_method", $("ptMethod").value); render(); monthTable(); ramadanTable(); });
     ["ptAsr", "ptH12"].forEach(function (id) { $(id).addEventListener("change", function () { store.set(id, id === "ptH12" ? $(id).checked : $(id).value); render(); monthTable(); ramadanTable(); }); });
     $("ptMonth").addEventListener("change", monthTable);
+    if ($("ptCompassBtn")) $("ptCompassBtn").addEventListener("click", startCompass);
     document.querySelectorAll("[data-print]").forEach(function (b) { b.addEventListener("click", function () { document.body.setAttribute("data-print", b.getAttribute("data-print")); window.print(); setTimeout(function () { document.body.removeAttribute("data-print"); }, 500); }); });
     if (store.get("ptAsr")) $("ptAsr").value = store.get("ptAsr");
     if (store.get("ptH12") !== null) $("ptH12").checked = !!store.get("ptH12");
     if (store.get("pt_method_manual") && store.get("pt_method")) $("ptMethod").value = store.get("pt_method");
     var P = window.QT_PRESET || {}, preset = P.city && CITIES.filter(function (c) { return c.slug === P.city; })[0];
     if (preset) setLoc({ name: cityLabel(preset), lat: preset.lat, lng: preset.lng, tz: preset.tz, method: preset.method }, false);
-    else { var saved = store.get("pt_loc"), def = CITIES.filter(function (c) { return c.slug === (AR ? "riyadh" : "mecca"); })[0] || CITIES[0]; setLoc(relabel(saved) || { slug: def.slug, name: cityLabel(def), lat: def.lat, lng: def.lng, tz: def.tz, method: def.method }, false); }
+    else { var saved = store.get("pt_loc"), def = CITIES.filter(function (c) { return c.slug === (AR ? "riyadh" : "mecca"); })[0] || CITIES[0]; setLoc(relabel(saved) || { slug: def.slug, isDefault: true, name: cityLabel(def), lat: def.lat, lng: def.lng, tz: def.tz, method: def.method }, false); }
     if (P.tab === "ramadan" && $("ptRamadan")) setTimeout(function () { $("ptRamadan").scrollIntoView({ block: "start" }); }, 100);
     tick = setInterval(render, 1000);
   });
