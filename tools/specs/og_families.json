@@ -13,7 +13,8 @@
    "png-to-jpg",
    "jpg-to-png",
    "jpg-to-webp",
-   "resize-image"
+   "resize-image",
+   "guides/convert-heic-to-jpg-windows"
   ]
  },
  {
@@ -24,7 +25,8 @@
   "sub": "HEIC إلى JPG وWebP وPNG — بدون رفع",
   "pages": [
    "ar/image-converter",
-   "ar/heic-to-jpg"
+   "ar/heic-to-jpg",
+   "ar/guides/heic-to-jpg-windows-android"
   ]
  },
  {
@@ -40,7 +42,8 @@
    "compress-image-to-100kb",
    "compress-image-to-200kb",
    "compress-image-to-500kb",
-   "compress-image-to-1mb"
+   "compress-image-to-1mb",
+   "guides/compress-photo-under-100kb"
   ]
  },
  {
@@ -53,7 +56,8 @@
    "ar/compress-image-to-kb",
    "ar/compress-image-to-50kb",
    "ar/compress-image-to-100kb",
-   "ar/compress-image-to-200kb"
+   "ar/compress-image-to-200kb",
+   "ar/guides/reduce-image-size-100kb"
   ]
  },
  {
@@ -269,7 +273,8 @@
   "sub": "Percent of · change · discounts",
   "pages": [
    "percentage-calculator",
-   "discount-calculator"
+   "discount-calculator",
+   "guides/percentage-increase-decrease"
   ]
  },
  {
@@ -325,7 +330,8 @@
   "sub": "ضريبة 15% ورمز الزكاة والضريبة — PDF",
   "pages": [
    "ar/tax-invoice-generator",
-   "ar/zatca-qr-reader"
+   "ar/zatca-qr-reader",
+   "ar/guides/simplified-tax-invoice-qr"
   ]
  },
  {
@@ -335,7 +341,8 @@
   "title": "حاسبة ضريبة القيمة المضافة",
   "sub": "إضافة واستخراج الضريبة 15% و5%",
   "pages": [
-   "ar/vat-calculator"
+   "ar/vat-calculator",
+   "ar/guides/vat-15-calculation"
   ]
  },
  {
@@ -345,7 +352,8 @@
   "title": "حاسبة الزكاة",
   "sub": "المال والذهب والفضة ونصاب الزكاة",
   "pages": [
-   "ar/zakat-calculator"
+   "ar/zakat-calculator",
+   "ar/guides/gold-zakat-calculation"
   ]
  },
  {
@@ -355,7 +363,8 @@
   "title": "حاسبة نهاية الخدمة",
   "sub": "نظام العمل السعودي والإماراتي",
   "pages": [
-   "ar/end-of-service-calculator"
+   "ar/end-of-service-calculator",
+   "ar/guides/saudi-end-of-service-calculation"
   ]
  },
  {
@@ -436,7 +445,8 @@
   "title": "Loan Calculator",
   "sub": "Monthly payment · interest · real APR",
   "pages": [
-   "loan-calculator"
+   "loan-calculator",
+   "guides/flat-rate-vs-apr"
   ]
  },
  {
