@@ -151,6 +151,7 @@ function qtTafqeet(input, code, opt) {
   }
   document.addEventListener("DOMContentLoaded", function () {
     var sel = $("tfCur");
+    if (!sel) return; // tafqeet.js is also loaded as a library by the calculators
     Object.keys(QT_CURRENCIES).forEach(function (k) { var o = document.createElement("option"); o.value = k; o.textContent = QT_CURRENCIES[k].name + (k !== "NONE" ? " (" + k + ")" : ""); sel.appendChild(o); });
     ["tfNum", "tfCur", "tfOnly", "tfAdj", "tfModern"].forEach(function (id) { $(id).addEventListener("input", run); $(id).addEventListener("change", run); });
     $("tfCopy").addEventListener("click", function () { qtCopy($("tfOut").textContent, $("tfStatus"), "تم النسخ"); qtTrack("tafqeet_copy"); });

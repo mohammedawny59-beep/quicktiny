@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>حاسبة الزكاة — زكاة المال والذهب والفضة ونصاب الزكاة | QuickTiny</title>
+  <meta name="description" content="احسب زكاة المال والذهب بأعياره والفضة وعروض التجارة مع خصم الديون، وتعرّف هل بلغ مالك النصاب (85 غرام ذهب أو 595 غرام فضة). النتيجة بالأرقام والحروف. مجانية وخاصة.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/zakat-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/zakat-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/ar/zakat-calculator">
+  <meta property="og:title" content="حاسبة الزكاة — زكاة المال والذهب والفضة ونصاب الزكاة | QuickTiny">
+  <meta property="og:description" content="احسب زكاة المال والذهب بأعياره والفضة وعروض التجارة مع خصم الديون، وتعرّف هل بلغ مالك النصاب (85 غرام ذهب أو 595 غرام فضة). النتيجة بالأرقام والحروف. مجانية وخاصة.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/zakat-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .cl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+    .cl-grid input,.cl-grid select{width:100%}
+    .cl-num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+    .cl-sec{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:14px;background:rgba(255,255,255,.02)}
+    .cl-sec h2{margin:0 0 10px;font-size:15px;color:var(--text-dim)}
+    .cl-out{margin-top:16px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .cl-rows{display:grid;gap:6px}
+    .cl-row{display:flex;justify-content:space-between;gap:10px;font-size:15px}
+    .cl-row b{font-variant-numeric:tabular-nums;direction:ltr}
+    .cl-big{font-size:clamp(24px,4vw,34px);font-weight:800;direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+    .cl-words{margin-top:8px;font:600 16px/1.8 "Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif;color:#dfe2ff}
+    .cl-note{font-size:13.5px;color:var(--text-dim);margin-top:10px;line-height:1.7}
+    .vt-table{width:100%;border-collapse:collapse;margin-top:6px}
+    .vt-table th{font-size:12.5px;color:var(--muted);text-align:start;font-weight:600;padding:4px}
+    .vt-table td{padding:4px;vertical-align:middle}
+    .vt-table input{width:100%;min-width:0}
+    .vt-table td:nth-child(2){width:70px}.vt-table td:nth-child(3){width:120px}.vt-table td:nth-child(4){width:100px;font-variant-numeric:tabular-nums;direction:ltr;text-align:right;color:var(--text-dim);font-size:13px}.vt-table td:nth-child(5){width:34px}
+    .vt-qty,.vt-price{direction:ltr;text-align:right}
+    .vt-del{all:unset;cursor:pointer;width:30px;height:30px;border-radius:8px;text-align:center;color:var(--muted)}
+    .vt-del:hover{background:rgba(255,90,90,.15);color:#ff9a9a}
+    @media(max-width:560px){.vt-table td:nth-child(1){display:none}.vt-table th:nth-child(1){display:none}.vt-table td:nth-child(4){width:80px}}
+    .zk-res{margin-top:16px;padding:18px 20px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .zk-res.zk-due{background:linear-gradient(135deg,rgba(60,220,140,.14),rgba(59,226,255,.05));border-color:rgba(60,220,140,.4)}
+    #esSteps{margin:10px 0 0;padding-inline-start:20px;font-size:14px;line-height:1.8;color:var(--text-dim)}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة الزكاة</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">زكاة</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>أرقامك لا تغادر جهازك</span>
+      <span class="badge">مجاني</span>
+      <span class="badge">جديد</span>
+    </div>
+    <h1>حاسبة الزكاة — زكاة المال والذهب والفضة والتجارة</h1>
+    <p>احسب زكاة مالك بدقة: النقود في البيت والبنك، الذهب بأعياره (24 و22 و21 و18)، الفضة، عروض التجارة، الديون المرجوة والاستثمارات، مع خصم الديون التي عليك. تعرف فورًا هل بلغ مالك النصاب، وكم الزكاة الواجبة بالأرقام والحروف.</p>
+    <a href="#tool" class="jump-to-tool">احسب زكاتك <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="cl-sec" style="margin-top:0">
+      <h2>الأسعار اليوم والنصاب</h2>
+      <div class="cl-grid">
+        <div><label class="field-label" for="zkCur">العملة</label><select id="zkCur"><option value="SAR">ريال سعودي</option><option value="AED">درهم إماراتي</option><option value="KWD">دينار كويتي</option><option value="QAR">ريال قطري</option><option value="BHD">دينار بحريني</option><option value="OMR">ريال عماني</option><option value="JOD">دينار أردني</option><option value="EGP">جنيه مصري</option><option value="IQD">دينار عراقي</option><option value="MAD">درهم مغربي</option><option value="DZD">دينار جزائري</option><option value="TND">دينار تونسي</option><option value="USD">دولار أمريكي</option><option value="EUR">يورو</option></select></div>
+        <div><label class="field-label" for="zkGoldPrice">سعر غرام الذهب عيار 24 اليوم</label><input type="text" inputmode="decimal" id="zkGoldPrice" class="cl-num" placeholder="مثال: 420"></div>
+        <div><label class="field-label" for="zkSilverPrice">سعر غرام الفضة اليوم</label><input type="text" inputmode="decimal" id="zkSilverPrice" class="cl-num" placeholder="اختياري"></div>
+        <div><label class="field-label" for="zkBasis">احسب النصاب على أساس</label><select id="zkBasis"><option value="gold">الذهب (85 غرامًا)</option><option value="silver">الفضة (595 غرامًا) — الأحوط للفقير</option></select></div>
+      </div>
+      <p class="cl-note">نصاب الذهب 85 غرامًا من الذهب الخالص، ونصاب الفضة 595 غرامًا. خذ السعر من محل صاغة أو موقع موثوق في يوم إخراج الزكاة — نحفظ الأسعار في متصفحك فقط.</p>
+    </div>
+    <div class="cl-sec">
+      <h2>أموالك (التي مرّ عليها حول هجري كامل)</h2>
+      <div class="cl-grid">
+        <div><label class="field-label" for="zkCash">النقود في البيت والبنوك</label><input type="text" inputmode="decimal" id="zkCash" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkG24">ذهب عيار 24 (غرام)</label><input type="text" inputmode="decimal" id="zkG24" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkG22">ذهب عيار 22 (غرام)</label><input type="text" inputmode="decimal" id="zkG22" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkG21">ذهب عيار 21 (غرام)</label><input type="text" inputmode="decimal" id="zkG21" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkG18">ذهب عيار 18 (غرام)</label><input type="text" inputmode="decimal" id="zkG18" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkSilver">فضة (غرام)</label><input type="text" inputmode="decimal" id="zkSilver" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkTrade">عروض التجارة (قيمة البضاعة للبيع)</label><input type="text" inputmode="decimal" id="zkTrade" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkRecv">ديون لك مرجوّة السداد</label><input type="text" inputmode="decimal" id="zkRecv" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkInvest">أسهم واستثمارات (الجزء الزكوي)</label><input type="text" inputmode="decimal" id="zkInvest" class="cl-num" placeholder="0"></div>
+        <div><label class="field-label" for="zkDebts">ديون عليك حالّة (تُخصم)</label><input type="text" inputmode="decimal" id="zkDebts" class="cl-num" placeholder="0"></div>
+      </div>
+      <p class="cl-note" id="zkPure"></p>
+    </div>
+    <div class="zk-res" id="zkResult" aria-live="polite">
+      <div class="cl-rows">
+        <div class="cl-row"><span>مجموع الأموال</span><b><span id="zkAssets"></span> <span class="zk-cur"></span></b></div>
+        <div class="cl-row"><span>الصافي بعد خصم الديون</span><b><span id="zkNetV"></span> <span class="zk-cur"></span></b></div>
+        <div class="cl-row"><span>النصاب</span><b><span id="zkNisab"></span> <span class="zk-cur"></span></b></div>
+      </div>
+      <div class="cl-row" style="margin-top:10px"><span>الزكاة الواجبة</span></div>
+      <div class="cl-big" id="zkAmount"></div>
+      <div class="cl-words" id="zkWords"></div>
+      <p class="cl-note" id="zkMsg"></p>
+    </div>
+    <div class="btn-row" style="margin-top:12px"><button class="btn" type="button" id="zkCopy">نسخ النتيجة</button></div>
+    <div id="zkStatus" class="result" aria-live="polite"></div>
+    <p class="cl-note">هذه الحاسبة تقدير مبني على قول جمهور العلماء (ضمّ النقود والذهب والفضة وعروض التجارة، وإخراج ربع العشر 2.5%). لحالات مثل الذهب المعدّ للاستعمال الشخصي، والأسهم، والديون المتعثرة توجد أقوال مختلفة — ارجع لأهل العلم أو الجهة الرسمية في بلدك.</p>
+  </div>
+  <script src="/tafqeet.js"></script>
+  <script src="/ar-calcs.js"></script>
+
+  <div class="content">
+    <h2>كيف تُحسب الزكاة؟</h2>
+    <ul class="benefits">
+      <li><span>اجمع كل أموالك الزكوية التي مرّ عليها حول هجري كامل (354 يومًا تقريبًا).</span></li>
+      <li><span>اخصم الديون الحالّة التي عليك.</span></li>
+      <li><span>إذا بلغ الصافي النصاب — قيمة 85 غرام ذهب خالص — فالزكاة 2.5% منه (ربع العشر).</span></li>
+      <li><span>الذهب غير الخالص: الغرامات × العيار ÷ 24. مثال: 100 غرام عيار 21 = 87.5 غرامًا خالصًا.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل في ذهب الزينة زكاة؟</summary><p>المسألة خلافية: جمهور الفقهاء لا يوجبون الزكاة في الحُلي المعدّ للاستعمال المباح، ومذهب الحنفية وبعض المعاصرين يوجبونها. إن أردت الأحوط أدخله، وإلا فاتركه.</p></details>
+    <details class="faq-item"><summary>أحسب النصاب بالذهب أم بالفضة؟</summary><p>نصاب الفضة أقل بكثير، فاعتماده يوجب الزكاة على مبالغ أصغر وهو الأحوط والأنفع للفقير، واعتماد الذهب أقرب لقيمة المال اليوم عند كثير من المعاصرين. الأداة تتيح الاثنين.</p></details>
+    <details class="faq-item"><summary>لماذا لا تجلب الأداة سعر الذهب تلقائيًا؟</summary><p>لأن الأسعار تختلف بين الدول والمحلات ولحظة بلحظة، والأدق أن تُدخل سعر يوم إخراج الزكاة في بلدك. نتذكر آخر سعر أدخلته في متصفحك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/tafqeet">تفقيط المبالغ<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/hijri-converter">التاريخ الهجري والميلادي<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/vat-calculator">حاسبة ضريبة القيمة المضافة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny حاسبة الزكاة", "url": "https://quicktinyv2.vercel.app/ar/zakat-calculator", "description": "احسب زكاة المال والذهب بأعياره والفضة وعروض التجارة مع خصم الديون، وتعرّف هل بلغ مالك النصاب (85 غرام ذهب أو 595 غرام فضة). النتيجة بالأرقام والحروف. مجانية وخاصة.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "حاسبة الزكاة", "item": "https://quicktinyv2.vercel.app/ar/zakat-calculator"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "كم نصاب الزكاة؟", "acceptedAnswer": {"@type": "Answer", "text": "قيمة 85 غرامًا من الذهب الخالص، أو 595 غرامًا من الفضة، والزكاة 2.5% من المال بعد مرور حول هجري."}}, {"@type": "Question", "name": "كيف أحسب زكاة الذهب عيار 21؟", "acceptedAnswer": {"@type": "Answer", "text": "اضرب الغرامات في 21 ثم اقسم على 24 لتعرف الذهب الخالص، ثم اضرب في سعر غرام عيار 24."}}]}</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>حاسبة مكافأة نهاية الخدمة — السعودية والإمارات 2026 | QuickTiny</title>
+  <meta name="description" content="احسب مكافأة نهاية الخدمة وفق نظام العمل السعودي والقانون الإماراتي: مدة الخدمة، أثر الاستقالة، الحد الأقصى، وخطوات الحساب مع المبلغ بالحروف. مجانية وبدون تسجيل.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/end-of-service-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/end-of-service-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/ar/end-of-service-calculator">
+  <meta property="og:title" content="حاسبة مكافأة نهاية الخدمة — السعودية والإمارات 2026 | QuickTiny">
+  <meta property="og:description" content="احسب مكافأة نهاية الخدمة وفق نظام العمل السعودي والقانون الإماراتي: مدة الخدمة، أثر الاستقالة، الحد الأقصى، وخطوات الحساب مع المبلغ بالحروف. مجانية وبدون تسجيل.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/end-of-service-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .cl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+    .cl-grid input,.cl-grid select{width:100%}
+    .cl-num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+    .cl-sec{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:14px;background:rgba(255,255,255,.02)}
+    .cl-sec h2{margin:0 0 10px;font-size:15px;color:var(--text-dim)}
+    .cl-out{margin-top:16px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .cl-rows{display:grid;gap:6px}
+    .cl-row{display:flex;justify-content:space-between;gap:10px;font-size:15px}
+    .cl-row b{font-variant-numeric:tabular-nums;direction:ltr}
+    .cl-big{font-size:clamp(24px,4vw,34px);font-weight:800;direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+    .cl-words{margin-top:8px;font:600 16px/1.8 "Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif;color:#dfe2ff}
+    .cl-note{font-size:13.5px;color:var(--text-dim);margin-top:10px;line-height:1.7}
+    .vt-table{width:100%;border-collapse:collapse;margin-top:6px}
+    .vt-table th{font-size:12.5px;color:var(--muted);text-align:start;font-weight:600;padding:4px}
+    .vt-table td{padding:4px;vertical-align:middle}
+    .vt-table input{width:100%;min-width:0}
+    .vt-table td:nth-child(2){width:70px}.vt-table td:nth-child(3){width:120px}.vt-table td:nth-child(4){width:100px;font-variant-numeric:tabular-nums;direction:ltr;text-align:right;color:var(--text-dim);font-size:13px}.vt-table td:nth-child(5){width:34px}
+    .vt-qty,.vt-price{direction:ltr;text-align:right}
+    .vt-del{all:unset;cursor:pointer;width:30px;height:30px;border-radius:8px;text-align:center;color:var(--muted)}
+    .vt-del:hover{background:rgba(255,90,90,.15);color:#ff9a9a}
+    @media(max-width:560px){.vt-table td:nth-child(1){display:none}.vt-table th:nth-child(1){display:none}.vt-table td:nth-child(4){width:80px}}
+    .zk-res{margin-top:16px;padding:18px 20px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .zk-res.zk-due{background:linear-gradient(135deg,rgba(60,220,140,.14),rgba(59,226,255,.05));border-color:rgba(60,220,140,.4)}
+    #esSteps{margin:10px 0 0;padding-inline-start:20px;font-size:14px;line-height:1.8;color:var(--text-dim)}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة مكافأة نهاية الخدمة</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">موارد بشرية</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>بياناتك لا تغادر جهازك</span>
+      <span class="badge">مجاني</span>
+      <span class="badge">جديد</span>
+    </div>
+    <h1>حاسبة مكافأة نهاية الخدمة — السعودية والإمارات</h1>
+    <p>احسب مكافأة نهاية الخدمة وفق نظام العمل السعودي (المواد 84 و85 و87) وقانون العمل الإماراتي (المادة 51): مدة الخدمة بالسنوات والأشهر والأيام، أثر الاستقالة، الحد الأقصى، وطريقة الحساب خطوة بخطوة مع المبلغ بالحروف.</p>
+    <a href="#tool" class="jump-to-tool">احسب مكافأتك <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="cl-grid">
+      <div><label class="field-label" for="esCountry">الدولة</label><select id="esCountry"><option value="SA">السعودية — نظام العمل</option><option value="AE">الإمارات — المرسوم بقانون 33 لسنة 2021</option></select></div>
+      <div><label class="field-label" for="esStart">تاريخ بداية العمل</label><input type="date" id="esStart" value="2019-01-01"></div>
+      <div><label class="field-label" for="esEnd">آخر يوم عمل</label><input type="date" id="esEnd"></div>
+      <div><label class="field-label" for="esWage" id="esWageLbl">الأجر الشهري الأخير</label><input type="text" inputmode="decimal" id="esWage" class="cl-num" value="10000"></div>
+      <div><label class="field-label" for="esCur">العملة</label><select id="esCur"><option value="SAR">ريال سعودي</option><option value="AED">درهم إماراتي</option></select></div>
+      <div id="esReasonSA"><label class="field-label" for="esReason">سبب انتهاء العلاقة</label><select id="esReason"><option value="end">انتهاء العقد / إنهاء من صاحب العمل</option><option value="resign">استقالة العامل</option><option value="art87">حالات المادة 87 (قوة قاهرة، زواج أو وضع العاملة)</option><option value="art80">فصل وفق المادة 80</option></select></div>
+      <div><label class="field-label" for="esUnpaid">أيام إجازة بدون أجر (تُخصم)</label><input type="text" inputmode="numeric" id="esUnpaid" class="cl-num" value="0"></div>
+    </div>
+    <div class="cl-out" aria-live="polite">
+      <div class="cl-row"><span id="esSpan"></span></div>
+      <div class="cl-row" style="margin-top:10px"><span>المكافأة المقدّرة</span></div>
+      <div class="cl-big" id="esAmount"></div>
+      <div class="cl-words" id="esWords"></div>
+      <ol id="esSteps"></ol>
+    </div>
+    <div class="btn-row" style="margin-top:12px"><button class="btn" type="button" id="esCopy">نسخ النتيجة</button></div>
+    <div id="esStatus" class="result" aria-live="polite"></div>
+    <p class="cl-note">النتيجة تقدير لأغراض التخطيط وليست استشارة قانونية. العقد، والأجر المعتمد في الحساب، والقرارات الخاصة بقطاعك قد تغيّر المبلغ — راجع وزارة الموارد البشرية في بلدك أو مستشارًا قانونيًا عند الخلاف.</p>
+  </div>
+  <script src="/tafqeet.js"></script>
+  <script src="/ar-calcs.js"></script>
+
+  <div class="content">
+    <h2>طريقة الحساب في السعودية</h2>
+    <ul class="benefits">
+      <li><span><strong>المادة 84:</strong> أجر نصف شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر كامل عن كل سنة بعدها، وتُحسب أجزاء السنة بنسبتها.</span></li>
+      <li><span><strong>المادة 85 (الاستقالة):</strong> أقل من سنتين لا شيء، من سنتين إلى 5 سنوات ثلث المكافأة، من 5 إلى 10 سنوات الثلثان، و10 سنوات فأكثر كاملة.</span></li>
+      <li><span><strong>المادة 87:</strong> مكافأة كاملة عند ترك العمل لقوة قاهرة، أو استقالة العاملة خلال 6 أشهر من الزواج أو 3 أشهر من الوضع.</span></li>
+      <li><span>الأجر المعتمد هو الأجر الأخير: الأساسي مع البدلات الثابتة كالسكن والنقل، ما لم ينص العقد على غير ذلك.</span></li>
+    </ul>
+    <h2>طريقة الحساب في الإمارات</h2>
+    <ul class="benefits">
+      <li><span>تُستحق بعد سنة خدمة متصلة على الأقل، وتُحسب على <strong>الأجر الأساسي</strong> فقط.</span></li>
+      <li><span>21 يومًا عن كل سنة من السنوات الخمس الأولى، و30 يومًا عن كل سنة بعدها، والأجر اليومي = الأساسي × 12 ÷ 365.</span></li>
+      <li><span>لا تتجاوز المكافأة أجر سنتين، ولا تُخصم منها أيام الإجازة بدون أجر إلا بقدرها من مدة الخدمة.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل تُحسب المكافأة من الراتب الأساسي أم الإجمالي؟</summary><p>في السعودية من الأجر الفعلي الأخير (الأساسي والبدلات الثابتة). في الإمارات من الأجر الأساسي فقط.</p></details>
+    <details class="faq-item"><summary>استقلت بعد 4 سنوات في السعودية، كم أستحق؟</summary><p>المكافأة الكاملة لأربع سنوات = 4 × نصف شهر = شهران، وتستحق ثلثها لأن مدة خدمتك بين سنتين وخمس سنوات.</p></details>
+    <details class="faq-item"><summary>هل أدعم دولًا أخرى؟</summary><p>حاليًا السعودية والإمارات. في الأردن ومصر وأغلب الدول الأخرى يغطي الضمان أو التأمين الاجتماعي جزءًا كبيرًا من حقوق نهاية الخدمة بقواعد مختلفة.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/hijri-converter">حساب العمر والتاريخ الهجري<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/tafqeet">تفقيط المبالغ<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/vat-calculator">حاسبة ضريبة القيمة المضافة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny حاسبة مكافأة نهاية الخدمة", "url": "https://quicktinyv2.vercel.app/ar/end-of-service-calculator", "description": "احسب مكافأة نهاية الخدمة وفق نظام العمل السعودي والقانون الإماراتي: مدة الخدمة، أثر الاستقالة، الحد الأقصى، وخطوات الحساب مع المبلغ بالحروف. مجانية وبدون تسجيل.", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "حاسبة مكافأة نهاية الخدمة", "item": "https://quicktinyv2.vercel.app/ar/end-of-service-calculator"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "كيف تحسب مكافأة نهاية الخدمة في السعودية؟", "acceptedAnswer": {"@type": "Answer", "text": "نصف أجر شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر كامل عن كل سنة بعدها، وتُخفّض عند الاستقالة حسب المادة 85."}}, {"@type": "Question", "name": "كيف تحسب مكافأة نهاية الخدمة في الإمارات؟", "acceptedAnswer": {"@type": "Answer", "text": "21 يومًا من الأجر الأساسي عن كل سنة من أول 5 سنوات، و30 يومًا عن كل سنة بعدها، بحد أقصى أجر سنتين."}}]}</script>
+</body>
+</html>
