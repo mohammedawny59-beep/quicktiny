@@ -559,3 +559,16 @@ h2.section-title{margin:0;line-height:1.2}
 .qc-zooms .chip{padding:5px 11px}
 .ic-cmp-li{list-style:none;padding:4px 2px 10px}
 .ic-act{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+
+/* ---------- Compressor quality controls ---------- */
+.cq{margin:4px 0 14px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025);animation:hdIn .35s cubic-bezier(.16,1,.3,1)}
+.cq-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.cq label{font-weight:700;color:var(--text)}
+.cq label b{color:var(--cyan);font-variant-numeric:tabular-nums;margin-inline-start:4px}
+.cq-presets,.cq-fmt [role=group]{display:inline-flex;gap:6px;flex-wrap:wrap}
+.cq-presets .chip,.cq-fmt .chip{padding:5px 11px}
+.cq input[type=range]{width:100%;margin:12px 0 4px;accent-color:var(--accent);cursor:pointer}
+.cq-fmt{display:flex;align-items:center;gap:10px;margin-top:8px;color:var(--muted);font-size:13px;font-weight:600}
+.cq.busy + .result,.cq.busy ~ .stat-row .cq-live .n{opacity:.55;transition:opacity .15s}
+.result.warn{color:#ffd166;font-weight:700;padding:10px 14px;background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.25);border-radius:12px}
+@media (prefers-reduced-motion:reduce){.cq{animation:none}}

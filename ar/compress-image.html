@@ -72,84 +72,7 @@
       <div id="imgdl"></div>
       <div id="imgProCta"></div>
   </div>
-  <script>
-      var dz = document.querySelector("#dz");
-      var input = document.querySelector("#img");
-      var out = document.querySelector("#imgout");
-      var stats = document.querySelector("#imgstats");
-      var dl = document.querySelector("#imgdl");
-      dz.addEventListener("click", function(){ input.click(); });
-      dz.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ input.click(); } });
-      ["dragover","dragenter"].forEach(function(evt){
-        dz.addEventListener(evt, function(e){ e.preventDefault(); dz.classList.add("drag"); });
-      });
-      ["dragleave","drop"].forEach(function(evt){
-        dz.addEventListener(evt, function(e){ e.preventDefault(); dz.classList.remove("drag"); });
-      });
-      dz.addEventListener("drop", function(e){
-        var f = e.dataTransfer.files[0];
-        if (f) { input.files = e.dataTransfer.files; handleFile(f); }
-      });
-      input.addEventListener("change", function(){
-        var f = input.files[0];
-        if (f) handleFile(f);
-      });
-      function kb(n){ return Math.round(n / 1024) + " KB"; }
-      function statBox(n, label){ return '<div class="stat"><div class="n" dir="ltr">' + n + '</div><div class="l">' + label + '</div></div>'; }
-      function handleFile(f){
-        stats.innerHTML = ""; dl.innerHTML = ""; var oldCmp = document.getElementById("imgcmp"); if (oldCmp) oldCmp.remove();
-        if (!f.type || f.type.indexOf("image/") !== 0) {
-          out.textContent = "اختر ملف صورة من فضلك (JPG أو PNG).";
-          out.className = "result error";
-          return;
-        }
-        out.textContent = "جارٍ الضغط...";
-        out.className = "result";
-        var originalSize = f.size;
-        var im = new Image();
-        im.onload = function(){
-          var c = document.createElement("canvas");
-          c.width = im.width; c.height = im.height;
-          var ctx = c.getContext("2d");
-          ctx.fillStyle = "#ffffff";
-          ctx.fillRect(0, 0, c.width, c.height);
-          ctx.drawImage(im, 0, 0);
-          c.toBlob(function(blob){
-            // If re-encoding made it bigger, the original is already well compressed.
-            var already = blob.size >= originalSize;
-            var finalBlob = already ? f : blob;
-            var savedPct = Math.max(0, Math.round((1 - finalBlob.size / originalSize) * 100));
-            out.textContent = already ? "صورتك مضغوطة بالفعل — لم نجد طريقة لتصغيرها أكثر دون فقد واضح في الجودة." : "تم الضغط ✓";
-            out.className = "result success";
-            stats.innerHTML = statBox(kb(originalSize), "الحجم الأصلي") + statBox(kb(finalBlob.size), "بعد الضغط") + statBox(savedPct + "%", "نسبة التوفير");
-            var a = document.createElement("a");
-            a.href = URL.createObjectURL(finalBlob);
-            a.download = already ? f.name : "quicktiny-" + f.name.replace(/\.[^.]+$/, "") + ".jpg";
-            a.className = "btn";
-            a.textContent = "تنزيل الصورة";
-            dl.appendChild(a);
-            if (typeof qtCompare === "function") { var cmp = qtCompare(f, blob); cmp.id = "imgcmp"; dl.parentNode.insertBefore(cmp, dl); }
-            var proCta = document.querySelector("#imgProCta");
-            proCta.innerHTML = "";
-            var ctaWrap = document.createElement("div");
-            ctaWrap.className = "pro-inline-cta";
-            var ctaText = document.createElement("span");
-            ctaText.textContent = "تريد ضغط صور كثيرة مرة واحدة؟ ";
-            var ctaLink = document.createElement("a");
-            ctaLink.href = "/batch-image-compressor";
-            ctaLink.textContent = "Batch Image Compressor — ‎$4.99 دفعة واحدة";
-            ctaLink.addEventListener("click", function(){ qtTrack("pro_cta_click", {source: "compress-image-ar"}); });
-            ctaWrap.appendChild(ctaText);
-            ctaWrap.appendChild(ctaLink);
-            proCta.appendChild(ctaWrap);
-          }, "image/jpeg", 0.72);
-        };
-        im.onerror = function(){
-          out.textContent = "تعذّرت قراءة هذه الصورة. جرّب ملفًا آخر.";
-          out.className = "result error";
-        };
-        im.src = URL.createObjectURL(f);
-      }</script>
+
 
   <div class="content">
     <h2>طريقة الاستخدام</h2>
@@ -224,6 +147,7 @@
   </div>
 </footer>
 <script src="/site.js"></script>
+<script src="/compress-image.js" defer></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny ضغط الصور", "url": "https://quicktinyv2.vercel.app/ar/compress-image", "description": "قلّل حجم صور JPG وPNG مجانًا داخل متصفحك بدون رفعها إلى أي موقع. شاهد الحجم الأصلي والحجم بعد الضغط ونسبة التوفير فورًا.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>

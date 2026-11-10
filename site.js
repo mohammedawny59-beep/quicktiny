@@ -367,6 +367,8 @@ function qtCompare(before, after, o){
     });
     zbox.appendChild(b);
   });
+  // Swap the "after" image in place (keeps the divider and zoom), e.g. when a quality slider moves.
+  wrap.qtSetAfter = function(x){ imgs[0].src = src(x); };
   set(50);
   // A short sweep shows people the line can be moved (skipped for reduced motion).
   if (!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) && typeof IntersectionObserver !== "undefined") {
