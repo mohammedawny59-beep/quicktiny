@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Zakat al-Fitr Calculator 2027 — Fitrana in kg &amp; Cash | QuickTiny</title>
+  <meta name="description" content="Calculate zakat al-fitr (fitrana) for your family: one sa' per person (about 2.5-3 kg), its value at your local price or the official cash amount, plus a fidya calculator.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/zakat-al-fitr-calculator">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/zakat-al-fitr-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/zakat-al-fitr-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/zakat-al-fitr-calculator">
+  <meta property="og:title" content="Zakat al-Fitr Calculator 2027 — Fitrana in kg &amp; Cash | QuickTiny">
+  <meta property="og:description" content="Calculate zakat al-fitr (fitrana) for your family: one sa' per person (about 2.5-3 kg), its value at your local price or the official cash amount, plus a fidya calculator.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/zakat-al-fitr-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/ramadan.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/ramadan.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .rc-card{position:relative;overflow:hidden;border:1px solid rgba(255,209,102,.28);border-radius:22px;padding:22px 20px;text-align:center;
+      background:radial-gradient(120% 90% at 50% 0%,rgba(255,209,102,.13),transparent 60%),linear-gradient(160deg,rgba(107,107,255,.14),rgba(12,15,34,.4))}
+    .rc-card::before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;top:-34px;inset-inline-end:-26px;box-shadow:-22px 16px 0 0 rgba(255,209,102,.85);opacity:.85;animation:rcMoon 6s ease-in-out infinite}
+    @keyframes rcMoon{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(6px) rotate(-4deg)}}
+    .rc-stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 12% 22%,#fff,transparent),radial-gradient(1px 1px at 28% 70%,#fff,transparent),radial-gradient(1.5px 1.5px at 55% 15%,#fff,transparent),radial-gradient(1px 1px at 78% 60%,#fff,transparent),radial-gradient(1px 1px at 90% 85%,#fff,transparent),radial-gradient(1.2px 1.2px at 40% 88%,#fff,transparent);opacity:.55;animation:rcTw 3.5s ease-in-out infinite alternate}
+    @keyframes rcTw{from{opacity:.25}to{opacity:.7}}
+    .rc-top{position:relative;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+    .rc-top select{width:auto;max-width:100%}
+    .rc-label{position:relative;font-size:17px;font-weight:800;color:#ffd166;margin:4px 0 14px}
+    .rc-digits{position:relative;display:flex;justify-content:center;gap:10px;direction:ltr}
+    .rc-u{min-width:76px;padding:12px 8px 8px;border-radius:16px;background:rgba(5,7,20,.55);border:1px solid rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+    .rc-u b{display:block;font-size:40px;font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums;color:#fff}
+    .rc-u span{font-size:12px;color:var(--muted);font-weight:700}
+    .rm-flip{animation:rmFlip .45s cubic-bezier(.16,1,.3,1)}
+    @keyframes rmFlip{0%{transform:translateY(-35%);opacity:.2}100%{transform:none;opacity:1}}
+    .rc-bar{position:relative;margin:16px auto 0;max-width:460px}
+    .rc-bar-track{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+    .rc-bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#ffd166,#ff9f59);transition:width 1s linear}
+    .rc-bar-txt{font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:700}
+    .rc-today{position:relative;color:var(--text-dim);font-weight:700;margin-top:10px}
+    .rc-today:empty{display:none}
+    .rc-actions{position:relative;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+    .rc-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;margin-top:14px}
+    .rc-i{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.025)}
+    .rc-i span{display:block;font-size:12.5px;color:var(--muted);font-weight:700}
+    .rc-i b{font-size:16px;color:var(--text)}
+    .rc-i b.ltr{direction:ltr;display:inline-block}
+    .rc-note{font-size:13px;color:var(--muted);margin-top:12px}
+    .zf-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,1fr);gap:16px;align-items:start}
+    @media(max-width:860px){.zf-grid{grid-template-columns:1fr}}
+    .zf-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:rgba(255,255,255,.025)}
+    .zf-card h2{margin:0 0 12px;font-size:15px;color:var(--text-dim)}
+    .zf-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+    .zf-row label{flex:1 1 210px;font-weight:600}
+    .zf-row input{width:110px;text-align:center;direction:ltr;font-weight:700}
+    .zf-step{display:inline-flex;align-items:center;gap:6px}
+    .zf-step button{width:38px;height:38px;border-radius:12px;border:1px solid var(--line-strong);background:var(--card);color:var(--text);font-size:20px;font-weight:700;cursor:pointer}
+    .zf-step button:hover{border-color:var(--accent)}
+    .zf-step input{width:70px}
+    #zfKgChips{display:inline-flex;gap:6px;flex-wrap:wrap}
+    #zfPeople{display:flex;flex-wrap:wrap;gap:4px;min-height:26px;margin:4px 0 2px}
+    .zf-p{width:16px;height:24px;position:relative;animation:zfIn .35s cubic-bezier(.16,1,.3,1) both}
+    .zf-p::before{content:"";position:absolute;top:0;left:3px;width:10px;height:10px;border-radius:50%;background:#ffd166}
+    .zf-p::after{content:"";position:absolute;bottom:0;left:0;width:16px;height:12px;border-radius:8px 8px 3px 3px;background:#ffd166;opacity:.8}
+    .zf-more{font-weight:800;color:#ffd166;align-self:center;font-size:13px}
+    @keyframes zfIn{from{opacity:0;transform:translateY(6px) scale(.6)}to{opacity:1;transform:none}}
+    .zf-res{text-align:center}
+    .zf-big{font-size:38px;font-weight:800;unicode-bidi:plaintext;font-variant-numeric:tabular-nums;color:#ffd166;line-height:1.1}
+    .zf-kv{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:14px;color:var(--text-dim);text-align:start}
+    .zf-kv b{color:var(--text);direction:ltr;font-variant-numeric:tabular-nums}
+    .zf-f{font:12.5px var(--mono);color:var(--muted);unicode-bidi:plaintext;margin:4px 0 8px}
+    .rm-pop{animation:rmPop .4s cubic-bezier(.16,1,.3,1)}
+    @keyframes rmPop{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+    @media(max-width:520px){.rc-card::before{width:78px;height:78px;top:-40px;inset-inline-end:-30px;box-shadow:-14px 12px 0 0 rgba(255,209,102,.85)}.rc-u{min-width:64px}.rc-u b{font-size:30px}.rc-digits{gap:6px}.zf-row label{min-width:100%}}
+    @media (prefers-reduced-motion:reduce){.rc-card::before,.rc-stars,.rm-flip,.rm-pop,.zf-p{animation:none}}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Zakat al-Fitr Calculator</span></div>
+  <div class="lang-switch">
+    <a href="/zakat-al-fitr-calculator" class="active">EN</a>
+    <a href="/ar/zakat-al-fitr-calculator" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Ramadan</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Zakat al-Fitr Calculator — Fitrana for Your Family (kg &amp; cash)</h1>
+    <p>Work out zakat al-fitr (fitrana) for everyone you support: the amount of staple food in kilograms, its value at your local price, or the official cash amount per person announced in your country. Includes a fidya calculator for missed fasts.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="zf-grid">
+      <div>
+        <div class="zf-card">
+          <h2>Zakat al-fitr</h2>
+          <div class="zf-row"><label for="zfPersons">People in your household</label><span class="zf-step"><button type="button" id="zfMinus" aria-label="−">−</button><input type="text" inputmode="numeric" id="zfPersons" value="5"><button type="button" id="zfPlus" aria-label="+">+</button></span></div>
+          <div id="zfPeople" aria-hidden="true"></div>
+          <div class="zf-row"><label for="zfKg">Food per person (kg)</label><input type="text" inputmode="decimal" id="zfKg" value="3"><span id="zfKgChips"><button type="button" class="chip" data-kg="2.5">2.5 kg</button><button type="button" class="chip" data-kg="3">3 kg</button></span></div>
+          <div class="zf-row"><label for="zfPrice">Price of 1 kg of staple food</label><input type="text" inputmode="decimal" id="zfPrice" placeholder="e.g. 8"></div>
+          <div class="zf-row"><label for="zfCash">Official cash amount per person (optional)</label><input type="text" inputmode="decimal" id="zfCash" placeholder="—"></div>
+        </div>
+        <div class="zf-card" style="margin-top:14px">
+          <h2>Fidya for missed fasts</h2>
+          <div class="zf-row"><label for="fdDays">Days not fasted</label><input type="text" inputmode="numeric" id="fdDays" placeholder="e.g. 10"></div>
+          <div class="zf-row"><label for="fdMeal">Cost of one meal</label><input type="text" inputmode="decimal" id="fdMeal" placeholder="e.g. 15"></div>
+          <div class="zf-kv"><span>Fidya to give</span><b id="fdOut">—</b></div><div class="zf-f" id="fdF"></div>
+        </div>
+      </div>
+      <div class="zf-card zf-res" aria-live="polite">
+        <h2>Your zakat al-fitr</h2>
+        <div class="zf-big" id="zfKgOut">—</div>
+        <div class="zf-f" id="zfWho"></div>
+        <div class="zf-kv"><span>Value at your price</span><b id="zfCashOut">—</b></div>
+        <div class="zf-kv"><span>Using the official amount</span><b id="zfOfficial">—</b></div>
+        <p class="rc-note">Amounts are estimates. The sa' is measured by volume, so its weight depends on the food; follow the figures your local fatwa authority publishes each year.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/ramadan.js"></script>
+
+  <div class="content">
+    <h2>How zakat al-fitr is calculated</h2>
+    <ul class="benefits">
+      <li><span>Zakat al-fitr is <strong>one sa' of staple food</strong> (rice, wheat, dates…) for each person you support, including children.</span></li>
+      <li><span>The sa' is usually estimated at <strong>about 2.5 to 3 kg</strong> depending on the food and the scholarly body.</span></li>
+      <li><span>Many countries announce an <strong>official cash amount per person</strong> each Ramadan for those who give money.</span></li>
+      <li><span>It should be given before the Eid prayer; many give it in the last days of Ramadan.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>How much is zakat al-fitr per person?</summary><p>One sa' of staple food — about 2.5 to 3 kg. If you give cash, use the amount your country's official body announces for this year.</p></details>
+    <details class="faq-item"><summary>Who do I pay zakat al-fitr for?</summary><p>For yourself and everyone you are responsible for supporting, such as your spouse and children, if you have food beyond your needs for the day of Eid.</p></details>
+    <details class="faq-item"><summary>When is the deadline?</summary><p>Before the Eid al-Fitr prayer. Giving it a day or two before Eid is widely accepted.</p></details>
+    <details class="faq-item"><summary>What is fidya?</summary><p>For someone who can't fast and won't be able to make the days up (e.g. chronic illness or old age), fidya is feeding one poor person for each day missed. Enter the days and the cost of a meal.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More for Ramadan</h2>
+    <div class="related-grid">
+      <a href="/ramadan-countdown">Ramadan Countdown<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ramadan-timetable">Ramadan Timetable<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/prayer-times">Prayer Times<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/ramadan-countdown">Ramadan Countdown</a>
+        <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator</a>
+        <a href="/gpa-calculator">GPA Calculator</a>
+        <a href="/weighted-grade-calculator">Weighted Grade Calculator</a>
+        <a href="/prayer-times">Prayer Times</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Zakat al-Fitr Calculator","url":"https://quicktinyv2.vercel.app/zakat-al-fitr-calculator","description":"Calculate zakat al-fitr (fitrana) for your family: one sa' per person (about 2.5-3 kg), its value at your local price or the official cash amount, plus a fidya calculator.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Zakat al-Fitr Calculator","item":"https://quicktinyv2.vercel.app/zakat-al-fitr-calculator"}]}</script>
+</body>
+</html>

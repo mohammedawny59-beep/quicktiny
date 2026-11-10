@@ -1,0 +1,58 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Ramadan Countdown</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Ramadan</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Ramadan Countdown — Days Until Ramadan, Iftar &amp; Suhoor Timer</h1>
+    <p>How many days until Ramadan? A live countdown to the start of Ramadan for your city, and during Ramadan a second-by-second timer to iftar (Maghrib) and to the end of suhoor (Fajr), with today's fasting hours.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="rc-card" id="rcCard" aria-live="polite">
+      <div class="rc-stars" aria-hidden="true"></div>
+      <div class="rc-top"><label for="rcCity">City</label><select id="rcCity"></select></div>
+      <div class="rc-label" id="rcLabel">…</div>
+      <div class="rc-digits"><div class="rc-u" id="rcDBox"><b id="rcD">0</b><span>Days</span></div><div class="rc-u"><b id="rcH">00</b><span>Hours</span></div><div class="rc-u"><b id="rcM">00</b><span>Min</span></div><div class="rc-u"><b id="rcS">00</b><span>Sec</span></div></div>
+      <div class="rc-bar" id="rcBar" hidden><div class="rc-bar-track"><div class="rc-bar-fill" id="rcBarFill"></div></div><div class="rc-bar-txt" id="rcBarTxt"></div></div>
+      <div class="rc-today" id="rcToday"></div>
+      <div class="rc-actions"><button type="button" class="btn" id="rcShare">Share the countdown</button></div>
+      <div id="rcStatus" class="result" aria-live="polite"></div>
+    </div>
+    <div class="rc-info">
+      <div class="rc-i"><span>Ramadan starts (expected)</span><b id="rcStart">—</b></div>
+      <div class="rc-i"><span>Eid al-Fitr (expected)</span><b id="rcEid">—</b></div>
+      <div class="rc-i"><span>Imsak today</span><b class="ltr" id="rcImsak">—</b></div>
+      <div class="rc-i"><span>Fajr today</span><b class="ltr" id="rcFajr">—</b></div>
+      <div class="rc-i"><span>Maghrib (iftar) today</span><b class="ltr" id="rcMaghrib">—</b></div>
+      <div class="rc-i"><span>Fasting hours today</span><b id="rcFast">—</b></div>
+    </div>
+    <p class="rc-note">Dates follow the Umm al-Qura calendar. The actual start of Ramadan and Eid is announced after the moon sighting and can differ by a day in your country. <a id="rcLink" href="/prayer-times">…</a></p>
+  </div>
+  <script src="/hijri.js"></script>
+  <script src="/prayer-cities.js"></script>
+  <script src="/prayer-times.js"></script>
+  <script src="/ramadan.js"></script>
+
+  <div class="content">
+    <h2>How the countdown works</h2>
+    <ul class="benefits">
+      <li><span>Before Ramadan it counts down to the start of 1 Ramadan in your city's time zone (Umm al-Qura calendar).</span></li>
+      <li><span>During Ramadan it switches automatically: to <strong>iftar</strong> (Maghrib) during the day and to the <strong>end of suhoor</strong> (Fajr) at night.</span></li>
+      <li><span>Prayer times use each city's official method (Umm al-Qura for Saudi Arabia, Egyptian authority for Egypt, and so on).</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>When does Ramadan 2027 start?</summary><p>On the Umm al-Qura calendar, 1 Ramadan 1448 AH falls on Monday 8 February 2027, so the first tarawih is on the evening of 7 February. The official start depends on the moon sighting.</p></details>
+    <details class="faq-item"><summary>When is iftar today?</summary><p>Iftar is at Maghrib. Pick your city and the page shows today's Maghrib time and a live countdown to it during Ramadan.</p></details>
+    <details class="faq-item"><summary>When does suhoor end?</summary><p>Suhoor ends at Fajr. Many timetables show imsak about 10 minutes earlier as a precaution.</p></details>
+    <details class="faq-item"><summary>Is my location sent anywhere?</summary><p>No. You choose a city from the list and everything is calculated in your browser.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More for Ramadan</h2>
+    <div class="related-grid">
+      <a href="/ramadan-timetable">Ramadan Timetable<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/prayer-times">Prayer Times<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/qibla-direction">Qibla Direction<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Zakat al-Fitr Calculator</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Ramadan</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Zakat al-Fitr Calculator — Fitrana for Your Family (kg &amp; cash)</h1>
+    <p>Work out zakat al-fitr (fitrana) for everyone you support: the amount of staple food in kilograms, its value at your local price, or the official cash amount per person announced in your country. Includes a fidya calculator for missed fasts.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="zf-grid">
+      <div>
+        <div class="zf-card">
+          <h2>Zakat al-fitr</h2>
+          <div class="zf-row"><label for="zfPersons">People in your household</label><span class="zf-step"><button type="button" id="zfMinus" aria-label="−">−</button><input type="text" inputmode="numeric" id="zfPersons" value="5"><button type="button" id="zfPlus" aria-label="+">+</button></span></div>
+          <div id="zfPeople" aria-hidden="true"></div>
+          <div class="zf-row"><label for="zfKg">Food per person (kg)</label><input type="text" inputmode="decimal" id="zfKg" value="3"><span id="zfKgChips"><button type="button" class="chip" data-kg="2.5">2.5 kg</button><button type="button" class="chip" data-kg="3">3 kg</button></span></div>
+          <div class="zf-row"><label for="zfPrice">Price of 1 kg of staple food</label><input type="text" inputmode="decimal" id="zfPrice" placeholder="e.g. 8"></div>
+          <div class="zf-row"><label for="zfCash">Official cash amount per person (optional)</label><input type="text" inputmode="decimal" id="zfCash" placeholder="—"></div>
+        </div>
+        <div class="zf-card" style="margin-top:14px">
+          <h2>Fidya for missed fasts</h2>
+          <div class="zf-row"><label for="fdDays">Days not fasted</label><input type="text" inputmode="numeric" id="fdDays" placeholder="e.g. 10"></div>
+          <div class="zf-row"><label for="fdMeal">Cost of one meal</label><input type="text" inputmode="decimal" id="fdMeal" placeholder="e.g. 15"></div>
+          <div class="zf-kv"><span>Fidya to give</span><b id="fdOut">—</b></div><div class="zf-f" id="fdF"></div>
+        </div>
+      </div>
+      <div class="zf-card zf-res" aria-live="polite">
+        <h2>Your zakat al-fitr</h2>
+        <div class="zf-big" id="zfKgOut">—</div>
+        <div class="zf-f" id="zfWho"></div>
+        <div class="zf-kv"><span>Value at your price</span><b id="zfCashOut">—</b></div>
+        <div class="zf-kv"><span>Using the official amount</span><b id="zfOfficial">—</b></div>
+        <p class="rc-note">Amounts are estimates. The sa' is measured by volume, so its weight depends on the food; follow the figures your local fatwa authority publishes each year.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/ramadan.js"></script>
+
+  <div class="content">
+    <h2>How zakat al-fitr is calculated</h2>
+    <ul class="benefits">
+      <li><span>Zakat al-fitr is <strong>one sa' of staple food</strong> (rice, wheat, dates…) for each person you support, including children.</span></li>
+      <li><span>The sa' is usually estimated at <strong>about 2.5 to 3 kg</strong> depending on the food and the scholarly body.</span></li>
+      <li><span>Many countries announce an <strong>official cash amount per person</strong> each Ramadan for those who give money.</span></li>
+      <li><span>It should be given before the Eid prayer; many give it in the last days of Ramadan.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>How much is zakat al-fitr per person?</summary><p>One sa' of staple food — about 2.5 to 3 kg. If you give cash, use the amount your country's official body announces for this year.</p></details>
+    <details class="faq-item"><summary>Who do I pay zakat al-fitr for?</summary><p>For yourself and everyone you are responsible for supporting, such as your spouse and children, if you have food beyond your needs for the day of Eid.</p></details>
+    <details class="faq-item"><summary>When is the deadline?</summary><p>Before the Eid al-Fitr prayer. Giving it a day or two before Eid is widely accepted.</p></details>
+    <details class="faq-item"><summary>What is fidya?</summary><p>For someone who can't fast and won't be able to make the days up (e.g. chronic illness or old age), fidya is feeding one poor person for each day missed. Enter the days and the cost of a meal.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More for Ramadan</h2>
+    <div class="related-grid">
+      <a href="/ramadan-countdown">Ramadan Countdown<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ramadan-timetable">Ramadan Timetable<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/prayer-times">Prayer Times<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

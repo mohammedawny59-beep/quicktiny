@@ -1,0 +1,64 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حساب زكاة الفطر</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">رمضان</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حساب زكاة الفطر لك ولأسرتك — بالكيلو والقيمة النقدية</h1>
+    <p>احسب زكاة الفطر عن كل من تعولهم: كمية الطعام بالكيلوغرام، وقيمتها بسعر بلدك، أو المبلغ النقدي الرسمي للفرد الذي تعلنه الجهات المختصة في بلدك. ومعها حاسبة فدية الصيام.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="zf-grid">
+      <div>
+        <div class="zf-card">
+          <h2>زكاة الفطر</h2>
+          <div class="zf-row"><label for="zfPersons">عدد أفراد الأسرة</label><span class="zf-step"><button type="button" id="zfMinus" aria-label="−">−</button><input type="text" inputmode="numeric" id="zfPersons" value="5"><button type="button" id="zfPlus" aria-label="+">+</button></span></div>
+          <div id="zfPeople" aria-hidden="true"></div>
+          <div class="zf-row"><label for="zfKg">مقدار الطعام للفرد (كغ)</label><input type="text" inputmode="decimal" id="zfKg" value="3"><span id="zfKgChips"><button type="button" class="chip" data-kg="2.5">2.5 كغ</button><button type="button" class="chip" data-kg="3">3 كغ</button></span></div>
+          <div class="zf-row"><label for="zfPrice">سعر الكيلو من قوت البلد</label><input type="text" inputmode="decimal" id="zfPrice" placeholder="مثال: 8"></div>
+          <div class="zf-row"><label for="zfCash">المبلغ النقدي الرسمي للفرد (اختياري)</label><input type="text" inputmode="decimal" id="zfCash" placeholder="—"></div>
+        </div>
+        <div class="zf-card" style="margin-top:14px">
+          <h2>فدية الصيام</h2>
+          <div class="zf-row"><label for="fdDays">عدد الأيام</label><input type="text" inputmode="numeric" id="fdDays" placeholder="مثال: 10"></div>
+          <div class="zf-row"><label for="fdMeal">تكلفة إطعام مسكين ليوم</label><input type="text" inputmode="decimal" id="fdMeal" placeholder="مثال: 15"></div>
+          <div class="zf-kv"><span>الفدية</span><b id="fdOut">—</b></div><div class="zf-f" id="fdF"></div>
+        </div>
+      </div>
+      <div class="zf-card zf-res" aria-live="polite">
+        <h2>زكاة الفطر عن أسرتك</h2>
+        <div class="zf-big" id="zfKgOut">—</div>
+        <div class="zf-f" id="zfWho"></div>
+        <div class="zf-kv"><span>قيمتها بسعرك</span><b id="zfCashOut">—</b></div>
+        <div class="zf-kv"><span>بالمبلغ الرسمي</span><b id="zfOfficial">—</b></div>
+        <p class="rc-note">المقادير تقريبية؛ الصاع مكيال حجم فيختلف وزنه باختلاف الطعام. اتبع ما تعلنه جهة الفتوى في بلدك كل عام.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/ramadan.js"></script>
+
+  <div class="content">
+    <h2>طريقة حساب زكاة الفطر</h2>
+    <ul class="benefits">
+      <li><span>زكاة الفطر <strong>صاع من قوت البلد</strong> (أرز، قمح، تمر…) عن كل فرد تعوله، صغيرًا كان أو كبيرًا.</span></li>
+      <li><span>يُقدَّر الصاع غالبًا بـ<strong>نحو 2.5 إلى 3 كيلوغرامات</strong> بحسب نوع الطعام والجهة المُفتية.</span></li>
+      <li><span>تعلن جهات رسمية في كثير من الدول <strong>قيمة نقدية للفرد</strong> كل رمضان لمن يخرجها نقدًا.</span></li>
+      <li><span>وقت إخراجها قبل صلاة العيد، ويجوز تقديمها بيوم أو يومين.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>كم مقدار زكاة الفطر للشخص الواحد؟</summary><p>صاع من قوت البلد، ويقدّر بنحو 2.5 إلى 3 كغ. ومن يخرجها نقدًا يعتمد المبلغ الذي تعلنه الجهة الرسمية في بلده لهذا العام.</p></details>
+    <details class="faq-item"><summary>عن من أُخرج زكاة الفطر؟</summary><p>عن نفسك وعن كل من تلزمك نفقته كالزوجة والأولاد، إذا كان عندك ما يزيد عن قوت يوم العيد وليلته.</p></details>
+    <details class="faq-item"><summary>متى آخر وقت لإخراج زكاة الفطر؟</summary><p>قبل صلاة عيد الفطر، ويجوز إخراجها قبل العيد بيوم أو يومين.</p></details>
+    <details class="faq-item"><summary>ما هي فدية الصيام؟</summary><p>لمن لا يستطيع الصيام ولا يُرجى قضاؤه كالمريض مرضًا مزمنًا والكبير في السن: إطعام مسكين عن كل يوم. أدخل عدد الأيام وتكلفة الوجبة.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">المزيد لرمضان</h2>
+    <div class="related-grid">
+      <a href="/ar/ramadan-countdown">كم باقي على رمضان<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/ramadan-imsakiya">إمساكية رمضان<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/zakat-calculator">حاسبة زكاة المال<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/prayer-times">مواقيت الصلاة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

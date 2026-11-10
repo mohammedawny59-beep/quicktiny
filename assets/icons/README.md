@@ -28,3 +28,4 @@ transparent WebP (per-row background removal, floor reflection faded) and resize
 | `keyboard.webp` | مصحح لغة الكيبورد (/ar/keyboard-fix) |
 - `convert.webp`, `receipt.webp`, `zakat.webp`, `briefcase.webp` (2026-11-10) — same pipeline.
 - `graduation.webp` (2026-11-10) — GPA / weighted grade calculators (student pack), same pipeline.
+- `ramadan.webp` (2026-11-10) — Ramadan countdown, same pipeline.
