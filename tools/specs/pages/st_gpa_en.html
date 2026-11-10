@@ -1,0 +1,68 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">GPA Calculator</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Students</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>GPA Calculator — Semester &amp; Cumulative GPA (4.0 and 5.0 scales)</h1>
+    <p>Add your courses, credit hours and letter grades to get your semester GPA, then your new cumulative GPA. Works with the 4.0 scale and the 5.0 scale used by Saudi universities, and tells you the semester GPA you need to reach a target.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="st-grid">
+      <div>
+        <div class="st-card">
+          <div class="st-head"><label for="gpScale">Scale</label><select id="gpScale"><option value="4">4.0 scale (A = 4)</option><option value="5">5.0 scale (A+ = 5)</option></select></div>
+          <div class="gp-cols"><span>Course</span><span>Credits</span><span>Grade</span><span></span></div>
+          <div id="gpRows"></div>
+          <div class="st-actions"><button type="button" class="btn btn-secondary" id="gpAdd">+ Add course</button><button type="button" class="btn btn-secondary" id="gpReset">Start over</button></div>
+        </div>
+        <div class="st-card" style="margin-top:14px"><h2>Previous record (optional)</h2>
+          <div class="st-line"><span>Cumulative GPA so far</span><input type="text" inputmode="decimal" id="gpPrev" placeholder="3.20"><span>·</span><input type="text" inputmode="decimal" id="gpPrevCr" placeholder="60"><span>credits completed</span></div>
+        </div>
+        <div class="st-card" style="margin-top:14px"><h2>Target</h2>
+          <div class="st-line"><span>I want a cumulative GPA of</span><input type="text" inputmode="decimal" id="gpTarget" placeholder="3.50"><span>·</span><input type="text" inputmode="decimal" id="gpNextCr" placeholder="15"><span>next semester credits</span></div>
+          <div class="st-note" id="gpNeed" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="st-card st-res" aria-live="polite">
+        <h2>Cumulative GPA</h2>
+      <div class="st-ring-wrap"><div class="st-ring" id="gpRing"></div><div class="st-ring-in"><span class="st-big" id="gpCum">—</span><span class="st-sub" id="gpMax">/ 4</span></div></div>
+        <span class="st-rate" id="gpRate" hidden></span>
+        <div class="st-kv"><span>Semester GPA</span><b id="gpSem">—</b></div>
+        <div class="st-kv"><span>Credits this semester</span><b id="gpSemCr">0</b></div>
+        <div class="st-kv"><span>Total credits</span><b id="gpCumCr">0</b></div>
+        <p class="st-saved">Your courses are saved on this device only.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/student.js"></script>
+
+  <div class="content">
+    <h2>How GPA is calculated</h2>
+    <ul class="benefits">
+      <li><span><strong>Quality points</strong> = credit hours × grade points. A 3-credit A on the 4.0 scale is 3 × 4 = 12 points.</span></li>
+      <li><span><strong>Semester GPA</strong> = total quality points ÷ total credit hours.</span></li>
+      <li><span><strong>Cumulative GPA</strong> = (previous GPA × previous credits + this semester's points) ÷ all credits.</span></li>
+      <li><span><strong>Needed GPA</strong> = (target × (old + new credits) − current GPA × old credits) ÷ new credits.</span></li>
+    </ul>
+    <h2>Grade points</h2>
+    <ul class="benefits">
+      <li><span><strong>5.0 scale (A+ = 5):</strong> A+ 5 · A 4.75 · B+ 4.5 · B 4 · C+ 3.5 · C 3 · D+ 2.5 · D 2 · F 1</span></li>
+      <li><span><strong>4.0 scale (A = 4):</strong> A+ 4 · A 4 · A- 3.7 · B+ 3.3 · B 3 · B- 2.7 · C+ 2.3 · C 2 · C- 1.7 · D+ 1.3 · D 1 · D- 0.7 · F 0</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>What is the difference between the 4.0 and 5.0 scales?</summary><p>On the 4.0 scale an A is worth 4 points. Saudi universities commonly use a 5.0 scale where A+ = 5, A = 4.75, B+ = 4.5, B = 4, C+ = 3.5, C = 3, D+ = 2.5, D = 2 and F = 1.</p></details>
+    <details class="faq-item"><summary>Does a failed course count in my GPA?</summary><p>Yes. An F adds its credit hours with 0 points on the 4.0 scale (1 point on the Saudi 5.0 scale), which pulls the GPA down until the course is repeated, depending on your university's rules.</p></details>
+    <details class="faq-item"><summary>Can I raise my GPA from 2.5 to 3.0 in one semester?</summary><p>Use the Target box: enter your cumulative GPA, completed credits, the GPA you want and next semester's credits. If the required semester GPA is above the scale maximum it isn't possible in one semester.</p></details>
+    <details class="faq-item"><summary>Is my data uploaded?</summary><p>No. Everything is calculated in your browser and your courses are only saved in this browser so you can come back next semester.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools for students</h2>
+    <div class="related-grid">
+      <a href="/weighted-grade-calculator">Weighted Grade Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/pdf-tools">PDF Tools<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

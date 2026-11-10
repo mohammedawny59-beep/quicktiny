@@ -554,5 +554,27 @@
    "ramadan-timetable",
    "qibla-direction"
   ]
+ },
+ {
+  "key": "gpa",
+  "icon": "graduation",
+  "lang": "en",
+  "title": "GPA & Grade Calculators",
+  "sub": "Semester · cumulative · final exam needed",
+  "pages": [
+   "gpa-calculator",
+   "weighted-grade-calculator"
+  ]
+ },
+ {
+  "key": "gpa-ar",
+  "icon": "graduation",
+  "lang": "ar",
+  "title": "حساب المعدل والنسبة الموزونة",
+  "sub": "من 5 ومن 4 · ثانوي وقدرات وتحصيلي",
+  "pages": [
+   "ar/gpa-calculator",
+   "ar/weighted-percentage-calculator"
+  ]
  }
 ]

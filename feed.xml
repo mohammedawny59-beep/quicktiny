@@ -8,6 +8,13 @@
   <lastBuildDate>Tue, 10 Nov 2026 09:00:00 +0000</lastBuildDate>
   <atom:link href="https://quicktinyv2.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Weighted Grade Calculator — Course Grade &amp; Final Exam Needed</title>
+    <link>https://quicktinyv2.vercel.app/weighted-grade-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/weighted-grade-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Calculate your weighted course grade from assignments and exams, see your grade so far, and find the score you need on the final. Free, private, no signup.</description>
+  </item>
+  <item>
     <title>WebP to PNG Converter — Keep Transparency, Free</title>
     <link>https://quicktinyv2.vercel.app/webp-to-png</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/webp-to-png</guid>
@@ -148,6 +155,13 @@
     <description>Practical guides with worked examples: converting HEIC to JPG, compressing photos for forms, comparing loan offers, calculating percentages and more.</description>
   </item>
   <item>
+    <title>GPA Calculator — Semester &amp; Cumulative GPA (4.0 and 5.0 Scale)</title>
+    <link>https://quicktinyv2.vercel.app/gpa-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/gpa-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Free GPA calculator: add courses, credits and letter grades to get your semester and cumulative GPA on the 4.0 or 5.0 scale, plus the GPA you need to hit a target. No signup.</description>
+  </item>
+  <item>
     <title>Discount Calculator — Price After % Off and How Much You Save</title>
     <link>https://quicktinyv2.vercel.app/discount-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/discount-calculator</guid>
@@ -272,20 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/split-pdf</guid>
     <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
     <description>Split a PDF into single pages or extract a page range like 1-3, 5, 8- — free, in your browser, nothing uploaded.</description>
-  </item>
-  <item>
-    <title>Social Media Image Resizer — Instagram, TikTok, YouTube &amp; More</title>
-    <link>https://quicktinyv2.vercel.app/social-image-resizer</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/social-image-resizer</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Resize one image for Instagram, TikTok, Facebook, X, LinkedIn, YouTube, Pinterest and WhatsApp at once. Focal-point crop, blurred-background fit, story safe zones, ZIP download.</description>
-  </item>
-  <item>
-    <title>Sensitivity Converter — Valorant, CS2, Apex, Overwatch 2, CoD</title>
-    <link>https://quicktinyv2.vercel.app/sensitivity-converter</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/sensitivity-converter</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Convert mouse sensitivity between Valorant, CS2, Apex Legends, Overwatch 2, Call of Duty, Rainbow Six Siege and Fortnite. See cm/360 and eDPI. Free and instant.</description>
   </item>
 </channel>
 </rss>

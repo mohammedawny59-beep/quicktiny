@@ -1,3 +1,0 @@
-{"logTime": "1110/070003", "correlationVector":"9OqR1vf1wSN75AvpqChm+r.1","action":"SyncServerConnectionManagerRequest", "result":"SYNC_SERVER_OK", "context":{"environment":"Prod_centralindia_prod-s01-064-apac-centralindia", "migrationStage":"NotStarted", "server":"akswtt01600001i"}}
-{"logTime": "1110/070003", "correlationVector":"9OqR1vf1wSN75AvpqChm+r.2","action":"ProcessGetUpdates", "result":"Done", "context":{"dataType":"Encryption Keys", "deleted":"0", "process_failed_to_decrypt":"0", "process_pending_decryption":"0", "process_success":"1", "total":"1"}}
-{"logTime": "1110/070005", "correlationVector":"","action":"SyncServerConnectionManagerRequest", "result":"CONNECTION_UNAVAILABLE", "context":{"error_type":"net_error_code", "error_value":"-3"}}

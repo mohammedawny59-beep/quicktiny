@@ -1,0 +1,11 @@
+{"en_cards": [
+  {"slug": "gpa-calculator", "icon": "graduation", "cat": "Utility", "badge": "Students &middot; New", "name": "GPA Calculator", "desc": "Semester and cumulative GPA on the 4.0 or 5.0 scale, plus the GPA you need for a target.", "search": "gpa calculator cumulative gpa semester grade point average college university students 4.0 5.0 utility"},
+  {"slug": "weighted-grade-calculator", "icon": "graduation", "cat": "Utility", "badge": "Students &middot; New", "name": "Weighted Grade Calculator", "desc": "Weighted course grade, grade so far, and the score you need on the final.", "search": "weighted grade calculator final grade calculator what do i need on my final average students utility"}],
+ "ar_cards": [
+  {"slug": "ar/weighted-percentage-calculator", "icon": "graduation", "badge": "للطلاب · جديد", "name": "حساب النسبة الموزونة", "desc": "النسبة الموزونة من الثانوية والقدرات والتحصيلي بأي أوزان.", "search": "حساب النسبة الموزونة ثانوي قدرات تحصيلي القبول الجامعي طلاب"},
+  {"slug": "ar/gpa-calculator", "icon": "graduation", "badge": "للطلاب · جديد", "name": "حساب المعدل التراكمي", "desc": "معدلك الفصلي والتراكمي من 5 ومن 4، والمعدل المطلوب لرفعه.", "search": "حساب المعدل التراكمي المعدل الفصلي الجامعي من 5 من 4 gpa طلاب"}],
+ "footer": [["gpa-calculator", "GPA Calculator"], ["weighted-grade-calculator", "Weighted Grade Calculator"]],
+ "popular_en": [["gpa-calculator", "GPA calculator"]],
+ "popular_ar": [["ar/gpa-calculator", "حساب المعدل التراكمي"], ["ar/weighted-percentage-calculator", "حساب النسبة الموزونة"]],
+ "sitemap": ["gpa-calculator", "ar/gpa-calculator", "weighted-grade-calculator", "ar/weighted-percentage-calculator"],
+ "count_add": 2}

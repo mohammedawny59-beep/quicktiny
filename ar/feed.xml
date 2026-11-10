@@ -22,6 +22,13 @@
     <description>احسب زكاة المال والذهب بأعياره والفضة وعروض التجارة مع خصم الديون، وتعرّف هل بلغ مالك النصاب (85 غرام ذهب أو 595 غرام فضة). النتيجة بالأرقام والحروف. مجانية وخاصة.</description>
   </item>
   <item>
+    <title>حساب النسبة الموزونة — ثانوي وقدرات وتحصيلي</title>
+    <link>https://quicktinyv2.vercel.app/ar/weighted-percentage-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/weighted-percentage-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب النسبة الموزونة للقبول الجامعي من نسبة الثانوية والقدرات والتحصيلي بأوزان 30/30/40 أو 40/30/30 أو 50/50 أو أي أوزان، واحسب درجتك الموزونة في أي مادة. مجانًا وبدون تسجيل.</description>
+  </item>
+  <item>
     <title>حاسبة ضريبة القيمة المضافة 15% — إضافة واستخراج الضريبة</title>
     <link>https://quicktinyv2.vercel.app/ar/vat-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/vat-calculator</guid>
@@ -155,6 +162,13 @@
     <description>شروحات عملية بأمثلة محسوبة: حساب زكاة الذهب، ضريبة القيمة المضافة، مكافأة نهاية الخدمة، الفاتورة الضريبية، تحويل صور الآيفون وتصغير الصور للتقديم.</description>
   </item>
   <item>
+    <title>حساب المعدل التراكمي من 5 ومن 4 — حاسبة المعدل الجامعي</title>
+    <link>https://quicktinyv2.vercel.app/ar/gpa-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/gpa-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حاسبة المعدل التراكمي والفصلي للجامعات السعودية (من 5) ونظام 4: أضف موادك وساعاتها وتقديراتك، واعرف معدلك وتقديرك والمعدل الذي تحتاجه لرفع معدلك. مجانية وبدون تسجيل.</description>
+  </item>
+  <item>
     <title>حاسبة مكافأة نهاية الخدمة — السعودية والإمارات 2026</title>
     <link>https://quicktinyv2.vercel.app/ar/end-of-service-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/end-of-service-calculator</guid>
@@ -272,20 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/qr-code-generator</guid>
     <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
     <description>اصنع باركود QR مجاني لرابط أو واي فاي أو واتساب أو بطاقة اتصال، مع شعارك وألوانك وإطار بعبارة عربية. لا ينتهي أبدًا، ويُختبر مسحه تلقائيًا. إنشاء بالجملة من CSV.</description>
-  </item>
-  <item>
-    <title>أدوات PDF مجانية — دمج وتقسيم وتدوير وتحويل الصور إلى PDF</title>
-    <link>https://quicktinyv2.vercel.app/ar/pdf-tools</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/pdf-tools</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>دمج ملفات PDF واستخراج الصفحات أو حذفها وتقسيم وتدوير الملفات وتحويل الصور إلى PDF مجانًا داخل متصفحك — بدون تسجيل وبدون رفع ملفاتك.</description>
-  </item>
-  <item>
-    <title>زخرفة أسماء ببجي وفري فاير — أسماء مزخرفة للألعاب</title>
-    <link>https://quicktinyv2.vercel.app/ar/name-decorator</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/name-decorator</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>زخرفة أسماء ببجي وفري فاير بالعربي والإنجليزي: تطويل، رموز مثل 亗 و꧁꧂، وخطوط مزخرفة. انسخ الاسم بضغطة واحدة. مجاني وبدون تسجيل.</description>
   </item>
 </channel>
 </rss>

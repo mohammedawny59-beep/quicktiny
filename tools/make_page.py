@@ -9,6 +9,8 @@ footer_start = src.index("<footer>")
 footer_end = src.index('<script type="application/ld+json">')
 header = src[:head_end]
 footer = src[footer_start:footer_end]
+# compress-image.html loads its own tool script; new pages must not inherit it.
+footer = footer.replace('<script src="/compress-image.js" defer></script>' + chr(10), "")
 url = "https://quicktinyv2.vercel.app/" + slug
 header = re.sub(r"<title>.*?</title>", lambda m: "<title>" + title + "</title>", header)
 for pat in [r'(<meta name="description" content=")[^"]*', r'(<meta property="og:description" content=")[^"]*']:

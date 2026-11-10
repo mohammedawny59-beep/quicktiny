@@ -42,6 +42,7 @@ def make_en(slug, title, desc, crumb, body_html):
     src = io.open("compress-image.html", encoding="utf-8").read()
     header = src[:src.index(WRAP_START)]
     footer = src[src.index("<footer>"):src.index('<script type="application/ld+json">')]
+    footer = footer.replace('<script src="/compress-image.js" defer></script>' + chr(10), "")
     url = B + "/" + slug
     header = re.sub(r"<title>.*?</title>", lambda m: "<title>" + title + "</title>", header, flags=re.S)
     for pat in [r'(<meta name="description" content=")[^"]*', r'(<meta property="og:description" content=")[^"]*', r'(<meta name="twitter:description" content=")[^"]*']:

@@ -1,0 +1,74 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حساب النسبة الموزونة</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">للطلاب</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حساب النسبة الموزونة — ثانوي وقدرات وتحصيلي</h1>
+    <p>احسب نسبتك الموزونة للقبول الجامعي من نسبة الثانوية ودرجة القدرات ودرجة التحصيلي بالأوزان التي تطلبها جامعتك، واحسب درجتك الموزونة في أي مادة والدرجة التي تحتاجها في الاختبار النهائي.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="st-grid">
+      <div class="st-card">
+        <h2>النسبة الموزونة للقبول الجامعي</h2>
+        <div id="swPresets"><span style="color:var(--muted);font-size:13px;font-weight:700;align-self:center">أوزان شائعة:</span><button type="button" class="chip" data-w="30,30,40">30 / 30 / 40</button><button type="button" class="chip" data-w="40,30,30">40 / 30 / 30</button><button type="button" class="chip" data-w="25,25,50">25 / 25 / 50</button><button type="button" class="chip" data-w="50,50,0">50 / 50 — بدون تحصيلي</button></div>
+        <div class="sw-row" style="font-size:12px;color:var(--muted);font-weight:700;margin-bottom:4px"><span></span><span style="text-align:center">الدرجة</span><span style="text-align:center">الوزن %</span></div>
+        <div class="sw-row"><span>نسبة الثانوية</span><input type="text" inputmode="decimal" id="swHs" value="96" aria-label="نسبة الثانوية"><input type="text" inputmode="decimal" id="swW1" value="30" aria-label="الوزن %"></div>
+        <div class="sw-row"><span>القدرات العامة</span><input type="text" inputmode="decimal" id="swGat" value="82" aria-label="القدرات العامة"><input type="text" inputmode="decimal" id="swW2" value="30" aria-label="الوزن %"></div>
+        <div class="sw-row" id="swRow3"><span>التحصيلي الدراسي</span><input type="text" inputmode="decimal" id="swSaat" value="88" aria-label="التحصيلي الدراسي"><input type="text" inputmode="decimal" id="swW3" value="40" aria-label="الوزن %"></div>
+        <div class="st-note" id="swSum"></div>
+        <p class="st-saved">تختلف الأوزان بين الجامعات والكليات وتتغير أحيانًا كل عام — تأكد منها في دليل القبول لجامعتك.</p>
+      </div>
+      <div class="st-card st-res" aria-live="polite">
+        <h2>النسبة الموزونة</h2>
+      <div class="st-ring-wrap"><div class="st-ring" id="swRing"></div><div class="st-ring-in"><span class="st-big" id="swOut">—</span></div></div>
+        <div class="st-f" id="swF"></div>
+      </div>
+    </div>
+    <div class="st-grid" style="margin-top:16px">
+      <div class="st-card">
+        <h2>درجة موزونة لأي مادة</h2>
+        <div class="wt-cols"><span>البند</span><span style="text-align:center">الدرجة</span><span style="text-align:center">من</span><span style="text-align:center">الوزن %</span><span></span></div>
+        <div id="wtRows"></div>
+        <div class="st-actions"><button type="button" class="btn btn-secondary" id="wtAdd">+ أضف بندًا</button><button type="button" class="btn btn-secondary" id="wtReset">ابدأ من جديد</button></div>
+        <div class="st-note" id="wtSum"></div>
+        <h2 style="margin-top:18px">كم أحتاج في الاختبار النهائي؟</h2>
+        <div class="st-line"><span>درجتي الحالية %</span><input type="text" inputmode="decimal" id="fnCur" value="78"><span>·</span><span>وزن النهائي %</span><input type="text" inputmode="decimal" id="fnW" value="40"><span>·</span><span>أريد في المجموع %</span><input type="text" inputmode="decimal" id="fnTarget" value="80"></div>
+        <div class="st-note" id="fnOut" aria-live="polite"></div>
+      </div>
+      <div class="st-card st-res" aria-live="polite">
+        <h2>الدرجة الموزونة</h2>
+      <div class="st-ring-wrap"><div class="st-ring" id="wtRing"></div><div class="st-ring-in"><span class="st-big" id="wtPct">—</span></div></div>
+        <span class="st-rate" id="wtLetter"></span>
+        <p class="st-saved">تُحفظ على هذا الجهاز فقط.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/student.js"></script>
+
+  <div class="content">
+    <h2>طريقة حساب النسبة الموزونة</h2>
+    <ul class="benefits">
+      <li><span><strong>النسبة الموزونة</strong> = (نسبة الثانوية × وزنها) + (درجة القدرات × وزنها) + (درجة التحصيلي × وزنها).</span></li>
+      <li><span>مثال بأوزان 30% / 30% / 40%: ثانوية 96 وقدرات 82 وتحصيلي 88 ← 28.8 + 24.6 + 35.2 = <strong>88.6%</strong>.</span></li>
+      <li><span>للتخصصات التي لا تشترط التحصيلي تُستخدم غالبًا أوزان مثل 50% ثانوية و50% قدرات.</span></li>
+      <li><span><strong>الدرجة المطلوبة في النهائي</strong> = (الهدف − الدرجة الحالية × (1 − وزن النهائي)) ÷ وزن النهائي.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>كيف أحسب النسبة الموزونة؟</summary><p>اضرب نسبة الثانوية في وزنها، والقدرات في وزنها، والتحصيلي في وزنه، ثم اجمع النتائج. مثلًا بأوزان 30/30/40: 96×0.3 + 82×0.3 + 88×0.4 = 88.6%.</p></details>
+    <details class="faq-item"><summary>ما أوزان النسبة الموزونة في الجامعات السعودية؟</summary><p>الأشهر 30% ثانوي و30% قدرات و40% تحصيلي للكليات العلمية والصحية، و40/30/30 أو 50/50 بدون تحصيلي لكليات أخرى. الأوزان تختلف حسب الجامعة والكلية، فراجع دليل القبول.</p></details>
+    <details class="faq-item"><summary>هل النسبة الموزونة هي نفسها نسبة القبول؟</summary><p>النسبة الموزونة هي ما تقارنه الجامعة بالحد الأدنى للقبول في كل تخصص، وقد يختلف الحد الأدنى من عام لآخر حسب المتقدمين.</p></details>
+    <details class="faq-item"><summary>كيف أحسب درجتي في مادة لها أعمال سنة ونصفي ونهائي؟</summary><p>استخدم «درجة موزونة لأي مادة»: أدخل كل بند بدرجته ومن كم ووزنه، واترك ما لم يُرصد بعد فارغًا لتعرف درجتك حتى الآن.</p></details>
+    <details class="faq-item"><summary>هل تُرفع بياناتي؟</summary><p>لا. كل الحسابات تتم في متصفحك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى للطلاب</h2>
+    <div class="related-grid">
+      <a href="/ar/gpa-calculator">حساب المعدل التراكمي<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/percentage-calculator">حاسبة النسبة المئوية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/word-counter">عداد الكلمات<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/pdf-tools">أدوات PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
