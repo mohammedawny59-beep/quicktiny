@@ -27,6 +27,9 @@
       var r = last.card.getBoundingClientRect();
       last.card.style.setProperty("--mx", (last.x - r.left) + "px");
       last.card.style.setProperty("--my", (last.y - r.top) + "px");
+      // Gentle 3D tilt toward the pointer (max ~5 degrees).
+      last.card.style.setProperty("--ry", (((last.x - r.left) / r.width - .5) * 10).toFixed(2) + "deg");
+      last.card.style.setProperty("--rx", ((.5 - (last.y - r.top) / r.height) * 8).toFixed(2) + "deg");
     });
   }, { passive: true });
 })();
@@ -86,9 +89,12 @@
 })();
 
 async function qtCopy(text, statusEl, label){
+  var btn = document.activeElement && document.activeElement.tagName === "BUTTON" ? document.activeElement : null;
   try{
     await navigator.clipboard.writeText(text);
     if (statusEl) { statusEl.textContent = (label || "Copied") + " ✓"; statusEl.className = "result success"; }
+    // The button that was pressed flips to a tick for a moment.
+    if (btn) { btn.classList.remove("qt-copied"); void btn.offsetWidth; btn.classList.add("qt-copied"); clearTimeout(btn._qtc); btn._qtc = setTimeout(function(){ btn.classList.remove("qt-copied"); }, 1300); }
   }catch(e){
     if (statusEl) { statusEl.textContent = "Could not copy — select and copy manually."; statusEl.className = "result error"; }
   }
@@ -445,4 +451,139 @@ function qtCompareButton(li, before, after, o){
   });
   // Coming back with the browser's back button: clear the name so the next click works.
   window.addEventListener("pageshow", function(){ document.querySelectorAll('[style*="qt-title"]').forEach(function(el){ el.style.viewTransitionName = ""; }); });
+})();
+
+/* ---------- Small celebrations: a burst of sparks from an element (skipped for reduced motion) ---------- */
+function qtCelebrate(el){
+  if (!el || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  var r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  var colors = ["#3be2ff", "#6b6bff", "#ffd166", "#7ff0b0", "#ff8fab"];
+  var box = document.createElement("div"); box.className = "qt-burst"; box.setAttribute("aria-hidden", "true");
+  box.style.left = cx + "px"; box.style.top = cy + "px";
+  for (var i = 0; i < 26; i++) {
+    var p = document.createElement("i"), a = Math.random() * Math.PI * 2, d = 60 + Math.random() * 110;
+    p.style.setProperty("--x", Math.cos(a) * d + "px"); p.style.setProperty("--y", Math.sin(a) * d - 30 + "px");
+    p.style.setProperty("--r", Math.round(Math.random() * 540 - 270) + "deg");
+    p.style.background = colors[i % colors.length]; p.style.animationDelay = Math.random() * 80 + "ms";
+    if (i % 3 === 0) p.style.borderRadius = "50%";
+    box.appendChild(p);
+  }
+  document.body.appendChild(box);
+  setTimeout(function(){ box.remove(); }, 1200);
+}
+/* Animate a number inside an element from its previous value: qtCountTo(el, 2.3, function(v){ return v.toFixed(1) + " MB"; }). */
+function qtCountTo(el, to, fmt, dur){
+  if (!el) return;
+  var from = isFinite(el._qtv) ? el._qtv : 0; el._qtv = to;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = fmt(to); return; }
+  var t0 = null; dur = dur || 600; cancelAnimationFrame(el._qtraf);
+  (function step(ts){
+    if (!t0) t0 = ts;
+    var k = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(from + (to - from) * e);
+    if (k < 1) el._qtraf = requestAnimationFrame(step);
+  })(performance.now());
+}
+
+/* ---------- Hero parallax: the floating glass icons drift at different speeds while scrolling ---------- */
+(function(){
+  var fl = document.querySelectorAll(".hero-float");
+  if (!fl.length || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  var speeds = [0.18, -0.12, 0.28, -0.22], raf = null;
+  window.addEventListener("scroll", function(){
+    if (raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = null; var y = Math.min(window.scrollY, 900);
+      fl.forEach(function(el, i){ el.style.translate = "0 " + (y * speeds[i % 4]).toFixed(1) + "px"; });
+    });
+  }, { passive: true });
+})();
+
+/* ---------- Quick tool search: Ctrl/Cmd+K or "/" anywhere, or the search button in the header ---------- */
+(function(){
+  var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
+  var T = AR ? { ph: "ابحث عن أداة… مثل: ضغط صورة، تفقيط، معدل", none: "لا توجد نتائج", open: "بحث سريع عن أداة", hint: "↑↓ للتنقل · Enter للفتح · Esc للإغلاق" }
+             : { ph: "Search tools… e.g. compress, pdf, gpa", none: "No matching tools", open: "Quick tool search", hint: "↑↓ to move · Enter to open · Esc to close" };
+  var tools = null, dlg = null, input, list, sel = 0, shown = [];
+  // Arabic-friendly matching: drop diacritics/tatweel, unify alef forms, ya/alef maqsura and ta marbuta.
+  function norm(s){ return String(s || "").toLowerCase().replace(/[ً-ْـ]/g, "").replace(/[إأآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه"); }
+  function load(){
+    if (tools) return Promise.resolve(tools);
+    // The homepage cards are the catalogue (same language as this page).
+    return fetch(AR ? "/ar" : "/").then(function(r){ return r.text(); }).then(function(html){
+      var doc = new DOMParser().parseFromString(html, "text/html");
+      tools = [].map.call(doc.querySelectorAll("a.tool-card"), function(a){
+        var h = a.querySelector("h3"), d = a.querySelector("p"), im = a.querySelector(".tc-icon img");
+        return { href: a.getAttribute("href"), name: h ? h.textContent.trim() : "", desc: d ? d.textContent.trim() : "", icon: im ? im.getAttribute("src") : "",
+                 key: norm((h ? h.textContent : "") + " " + (a.getAttribute("data-search") || "") + " " + (d ? d.textContent : "")) };
+      });
+      return tools;
+    }).catch(function(){ tools = []; return tools; });
+  }
+  function build(){
+    dlg = document.createElement("div"); dlg.className = "qk"; dlg.hidden = true;
+    dlg.innerHTML = '<div class="qk-back"></div><div class="qk-box" role="dialog" aria-modal="true"><div class="qk-in"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>' +
+      '<input type="text" role="combobox" aria-expanded="true" aria-controls="qkList" aria-autocomplete="list" autocomplete="off" spellcheck="false"><kbd>Esc</kbd></div><ul id="qkList" role="listbox"></ul><div class="qk-hint"></div></div>';
+    document.body.appendChild(dlg);
+    dlg.querySelector(".qk-box").setAttribute("aria-label", T.open);
+    input = dlg.querySelector("input"); list = dlg.querySelector("ul");
+    input.placeholder = T.ph; input.setAttribute("aria-label", T.open); dlg.querySelector(".qk-hint").textContent = T.hint;
+    dlg.querySelector(".qk-back").addEventListener("click", close);
+    input.addEventListener("input", render);
+    input.addEventListener("keydown", function(e){
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); if (shown.length) { sel = (sel + (e.key === "ArrowDown" ? 1 : -1) + shown.length) % shown.length; mark(); } }
+      else if (e.key === "Enter" && shown[sel]) { e.preventDefault(); go(shown[sel]); }
+      else if (e.key === "Escape") close();
+    });
+  }
+  function render(){
+    var q = norm(input.value).trim().split(/\s+/).filter(Boolean);
+    shown = (tools || []).filter(function(t){ return q.every(function(w){ return t.key.indexOf(w) !== -1; }); })
+      .sort(function(a, b){ var qa = q.length && norm(a.name).indexOf(q[0]) === 0, qb = q.length && norm(b.name).indexOf(q[0]) === 0; return (qb ? 1 : 0) - (qa ? 1 : 0); })
+      .slice(0, 8);
+    list.innerHTML = shown.length ? "" : '<li class="qk-none"></li>';
+    if (!shown.length) list.firstChild.textContent = T.none;
+    shown.forEach(function(t, i){
+      var li = document.createElement("li"); li.setAttribute("role", "option"); li.id = "qk" + i;
+      if (t.icon) { var im = document.createElement("img"); im.src = t.icon; im.alt = ""; im.width = 34; im.height = 34; li.appendChild(im); }
+      var sp = document.createElement("span"), b = document.createElement("b"), sm = document.createElement("small");
+      b.textContent = t.name; sm.textContent = t.desc; sp.appendChild(b); sp.appendChild(sm); li.appendChild(sp);
+      li.addEventListener("mousemove", function(){ if (sel !== i) { sel = i; mark(); } });
+      li.addEventListener("click", function(){ go(t); });
+      list.appendChild(li);
+    });
+    sel = 0; mark();
+  }
+  function mark(){
+    [].forEach.call(list.children, function(li, i){ li.classList.toggle("on", i === sel && shown.length > 0); li.setAttribute("aria-selected", i === sel ? "true" : "false"); });
+    if (shown.length) input.setAttribute("aria-activedescendant", "qk" + sel); else input.removeAttribute("aria-activedescendant");
+    var on = list.children[sel]; if (on && on.scrollIntoView) on.scrollIntoView({ block: "nearest" });
+  }
+  function go(t){ if (typeof qtEvent === "function") qtEvent("quick_search_open"); location.href = t.href; }
+  var opener = null;
+  function open(){
+    if (!dlg) build();
+    opener = document.activeElement;
+    dlg.hidden = false; document.documentElement.classList.add("qk-lock");
+    input.value = ""; input.focus();
+    load().then(render);
+  }
+  function close(){
+    if (!dlg || dlg.hidden) return;
+    dlg.hidden = true; document.documentElement.classList.remove("qk-lock");
+    if (opener && opener.focus) opener.focus();
+  }
+  document.addEventListener("keydown", function(e){
+    var t = e.target || {}, typing = /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName || "") || t.isContentEditable;
+    if ((e.key === "k" || e.key === "K") && (e.ctrlKey || e.metaKey)) { e.preventDefault(); if (dlg && !dlg.hidden) close(); else open(); }
+    else if (e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault(); open(); }
+  });
+  // A search button next to the menu, so phones (no keyboard shortcut) can use it too.
+  var nr = document.querySelector(".nav-right");
+  if (nr) {
+    var btn = document.createElement("button"); btn.type = "button"; btn.className = "qk-btn"; btn.setAttribute("aria-label", T.open); btn.title = T.open + " (Ctrl+K)";
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
+    btn.addEventListener("click", open);
+    nr.insertBefore(btn, nr.querySelector(".menu-toggle"));
+  }
 })();

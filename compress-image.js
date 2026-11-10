@@ -57,7 +57,7 @@
   function statBox(n, label, cls){ return '<div class="stat' + (cls ? " " + cls : "") + '"><div class="n" dir="ltr">' + n + '</div><div class="l">' + label + "</div></div>"; }
 
   function load(f){
-    stats.innerHTML = ""; dl.innerHTML = "";
+    stats.innerHTML = ""; dl.innerHTML = ""; state.cheered = false;
     if (state.cmp) { state.cmp.remove(); state.cmp = null; }
     if (!f.type || f.type.indexOf("image/") !== 0) { out.textContent = T.notImage; out.className = "result error"; ctl.hidden = true; return; }
     out.textContent = T.working; out.className = "result";
@@ -84,7 +84,14 @@
       var pct = Math.round((1 - blob.size / f.size) * 100);
       out.textContent = bigger ? T.already : T.done;
       out.className = "result " + (bigger ? "warn" : "success");
-      stats.innerHTML = statBox(kb(f.size), T.orig) + statBox(kb(blob.size), T.comp, "cq-live") + statBox(Math.max(0, pct) + "%", T.saved, "cq-live");
+      if (!stats.querySelector(".cq-pct")) stats.innerHTML = statBox(kb(f.size), T.orig) + statBox(kb(blob.size), T.comp, "cq-live cq-size") + statBox("0%", T.saved, "cq-live cq-pct");
+      stats.firstChild.querySelector(".n").textContent = kb(f.size);
+      if (typeof qtCountTo === "function") {
+        qtCountTo(stats.querySelector(".cq-size .n"), blob.size, kb);
+        qtCountTo(stats.querySelector(".cq-pct .n"), Math.max(0, pct), function(v){ return Math.round(v) + "%"; });
+      } else { stats.querySelector(".cq-size .n").textContent = kb(blob.size); stats.querySelector(".cq-pct .n").textContent = Math.max(0, pct) + "%"; }
+      // Celebrate a big saving once per image.
+      if (pct >= 50 && !state.cheered && typeof qtCelebrate === "function") { state.cheered = true; qtCelebrate(stats.querySelector(".cq-pct")); }
       if (state.url) URL.revokeObjectURL(state.url);
       state.url = URL.createObjectURL(blob);
       dl.innerHTML = "";

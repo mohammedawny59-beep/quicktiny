@@ -589,3 +589,43 @@ h2.section-title{margin:0;line-height:1.2}
 @keyframes qtVtOut{to{opacity:0;transform:translateY(-8px)}}
 @keyframes qtVtIn{from{opacity:0;transform:translateY(12px)}}
 @media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+
+/* ---------- Delight: copy tick, spark burst ---------- */
+button.qt-copied{position:relative;color:transparent!important}
+button.qt-copied::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#7ff0b0;font-weight:800;animation:qtTick .35s cubic-bezier(.16,1,.3,1)}
+@keyframes qtTick{from{transform:scale(.4) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
+.qt-burst{position:fixed;width:0;height:0;pointer-events:none;z-index:1001}
+.qt-burst i{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:2px;animation:qtBurst .95s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes qtBurst{0%{transform:translate(0,0) scale(.6);opacity:1}70%{opacity:1}100%{transform:translate(var(--x),calc(var(--y) + 60px)) rotate(var(--r)) scale(1);opacity:0}}
+@media (prefers-reduced-motion:reduce){button.qt-copied::after{animation:none}}
+
+/* ---------- Card tilt (fine pointers only) ---------- */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .tool-card:hover{transform:perspective(900px) translateY(-6px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+}
+
+/* ---------- Quick tool search (Ctrl+K) ---------- */
+.qk-btn{width:38px;height:38px;display:inline-grid;place-items:center;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--text-dim);cursor:pointer;transition:border-color .15s,color .15s;margin-inline-end:8px;padding:0}
+.qk-btn:hover{border-color:var(--accent);color:var(--text)}
+.qk-btn svg,.qk-in svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.qk{position:fixed;inset:0;z-index:1002;display:flex;justify-content:center;align-items:flex-start;padding:12vh 16px 16px}
+.qk[hidden]{display:none}
+.qk-back{position:absolute;inset:0;background:rgba(5,7,20,.66);backdrop-filter:blur(6px);animation:qkFade .18s ease}
+.qk-box{position:relative;width:min(620px,100%);max-height:72vh;display:flex;flex-direction:column;border:1px solid var(--line-strong);border-radius:18px;background:var(--qk-bg,#0e1130);box-shadow:0 30px 80px -20px rgba(0,0,0,.8);overflow:hidden;animation:qkIn .25s cubic-bezier(.16,1,.3,1)}
+.qk-in{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);color:var(--muted)}
+.qk-in input{flex:1;min-width:0;border:0;background:transparent;color:var(--text);font-size:17px;padding:4px 0;margin:0;outline:none;box-shadow:none}
+.qk-in kbd{font:11px var(--mono);color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+.qk ul{list-style:none;margin:0;padding:6px;overflow-y:auto}
+.qk li{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:12px;cursor:pointer}
+.qk li.on{background:rgba(107,107,255,.16)}
+.qk li img{width:34px;height:34px;flex:none}
+.qk li span{display:flex;flex-direction:column;min-width:0}
+.qk li b{color:var(--text);font-weight:700}
+.qk li small{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qk .qk-none{color:var(--muted);justify-content:center;cursor:default}
+.qk-hint{padding:8px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+html.qk-lock{overflow:hidden}
+@keyframes qkFade{from{opacity:0}}
+@keyframes qkIn{from{opacity:0;transform:translateY(-10px) scale(.98)}}
+@media (max-width:520px){.qk{padding-top:8vh}.qk-hint{display:none}}
+@media (prefers-reduced-motion:reduce){.qk-back,.qk-box{animation:none}}

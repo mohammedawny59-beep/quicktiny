@@ -140,6 +140,10 @@ function qtSaudiWeighted(hs, gat, saat, w) {
       var rt = sc === "5" ? qtGpaRating5(cum) : null;
       $("gpRate").textContent = rt === null ? "" : T.ratings[rt];
       $("gpRate").hidden = rt === null;
+      // Celebrate when the cumulative GPA reaches the top band (Excellent / 3.5+ on the 4.0 scale).
+      var top = sc === "5" ? rt === 0 : cum >= 3.5;
+      if (top && !initGpa.cheered && last && typeof qtCelebrate === "function") qtCelebrate($("gpCum"));
+      initGpa.cheered = top;
       if (shown !== last) { pop($("gpCum")); last = shown; }
       // Target
       var target = num($("gpTarget").value), nextCr = num($("gpNextCr").value), out = $("gpNeed");
