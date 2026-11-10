@@ -9,6 +9,7 @@ The site is plain HTML/CSS/JS — the committed `.html` files are the source of 
 | `pair_en.py` | Adds `hreflang` en/ar/x-default and the EN/AR switch to an English page that has an Arabic twin. |
 | `landing.py` | Search-intent landing pages copied from a tool page: new title/meta/canonical/H1/intro, an extra "how to" section + FAQ, and `window.QT_PRESET` so the tool opens in the right mode. `landing.py . specs/x.json` builds only the pages in that spec. |
 | `wire.py` | Wires new tools into the site: homepage cards (EN/AR), "Popular tasks" chips, footer links on every page, sitemap entries and tool counts. |
+| `indexnow.mjs` | Submits URLs to IndexNow (Bing, Yandex…) using the key file at the repo root: `--all`, or `--since <git-ref>` for URLs newly added to `sitemap.xml`; `--dry-run` to preview. The `IndexNow` GitHub workflow runs it automatically when `sitemap.xml` changes on `main`. |
 | `cutout.py` | Turns a glass icon rendered on black into a 192 px transparent WebP for `assets/icons/`. |
 
 `specs/` holds the specs used for the latest packs as examples.
