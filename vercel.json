@@ -305,6 +305,78 @@
           "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://tools.launchllama.co; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
         }
       ]
+    },
+    {
+      "source": "/prayer-times",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=(self \"https://www.paypal.com\")"
+        }
+      ]
+    },
+    {
+      "source": "/prayer-times/(.*)",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=(self \"https://www.paypal.com\")"
+        }
+      ]
+    },
+    {
+      "source": "/ar/prayer-times",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=(self \"https://www.paypal.com\")"
+        }
+      ]
+    },
+    {
+      "source": "/ar/prayer-times/(.*)",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=(self \"https://www.paypal.com\")"
+        }
+      ]
+    },
+    {
+      "source": "/qibla-direction",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=(self \"https://www.paypal.com\")"
+        }
+      ]
+    },
+    {
+      "source": "/ar/qibla-direction",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=(self \"https://www.paypal.com\")"
+        }
+      ]
+    },
+    {
+      "source": "/ramadan-timetable",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=(self \"https://www.paypal.com\")"
+        }
+      ]
+    },
+    {
+      "source": "/ar/ramadan-imsakiya",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self), payment=(self \"https://www.paypal.com\")"
+        }
+      ]
     }
   ]
 }
