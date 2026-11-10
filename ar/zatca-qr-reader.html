@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>قراءة باركود الفاتورة الضريبية والتحقق منه — QR هيئة الزكاة | QuickTiny</title>
+  <meta name="description" content="ارفع صورة رمز QR لأي فاتورة ضريبية سعودية لتعرف اسم البائع ورقمه الضريبي والتاريخ والإجمالي والضريبة، وتحقق من صحة الصيغة وحساب الـ15%. مجاني وداخل متصفحك.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/zatca-qr-reader">
+  <meta property="og:title" content="قراءة باركود الفاتورة الضريبية والتحقق منه — QR هيئة الزكاة | QuickTiny">
+  <meta property="og:description" content="ارفع صورة رمز QR لأي فاتورة ضريبية سعودية لتعرف اسم البائع ورقمه الضريبي والتاريخ والإجمالي والضريبة، وتحقق من صحة الصيغة وحساب الـ15%. مجاني وداخل متصفحك.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/zatca-qr-reader">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/og-image.png">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .cl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+    .cl-grid input,.cl-grid select{width:100%}
+    .cl-num{direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+    .cl-sec{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:14px;background:rgba(255,255,255,.02)}
+    .cl-sec h2{margin:0 0 10px;font-size:15px;color:var(--text-dim)}
+    .cl-out{margin-top:16px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .cl-rows{display:grid;gap:6px}
+    .cl-row{display:flex;justify-content:space-between;gap:10px;font-size:15px}
+    .cl-row b{font-variant-numeric:tabular-nums;direction:ltr}
+    .cl-big{font-size:clamp(24px,4vw,34px);font-weight:800;direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+    .cl-words{margin-top:8px;font:600 16px/1.8 "Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif;color:#dfe2ff}
+    .cl-note{font-size:13.5px;color:var(--text-dim);margin-top:10px;line-height:1.7}
+    .vt-table{width:100%;border-collapse:collapse;margin-top:6px}
+    .vt-table th{font-size:12.5px;color:var(--muted);text-align:start;font-weight:600;padding:4px}
+    .vt-table td{padding:4px;vertical-align:middle}
+    .vt-table input{width:100%;min-width:0}
+    .vt-table td:nth-child(2){width:70px}.vt-table td:nth-child(3){width:120px}.vt-table td:nth-child(4){width:100px;font-variant-numeric:tabular-nums;direction:ltr;text-align:right;color:var(--text-dim);font-size:13px}.vt-table td:nth-child(5){width:34px}
+    .vt-qty,.vt-price{direction:ltr;text-align:right}
+    .vt-del{all:unset;cursor:pointer;width:30px;height:30px;border-radius:8px;text-align:center;color:var(--muted)}
+    .vt-del:hover{background:rgba(255,90,90,.15);color:#ff9a9a}
+    @media(max-width:560px){.vt-table td:nth-child(1){display:none}.vt-table th:nth-child(1){display:none}.vt-table td:nth-child(4){width:80px}}
+    .zk-res{margin-top:16px;padding:18px 20px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .zk-res.zk-due{background:linear-gradient(135deg,rgba(60,220,140,.14),rgba(59,226,255,.05));border-color:rgba(60,220,140,.4)}
+    #esSteps{margin:10px 0 0;padding-inline-start:20px;font-size:14px;line-height:1.8;color:var(--text-dim)}
+  </style>
+  <style>
+    #zvTabs{margin-bottom:16px}
+    #tool{overflow:clip} /* keeps the preview sticky (overflow:hidden would break it) */
+    #zvPrintArea{display:none}
+    .zv-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px}
+    @media(max-width:980px){.zv-grid{grid-template-columns:minmax(0,1fr)}#zvPreview{position:static;overflow-x:auto;padding:18px 14px}}
+    .zv-form .cl-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+    .zv-err{color:#ff9a9a;font-size:12.5px;min-height:1px}
+    .zv-items{width:100%;border-collapse:collapse}
+    .zv-items td{padding:3px}.zv-items td:nth-child(2){width:64px}.zv-items td:nth-child(3){width:96px}.zv-items td:nth-child(4){width:34px}
+    .zv-items input{width:100%;min-width:0}
+    .zv-logo-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    #zvPayload{display:block;margin-top:6px;font:11.5px/1.5 var(--mono);word-break:break-all;color:var(--muted);direction:ltr;text-align:left}
+    /* invoice paper */
+    #zvPreview,#zvPrintArea{background:#fff;color:#111;border-radius:12px;padding:26px 26px 22px;font:13px/1.6 "Segoe UI",Tahoma,"Noto Sans Arabic",Arial,sans-serif}
+    #zvPreview{box-shadow:0 20px 50px -25px rgba(0,0,0,.8);position:sticky;top:84px;align-self:start}
+    .iv-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;border-bottom:2px solid #111;padding-bottom:12px}
+    .iv-seller{display:flex;gap:12px;align-items:flex-start}
+    .iv-seller b{display:block;font-size:16px}.iv-seller span{display:block;color:#444;font-size:12px}
+    .iv-logo{max-width:80px;max-height:80px;object-fit:contain}
+    .iv-title{text-align:left}.iv-title h2{margin:0;font-size:17px;color:#111}.iv-title span{font-size:11px;color:#666}
+    .iv-meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin:12px 0}
+    .iv-meta span{display:block;font-size:11px;color:#666}.iv-meta b{font-size:13px}.iv-meta small{display:block;color:#444}
+    .iv-items{width:100%;border-collapse:collapse;font-size:12px}
+    .iv-items th{background:#f1f1f4;color:#333;font-weight:700;padding:6px;text-align:right;border-bottom:1px solid #ccc}
+    .iv-items td{padding:6px;border-bottom:1px solid #e3e3e3;vertical-align:top}
+    .iv-items .n{direction:ltr;text-align:left;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .iv-empty{text-align:center;color:#999}
+    .iv-foot{display:flex;justify-content:space-between;gap:18px;margin-top:14px;align-items:flex-start}
+    .iv-qr svg{display:block}
+    .iv-qr-ph{width:132px;height:132px;border:1px dashed #bbb;color:#888;font-size:11px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;box-sizing:border-box}
+    .iv-totals{flex:1;max-width:330px}
+    .iv-totals div{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #eee}
+    .iv-totals b{direction:ltr;font-variant-numeric:tabular-nums}
+    .iv-grand{font-size:15px;border-bottom:2px solid #111 !important}
+    .iv-words{margin:8px 0 0;font-size:12px;color:#333}
+    .iv-notes{margin:14px 0 0;padding-top:10px;border-top:1px dashed #ccc;color:#444;font-size:12px;white-space:pre-wrap}
+    /* reader */
+    .zr-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+    .zr-table th{text-align:start;color:var(--text-dim);font-weight:600;padding:8px;border-bottom:1px solid var(--line);width:44%}
+    .zr-table td{padding:8px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+    .zr-list{margin:12px 0 0;padding-inline-start:20px;font-size:14px;line-height:1.7}
+    .zr-bad{color:#ffb3b3}.zr-ok{color:#9ff0c4}.zr-good{color:#7ff0b0;font-weight:700;margin-top:12px}
+    #zrText{min-height:90px;font:13px/1.5 var(--mono);direction:ltr}
+    @media print{
+      @page{size:A4;margin:12mm}
+      html,body{background:#fff !important}
+      body > *:not(#zvPrintArea){display:none !important}
+      #zvPrintArea{display:block !important;padding:0;border-radius:0}
+    }
+  </style>
+  <script>window.QT_PRESET = {"tab": "read"};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">قراءة باركود الفاتورة الضريبية</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">محاسبة</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>بدون تسجيل وبدون رفع</span>
+      <span class="badge">مجاني بدون علامة مائية</span>
+      <span class="badge">جديد</span>
+    </div>
+    <h1>قراءة باركود الفاتورة الضريبية والتحقق منه</h1>
+    <p>وصلتك فاتورة وتريد التأكد من رمز QR فيها؟ ارفع صورة الرمز أو الصق محتواه لتظهر لك بياناته كاملة: اسم البائع، الرقم الضريبي، تاريخ الفاتورة، الإجمالي والضريبة — مع فحص تلقائي للصيغة ولحساب ضريبة 15%.</p>
+    <a href="#tool" class="jump-to-tool">أنشئ فاتورة <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="chip-row" id="zvTabs" role="tablist">
+      <button class="chip active" data-tab="make" role="tab" aria-selected="true">إنشاء فاتورة</button>
+      <button class="chip" data-tab="read" role="tab" aria-selected="false">قراءة رمز فاتورة والتحقق منه</button>
+    </div>
+
+    <div id="zvMake">
+      <div class="zv-grid">
+        <div class="zv-form">
+          <div class="cl-sec" style="margin-top:0">
+            <h2>بيانات المنشأة (تُحفظ في متصفحك)</h2>
+            <div class="cl-grid">
+              <div><label class="field-label" for="zvSeller">اسم المنشأة *</label><input type="text" id="zvSeller" placeholder="مؤسسة …" autocomplete="organization"></div>
+              <div><label class="field-label" for="zvVat">الرقم الضريبي *</label><input type="text" inputmode="numeric" id="zvVat" class="cl-num" placeholder="3xxxxxxxxxxxxx3" maxlength="15"><div class="zv-err" id="zvVatErr"></div></div>
+              <div><label class="field-label" for="zvCr">السجل التجاري</label><input type="text" inputmode="numeric" id="zvCr" class="cl-num"></div>
+              <div><label class="field-label" for="zvPhone">الجوال</label><input type="text" inputmode="tel" id="zvPhone" class="cl-num"></div>
+            </div>
+            <label class="field-label" for="zvAddr">العنوان</label><input type="text" id="zvAddr" placeholder="المدينة، الحي، الشارع">
+            <label class="field-label" for="zvLogo">الشعار (اختياري)</label>
+            <div class="zv-logo-row"><input type="file" id="zvLogo" accept="image/*"><button type="button" class="btn btn-secondary" id="zvLogoClear">إزالة الشعار</button></div>
+          </div>
+          <div class="cl-sec">
+            <h2>الفاتورة</h2>
+            <div class="cl-grid">
+              <div><label class="field-label" for="zvNo">رقم الفاتورة</label><input type="text" id="zvNo" class="cl-num"></div>
+              <div><label class="field-label" for="zvDate">التاريخ والوقت</label><input type="datetime-local" id="zvDate"></div>
+              <div><label class="field-label" for="zvInc">الأسعار المدخلة</label><select id="zvInc"><option value="exc">قبل الضريبة</option><option value="inc">شاملة الضريبة</option></select></div>
+              <div><label class="field-label" for="zvBuyer">اسم العميل (اختياري)</label><input type="text" id="zvBuyer"></div>
+              <div><label class="field-label" for="zvBuyerVat">الرقم الضريبي للعميل (اختياري)</label><input type="text" inputmode="numeric" id="zvBuyerVat" class="cl-num"></div>
+            </div>
+            <table class="zv-items" style="margin-top:12px"><tbody id="zvRows"></tbody></table>
+            <button class="btn btn-secondary" type="button" id="zvAdd" style="margin-top:8px">+ إضافة بند</button>
+            <label class="field-label" for="zvNotes">ملاحظات (اختياري)</label><textarea id="zvNotes" rows="2" placeholder="شروط الدفع، رقم الحساب البنكي…"></textarea>
+          </div>
+          <div class="btn-row" style="margin-top:12px">
+            <button class="btn" type="button" id="zvPrint">طباعة / حفظ PDF</button>
+            <button class="btn btn-secondary" type="button" id="zvNew">فاتورة جديدة</button>
+            <button class="btn btn-secondary" type="button" id="zvCopy">نسخ محتوى الرمز</button>
+          </div>
+          <div id="zvStatus" class="result" aria-live="polite"></div>
+          <p class="cl-note">للحفظ PDF اختر «حفظ بتنسيق PDF» من نافذة الطباعة. محتوى الرمز (Base64):<code id="zvPayload"></code></p>
+        </div>
+        <div id="zvPreview" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="zvRead" hidden>
+      <div class="dropzone" id="zrDrop" tabindex="0" role="button">
+        <strong>اسحب صورة رمز QR الفاتورة هنا</strong> أو اضغط للاختيار — أو الصق صورة<br>
+        <span style="font-size:13px">لقطة شاشة أو صورة للفاتورة، الأفضل أن تقصّها حول الرمز</span>
+      </div>
+      <input type="file" id="zrFile" accept="image/*" class="sr-only" tabindex="-1" aria-label="اختيار صورة الرمز">
+      <label class="field-label" for="zrText">أو الصق محتوى الرمز (Base64)</label>
+      <textarea id="zrText" spellcheck="false" placeholder="AQx…"></textarea>
+      <div id="zrOut" aria-live="polite"></div>
+    </div>
+  </div>
+  <script src="/tafqeet.js"></script>
+  <script src="/ar-calcs.js"></script>
+  <script src="/vendor/qrcode-generator.js"></script>
+  <script src="/vendor/jsQR.js"></script>
+  <script src="/zatca.js"></script>
+
+  <div class="content">
+    <h2>ماذا نفحص؟</h2><ul class='benefits'><li><span>وجود الحقول الخمسة المطلوبة في المرحلة الأولى.</span></li><li><span>صيغة الرقم الضريبي: 15 رقمًا يبدأ وينتهي بالرقم 3.</span></li><li><span>صحة التاريخ وأنه ليس في المستقبل.</span></li><li><span>أن مبلغ الضريبة يساوي 15% من الصافي.</span></li></ul><p>رموز المرحلة الثانية تحتوي حقولًا إضافية موقّعة رقميًا (التجزئة والتوقيع والمفتاح العام) — نعرض وجودها، لكن التحقق من التوقيع نفسه يتم عبر تطبيق الهيئة.</p><h2>أسئلة سريعة</h2><details class="faq-item"><summary>هل يثبت الفحص أن الفاتورة مسجلة لدى الهيئة؟</summary><p>لا، الفحص يتأكد من بنية الرمز وصحة صيغه وحساباته فقط. للتحقق الرسمي استخدم تطبيق الفوترة الإلكترونية من الهيئة.</p></details>
+    <h2>ماذا يحتوي رمز QR في الفاتورة الضريبية؟</h2>
+    <p>في المرحلة الأولى من الفوترة الإلكترونية («فاتورة») يحتوي الرمز خمسة حقول مرمّزة بصيغة TLV ثم Base64:</p>
+    <ul class="benefits">
+      <li><span>اسم البائع، والرقم الضريبي للبائع (15 رقمًا يبدأ وينتهي بالرقم 3).</span></li>
+      <li><span>تاريخ ووقت إصدار الفاتورة.</span></li>
+      <li><span>إجمالي الفاتورة شامل الضريبة، وإجمالي ضريبة القيمة المضافة.</span></li>
+    </ul>
+    <h2>متى تكفيني هذه الأداة؟</h2>
+    <p>هي مناسبة لإصدار فواتير ضريبية مبسطة يدويًا (للأفراد والمحلات الصغيرة والمستقلين) وللتحقق من رموز الفواتير التي تصلك. أما <strong>المرحلة الثانية (الربط والتكامل)</strong> فتتطلب نظام فوترة إلكترونية متوافقًا ومرتبطًا بمنصة الهيئة يوقّع كل فاتورة رقميًا — وهذا لا يتم من متصفح. تحقق من موعد إلزام منشأتك في موقع الهيئة.</p>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل الرمز الذي تنشئه الأداة صحيح؟</summary><p>نعم، يُبنى بالصيغة المنشورة من الهيئة (TLV ثم Base64) وطابقناه مع المثال المرجعي المعتمد. يمكنك فحصه بتطبيق الهيئة أو من تبويب «قراءة رمز فاتورة».</p></details>
+    <details class="faq-item"><summary>هل تُرسل بيانات فواتيري إلى أي مكان؟</summary><p>لا. كل شيء داخل متصفحك. نحفظ بيانات منشأتك ورقم آخر فاتورة في متصفحك فقط لتسهيل المرة القادمة.</p></details>
+    <details class="faq-item"><summary>كيف أحفظ الفاتورة PDF؟</summary><p>اضغط «طباعة / حفظ PDF» ثم اختر «حفظ بتنسيق PDF» كطابعة. تُطبع الفاتورة وحدها بدون باقي الصفحة.</p></details>
+    <details class="faq-item"><summary>ما الفرق بين الفاتورة الضريبية والمبسطة؟</summary><p>المبسطة تُصدر عادة للمستهلك الفرد (B2C) ولا تشترط بيانات المشتري. الفاتورة الضريبية الكاملة (B2B) تتطلب بيانات المشتري ورقمه الضريبي وتفاصيل إضافية.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات محاسبية أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/vat-calculator">حاسبة ضريبة القيمة المضافة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/tafqeet">تفقيط المبالغ<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/qr-code-generator">إنشاء باركود QR<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny إنشاء فاتورة ضريبية", "url": "https://quicktinyv2.vercel.app/ar/zatca-qr-reader", "description": "اصنع فاتورة ضريبية مبسطة بالعربي مع رمز QR بصيغة هيئة الزكاة والضريبة والجمارك، ضريبة 15% والمبلغ بالحروف، واطبعها PDF. بدون تسجيل وبدون علامة مائية، واقرأ رموز الفواتير وتحقق منها.", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "إنشاء فاتورة ضريبية مع QR", "item": "https://quicktinyv2.vercel.app/ar/zatca-qr-reader"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ماذا يحتوي رمز QR في الفاتورة الضريبية؟", "acceptedAnswer": {"@type": "Answer", "text": "خمسة حقول: اسم البائع، الرقم الضريبي، تاريخ ووقت الفاتورة، الإجمالي مع الضريبة، ومبلغ الضريبة، مرمزة بصيغة TLV ثم Base64."}}, {"@type": "Question", "name": "هل تُرسل بيانات فواتيري إلى أي مكان؟", "acceptedAnswer": {"@type": "Answer", "text": "لا، كل شيء يتم داخل متصفحك، وتُحفظ بيانات المنشأة في متصفحك فقط."}}]}</script>
+</body>
+</html>

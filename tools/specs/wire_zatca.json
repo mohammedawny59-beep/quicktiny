@@ -1,0 +1,3 @@
+{"ar_cards": [{"slug": "ar/tax-invoice-generator", "icon": "qr", "badge": "محاسبة · جديد", "name": "فاتورة ضريبية مع QR الهيئة", "desc": "فاتورة مبسطة بضريبة 15% ورمز QR المعتمد، اطبعها PDF — واقرأ رموز الفواتير وتحقق منها.", "search": "فاتورة ضريبية مبسطة باركود هيئة الزكاة qr فاتورة الكترونية zatca"}],
+ "popular_ar": [["ar/tax-invoice-generator", "فاتورة ضريبية مع QR"], ["ar/zatca-qr-reader", "قراءة باركود الفاتورة"]],
+ "sitemap": ["ar/tax-invoice-generator", "ar/zatca-qr-reader"]}
