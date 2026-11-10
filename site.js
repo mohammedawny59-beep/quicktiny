@@ -227,3 +227,76 @@ function qtHandoffConsume(expectedTool){
     });
   }
 })();
+
+/* ---------- File handoff: a file dropped on the homepage opens straight in the chosen tool ---------- */
+/* The file stays in this browser (IndexedDB), is read once by the target page and then deleted. */
+var QT_FILE_FLAG = "qtFileHandoff";
+function qtHandoffDb(){
+  return new Promise(function(resolve, reject){
+    var req = indexedDB.open("qt-handoff", 1);
+    req.onupgradeneeded = function(){ req.result.createObjectStore("h"); };
+    req.onsuccess = function(){ resolve(req.result); };
+    req.onerror = function(){ reject(req.error); };
+  });
+}
+function qtHandoffTx(mode, fn){
+  return qtHandoffDb().then(function(db){
+    return new Promise(function(resolve, reject){
+      var tx = db.transaction("h", mode), out;
+      out = fn(tx.objectStore("h"));
+      tx.oncomplete = function(){ db.close(); resolve(out && "result" in out ? out.result : undefined); };
+      tx.onerror = function(){ db.close(); reject(tx.error); };
+    });
+  });
+}
+function qtFileHandoffSet(path, inputId, files){
+  try { sessionStorage.setItem(QT_FILE_FLAG, path); } catch (e) {}
+  return qtHandoffTx("readwrite", function(store){ return store.put({ path: path, input: inputId, files: files, t: Date.now() }, "pending"); });
+}
+(function(){
+  var flag = null;
+  try { flag = sessionStorage.getItem(QT_FILE_FLAG); } catch (e) {}
+  if (!flag || flag !== location.pathname || !window.indexedDB) return;
+  try { sessionStorage.removeItem(QT_FILE_FLAG); } catch (e) {}
+  function apply(){
+    var payload = null;
+    qtHandoffTx("readwrite", function(store){ var r = store.get("pending"); store.delete("pending"); return r; }).then(function(p){
+      payload = p;
+      if (!p || p.path !== location.pathname || Date.now() - p.t > 10 * 60 * 1000) return;
+      var input = document.getElementById(p.input);
+      if (!input || typeof DataTransfer === "undefined") return;
+      var dt = new DataTransfer();
+      (input.multiple ? p.files : p.files.slice(0, 1)).forEach(function(f){ dt.items.add(f); });
+      input.files = dt.files;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+      var box = input.closest(".tool-panel, .pdf-panel, section") || input.parentNode;
+      if (box && box.scrollIntoView) box.scrollIntoView({ behavior: "smooth", block: "start" });
+      qtToast((document.documentElement.lang || "").indexOf("ar") === 0 ? "✓ تم فتح ملفك هنا" : "✓ Your file is loaded");
+      qtEvent("home_file_opened");
+    }).catch(function(){});
+  }
+  // Wait until the tool's own scripts have attached their listeners.
+  if (document.readyState === "complete") setTimeout(apply, 60);
+  else window.addEventListener("load", function(){ setTimeout(apply, 60); });
+})();
+
+function qtToast(text){
+  var t = document.createElement("div");
+  t.className = "qt-toast"; t.setAttribute("role", "status"); t.textContent = text;
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.classList.add("show"); });
+  setTimeout(function(){ t.classList.remove("show"); setTimeout(function(){ t.remove(); }, 400); }, 2600);
+}
+
+/* ---------- Recently used tools (this browser only) ---------- */
+(function(){
+  var path = location.pathname;
+  if (path === "/" || path === "/ar" || /^\/(embed|guides|ar\/guides)\b/.test(path) || !document.querySelector(".tool-panel")) return;
+  var h1 = document.querySelector("h1");
+  var name = (h1 ? h1.textContent : document.title.split("|")[0]).replace(/\s+/g, " ").trim().slice(0, 48);
+  try {
+    var list = JSON.parse(localStorage.getItem("qtRecent") || "[]").filter(function(r){ return r && r.p !== path; });
+    list.unshift({ p: path, n: name });
+    localStorage.setItem("qtRecent", JSON.stringify(list.slice(0, 8)));
+  } catch (e) {}
+})();
