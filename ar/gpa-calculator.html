@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>حساب المعدل التراكمي من 5 ومن 4 — حاسبة المعدل الجامعي | QuickTiny</title>
+  <meta name="description" content="حاسبة المعدل التراكمي والفصلي للجامعات السعودية (من 5) ونظام 4: أضف موادك وساعاتها وتقديراتك، واعرف معدلك وتقديرك والمعدل الذي تحتاجه لرفع معدلك. مجانية وبدون تسجيل.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/gpa-calculator">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/gpa-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/gpa-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/gpa-calculator">
+  <meta property="og:title" content="حساب المعدل التراكمي من 5 ومن 4 — حاسبة المعدل الجامعي | QuickTiny">
+  <meta property="og:description" content="حاسبة المعدل التراكمي والفصلي للجامعات السعودية (من 5) ونظام 4: أضف موادك وساعاتها وتقديراتك، واعرف معدلك وتقديرك والمعدل الذي تحتاجه لرفع معدلك. مجانية وبدون تسجيل.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/gpa-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/gpa-ar.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/gpa-ar.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .st-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,1fr);gap:16px;align-items:start}
+    @media(max-width:860px){.st-grid{grid-template-columns:1fr}}
+    .st-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:rgba(255,255,255,.025)}
+    .st-card h2{margin:0 0 12px;font-size:15px;color:var(--text-dim)}
+    .st-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+    .st-head label{font-weight:700;color:var(--text-dim);font-size:14px}
+    .st-head select{width:auto}
+    .gp-row,.wt-row{display:grid;gap:8px;align-items:center;margin-bottom:8px;transition:opacity .18s,transform .18s}
+    .gp-row{grid-template-columns:minmax(0,1fr) 74px 128px 34px}
+    .wt-row{grid-template-columns:minmax(0,1fr) 74px 74px 74px 34px}
+    .gp-cols,.wt-cols{display:grid;gap:8px;font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px;padding-inline:2px}
+    .gp-cols{grid-template-columns:minmax(0,1fr) 74px 128px 34px}
+    .wt-cols{grid-template-columns:minmax(0,1fr) 74px 74px 74px 34px}
+    .gp-row input,.gp-row select,.wt-row input{min-width:0;padding:9px 10px}
+    .gp-cr,.wt-s,.wt-m,.wt-w{text-align:center;direction:ltr;font-weight:600}
+    .gp-gr{direction:ltr}
+    .gp-rm{all:unset;cursor:pointer;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;color:var(--muted);font-size:20px;line-height:1}
+    .gp-rm:hover{background:rgba(255,107,107,.12);color:#ffb3b3}
+    .gp-in{animation:stIn .3s cubic-bezier(.16,1,.3,1)}
+    .gp-out{opacity:0;transform:translateX(12px)}
+    @keyframes stIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+    .st-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+    .st-actions .btn{padding:8px 14px;font-size:13.5px}
+    .st-res{position:sticky;top:84px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+    .st-ring{--p:0;width:170px;height:170px;border-radius:50%;display:grid;place-items:center;margin:4px auto 6px;
+      background:conic-gradient(from -90deg,var(--cyan),var(--accent) calc(var(--p)*360deg),rgba(255,255,255,.07) 0);transition:--p .6s;
+      -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 14px),#000 calc(100% - 13px));mask:radial-gradient(farthest-side,transparent calc(100% - 14px),#000 calc(100% - 13px))}
+    .st-ring-wrap{position:relative;width:170px;height:170px;margin:0 auto}
+    .st-ring-wrap .st-ring{position:absolute;inset:0;margin:0}
+    .st-ring-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .st-big{font-size:36px;font-weight:800;direction:ltr;font-variant-numeric:tabular-nums;line-height:1.05;background:linear-gradient(135deg,#fff,#9fe9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .st-sub{font-size:13px;color:var(--muted);direction:ltr}
+    .st-pop{animation:stPop .4s cubic-bezier(.16,1,.3,1)}
+    @keyframes stPop{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+    .st-kv{display:flex;justify-content:space-between;width:100%;padding:8px 0;border-top:1px solid var(--line);font-size:14px;color:var(--text-dim)}
+    .st-kv b{color:var(--text);direction:ltr;font-variant-numeric:tabular-nums}
+    .st-rate{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(127,240,176,.12);color:#7ff0b0;font-weight:800;font-size:14px}
+    .st-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:15px;margin-top:8px}
+    .st-line input{width:96px;text-align:center;direction:ltr;font-weight:600}
+    .st-note{margin-top:10px;font-weight:700;font-size:14px;min-height:1px}
+    .st-note:empty{display:none}
+    .st-note.ok{color:#7ff0b0}.st-note.mid{color:#ffd166}.st-note.bad{color:#ffb3b3}
+    .st-f{font:12.5px var(--mono);color:var(--muted);direction:ltr;margin-top:4px;word-break:break-word}
+    .sw-off{opacity:.45}
+    #swPresets{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+    .sw-row{display:grid;grid-template-columns:minmax(0,1fr) 96px 74px;gap:8px;align-items:center;margin-bottom:8px;transition:opacity .2s}
+    .sw-row input{text-align:center;direction:ltr;font-weight:600;min-width:0}
+    .sw-row span{font-weight:600}
+    .st-saved{font-size:12px;color:var(--muted);margin-top:8px}
+    @media(max-width:560px){.gp-cols{grid-template-columns:64px minmax(0,1fr) 30px}.wt-cols{grid-template-columns:repeat(3,minmax(0,1fr)) 30px}.gp-cols span:first-child,.wt-cols span:first-child{display:none}.st-big{font-size:30px}.gp-row{grid-template-columns:64px minmax(0,1fr) 30px;padding-bottom:10px;border-bottom:1px solid var(--line)}.gp-name,.wt-name{grid-column:1/-1}.wt-row{grid-template-columns:repeat(3,minmax(0,1fr)) 30px;padding-bottom:10px;border-bottom:1px solid var(--line)}.sw-row{grid-template-columns:minmax(0,1fr) 72px 60px}.st-ring-wrap{width:150px;height:150px}.st-line input{width:80px}}
+    @media (prefers-reduced-motion:reduce){.gp-in,.st-pop{animation:none}}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حساب المعدل التراكمي</span></div>
+  <div class="lang-switch">
+    <a href="/gpa-calculator">EN</a>
+    <a href="/ar/gpa-calculator" class="active">AR</a>
+  </div>
+
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">للطلاب</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حساب المعدل التراكمي والفصلي — من 5 ومن 4</h1>
+    <p>أضف موادك وساعاتها وتقديراتك لتعرف معدلك الفصلي ثم معدلك التراكمي الجديد فورًا. تدعم نظام الجامعات السعودية من 5 ونظام 4، وتخبرك بالمعدل الذي تحتاجه في الفصل القادم لتصل إلى هدفك.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="st-grid">
+      <div>
+        <div class="st-card">
+          <div class="st-head"><label for="gpScale">النظام</label><select id="gpScale"><option value="5">من 5 (A+ = 5)</option><option value="4">من 4 (A = 4)</option></select></div>
+          <div class="gp-cols"><span>المادة</span><span>الساعات</span><span>التقدير</span><span></span></div>
+          <div id="gpRows"></div>
+          <div class="st-actions"><button type="button" class="btn btn-secondary" id="gpAdd">+ أضف مادة</button><button type="button" class="btn btn-secondary" id="gpReset">ابدأ من جديد</button></div>
+        </div>
+        <div class="st-card" style="margin-top:14px"><h2>سجلك السابق (اختياري)</h2>
+          <div class="st-line"><span>المعدل التراكمي الحالي</span><input type="text" inputmode="decimal" id="gpPrev" placeholder="4.10"><span>·</span><input type="text" inputmode="decimal" id="gpPrevCr" placeholder="60"><span>الساعات المجتازة</span></div>
+        </div>
+        <div class="st-card" style="margin-top:14px"><h2>هدفك</h2>
+          <div class="st-line"><span>أريد معدلًا تراكميًا قدره</span><input type="text" inputmode="decimal" id="gpTarget" placeholder="4.50"><span>·</span><input type="text" inputmode="decimal" id="gpNextCr" placeholder="15"><span>ساعات الفصل القادم</span></div>
+          <div class="st-note" id="gpNeed" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="st-card st-res" aria-live="polite">
+        <h2>المعدل التراكمي</h2>
+      <div class="st-ring-wrap"><div class="st-ring" id="gpRing"></div><div class="st-ring-in"><span class="st-big" id="gpCum">—</span><span class="st-sub" id="gpMax">/ 4</span></div></div>
+        <span class="st-rate" id="gpRate" hidden></span>
+        <div class="st-kv"><span>المعدل الفصلي</span><b id="gpSem">—</b></div>
+        <div class="st-kv"><span>ساعات هذا الفصل</span><b id="gpSemCr">0</b></div>
+        <div class="st-kv"><span>مجموع الساعات</span><b id="gpCumCr">0</b></div>
+        <p class="st-saved">تُحفظ موادك على هذا الجهاز فقط لتعود إليها لاحقًا.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/student.js"></script>
+
+  <div class="content">
+    <h2>طريقة حساب المعدل التراكمي</h2>
+    <ul class="benefits">
+      <li><span><strong>النقاط</strong> = عدد الساعات × وزن التقدير. مادة 3 ساعات بتقدير أ+ في نظام 5 = 3 × 5 = 15 نقطة.</span></li>
+      <li><span><strong>المعدل الفصلي</strong> = مجموع النقاط ÷ مجموع ساعات الفصل.</span></li>
+      <li><span><strong>المعدل التراكمي</strong> = (المعدل السابق × الساعات السابقة + نقاط هذا الفصل) ÷ كل الساعات.</span></li>
+      <li><span><strong>المعدل المطلوب</strong> = (الهدف × (الساعات السابقة + الجديدة) − المعدل الحالي × الساعات السابقة) ÷ الساعات الجديدة.</span></li>
+    </ul>
+    <h2>أوزان التقديرات</h2>
+    <ul class="benefits">
+      <li><span><strong>من 5 (A+ = 5):</strong> أ+ 5 · أ 4.75 · ب+ 4.5 · ب 4 · ج+ 3.5 · ج 3 · د+ 2.5 · د 2 · هـ 1</span></li>
+      <li><span><strong>من 4 (A = 4):</strong> A+ 4 · A 4 · A- 3.7 · B+ 3.3 · B 3 · B- 2.7 · C+ 2.3 · C 2 · C- 1.7 · D+ 1.3 · D 1 · D- 0.7 · F 0</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>كيف أحسب المعدل التراكمي من 5؟</summary><p>اضرب ساعات كل مادة في وزن تقديرها (أ+ = 5، أ = 4.75، ب+ = 4.5، ب = 4، ج+ = 3.5، ج = 3، د+ = 2.5، د = 2، هـ = 1)، اجمع النقاط واقسمها على مجموع الساعات. الحاسبة تفعل ذلك تلقائيًا.</p></details>
+    <details class="faq-item"><summary>ما تقدير معدلي من 5؟</summary><p>في أغلب الجامعات السعودية: ممتاز من 4.50، جيد جدًا من 3.75، جيد من 2.75، مقبول من 2.00. قد تختلف بعض الجامعات قليلًا، فراجع لائحة جامعتك.</p></details>
+    <details class="faq-item"><summary>هل تُحسب المادة الراسب فيها في المعدل؟</summary><p>نعم، تُحسب ساعاتها بوزن هـ (1 في نظام 5 و0 في نظام 4) فتخفض المعدل، وتختلف قواعد استبدالها عند الإعادة بين الجامعات.</p></details>
+    <details class="faq-item"><summary>كيف أرفع معدلي التراكمي؟</summary><p>اكتب معدلك الحالي وساعاتك المجتازة في «سجلك السابق»، ثم المعدل الذي تريده وساعات الفصل القادم في «هدفك»، وستعرف المعدل الفصلي المطلوب وهل يمكن تحقيقه في فصل واحد.</p></details>
+    <details class="faq-item"><summary>هل تُرفع بياناتي؟</summary><p>لا. الحساب يتم في متصفحك، وموادك تُحفظ على جهازك فقط.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى للطلاب</h2>
+    <div class="related-grid">
+      <a href="/ar/weighted-percentage-calculator">حساب النسبة الموزونة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/percentage-calculator">حاسبة النسبة المئوية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/word-counter">عداد الكلمات<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/pdf-tools">أدوات PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny حساب المعدل التراكمي", "url": "https://quicktinyv2.vercel.app/ar/gpa-calculator", "description": "حاسبة المعدل التراكمي والفصلي للجامعات السعودية (من 5) ونظام 4: أضف موادك وساعاتها وتقديراتك، واعرف معدلك وتقديرك والمعدل الذي تحتاجه لرفع معدلك. مجانية وبدون تسجيل.", "applicationCategory": "EducationalApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "حساب المعدل التراكمي", "item": "https://quicktinyv2.vercel.app/ar/gpa-calculator"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "كيف أحسب المعدل التراكمي من 5؟", "acceptedAnswer": {"@type": "Answer", "text": "اضرب ساعات كل مادة في وزن تقديرها (أ+ = 5، أ = 4.75، ب+ = 4.5، ب = 4، ج+ = 3.5، ج = 3، د+ = 2.5، د = 2، هـ = 1)، اجمع النقاط واقسمها على مجموع الساعات."}}, {"@type": "Question", "name": "ما تقدير معدلي من 5؟", "acceptedAnswer": {"@type": "Answer", "text": "في أغلب الجامعات السعودية: ممتاز من 4.50، جيد جدًا من 3.75، جيد من 2.75، مقبول من 2.00."}}, {"@type": "Question", "name": "كيف أرفع معدلي التراكمي؟", "acceptedAnswer": {"@type": "Answer", "text": "أدخل معدلك الحالي وساعاتك المجتازة ثم المعدل الذي تريده وساعات الفصل القادم لتعرف المعدل الفصلي المطلوب."}}]}</script>
+</body>
+</html>
