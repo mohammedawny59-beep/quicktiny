@@ -1,0 +1,33 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة كتلة الجسم</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">صحة</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حاسبة مؤشر كتلة الجسم BMI والوزن المثالي</h1>
+    <p>احسب مؤشر كتلة جسمك بالكيلوغرام والسنتيمتر، واعرف تصنيفه حسب منظمة الصحة العالمية، والوزن المثالي المناسب لطولك.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <input type="hidden" id="bmUnits" value="met"><div class="lc-grid" id="bmMetric"><div><label class="field-label" for="bmKg">الوزن (كغ)</label><input type="text" inputmode="decimal" id="bmKg" value="70"></div><div><label class="field-label" for="bmCm">الطول (سم)</label><input type="text" inputmode="decimal" id="bmCm" value="170"></div></div>
+    <div id="bmImperial" hidden><input id="bmLb"><input id="bmFt"><input id="bmIn"></div>
+    <div class="lc-out"><div class="lc-big" id="bmVal">—</div><div id="bmCat" class="bm-cat"></div><div class="bm-scale"><span id="bmPin"></span></div><div class="lc-sub" id="bmRange"></div></div>
+    <p class="lc-note">المؤشر للبالغين من 18 سنة فأكثر، ولا يفرّق بين العضلات والدهون، وليس تشخيصًا طبيًا — استشر طبيبك بخصوص صحتك.</p>
+  </div>
+  <script>window.QT_STRINGS = {under:"نقص في الوزن",normal:"وزن صحي",over:"زيادة في الوزن",ob1:"سمنة من الدرجة الأولى",ob2:"سمنة من الدرجة الثانية",ob3:"سمنة مفرطة",range:"الوزن الصحي لطولك:"};</script>
+  <script src="/hijri.js"></script>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>تصنيفات مؤشر كتلة الجسم (منظمة الصحة العالمية)</h2><ul class="benefits"><li><span>أقل من 18.5 — نقص في الوزن</span></li><li><span>18.5 – 24.9 — وزن صحي</span></li><li><span>25 – 29.9 — زيادة في الوزن</span></li><li><span>30 فأكثر — سمنة (الأولى 30–34.9، الثانية 35–39.9، المفرطة 40+)</span></li></ul>
+    <h2>أسئلة شائعة</h2><details class="faq-item"><summary>كيف أحسب كتلة الجسم؟</summary><p>الوزن بالكيلوغرام ÷ مربع الطول بالمتر. 70 كغ وطول 1.70 م = 70 ÷ 2.89 = 24.2.</p></details><details class="faq-item"><summary>ما هو الوزن المثالي لطولي؟</summary><p>تظهره الأداة مباشرة تحت النتيجة: المدى الذي يجعل مؤشرك بين 18.5 و24.9.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/pregnancy-calculator">حاسبة الحمل<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/age-calculator">حساب العمر<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/percentage-calculator">حاسبة النسبة المئوية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

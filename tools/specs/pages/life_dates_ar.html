@@ -1,0 +1,42 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حساب الأيام بين تاريخين</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">تاريخ ووقت</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حساب الأيام بين تاريخين — كم يوم بين تاريخين؟</h1>
+    <p>احسب عدد الأيام بين أي تاريخين بالسنوات والأشهر والأسابيع وأيام العمل والساعات، أو أضف أيامًا إلى تاريخ واطرح منه. مفيدة للمواعيد النهائية ومدة الإشعار والإجازات والعد التنازلي.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="lc-grid">
+      <div><label class="field-label" for="dtA">تاريخ البداية</label><input type="date" id="dtA"></div>
+      <div><label class="field-label" for="dtB">تاريخ النهاية</label><input type="date" id="dtB"></div>
+      <div><label class="field-label" for="dtWeekend">عطلة نهاية الأسبوع</label><select id="dtWeekend"><option value="5,6">الجمعة والسبت</option><option value="5">الجمعة فقط</option><option value="0,6">السبت والأحد</option></select></div>
+    </div>
+    <div class="checkline"><input type="checkbox" id="dtInc"><label for="dtInc">احسب يوم النهاية أيضًا (+1 يوم)</label></div>
+    <div class="lc-out"><div class="lc-big"><span id="dtDays">—</span> يوم</div><div class="lc-sub"><span id="dtYmd"></span> <span id="dtDir"></span></div>
+      <div class="lc-stats"><div class="lc-stat"><span>الأسابيع</span><b id="dtWeeks">—</b></div><div class="lc-stat"><span>أيام العمل</span><b id="dtWork">—</b></div><div class="lc-stat"><span>الساعات</span><b id="dtHours">—</b></div></div></div>
+    <div class="lc-sec"><h2>إضافة أو طرح أيام</h2><div class="lc-grid">
+      <div><label class="field-label" for="dtBase">من تاريخ</label><input type="date" id="dtBase"></div>
+      <div><label class="field-label" for="dtOp">العملية</label><select id="dtOp"><option value="add">إضافة</option><option value="sub">طرح</option></select></div>
+      <div><label class="field-label" for="dtN">عدد الأيام</label><input type="text" inputmode="numeric" id="dtN" value="90"></div></div>
+      <div class="lc-big" style="font-size:22px;margin-top:12px" id="dtAdd">—</div></div>
+  </div>
+  <script>window.QT_STRINGS = {years:"سنة",years1:"سنة",months:"شهر",months1:"شهر",days:"يوم",days1:"يوم",and:" و",weeks:"أسبوع",past:"(تاريخ النهاية قبل البداية)"};</script>
+  <script src="/hijri.js"></script>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>كيف يتم الحساب؟</h2><ul class="benefits"><li><span>افتراضيًا يُحسب يوم البداية ولا يُحسب يوم النهاية (مثل عدد الليالي في السفر). فعّل «احسب يوم النهاية» لحساب الاثنين.</span></li><li><span>أيام العمل تستثني عطلة نهاية الأسبوع التي تختارها (الجمعة والسبت افتراضيًا)، ولا تستثني الإجازات الرسمية.</span></li><li><span>السنوات الكبيسة محسوبة تلقائيًا، والتاريخ الهجري يظهر بجانب الميلادي.</span></li></ul>
+    <h2>أسئلة شائعة</h2><details class="faq-item"><summary>كم يومًا بقي على رمضان أو العيد؟</summary><p>ضع تاريخ اليوم في البداية وتاريخ المناسبة الميلادي في النهاية. لتحويل التاريخ الهجري استخدم <a href="/ar/hijri-converter">محوّل التاريخ</a>.</p></details><details class="faq-item"><summary>ما التاريخ بعد 90 يومًا من اليوم؟</summary><p>استخدم «إضافة أو طرح أيام»: من اليوم أضف 90.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/hijri-converter">التاريخ الهجري<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/age-calculator">حساب العمر<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/end-of-service-calculator">حاسبة نهاية الخدمة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

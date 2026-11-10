@@ -1,0 +1,36 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة الحمل</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">حمل</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حاسبة الحمل والولادة — موعد الولادة وفي أي أسبوع أنا؟</h1>
+    <p>احسبي موعد الولادة المتوقع من أول يوم في آخر دورة (مع مراعاة طول الدورة) أو من تاريخ الإخصاب، واعرفي في أي أسبوع من الحمل أنتِ، ومواعيد المراحل المهمة بالميلادي والهجري.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="lc-grid"><div><label class="field-label" for="pgMode">الحساب من</label><select id="pgMode"><option value="lmp">أول يوم من آخر دورة</option><option value="conception">تاريخ الإخصاب</option></select></div>
+      <div id="pgLmpWrap"><label class="field-label" for="pgLmp">أول يوم من آخر دورة</label><input type="date" id="pgLmp"></div>
+      <div><label class="field-label" for="pgCycle">طول الدورة (أيام)</label><input type="text" inputmode="numeric" id="pgCycle" value="28"></div>
+      <div id="pgConWrap" hidden><label class="field-label" for="pgCon">تاريخ الإخصاب</label><input type="date" id="pgCon"></div></div>
+    <div class="lc-out"><div class="lc-sub">موعد الولادة المتوقع</div><div class="lc-big" style="font-size:clamp(20px,3.4vw,30px)" id="pgDue">—</div><div class="lc-sub" id="pgNow"></div><div class="pg-track"><div id="pgBar"></div></div></div>
+    <div class="lc-sec"><h2>المراحل المهمة</h2><table class="lc-table"><tbody id="pgMs"></tbody></table></div>
+    <p class="lc-note">حوالي طفل واحد من كل 25 يولد في الموعد المتوقع بالضبط، وأغلب الولادات خلال أسبوعين قبله أو بعده. السونار المبكر أدق طريقة لتحديد الموعد — اتبعي إرشادات طبيبتك.</p>
+  </div>
+  <script>window.QT_STRINGS = {now:"الآن:",w:"أسبوع",d:"يوم",tri1:"الثلث الأول",tri2:"الثلث الثاني",tri3:"الثلث الثالث",left:"يومًا متبقيًا",past42:"أكثر من 42 أسبوعًا — تأكدي من التاريخ المُدخل.",ms_t1End:"نهاية الثلث الأول (الأسبوع 13)",ms_scan20:"سونار الأسبوع 20 (التشوهات)",ms_t2End:"بداية الثلث الثالث (الأسبوع 28)",ms_term37:"اكتمال الحمل (الأسبوع 37)",ms_due:"موعد الولادة (الأسبوع 40)",ms_late42:"الأسبوع 42"};</script>
+  <script src="/hijri.js"></script>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>كيف يُحسب موعد الولادة؟</h2><ul class="benefits"><li><span>قاعدة نيجل: أول يوم من آخر دورة + 280 يومًا (40 أسبوعًا).</span></li><li><span>الدورة الأطول أو الأقصر تغيّر الموعد: دورة 32 يومًا تضيف 4 أيام.</span></li><li><span>من تاريخ الإخصاب: + 266 يومًا (38 أسبوعًا).</span></li></ul>
+    <h2>أسئلة شائعة</h2><details class="faq-item"><summary>لماذا تُحسب أسابيع الحمل من آخر دورة؟</summary><p>هذا هو المعيار الطبي المعتمد — أول أسبوعين يكونان قبل حدوث الحمل فعليًا.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/days-between-dates">حساب الأيام بين تاريخين<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/bmi-calculator">حاسبة كتلة الجسم<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/hijri-converter">التاريخ الهجري<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

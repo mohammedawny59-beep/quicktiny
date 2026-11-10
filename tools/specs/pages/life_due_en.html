@@ -1,0 +1,33 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Due Date Calculator</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Pregnancy</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Pregnancy Due Date Calculator — How Many Weeks Pregnant Am I?</h1>
+    <p>Estimate your due date from the first day of your last period (adjusted for cycle length) or from the conception date, see how far along you are, and the dates of key milestones.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="lc-grid"><div><label class="field-label" for="pgMode">Calculate from</label><select id="pgMode"><option value="lmp">First day of last period</option><option value="conception">Conception date</option></select></div>
+      <div id="pgLmpWrap"><label class="field-label" for="pgLmp">First day of last period</label><input type="date" id="pgLmp"></div>
+      <div><label class="field-label" for="pgCycle">Cycle length (days)</label><input type="text" inputmode="numeric" id="pgCycle" value="28"></div>
+      <div id="pgConWrap" hidden><label class="field-label" for="pgCon">Conception date</label><input type="date" id="pgCon"></div></div>
+    <div class="lc-out"><div class="lc-sub">Estimated due date</div><div class="lc-big" style="font-size:clamp(22px,3.6vw,32px)" id="pgDue">—</div><div class="lc-sub" id="pgNow"></div><div class="pg-track"><div id="pgBar"></div></div></div>
+    <div class="lc-sec"><h2>Milestones</h2><table class="lc-table"><tbody id="pgMs"></tbody></table></div>
+    <p class="lc-note">Only about 1 in 25 babies arrive on the due date — most come within two weeks either side. An early ultrasound gives the most accurate date; follow your doctor or midwife.</p>
+  </div>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>How the due date is calculated</h2><ul class="benefits"><li><span>Naegele's rule: first day of the last period + 280 days (40 weeks).</span></li><li><span>Longer or shorter cycles move the date: a 32-day cycle adds 4 days.</span></li><li><span>From conception: + 266 days (38 weeks).</span></li></ul>
+    <h2>Frequently asked questions</h2><details class="faq-item"><summary>Why do weeks count from my last period?</summary><p>It's the standard medical convention — the first two “weeks” happen before conception.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/days-between-dates">Days Between Dates<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/bmi-calculator">BMI Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

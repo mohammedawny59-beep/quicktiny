@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BMI Calculator — Body Mass Index &amp; Healthy Weight for Your Height | QuickTiny</title>
+  <meta name="description" content="Calculate your BMI in kg/cm or lb/ft, see your WHO category on a visual scale and the healthy weight range for your height. Free and private.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/bmi-calculator">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/bmi-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/bmi-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/bmi-calculator">
+  <meta property="og:title" content="BMI Calculator — Body Mass Index &amp; Healthy Weight for Your Height | QuickTiny">
+  <meta property="og:description" content="Calculate your BMI in kg/cm or lb/ft, see your WHO category on a visual scale and the healthy weight range for your height. Free and private.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/bmi-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/bmi.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/bmi.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .lc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px}
+    .lc-grid input,.lc-grid select{width:100%}
+    .lc-out{margin-top:16px;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.35)}
+    .lc-big{font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+    .lc-sub{color:var(--text-dim);font-size:15px;margin-top:6px}
+    .lc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px;margin-top:14px}
+    .lc-stat{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+    .lc-stat span{display:block;font-size:12px;color:var(--muted)}.lc-stat b{font-size:18px;font-variant-numeric:tabular-nums}
+    .lc-sec{border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:16px;background:rgba(255,255,255,.02)}
+    .lc-sec h2{margin:0 0 10px;font-size:15px;color:var(--text-dim)}
+    .lc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.lc-chips .chip{padding:5px 11px;font-size:12.5px}
+    .lc-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+    .lc-table th,.lc-table td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:start;font-variant-numeric:tabular-nums}
+    .lc-table th{color:var(--muted);font-weight:600}
+    .lc-scroll{overflow-x:auto}
+    .bm-scale{position:relative;height:14px;border-radius:99px;margin:18px 0 6px;background:linear-gradient(90deg,#4fa3ff 0 14%,#3ddc97 14% 40%,#ffd166 40% 60%,#ff8c5a 60% 80%,#ff5a6e 80%)}
+    [dir=rtl] .bm-scale{background:linear-gradient(-90deg,#4fa3ff 0 14%,#3ddc97 14% 40%,#ffd166 40% 60%,#ff8c5a 60% 80%,#ff5a6e 80%)}
+    #bmPin{position:absolute;top:-6px;width:4px;height:26px;border-radius:3px;background:#fff;box-shadow:0 0 0 2px #05060f;transform:translateX(-50%)}
+    [dir=rtl] #bmPin{transform:translateX(50%)}
+    .bm-cat{font-size:20px;font-weight:700}.bm-normal{color:#7ff0b0}.bm-under{color:#8fc3ff}.bm-over{color:#ffd88a}.bm-ob1,.bm-ob2,.bm-ob3{color:#ffa3a3}
+    .pg-track{height:10px;border-radius:99px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden}
+    #pgBar{height:100%;background:var(--grad);border-radius:99px;width:0}
+    .lc-note{font-size:13px;color:var(--text-dim);margin-top:10px;line-height:1.6}
+  </style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">BMI Calculator</span></div>
+  <div class="lang-switch">
+    <a href="/bmi-calculator" class="active">EN</a>
+    <a href="/ar/bmi-calculator" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Health</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>BMI Calculator — Body Mass Index and Healthy Weight</h1>
+    <p>Calculate your body mass index in metric or imperial units, see where it falls on the WHO scale, and the healthy weight range for your height.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="lc-grid"><div><label class="field-label" for="bmUnits">Units</label><select id="bmUnits"><option value="met">kg / cm</option><option value="imp">lb / ft + in</option></select></div></div>
+    <div class="lc-grid" id="bmMetric" style="margin-top:10px"><div><label class="field-label" for="bmKg">Weight (kg)</label><input type="text" inputmode="decimal" id="bmKg" value="70"></div><div><label class="field-label" for="bmCm">Height (cm)</label><input type="text" inputmode="decimal" id="bmCm" value="175"></div></div>
+    <div class="lc-grid" id="bmImperial" hidden style="margin-top:10px"><div><label class="field-label" for="bmLb">Weight (lb)</label><input type="text" inputmode="decimal" id="bmLb" value="154"></div><div><label class="field-label" for="bmFt">Height (ft)</label><input type="text" inputmode="numeric" id="bmFt" value="5"></div><div><label class="field-label" for="bmIn">(in)</label><input type="text" inputmode="decimal" id="bmIn" value="9"></div></div>
+    <div class="lc-out"><div class="lc-big" id="bmVal">—</div><div id="bmCat" class="bm-cat"></div><div class="bm-scale"><span id="bmPin"></span></div><div class="lc-sub" id="bmRange"></div></div>
+    <p class="lc-note">BMI is a screening number for adults 18+. It doesn't distinguish muscle from fat and isn't a diagnosis — talk to a doctor about your health.</p>
+  </div>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>BMI categories (WHO, adults)</h2><ul class="benefits"><li><span>Below 18.5 — underweight</span></li><li><span>18.5 – 24.9 — healthy weight</span></li><li><span>25 – 29.9 — overweight</span></li><li><span>30 and above — obesity (class I 30–34.9, II 35–39.9, III 40+)</span></li></ul>
+    <h2>Frequently asked questions</h2><details class="faq-item"><summary>How is BMI calculated?</summary><p>Weight in kilograms divided by height in metres squared. 70 kg at 1.75 m = 70 ÷ 3.0625 = 22.9.</p></details><details class="faq-item"><summary>Is BMI accurate for athletes?</summary><p>Not always — muscle is heavy, so muscular people can show as “overweight”. Waist size is a useful second check.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/days-between-dates">Days Between Dates<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/pregnancy-due-date-calculator">Due Date Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny BMI Calculator","url":"https://quicktinyv2.vercel.app/bmi-calculator","description":"Calculate your BMI in kg/cm or lb/ft, see your WHO category on a visual scale and the healthy weight range for your height. Free and private.","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"BMI Calculator","item":"https://quicktinyv2.vercel.app/bmi-calculator"}]}</script>
+</body>
+</html>

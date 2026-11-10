@@ -1,0 +1,40 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة التمويل والقروض</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">تمويل</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حاسبة التمويل الشخصي والقروض — القسط الشهري والتكلفة الحقيقية</h1>
+    <p>احسب القسط الشهري وإجمالي ما ستدفعه في التمويل الشخصي أو القرض، مع جدول سنوي، وقارن عروض النسبة الثابتة (المرابحة) بالنسبة السنوية الحقيقية APR التي تكشف التكلفة الفعلية.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="lc-grid">
+      <div><label class="field-label" for="lnAmt">مبلغ التمويل</label><input type="text" inputmode="decimal" id="lnAmt" value="100000"></div>
+      <div><label class="field-label" for="lnRate">النسبة السنوية %</label><input type="text" inputmode="decimal" id="lnRate" value="3"></div>
+      <div><label class="field-label" for="lnYears">المدة (سنوات)</label><input type="text" inputmode="numeric" id="lnYears" value="5"></div>
+      <div><label class="field-label" for="lnMonths">+ أشهر</label><input type="text" inputmode="numeric" id="lnMonths" value="0"></div>
+      <div><label class="field-label" for="lnMethod">نوع النسبة</label><select id="lnMethod"><option value="flat">ثابتة / مرابحة (Flat)</option><option value="reducing">متناقصة (APR)</option></select></div>
+      <div><label class="field-label" for="lnFee">رسوم إدارية (اختياري)</label><input type="text" inputmode="decimal" id="lnFee" value="0"></div></div>
+    <div class="lc-out"><div class="lc-sub">القسط الشهري</div><div class="lc-big" id="lnMonthly">—</div>
+      <div class="lc-stats"><div class="lc-stat"><span>إجمالي المدفوع</span><b id="lnTotal">—</b></div><div class="lc-stat"><span>إجمالي الأرباح/الفوائد</span><b id="lnInt">—</b></div><div class="lc-stat"><span>النسبة السنوية الحقيقية APR</span><b id="lnApr">—</b></div></div>
+      <p class="lc-note" id="lnAprNote" hidden>النسبة الثابتة تُحسب على كامل المبلغ طوال المدة، لذلك تكون النسبة الحقيقية تقريبًا ضعفها — قارن العروض دائمًا بالـ APR.</p></div>
+    <div class="lc-sec"><h2>الجدول السنوي</h2><div class="lc-scroll"><table class="lc-table"><thead><tr><th>السنة</th><th>المدفوع</th><th>من الأصل</th><th>الأرباح</th><th>المتبقي</th></tr></thead><tbody id="lnSched"></tbody></table></div></div>
+    <p class="lc-note">النتائج تقديرية للمقارنة — العقد والرسوم والتأمين لدى البنك تحدد المبلغ النهائي.</p>
+  </div>
+  <script src="/hijri.js"></script>
+  <script src="/life-calcs.js"></script>
+
+  <div class="content">
+    <h2>الفرق بين النسبة الثابتة والمتناقصة</h2><ul class="benefits"><li><span><strong>الثابتة (المرابحة):</strong> تُحسب الأرباح على المبلغ الأصلي كاملًا طوال المدة. تمويل 100,000 بنسبة 3% لمدة 5 سنوات = 15,000 أرباح.</span></li><li><span><strong>المتناقصة (APR):</strong> تُحسب على المتبقي فقط فتقل كل شهر. نسبة 3% ثابتة لـ 5 سنوات تعادل تقريبًا 5.6% متناقصة.</span></li></ul>
+    <h2>أسئلة شائعة</h2><details class="faq-item"><summary>كيف أحسب قسط التمويل الشخصي؟</summary><p>في النسبة الثابتة: (المبلغ + المبلغ × النسبة × السنوات) ÷ عدد الأشهر. مثال: (100,000 + 15,000) ÷ 60 = 1,916.67 شهريًا.</p></details><details class="faq-item"><summary>ما هي النسبة السنوية APR؟</summary><p>التكلفة الحقيقية للتمويل سنويًا بعد احتساب طريقة السداد والرسوم، وهي الأفضل لمقارنة عروض البنوك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/percentage-calculator">حاسبة النسبة المئوية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/vat-calculator">حاسبة ضريبة القيمة المضافة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/end-of-service-calculator">حاسبة نهاية الخدمة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
