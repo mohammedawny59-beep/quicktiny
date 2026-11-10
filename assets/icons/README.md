@@ -26,3 +26,4 @@ transparent WebP (per-row background removal, floor reflection faded) and resize
 | `coins.webp` | تفقيط المبالغ (/ar/tafqeet) |
 | `calendar.webp` | تحويل التاريخ (/ar/hijri-converter) |
 | `keyboard.webp` | مصحح لغة الكيبورد (/ar/keyboard-fix) |
+- `convert.webp`, `receipt.webp`, `zakat.webp`, `briefcase.webp` (2026-11-10) — same pipeline.
