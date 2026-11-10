@@ -300,3 +300,108 @@ function qtToast(text){
     localStorage.setItem("qtRecent", JSON.stringify(list.slice(0, 8)));
   } catch (e) {}
 })();
+
+/* ---------- Before/after compare slider (shared by the image tools) ---------- */
+/* qtCompare(before, after, {before:"label", after:"label"}) -> element. before/after are Blobs or URLs. */
+function qtCompare(before, after, o){
+  o = o || {};
+  var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
+  var tB = o.before || (AR ? "الأصلية" : "Original"), tA = o.after || (AR ? "بعد الضغط" : "Compressed");
+  function src(x){ return typeof x === "string" ? x : URL.createObjectURL(x); }
+  var wrap = document.createElement("div"); wrap.className = "qt-cmp";
+  wrap.innerHTML =
+    '<div class="qc-stage" dir="ltr">' +
+      '<div class="qc-layer qc-after"><div class="qc-zoom"><img alt="" draggable="false"></div></div>' +
+      '<div class="qc-layer qc-before"><div class="qc-zoom"><img alt="" draggable="false"></div></div>' +
+      '<div class="qc-line"><button type="button" class="qc-handle" role="slider" aria-valuemin="0" aria-valuemax="100"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></button></div>' +
+      '<span class="qc-tag qc-tag-b"></span><span class="qc-tag qc-tag-a"></span>' +
+    '</div>' +
+    '<div class="qc-bar"><span class="qc-hint"></span><span class="qc-zooms" role="group"></span></div>';
+  var stage = wrap.querySelector(".qc-stage"), before$ = wrap.querySelector(".qc-before"), line = wrap.querySelector(".qc-line"), handle = wrap.querySelector(".qc-handle");
+  var imgs = wrap.querySelectorAll("img"), zooms = wrap.querySelectorAll(".qc-zoom");
+  imgs[0].src = src(after); imgs[1].src = src(before);
+  wrap.querySelector(".qc-tag-b").textContent = tB; wrap.querySelector(".qc-tag-a").textContent = tA;
+  wrap.querySelector(".qc-hint").textContent = AR ? "اسحب الخط للمقارنة — كبّر لترى التفاصيل" : "Drag the line to compare — zoom in to check details";
+  handle.setAttribute("aria-label", AR ? "موضع المقارنة" : "Comparison position");
+  var pos = 50, zoom = 1;
+  function set(p){
+    pos = Math.max(0, Math.min(100, p));
+    before$.style.clipPath = "inset(0 " + (100 - pos) + "% 0 0)";
+    line.style.left = pos + "%";
+    handle.setAttribute("aria-valuenow", Math.round(pos));
+  }
+  function origin(e){
+    var r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 100, y = (e.clientY - r.top) / r.height * 100;
+    zooms.forEach(function(z){ z.style.transformOrigin = x + "% " + y + "%"; });
+  }
+  imgs[0].addEventListener("load", function(){
+    var w = imgs[0].naturalWidth, h = imgs[0].naturalHeight;
+    if (w && h) { stage.style.aspectRatio = w + " / " + h; stage.style.width = "min(100%, calc(62vh * " + (w / h).toFixed(4) + "))"; }
+  });
+  var dragging = false;
+  stage.addEventListener("pointerdown", function(e){
+    dragging = true; stage.setPointerCapture(e.pointerId); stage.classList.add("qc-drag");
+    var r = stage.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100);
+  });
+  stage.addEventListener("pointermove", function(e){
+    if (dragging) { var r = stage.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); }
+    else if (zoom > 1) origin(e);
+  });
+  function up(){ dragging = false; stage.classList.remove("qc-drag"); }
+  stage.addEventListener("pointerup", up); stage.addEventListener("pointercancel", up);
+  handle.addEventListener("keydown", function(e){
+    var d = e.key === "ArrowLeft" ? -1 : e.key === "ArrowRight" ? 1 : 0;
+    if (e.key === "Home") { set(0); e.preventDefault(); } else if (e.key === "End") { set(100); e.preventDefault(); }
+    if (d) { set(pos + d * (e.shiftKey ? 10 : 2)); e.preventDefault(); }
+  });
+  var zbox = wrap.querySelector(".qc-zooms");
+  zbox.setAttribute("aria-label", AR ? "التكبير" : "Zoom");
+  [1, 2, 4].forEach(function(z){
+    var b = document.createElement("button"); b.type = "button"; b.className = "chip" + (z === 1 ? " active" : ""); b.textContent = z + "×";
+    b.setAttribute("aria-pressed", z === 1 ? "true" : "false");
+    b.addEventListener("click", function(){
+      zoom = z;
+      zbox.querySelectorAll(".chip").forEach(function(x){ var on = x === b; x.classList.toggle("active", on); x.setAttribute("aria-pressed", on ? "true" : "false"); });
+      zooms.forEach(function(el){ el.style.transform = "scale(" + z + ")"; if (z === 1) el.style.transformOrigin = "50% 50%"; });
+      stage.classList.toggle("qc-zoomed", z > 1);
+    });
+    zbox.appendChild(b);
+  });
+  set(50);
+  // A short sweep shows people the line can be moved (skipped for reduced motion).
+  if (!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) && typeof IntersectionObserver !== "undefined") {
+    var io = new IntersectionObserver(function(en){
+      if (!en[0].isIntersecting) return; io.disconnect();
+      var t0 = null, keys = [50, 78, 24, 50];
+      function step(ts){
+        if (dragging) return;
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / 1500, 1), seg = Math.min(Math.floor(p * 3), 2), f = p * 3 - seg, e = f < .5 ? 2 * f * f : 1 - Math.pow(-2 * f + 2, 2) / 2;
+        set(keys[seg] + (keys[seg + 1] - keys[seg]) * e);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      setTimeout(function(){ requestAnimationFrame(step); }, 250);
+    }, { threshold: .5 });
+    io.observe(stage);
+  }
+  return wrap;
+}
+
+/* A "Compare" button for a result row in a list: opens the slider in a full-width row underneath. */
+function qtCompareButton(li, before, after, o){
+  if (typeof qtCompare !== "function" || !li) return null;
+  var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
+  var b = document.createElement("button"); b.type = "button"; b.className = "btn btn-secondary ic-dl qc-open";
+  var t1 = AR ? "قارن" : "Compare", t2 = AR ? "إخفاء المقارنة" : "Hide compare";
+  b.textContent = t1; b.setAttribute("aria-expanded", "false");
+  var row = null;
+  b.addEventListener("click", function(){
+    if (row) { row.remove(); row = null; b.textContent = t1; b.setAttribute("aria-expanded", "false"); return; }
+    row = document.createElement("li"); row.className = "ic-cmp-li";
+    row.appendChild(qtCompare(before, after, o));
+    li.parentNode.insertBefore(row, li.nextSibling);
+    b.textContent = t2; b.setAttribute("aria-expanded", "true");
+    if (typeof qtEvent === "function") qtEvent("compare_opened");
+  });
+  return b;
+}

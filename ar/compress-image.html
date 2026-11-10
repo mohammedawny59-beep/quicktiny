@@ -97,7 +97,7 @@
       function kb(n){ return Math.round(n / 1024) + " KB"; }
       function statBox(n, label){ return '<div class="stat"><div class="n" dir="ltr">' + n + '</div><div class="l">' + label + '</div></div>'; }
       function handleFile(f){
-        stats.innerHTML = ""; dl.innerHTML = "";
+        stats.innerHTML = ""; dl.innerHTML = ""; var oldCmp = document.getElementById("imgcmp"); if (oldCmp) oldCmp.remove();
         if (!f.type || f.type.indexOf("image/") !== 0) {
           out.textContent = "اختر ملف صورة من فضلك (JPG أو PNG).";
           out.className = "result error";
@@ -128,6 +128,7 @@
             a.className = "btn";
             a.textContent = "تنزيل الصورة";
             dl.appendChild(a);
+            if (typeof qtCompare === "function") { var cmp = qtCompare(f, blob); cmp.id = "imgcmp"; dl.parentNode.insertBefore(cmp, dl); }
             var proCta = document.querySelector("#imgProCta");
             proCta.innerHTML = "";
             var ctaWrap = document.createElement("div");

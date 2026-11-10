@@ -96,6 +96,7 @@ function qtKbLabel(bytes) { return bytes >= 1e6 ? (bytes / 1e6).toFixed(2) + " M
       li.querySelector(".ic-st").innerHTML = qtKbLabel(f.size) + " → <b>" + qtKbLabel(r.blob.size) + "</b> " + '<span class="ic-down">✓ ' + L("under", "under") + " " + qtKbLabel(max) + "</span> · " + r.fit.w + "×" + r.fit.h +
         (r.fit.q ? " · " + L("quality", "quality") + " " + Math.round(r.fit.q * 100) + "%" : " · " + L("already", "already small enough — unchanged")) + ' <span class="ic-dim">' + Math.round(performance.now() - t0) + " ms</span>";
       var a = document.createElement("a"); a.className = "btn btn-secondary ic-dl"; a.href = url; a.download = name; a.textContent = L("download", "Download");
+      if (r.fit.q) { var cb = typeof qtCompareButton === "function" && qtCompareButton(li, f, r.blob); if (cb) li.querySelector(".ic-act").appendChild(cb); }
       li.querySelector(".ic-act").appendChild(a);
       qtTrack("target_size", { kb: Math.round(max / 1000) });
     }).catch(function (e) { li.classList.add("ic-fail"); li.querySelector(".ic-st").textContent = e.message || String(e); })

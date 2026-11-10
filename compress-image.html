@@ -95,7 +95,7 @@
         if (f) handleFile(f);
       });
       function handleFile(f){
-        stats.innerHTML = ""; dl.innerHTML = "";
+        stats.innerHTML = ""; dl.innerHTML = ""; var oldCmp = document.getElementById("imgcmp"); if (oldCmp) oldCmp.remove();
         if (!f.type || f.type.indexOf("image/") !== 0) {
           out.textContent = "Please choose an image file (JPG or PNG).";
           out.className = "result error";
@@ -127,6 +127,7 @@
             a.className = "btn";
             a.textContent = "Download compressed image";
             dl.appendChild(a);
+            if (typeof qtCompare === "function") { var cmp = qtCompare(f, blob); cmp.id = "imgcmp"; dl.parentNode.insertBefore(cmp, dl); }
             var proCta = document.querySelector("#imgProCta");
             proCta.innerHTML = "";
             var ctaWrap = document.createElement("div");

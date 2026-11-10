@@ -136,6 +136,7 @@ var QT_IC_FORMATS = { jpg: { mime: "image/jpeg", ext: "jpg", label: "JPG", lossy
       li.querySelector(".ic-thumb").innerHTML = '<img src="' + url + '" alt="">';
       li.querySelector(".ic-st").innerHTML = r.ow + "×" + r.oh + (r.w !== r.ow ? " → " + r.w + "×" + r.h : "") + " · " + fmtB(file.size) + " → <b>" + fmtB(r.blob.size) + '</b> <span class="' + (diff <= 0 ? "ic-down" : "ic-up") + '">' + (diff > 0 ? "+" : "") + diff + "%</span>" + (r.via === "libheif" ? ' <span class="ic-dim">HEIC</span>' : "") + ' <span class="ic-dim">' + Math.round(performance.now() - t0) + " ms</span>";
       var a = document.createElement("a"); a.className = "btn btn-secondary ic-dl"; a.href = url; a.download = name; a.textContent = L("download", "Download");
+      if (r.via !== "libheif" && /^image\/(jpeg|png|webp|gif|bmp|avif)$/.test(file.type)) { var AR = (document.documentElement.lang || "").indexOf("ar") === 0; var cb = typeof qtCompareButton === "function" && qtCompareButton(li, file, r.blob, { after: (AR ? "بعد التحويل" : "Converted") + " · " + F.label }); if (cb) li.querySelector(".ic-act").appendChild(cb); }
       li.querySelector(".ic-act").appendChild(a);
       qtTrack("image_convert", { to: o.fmt, heic: r.via === "libheif" ? 1 : 0 });
     }).catch(function (e) {
