@@ -1,0 +1,9 @@
+{"pages": [
+ {"slug": "ar/image-converter", "title": "تحويل صيغ الصور — HEIC إلى JPG وWebP إلى PNG مجانًا | QuickTiny",
+  "desc": "حوّل صور HEIC من الآيفون وWebP وAVIF وPNG وJPG داخل متصفحك — عدة صور مرة واحدة، تغيير المقاس، تنزيل ZIP. بدون رفع، ويحذف بيانات الموقع GPS.",
+  "app_name": "QuickTiny تحويل صيغ الصور", "crumb": "تحويل صيغ الصور", "category": "MultimediaApplication", "body": "ic_body_ar.html", "style": "ic_style.html",
+  "alternates": [["en", "image-converter"], ["ar", "ar/image-converter"], ["x-default", "image-converter"]],
+  "switch": [["EN", "image-converter"], ["AR", "ar/image-converter"]],
+  "faq": [["كيف أحوّل صور HEIC إلى JPG على ويندوز؟", "اسحب ملفات HEIC إلى الأداة واترك JPG مختارًا، والتحويل يتم داخل المتصفح بدون رفع."],
+          ["هل يحذف التحويل بيانات الموقع؟", "نعم، الصور الناتجة بدون بيانات EXIF، فتُحذف معلومات الكاميرا والموقع الجغرافي."]]}
+]}

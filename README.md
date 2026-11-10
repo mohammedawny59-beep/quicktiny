@@ -1,6 +1,6 @@
 # QuickTiny
 
-Paste JSON, text, a URL, or an image and get the right browser tool quickly. QuickTiny has **24 free tools** that need no account, plus a separate **$4.99 one-time Pro batch image compressor**. Text and image processing happens in your browser.
+Paste JSON, text, a URL, or an image and get the right browser tool quickly. QuickTiny has **29 free tools** (plus Arabic tools at [/ar](https://quicktinyv2.vercel.app/ar)) that need no account, plus a separate **$4.99 one-time Pro batch image compressor**. Text and image processing happens in your browser.
 
 **Try a free tool directly:**
 
@@ -12,7 +12,7 @@ Paste JSON, text, a URL, or an image and get the right browser tool quickly. Qui
 | Encode or decode Base64 text | [Base64](https://quicktinyv2.vercel.app/base64-encode-decode?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
 | Sort a list of lines | [Sort Lines](https://quicktinyv2.vercel.app/sort-lines?utm_source=github&utm_medium=readme&utm_campaign=tool_links) |
 
-Or [open all 25 tools](https://quicktinyv2.vercel.app/?utm_source=github&utm_medium=readme&utm_campaign=tool_links). The batch compressor is the only paid feature; the free tools above and on the site are free.
+Or [open all 30 tools](https://quicktinyv2.vercel.app/?utm_source=github&utm_medium=readme&utm_campaign=tool_links). The batch compressor is the only paid feature; the free tools above and on the site are free.
 
 **One useful edge case:** If `fetch(...).json()` reports `Unexpected token '<'`, the API probably returned an HTML page. Check the HTTP response and URL before trying to repair JSON. For actual JSON syntax errors, [the formatter explains the error and offers fixes for common, safe cases](https://quicktinyv2.vercel.app/json-formatter?utm_source=github&utm_medium=readme&utm_campaign=tool_links).
 
@@ -43,3 +43,10 @@ Publishers writing for Shopify merchants can embed the single-image checker on a
 ```
 
 [Try the stand-alone checker](https://quicktinyv2.vercel.app/compress-product-images-for-shopify) before embedding. The checker is not a Shopify app and is not affiliated with Shopify. Its 25 MP / 20 MB checks apply to product and collection images, not every image uploader in Shopify. Editorial inclusion is optional; no paid placement or reciprocal link is requested.
+
+## Development
+
+Static HTML/CSS/JS on Vercel (`vercel.json` holds headers and per-page CSP); serverless functions live in `api/`. Third-party libraries are self-hosted under `vendor/` (see `vendor/README.md`).
+
+- `node tests/run-all.mjs` — unit tests for the tool engines plus a static check of every page (links, sitemap, canonical/hreflang, titles). Runs in GitHub Actions on every pull request.
+- `tools/` — generators for new tool pages, Arabic pages, landing pages and site wiring (see `tools/README.md`).

@@ -1,0 +1,5 @@
+# Development-only files — not part of the deployed site
+tests/
+tools/
+.github/
+.claude/
