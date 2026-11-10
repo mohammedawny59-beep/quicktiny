@@ -48,7 +48,7 @@ EMBEDS = {
 <div class="out" id="zkResult"><div class="row"><span>صافي المال</span><b><span id="zkNetV"></span> <span class="zk-cur"></span></b></div><div class="row"><span>النصاب</span><b><span id="zkNisab"></span></b></div><div hidden><span id="zkAssets"></span><span id="zkPure"></span></div>
 <div class="big" id="zkAmount"></div><div class="words" id="zkWords"></div><div class="words" id="zkMsg"></div></div>
 <div class="foot"><button type="button" class="btn" id="zkCopy">نسخ</button><span id="zkStatus"></span>__POWER__</div>"""),
- "percentage-calculator": dict(lang="en", title="Percentage Calculator", tool="/percentage-calculator", label="Percentage Calculator", height=470,
+ "percentage-calculator": dict(lang="en", title="Percentage Calculator", tool="/percentage-calculator", label="Percentage Calculator", height=690,
   scripts='<script src="/percent.js"></script>',
   body="""<h1>Percentage Calculator</h1>
 <div class="pc-card"><h2>What is X% of Y?</h2><div class="pc-line">What is <input id="pc1p" value="15"> % of <input id="pc1x" value="200"> ?</div><div class="pc-res"><span class="pc-r" id="pc1r">—</span></div><div class="pc-f" id="pc1f"></div></div>
