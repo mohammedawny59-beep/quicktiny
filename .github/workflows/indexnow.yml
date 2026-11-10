@@ -1,0 +1,26 @@
+name: IndexNow
+
+# When the sitemap changes on main, tell IndexNow (Bing, Yandex, …) about the newly added URLs.
+on:
+  push:
+    branches: [main]
+    paths: [sitemap.xml]
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for the Vercel deployment
+        run: sleep 150
+      - name: Submit new sitemap URLs
+        run: node tools/indexnow.mjs --since ${{ github.event.before }}
