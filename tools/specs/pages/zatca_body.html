@@ -1,0 +1,103 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">إنشاء فاتورة ضريبية مع QR</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">محاسبة</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>بدون تسجيل وبدون رفع</span>
+      <span class="badge">مجاني بدون علامة مائية</span>
+      <span class="badge">جديد</span>
+    </div>
+    <h1>إنشاء فاتورة ضريبية مبسطة مع رمز QR هيئة الزكاة</h1>
+    <p>اصنع فاتورة ضريبية مبسطة بالعربي فيها البنود والضريبة 15% والمبلغ بالحروف، مع رمز QR بالصيغة المعتمدة من هيئة الزكاة والضريبة والجمارك (المرحلة الأولى)، واطبعها أو احفظها PDF. وتقدر كذلك تقرأ رمز أي فاتورة وصلتك وتتحقق من بياناته.</p>
+    <a href="#tool" class="jump-to-tool">أنشئ فاتورة <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="chip-row" id="zvTabs" role="tablist">
+      <button class="chip active" data-tab="make" role="tab" aria-selected="true">إنشاء فاتورة</button>
+      <button class="chip" data-tab="read" role="tab" aria-selected="false">قراءة رمز فاتورة والتحقق منه</button>
+    </div>
+
+    <div id="zvMake">
+      <div class="zv-grid">
+        <div class="zv-form">
+          <div class="cl-sec" style="margin-top:0">
+            <h2>بيانات المنشأة (تُحفظ في متصفحك)</h2>
+            <div class="cl-grid">
+              <div><label class="field-label" for="zvSeller">اسم المنشأة *</label><input type="text" id="zvSeller" placeholder="مؤسسة …" autocomplete="organization"></div>
+              <div><label class="field-label" for="zvVat">الرقم الضريبي *</label><input type="text" inputmode="numeric" id="zvVat" class="cl-num" placeholder="3xxxxxxxxxxxxx3" maxlength="15"><div class="zv-err" id="zvVatErr"></div></div>
+              <div><label class="field-label" for="zvCr">السجل التجاري</label><input type="text" inputmode="numeric" id="zvCr" class="cl-num"></div>
+              <div><label class="field-label" for="zvPhone">الجوال</label><input type="text" inputmode="tel" id="zvPhone" class="cl-num"></div>
+            </div>
+            <label class="field-label" for="zvAddr">العنوان</label><input type="text" id="zvAddr" placeholder="المدينة، الحي، الشارع">
+            <label class="field-label" for="zvLogo">الشعار (اختياري)</label>
+            <div class="zv-logo-row"><input type="file" id="zvLogo" accept="image/*"><button type="button" class="btn btn-secondary" id="zvLogoClear">إزالة الشعار</button></div>
+          </div>
+          <div class="cl-sec">
+            <h2>الفاتورة</h2>
+            <div class="cl-grid">
+              <div><label class="field-label" for="zvNo">رقم الفاتورة</label><input type="text" id="zvNo" class="cl-num"></div>
+              <div><label class="field-label" for="zvDate">التاريخ والوقت</label><input type="datetime-local" id="zvDate"></div>
+              <div><label class="field-label" for="zvInc">الأسعار المدخلة</label><select id="zvInc"><option value="exc">قبل الضريبة</option><option value="inc">شاملة الضريبة</option></select></div>
+              <div><label class="field-label" for="zvBuyer">اسم العميل (اختياري)</label><input type="text" id="zvBuyer"></div>
+              <div><label class="field-label" for="zvBuyerVat">الرقم الضريبي للعميل (اختياري)</label><input type="text" inputmode="numeric" id="zvBuyerVat" class="cl-num"></div>
+            </div>
+            <table class="zv-items" style="margin-top:12px"><tbody id="zvRows"></tbody></table>
+            <button class="btn btn-secondary" type="button" id="zvAdd" style="margin-top:8px">+ إضافة بند</button>
+            <label class="field-label" for="zvNotes">ملاحظات (اختياري)</label><textarea id="zvNotes" rows="2" placeholder="شروط الدفع، رقم الحساب البنكي…"></textarea>
+          </div>
+          <div class="btn-row" style="margin-top:12px">
+            <button class="btn" type="button" id="zvPrint">طباعة / حفظ PDF</button>
+            <button class="btn btn-secondary" type="button" id="zvNew">فاتورة جديدة</button>
+            <button class="btn btn-secondary" type="button" id="zvCopy">نسخ محتوى الرمز</button>
+          </div>
+          <div id="zvStatus" class="result" aria-live="polite"></div>
+          <p class="cl-note">للحفظ PDF اختر «حفظ بتنسيق PDF» من نافذة الطباعة. محتوى الرمز (Base64):<code id="zvPayload"></code></p>
+        </div>
+        <div id="zvPreview" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="zvRead" hidden>
+      <div class="dropzone" id="zrDrop" tabindex="0" role="button">
+        <strong>اسحب صورة رمز QR الفاتورة هنا</strong> أو اضغط للاختيار — أو الصق صورة<br>
+        <span style="font-size:13px">لقطة شاشة أو صورة للفاتورة، الأفضل أن تقصّها حول الرمز</span>
+      </div>
+      <input type="file" id="zrFile" accept="image/*" class="sr-only" tabindex="-1" aria-label="اختيار صورة الرمز">
+      <label class="field-label" for="zrText">أو الصق محتوى الرمز (Base64)</label>
+      <textarea id="zrText" spellcheck="false" placeholder="AQx…"></textarea>
+      <div id="zrOut" aria-live="polite"></div>
+    </div>
+  </div>
+  <script src="/tafqeet.js"></script>
+  <script src="/ar-calcs.js"></script>
+  <script src="/vendor/qrcode-generator.js"></script>
+  <script src="/vendor/jsQR.js"></script>
+  <script src="/zatca.js"></script>
+
+  <div class="content">
+    <h2>ماذا يحتوي رمز QR في الفاتورة الضريبية؟</h2>
+    <p>في المرحلة الأولى من الفوترة الإلكترونية («فاتورة») يحتوي الرمز خمسة حقول مرمّزة بصيغة TLV ثم Base64:</p>
+    <ul class="benefits">
+      <li><span>اسم البائع، والرقم الضريبي للبائع (15 رقمًا يبدأ وينتهي بالرقم 3).</span></li>
+      <li><span>تاريخ ووقت إصدار الفاتورة.</span></li>
+      <li><span>إجمالي الفاتورة شامل الضريبة، وإجمالي ضريبة القيمة المضافة.</span></li>
+    </ul>
+    <h2>متى تكفيني هذه الأداة؟</h2>
+    <p>هي مناسبة لإصدار فواتير ضريبية مبسطة يدويًا (للأفراد والمحلات الصغيرة والمستقلين) وللتحقق من رموز الفواتير التي تصلك. أما <strong>المرحلة الثانية (الربط والتكامل)</strong> فتتطلب نظام فوترة إلكترونية متوافقًا ومرتبطًا بمنصة الهيئة يوقّع كل فاتورة رقميًا — وهذا لا يتم من متصفح. تحقق من موعد إلزام منشأتك في موقع الهيئة.</p>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل الرمز الذي تنشئه الأداة صحيح؟</summary><p>نعم، يُبنى بالصيغة المنشورة من الهيئة (TLV ثم Base64) وطابقناه مع المثال المرجعي المعتمد. يمكنك فحصه بتطبيق الهيئة أو من تبويب «قراءة رمز فاتورة».</p></details>
+    <details class="faq-item"><summary>هل تُرسل بيانات فواتيري إلى أي مكان؟</summary><p>لا. كل شيء داخل متصفحك. نحفظ بيانات منشأتك ورقم آخر فاتورة في متصفحك فقط لتسهيل المرة القادمة.</p></details>
+    <details class="faq-item"><summary>كيف أحفظ الفاتورة PDF؟</summary><p>اضغط «طباعة / حفظ PDF» ثم اختر «حفظ بتنسيق PDF» كطابعة. تُطبع الفاتورة وحدها بدون باقي الصفحة.</p></details>
+    <details class="faq-item"><summary>ما الفرق بين الفاتورة الضريبية والمبسطة؟</summary><p>المبسطة تُصدر عادة للمستهلك الفرد (B2C) ولا تشترط بيانات المشتري. الفاتورة الضريبية الكاملة (B2B) تتطلب بيانات المشتري ورقمه الضريبي وتفاصيل إضافية.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات محاسبية أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/vat-calculator">حاسبة ضريبة القيمة المضافة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/tafqeet">تفقيط المبالغ<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/qr-code-generator">إنشاء باركود QR<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
