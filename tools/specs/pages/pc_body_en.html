@@ -1,0 +1,41 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Percentage Calculator</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Math</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Percentage Calculator — Percent Of, Percent Change, Discounts</h1>
+    <p>Work out any percentage in seconds: what is 15% of 200, what percent one number is of another, the percent increase or decrease between two numbers, and prices after a discount or tax. Results update as you type, with the formula shown.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="pc-grid">
+      <div class="pc-card"><h2>What is X% of Y?</h2><div class="pc-line">What is <input type="text" inputmode="decimal" id="pc1p" value="15"> % of <input type="text" inputmode="decimal" id="pc1x" value="200"> ?</div><div class="pc-res"><span class="pc-r" id="pc1r">—</span><button type="button" class="pc-copy" data-copy="pc1r">Copy</button></div><div class="pc-f" id="pc1f"></div></div>
+      <div class="pc-card"><h2>X is what percent of Y?</h2><div class="pc-line"><input type="text" inputmode="decimal" id="pc2a" value="30"> is what % of <input type="text" inputmode="decimal" id="pc2b" value="200"> ?</div><div class="pc-res"><span class="pc-r" id="pc2r">—</span><button type="button" class="pc-copy" data-copy="pc2r">Copy</button></div><div class="pc-f" id="pc2f"></div></div>
+      <div class="pc-card"><h2>Percentage change (increase / decrease)</h2><div class="pc-line">From <input type="text" inputmode="decimal" id="pc3a" value="80"> to <input type="text" inputmode="decimal" id="pc3b" value="100"></div><div class="pc-res"><span class="pc-r" id="pc3r">—</span><button type="button" class="pc-copy" data-copy="pc3r">Copy</button></div><div class="pc-f" id="pc3f"></div></div>
+      <div class="pc-card"><h2>Add or subtract a percentage (discount, tax, tip)</h2><div class="pc-line"><input type="text" inputmode="decimal" id="pc4x" value="200"> <select id="pc4dir"><option value="down">− minus</option><option value="up">+ plus</option></select> <input type="text" inputmode="decimal" id="pc4p" value="25"> %</div><div class="pc-res"><span class="pc-r" id="pc4r">—</span><button type="button" class="pc-copy" data-copy="pc4r">Copy</button></div><div class="pc-f" id="pc4f"></div></div>
+    </div>
+    <div id="pcStatus" class="result" aria-live="polite"></div>
+  </div>
+  <script src="/percent.js"></script>
+
+  <div class="content">
+    <h2>Percentage formulas</h2>
+    <ul class="benefits">
+      <li><span><strong>X% of Y</strong> = X ÷ 100 × Y. Example: 15% of 200 = 30.</span></li>
+      <li><span><strong>X is what % of Y</strong> = X ÷ Y × 100. Example: 30 of 200 = 15%.</span></li>
+      <li><span><strong>Percent change</strong> = (new − old) ÷ old × 100. From 80 to 100 = +25%; from 100 to 80 = −20%.</span></li>
+      <li><span><strong>Discount</strong>: price × (1 − discount ÷ 100). 200 with 25% off = 150.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Why is a 20% drop not undone by a 20% rise?</summary><p>Because the second percentage is taken from a smaller number: 100 − 20% = 80, and 80 + 20% = 96. To get back to 100 you need +25%.</p></details>
+    <details class="faq-item"><summary>How do I calculate VAT?</summary><p>Use “add a percentage” with your VAT rate, or the dedicated <a href="/ar/vat-calculator">VAT calculator</a> (Arabic) for invoices and extracting VAT from a total.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/discount-calculator">Discount Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/timestamp-converter">Timestamp Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

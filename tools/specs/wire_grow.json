@@ -1,0 +1,11 @@
+{"en_cards": [
+  {"slug": "compress-image-to-kb", "icon": "image", "cat": "Image", "badge": "Image &middot; New", "name": "Compress Image to KB", "desc": "Get any photo under 20, 50, 100 or 200 KB for forms &mdash; best quality that fits.", "search": "compress image to kb 20kb 50kb 100kb 200kb reduce image size kb photo size for form image"},
+  {"slug": "percentage-calculator", "icon": "receipt", "cat": "Utility", "badge": "Utility &middot; New", "name": "Percentage Calculator", "desc": "Percent of, percent change, discounts and tax &mdash; with the formula shown.", "search": "percentage calculator percent of increase decrease discount calculator utility"}],
+ "ar_cards": [
+  {"slug": "ar/percentage-calculator", "icon": "receipt", "badge": "رياضيات · جديد", "name": "حاسبة النسبة المئوية", "desc": "كم يساوي X% من Y، نسبة الزيادة والنقصان، والسعر بعد الخصم.", "search": "حاسبة النسبة المئوية حساب النسبة الخصم الزيادة"},
+  {"slug": "ar/compress-image-to-kb", "icon": "image", "badge": "صور · جديد", "name": "تصغير الصورة لحجم معين", "desc": "صورة أقل من 100 أو 200 كيلوبايت للمنصات الحكومية والتوظيف بأفضل جودة.", "search": "تصغير حجم الصورة 100 كيلو ضغط الصورة الى حجم معين كيلوبايت"}],
+ "footer": [["compress-image-to-kb", "Compress Image to KB"], ["percentage-calculator", "Percentage Calculator"]],
+ "popular_en": [["compress-image-to-100kb", "Compress image to 100 KB"], ["compress-image-to-50kb", "Compress image to 50 KB"], ["compress-image-to-20kb", "Compress image to 20 KB"], ["percentage-calculator", "Percentage calculator"], ["discount-calculator", "Discount calculator"]],
+ "popular_ar": [["ar/compress-image-to-100kb", "تصغير الصورة إلى 100 كيلوبايت"], ["ar/age-calculator", "حساب العمر"], ["ar/number-to-words", "كتابة الأرقام بالحروف"], ["ar/percentage-calculator", "حاسبة النسبة المئوية"], ["ar/discount-calculator", "حاسبة الخصم"]],
+ "sitemap": ["compress-image-to-kb", "ar/compress-image-to-kb", "compress-image-to-20kb", "compress-image-to-50kb", "compress-image-to-100kb", "compress-image-to-200kb", "compress-image-to-500kb", "compress-image-to-1mb", "ar/compress-image-to-50kb", "ar/compress-image-to-100kb", "ar/compress-image-to-200kb", "percentage-calculator", "ar/percentage-calculator", "discount-calculator", "ar/discount-calculator", "ar/age-calculator", "ar/number-to-words"],
+ "count_add": 2}

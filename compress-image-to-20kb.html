@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Compress Image to 20 KB Online — Free, Best Quality | QuickTiny</title>
+  <meta name="description" content="Reduce a photo to under 20 KB for signatures and exam application photos. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/compress-image-to-20kb">
+  <meta property="og:title" content="Compress Image to 20 KB Online — Free, Best Quality | QuickTiny">
+  <meta property="og:description" content="Reduce a photo to under 20 KB for signatures and exam application photos. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/compress-image-to-20kb">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/compress-to-kb.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/compress-to-kb.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .ic-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px;align-items:end}
+    .ic-opts select,.ic-opts input[type=number]{width:100%}
+    .ic-opts input[type=color]{width:100%;height:42px;padding:3px;border-radius:10px;border:1px solid var(--line);background:transparent}
+    #icQuality{width:100%;accent-color:var(--accent)}
+    #icList{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+    .ic-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}
+    .ic-thumb{width:56px;height:56px;border-radius:10px;overflow:hidden;background:repeating-conic-gradient(rgba(255,255,255,.06) 0 25%,transparent 0 50%) 0 0/12px 12px;display:flex;align-items:center;justify-content:center}
+    .ic-thumb img{width:100%;height:100%;object-fit:cover}
+    .ic-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
+    .ic-meta b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .ic-st{font-size:12.5px;color:var(--text-dim)}
+    .ic-fail .ic-st{color:#ff9a9a}
+    .ic-down{color:#7ff0b0;font-weight:700}.ic-up{color:#ffd88a;font-weight:700}.ic-dim{color:var(--muted)}
+    .ic-dl{padding:8px 14px !important;font-size:13px !important}
+    #icBar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+    #icCount{font-size:13px;color:var(--text-dim);margin-inline-start:auto}
+    .ic-privacy{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text-dim);margin-top:12px}
+    @media(max-width:520px){.ic-row{grid-template-columns:44px minmax(0,1fr)}.ic-thumb{width:44px;height:44px}.ic-act{grid-column:1/-1}.ic-dl{width:100%;text-align:center}}
+    .ts-target{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+    .ts-target input{width:120px;font-size:22px;font-weight:700;text-align:center}
+    .ts-target select{width:auto}
+    #tsPresets{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+    #tsPresets .chip{padding:6px 12px}
+    #tsList{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+  </style>
+  <script>window.QT_PRESET = {"kb": 20};</script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Compress to 20 KB</span></div>
+  <section class="hero compact">
+    <div class="hero-badges">
+      <span class="badge">Image</span>
+      <span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Nothing uploaded</span>
+      <span class="badge">Free</span>
+    </div>
+    <h1>Compress Image to 20 KB</h1>
+    <p>Need a photo under 20 KB for signatures and exam application photos? Drop it here — the tool finds the highest quality that fits under 20 KB and keeps the proportions. Everything happens in your browser.</p>
+    <a href="#tool" class="jump-to-tool">Compress now <svg class="jump-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="ts-target">
+      <div><label class="field-label" for="tsKb">Maximum file size</label><input type="text" inputmode="decimal" id="tsKb" value="100"></div>
+      <div><label class="field-label" for="tsUnit">KB / MB</label><select id="tsUnit"><option value="kb">KB</option><option value="mb">MB</option></select></div>
+      <div><label class="field-label" for="tsFormat">Format</label><select id="tsFormat"><option value="jpg">JPG</option><option value="webp">WebP</option></select></div>
+      <div><label class="field-label" for="tsMaxW">Max width (optional, px)</label><input type="number" id="tsMaxW" min="1" style="width:130px"></div>
+      <div><label class="field-label" for="tsMaxH">Max height (optional, px)</label><input type="number" id="tsMaxH" min="1" style="width:130px"></div>
+    </div>
+    <div id="tsPresets"><button type="button" class="chip" data-kb="20">20 KB</button><button type="button" class="chip" data-kb="50">50 KB</button><button type="button" class="chip active" data-kb="100">100 KB</button><button type="button" class="chip" data-kb="150">150 KB</button><button type="button" class="chip" data-kb="200">200 KB</button><button type="button" class="chip" data-kb="300">300 KB</button><button type="button" class="chip" data-kb="500">500 KB</button><button type="button" class="chip" data-kb="1000">1 MB</button><button type="button" class="chip" data-kb="2000">2 MB</button></div>
+    <div class="dropzone" id="tsDrop" tabindex="0" role="button" style="margin-top:16px">
+      <strong>Drop photos here</strong> or click to choose — you can also paste<br><span style="font-size:13px">JPG, PNG, WebP, GIF · many at once</span>
+    </div>
+    <input id="tsFile" type="file" accept="image/*" multiple class="sr-only" tabindex="-1" aria-label="file">
+    <ul id="tsList" aria-live="polite"></ul>
+    <div id="tsBar" hidden>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" type="button" id="tsZip" disabled>Download all (ZIP)</button>
+        <button class="btn btn-secondary" type="button" id="tsRedo">Run again with new size</button>
+        <button class="btn btn-secondary" type="button" id="tsClear">Clear</button>
+      </div>
+    </div>
+  </div>
+  <script src="/qt-zip.js"></script>
+  <script src="/target-size.js"></script>
+
+  <div class="content">
+    <h2>Why 20 KB?</h2><p>Many exam and recruitment portals cap scanned signatures at 10–20 KB and photos at 20–50 KB. At 20 KB the image is scaled to roughly 300–400 px wide so text and faces stay readable.</p><h2>Steps</h2><ol><li>The size is already set to 20 KB.</li><li>Drop one or more photos (JPG, PNG, WebP).</li><li>Download each photo or all of them as a ZIP — every file is guaranteed to be under 20 KB.</li></ol><h2>Quick answers</h2><details class="faq-item"><summary>Is the result really under 20 KB?</summary><p>Yes. 20 KB is treated as 20,000 bytes, which is under the limit whether a site counts 1,000 or 1,024 bytes per KB.</p></details><details class="faq-item"><summary>Does it work on my phone?</summary><p>Yes — it runs in mobile browsers, and photos never leave your device.</p></details>
+    <h2>How it works</h2>
+    <ul class="benefits">
+      <li><strong>Best quality that fits</strong> — it searches for the highest JPEG quality under your limit instead of guessing, so your photo stays as sharp as possible.</li>
+      <li><strong>Shrinks only when needed</strong> — if a photo can't fit even at lower quality, it's scaled down step by step, keeping its proportions.</li>
+      <li><strong>Safe for every form</strong> — “100 KB” is treated as 100,000 bytes, so the file is under the limit whether the site counts 1,000 or 1,024 bytes per KB.</li>
+      <li><strong>Private</strong> — ID photos and documents never leave your device.</li>
+    </ul>
+    <h2>Common size limits</h2>
+    <ul class="benefits">
+      <li><span>Passport and visa photos on many portals: 50–240 KB.</span></li>
+      <li><span>Job and exam applications: often 20–100 KB for photos and 10–50 KB for signatures.</span></li>
+      <li><span>Email-friendly photos: 200–500 KB.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Will my photo look bad at 20 KB?</summary><p>It's scaled to a smaller size so it stays clear — a 20 KB photo is usually around 300–450 px wide, which is what most forms expect anyway.</p></details>
+    <details class="faq-item"><summary>The form also needs exact dimensions — what do I do?</summary><p>Fill in max width and height (for example 200 × 230). The photo is fitted inside that box first, then compressed to the size limit.</p></details>
+    <details class="faq-item"><summary>Can I compress a PDF to 100 KB?</summary><p>Use <a href="/compress-pdf">Compress PDF</a> — it works best on scanned documents.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More image tools</h2>
+    <div class="related-grid">
+      <a href="/image-converter">Image Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/compress-image">Image Compressor<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/compress-pdf">Compress PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/resize-image">Resize Image<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Compress Image to KB","url":"https://quicktinyv2.vercel.app/compress-image-to-20kb","description":"Reduce photo file size to an exact KB limit for job, exam and visa forms — 20 KB, 50 KB, 100 KB, 200 KB. Best quality that fits, batch, no upload.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Compress Image to KB","item":"https://quicktinyv2.vercel.app/compress-image-to-20kb"}]}</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+const ROOT = require("path").join(__dirname, "..");
+const assert = require("assert");
+const P = require(ROOT + "/percent.js");
+let n = 0; const near = (a, b, m) => { assert.ok(Math.abs(a - b) < 1e-9, m + ": " + a + " vs " + b); n++; };
+near(P.qtPctOf(15, 200), 30, "15% of 200");
+near(P.qtPctOf(7.5, 80), 6, "7.5% of 80");
+near(P.qtPctIs(30, 200), 15, "30 is 15% of 200");
+assert.ok(isNaN(P.qtPctIs(5, 0))); n++;
+near(P.qtPctChange(80, 100), 25, "80 -> 100 is +25%");
+near(P.qtPctChange(100, 80), -20, "100 -> 80 is -20%");
+assert.ok(isNaN(P.qtPctChange(0, 5))); n++;
+near(P.qtPctApply(200, 15, true), 230, "200 + 15%");
+near(P.qtPctApply(200, 25, false), 150, "200 - 25% discount");
+assert.strictEqual(P.qtPctFmt(1234.56789, 2), "1,234.57"); n++;
+assert.strictEqual(P.qtPctFmt(NaN, 2), "—"); n++;
+console.log("percent tests:", n, "passed");
