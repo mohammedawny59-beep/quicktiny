@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>تحويل الوحدات — سم إلى إنش، كيلو إلى رطل، مئوية إلى فهرنهايت، فدان إلى متر | QuickTiny</title>
+  <meta name="description" content="محول وحدات مجاني بالعربي: الطول والوزن والحرارة والمساحة (فدان، دونم، هكتار) والحجم والسرعة وحجم البيانات. نتيجة فورية مع القيمة بكل الوحدات.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/unit-converter">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/unit-converter">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/unit-converter">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/unit-converter">
+  <meta property="og:title" content="تحويل الوحدات — سم إلى إنش، كيلو إلى رطل، مئوية إلى فهرنهايت، فدان إلى متر | QuickTiny">
+  <meta property="og:description" content="محول وحدات مجاني بالعربي: الطول والوزن والحرارة والمساحة (فدان، دونم، هكتار) والحجم والسرعة وحجم البيانات. نتيجة فورية مع القيمة بكل الوحدات.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/unit-converter">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/units-ar.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/units-ar.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    #ucCats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+    .uc-box{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:end}
+    @media(max-width:640px){.uc-box{grid-template-columns:1fr}.uc-swap{justify-self:center}}
+    .uc-side{border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:var(--card)}
+    .uc-side label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
+    .uc-side input{font-size:24px;font-weight:800;text-align:center;direction:ltr;margin:0 0 8px}
+    .uc-side select{margin:0}
+    .uc-res{display:flex;flex-direction:column;justify-content:center;min-height:104px}
+    .uc-big{font-size:30px;font-weight:800;direction:ltr;text-align:center;font-variant-numeric:tabular-nums;line-height:1.15;word-break:break-all;background:var(--grad-text);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+    .uc-unit{text-align:center;color:var(--text-dim);font-weight:700;font-size:14px;margin-top:4px}
+    .uc-swap{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);background:var(--card);color:var(--text);cursor:pointer;display:grid;place-items:center;margin-bottom:40px;transition:border-color .15s}
+    .uc-swap:hover{border-color:var(--accent)}
+    .uc-swap svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg)}
+    @media(max-width:640px){.uc-swap{margin:0}.uc-swap svg{transform:none}}
+    .uc-swap.spin svg{animation:ucSpin .45s cubic-bezier(.16,1,.3,1)}
+    @keyframes ucSpin{from{transform:rotate(90deg) scale(.7)}to{transform:rotate(270deg)}}
+    @media(max-width:640px){@keyframes ucSpin{from{transform:scale(.7)}to{transform:rotate(180deg)}}}
+    .uc-line{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;font:13px var(--mono);color:var(--muted);flex-wrap:wrap}
+    .uc-line span{direction:ltr;unicode-bidi:plaintext}
+    .uc-all{width:100%;border-collapse:collapse;margin-top:14px;font-size:14.5px}
+    .uc-all td{padding:8px 10px;border-bottom:1px solid var(--line)}
+    .uc-all td:last-child{text-align:end;font-variant-numeric:tabular-nums;font-weight:700}
+    .uc-all tr.on td{color:var(--accent-hover)}
+    @media (prefers-reduced-motion:reduce){.uc-swap.spin svg{animation:none}}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">تحويل الوحدات</span></div>
+  <div class="lang-switch">
+    <a href="/unit-converter">EN</a>
+    <a href="/ar/unit-converter" class="active">AR</a>
+  </div>
+
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">أدوات</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>تحويل الوحدات — الطول والوزن والحرارة والمساحة وغيرها</h1>
+    <p>حوّل السنتيمتر إلى إنش، والكيلو إلى رطل، والمئوية إلى فهرنهايت، والفدان والدونم إلى متر مربع، واللتر إلى جالون، وكم/ساعة إلى ميل/ساعة. النتيجة تظهر فورًا مع قيمة الرقم بكل الوحدات الأخرى.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div id="ucCats" role="tablist"></div>
+    <div class="uc-box">
+      <div class="uc-side"><label for="ucValue">من</label><input type="text" inputmode="decimal" id="ucValue" value="1"><select id="ucFrom" aria-label="من"></select></div>
+      <button type="button" class="uc-swap" id="ucSwap" aria-label="تبديل الوحدتين" title="تبديل الوحدتين"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v14M3 14l4 4 4-4M17 20V6M13 10l4-4 4 4"/></svg></button>
+      <div class="uc-side uc-res" aria-live="polite"><label for="ucTo">إلى</label><div class="uc-big" id="ucOut">—</div><div class="uc-unit" id="ucOutUnit"></div><select id="ucTo"></select></div>
+    </div>
+    <div class="uc-line"><span id="ucLine"></span><button type="button" class="btn btn-secondary" id="ucCopy">نسخ</button></div>
+    <div id="ucStatus" class="result" aria-live="polite"></div>
+    <h2 style="font-size:15px;color:var(--text-dim);margin:18px 0 0">نفس القيمة بكل الوحدات</h2>
+    <table class="uc-all"><tbody id="ucAll"></tbody></table>
+  </div>
+  <script src="/units.js"></script>
+
+  <div class="content">
+    <h2>تحويلات مفيدة تحفظها</h2>
+    <ul class="benefits">
+      <li><span><strong>1 إنش</strong> = 2.54 سم · <strong>1 قدم</strong> = 30.48 سم · <strong>1 ميل</strong> = 1.609 كم</span></li>
+      <li><span><strong>1 كيلو</strong> = 2.2046 رطل · <strong>1 رطل</strong> = 453.6 غرام · <strong>أونصة الذهب</strong> = 31.10 غرام</span></li>
+      <li><span><strong>الفهرنهايت</strong> = المئوية × 9/5 + 32 · <strong>المئوية</strong> = (الفهرنهايت − 32) × 5/9</span></li>
+      <li><span><strong>الفدان</strong> (مصر) = 4,200.83 م² · <strong>الدونم</strong> = 1,000 م² · <strong>الهكتار</strong> = 10 دونمات</span></li>
+      <li><span><strong>1 جيجابايت</strong> = مليار بايت، أما <strong>1 جيبيبايت</strong> = 1,073,741,824 بايت — لذلك يظهر قرص 1 تيرابايت بحوالي 931 في ويندوز.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>كم سنتيمتر في الإنش؟</summary><p>الإنش = 2.54 سم بالضبط حسب التعريف الدولي.</p></details>
+    <details class="faq-item"><summary>كيف أحول من مئوية إلى فهرنهايت؟</summary><p>اضرب في 9/5 وأضف 32: حرارة 37 مئوية × 1.8 + 32 = 98.6 فهرنهايت.</p></details>
+    <details class="faq-item"><summary>كم متر مربع في الفدان؟</summary><p>الفدان المصري = 4,200.83 مترًا مربعًا تقريبًا، أي 24 قيراطًا.</p></details>
+    <details class="faq-item"><summary>كم كيلو في الرطل؟</summary><p>الرطل (الباوند) = 0.4536 كيلو تقريبًا، والكيلو = 2.2046 رطل.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">حاسبات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/percentage-calculator">حاسبة النسبة المئوية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/bmi-calculator">حاسبة كتلة الجسم<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/days-between-dates">حساب الأيام بين تاريخين<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/loan-calculator">حاسبة التمويل<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny تحويل الوحدات", "url": "https://quicktinyv2.vercel.app/ar/unit-converter", "description": "محول وحدات مجاني بالعربي: الطول والوزن والحرارة والمساحة (فدان، دونم، هكتار) والحجم والسرعة وحجم البيانات. نتيجة فورية مع القيمة بكل الوحدات.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "تحويل الوحدات", "item": "https://quicktinyv2.vercel.app/ar/unit-converter"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "كم سنتيمتر في الإنش؟", "acceptedAnswer": {"@type": "Answer", "text": "الإنش = 2.54 سم بالضبط."}}, {"@type": "Question", "name": "كم متر مربع في الفدان؟", "acceptedAnswer": {"@type": "Answer", "text": "الفدان المصري = 4,200.83 مترًا مربعًا تقريبًا."}}, {"@type": "Question", "name": "كم كيلو في الرطل؟", "acceptedAnswer": {"@type": "Answer", "text": "الرطل = 0.4536 كيلو، والكيلو = 2.2046 رطل."}}]}</script>
+</body>
+</html>

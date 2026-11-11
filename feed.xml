@@ -36,6 +36,13 @@
     <description>Convert WebP images to JPG in your browser. Batch convert, pick a background color for transparent areas, download as ZIP. Nothing uploaded.</description>
   </item>
   <item>
+    <title>Unit Converter — cm to Inches, kg to lb, °C to °F &amp; More</title>
+    <link>https://quicktinyv2.vercel.app/unit-converter</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/unit-converter</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Free unit converter for length, weight, temperature, area (incl. feddan and dunam), volume, speed and data sizes. Instant results with every unit listed.</description>
+  </item>
+  <item>
     <title>Resize Image Online — Change Width, Height or Percent, Free</title>
     <link>https://quicktinyv2.vercel.app/resize-image</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/resize-image</guid>
@@ -104,6 +111,13 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/loan-calculator</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Calculate monthly loan payments, total interest and a yearly schedule. Compare flat-rate offers with their real APR, including fees. Free, instant.</description>
+  </item>
+  <item>
+    <title>kg to lbs Converter — Kilograms to Pounds</title>
+    <link>https://quicktinyv2.vercel.app/kg-to-lbs</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/kg-to-lbs</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert kilograms to pounds instantly: 1 kg = 2.2046 lb, 1 lb = 0.4536 kg. Also ounces, grams and stone. Free, no sign-up.</description>
   </item>
   <item>
     <title>JPG to WebP Converter — Faster Websites, Free</title>
@@ -246,6 +260,20 @@
     <description>Reduce a photo to under 100 KB for government, university and visa forms. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
   </item>
   <item>
+    <title>cm to Inches Converter — Centimetres to Inches (with Chart)</title>
+    <link>https://quicktinyv2.vercel.app/cm-to-inches</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/cm-to-inches</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert centimetres to inches instantly: 1 cm = 0.3937 in, 1 in = 2.54 cm. Type any value, swap units, and see feet and millimetres too. Free, no sign-up.</description>
+  </item>
+  <item>
+    <title>Celsius to Fahrenheit Converter — °C to °F Formula &amp; Chart</title>
+    <link>https://quicktinyv2.vercel.app/celsius-to-fahrenheit</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/celsius-to-fahrenheit</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert Celsius to Fahrenheit instantly: °F = °C × 9/5 + 32. 37 °C = 98.6 °F, 100 °C = 212 °F. Kelvin too. Free, no sign-up.</description>
+  </item>
+  <item>
     <title>BMI Calculator — Body Mass Index &amp; Healthy Weight for Your Height</title>
     <link>https://quicktinyv2.vercel.app/bmi-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/bmi-calculator</guid>
@@ -258,34 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/youtube-thumbnail-size</guid>
     <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
     <description>Resize an image to the YouTube thumbnail size 1280×720 (16:9) and channel banner 2560×1440. Focal-point crop, free download.</description>
-  </item>
-  <item>
-    <title>Wi-Fi QR Code Generator — Guests Join Without Typing</title>
-    <link>https://quicktinyv2.vercel.app/wifi-qr-code</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/wifi-qr-code</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Create a QR code that connects phones to your Wi-Fi in one scan. Add your logo and a “Scan for Wi-Fi” frame. Free, never expires, nothing uploaded.</description>
-  </item>
-  <item>
-    <title>WhatsApp QR Code Generator — Start a Chat With One Scan</title>
-    <link>https://quicktinyv2.vercel.app/whatsapp-qr-code</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/whatsapp-qr-code</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Make a QR code that opens a WhatsApp chat with your number and a pre-filled message. Great for shops, menus and flyers. Free and never expires.</description>
-  </item>
-  <item>
-    <title>vCard QR Code — Business Card QR to Save Your Contact</title>
-    <link>https://quicktinyv2.vercel.app/vcard-qr-code</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/vcard-qr-code</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Create a QR code that saves your name, phone, email, company and website to a phone's contacts in one tap. Free, private, never expires.</description>
-  </item>
-  <item>
-    <title>Valorant to CS2 Sensitivity Converter — Exact Same Aim</title>
-    <link>https://quicktinyv2.vercel.app/valorant-to-cs2-sensitivity</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/valorant-to-cs2-sensitivity</guid>
-    <pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Convert your Valorant sensitivity to CS2 instantly (multiply by 3.18). See cm/360 and eDPI, and change DPI if you need. Free.</description>
   </item>
 </channel>
 </rss>

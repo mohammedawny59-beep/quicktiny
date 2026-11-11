@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/unit-converter", "title": "تحويل الوحدات — سم إلى إنش، كيلو إلى رطل، مئوية إلى فهرنهايت، فدان إلى متر | QuickTiny",
+  "desc": "محول وحدات مجاني بالعربي: الطول والوزن والحرارة والمساحة (فدان، دونم، هكتار) والحجم والسرعة وحجم البيانات. نتيجة فورية مع القيمة بكل الوحدات.",
+  "app_name": "QuickTiny تحويل الوحدات", "crumb": "تحويل الوحدات", "category": "UtilitiesApplication", "body": "pages/uc_ar.html", "style": "pages/uc_style.html",
+  "alternates": [["en", "unit-converter"], ["ar", "ar/unit-converter"], ["x-default", "unit-converter"]],
+  "switch": [["EN", "unit-converter"], ["AR", "ar/unit-converter"]],
+  "faq": [["كم سنتيمتر في الإنش؟", "الإنش = 2.54 سم بالضبط."], ["كم متر مربع في الفدان؟", "الفدان المصري = 4,200.83 مترًا مربعًا تقريبًا."], ["كم كيلو في الرطل؟", "الرطل = 0.4536 كيلو، والكيلو = 2.2046 رطل."]]}
+]}

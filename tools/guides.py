@@ -30,7 +30,7 @@ STYLE = """  <style>
     @media(max-width:520px){.guide-table{font-size:13.5px}.guide-table th,.guide-table td{padding:7px 6px}}
   </style>
 """
-WRAP_START = '<div class="wrap">\n  <div class="breadcrumb">'
+WRAP_START = '<div class="wrap" id="main" role="main" tabindex="-1">\n  <div class="breadcrumb">'
 
 def article_ld(g, url):
     return json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": g["h1"], "description": g["desc"], "inLanguage": g["lang"],

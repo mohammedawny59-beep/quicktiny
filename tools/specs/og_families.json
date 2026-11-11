@@ -604,5 +604,32 @@
    "ar/guides/zakat-al-fitr-amount",
    "ar/guides/ramadan-2027-date"
   ]
+ },
+ {
+  "key": "units",
+  "icon": "ruler",
+  "lang": "en",
+  "title": "Unit Converter",
+  "sub": "cm ↔ in · kg ↔ lb · °C ↔ °F · and more",
+  "pages": [
+   "unit-converter",
+   "cm-to-inches",
+   "kg-to-lbs",
+   "celsius-to-fahrenheit"
+  ]
+ },
+ {
+  "key": "units-ar",
+  "icon": "ruler",
+  "lang": "ar",
+  "title": "تحويل الوحدات",
+  "sub": "سم وإنش · كيلو ورطل · فدان ومتر",
+  "pages": [
+   "ar/unit-converter",
+   "ar/cm-to-inch",
+   "ar/kg-to-pound",
+   "ar/celsius-to-fahrenheit",
+   "ar/feddan-to-square-meter"
+  ]
  }
 ]

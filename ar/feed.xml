@@ -43,6 +43,13 @@
     <description>احسب ضريبة القيمة المضافة للسعودية 15% والإمارات 5% والبحرين وعُمان والأردن ومصر: أضف الضريبة أو استخرجها من سعر شامل، لبند أو فاتورة كاملة، مع المبلغ بالحروف. مجانية.</description>
   </item>
   <item>
+    <title>تحويل الوحدات — سم إلى إنش، كيلو إلى رطل، مئوية إلى فهرنهايت، فدان إلى متر</title>
+    <link>https://quicktinyv2.vercel.app/ar/unit-converter</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/unit-converter</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>محول وحدات مجاني بالعربي: الطول والوزن والحرارة والمساحة (فدان، دونم، هكتار) والحجم والسرعة وحجم البيانات. نتيجة فورية مع القيمة بكل الوحدات.</description>
+  </item>
+  <item>
     <title>إنشاء فاتورة ضريبية مبسطة مع QR هيئة الزكاة — مجانًا</title>
     <link>https://quicktinyv2.vercel.app/ar/tax-invoice-generator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/tax-invoice-generator</guid>
@@ -111,6 +118,13 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/loan-calculator</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>احسب قسط التمويل الشخصي أو القرض الشهري وإجمالي الأرباح، وقارن النسبة الثابتة (المرابحة) بالنسبة السنوية الحقيقية APR مع جدول سنوي. مجانية.</description>
+  </item>
+  <item>
+    <title>تحويل من كيلو إلى رطل (باوند) — الكيلو كم رطل؟</title>
+    <link>https://quicktinyv2.vercel.app/ar/kg-to-pound</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/kg-to-pound</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حوّل الكيلوغرام إلى رطل (باوند) فورًا: 1 كيلو = 2.2046 رطل و1 رطل = 0.4536 كيلو، مع الأونصة والغرام. مجانًا وبدون تسجيل.</description>
   </item>
   <item>
     <title>تحويل صيغ الصور — HEIC إلى JPG وWebP إلى PNG مجانًا</title>
@@ -225,6 +239,13 @@
     <description>حاسبة المعدل التراكمي والفصلي للجامعات السعودية (من 5) ونظام 4: أضف موادك وساعاتها وتقديراتك، واعرف معدلك وتقديرك والمعدل الذي تحتاجه لرفع معدلك. مجانية وبدون تسجيل.</description>
   </item>
   <item>
+    <title>الفدان كم متر مربع؟ تحويل الفدان والقيراط والدونم</title>
+    <link>https://quicktinyv2.vercel.app/ar/feddan-to-square-meter</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/feddan-to-square-meter</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>الفدان = 4,200.83 متر مربع تقريبًا (24 قيراطًا). حوّل الفدان إلى متر مربع وهكتار ودونم فورًا، أو العكس. مجانًا وبدون تسجيل.</description>
+  </item>
+  <item>
     <title>حاسبة مكافأة نهاية الخدمة — السعودية والإمارات 2026</title>
     <link>https://quicktinyv2.vercel.app/ar/end-of-service-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/end-of-service-calculator</guid>
@@ -265,27 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-50kb</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>صغّر حجم الصورة إلى أقل من 50 كيلوبايت لـصور الهوية الشخصية ومنصات التوظيف. أعلى جودة ممكنة ضمن الحد مع الحفاظ على التناسب، لعدة صور مرة واحدة. بدون رفع وبدون تسجيل.</description>
-  </item>
-  <item>
-    <title>تصغير حجم الصورة إلى 200 كيلوبايت — مجانًا وبأفضل جودة</title>
-    <link>https://quicktinyv2.vercel.app/ar/compress-image-to-200kb</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-200kb</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>صغّر حجم الصورة إلى أقل من 200 كيلوبايت لـطلبات التأشيرة ورفع الهويات. أعلى جودة ممكنة ضمن الحد مع الحفاظ على التناسب، لعدة صور مرة واحدة. بدون رفع وبدون تسجيل.</description>
-  </item>
-  <item>
-    <title>تصغير حجم الصورة إلى 100 كيلوبايت — مجانًا وبأفضل جودة</title>
-    <link>https://quicktinyv2.vercel.app/ar/compress-image-to-100kb</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-100kb</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>صغّر حجم الصورة إلى أقل من 100 كيلوبايت لـالمنصات الحكومية والجامعات والتأشيرات. أعلى جودة ممكنة ضمن الحد مع الحفاظ على التناسب، لعدة صور مرة واحدة. بدون رفع وبدون تسجيل.</description>
-  </item>
-  <item>
-    <title>حاسبة كتلة الجسم BMI والوزن المثالي حسب الطول</title>
-    <link>https://quicktinyv2.vercel.app/ar/bmi-calculator</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/bmi-calculator</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>احسب مؤشر كتلة الجسم BMI بالكيلو والسنتيمتر، واعرف تصنيفك حسب منظمة الصحة العالمية والوزن المثالي لطولك. مجانية وخاصة.</description>
   </item>
 </channel>
 </rss>
