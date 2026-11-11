@@ -12,6 +12,7 @@ The site is plain HTML/CSS/JS — the committed `.html` files are the source of 
 | `indexnow.mjs` | Submits URLs to IndexNow (Bing, Yandex…) using the key file at the repo root: `--all`, or `--since <git-ref>` for URLs newly added to `sitemap.xml`; `--dry-run` to preview. The `IndexNow` GitHub workflow runs it automatically when `sitemap.xml` changes on `main`. |
 | `feeds.py` | Builds the RSS feeds `/feed.xml` and `/ar/feed.xml` (newest tools and guides) and advertises them on the home and guide pages. `wire.py` runs it automatically. |
 | `social_post.mjs` | Announces newly added pages on Telegram, X, Facebook and LinkedIn — only on channels whose secrets are set; otherwise a dry run. Run by the `Social` workflow. |
+| `feedback.mjs` | Prints visitor feedback from the tool pages (👍/👎 per page and "suggest a tool" notes) stored by `api/qt-feedback.js` in the private Vercel Blob store `quicktiny-feedback`. Needs `BLOB_READ_WRITE_TOKEN` (Vercel → Storage → quicktiny-feedback → `.env.local`, or `vercel env pull`). `--days 30` by default. |
 | `cutout.py` | Turns a glass icon rendered on black into a 192 px transparent WebP for `assets/icons/`. |
 
 `specs/` holds the specs used for the latest packs as examples.
