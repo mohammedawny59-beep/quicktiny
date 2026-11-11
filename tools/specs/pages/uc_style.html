@@ -1,0 +1,26 @@
+  <style>
+    #ucCats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+    .uc-box{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:end}
+    @media(max-width:640px){.uc-box{grid-template-columns:1fr}.uc-swap{justify-self:center}}
+    .uc-side{border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:var(--card)}
+    .uc-side label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px}
+    .uc-side input{font-size:24px;font-weight:800;text-align:center;direction:ltr;margin:0 0 8px}
+    .uc-side select{margin:0}
+    .uc-res{display:flex;flex-direction:column;justify-content:center;min-height:104px}
+    .uc-big{font-size:30px;font-weight:800;direction:ltr;text-align:center;font-variant-numeric:tabular-nums;line-height:1.15;word-break:break-all;background:var(--grad-text);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+    .uc-unit{text-align:center;color:var(--text-dim);font-weight:700;font-size:14px;margin-top:4px}
+    .uc-swap{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-strong);background:var(--card);color:var(--text);cursor:pointer;display:grid;place-items:center;margin-bottom:40px;transition:border-color .15s}
+    .uc-swap:hover{border-color:var(--accent)}
+    .uc-swap svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg)}
+    @media(max-width:640px){.uc-swap{margin:0}.uc-swap svg{transform:none}}
+    .uc-swap.spin svg{animation:ucSpin .45s cubic-bezier(.16,1,.3,1)}
+    @keyframes ucSpin{from{transform:rotate(90deg) scale(.7)}to{transform:rotate(270deg)}}
+    @media(max-width:640px){@keyframes ucSpin{from{transform:scale(.7)}to{transform:rotate(180deg)}}}
+    .uc-line{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;font:13px var(--mono);color:var(--muted);flex-wrap:wrap}
+    .uc-line span{direction:ltr;unicode-bidi:plaintext}
+    .uc-all{width:100%;border-collapse:collapse;margin-top:14px;font-size:14.5px}
+    .uc-all td{padding:8px 10px;border-bottom:1px solid var(--line)}
+    .uc-all td:last-child{text-align:end;font-variant-numeric:tabular-nums;font-weight:700}
+    .uc-all tr.on td{color:var(--accent-hover)}
+    @media (prefers-reduced-motion:reduce){.uc-swap.spin svg{animation:none}}
+  </style>

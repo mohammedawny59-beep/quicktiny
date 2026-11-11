@@ -1,0 +1,49 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">تحويل الوحدات</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">أدوات</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>تحويل الوحدات — الطول والوزن والحرارة والمساحة وغيرها</h1>
+    <p>حوّل السنتيمتر إلى إنش، والكيلو إلى رطل، والمئوية إلى فهرنهايت، والفدان والدونم إلى متر مربع، واللتر إلى جالون، وكم/ساعة إلى ميل/ساعة. النتيجة تظهر فورًا مع قيمة الرقم بكل الوحدات الأخرى.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div id="ucCats" role="tablist"></div>
+    <div class="uc-box">
+      <div class="uc-side"><label for="ucValue">من</label><input type="text" inputmode="decimal" id="ucValue" value="1"><select id="ucFrom" aria-label="من"></select></div>
+      <button type="button" class="uc-swap" id="ucSwap" aria-label="تبديل الوحدتين" title="تبديل الوحدتين"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v14M3 14l4 4 4-4M17 20V6M13 10l4-4 4 4"/></svg></button>
+      <div class="uc-side uc-res" aria-live="polite"><label for="ucTo">إلى</label><div class="uc-big" id="ucOut">—</div><div class="uc-unit" id="ucOutUnit"></div><select id="ucTo"></select></div>
+    </div>
+    <div class="uc-line"><span id="ucLine"></span><button type="button" class="btn btn-secondary" id="ucCopy">نسخ</button></div>
+    <div id="ucStatus" class="result" aria-live="polite"></div>
+    <h2 style="font-size:15px;color:var(--text-dim);margin:18px 0 0">نفس القيمة بكل الوحدات</h2>
+    <table class="uc-all"><tbody id="ucAll"></tbody></table>
+  </div>
+  <script src="/units.js"></script>
+
+  <div class="content">
+    <h2>تحويلات مفيدة تحفظها</h2>
+    <ul class="benefits">
+      <li><span><strong>1 إنش</strong> = 2.54 سم · <strong>1 قدم</strong> = 30.48 سم · <strong>1 ميل</strong> = 1.609 كم</span></li>
+      <li><span><strong>1 كيلو</strong> = 2.2046 رطل · <strong>1 رطل</strong> = 453.6 غرام · <strong>أونصة الذهب</strong> = 31.10 غرام</span></li>
+      <li><span><strong>الفهرنهايت</strong> = المئوية × 9/5 + 32 · <strong>المئوية</strong> = (الفهرنهايت − 32) × 5/9</span></li>
+      <li><span><strong>الفدان</strong> (مصر) = 4,200.83 م² · <strong>الدونم</strong> = 1,000 م² · <strong>الهكتار</strong> = 10 دونمات</span></li>
+      <li><span><strong>1 جيجابايت</strong> = مليار بايت، أما <strong>1 جيبيبايت</strong> = 1,073,741,824 بايت — لذلك يظهر قرص 1 تيرابايت بحوالي 931 في ويندوز.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>كم سنتيمتر في الإنش؟</summary><p>الإنش = 2.54 سم بالضبط حسب التعريف الدولي.</p></details>
+    <details class="faq-item"><summary>كيف أحول من مئوية إلى فهرنهايت؟</summary><p>اضرب في 9/5 وأضف 32: حرارة 37 مئوية × 1.8 + 32 = 98.6 فهرنهايت.</p></details>
+    <details class="faq-item"><summary>كم متر مربع في الفدان؟</summary><p>الفدان المصري = 4,200.83 مترًا مربعًا تقريبًا، أي 24 قيراطًا.</p></details>
+    <details class="faq-item"><summary>كم كيلو في الرطل؟</summary><p>الرطل (الباوند) = 0.4536 كيلو تقريبًا، والكيلو = 2.2046 رطل.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">حاسبات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/percentage-calculator">حاسبة النسبة المئوية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/bmi-calculator">حاسبة كتلة الجسم<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/days-between-dates">حساب الأيام بين تاريخين<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/loan-calculator">حاسبة التمويل<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

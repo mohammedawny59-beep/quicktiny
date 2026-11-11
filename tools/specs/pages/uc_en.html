@@ -1,0 +1,48 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Unit Converter</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Utility</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Unit Converter — Length, Weight, Temperature, Area &amp; More</h1>
+    <p>Convert centimetres to inches, kilograms to pounds, Celsius to Fahrenheit, feddan and dunam to square metres, litres to gallons, km/h to mph and GB to GiB. Results update as you type, with every other unit listed below.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div id="ucCats" role="tablist"></div>
+    <div class="uc-box">
+      <div class="uc-side"><label for="ucValue">From</label><input type="text" inputmode="decimal" id="ucValue" value="1"><select id="ucFrom" aria-label="From"></select></div>
+      <button type="button" class="uc-swap" id="ucSwap" aria-label="Swap units" title="Swap units"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v14M3 14l4 4 4-4M17 20V6M13 10l4-4 4 4"/></svg></button>
+      <div class="uc-side uc-res" aria-live="polite"><label for="ucTo">To</label><div class="uc-big" id="ucOut">—</div><div class="uc-unit" id="ucOutUnit"></div><select id="ucTo"></select></div>
+    </div>
+    <div class="uc-line"><span id="ucLine"></span><button type="button" class="btn btn-secondary" id="ucCopy">Copy</button></div>
+    <div id="ucStatus" class="result" aria-live="polite"></div>
+    <h2 style="font-size:15px;color:var(--text-dim);margin:18px 0 0">Same value in every unit</h2>
+    <table class="uc-all"><tbody id="ucAll"></tbody></table>
+  </div>
+  <script src="/units.js"></script>
+
+  <div class="content">
+    <h2>Handy conversions to remember</h2>
+    <ul class="benefits">
+      <li><span><strong>1 inch</strong> = 2.54 cm · <strong>1 foot</strong> = 30.48 cm · <strong>1 mile</strong> = 1.609 km</span></li>
+      <li><span><strong>1 kg</strong> = 2.2046 lb · <strong>1 lb</strong> = 453.6 g · <strong>1 troy ounce</strong> (gold) = 31.10 g</span></li>
+      <li><span><strong>°F</strong> = °C × 9/5 + 32 · <strong>°C</strong> = (°F − 32) × 5/9</span></li>
+      <li><span><strong>1 feddan</strong> (Egypt) = 4,200.83 m² · <strong>1 dunam</strong> = 1,000 m² · <strong>1 acre</strong> = 4,046.86 m²</span></li>
+      <li><span><strong>1 GB</strong> = 1,000,000,000 bytes, while <strong>1 GiB</strong> = 1,073,741,824 bytes, which is why a 1 TB drive shows about 931 GiB.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>How many centimetres are in an inch?</summary><p>Exactly 2.54 cm, by international definition since 1959.</p></details>
+    <details class="faq-item"><summary>How do I convert Celsius to Fahrenheit?</summary><p>Multiply by 9/5 and add 32: 37 °C × 1.8 + 32 = 98.6 °F.</p></details>
+    <details class="faq-item"><summary>Is a pound the same as a kilogram?</summary><p>No. 1 kg = 2.2046 lb, so a pound is about 0.4536 kg.</p></details>
+    <details class="faq-item"><summary>Why does my 1 TB drive show 931 GB?</summary><p>Manufacturers count 1 TB as 10¹² bytes; Windows divides by 1024³ (GiB) but labels it GB.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More calculators</h2>
+    <div class="related-grid">
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/bmi-calculator">BMI Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/days-between-dates">Days Between Dates<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/loan-calculator">Loan Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

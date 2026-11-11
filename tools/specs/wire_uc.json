@@ -1,0 +1,9 @@
+{"en_cards": [
+  {"slug": "unit-converter", "icon": "ruler", "cat": "Utility", "badge": "Utility &middot; New", "name": "Unit Converter", "desc": "cm↔in, kg↔lb, °C↔°F, feddan, gallons, km/h and GB — every unit at once.", "search": "unit converter cm to inches kg to lbs celsius fahrenheit feet meters gallons liters mph kmh acre feddan dunam gb gib utility"}],
+ "ar_cards": [
+  {"slug": "ar/unit-converter", "icon": "ruler", "badge": "أدوات · جديد", "name": "تحويل الوحدات", "desc": "سم وإنش، كيلو ورطل، مئوية وفهرنهايت، فدان ودونم ومتر.", "search": "تحويل الوحدات سم انش بوصة كيلو رطل باوند مئوية فهرنهايت فدان دونم متر مربع جالون لتر"}],
+ "footer": [["unit-converter", "Unit Converter"]],
+ "popular_en": [["cm-to-inches", "cm to inches"], ["kg-to-lbs", "kg to lbs"]],
+ "popular_ar": [["ar/kg-to-pound", "تحويل كيلو إلى رطل"], ["ar/feddan-to-square-meter", "الفدان كم متر"]],
+ "sitemap": ["unit-converter", "ar/unit-converter", "cm-to-inches", "ar/cm-to-inch", "kg-to-lbs", "ar/kg-to-pound", "celsius-to-fahrenheit", "ar/celsius-to-fahrenheit", "ar/feddan-to-square-meter"],
+ "count_add": 1}

@@ -1,0 +1,23 @@
+// Tests for units.js conversions.
+const ROOT = require("path").join(__dirname, "..");
+const assert = require("assert");
+const U = require(ROOT + "/units.js");
+let n = 0; const near = (a, b, m, tol) => { assert.ok(Math.abs(a - b) < (tol || 1e-9), m + ": " + a + " vs " + b); n++; };
+near(U.qtConvert("length", 1, "in", "cm"), 2.54, "1 in = 2.54 cm");
+near(U.qtConvert("length", 1, "mi", "km"), 1.609344, "1 mi = 1.609344 km");
+near(U.qtConvert("length", 6, "ft", "m"), 1.8288, "6 ft");
+near(U.qtConvert("weight", 1, "kg", "lb"), 2.2046226218, "1 kg in lb", 1e-9);
+near(U.qtConvert("weight", 1, "ozt", "g"), 31.1034768, "troy ounce in grams");
+near(U.qtConvert("temperature", 100, "c", "f"), 212, "100 C = 212 F");
+near(U.qtConvert("temperature", 98.6, "f", "c"), 37, "98.6 F = 37 C");
+near(U.qtConvert("temperature", 0, "k", "c"), -273.15, "0 K");
+near(U.qtConvert("area", 1, "feddan", "m2"), 4200.83, "feddan");
+near(U.qtConvert("area", 1, "dunam", "m2"), 1000, "dunam");
+near(U.qtConvert("area", 1, "ha", "dunam"), 10, "1 ha = 10 dunam");
+near(U.qtConvert("volume", 1, "galus", "l"), 3.785411784, "US gallon");
+near(U.qtConvert("speed", 100, "kmh", "mph"), 62.13711922, "100 km/h in mph", 1e-7);
+near(U.qtConvert("data", 1, "gb", "gib"), 0.93132257461, "1 GB in GiB", 1e-10);
+assert.strictEqual(U.qtUnitFmt(2.2046226218), "2.2046"); n++;
+assert.strictEqual(U.qtUnitFmt(1234567.891), "1,234,567.89"); n++;
+assert.strictEqual(U.qtUnitFmt(NaN), "—"); n++;
+console.log("units tests:", n, "passed");

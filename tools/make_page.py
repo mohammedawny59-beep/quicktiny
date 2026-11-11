@@ -4,7 +4,7 @@ import io, re, sys, os
 root, slug, title, desc, app_name, crumb, style_path, body_path, category = sys.argv[1:10]
 os.chdir(root)
 src = io.open("compress-image.html", encoding="utf-8").read()
-head_end = src.index('<div class="wrap">\n  <div class="breadcrumb">')
+head_end = src.index('<div class="wrap" id="main" role="main" tabindex="-1">\n  <div class="breadcrumb">')
 footer_start = src.index("<footer>")
 footer_end = src.index('<script type="application/ld+json">')
 header = src[:head_end]
