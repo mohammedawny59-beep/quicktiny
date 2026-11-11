@@ -574,7 +574,11 @@
   "sub": "من 5 ومن 4 · ثانوي وقدرات وتحصيلي",
   "pages": [
    "ar/gpa-calculator",
-   "ar/weighted-percentage-calculator"
+   "ar/weighted-percentage-calculator",
+   "ar/guides/gpa-5-calculation",
+   "ar/guides/raise-gpa",
+   "ar/guides/weighted-percentage-calculation",
+   "ar/guides/final-exam-grade-needed"
   ]
  },
  {
@@ -596,7 +600,9 @@
   "sub": "عداد الإفطار والسحور · زكاة الفطر",
   "pages": [
    "ar/ramadan-countdown",
-   "ar/zakat-al-fitr-calculator"
+   "ar/zakat-al-fitr-calculator",
+   "ar/guides/zakat-al-fitr-amount",
+   "ar/guides/ramadan-2027-date"
   ]
  }
 ]
