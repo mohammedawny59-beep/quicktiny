@@ -89,6 +89,8 @@ function qtSbFit(w, h, maxSide) {
       inp.addEventListener("focus", function () { vid.currentTime = c.start + .01; });
       row.appendChild(tm); row.appendChild(inp); box.appendChild(row);
     });
+    ["sbFrom", "sbTo"].forEach(function (id, k) { var sel = $(id); sel.innerHTML = ""; cues.forEach(function (c, i) { var o = document.createElement("option"); o.value = i; o.textContent = qtSbFmt(c.start).slice(3, 8) + " · " + c.text.slice(0, 28); sel.appendChild(o); }); sel.value = k ? cues.length - 1 : 0; });
+    $("sbClipRow").hidden = cues.length < 2; clipInfo();
     $("sbEdit").hidden = !cues.length; $("sbOut").hidden = !cues.length;
   }
 
@@ -158,55 +160,23 @@ function qtSbFit(w, h, maxSide) {
   // ---- outputs ----
   function download(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 8000); }
   var base = function () { return (file && file.name || "video").replace(/\.[^.]+$/, "").slice(0, 60) + "-subtitled"; };
-  $("sbSrt").addEventListener("click", function () { download(new Blob(["﻿" + qtSbSrt(cues)], { type: "application/x-subrip" }), base() + ".srt"); });
+  $("sbSrt").addEventListener("click", function () { var rg = range(), cs = rg.whole ? cues : rg.cues.map(function (c) { return { start: c.start - rg.a, end: c.end - rg.a, text: c.text }; }); download(new Blob(["﻿" + qtSbSrt(cs)], { type: "application/x-subrip" }), base() + (rg.whole ? "" : "-clip") + ".srt"); });
 
-  async function pickVideo(W, H, fps) {
-    var mbps = Math.min(16e6, Math.max(3e6, W * H * fps * .11));
-    var codecs = W * H > 2228224 ? ["avc1.640033"] : ["avc1.640028", "avc1.4d0028", "avc1.640033"];
-    for (var c of codecs) { var o = { codec: c, width: W, height: H, bitrate: mbps, framerate: fps }; try { if ((await VideoEncoder.isConfigSupported(o)).supported) return o; } catch (e) {} }
-    return null;
-  }
-  async function pickAudio(rate, ch) {
-    if (typeof AudioEncoder === "undefined") return null;
-    for (var c of [["mp4a.40.2", "aac"], ["opus", "opus"]]) { var o = { codec: c[0], sampleRate: rate, numberOfChannels: ch, bitrate: 128000 }; try { if ((await AudioEncoder.isConfigSupported(o)).supported) return { cfg: o, mux: c[1] }; } catch (e) {} }
-    return null;
+  // Clip range: from line / to line (whole video by default). Returns the source segment and the cues inside it.
+  function range() {
+    var i = +($("sbFrom").value || 0), j = +($("sbTo").value || cues.length - 1); if (j < i) { var k = i; i = j; j = k; }
+    var whole = i === 0 && j === cues.length - 1;
+    var a = whole ? 0 : Math.max(0, cues[i].start - .15), b = whole ? vid.duration : Math.min(vid.duration, cues[j].end + .35);
+    return { a: a, b: b, whole: whole, cues: cues.slice(i, j + 1) };
   }
   async function exportWebCodecs() {
-    var f = qtSbFit(vid.videoWidth, vid.videoHeight, 1920), W = f[0], H = f[1], fps = 30;
-    var vcfg = await pickVideo(W, H, fps); if (!vcfg) return null;
-    var audio = null; try { audio = await decode(48000, 2); } catch (e) {}
-    var acfg = audio ? await pickAudio(48000, 2) : null;
-    if (audio && !acfg) status(T.noAudioOut);
-    var mux = new Mp4Muxer.Muxer({ target: new Mp4Muxer.ArrayBufferTarget(), fastStart: "in-memory", firstTimestampBehavior: "offset",
-      video: { codec: "avc", width: W, height: H }, audio: acfg ? { codec: acfg.mux, sampleRate: 48000, numberOfChannels: 2 } : undefined });
-    var err = null;
-    var venc = new VideoEncoder({ output: function (ch, meta) { mux.addVideoChunk(ch, meta); }, error: function (e) { err = e; } }); venc.configure(vcfg);
-    if (acfg) {
-      var aenc = new AudioEncoder({ output: function (ch, meta) { mux.addAudioChunk(ch, meta); }, error: function (e) { err = e; } }); aenc.configure(acfg.cfg);
-      var L = audio.getChannelData(0), R = audio.numberOfChannels > 1 ? audio.getChannelData(1) : L, N = 4800;
-      for (var o = 0; o < audio.length; o += N) {
-        var n = Math.min(N, audio.length - o), pl = new Float32Array(n * 2); pl.set(L.subarray(o, o + n), 0); pl.set(R.subarray(o, o + n), n);
-        var ad = new AudioData({ format: "f32-planar", sampleRate: 48000, numberOfFrames: n, numberOfChannels: 2, timestamp: Math.round(o / 48000 * 1e6), data: pl });
-        aenc.encode(ad); ad.close();
-        if (aenc.encodeQueueSize > 20) await new Promise(function (r) { setTimeout(r, 0); });
-      }
-      await aenc.flush();
-    }
-    var cv = document.createElement("canvas"); cv.width = W; cv.height = H; var x = cv.getContext("2d");
-    var D = vid.duration, frames = Math.max(1, Math.floor(D * fps));
-    vid.pause(); var wasMuted = vid.muted; vid.muted = true;
-    for (var i = 0; i < frames; i++) {
-      var t = i / fps;
-      await new Promise(function (r) { var done = function () { vid.removeEventListener("seeked", done); r(); }; vid.addEventListener("seeked", done); vid.currentTime = Math.min(t + .001, D - .001); });
-      x.setTransform(1, 0, 0, 1, 0, 0); x.drawImage(vid, 0, 0, W, H);
-      qtCapRender(x, W, H, t, st, pages, false);
-      var vf = new VideoFrame(cv, { timestamp: Math.round(t * 1e6), duration: Math.round(1e6 / fps) }); venc.encode(vf, { keyFrame: i % 60 === 0 }); vf.close();
-      if (i % 5 === 0) { status(T.exp + " " + Math.round(i / frames * 100) + "%", i / frames); }
-      if (venc.encodeQueueSize > 6) await new Promise(function (r) { setTimeout(r, 2); });
-      if (err) throw err;
-    }
-    await venc.flush(); mux.finalize(); vid.muted = wasMuted;
-    return new Blob([mux.target.buffer], { type: "video/mp4" });
+    var f = qtSbFit(vid.videoWidth, vid.videoHeight, 1920), rg = range();
+    var r = await qtVxExport({ file: file, video: vid, W: f[0], H: f[1], fps: 30, segs: [[rg.a, rg.b]],
+      draw: function (x, srcT, outT, W, H) { x.drawImage(vid, 0, 0, W, H); qtCapRender(x, W, H, srcT, st, pages, false); },
+      onProgress: function (p) { status(T.exp + " " + Math.round(p * 100) + "%", p); } });
+    if (!r) return null;
+    if (!r.audio) status(T.noAudioOut);
+    return r.blob;
   }
   // Fallback for browsers without WebCodecs (e.g. older Safari): record the canvas + the video's own sound in real time.
   function exportRecorder() {
@@ -230,11 +200,13 @@ function qtSbFit(w, h, maxSide) {
       var blob = null;
       if (typeof VideoEncoder !== "undefined" && typeof Mp4Muxer !== "undefined") blob = await exportWebCodecs();
       if (!blob) blob = await exportRecorder();
-      download(blob, base() + (blob.type.indexOf("webm") >= 0 ? ".webm" : ".mp4"));
+      download(blob, base() + (range().whole ? "" : "-clip") + (blob.type.indexOf("webm") >= 0 ? ".webm" : ".mp4"));
       status(T.expDone); if (typeof qtEvent === "function") qtEvent("subtitles_export");
     } catch (e) { status(T.expFail + (e && e.message || e)); }
     $("sbBar").hidden = true; busy = false; this.disabled = false; draw();
   });
+  function clipInfo() { if (!cues.length) return; var rg = range(); $("sbClipInfo").textContent = rg.whole ? "" : "✂ " + (rg.b - rg.a).toFixed(1) + T.sec; }
+  ["sbFrom", "sbTo"].forEach(function (id) { $(id).addEventListener("change", function () { clipInfo(); var rg = range(); vid.currentTime = rg.a + .01; }); });
   sync();
   if (document.fonts && document.fonts.load) Promise.all(['400 40px "QT Lalezar"', '800 40px Sora', '700 40px "QT Arabic"'].map(function (f) { return document.fonts.load(f, "Ab ابج").catch(function () {}); })).then(draw);
 })();

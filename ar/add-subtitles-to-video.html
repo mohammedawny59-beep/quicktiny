@@ -63,6 +63,9 @@
     .sb-tm:hover{border-color:var(--cyan)}.sb-tm:focus-visible{outline:2px solid var(--accent)}
     .sb-out{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}.sb-out .btn{padding:12px 20px;font-size:15px}
     #sbInfo{font-size:13px;color:var(--muted)}
+    .sb-clip{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+    .sb-clip label{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:700;color:var(--text-dim)}.sb-clip select{margin:0;max-width:210px;padding:6px 8px;font-size:13px}
+    #sbClipInfo{font-weight:800;color:var(--cyan)}.sb-clip .sb-note{flex-basis:100%;margin:0}
   </style>
 </head>
 <body>
@@ -106,7 +109,8 @@
           <button type="button" class="btn sb-go" id="sbGo" disabled>استخرج الترجمة</button>
           <div id="sbBar" hidden><i id="sbBarFill"></i></div><div id="sbStatus" role="status" aria-live="polite"></div><p class="sb-note">أول مرة يتنزّل نموذج التعرّف على الكلام ويبقى محفوظًا في متصفحك، فالفيديوهات التالية تبدأ فورًا.</p>
         </div>
-        <div class="sb-card sb-c2" id="sbEdit" hidden><h2>٢ · صحّح الكلمات <span id="sbInfo"></span></h2><div id="sbCues"></div></div>
+        <div class="sb-card sb-c2" id="sbEdit" hidden><h2>٢ · صحّح الكلمات <span id="sbInfo"></span></h2><div id="sbCues"></div>
+          <div class="sb-clip" id="sbClipRow" hidden><b>✂ قصّ مقطع</b><label>من <select id="sbFrom"></select></label><label>إلى <select id="sbTo"></select></label><span id="sbClipInfo"></span><p class="sb-note">اختر أول وآخر سطر لتنزيل هذا الجزء فقط — مثالي لقص ريل قصير من فيديو طويل.</p></div></div>
         <div class="sb-card sb-c2"><h2>٣ · شكل الكابشن</h2>
           <div id="sbStyles" style="margin-bottom:12px"><button type="button" class="sb-s" data-s="pop" aria-pressed="false">تكبير</button><button type="button" class="sb-s" data-s="box" aria-pressed="false">مربع ملوّن</button><button type="button" class="sb-s" data-s="karaoke" aria-pressed="false">كاريوكي</button><button type="button" class="sb-s" data-s="bounce" aria-pressed="false">كلمة كلمة</button></div>
           <div class="sb-row"><label for="sbPer">كلمات على الشاشة</label><select id="sbPer"><option value="1">كلمة واحدة</option><option value="2">كلمتان</option><option value="3">3 كلمات</option><option value="4">4 كلمات</option></select></div>
@@ -126,6 +130,7 @@
   <script src="/vendor/mp4-muxer.js"></script>
   <script src="/brand.js"></script>
   <script src="/captions.js"></script>
+  <script src="/video-export.js"></script>
   <script src="/subtitles.js"></script>
 
   <div class="content">

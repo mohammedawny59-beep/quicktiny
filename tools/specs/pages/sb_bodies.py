@@ -43,6 +43,9 @@ STYLE = """  <style>
     .sb-tm:hover{border-color:var(--cyan)}.sb-tm:focus-visible{outline:2px solid var(--accent)}
     .sb-out{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}.sb-out .btn{padding:12px 20px;font-size:15px}
     #sbInfo{font-size:13px;color:var(--muted)}
+    .sb-clip{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+    .sb-clip label{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:700;color:var(--text-dim)}.sb-clip select{margin:0;max-width:210px;padding:6px 8px;font-size:13px}
+    #sbClipInfo{font-weight:800;color:var(--cyan)}.sb-clip .sb-note{flex-basis:100%;margin:0}
   </style>
 """
 T = {
@@ -55,7 +58,7 @@ T = {
    s2="2 · Fix the words", s3="3 · Caption style", styles=[("pop", "Pop"), ("box", "Highlight box"), ("karaoke", "Karaoke"), ("bounce", "One word")],
    per="Words on screen", perO=[("1", "1 word"), ("2", "2 words"), ("3", "3 words"), ("4", "4 words")], accent="Highlight", font="Font", fontO=[("bold", "Bold display"), ("sans", "Clean sans")], size="Size",
    outline="Outline", upper="UPPERCASE", pos="Position", posO=[("bottom", "Bottom"), ("middle", "Middle"), ("top", "Top")],
-   export="Download video with captions", srt="Download .srt",
+   export="Download video with captions", srt="Download .srt", clip="✂ Make a clip", cfrom="From", cto="To", clipNote="Pick the first and last line to export just that part — perfect for cutting a short from a long video.",
    howT="How it works",
    how=["Pick your video. Nothing is uploaded — the audio is read and transcribed on your phone or computer.",
         "Press <strong>Generate subtitles</strong>. Whisper, an open speech-recognition model, writes down every word with its timing.",
@@ -76,7 +79,7 @@ T = {
    s2="٢ · صحّح الكلمات", s3="٣ · شكل الكابشن", styles=[("pop", "تكبير"), ("box", "مربع ملوّن"), ("karaoke", "كاريوكي"), ("bounce", "كلمة كلمة")],
    per="كلمات على الشاشة", perO=[("1", "كلمة واحدة"), ("2", "كلمتان"), ("3", "3 كلمات"), ("4", "4 كلمات")], accent="لون التمييز", font="الخط", fontO=[("bold", "عريض"), ("sans", "بسيط")], size="الحجم",
    outline="حدود", upper="أحرف كبيرة (EN)", pos="الموضع", posO=[("bottom", "أسفل"), ("middle", "منتصف"), ("top", "أعلى")],
-   export="تنزيل الفيديو مع الترجمة", srt="تنزيل ملف SRT",
+   export="تنزيل الفيديو مع الترجمة", clip="✂ قصّ مقطع", cfrom="من", cto="إلى", clipNote="اختر أول وآخر سطر لتنزيل هذا الجزء فقط — مثالي لقص ريل قصير من فيديو طويل.", srt="تنزيل ملف SRT",
    howT="كيف تعمل",
    how=["اختر فيديوك. لا شيء يُرفع — الصوت يُقرأ ويتحوّل لنص على جوالك أو كمبيوترك.",
         "اضغط <strong>استخرج الترجمة</strong>. نموذج Whisper المفتوح يكتب كل كلمة مع توقيتها.",
@@ -102,7 +105,8 @@ def body(L, ar):
           '          <button type="button" class="btn sb-go" id="sbGo" disabled>%s</button>\n'
           '          <div id="sbBar" hidden><i id="sbBarFill"></i></div><div id="sbStatus" role="status" aria-live="polite"></div><p class="sb-note">%s</p>\n        </div>\n') % (
           t["s1"], UP, t["drop"], t["dropS"], t["lang"], opts(t["langO"]), t["model"], opts(t["modelO"]), t["go"], t["note"])
-    s += '        <div class="sb-card sb-c2" id="sbEdit" hidden><h2>%s <span id="sbInfo"></span></h2><div id="sbCues"></div></div>\n' % t["s2"]
+    s += ('        <div class="sb-card sb-c2" id="sbEdit" hidden><h2>%s <span id="sbInfo"></span></h2><div id="sbCues"></div>\n'
+          '          <div class="sb-clip" id="sbClipRow" hidden><b>%s</b><label>%s <select id="sbFrom"></select></label><label>%s <select id="sbTo"></select></label><span id="sbClipInfo"></span><p class="sb-note">%s</p></div></div>\n') % (t["s2"], t["clip"], t["cfrom"], t["cto"], t["clipNote"])
     s += ('        <div class="sb-card sb-c2"><h2>%s</h2>\n          <div id="sbStyles" style="margin-bottom:12px">%s</div>\n'
           '          <div class="sb-row"><label for="sbPer">%s</label><select id="sbPer">%s</select></div>\n'
           '          <div class="sb-row"><label for="sbAccent">%s</label><input type="color" id="sbAccent"></div>\n'
@@ -114,7 +118,7 @@ def body(L, ar):
           t["outline"], t["upper"], t["pos"], t["pos"], "".join('<button type="button" class="chip" data-p="%s">%s</button>' % x for x in t["posO"]))
     s += ('      <div class="sb-stage" id="sbStage" hidden>\n        <div class="sb-screen" id="sbScreen"><video id="sbVideo" playsinline controls preload="metadata"></video><canvas id="sbOverlay" width="1280" height="720" aria-hidden="true"></canvas></div>\n'
           '        <div class="sb-out" id="sbOut" hidden><button type="button" class="btn" id="sbExport">%s</button><button type="button" class="btn btn-secondary" id="sbSrt">%s</button></div>\n      </div>\n    </div>\n  </div>\n'
-          '  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/brand.js"></script>\n  <script src="/captions.js"></script>\n  <script src="/subtitles.js"></script>\n\n') % (t["export"], t["srt"])
+          '  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/brand.js"></script>\n  <script src="/captions.js"></script>\n  <script src="/video-export.js"></script>\n  <script src="/subtitles.js"></script>\n\n') % (t["export"], t["srt"])
     s += ('  <div class="content">\n    <h2>%s</h2>\n    <ol class="benefits">\n%s    </ol>\n    <h2>%s</h2>\n%s  </div>\n\n'
           % (t["howT"], "".join("      <li><span>%s</span></li>\n" % h for h in t["how"]), t["faqT"],
              "".join('    <details class="faq-item"><summary>%s</summary><p>%s</p></details>\n' % (q, a) for q, a in t["faq"])))

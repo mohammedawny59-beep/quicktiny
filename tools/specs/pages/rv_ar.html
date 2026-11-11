@@ -1,0 +1,66 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">تحويل الفيديو من أفقي إلى عمودي</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">فيديو</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>فيديوك لا يغادر جهازك</span><span class="badge">مجانية</span></div>
+    <h1>تحويل الفيديو من أفقي إلى عمودي 9:16 للريلز والتيك توك والشورتس — مجانًا</h1>
+    <p>حوّل فيديو يوتيوب أو كاميرا 16:9 إلى ريل 9:16 خلال ثوانٍ: خلفية مموّهة من نفس الفيديو أو قص ذكي أو خلفية بلون، عنوان اختياري فوق الفيديو، وقص البداية والنهاية — MP4 بنفس الصوت. مجانًا وبدون علامة مائية ولا يُرفع شيء.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="vt">
+      <div class="vt-col">
+        <div class="vt-card vt-c1"><h2>١ · فيديوك</h2>
+          <label class="vt-drop" id="rvDrop"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></svg><strong>اختر فيديو أو اسحبه هنا</strong><span>MP4 أو MOV أو WebM</span><span class="vt-name" id="rvName"></span><input type="file" id="rvFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>
+        </div>
+        <div class="vt-card vt-c2"><h2>٢ · الشكل</h2>
+          <div class="vt-row"><span class="vt-l">المقاس</span><div class="vt-chips" id="rvRatio" role="group" aria-label="المقاس"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="1:1">1:1</button><button type="button" class="chip" data-r="4:5">4:5</button></div></div>
+          <div class="vt-row"><span class="vt-l">التعبئة</span><div class="vt-chips" id="rvMode" role="group" aria-label="التعبئة"><button type="button" class="chip" data-m="blur">خلفية مموّهة</button><button type="button" class="chip" data-m="crop">قص لملء الشاشة</button><button type="button" class="chip" data-m="color">خلفية بلون</button></div></div>
+          <div class="vt-row"><label for="rvFocus">مركز القص</label><input type="range" id="rvFocus" min="0" max="100"></div>
+          <div class="vt-row" id="rvZoomRow"><label for="rvZoom">التكبير</label><input type="range" id="rvZoom" min="100" max="180"></div>
+          <div class="vt-row" id="rvBgRow"><label for="rvBg">لون الخلفية</label><input type="color" id="rvBg"></div>
+          <div class="vt-row"><span class="vt-l"></span><div class="vt-checks"><label><input type="checkbox" id="rvRound"> زوايا دائرية</label></div></div>
+          <div id="rvTitleRow"><div class="vt-row"><label for="rvTitle">عنوان</label><input type="text" id="rvTitle" maxlength="90" dir="auto"></div><p class="vt-hint">اختياري — يظهر فوق الفيديو. ضع الكلمات بين *نجمتين* لتمييزها.</p>
+          <div class="vt-row" style="margin-top:10px"><label for="rvAccent">لون التمييز</label><input type="color" id="rvAccent"></div></div>
+        </div>
+      </div>
+      <div class="vt-stage" id="rvStage" hidden>
+        <div class="vt-screen" id="rvScreen"><canvas id="rvCanvas" width="540" height="960" role="img" aria-label="تحويل الفيديو من أفقي إلى عمودي"></canvas></div>
+        <video id="rvVideo" playsinline preload="auto" hidden></video>
+        <div class="vt-ctrl"><button type="button" class="round" id="rvPlay" aria-label="Play / pause">▶</button><div class="vt-trim"><input type="range" id="rvA" min="0" max="1" step="0.1" aria-label="Start"><input type="range" id="rvB" min="0" max="1" step="0.1" aria-label="End"></div><span id="rvTrim"></span></div>
+        <div class="vt-out"><button type="button" class="btn" id="rvGo" disabled>تنزيل MP4</button></div>
+        <div class="vt-bar" id="rvBar" hidden><i id="rvBarFill"></i></div><div class="vt-status" id="rvStatus" role="status" aria-live="polite"></div>
+        <div class="vt-next" id="rvNext" hidden><button type="button" class="btn btn-secondary" data-to="/ar/add-subtitles-to-video" data-input="sbFile">أضف ترجمة →</button><button type="button" class="btn btn-secondary" data-to="/ar/remove-silence-from-video" data-input="slFile">احذف السكتات →</button></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/brand.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/reels.js"></script>
+
+  <div class="content">
+    <h2>كيف تعمل</h2>
+    <ol class="benefits">
+      <li><span>اختر فيديوك — يبقى على جهازك.</span></li>
+      <li><span>اختر 9:16 للريلز والتيك توك والشورتس، أو 1:1 و4:5 لمنشورات الصفحة.</span></li>
+      <li><span><strong>الخلفية المموّهة</strong> تُظهر الصورة كاملة؛ <strong>القص لملء الشاشة</strong> يملأ الشاشة — حرّك <em>مركز القص</em> ليبقى المتحدث في الكادر.</span></li>
+      <li><span>أضف عنوانًا، قصّ البداية والنهاية ونزّل الفيديو، ثم أرسله مباشرة لأداة ترجمة الفيديو تلقائيًا.</span></li>
+    </ol>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل يبقى الصوت؟</summary><p>نعم، الفيديو ينزل بنفس الصوت الأصلي (على كروم وإيدج والمتصفحات التي تدعم ترميز الصوت).</p></details>
+    <details class="faq-item"><summary>هل يوجد حد لطول الفيديو؟</summary><p>لا يوجد حد ثابت، لكن التجهيز يأخذ تقريبًا مدة المقطع على اللابتوب، لذلك قصّ الجزء الذي تحتاجه.</p></details>
+    <details class="faq-item"><summary>هل يُرفع الفيديو؟</summary><p>لا، كل شيء يتم داخل متصفحك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات فيديو أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/add-subtitles-to-video">ترجمة الفيديو تلقائيًا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/remove-silence-from-video">حذف السكتات من الفيديو<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/creator-studio">استوديو صناع المحتوى<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/youtube-thumbnail-maker">صانع صورة اليوتيوب<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/animated-captions">الترجمة المتحركة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

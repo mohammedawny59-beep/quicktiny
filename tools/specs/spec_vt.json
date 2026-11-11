@@ -1,0 +1,14 @@
+{"pages": [
+ {"slug": "ar/horizontal-to-vertical-video", "title": "تحويل الفيديو من أفقي إلى عمودي 9:16 للريلز والتيك توك مجانًا | QuickTiny",
+  "desc": "حوّل فيديو 16:9 إلى 9:16 للريلز والتيك توك والشورتس: خلفية مموّهة أو قص ذكي أو خلفية بلون، عنوان فوق الفيديو وقص البداية والنهاية. MP4 بنفس الصوت، مجانًا وبدون رفع.",
+  "app_name": "QuickTiny تحويل الفيديو لعمودي", "crumb": "تحويل الفيديو من أفقي إلى عمودي", "category": "MultimediaApplication", "body": "pages/rv_ar.html", "style": "pages/vt_style.html",
+  "alternates": [["en", "horizontal-to-vertical-video"], ["ar", "ar/horizontal-to-vertical-video"], ["x-default", "horizontal-to-vertical-video"]],
+  "switch": [["EN", "horizontal-to-vertical-video"], ["AR", "ar/horizontal-to-vertical-video"]],
+  "faq": [["هل يبقى الصوت؟", "نعم، الفيديو ينزل بنفس الصوت الأصلي."], ["هل يُرفع الفيديو؟", "لا، كل شيء يتم داخل متصفحك."]]},
+ {"slug": "ar/remove-silence-from-video", "title": "حذف السكتات من الفيديو تلقائيًا — Jump Cuts مجانًا | QuickTiny",
+  "desc": "احذف الوقفات والصمت من فيديوهات الكلام تلقائيًا: موجة صوت توضح كل قصّة، ضبط الحساسية، معاينة وتنزيل MP4 بنفس الصوت. مجانًا وبدون رفع أو علامة مائية.",
+  "app_name": "QuickTiny حذف السكتات من الفيديو", "crumb": "حذف السكتات من الفيديو", "category": "MultimediaApplication", "body": "pages/sr_ar.html", "style": "pages/vt_style.html",
+  "alternates": [["en", "remove-silence-from-video"], ["ar", "ar/remove-silence-from-video"], ["x-default", "remove-silence-from-video"]],
+  "switch": [["EN", "remove-silence-from-video"], ["AR", "ar/remove-silence-from-video"]],
+  "faq": [["القص يبدو مفاجئًا — ماذا أغيّر؟", "ارفع الهامش حول الكلام أو زِد أقصر سكتة."], ["هل يُرفع الفيديو؟", "لا — التحليل والتجهيز يتمّان على جهازك."]]}
+]}

@@ -16,7 +16,8 @@
           <button type="button" class="btn sb-go" id="sbGo" disabled>Generate subtitles</button>
           <div id="sbBar" hidden><i id="sbBarFill"></i></div><div id="sbStatus" role="status" aria-live="polite"></div><p class="sb-note">The first run downloads the speech model and keeps it in your browser, so the next videos start straight away.</p>
         </div>
-        <div class="sb-card sb-c2" id="sbEdit" hidden><h2>2 · Fix the words <span id="sbInfo"></span></h2><div id="sbCues"></div></div>
+        <div class="sb-card sb-c2" id="sbEdit" hidden><h2>2 · Fix the words <span id="sbInfo"></span></h2><div id="sbCues"></div>
+          <div class="sb-clip" id="sbClipRow" hidden><b>✂ Make a clip</b><label>From <select id="sbFrom"></select></label><label>To <select id="sbTo"></select></label><span id="sbClipInfo"></span><p class="sb-note">Pick the first and last line to export just that part — perfect for cutting a short from a long video.</p></div></div>
         <div class="sb-card sb-c2"><h2>3 · Caption style</h2>
           <div id="sbStyles" style="margin-bottom:12px"><button type="button" class="sb-s" data-s="pop" aria-pressed="false">Pop</button><button type="button" class="sb-s" data-s="box" aria-pressed="false">Highlight box</button><button type="button" class="sb-s" data-s="karaoke" aria-pressed="false">Karaoke</button><button type="button" class="sb-s" data-s="bounce" aria-pressed="false">One word</button></div>
           <div class="sb-row"><label for="sbPer">Words on screen</label><select id="sbPer"><option value="1">1 word</option><option value="2">2 words</option><option value="3">3 words</option><option value="4">4 words</option></select></div>
@@ -36,6 +37,7 @@
   <script src="/vendor/mp4-muxer.js"></script>
   <script src="/brand.js"></script>
   <script src="/captions.js"></script>
+  <script src="/video-export.js"></script>
   <script src="/subtitles.js"></script>
 
   <div class="content">

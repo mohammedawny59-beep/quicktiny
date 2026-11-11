@@ -1,0 +1,65 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Horizontal to Vertical Video</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your video never leaves your device</span><span class="badge">Free</span></div>
+    <h1>Convert Horizontal Video to Vertical (9:16) for Reels, TikTok &amp; Shorts — Free</h1>
+    <p>Turn a 16:9 YouTube or camera video into a 9:16 Reel in seconds: blurred background fill, smart crop or a colour background, an optional headline above the video, and trimming — exported as MP4 with the original sound. Free, no watermark, nothing uploaded.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="vt">
+      <div class="vt-col">
+        <div class="vt-card vt-c1"><h2>1 · Your video</h2>
+          <label class="vt-drop" id="rvDrop"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></svg><strong>Choose a video or drop it here</strong><span>MP4, MOV or WebM</span><span class="vt-name" id="rvName"></span><input type="file" id="rvFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>
+        </div>
+        <div class="vt-card vt-c2"><h2>2 · Look</h2>
+          <div class="vt-row"><span class="vt-l">Format</span><div class="vt-chips" id="rvRatio" role="group" aria-label="Format"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="1:1">1:1</button><button type="button" class="chip" data-r="4:5">4:5</button></div></div>
+          <div class="vt-row"><span class="vt-l">Fill</span><div class="vt-chips" id="rvMode" role="group" aria-label="Fill"><button type="button" class="chip" data-m="blur">Blurred background</button><button type="button" class="chip" data-m="crop">Crop to fill</button><button type="button" class="chip" data-m="color">Colour background</button></div></div>
+          <div class="vt-row"><label for="rvFocus">Focus</label><input type="range" id="rvFocus" min="0" max="100"></div>
+          <div class="vt-row" id="rvZoomRow"><label for="rvZoom">Zoom</label><input type="range" id="rvZoom" min="100" max="180"></div>
+          <div class="vt-row" id="rvBgRow"><label for="rvBg">Background</label><input type="color" id="rvBg"></div>
+          <div class="vt-row"><span class="vt-l"></span><div class="vt-checks"><label><input type="checkbox" id="rvRound"> Rounded video</label></div></div>
+          <div id="rvTitleRow"><div class="vt-row"><label for="rvTitle">Headline</label><input type="text" id="rvTitle" maxlength="90" dir="auto"></div><p class="vt-hint">Optional — appears above the video. Wrap words in *stars* to highlight them.</p>
+          <div class="vt-row" style="margin-top:10px"><label for="rvAccent">Highlight</label><input type="color" id="rvAccent"></div></div>
+        </div>
+      </div>
+      <div class="vt-stage" id="rvStage" hidden>
+        <div class="vt-screen" id="rvScreen"><canvas id="rvCanvas" width="540" height="960" role="img" aria-label="Horizontal to Vertical Video"></canvas></div>
+        <video id="rvVideo" playsinline preload="auto" hidden></video>
+        <div class="vt-ctrl"><button type="button" class="round" id="rvPlay" aria-label="Play / pause">▶</button><div class="vt-trim"><input type="range" id="rvA" min="0" max="1" step="0.1" aria-label="Start"><input type="range" id="rvB" min="0" max="1" step="0.1" aria-label="End"></div><span id="rvTrim"></span></div>
+        <div class="vt-out"><button type="button" class="btn" id="rvGo" disabled>Download MP4</button></div>
+        <div class="vt-bar" id="rvBar" hidden><i id="rvBarFill"></i></div><div class="vt-status" id="rvStatus" role="status" aria-live="polite"></div>
+        <div class="vt-next" id="rvNext" hidden><button type="button" class="btn btn-secondary" data-to="/add-subtitles-to-video" data-input="sbFile">Add subtitles →</button><button type="button" class="btn btn-secondary" data-to="/remove-silence-from-video" data-input="slFile">Remove silences →</button></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/brand.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/reels.js"></script>
+
+  <div class="content">
+    <h2>How it works</h2>
+    <ol class="benefits">
+      <li><span>Pick your video — it stays on your device.</span></li>
+      <li><span>Choose 9:16 for Reels, TikTok and Shorts, 1:1 or 4:5 for feed posts.</span></li>
+      <li><span><strong>Blurred background</strong> keeps the whole picture; <strong>Crop to fill</strong> fills the screen — slide <em>Focus</em> to keep the speaker in frame.</span></li>
+      <li><span>Add a headline, trim the start and end, and download. Then send it straight to Auto Subtitles.</span></li>
+    </ol>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does it keep the sound?</summary><p>Yes, the MP4 keeps the original audio (in Chrome, Edge and other browsers with WebCodecs audio support).</p></details>
+    <details class="faq-item"><summary>Is there a length limit?</summary><p>No hard limit, but rendering takes roughly as long as the clip on a laptop, so trim to the part you need.</p></details>
+    <details class="faq-item"><summary>Is my video uploaded?</summary><p>No. Everything — decoding, drawing and encoding — happens in your browser.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More video tools</h2>
+    <div class="related-grid">
+      <a href="/add-subtitles-to-video">Auto Subtitles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-silence-from-video">Silence Remover<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/creator-studio">Creator Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/youtube-thumbnail-maker">YouTube Thumbnail Maker<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/animated-captions">Animated Captions<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

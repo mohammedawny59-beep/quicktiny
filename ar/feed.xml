@@ -71,6 +71,13 @@
     <description>احسب راتبك الصافي بعد خصم التأمينات الاجتماعية: الأساسي + السكن + النقل، نسبة المعاشات وساند، للسعودي وغير السعودي والنظام القديم والجديد، مع تكلفة صاحب العمل.</description>
   </item>
   <item>
+    <title>حذف السكتات من الفيديو تلقائيًا — Jump Cuts مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/remove-silence-from-video</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/remove-silence-from-video</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احذف الوقفات والصمت من فيديوهات الكلام تلقائيًا: موجة صوت توضح كل قصّة، ضبط الحساسية، معاينة وتنزيل MP4 بنفس الصوت. مجانًا وبدون رفع أو علامة مائية.</description>
+  </item>
+  <item>
     <title>إمساكية رمضان 1448 — مواعيد الإمساك والإفطار لمدينتك</title>
     <link>https://quicktinyv2.vercel.app/ar/ramadan-imsakiya</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/ramadan-imsakiya</guid>
@@ -167,6 +174,13 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/image-converter</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>حوّل صور HEIC من الآيفون وWebP وAVIF وPNG وJPG داخل متصفحك — عدة صور مرة واحدة، تغيير المقاس، تنزيل ZIP. بدون رفع، ويحذف بيانات الموقع GPS.</description>
+  </item>
+  <item>
+    <title>تحويل الفيديو من أفقي إلى عمودي 9:16 للريلز والتيك توك مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/horizontal-to-vertical-video</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/horizontal-to-vertical-video</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حوّل فيديو 16:9 إلى 9:16 للريلز والتيك توك والشورتس: خلفية مموّهة أو قص ذكي أو خلفية بلون، عنوان فوق الفيديو وقص البداية والنهاية. MP4 بنفس الصوت، مجانًا وبدون رفع.</description>
   </item>
   <item>
     <title>تحويل صور HEIC إلى JPG — صور الآيفون مجانًا وبدون رفع</title>
@@ -272,20 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides/final-exam-grade-needed</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>طريقة حساب الدرجة الموزونة في المادة (أعمال سنة، نصفي، نهائي) ومعرفة الدرجة المطلوبة في الاختبار النهائي للنجاح أو لتقدير معين، بأمثلة محسوبة.</description>
-  </item>
-  <item>
-    <title>كيف تضيف ترجمة متحركة على الريلز والتيك توك مجانًا (بالعربي)</title>
-    <link>https://quicktinyv2.vercel.app/ar/guides/add-captions-to-reels</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides/add-captions-to-reels</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>طريقة إضافة كابشن متحرك كلمة بكلمة على الريلز والتيك توك والشورتس بالعربي مجانًا: تحويل الكلام لنص تلقائيًا، تصحيح الكلمات، اختيار الستايل وتنزيل الفيديو مع الترجمة.</description>
-  </item>
-  <item>
-    <title>أدلة وشروحات عملية بالأمثلة — المعدل والزكاة والضريبة والصور</title>
-    <link>https://quicktinyv2.vercel.app/ar/guides</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/guides</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>شروحات عملية بأمثلة محسوبة: المعدل التراكمي من 5، النسبة الموزونة، زكاة الفطر وموعد رمضان، زكاة الذهب، ضريبة القيمة المضافة، نهاية الخدمة، وتحويل الصور وتصغيرها.</description>
   </item>
 </channel>
 </rss>

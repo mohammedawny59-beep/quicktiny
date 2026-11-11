@@ -836,5 +836,45 @@
    "ar/youtube-thumbnail-maker",
    "ar/guides/youtube-thumbnail-design-tips"
   ]
+ },
+ {
+  "key": "vertical",
+  "icon": "paper",
+  "lang": "en",
+  "title": "Horizontal → Vertical",
+  "sub": "16:9 to 9:16 for Reels · blurred fill or smart crop",
+  "pages": [
+   "horizontal-to-vertical-video"
+  ]
+ },
+ {
+  "key": "vertical-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "تحويل الفيديو لعمودي",
+  "sub": "من 16:9 إلى 9:16 للريلز والتيك توك",
+  "pages": [
+   "ar/horizontal-to-vertical-video"
+  ]
+ },
+ {
+  "key": "silence",
+  "icon": "paper",
+  "lang": "en",
+  "title": "Silence Remover",
+  "sub": "Automatic jump cuts · keep the sound",
+  "pages": [
+   "remove-silence-from-video"
+  ]
+ },
+ {
+  "key": "silence-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "حذف السكتات من الفيديو",
+  "sub": "قص الوقفات تلقائيًا بنفس الصوت",
+  "pages": [
+   "ar/remove-silence-from-video"
+  ]
  }
 ]
