@@ -32,3 +32,4 @@ transparent WebP (per-row background removal, floor reflection faded) and resize
 - `ruler.webp` (2026-11-11) — unit converter, same pipeline.
 - `resume.webp` (2026-11-11) — CV builder, same pipeline.
 - `resume.webp`, `paper.webp` (2026-11-11) — CV builder, Paper Motion Studio; same pipeline.
+- `glass.webp` (2026-11-11) — Glass Slides, same pipeline.

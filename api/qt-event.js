@@ -56,7 +56,8 @@ const ALLOWED_EVENTS = new Set([
   "cv_pdf",
   "ocr_done",
   "paper_export",
-  "titles_export"
+  "titles_export",
+  "glass_export"
 ]);
 
 function cleanPage(value) {
