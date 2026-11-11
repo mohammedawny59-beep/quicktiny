@@ -18,24 +18,15 @@ function qtGsTimeline(t, n, per, tr) {
   return { i: i, local: local, inTr: i > 0 && local < tr, p: i > 0 ? qtGsClamp(local / tr) : qtGsClamp(local / tr) };
 }
 
-(function () {
-  if (typeof document === "undefined") return;
-  var $ = function (id) { return document.getElementById(id); };
-  if (!$("gsCanvas")) return;
-  var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
-  var cv = $("gsCanvas"), ctx = cv.getContext("2d");
+// Engine: draws the glass slides for state `st` ({slides, theme, per, photo, align}) onto canvas `cv`.
+// Global so other pages (e.g. the creator hub previews) can reuse it. Call resize() after changing cv's size.
+function qtGsEngine(cv, st) {
+  var ctx = cv.getContext("2d");
   var canFilter = "filter" in ctx;
   var low = document.createElement("canvas"), lx = low.getContext("2d"); // background at 1/8 size (smooth when scaled up)
   var tiny = document.createElement("canvas"), tx = tiny.getContext("2d"); // 1/28 size for the frosted glass
-  var SIZES = { "9:16": [1080, 1920], "16:9": [1920, 1080], "1:1": [1080, 1080] };
-  var SAMPLE = AR ? [{ t: "مرحبًا 👋", s: "هذه سلايدات زجاجية بحركة ناعمة" }, { t: "بسيط وأنيق", s: "اكتب نصك واختر الألوان" }, { t: "جاهز للنشر", s: "فيديو MP4 بسلاسة 60 إطارًا" }]
-                   : [{ t: "Hello 👋", s: "Smooth liquid-glass slides" }, { t: "Simple & elegant", s: "Type your text, pick a colour mood" }, { t: "Ready to post", s: "A silky 60 fps MP4" }];
-  var st = { slides: SAMPLE.slice(), theme: "aurora", ratio: "9:16", per: 2.6, fps: 60, photo: null, align: "center" };
-  try { var sv = JSON.parse(localStorage.getItem("qtGlass") || "null"); if (sv && sv.slides && sv.slides.length) ["slides", "theme", "ratio", "per", "fps", "align"].forEach(function (k) { if (sv[k] != null) st[k] = sv[k]; }); } catch (e) {}
-  function save() { try { localStorage.setItem("qtGlass", JSON.stringify({ slides: st.slides, theme: st.theme, ratio: st.ratio, per: st.per, fps: st.fps, align: st.align })); } catch (e) {} }
-  function dur() { return st.slides.length * st.per + .4; }
-  function size() { var z = SIZES[st.ratio]; cv.width = z[0]; cv.height = z[1]; low.width = Math.ceil(z[0] / 8); low.height = Math.ceil(z[1] / 8); tiny.width = Math.ceil(z[0] / 28); tiny.height = Math.ceil(z[1] / 28); cv.parentNode.style.aspectRatio = z[0] + " / " + z[1]; }
-
+  function resize() { low.width = Math.ceil(cv.width / 8); low.height = Math.ceil(cv.height / 8); tiny.width = Math.max(1, Math.ceil(cv.width / 28)); tiny.height = Math.max(1, Math.ceil(cv.height / 28)); }
+  resize();
   // ---- background: drifting colour blobs (or the photo with a slow zoom) ----
   function drawBg(t) {
     var w = low.width, h = low.height, pal = QT_GS_THEMES[st.theme] || QT_GS_THEMES.aurora;
@@ -125,6 +116,24 @@ function qtGsTimeline(t, n, per, tr) {
     var W = cv.width, H = cv.height, u = Math.min(W, H) / 1080, gap = 26 * u, x0 = W / 2 - (n - 1) * gap / 2;
     for (var d = 0; d < n; d++) { var on = d === tl.i; ctx.fillStyle = on ? "rgba(255,255,255,.95)" : "rgba(255,255,255,.35)"; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x0 + d * gap - (on ? 18 : 6) * u, H - 90 * u, (on ? 36 : 12) * u, 12 * u, 6 * u) : ctx.rect(x0 + d * gap - 6 * u, H - 90 * u, 12 * u, 12 * u); ctx.fill(); }
   }
+  return { render: render, resize: resize, dur: function () { return st.slides.length * st.per + .4; } };
+}
+
+(function () {
+  if (typeof document === "undefined") return;
+  var $ = function (id) { return document.getElementById(id); };
+  if (!$("gsCanvas")) return;
+  var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
+  var cv = $("gsCanvas"), ctx = cv.getContext("2d");
+  var SIZES = { "9:16": [1080, 1920], "16:9": [1920, 1080], "1:1": [1080, 1080] };
+  var SAMPLE = AR ? [{ t: "مرحبًا 👋", s: "هذه سلايدات زجاجية بحركة ناعمة" }, { t: "بسيط وأنيق", s: "اكتب نصك واختر الألوان" }, { t: "جاهز للنشر", s: "فيديو MP4 بسلاسة 60 إطارًا" }]
+                   : [{ t: "Hello 👋", s: "Smooth liquid-glass slides" }, { t: "Simple & elegant", s: "Type your text, pick a colour mood" }, { t: "Ready to post", s: "A silky 60 fps MP4" }];
+  var st = { slides: SAMPLE.slice(), theme: "aurora", ratio: "9:16", per: 2.6, fps: 60, photo: null, align: "center" };
+  try { var sv = JSON.parse(localStorage.getItem("qtGlass") || "null"); if (sv && sv.slides && sv.slides.length) ["slides", "theme", "ratio", "per", "fps", "align"].forEach(function (k) { if (sv[k] != null) st[k] = sv[k]; }); } catch (e) {}
+  function save() { try { localStorage.setItem("qtGlass", JSON.stringify({ slides: st.slides, theme: st.theme, ratio: st.ratio, per: st.per, fps: st.fps, align: st.align })); } catch (e) {} }
+  function dur() { return st.slides.length * st.per + .4; }
+  var eng = qtGsEngine(cv, st), render = eng.render;
+  function size() { var z = SIZES[st.ratio]; cv.width = z[0]; cv.height = z[1]; eng.resize(); cv.parentNode.style.aspectRatio = z[0] + " / " + z[1]; }
 
   // ---- slide editor ----
   var T = AR ? { title: "العنوان", sub: "النص", up: "أعلى", down: "أسفل", del: "حذف", slide: "سلايد", done: "✓ تم تنزيل الفيديو", wait: "جارٍ تجهيز الفيديو…", webm: "سننزّل WebM لأن متصفحك لا يدعم MP4 هنا.", fail: "تعذّر إنشاء الفيديو: " }

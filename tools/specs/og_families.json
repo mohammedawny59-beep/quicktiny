@@ -771,5 +771,25 @@
   "pages": [
    "ar/animated-captions"
   ]
+ },
+ {
+  "key": "creator",
+  "icon": "paper",
+  "lang": "en",
+  "title": "Creator Studio",
+  "sub": "Captions · paper animation · glass slides · motion titles",
+  "pages": [
+   "creator-studio"
+  ]
+ },
+ {
+  "key": "creator-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "استوديو صناع المحتوى",
+  "sub": "ترجمة متحركة · أنيميشن ورق · سلايدات زجاجية",
+  "pages": [
+   "ar/creator-studio"
+  ]
  }
 ]
