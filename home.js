@@ -15,13 +15,13 @@
   };
   var P = AR ? "/ar" : "";
   var A = AR ? {
-    image: [["ضغط الصورة", P + "/compress-image", "img"], ["ضغط لحجم محدد (KB)", P + "/compress-image-to-kb", "tsFile"], ["تحويل الصيغة", P + "/image-converter", "icFile"], ["مقاسات السوشال ميديا", P + "/social-image-resizer", "srFile"], ["تحويل إلى PDF", P + "/jpg-to-pdf", "imgFiles"], ["إزالة الخلفية", "/remove-background-from-image", "studioFile"]],
+    image: [["ضغط الصورة", P + "/compress-image", "img"], ["ضغط لحجم محدد (KB)", P + "/compress-image-to-kb", "tsFile"], ["تحويل الصيغة", P + "/image-converter", "icFile"], ["مقاسات السوشال ميديا", P + "/social-image-resizer", "srFile"], ["تحويل إلى PDF", P + "/jpg-to-pdf", "imgFiles"], ["إزالة الخلفية", "/remove-background-from-image", "studioFile"], ["استخراج النص من الصورة", P + "/image-to-text", "ocrFile"]],
     images: [["تحويل الصيغة للكل", P + "/image-converter", "icFile"], ["دمجها في PDF", P + "/jpg-to-pdf", "imgFiles"], ["ضغط الأولى", P + "/compress-image", "img"]],
     heic: [["تحويل HEIC إلى JPG", P + "/heic-to-jpg", "icFile"], ["تحويل لصيغة أخرى", P + "/image-converter", "icFile"]],
     pdf: [["ضغط PDF", P + "/compress-pdf", "cmpFile"], ["تقسيم أو استخراج صفحات", P + "/split-pdf", "pagesFile"], ["تحويل PDF إلى صور", P + "/pdf-to-jpg", "toimgFile"], ["تدوير الصفحات", P + "/pdf-tools#rotate", "rotateFile"]],
     pdfs: [["دمج ملفات PDF", P + "/merge-pdf", "mergeFiles"], ["ضغط الأول", P + "/compress-pdf", "cmpFile"]]
   } : {
-    image: [["Compress image", "/compress-image", "img"], ["Compress to exact KB", "/compress-image-to-kb", "tsFile"], ["Convert format", "/image-converter", "icFile"], ["Resize for social", "/social-image-resizer", "srFile"], ["Make a PDF", "/jpg-to-pdf", "imgFiles"], ["Remove background", "/remove-background-from-image", "studioFile"]],
+    image: [["Compress image", "/compress-image", "img"], ["Compress to exact KB", "/compress-image-to-kb", "tsFile"], ["Convert format", "/image-converter", "icFile"], ["Resize for social", "/social-image-resizer", "srFile"], ["Make a PDF", "/jpg-to-pdf", "imgFiles"], ["Remove background", "/remove-background-from-image", "studioFile"], ["Extract text (OCR)", "/image-to-text", "ocrFile"]],
     images: [["Convert all", "/image-converter", "icFile"], ["Combine into PDF", "/jpg-to-pdf", "imgFiles"], ["Compress the first", "/compress-image", "img"]],
     heic: [["HEIC to JPG", "/heic-to-jpg", "icFile"], ["Convert to another format", "/image-converter", "icFile"]],
     pdf: [["Compress PDF", "/compress-pdf", "cmpFile"], ["Split / extract pages", "/split-pdf", "pagesFile"], ["PDF to JPG", "/pdf-to-jpg", "toimgFile"], ["Rotate pages", "/rotate-pdf", "rotateFile"]],

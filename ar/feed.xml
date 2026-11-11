@@ -134,6 +134,13 @@
     <description>حوّل الكيلوغرام إلى رطل (باوند) فورًا: 1 كيلو = 2.2046 رطل و1 رطل = 0.4536 كيلو، مع الأونصة والغرام. مجانًا وبدون تسجيل.</description>
   </item>
   <item>
+    <title>استخراج النص من الصورة مجانًا — تحويل الصورة إلى نص عربي (OCR)</title>
+    <link>https://quicktinyv2.vercel.app/ar/image-to-text</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/image-to-text</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>حوّل الصورة أو لقطة الشاشة أو المستند الممسوح إلى نص عربي أو إنجليزي قابل للنسخ مجانًا وبدون رفع الصورة. نسخ أو تنزيل النص فورًا.</description>
+  </item>
+  <item>
     <title>تحويل صيغ الصور — HEIC إلى JPG وWebP إلى PNG مجانًا</title>
     <link>https://quicktinyv2.vercel.app/ar/image-converter</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/image-converter</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/cv-builder</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>اعمل سيرة ذاتية احترافية مجانًا بالعربي أو الإنجليزي: قوالب جاهزة، معاينة مباشرة، وتحميل PDF متوافق مع أنظمة التوظيف ATS. بدون تسجيل ولا علامة مائية.</description>
-  </item>
-  <item>
-    <title>ضغط ملف PDF — تصغير حجم PDF مجانًا وبدون رفع</title>
-    <link>https://quicktinyv2.vercel.app/ar/compress-pdf</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-pdf</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>صغّر حجم ملفات PDF الممسوحة والمليئة بالصور للإيميل وحدود الرفع في المواقع الحكومية. ثلاث درجات ضغط وخيار أبيض وأسود، داخل متصفحك وبدون رفع.</description>
   </item>
 </channel>
 </rss>

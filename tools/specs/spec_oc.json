@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/image-to-text", "title": "استخراج النص من الصورة مجانًا — تحويل الصورة إلى نص عربي (OCR) | QuickTiny",
+  "desc": "حوّل الصورة أو لقطة الشاشة أو المستند الممسوح إلى نص عربي أو إنجليزي قابل للنسخ مجانًا وبدون رفع الصورة. نسخ أو تنزيل النص فورًا.",
+  "app_name": "QuickTiny استخراج النص من الصور", "crumb": "استخراج النص من الصور", "category": "UtilitiesApplication", "body": "pages/oc_ar.html", "style": "pages/oc_style.html",
+  "alternates": [["en", "image-to-text"], ["ar", "ar/image-to-text"], ["x-default", "image-to-text"]],
+  "switch": [["EN", "image-to-text"], ["AR", "ar/image-to-text"]],
+  "faq": [["هل تُرفع الصورة إلى الإنترنت؟", "لا، القراءة تتم بالكامل داخل متصفحك."], ["هل يقرأ الخط اليدوي؟", "يعمل أفضل مع النص المطبوع؛ الخط اليدوي غالبًا لا يُقرأ بدقة."]]}
+]}

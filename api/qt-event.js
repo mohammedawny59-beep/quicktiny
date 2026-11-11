@@ -53,7 +53,8 @@ const ALLOWED_EVENTS = new Set([
   "analytics_opt_out",
   "quick_search_open",
   "theme_toggled",
-  "cv_pdf"
+  "cv_pdf",
+  "ocr_done"
 ]);
 
 function cleanPage(value) {

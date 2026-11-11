@@ -671,5 +671,25 @@
   "pages": [
    "ar/cv-builder"
   ]
+ },
+ {
+  "key": "ocr",
+  "icon": "text",
+  "lang": "en",
+  "title": "Image to Text (OCR)",
+  "sub": "Arabic & English · nothing uploaded",
+  "pages": [
+   "image-to-text"
+  ]
+ },
+ {
+  "key": "ocr-ar",
+  "icon": "text",
+  "lang": "ar",
+  "title": "استخراج النص من الصور",
+  "sub": "عربي وإنجليزي · بدون رفع الصورة",
+  "pages": [
+   "ar/image-to-text"
+  ]
  }
 ]

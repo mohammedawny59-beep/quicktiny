@@ -141,6 +141,13 @@
     <description>Convert JPG photos to PNG in your browser. Batch convert and download as ZIP. Free, private, nothing uploaded.</description>
   </item>
   <item>
+    <title>Image to Text — Free OCR for Arabic and English, No Upload</title>
+    <link>https://quicktinyv2.vercel.app/image-to-text</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/image-to-text</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Extract text from images, screenshots and scanned documents in Arabic or English. Copy or download the text instantly. Runs in your browser; the image is never uploaded.</description>
+  </item>
+  <item>
     <title>Image Converter — HEIC to JPG, WebP to PNG &amp; More, Free</title>
     <link>https://quicktinyv2.vercel.app/image-converter</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/image-converter</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/cm-to-inches</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Convert centimetres to inches instantly: 1 cm = 0.3937 in, 1 in = 2.54 cm. Type any value, swap units, and see feet and millimetres too. Free, no sign-up.</description>
-  </item>
-  <item>
-    <title>Celsius to Fahrenheit Converter — °C to °F Formula &amp; Chart</title>
-    <link>https://quicktinyv2.vercel.app/celsius-to-fahrenheit</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/celsius-to-fahrenheit</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Convert Celsius to Fahrenheit instantly: °F = °C × 9/5 + 32. 37 °C = 98.6 °F, 100 °C = 212 °F. Kelvin too. Free, no sign-up.</description>
   </item>
 </channel>
 </rss>
