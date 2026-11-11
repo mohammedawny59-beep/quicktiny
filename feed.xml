@@ -15,6 +15,13 @@
     <description>Calculate zakat al-fitr (fitrana) for your family: one sa' per person (about 2.5-3 kg), its value at your local price or the official cash amount, plus a fidya calculator.</description>
   </item>
   <item>
+    <title>YouTube Thumbnail Maker — Free, With Background Removal &amp; Arabic Text</title>
+    <link>https://quicktinyv2.vercel.app/youtube-thumbnail-maker</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/youtube-thumbnail-maker</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Make a 1280×720 YouTube thumbnail in a minute: automatic photo background removal, huge outlined title with highlighted words, colour themes, badge and arrow. JPG under 2 MB, free, nothing uploaded.</description>
+  </item>
+  <item>
     <title>Weighted Grade Calculator — Course Grade &amp; Final Exam Needed</title>
     <link>https://quicktinyv2.vercel.app/weighted-grade-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/weighted-grade-calculator</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-500kb</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Reduce a photo to under 500 KB for email, listings and website uploads. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
-  </item>
-  <item>
-    <title>Compress Image to 20 KB Online — Free, Best Quality</title>
-    <link>https://quicktinyv2.vercel.app/compress-image-to-20kb</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-20kb</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Reduce a photo to under 20 KB for signatures and exam application photos. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
   </item>
 </channel>
 </rss>
