@@ -14,6 +14,7 @@ STYLE = """  <style>
     .pm-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
     html[lang=ar] .pm-card h2{letter-spacing:0}
     #pmStyles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    @media(min-width:1100px){#pmStyles{grid-template-columns:repeat(4,minmax(0,1fr))}}
     .pm-style{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.01));transition:transform .2s,border-color .2s,box-shadow .2s}
     .pm-style b{font-size:15px;color:var(--text)} .pm-style span{font-size:12.5px;color:var(--muted);line-height:1.4} .pm-style i{font-style:normal;font-size:24px}
     .pm-style:hover{transform:translateY(-3px);border-color:var(--accent)}
@@ -49,9 +50,11 @@ STYLE = """  <style>
 T = {
  "en": dict(home="/", homeL="Home", crumb="Paper Motion Studio", b=("Video", "Runs in your browser", "Free"),
    h1="Paper Motion Studio — Paper-Cut Text &amp; Image Animations for Reels",
-   intro="Type a word or drop a photo and get a scroll-stopping paper animation for Reels, TikTok and Shorts: newspaper clippings, cut-out letters, a photo that unfolds like paper, or posts stacking up. Works in Arabic and English. Export a vertical MP4 or a green-screen version for your editor — free, no watermark, nothing uploaded.",
+   intro="Type a word or drop a photo and get a scroll-stopping paper animation for Reels, TikTok and Shorts: newspaper clippings, cut-out letters, a photo that unfolds like paper, posts, a typewriter, a printed receipt, sticky notes or live marker handwriting. Works in Arabic and English. Export a vertical MP4 or a green-screen version for your editor — free, no watermark, nothing uploaded.",
    styles=[("newspaper", "📰", "Newspaper", "Your word in headline after headline, then highlighted"), ("cutout", "✂️", "Cut-out letters", "Ransom-note letters drop in one by one"),
-           ("unfold", "🧾", "Paper unfold", "Your photo unfolds like folded paper (with AI cut-out)"), ("posts", "💬", "Posts", "Posts stack up with your word highlighted")],
+           ("unfold", "📜", "Paper unfold", "Your photo unfolds like folded paper (with AI cut-out)"), ("posts", "💬", "Posts", "Posts stack up with your word highlighted"),
+           ("typewriter", "⌨️", "Typewriter", "Typed letter by letter on a sheet of paper"), ("receipt", "🧾", "Receipt", "Prints out of a slot with your word as the total"),
+           ("sticky", "🟨", "Sticky notes", "One note per word, slapped onto the board"), ("marker", "🖊️", "Marker", "Handwritten live, then underlined and circled")],
    s1="Style", s2="Text", s3="Look", text="Main word", sub="Second line", subP="optional", img="Photo", imgB="Choose photo", cut="Remove background (AI)",
    accent="Highlight", bg="Background", bgs=[("kraft", "Kraft paper desk"), ("dark", "Dark"), ("color", "Solid colour"), ("green", "Green screen (for editors)")], bgc="Colour",
    dur="Length", ratio="Format", export="Download MP4", png="Save frame (PNG)",
@@ -69,9 +72,11 @@ T = {
    rel="More creator tools", links=[("/remove-background-from-image", "Remove Background"), ("/social-image-resizer", "Social Image Resizer"), ("/image-to-text", "Image to Text"), ("/qr-code-generator", "QR Code Generator")]),
  "ar": dict(home="/ar", homeL="الرئيسية", crumb="استوديو أنيميشن الورق", b=("فيديو", "تعمل داخل متصفحك", "مجانية"),
    h1="استوديو أنيميشن الورق — فيديوهات نصوص وصور ورقية للريلز والتيك توك",
-   intro="اكتب كلمة أو أضف صورة واحصل على أنيميشن ورقي يوقف التمرير للريلز والتيك توك والشورتس: قصاصات جرائد، حروف مقصوصة، صورة تنفتح كالورق، أو منشورات تتراكم. يدعم العربي والإنجليزي. نزّله فيديو MP4 عموديًا أو بخلفية خضراء لبرنامج المونتاج — مجانًا وبدون علامة مائية ولا رفع.",
+   intro="اكتب كلمة أو أضف صورة واحصل على أنيميشن ورقي يوقف التمرير للريلز والتيك توك والشورتس: قصاصات جرائد، حروف مقصوصة، صورة تنفتح كالورق، منشورات، آلة كاتبة، إيصال مطبوع، ملاحظات لاصقة، أو كتابة بقلم الماركر. يدعم العربي والإنجليزي. نزّله فيديو MP4 عموديًا أو بخلفية خضراء لبرنامج المونتاج — مجانًا وبدون علامة مائية ولا رفع.",
    styles=[("newspaper", "📰", "قصاصات جرائد", "كلمتك في عناوين جرائد متتالية ثم تُظلَّل"), ("cutout", "✂️", "حروف مقصوصة", "حروف ورقية تسقط واحدًا تلو الآخر"),
-           ("unfold", "🧾", "ورقة تنفتح", "صورتك تنفتح كورقة مطوية (مع قص الخلفية بالذكاء الاصطناعي)"), ("posts", "💬", "منشورات", "منشورات تتراكم وكلمتك مظللة")],
+           ("unfold", "📜", "ورقة تنفتح", "صورتك تنفتح كورقة مطوية (مع قص الخلفية بالذكاء الاصطناعي)"), ("posts", "💬", "منشورات", "منشورات تتراكم وكلمتك مظللة"),
+           ("typewriter", "⌨️", "آلة كاتبة", "تُكتب حرفًا حرفًا على ورقة"), ("receipt", "🧾", "إيصال", "يُطبع من آلة وكلمتك هي الإجمالي"),
+           ("sticky", "🟨", "ملاحظات لاصقة", "ورقة لكل كلمة تُلصق على اللوح"), ("marker", "🖊️", "قلم ماركر", "تُكتب بخط اليد ثم يُسطَّر تحتها وتُحاط بدائرة")],
    s1="النمط", s2="النص", s3="الشكل", text="الكلمة الرئيسية", sub="سطر ثانٍ", subP="اختياري", img="الصورة", imgB="اختر صورة", cut="إزالة الخلفية (ذكاء اصطناعي)",
    accent="لون التظليل", bg="الخلفية", bgs=[("kraft", "مكتب ورق كرافت"), ("dark", "داكنة"), ("color", "لون واحد"), ("green", "شاشة خضراء (للمونتاج)")], bgc="اللون",
    dur="المدة", ratio="المقاس", export="تنزيل MP4", png="حفظ لقطة (PNG)",
