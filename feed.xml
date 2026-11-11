@@ -190,6 +190,13 @@
     <description>Percentage increase and decrease explained: the formula, worked examples, reverse percentages, percentage points vs percent, and why -20% then +20% doesn't get you back.</description>
   </item>
   <item>
+    <title>How to Remove a Green Screen in CapCut (Chroma Key)</title>
+    <link>https://quicktinyv2.vercel.app/guides/green-screen-overlay-capcut</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides/green-screen-overlay-capcut</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Step-by-step: remove a green screen in CapCut with Chroma key on mobile and desktop, fix green edges, and when to export a blue screen instead.</description>
+  </item>
+  <item>
     <title>Flat Rate vs APR: How to Compare Personal Loan Offers (With Examples)</title>
     <link>https://quicktinyv2.vercel.app/guides/flat-rate-vs-apr</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides/flat-rate-vs-apr</guid>
@@ -209,6 +216,13 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides/compress-photo-under-100kb</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Compress a photo to under 100 KB, 50 KB or 20 KB for job, exam and visa forms without blurring it: size vs dimensions, the KB vs KiB trap, recommended sizes and mistakes to avoid.</description>
+  </item>
+  <item>
+    <title>How to Add Subtitles to a Video Automatically — Free, No Upload</title>
+    <link>https://quicktinyv2.vercel.app/guides/add-subtitles-to-video-free</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/guides/add-subtitles-to-video-free</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Add subtitles to any video automatically for free: on-device speech-to-text, fix the words, choose a caption style and download the video with captions burned in, or an SRT for YouTube.</description>
   </item>
   <item>
     <title>Guides — Practical How-Tos With Worked Examples</title>
@@ -272,20 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-kb</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Reduce photo file size to an exact KB limit for job, exam and visa forms — 20 KB, 50 KB, 100 KB, 200 KB. Best quality that fits, batch, no upload.</description>
-  </item>
-  <item>
-    <title>Compress Image to 50 KB Online — Free, Best Quality</title>
-    <link>https://quicktinyv2.vercel.app/compress-image-to-50kb</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-50kb</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Reduce a photo to under 50 KB for passport-size photos and job portals. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
-  </item>
-  <item>
-    <title>Compress Image to 500 KB Online — Free, Best Quality</title>
-    <link>https://quicktinyv2.vercel.app/compress-image-to-500kb</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-500kb</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Reduce a photo to under 500 KB for email, listings and website uploads. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
   </item>
 </channel>
 </rss>

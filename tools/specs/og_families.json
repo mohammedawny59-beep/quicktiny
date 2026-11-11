@@ -719,7 +719,8 @@
   "title": "Motion Titles",
   "sub": "Lower thirds · subscribe button · countdowns",
   "pages": [
-   "motion-titles"
+   "motion-titles",
+   "guides/green-screen-overlay-capcut"
   ]
  },
  {
@@ -729,7 +730,8 @@
   "title": "العناوين المتحركة",
   "sub": "شريط الاسم · زر الاشتراك · عد تنازلي",
   "pages": [
-   "ar/motion-titles"
+   "ar/motion-titles",
+   "ar/guides/remove-green-screen-capcut"
   ]
  },
  {
@@ -799,7 +801,8 @@
   "title": "Auto Subtitles",
   "sub": "Speech → animated captions on your video · on-device",
   "pages": [
-   "add-subtitles-to-video"
+   "add-subtitles-to-video",
+   "guides/add-subtitles-to-video-free"
   ]
  },
  {
@@ -809,7 +812,8 @@
   "title": "ترجمة الفيديو تلقائيًا",
   "sub": "الكلام يتحوّل لكابشن متحرك على فيديوك",
   "pages": [
-   "ar/add-subtitles-to-video"
+   "ar/add-subtitles-to-video",
+   "ar/guides/add-captions-to-reels"
   ]
  },
  {
@@ -829,7 +833,8 @@
   "title": "صانع صورة اليوتيوب المصغّرة",
   "sub": "صورتك بدون خلفية وعنوان عربي عريض",
   "pages": [
-   "ar/youtube-thumbnail-maker"
+   "ar/youtube-thumbnail-maker",
+   "ar/guides/youtube-thumbnail-design-tips"
   ]
  }
 ]
