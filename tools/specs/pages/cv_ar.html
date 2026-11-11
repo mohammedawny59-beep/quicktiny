@@ -1,0 +1,56 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">صانع السيرة الذاتية</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">وظائف</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>صانع السيرة الذاتية مجانًا — عربي أو إنجليزي، تحميل PDF بدون تسجيل</h1>
+    <p>املأ البيانات وشاهد سيرتك الذاتية تتشكل مباشرة. اختر سيرة بالعربي أو الإنجليزي، والقالب واللون، ثم حمّلها PDF بمقاس A4 بنص حقيقي قابل للتحديد تقرؤه أنظمة التوظيف (ATS). بدون حساب ولا علامة مائية، وبياناتك تبقى في متصفحك.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="cv-tools">
+      <button type="button" class="btn" id="cvPrint">تحميل PDF</button>
+      <span id="cvTpl" role="group" aria-label="القالب"><button type="button" class="chip" data-t="classic">كلاسيكي</button><button type="button" class="chip" data-t="modern">عصري</button><button type="button" class="chip" data-t="compact">مختصر</button></span>
+      <button type="button" class="btn btn-secondary" id="cvSample">تحميل مثال</button><button type="button" class="btn btn-secondary" id="cvExport">حفظ كملف</button>
+      <label class="btn btn-secondary" for="cvImport" style="cursor:pointer">فتح ملف</label><input type="file" id="cvImport" accept="application/json,.json" class="sr-only">
+      <button type="button" class="btn btn-secondary" id="cvReset">مسح</button> <span id="cvStatus" role="status"></span>
+    </div>
+    <p class="privacy-note" style="margin:0 0 12px">في نافذة الطباعة اختر «حفظ بتنسيق PDF» ومقاس A4، وألغِ «الرؤوس والتذييلات».</p>
+    <div class="cv-grid">
+      <form class="cv-form" id="cvForm" onsubmit="return false">
+        <fieldset><legend>البيانات الشخصية</legend><div class="cv-fs"><div class="cv-f"><label for="cv_name">الاسم الكامل</label><input type="text" id="cv_name"></div><div class="cv-f"><label for="cv_title">المسمى الوظيفي</label><input type="text" id="cv_title"></div><div class="cv-f"><label for="cv_lang">لغة السيرة</label><select id="cv_lang"><option value="ar">العربية</option><option value="en">الإنجليزية</option></select></div><div class="cv-f"><label for="cv_color">لون القالب</label><input type="color" id="cv_color" style="height:42px;padding:4px"></div><div class="cv-f"><label for="cv_email">البريد الإلكتروني</label><input type="text" id="cv_email" dir="auto"></div><div class="cv-f"><label for="cv_phone">رقم الجوال</label><input type="text" id="cv_phone" dir="auto"></div><div class="cv-f"><label for="cv_city">المدينة</label><input type="text" id="cv_city"></div><div class="cv-f"><label for="cv_link">LinkedIn أو موقعك</label><input type="text" id="cv_link" dir="auto"></div></div></fieldset>
+        <fieldset><legend>نبذة مختصرة</legend><div class="cv-f cv-wide"><label for="cv_summary">نبذة مختصرة</label><textarea id="cv_summary" rows="3" placeholder="سطران أو ثلاثة عن خبرتك وأهم ما تتقنه"></textarea></div></fieldset>
+        <fieldset><legend>الخبرات العملية</legend><div id="cvExp"></div><button type="button" class="btn btn-secondary" id="cvAddExp">+ إضافة</button></fieldset>
+        <fieldset><legend>التعليم</legend><div id="cvEdu"></div><button type="button" class="btn btn-secondary" id="cvAddEdu">+ إضافة</button></fieldset>
+        <fieldset><legend>المهارات</legend><div class="cv-fs"><div class="cv-f cv-wide"><label for="cv_skills">المهارات (افصل بفاصلة)</label><textarea id="cv_skills" rows="3"></textarea></div><div class="cv-f cv-wide"><label for="cv_langs">اللغات (افصل بفاصلة)</label><textarea id="cv_langs" rows="3"></textarea></div><div class="cv-f cv-wide"><label for="cv_certs">الشهادات والدورات (سطر لكل شهادة)</label><textarea id="cv_certs" rows="3"></textarea></div></div></fieldset>
+      </form>
+      <div class="cv-sticky"><div class="cv-paper" tabindex="0" role="region" aria-label="معاينة السيرة الذاتية"><div id="cvPreview" aria-live="polite"></div></div></div>
+    </div>
+  </div>
+  <script src="/cv.js"></script>
+
+  <div class="content">
+    <h2>نصائح لسيرة ذاتية تحصل على مقابلات</h2>
+    <ul class="benefits">
+      <li><span><strong>صفحة أو صفحتان فقط.</strong> مسؤول التوظيف يقرأ بسرعة؛ ضع أقوى وأحدث خبراتك أولًا.</span></li>
+      <li><span><strong>ابدأ كل نقطة بفعل ورقم:</strong> «خفضت وقت التقارير من 3 أيام إلى ساعتين» أقوى من «مسؤول عن التقارير».</span></li>
+      <li><span><strong>طابق الإعلان الوظيفي:</strong> استخدم نفس أسماء المهارات المذكورة في الإعلان حتى تلتقطك أنظمة الفرز الآلي.</span></li>
+      <li><span><strong>الصورة والعمر والحالة الاجتماعية</strong> لا تضعها إلا إذا طلبها صاحب العمل أو كانت عادة في بلدك.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل صانع السيرة الذاتية مجاني فعلًا؟</summary><p>نعم، بدون حساب ولا علامة مائية ولا دفع لتحميل PDF.</p></details>
+    <details class="faq-item"><summary>هل ملف PDF متوافق مع أنظمة التوظيف ATS؟</summary><p>نعم، الملف نص حقيقي بتنسيق بسيط من عمود واحد تقرؤه أنظمة الفرز الآلي بسهولة.</p></details>
+    <details class="faq-item"><summary>أين تُحفظ بياناتي؟</summary><p>في متصفحك فقط. استخدم «حفظ كملف» لتحتفظ بنسخة أو تنقلها لجهاز آخر.</p></details>
+    <details class="faq-item"><summary>هل أستطيع عمل سيرة ذاتية بالإنجليزي من هذه الصفحة؟</summary><p>نعم، غيّر «لغة السيرة» إلى الإنجليزية فتصبح العناوين إنجليزية والاتجاه من اليسار لليمين.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/compress-image-to-kb">تصغير الصورة لحجم معين<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/pdf-tools">أدوات PDF<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/word-counter">عداد الكلمات<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/gpa-calculator">حساب المعدل التراكمي<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

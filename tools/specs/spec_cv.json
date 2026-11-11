@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/cv-builder", "title": "صانع السيرة الذاتية مجانًا — سيرة ذاتية عربي وإنجليزي PDF بدون تسجيل | QuickTiny",
+  "desc": "اعمل سيرة ذاتية احترافية مجانًا بالعربي أو الإنجليزي: قوالب جاهزة، معاينة مباشرة، وتحميل PDF متوافق مع أنظمة التوظيف ATS. بدون تسجيل ولا علامة مائية.",
+  "app_name": "QuickTiny صانع السيرة الذاتية", "crumb": "صانع السيرة الذاتية", "category": "BusinessApplication", "body": "pages/cv_ar.html", "style": "pages/cv_style.html",
+  "alternates": [["en", "cv-builder"], ["ar", "ar/cv-builder"], ["x-default", "cv-builder"]],
+  "switch": [["EN", "cv-builder"], ["AR", "ar/cv-builder"]],
+  "faq": [["هل صانع السيرة الذاتية مجاني؟", "نعم، بدون حساب ولا علامة مائية ولا دفع لتحميل PDF."], ["هل ملف PDF متوافق مع أنظمة التوظيف ATS؟", "نعم، الملف نص حقيقي بتنسيق بسيط من عمود واحد."]]}
+]}

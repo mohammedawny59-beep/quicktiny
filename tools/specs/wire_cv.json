@@ -1,0 +1,9 @@
+{"en_cards": [
+  {"slug": "cv-builder", "icon": "resume", "cat": "Utility", "badge": "Career &middot; New", "name": "CV Builder", "desc": "Free resume in English or Arabic with live preview and an ATS-friendly PDF.", "search": "cv builder resume maker free pdf ats template arabic english no sign up career utility"}],
+ "ar_cards": [
+  {"slug": "ar/cv-builder", "icon": "resume", "badge": "وظائف · جديد", "name": "صانع السيرة الذاتية", "desc": "سيرة ذاتية مجانية بالعربي أو الإنجليزي وتحميل PDF.", "search": "سيرة ذاتية cv صانع السيرة الذاتية نموذج سي في pdf وظيفة"}],
+ "footer": [["cv-builder", "CV Builder"]],
+ "popular_en": [["cv-builder", "Make a CV"]],
+ "popular_ar": [["ar/cv-builder", "صانع السيرة الذاتية"]],
+ "sitemap": ["cv-builder", "ar/cv-builder"],
+ "count_add": 1}

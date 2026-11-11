@@ -52,7 +52,8 @@ const ALLOWED_EVENTS = new Set([
   "ramadan_share",
   "analytics_opt_out",
   "quick_search_open",
-  "theme_toggled"
+  "theme_toggled",
+  "cv_pdf"
 ]);
 
 function cleanPage(value) {

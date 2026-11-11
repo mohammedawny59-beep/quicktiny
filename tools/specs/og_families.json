@@ -651,5 +651,25 @@
   "pages": [
    "ar/salary-calculator"
   ]
+ },
+ {
+  "key": "cv",
+  "icon": "resume",
+  "lang": "en",
+  "title": "Free CV Builder",
+  "sub": "English or Arabic · ATS-friendly PDF · no sign-up",
+  "pages": [
+   "cv-builder"
+  ]
+ },
+ {
+  "key": "cv-ar",
+  "icon": "resume",
+  "lang": "ar",
+  "title": "صانع السيرة الذاتية",
+  "sub": "عربي أو إنجليزي · PDF مجاني · بدون تسجيل",
+  "pages": [
+   "ar/cv-builder"
+  ]
  }
 ]
