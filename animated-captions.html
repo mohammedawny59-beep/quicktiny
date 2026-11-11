@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Animated Captions — Free Word-by-Word Subtitles for Reels &amp; TikTok | QuickTiny</title>
+  <meta name="description" content="Make bold word-by-word captions for Reels, TikTok and Shorts: paste your script or upload an .srt, pick pop, highlight box, karaoke or one-word style and download a green-screen MP4. Arabic and English, free, no watermark.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/animated-captions">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/animated-captions">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/animated-captions">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/animated-captions">
+  <meta property="og:title" content="Animated Captions — Free Word-by-Word Subtitles for Reels &amp; TikTok | QuickTiny">
+  <meta property="og:description" content="Make bold word-by-word captions for Reels, TikTok and Shorts: paste your script or upload an .srt, pick pop, highlight box, karaoke or one-word style and download a green-screen MP4. Arabic and English, free, no watermark.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/animated-captions">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/captions.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/captions.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    .cp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+    @media(max-width:980px){.cp{grid-template-columns:1fr}.cp-stage{order:-1;position:static}.cp-screen{max-width:min(100%,320px)}}
+    .cp-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card);margin-bottom:14px}
+    .cp-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    html[lang=ar] .cp-card h2{letter-spacing:0}
+    #capText{width:100%;min-height:150px;resize:vertical;margin:0;font:600 16px/1.6 inherit;font-family:inherit}
+    #capText:disabled{opacity:.55}
+    .cp-srt{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+    .cp-srt label.btn{cursor:pointer;padding:9px 16px;font-size:14px}
+    .cp-srt input[type=file]{position:absolute;width:1px;height:1px;opacity:0}
+    #capInfo{font-size:13px;color:var(--muted)}
+    #capStyles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    @media(max-width:520px){#capStyles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .cp-s{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;padding:12px 6px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.01));transition:transform .2s,border-color .2s,box-shadow .2s}
+    .cp-s i{font-style:normal;font-family:"QT Lalezar",Impact,sans-serif;font-size:20px;line-height:1.2;color:#fff;text-shadow:0 2px 0 #000}
+    .cp-s i em{font-style:normal;color:#ffd400}.cp-s i u{text-decoration:none;background:#ffd400;color:#111;border-radius:5px;padding:0 4px;text-shadow:none}
+    .cp-s b{font-size:13px;color:var(--text)}
+    .cp-s:hover{transform:translateY(-3px);border-color:var(--accent)}
+    .cp-s.on{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(59,226,255,.25),0 14px 30px -18px rgba(59,226,255,.6)}
+    .cp-s:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .cp-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}
+    .cp-row label,.cp-row .cp-l{font-weight:700;color:var(--text-dim);font-size:14px}
+    .cp-row input,.cp-row select{margin:0}.cp-row input[type=color]{height:42px;padding:4px;width:80px}
+    .cp-row input[type=range]{accent-color:var(--accent)}
+    .cp-checks{display:flex;gap:16px;flex-wrap:wrap}.cp-checks label{display:flex;gap:6px;align-items:center;font-weight:600;font-size:14px;color:var(--text-dim)}
+    @media(max-width:520px){.cp-row{grid-template-columns:1fr}}
+    .cp-chips{display:flex;flex-wrap:wrap;gap:6px}
+    @media(min-width:981px){.cp-stage{position:sticky;top:80px}}
+    .cp-screen{position:relative;margin:0 auto;max-width:100%;max-height:72vh;border-radius:22px;overflow:hidden;border:10px solid #15172a;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -30px rgba(91,91,255,.7);background:#000}
+    #capCanvas{display:block;width:100%;height:100%}
+    .cp-ctrl{display:flex;align-items:center;gap:10px;margin-top:12px}
+    .cp-ctrl button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);background:var(--card);color:var(--text);cursor:pointer;flex:none}
+    .cp-ctrl input{flex:1;margin:0;accent-color:var(--accent)}
+    .cp-export{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}.cp-export .btn{padding:12px 22px;font-size:15px}
+    #capStatus{text-align:center;font-weight:700;color:var(--text-dim);margin-top:10px;min-height:1.4em}
+    #capBar{height:6px;border-radius:999px;background:var(--card);overflow:hidden;margin-top:8px}
+    #capBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+    .cp-note{font-size:13px;color:var(--muted);text-align:center;margin-top:8px}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Animated Captions</span></div>
+  <div class="lang-switch">
+    <a href="/animated-captions" class="active">EN</a>
+    <a href="/ar/animated-captions" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Animated Captions — Free Word-by-Word Subtitles for Reels, TikTok &amp; Shorts</h1>
+    <p>Make the bold, word-by-word captions viral short videos use. Paste your script (or upload an .srt from CapCut or any editor), pick a style — pop, highlight box, karaoke or one word at a time — and download a green-screen MP4 to lay over your video. Arabic and English, free, no watermark, nothing uploaded.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="cp">
+      <div>
+        <div class="cp-card"><h2>Your words</h2>
+          <label for="capText" class="sr-only">Your words</label><textarea id="capText" dir="auto" maxlength="3000" placeholder="Type or paste your script. Each line becomes its own caption."></textarea>
+          <div class="cp-srt"><label class="btn btn-ghost" for="capSrt">Upload .srt</label><input type="file" id="capSrt" accept=".srt,.vtt,text/plain"><button type="button" class="chip" id="capSrtClear" hidden>Use typed text</button><span id="capInfo"></span></div>
+          <div class="cp-row" id="capWpmRow" style="margin-top:12px"><label for="capWpm">Speaking speed</label><div><input type="range" id="capWpm" min="80" max="260" step="5" style="width:100%"> <span id="capWpmV"></span> wpm</div></div>
+        </div>
+        <div class="cp-card"><h2>Style</h2><div id="capStyles"><button type="button" class="cp-s" data-s="pop" aria-pressed="false"><i aria-hidden="true">a <em>big</em> word</i><b>Pop</b></button><button type="button" class="cp-s" data-s="box" aria-pressed="false"><i aria-hidden="true">a <u>big</u> word</i><b>Highlight box</b></button><button type="button" class="cp-s" data-s="karaoke" aria-pressed="false"><i aria-hidden="true"><em>a big</em> word</i><b>Karaoke</b></button><button type="button" class="cp-s" data-s="bounce" aria-pressed="false"><i aria-hidden="true"><em>big</em></i><b>One word</b></button></div></div>
+        <div class="cp-card"><h2>Look</h2>
+          <div class="cp-row"><label for="capPer">Words on screen</label><select id="capPer"><option value="1">1 word</option><option value="2">2 words</option><option value="3">3 words</option><option value="4">4 words</option></select></div>
+          <div class="cp-row"><label for="capAccent">Highlight</label><input type="color" id="capAccent"></div>
+          <div class="cp-row"><label for="capFont">Font</label><select id="capFont"><option value="bold">Bold display</option><option value="sans">Clean sans</option></select></div>
+          <div class="cp-row"><label for="capSize">Size</label><input type="range" id="capSize" min="56" max="150" step="2"></div>
+          <div class="cp-row"><span class="cp-l"></span><div class="cp-checks"><label><input type="checkbox" id="capOutline"> Outline</label><label><input type="checkbox" id="capUpper"> UPPERCASE</label></div></div>
+          <div class="cp-row"><span class="cp-l">Position</span><div class="cp-chips" id="capPos" role="group" aria-label="Position"><button type="button" class="chip" data-p="bottom">Bottom</button><button type="button" class="chip" data-p="middle">Middle</button><button type="button" class="chip" data-p="top">Top</button></div></div>
+          <div class="cp-row"><span class="cp-l">Background</span><div class="cp-chips" id="capBg" role="group" aria-label="Background"><button type="button" class="chip" data-b="green">Green screen</button><button type="button" class="chip" data-b="blue">Blue screen</button><button type="button" class="chip" data-b="black">Black</button><button type="button" class="chip" data-b="photo">Preview</button></div></div>
+          <div class="cp-row"><span class="cp-l">Format</span><div class="cp-chips" id="capRatio" role="group" aria-label="Format"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="16:9">16:9</button><button type="button" class="chip" data-r="1:1">1:1</button></div></div>
+        </div>
+      </div>
+      <div class="cp-stage">
+        <div class="cp-screen"><canvas id="capCanvas" width="1080" height="1920" role="img" aria-label="Animated Captions"></canvas></div>
+        <div class="cp-ctrl"><button type="button" id="capPlay" aria-label="Play / pause">❚❚</button><input type="range" id="capScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="cp-export"><button type="button" class="btn" id="capExport">Download MP4</button></div>
+        <div id="capBar" hidden><i id="capBarFill"></i></div><div id="capStatus" role="status"></div><p class="cp-note">“Preview” is only for looking; the download uses a green screen.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/captions.js"></script>
+
+  <div class="content">
+    <h2>How to add the captions to your video</h2>
+    <ul class="benefits">
+      <li><span>Got a subtitle file? Export <strong>.srt</strong> from CapCut, Premiere or YouTube Studio and upload it here — every word keeps its timing.</span></li>
+      <li><span>No subtitles yet? Paste your script, set the speaking speed and nudge it until it matches your voice.</span></li>
+      <li><span>Download the MP4, add it as an <em>overlay</em> above your video and apply <em>Chroma key</em> to remove the green. Line the start up with your first word.</span></li>
+      <li><span>Use 2–3 words on screen for fast Reels and 4 for slower talking videos.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does it transcribe my audio automatically?</summary><p>Not yet — it animates captions from your text or an .srt file. Most editors (CapCut, YouTube Studio) can auto-generate an .srt you can upload here.</p></details>
+    <details class="faq-item"><summary>Is it free with no watermark?</summary><p>Yes, unlimited free downloads with no watermark.</p></details>
+    <details class="faq-item"><summary>Does it support Arabic?</summary><p>Yes. Arabic words run right-to-left with proper letter joining, and the karaoke highlight moves from right to left.</p></details>
+    <details class="faq-item"><summary>Is my script uploaded anywhere?</summary><p>No. Everything — including the video encoding — happens on your device.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/motion-titles">Motion Titles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/glass-slides">Glass Slides<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/paper-animation">Paper Motion Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-background-from-image">Remove Background<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/image-to-text">Image to Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/animated-captions">Animated Captions</a>
+        <a href="/glass-slides">Glass Slides</a>
+        <a href="/motion-titles">Motion Titles</a>
+        <a href="/paper-animation">Paper Motion Studio</a>
+        <a href="/image-to-text">Image to Text</a>
+        <a href="/cv-builder">CV Builder</a>
+        <a href="/saudi-salary-calculator">Saudi Salary Calculator</a>
+        <a href="/unit-converter">Unit Converter</a>
+        <a href="/ramadan-countdown">Ramadan Countdown</a>
+        <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator</a>
+        <a href="/gpa-calculator">GPA Calculator</a>
+        <a href="/weighted-grade-calculator">Weighted Grade Calculator</a>
+        <a href="/prayer-times">Prayer Times</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Animated Captions","url":"https://quicktinyv2.vercel.app/animated-captions","description":"Make bold word-by-word captions for Reels, TikTok and Shorts: paste your script or upload an .srt, pick pop, highlight box, karaoke or one-word style and download a green-screen MP4. Arabic and English, free, no watermark.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Animated Captions","item":"https://quicktinyv2.vercel.app/animated-captions"}]}</script>
+</body>
+</html>

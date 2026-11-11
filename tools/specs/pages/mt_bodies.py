@@ -10,7 +10,7 @@ FACES = "".join('    @font-face{font-family:"QT %s";font-weight:%s;font-display:
                     ("latin", "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD")))
 STYLE = """  <style>
 """ + FACES + """    .mt{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:22px;align-items:start}
-    @media(max-width:980px){.mt{grid-template-columns:1fr}.mt-stage{order:-1}}
+    @media(max-width:980px){.mt{grid-template-columns:1fr}.mt-stage{order:-1;position:static}}
     .mt-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card);margin-bottom:14px}
     .mt-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
     html[lang=ar] .mt-card h2{letter-spacing:0}
@@ -26,7 +26,7 @@ STYLE = """  <style>
     .mt-row input,.mt-row select{margin:0}.mt-row input[type=color]{height:42px;padding:4px;width:80px}
     @media(max-width:520px){.mt-row{grid-template-columns:1fr}}
     .mt-chips{display:flex;flex-wrap:wrap;gap:6px}
-    .mt-stage{position:sticky;top:80px}
+    @media(min-width:981px){.mt-stage{position:sticky;top:80px}}
     .mt-screen{position:relative;margin:0 auto;max-width:100%;max-height:72vh;border-radius:16px;overflow:hidden;border:10px solid #15172a;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -30px rgba(91,91,255,.7);background:#000}
     #mtCanvas{display:block;width:100%;height:100%}
     .mt-ctrl{display:flex;align-items:center;gap:10px;margin-top:12px}

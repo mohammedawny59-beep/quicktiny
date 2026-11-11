@@ -751,5 +751,25 @@
   "pages": [
    "ar/glass-slides"
   ]
+ },
+ {
+  "key": "captions",
+  "icon": "paper",
+  "lang": "en",
+  "title": "Animated Captions",
+  "sub": "Word-by-word captions for Reels · TikTok · Shorts",
+  "pages": [
+   "animated-captions"
+  ]
+ },
+ {
+  "key": "captions-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "الترجمة المتحركة",
+  "sub": "كابشن كلمة بكلمة للريلز والتيك توك",
+  "pages": [
+   "ar/animated-captions"
+  ]
  }
 ]

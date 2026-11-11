@@ -5,7 +5,7 @@ GO = '<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
 LOCK = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>'
 STYLE = """  <style>
     .gs{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,440px);gap:22px;align-items:start}
-    @media(max-width:940px){.gs{grid-template-columns:1fr}.gs-stage{order:-1}}
+    @media(max-width:940px){.gs{grid-template-columns:1fr}.gs-stage{order:-1;position:static}}
     .gs-card{position:relative;border-radius:24px;padding:18px;margin-bottom:14px;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 20px 50px -30px rgba(0,0,0,.7);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
     html[data-theme=light] .gs-card{background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(255,255,255,.6));border-color:rgba(20,24,70,.1)}
     .gs-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -28,7 +28,7 @@ STYLE = """  <style>
     .gs-row select,.gs-row input{margin:0}
     @media(max-width:520px){.gs-row{grid-template-columns:1fr}}
     .gs-chips{display:flex;gap:6px;flex-wrap:wrap}
-    .gs-stage{position:sticky;top:80px}
+    @media(min-width:981px){.gs-stage{position:sticky;top:80px}}
     .gs-frame{position:relative;margin:0 auto;width:min(100%,400px);padding:10px;border-radius:40px;background:linear-gradient(160deg,rgba(255,255,255,.22),rgba(255,255,255,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 40px 90px -30px rgba(107,91,255,.75);backdrop-filter:blur(10px)}
     .gs-screen{position:relative;border-radius:32px;overflow:hidden;background:#000;aspect-ratio:9/16}
     #gsCanvas{display:block;width:100%;height:100%}

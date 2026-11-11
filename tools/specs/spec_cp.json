@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/animated-captions", "title": "الترجمة المتحركة — كابشن كلمة بكلمة للريلز والتيك توك مجانًا | QuickTiny",
+  "desc": "اعمل كابشن متحرك كلمة بكلمة لفيديوهات الريلز والتيك توك والشورتس: الصق نصك أو ارفع ملف SRT، اختر الستايل ونزّل MP4 بشاشة خضراء. بالعربي، مجانًا وبدون علامة مائية.",
+  "app_name": "QuickTiny الترجمة المتحركة", "crumb": "الترجمة المتحركة", "category": "MultimediaApplication", "body": "pages/cp_ar.html", "style": "pages/cp_style.html",
+  "alternates": [["en", "animated-captions"], ["ar", "ar/animated-captions"], ["x-default", "animated-captions"]],
+  "switch": [["EN", "animated-captions"], ["AR", "ar/animated-captions"]],
+  "faq": [["هل تحوّل الصوت لنص تلقائيًا؟", "ليس بعد — ارفع ملف SRT من كاب كت أو يوتيوب ستوديو أو الصق نص كلامك."], ["كيف أضعها فوق الفيديو؟", "في كاب كت أضفها كتراكب ثم استخدم مفتاح اللون (Chroma key) لإزالة الأخضر."]]}
+]}
