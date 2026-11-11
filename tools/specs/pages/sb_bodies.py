@@ -114,7 +114,7 @@ def body(L, ar):
           t["outline"], t["upper"], t["pos"], t["pos"], "".join('<button type="button" class="chip" data-p="%s">%s</button>' % x for x in t["posO"]))
     s += ('      <div class="sb-stage" id="sbStage" hidden>\n        <div class="sb-screen" id="sbScreen"><video id="sbVideo" playsinline controls preload="metadata"></video><canvas id="sbOverlay" width="1280" height="720" aria-hidden="true"></canvas></div>\n'
           '        <div class="sb-out" id="sbOut" hidden><button type="button" class="btn" id="sbExport">%s</button><button type="button" class="btn btn-secondary" id="sbSrt">%s</button></div>\n      </div>\n    </div>\n  </div>\n'
-          '  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/captions.js"></script>\n  <script src="/subtitles.js"></script>\n\n') % (t["export"], t["srt"])
+          '  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/brand.js"></script>\n  <script src="/captions.js"></script>\n  <script src="/subtitles.js"></script>\n\n') % (t["export"], t["srt"])
     s += ('  <div class="content">\n    <h2>%s</h2>\n    <ol class="benefits">\n%s    </ol>\n    <h2>%s</h2>\n%s  </div>\n\n'
           % (t["howT"], "".join("      <li><span>%s</span></li>\n" % h for h in t["how"]), t["faqT"],
              "".join('    <details class="faq-item"><summary>%s</summary><p>%s</p></details>\n' % (q, a) for q, a in t["faq"])))

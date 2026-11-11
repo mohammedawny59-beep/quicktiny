@@ -461,6 +461,7 @@ function qtPmRender(x, W, H, t, s) {
   var cv = $("pmCanvas"), ctx = cv.getContext("2d");
   var state = { style: "newspaper", text: AR ? "كويك تايني" : "QuickTiny", sub: "", accent: "#ffd400", bg: "kraft", bgColor: "#6b6bff", ratio: "9:16", duration: 5, image: null, cutout: null };
   try { var sv = JSON.parse(localStorage.getItem("qtPaperMotion") || "null"); if (sv) ["style", "text", "sub", "accent", "bg", "bgColor", "ratio", "duration"].forEach(function (k) { if (sv[k] != null) state[k] = sv[k]; }); } catch (e) {}
+  if (window.qtBrand) qtBrand.apply(state, { accent: "accent" });
   function persist() { try { var o = {}; ["style", "text", "sub", "accent", "bg", "bgColor", "ratio", "duration"].forEach(function (k) { o[k] = state[k]; }); localStorage.setItem("qtPaperMotion", JSON.stringify(o)); } catch (e) {} }
   function size() { var s = SIZES[state.ratio] || SIZES["9:16"]; cv.width = s[0]; cv.height = s[1]; cv.parentNode.style.aspectRatio = s[0] + " / " + s[1]; }
   function syncUI() {

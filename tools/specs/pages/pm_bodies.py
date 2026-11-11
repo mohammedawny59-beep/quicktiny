@@ -117,7 +117,7 @@ def body(L, ar):
           '        <div class="pm-export"><button type="button" class="btn" id="pmExport">%s</button><button type="button" class="btn btn-secondary" id="pmPng">%s</button></div>\n'
           '        <div id="pmBar" hidden><i id="pmBarFill"></i></div><div id="pmStatus" role="status"></div>\n'
           '        <div class="pm-badges">%s</div>\n      </div>\n    </div>\n  </div>\n'
-          '  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/paper-studio.js"></script>\n\n') % (t["crumb"], t["export"], t["png"], "".join("<span>%s</span>" % b for b in t["badges"]))
+          '  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/brand.js"></script>\n  <script src="/paper-studio.js"></script>\n\n') % (t["crumb"], t["export"], t["png"], "".join("<span>%s</span>" % b for b in t["badges"]))
     s += ('  <div class="content">\n    <h2>%s</h2>\n    <ul class="benefits">\n%s    </ul>\n    <h2>%s</h2>\n%s  </div>\n\n'
           % (t["howT"], "".join("      <li><span>%s</span></li>\n" % h for h in t["how"]), t["faqT"],
              "".join('    <details class="faq-item"><summary>%s</summary><p>%s</p></details>\n' % (q, a) for q, a in t["faq"])))

@@ -78,6 +78,19 @@ html[dir=rtl] .ch-card .go-ico{transform:scaleX(-1)}
 .ch-feats{margin:0 4px 10px;padding:0 0 0 18px;font-size:13px;color:var(--text-dim);line-height:1.6}
 html[dir=rtl] .ch-feats{padding:0 18px 0 0}
 .ch-all{text-align:center;margin:18px 0 0}
+.bk-card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:26px;align-items:center;padding:24px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(91,91,255,.12),rgba(255,255,255,.02))}
+@media(max-width:820px){.bk-card{grid-template-columns:1fr}}
+.bk-form{display:grid;gap:12px;margin-top:14px}.bk-form label{display:grid;gap:6px;font-weight:700;font-size:14px;color:var(--text-dim)}.bk-form input,.bk-form select{margin:0}
+.bk-form input[type=color]{height:44px;padding:4px;width:100%}
+.bk-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.bk-btns{display:flex;gap:8px;flex-wrap:wrap}
+#bkStatus{min-height:1.3em;margin:0;font-weight:700;color:var(--text-dim)}
+.bk-preview{--bk:#ffd400;position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#41507a,#151a2c);box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.bk-lower{position:absolute;inset-inline-start:7%;bottom:14%;display:flex;flex-direction:column;align-items:flex-start}
+.bk-lower b{background:#fff;color:#111;padding:6px 14px;font-size:clamp(14px,2.2vw,20px);border-inline-start:6px solid var(--bk)}
+.bk-lower span{background:var(--bk);color:#111;padding:3px 14px;font-size:clamp(11px,1.5vw,14px);font-weight:700}
+.bk-cap{position:absolute;inset-inline:0;top:22%;text-align:center;font:400 clamp(22px,4vw,36px)/1.1 "QT Lalezar","Arial Black",sans-serif;color:#fff;text-shadow:0 3px 0 #000,0 0 6px #000}
+.bk-preview.sans .bk-cap{font:800 clamp(20px,3.6vw,32px)/1.1 Sora,"QT Arabic",sans-serif}
+.bk-cap em{font-style:normal;color:var(--bk)}
 .ch-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
 @media(max-width:700px){.ch-more{grid-template-columns:1fr}}
 .ch-wide{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:linear-gradient(135deg,rgba(91,91,255,.16),rgba(59,226,255,.06));border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
@@ -141,12 +154,28 @@ P = {
         ("أي مقاس أختار؟", "9:16 للريلز والتيك توك والشورتس، 16:9 لليوتيوب، و1:1 لمنشورات الصفحة.")],
    rel="أدوات مجانية أخرى", links=[("/remove-background-from-image", "إزالة خلفية الصورة"), ("/ar/social-image-resizer", "مقاسات السوشال ميديا"), ("/ar/image-to-text", "استخراج النص من الصور"), ("/ar/qr-code-generator", "مولد باركود QR"), ("/ar", "كل الأدوات العربية")]),
 }
+BK = {
+ "en": dict(kick="Brand kit", h="Your look, in every studio", sub="Save your colour, caption font and channel name once. Captions, auto subtitles, motion titles, paper animation and the thumbnail maker pick them up automatically. Stored only in this browser.",
+            name="Channel name", tag="Tagline", accent="Brand colour", font="Caption font", bold="Bold display", sans="Clean sans", save="Save brand kit", clear="Clear", cap1="Your", cap2="captions"),
+ "ar": dict(kick="هوية القناة", h="شكلك المميّز في كل استوديو", sub="احفظ لونك وخط الكابشن واسم قناتك مرة واحدة، والترجمة المتحركة وترجمة الفيديو التلقائية والعناوين المتحركة وأنيميشن الورق وصانع الصورة المصغّرة تستخدمها تلقائيًا. تُحفظ في متصفحك فقط.",
+            name="اسم القناة", tag="الوصف", accent="لون الهوية", font="خط الكابشن", bold="عريض", sans="بسيط", save="احفظ الهوية", clear="حذف", cap1="كابشن", cap2="بهويتك"),
+}
 def body(lang):
     t = P[lang]; ar = lang == "ar"
     s = ('<div class="wrap">\n  <div class="breadcrumb"><a href="%s">%s</a> <span>/</span><span style="color:var(--text-dim)">%s</span></div>\n'
          '%s  <section class="hero compact">\n    <div class="hero-badges"><span class="badge">%s</span><span class="badge local">%s%s</span><span class="badge">%s</span></div>\n'
          '    <h1>%s</h1>\n    <p>%s</p>\n  </section>\n\n') % (t["home"], t["homeL"], t["crumb"], "<!--LANG-SWITCH-->\n" if ar else "", t["b"][0], LOCK, t["b"][1], t["b"][2], t["h1"], t["intro"])
     s += '  <section class="section ch">\n    <div class="ch-grid">\n%s    </div>\n%s  </section>\n\n' % ("".join(card(lang, k, h, n, d, f) for k, h, n, d, f in STUDIOS[lang]), more(lang))
+    b = BK[lang]
+    s += ('  <section class="section bk" id="brand-kit" aria-labelledby="bkTitle">\n    <div class="bk-card">\n      <div>\n        <span class="ch-kick">%s</span><h2 class="section-title" id="bkTitle">%s</h2><p class="section-sub">%s</p>\n'
+          '        <form id="bkForm" class="bk-form">\n'
+          '          <label>%s<input type="text" id="bkName" maxlength="40" dir="auto" autocomplete="off"></label>\n'
+          '          <label>%s<input type="text" id="bkTag" maxlength="50" dir="auto" autocomplete="off"></label>\n'
+          '          <div class="bk-two"><label>%s<input type="color" id="bkAccent"></label><label>%s<select id="bkFont"><option value="bold">%s</option><option value="sans">%s</option></select></label></div>\n'
+          '          <div class="bk-btns"><button type="submit" class="btn">%s</button><button type="button" class="btn btn-secondary" id="bkClear" hidden>%s</button></div>\n'
+          '          <p id="bkStatus" role="status"></p>\n        </form>\n      </div>\n'
+          '      <div class="bk-preview" id="bkPreview" aria-hidden="true"><div class="bk-lower"><b></b><span></span></div><div class="bk-cap">%s <em>%s</em></div></div>\n'
+          '    </div>\n  </section>\n  <script src="/brand.js"></script>\n\n') % (b["kick"], b["h"], b["sub"], b["name"], b["tag"], b["accent"], b["font"], b["bold"], b["sans"], b["save"], b["clear"], b["cap1"], b["cap2"])
     s += ('  <div class="content">\n    <h2>%s</h2>\n    <ol class="benefits">\n%s    </ol>\n    <h2>%s</h2>\n%s  </div>\n\n'
           % (t["flowT"], "".join("      <li><span>%s</span></li>\n" % h for h in t["flow"]), t["faqT"],
              "".join('    <details class="faq-item"><summary>%s</summary><p>%s</p></details>\n' % (q, a) for q, a in t["faq"])))

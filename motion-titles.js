@@ -172,6 +172,7 @@ function qtMtRender(x, W, H, t, s, preview) {
   var T = AR ? { done: "✓ تم تنزيل الفيديو", wait: "جارٍ تجهيز الفيديو…", webm: "سننزّل WebM لأن متصفحك لا يدعم MP4 هنا.", fail: "تعذّر إنشاء الفيديو: " } : { done: "✓ Video downloaded", wait: "Rendering video…", webm: "Downloading WebM (this browser can't encode MP4 here).", fail: "Couldn't create the video: " };
   var SIZES = { "16:9": [1920, 1080], "9:16": [1080, 1920], "1:1": [1080, 1080] };
   var st = { tpl: "lower", a: DEF.lower[0], b: DEF.lower[1], accent: "#ff2d55", bg: "green", ratio: "16:9", pos: "start", count: 1200, duration: 5 };
+  if (window.qtBrand) { qtBrand.apply(st, { accent: "accent" }); var qtBk = qtBrand.get(); if (qtBk && qtBk.name) { DEF.lower = [qtBk.name, qtBk.tagline || DEF.lower[1]]; if (st.tpl === "lower") { st.a = DEF.lower[0]; st.b = DEF.lower[1]; } } }
   var cv = $("mtCanvas"), ctx = cv.getContext("2d"), t0 = performance.now(), playing = true, exporting = false;
   function size() { var z = SIZES[st.ratio]; cv.width = z[0]; cv.height = z[1]; cv.parentNode.style.aspectRatio = z[0] + " / " + z[1]; }
   function sync() {
