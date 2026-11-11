@@ -52,6 +52,7 @@
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -68,7 +69,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة ضريبة القيمة المضافة</span></div>
   <section class="hero compact">
     <div class="hero-badges">
@@ -91,7 +92,7 @@
     </div>
     <div class="cl-sec">
       <h2>البنود</h2>
-      <table class="vt-table"><thead><tr><th>الوصف</th><th>الكمية</th><th>السعر</th><th>المجموع</th><th></th></tr></thead><tbody id="vtRows"></tbody></table>
+      <table class="vt-table"><thead><tr><th>الوصف</th><th>الكمية</th><th>السعر</th><th>المجموع</th><th><span class="sr-only">حذف</span></th></tr></thead><tbody id="vtRows"></tbody></table>
       <button class="btn btn-secondary" type="button" id="vtAdd" style="margin-top:8px">+ إضافة بند</button>
     </div>
     <div class="cl-out" aria-live="polite">
@@ -114,7 +115,7 @@
 
     <h2>ضع هذه الحاسبة في موقعك مجانًا</h2>
     <p>انسخ الكود والصقه في أي صفحة (ووردبريس، بلوجر، موقعك). مجاني بدون تسجيل.</p>
-    <div id="qtEmbedBox"><textarea readonly rows="4" style="width:100%;font:12.5px/1.5 var(--mono);direction:ltr" onclick="this.select()">&lt;iframe src="https://quicktinyv2.vercel.app/embed/vat-calculator" title="حاسبة ضريبة القيمة المضافة" width="100%" height="430" style="border:0;max-width:640px" loading="lazy"&gt;&lt;/iframe&gt;
+    <div id="qtEmbedBox"><textarea readonly rows="4" aria-label="كود التضمين" style="width:100%;font:12.5px/1.5 var(--mono);direction:ltr" onclick="this.select()">&lt;iframe src="https://quicktinyv2.vercel.app/embed/vat-calculator" title="حاسبة ضريبة القيمة المضافة" width="100%" height="430" style="border:0;max-width:640px" loading="lazy"&gt;&lt;/iframe&gt;
 &lt;p style="font-size:13px"&gt;&lt;a href="https://quicktinyv2.vercel.app/ar/vat-calculator"&gt;حاسبة ضريبة القيمة المضافة&lt;/a&gt; — أداة مجانية من QuickTiny&lt;/p&gt;</textarea><div class="btn-row" style="margin-top:8px"><button class="btn btn-secondary" type="button" onclick="qtCopy(this.parentNode.previousElementSibling.value, null); this.textContent='تم النسخ ✓'">نسخ الكود</button></div></div>
     <h2>معادلة حساب الضريبة</h2>
     <ul class="benefits">

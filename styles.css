@@ -639,12 +639,12 @@ html[data-theme="light"]{
   --bg:#f5f6fc;--bg-soft:#eceefa;
   --card:rgba(20,24,70,.04);--card-solid:#ffffff;--card-hover:#f7f8ff;
   --line:rgba(20,24,70,.11);--line-strong:rgba(20,24,70,.2);
-  --text:#14163a;--text-dim:#40456e;--muted:#6a6f96;
+  --text:#14163a;--text-dim:#40456e;--muted:#5d6289;
   --accent:#4f4fe6;--accent-hover:#3d3dd0;--accent-dim:rgba(79,79,230,.1);--accent-2:#0fa878;
   --cyan:#0a9fc4;
   --grad:linear-gradient(135deg,#6262f5 0%,#4a7bf2 45%,#16b4d9 100%);
   --grad-text:linear-gradient(90deg,#4f4fe6,#0a9fc4 45%,#12a88a 70%,#4f4fe6);
-  --success:#0f9d63;--danger:#d6334b;
+  --success:#0b8a56;--danger:#bf2a42;
   --qk-bg:#ffffff;
 }
 html[data-theme="light"] body{background:var(--bg)}
@@ -809,3 +809,8 @@ html[data-theme="light"] .badge.local{color:#0b7d4f}
 .qt-fb-actions .btn{padding:8px 18px;font-size:14px}
 .qt-fb-msg.ok{color:var(--success);font-weight:700}.qt-fb-msg.bad{color:var(--danger);font-weight:700}
 @media (prefers-reduced-motion:reduce){.qt-fb-form,.qt-fb-v.pop{animation:none}}
+
+/* ---------- Skip link + focus for the main landmark ---------- */
+.skip-link{position:absolute;inset-inline-start:12px;top:-60px;z-index:1003;padding:10px 16px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;text-decoration:none;transition:top .15s}
+.skip-link:focus{top:12px}
+#main:focus{outline:none}

@@ -80,6 +80,7 @@
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -96,7 +97,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حساب النسبة الموزونة</span></div>
   <div class="lang-switch">
     <a href="/weighted-grade-calculator">EN</a>
@@ -135,7 +136,7 @@
         <div class="st-actions"><button type="button" class="btn btn-secondary" id="wtAdd">+ أضف بندًا</button><button type="button" class="btn btn-secondary" id="wtReset">ابدأ من جديد</button></div>
         <div class="st-note" id="wtSum"></div>
         <h2 style="margin-top:18px">كم أحتاج في الاختبار النهائي؟</h2>
-        <div class="st-line"><span>درجتي الحالية %</span><input type="text" inputmode="decimal" id="fnCur" value="78"><span>·</span><span>وزن النهائي %</span><input type="text" inputmode="decimal" id="fnW" value="40"><span>·</span><span>أريد في المجموع %</span><input type="text" inputmode="decimal" id="fnTarget" value="80"></div>
+        <div class="st-line"><span>درجتي الحالية %</span><input type="text" inputmode="decimal" id="fnCur" aria-label="درجتي الحالية %" value="78"><span>·</span><span>وزن النهائي %</span><input type="text" inputmode="decimal" id="fnW" aria-label="وزن النهائي %" value="40"><span>·</span><span>أريد في المجموع %</span><input type="text" inputmode="decimal" id="fnTarget" aria-label="أريد في المجموع %" value="80"></div>
         <div class="st-note" id="fnOut" aria-live="polite"></div>
       </div>
       <div class="st-card st-res" aria-live="polite">

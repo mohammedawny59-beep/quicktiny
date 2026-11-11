@@ -34,6 +34,11 @@ function qtPctFmt(v, d) {
     if (!$("pc1p")) return;
     document.querySelectorAll("#tool input, #tool select").forEach(function (el) { el.addEventListener(el.tagName === "SELECT" ? "change" : "input", run); });
     document.querySelectorAll("[data-copy]").forEach(function (b) { b.addEventListener("click", function () { qtCopy($(b.getAttribute("data-copy")).textContent, $("pcStatus"), L("copied", "Copied")); qtTrack("percent_copy"); }); });
+    // Accessible names for the inline inputs: "<card title> — 1", "— 2"… (the sentence around them is plain text).
+    document.querySelectorAll(".pc-card").forEach(function (card) {
+      var t = (card.querySelector("h2") || {}).textContent || "";
+      card.querySelectorAll("input, select").forEach(function (el, i) { if (!el.getAttribute("aria-label")) el.setAttribute("aria-label", t + " — " + (i + 1)); });
+    });
     var P = window.QT_PRESET || {};
     if (P.focus && $(P.focus)) { $(P.focus).closest(".pc-card").classList.add("pc-focus"); setTimeout(function () { $(P.focus).focus({ preventScroll: true }); }, 50); }
     run();

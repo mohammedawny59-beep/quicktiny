@@ -79,6 +79,7 @@
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -95,7 +96,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Weighted Grade Calculator</span></div>
   <div class="lang-switch">
     <a href="/weighted-grade-calculator" class="active">EN</a>
@@ -116,7 +117,7 @@
         <div class="st-actions"><button type="button" class="btn btn-secondary" id="wtAdd">+ Add item</button><button type="button" class="btn btn-secondary" id="wtReset">Start over</button></div>
         <div class="st-note" id="wtSum"></div>
         <h2 style="margin-top:18px">What do I need on the final?</h2>
-        <div class="st-line"><span>My grade so far</span><input type="text" inputmode="decimal" id="fnCur" value="78"><span>·</span><span>the final is worth</span><input type="text" inputmode="decimal" id="fnW" value="40"><span>·</span><span>I want</span><input type="text" inputmode="decimal" id="fnTarget" value="80"></div>
+        <div class="st-line"><span>My grade so far</span><input type="text" inputmode="decimal" id="fnCur" aria-label="My grade so far" value="78"><span>·</span><span>the final is worth</span><input type="text" inputmode="decimal" id="fnW" aria-label="Final exam weight %" value="40"><span>·</span><span>I want</span><input type="text" inputmode="decimal" id="fnTarget" aria-label="Target grade %" value="80"></div>
         <div class="st-note" id="fnOut" aria-live="polite"></div>
       </div>
       <div class="st-card st-res" aria-live="polite">

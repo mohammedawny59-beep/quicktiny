@@ -61,6 +61,8 @@ for page in spec["pages"]:
         ld += '<script type="application/ld+json">%s</script>\n' % json.dumps({
             "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
               {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in page["faq"]]}, ensure_ascii=False)
+    body = body.replace('<div class="wrap">', '<div class="wrap" id="main" role="main" tabindex="-1">', 1)
+    nav = nav.replace("<body>", '<body>\n<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>', 1)
     out = h + "</head>\n" + nav + body + footer + ld + "</body>\n</html>\n"
     if os.path.dirname(slug): os.makedirs(os.path.dirname(slug), exist_ok=True)
     io.open(slug + ".html", "w", encoding="utf-8", newline="").write(out)

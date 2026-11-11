@@ -86,11 +86,11 @@ for slug, e in EMBEDS.items():
         snippet = ('<iframe src="%s/embed/%s" title="%s" width="100%%" height="%d" style="border:0;max-width:640px" loading="lazy"></iframe>\n'
                    '<p style="font-size:13px"><a href="%s%s">%s</a> %s</p>') % (B, slug, e["label"], e["height"], B, e["tool"], e["label"], "— أداة مجانية من QuickTiny" if ar else "— free tool by QuickTiny")
         esc = snippet.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-        box = ('\n    <h2>%s</h2>\n    <p>%s</p>\n    <div id="qtEmbedBox"><textarea readonly rows="4" style="width:100%%;font:12.5px/1.5 var(--mono);direction:ltr" onclick="this.select()">%s</textarea>'
+        box = ('\n    <h2>%s</h2>\n    <p>%s</p>\n    <div id="qtEmbedBox"><textarea readonly rows="4" aria-label="%s" style="width:100%%;font:12.5px/1.5 var(--mono);direction:ltr" onclick="this.select()">%s</textarea>'
                '<div class="btn-row" style="margin-top:8px"><button class="btn btn-secondary" type="button" onclick="qtCopy(this.parentNode.previousElementSibling.value, null); this.textContent=\'%s\'">%s</button></div></div>\n') % (
             "ضع هذه الحاسبة في موقعك مجانًا" if ar else "Embed this calculator on your site",
             "انسخ الكود والصقه في أي صفحة (ووردبريس، بلوجر، موقعك). مجاني بدون تسجيل." if ar else "Copy the code into any page (WordPress, Blogger, your own site). Free, no sign-up.",
-            esc, "تم النسخ ✓" if ar else "Copied ✓", "نسخ الكود" if ar else "Copy code")
+            "كود التضمين" if ar else "Embed code", esc, "تم النسخ ✓" if ar else "Copied ✓", "نسخ الكود" if ar else "Copy code")
         s = s.replace('  <div class="content">\n', '  <div class="content">\n' + box, 1)
         io.open(page, "w", encoding="utf-8", newline="").write(s)
     print("embed", slug)

@@ -32,7 +32,7 @@
     .hj-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     @media (max-width:760px){.hj-grid{grid-template-columns:1fr}}
     .hj-box{border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.03)}
-    .hj-box h3{margin:0 0 10px;font-size:16px}
+    .hj-box h2,.hj-box h3{margin:0 0 10px;font-size:16px}
     .hj-res{margin-top:6px;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(107,107,255,.16),rgba(59,226,255,.06));border:1px solid rgba(123,123,255,.3);min-height:58px}
     .hj-res b{display:block;font-size:21px}.hj-res span{font-size:13px;color:var(--text-dim)}
     .hj-h{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:8px}
@@ -51,6 +51,7 @@
   <script>window.QT_PRESET = {"focus": "age"};</script>
 </head>
 <body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -67,7 +68,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حساب العمر</span></div>
   <section class="hero compact">
     <div class="hero-badges"><span class="badge">تاريخ</span><span class="badge local">يعمل داخل متصفحك</span><span class="badge">مجاني</span><span class="badge">جديد</span></div>
@@ -79,10 +80,10 @@
   <div class="tool-panel" id="tool">
     <div id="hjToday"></div>
     <div class="hj-grid">
-      <div class="hj-box"><h3>من ميلادي إلى هجري</h3>
+      <div class="hj-box"><h2>من ميلادي إلى هجري</h2>
         <label class="field-label" for="hjG">التاريخ الميلادي</label><input type="date" id="hjG" style="direction:ltr">
         <div class="hj-res" id="hjGOut" aria-live="polite"></div></div>
-      <div class="hj-box"><h3>من هجري إلى ميلادي</h3>
+      <div class="hj-box"><h2>من هجري إلى ميلادي</h2>
         <div class="hj-h">
           <div><label class="field-label" for="hjHd">اليوم</label><input type="number" id="hjHd" min="1" max="30"></div>
           <div><label class="field-label" for="hjHm">الشهر</label><select id="hjHm"></select></div>
@@ -90,7 +91,7 @@
         </div>
         <div class="hj-res" id="hjHOut" aria-live="polite"></div></div>
     </div>
-    <div class="hj-box" style="margin-top:18px"><h3>حاسبة العمر</h3>
+    <div class="hj-box" style="margin-top:18px"><h2>حاسبة العمر</h2>
       <label class="field-label" for="hjBirth">تاريخ ميلادك (ميلادي)</label><input type="date" id="hjBirth" style="direction:ltr">
       <div id="hjAgeOut" aria-live="polite"></div></div>
     <label class="field-label" for="hjCal" style="margin-top:16px">التقويم الهجري</label>

@@ -44,7 +44,7 @@
     @media (max-width:600px){.mp-social{grid-template-columns:1fr}}
     .s-card{background:#fff;color:#1c1e21;border-radius:10px;overflow:hidden;border:1px solid #dddfe2;font-family:Helvetica,Arial,sans-serif}
     .s-img{aspect-ratio:1.91/1;background:#e4e6eb center/cover no-repeat}
-    .s-img.empty{display:grid;place-items:center;color:#8a8d91;font-size:13px}
+    .s-img.empty{display:grid;place-items:center;color:#5f6368;font-size:13px}
     .s-body{padding:10px 12px}.s-body.fb{background:#f0f2f5}
     .s-host{font-size:12px;color:#65676b;text-transform:none}
     .s-title{font-size:16px;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:2px 0}
@@ -65,6 +65,7 @@
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -81,7 +82,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">SERP &amp; Social Preview</span></div>
   <section class="hero compact">
     <div class="hero-badges">
@@ -122,7 +123,7 @@
         <ul id="mpTips"></ul>
       </div>
       <div>
-        <div class="mp-label">Google — desktop</div><div class="mp-card" id="mpGoogle"></div>
+        <div class="mp-label">Google — desktop</div><div class="mp-card" id="mpGoogle" tabindex="0"></div>
         <div class="mp-label">Google — mobile</div><div class="mp-card" id="mpGoogleM" style="max-width:400px"></div>
         <div class="mp-social">
           <div><div class="mp-label">Facebook</div><div class="s-card" id="mpFacebook"></div></div>
@@ -133,7 +134,7 @@
       </div>
     </div>
     <div class="mp-label" style="margin-top:22px">Your meta tags — paste inside &lt;head&gt;</div>
-    <code id="mpCode"></code>
+    <code id="mpCode" tabindex="0"></code>
     <div class="btn-row" style="margin-top:10px"><button class="btn" type="button" id="mpCopy">Copy tags</button></div>
     <div id="mpCopyStatus" class="result"></div>
   </div>

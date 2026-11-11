@@ -41,6 +41,7 @@
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -57,7 +58,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Percentage Calculator</span></div>
   <div class="lang-switch">
     <a href="/percentage-calculator" class="active">EN</a>
@@ -84,7 +85,7 @@
 
     <h2>Embed this calculator on your site</h2>
     <p>Copy the code into any page (WordPress, Blogger, your own site). Free, no sign-up.</p>
-    <div id="qtEmbedBox"><textarea readonly rows="4" style="width:100%;font:12.5px/1.5 var(--mono);direction:ltr" onclick="this.select()">&lt;iframe src="https://quicktinyv2.vercel.app/embed/percentage-calculator" title="Percentage Calculator" width="100%" height="690" style="border:0;max-width:640px" loading="lazy"&gt;&lt;/iframe&gt;
+    <div id="qtEmbedBox"><textarea readonly rows="4" aria-label="Embed code" style="width:100%;font:12.5px/1.5 var(--mono);direction:ltr" onclick="this.select()">&lt;iframe src="https://quicktinyv2.vercel.app/embed/percentage-calculator" title="Percentage Calculator" width="100%" height="690" style="border:0;max-width:640px" loading="lazy"&gt;&lt;/iframe&gt;
 &lt;p style="font-size:13px"&gt;&lt;a href="https://quicktinyv2.vercel.app/percentage-calculator"&gt;Percentage Calculator&lt;/a&gt; — free tool by QuickTiny&lt;/p&gt;</textarea><div class="btn-row" style="margin-top:8px"><button class="btn btn-secondary" type="button" onclick="qtCopy(this.parentNode.previousElementSibling.value, null); this.textContent='Copied ✓'">Copy code</button></div></div>
     <h2>Percentage formulas</h2>
     <ul class="benefits">
