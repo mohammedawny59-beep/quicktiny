@@ -1,5 +1,5 @@
 // Bump VERSION when the CORE list changes; old caches are deleted on activate.
-const VERSION = "v2";
+const VERSION = "v3";
 const CORE_CACHE = "quicktiny-core-" + VERSION;
 const RUNTIME_CACHE = "quicktiny-runtime-" + VERSION;
 const RUNTIME_MAX_ENTRIES = 60;
@@ -19,7 +19,21 @@ const CORE = [
   "/case-converter",
   "/seo-slug-generator",
   "/password-generator",
-  "/compress-image"
+  "/compress-image",
+  "/ar",
+  "/ar/prayer-times",
+  "/prayer-cities.js",
+  "/prayer-times.js",
+  "/hijri.js",
+  "/ar/gpa-calculator",
+  "/gpa-calculator",
+  "/ar/weighted-percentage-calculator",
+  "/student.js",
+  "/ar/zakat-al-fitr-calculator",
+  "/ar/ramadan-countdown",
+  "/ramadan.js",
+  "/compress-image.js",
+  "/home.js"
 ];
 // Large media is never worth caching offline.
 const SKIP_EXT = /\.(mp4|webm|mov|png|jpe?g|gif|webp|avif|csv|zip)$/i;
