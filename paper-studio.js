@@ -282,7 +282,166 @@ function qtPmPosts(x, W, H, t, s) {
   }
 }
 
-var QT_PM_STYLES = { newspaper: qtPmNewspaper, cutout: qtPmCutout, unfold: qtPmUnfold, posts: qtPmPosts };
+/* ---------- shared: wrap text into lines that fit a width ---------- */
+function qtPmWrap(x, text, maxW) {
+  var words = String(text || "").split(/\s+/).filter(Boolean), lines = [], cur = "";
+  words.forEach(function (w) { var tr = cur ? cur + " " + w : w; if (cur && x.measureText(tr).width > maxW) { lines.push(cur); cur = w; } else cur = tr; });
+  if (cur) lines.push(cur); return lines.length ? lines : [""];
+}
+// Visible prefix of a string by user-perceived characters (keeps Arabic marks with their letter).
+function qtPmPrefix(text, n) { var a = Array.from(String(text || "")), out = "", k = 0; for (var i = 0; i < a.length && k < n; i++) { out += a[i]; if (!/[ً-ٰٟ]/.test(a[i])) k++; } return out; }
+function qtPmLen(text) { return Array.from(String(text || "")).filter(function (c) { return !/[ً-ٰٟ]/.test(c); }).length; }
+
+/* ---------- style 5: typewriter on a sheet of paper ---------- */
+function qtPmTypewriter(x, W, H, t, s) {
+  var ar = qtPmIsArabic(s.text), D = s.duration, r = qtPmRng(qtPmHash(s.text + "|tw"));
+  var pw = W * .82, fs = Math.min(W * .1, pw * 1.6 / Math.max(6, qtPmLen(s.text) * .62)), font = ar ? QT_PM_FONTS.serif : '"Courier New", Courier, monospace';
+  x.font = "700 " + fs + "px " + font; x.direction = ar ? "rtl" : "ltr";
+  var lines = qtPmWrap(x, s.text, pw * .84), sub = s.sub ? s.sub : "", subFs = fs * .42;
+  var total = lines.reduce(function (a, l) { return a + qtPmLen(l); }, 0) + (sub ? qtPmLen(sub) + 6 : 0);
+  var typeEnd = D * .72, cps = total / Math.max(.8, typeEnd - .4), typed = Math.max(0, Math.floor((t - .4) * cps));
+  var ph = Math.min(H * .7, (lines.length * fs * 1.5 + (sub ? subFs * 3 : 0)) + pw * .5);
+  // carriage nudge: the sheet steps up a hair on every keystroke
+  var key = (t - .4) * cps, nudge = (key - Math.floor(key)) < .25 && typed < total ? 1.5 : 0;
+  x.save(); x.translate(W / 2, H / 2 - nudge); x.rotate(-.012);
+  x.shadowColor = "rgba(0,0,0,.4)"; x.shadowBlur = 40; x.shadowOffsetY = 18;
+  x.translate(-pw / 2, -ph / 2); x.fillStyle = "#fbfaf5"; x.fillRect(0, 0, pw, ph); x.shadowColor = "transparent";
+  x.drawImage(qtPmPaper(Math.round(pw), Math.round(ph), "#fbfaf5", 21), 0, 0);
+  x.fillStyle = "rgba(220,60,60,.35)"; x.fillRect(ar ? pw - pw * .08 : pw * .08, 0, 2, ph); // margin line
+  x.fillStyle = "#1d1c1a"; x.textBaseline = "alphabetic"; x.textAlign = ar ? "right" : "left";
+  var xx = ar ? pw * .9 : pw * .1, y = pw * .22 + fs, left = typed, lastX = xx, lastY = y;
+  lines.forEach(function (l) {
+    var n = Math.min(qtPmLen(l), left); left -= n;
+    var shown = qtPmPrefix(l, n); x.font = "700 " + fs + "px " + font; x.globalAlpha = .92;
+    x.fillText(shown, xx, y); lastX = xx + (ar ? -1 : 1) * x.measureText(shown).width; lastY = y; y += fs * 1.5;
+  });
+  x.globalAlpha = 1;
+  if (sub && left > 6) { left -= 6; x.font = "400 " + subFs + "px " + font; x.fillStyle = "#4a473f"; var ss = qtPmPrefix(sub, left); x.fillText(ss, xx, y + subFs * .6); lastX = xx + (ar ? -1 : 1) * x.measureText(ss).width; lastY = y + subFs * .6; }
+  // blinking cursor
+  if (Math.floor(t * 2.4) % 2 === 0 || typed < total) { x.fillStyle = s.accent; x.fillRect(ar ? lastX - fs * .5 : lastX + 4, lastY - fs * .78, fs * .42, fs * .9); }
+  // final stamp underline
+  var up = qtPmEase.out(qtPmClamp((t - typeEnd - .1) / .5));
+  if (up > 0) { x.strokeStyle = s.accent; x.lineWidth = fs * .12; x.lineCap = "round"; x.font = "700 " + fs + "px " + font; var y0 = pw * .22 + fs * 1.25, w0 = Math.min(pw * .8, Math.max.apply(null, lines.map(function (l) { return x.measureText(l).width; })));
+    x.beginPath(); if (ar) { x.moveTo(pw * .9, y0); x.lineTo(pw * .9 - w0 * up, y0 + fs * .05); } else { x.moveTo(pw * .1, y0); x.lineTo(pw * .1 + w0 * up, y0 + fs * .05); } x.stroke(); }
+  x.restore();
+}
+
+/* ---------- style 6: a receipt printing out of a slot ---------- */
+function qtPmReceipt(x, W, H, t, s) {
+  var ar = qtPmIsArabic(s.text), D = s.duration, r = qtPmRng(qtPmHash(s.text + "|rc"));
+  var rw = W * .7, slotY = H * .14, mono = ar ? QT_PM_FONTS.sans : '"Courier New", Courier, monospace', base = rw * .055;
+  var L = ar ? { head: "إيصال", store: "متجر الورق", item: ["خدمة إبداعية", "فكرة جديدة", "لمسة سحرية"], total: "الإجمالي", thanks: "شكرًا لزيارتكم" } : { head: "RECEIPT", store: "PAPER STORE", item: ["Creative service", "Fresh idea", "Magic touch"], total: "TOTAL", thanks: "THANK YOU" };
+  x.font = "700 " + base * 2.4 + "px " + QT_PM_FONTS.bold; x.direction = ar ? "rtl" : "ltr";
+  var kLines = qtPmWrap(x, s.text, rw * .86), rh = base * (16.5 + kLines.length * 3.6 + (s.sub ? 2 : 0));
+  var p = qtPmEase.inOut(qtPmClamp((t - .2) / (D * .7))), shown = rh * p;
+  // printer
+  x.save(); var px = W / 2 - rw * .62, pwid = rw * 1.24;
+  x.fillStyle = "#1c1e2b"; x.shadowColor = "rgba(0,0,0,.45)"; x.shadowBlur = 30; x.shadowOffsetY = 10;
+  x.beginPath(); x.roundRect ? x.roundRect(px, slotY - base * 5, pwid, base * 5.4, base) : x.rect(px, slotY - base * 5, pwid, base * 5.4); x.fill(); x.shadowColor = "transparent";
+  x.fillStyle = "#0b0c14"; x.fillRect(W / 2 - rw * .54, slotY - base * .3, rw * 1.08, base * .6);
+  x.fillStyle = (Math.floor(t * 4) % 2 && p < 1) ? "#3bff8a" : "#2b6b45"; x.beginPath(); x.arc(px + pwid - base * 1.4, slotY - base * 3.2, base * .35, 0, 7); x.fill();
+  x.restore();
+  // receipt paper (clipped below the slot so it appears to come out of it)
+  x.save(); x.beginPath(); x.rect(0, slotY, W, H); x.clip();
+  x.translate(W / 2 - rw / 2, slotY + shown - rh);
+  x.shadowColor = "rgba(0,0,0,.3)"; x.shadowBlur = 24; x.shadowOffsetY = 10;
+  x.beginPath(); x.moveTo(0, 0); x.lineTo(rw, 0); x.lineTo(rw, rh);
+  for (var z = 0; z <= 16; z++) x.lineTo(rw - z * rw / 16, rh + (z % 2 ? -base * .5 : 0));
+  x.closePath(); x.fillStyle = "#fdfdf8"; x.fill(); x.shadowColor = "transparent";
+  var cx = rw / 2, y = base * 2.4, side = ar ? rw - base * 1.2 : base * 1.2, other = ar ? base * 1.2 : rw - base * 1.2;
+  x.fillStyle = "#1b1b1b"; x.textAlign = "center"; x.textBaseline = "alphabetic";
+  x.font = "700 " + base * 1.15 + "px " + mono; x.fillText(L.store, cx, y); y += base * 1.5;
+  x.font = "400 " + base * .8 + "px " + mono; x.fillText(L.head + " #" + (1000 + Math.floor(r() * 8999)), cx, y); y += base * 1.4;
+  var dash = function () { x.fillText("- - - - - - - - - - - - - - - -", cx, y); y += base * 1.3; };
+  dash();
+  L.item.forEach(function (it) { x.textAlign = ar ? "right" : "left"; x.fillText(it, side, y); x.textAlign = ar ? "left" : "right"; x.fillText((5 + Math.floor(r() * 90)) + ".00", other, y); y += base * 1.25; });
+  x.textAlign = "center"; dash();
+  x.font = "700 " + base * .9 + "px " + mono; x.fillText(L.total, cx, y); y += base * .8;
+  // the keyword as the big total, highlighted once printed
+  x.font = "700 " + base * 2.4 + "px " + QT_PM_FONTS.bold; var ky = y + base * 2.3;
+  var hp = qtPmEase.inOut(qtPmClamp((t - D * .75) / .5));
+  kLines.forEach(function (l, i) {
+    var ly = ky + i * base * 2.9, lw = x.measureText(l).width;
+    if (hp > 0) { x.fillStyle = s.accent; x.globalAlpha = .9; x.fillRect(ar ? cx + lw / 2 - lw * hp - 8 : cx - lw / 2 - 8, ly - base * 2.05, (lw + 16) * hp, base * 2.6); x.globalAlpha = 1; }
+    x.fillStyle = "#111"; x.fillText(l, cx, ly);
+  });
+  y = ky + kLines.length * base * 2.9;
+  if (s.sub) { x.font = "400 " + base * .85 + "px " + mono; x.fillText(s.sub, cx, y); y += base * 1.5; }
+  x.font = "400 " + base * .8 + "px " + mono; dash(); x.fillText(L.thanks, cx, y); y += base * 1.2;
+  for (var b = 0; b < 46; b++) { var bw = (b % 3 === 0 ? 3 : 1.5) * (1 + (r() < .3)); x.fillRect(rw * .18 + b * rw * .64 / 46, y, bw, base * 2); }
+  x.restore();
+}
+
+/* ---------- style 7: sticky notes slapped onto a board ---------- */
+function qtPmSticky(x, W, H, t, s) {
+  var ar = qtPmIsArabic(s.text), words = String(s.text || "").split(/\s+/).filter(Boolean).slice(0, 6), r = qtPmRng(qtPmHash(s.text + "|st"));
+  if (s.sub) words.push(s.sub);
+  var colors = ["#ffe66d", "#ff9fb2", "#9be7ff", "#b9f6a5", "#ffc58a", s.accent], n = words.length;
+  var cols = n <= 2 ? n : n <= 4 ? 2 : 3, rows = Math.ceil(n / cols), size = Math.min(W * .8 / cols, H * .62 / rows) * .92;
+  var stagger = Math.min(.5, (s.duration * .6) / Math.max(1, n));
+  words.forEach(function (w, i) {
+    var p = qtPmClamp((t - .2 - i * stagger) / .35); if (p <= 0) return;
+    var col = i % cols, row = Math.floor(i / cols), gx = (ar ? cols - 1 - col : col) - (cols - 1) / 2, gy = row - (rows - 1) / 2;
+    var cx = W / 2 + gx * size * 1.08 + (r() - .5) * size * .08, cy = H / 2 + gy * size * 1.1 + (r() - .5) * size * .08;
+    var sc = 1 + (1 - qtPmEase.out(p)) * .45, rot = (r() - .5) * .16, isSub = s.sub && i === n - 1;
+    x.save(); x.translate(cx, cy); x.rotate(rot); x.scale(sc, sc); x.globalAlpha = Math.min(1, p * 2.5);
+    x.shadowColor = "rgba(0,0,0," + (.25 + (sc - 1) * .5).toFixed(2) + ")"; x.shadowBlur = 20 + (sc - 1) * 60; x.shadowOffsetY = 10 + (sc - 1) * 40;
+    var c = colors[(i + Math.floor(r() * 3)) % colors.length];
+    x.fillStyle = c; x.beginPath(); x.moveTo(-size / 2, -size / 2); x.lineTo(size / 2, -size / 2); x.lineTo(size / 2, size / 2 - size * .08);
+    x.quadraticCurveTo(size / 2 - size * .02, size / 2, size / 2 - size * .1, size / 2); x.lineTo(-size / 2, size / 2); x.closePath(); x.fill(); x.shadowColor = "transparent";
+    var g = x.createLinearGradient(0, -size / 2, 0, size / 2); g.addColorStop(0, "rgba(0,0,0,.06)"); g.addColorStop(.2, "rgba(0,0,0,0)"); x.fillStyle = g; x.fill();
+    x.fillStyle = "rgba(255,255,255,.55)"; x.save(); x.rotate(-.05 + (r() - .5) * .1); x.fillRect(-size * .18, -size / 2 - size * .06, size * .36, size * .13); x.restore(); // tape
+    var fs = size * (isSub ? .16 : .3), font = isSub ? QT_PM_FONTS.sans : QT_PM_FONTS.fancy;
+    x.font = "700 " + fs + "px " + font; x.direction = ar ? "rtl" : "ltr";
+    while (x.measureText(w).width > size * .84 && fs > 10) { fs *= .9; x.font = "700 " + fs + "px " + font; }
+    x.fillStyle = "#1d1b16"; x.textAlign = "center"; x.textBaseline = "middle";
+    var ls = isSub ? qtPmWrap(x, w, size * .84) : [w]; ls.forEach(function (l, k) { x.fillText(l, 0, (k - (ls.length - 1) / 2) * fs * 1.25); });
+    x.restore();
+  });
+}
+
+/* ---------- style 8: marker handwriting with a scribbled underline ---------- */
+function qtPmMarker(x, W, H, t, s) {
+  var ar = qtPmIsArabic(s.text), D = s.duration, r = qtPmRng(qtPmHash(s.text + "|mk"));
+  var pw = W * .86, ph = H * .5, fs = Math.min(W * .16, pw * 1.5 / Math.max(4, qtPmLen(s.text) * .58));
+  // notebook sheet
+  x.save(); x.translate(W / 2, H / 2); x.rotate(.015);
+  x.shadowColor = "rgba(0,0,0,.4)"; x.shadowBlur = 40; x.shadowOffsetY = 18; x.fillStyle = "#fffef7"; x.fillRect(-pw / 2, -ph / 2, pw, ph); x.shadowColor = "transparent";
+  x.strokeStyle = "rgba(80,130,220,.25)"; x.lineWidth = 2; for (var y = -ph / 2 + ph * .12; y < ph / 2; y += ph * .085) { x.beginPath(); x.moveTo(-pw / 2, y); x.lineTo(pw / 2, y); x.stroke(); }
+  x.strokeStyle = "rgba(230,80,80,.45)"; x.beginPath(); x.moveTo(ar ? pw / 2 - pw * .1 : -pw / 2 + pw * .1, -ph / 2); x.lineTo(ar ? pw / 2 - pw * .1 : -pw / 2 + pw * .1, ph / 2); x.stroke();
+  x.font = "400 " + fs + "px " + QT_PM_FONTS.bold; x.direction = ar ? "rtl" : "ltr";
+  var lines = qtPmWrap(x, s.text, pw * .78); while (lines.length > 3 && fs > 20) { fs *= .88; x.font = "400 " + fs + "px " + QT_PM_FONTS.bold; lines = qtPmWrap(x, s.text, pw * .78); }
+  var writeEnd = D * .6, wp = qtPmClamp((t - .3) / (writeEnd - .3)), lh = fs * 1.2, top = -((lines.length - 1) * lh) / 2 - fs * .1;
+  x.textAlign = "center"; x.textBaseline = "middle"; x.fillStyle = "#16233f";
+  lines.forEach(function (l, i) {
+    var seg = 1 / lines.length, lp = qtPmClamp((wp - i * seg) / seg); if (lp <= 0) return;
+    var lw = x.measureText(l).width, ly = top + i * lh;
+    // reveal like a pen moving in the writing direction
+    x.save(); x.beginPath(); if (ar) x.rect(lw / 2 - lw * lp - fs * .1, ly - fs, lw * lp + fs * .2, fs * 2); else x.rect(-lw / 2 - fs * .1, ly - fs, lw * lp + fs * .2, fs * 2); x.clip();
+    x.fillText(l, 0, ly); x.restore();
+    if (lp < 1) { var penX = ar ? lw / 2 - lw * lp : -lw / 2 + lw * lp; x.fillStyle = s.accent; x.beginPath(); x.arc(penX, ly + Math.sin(t * 40) * fs * .12, fs * .07, 0, 7); x.fill(); x.fillStyle = "#16233f"; }
+  });
+  // scribbled underline + circle doodle after writing
+  var bottom = top + (lines.length - 1) * lh + fs * .75, maxLw = Math.max.apply(null, lines.map(function (l) { return x.measureText(l).width; }));
+  var up = qtPmClamp((t - writeEnd - .05) / .45);
+  if (up > 0) {
+    x.strokeStyle = s.accent; x.lineWidth = fs * .11; x.lineCap = "round"; x.lineJoin = "round";
+    x.beginPath(); var steps = 40;
+    for (var k = 0; k <= steps * up; k++) { var f = k / steps, ux = (ar ? maxLw / 2 - f * maxLw : -maxLw / 2 + f * maxLw), uy = bottom + Math.sin(f * 9 + 1) * fs * .06 + f * fs * .05; k ? x.lineTo(ux, uy) : x.moveTo(ux, uy); }
+    x.stroke();
+  }
+  var cp = qtPmClamp((t - writeEnd - .45) / .55);
+  if (cp > 0 && lines.length === 1) {
+    x.strokeStyle = s.accent; x.globalAlpha = .9; x.lineWidth = fs * .06; x.beginPath();
+    var rx = maxLw * .62, ry = fs * .9;
+    for (var a = 0; a <= cp * 1.08; a += .01) { var an = -Math.PI * .6 + a * Math.PI * 2 * (ar ? -1 : 1), jx = Math.cos(an) * rx * (1 + a * .04), jy = Math.sin(an) * ry * (1 + a * .06) + top; a ? x.lineTo(jx, jy) : x.moveTo(jx, jy); }
+    x.stroke(); x.globalAlpha = 1;
+  }
+  if (s.sub) { var sp = qtPmClamp((t - writeEnd - .8) / .5); if (sp > 0) { x.globalAlpha = sp; x.font = "400 " + fs * .32 + "px " + QT_PM_FONTS.sans; x.fillStyle = "#3b4a6b"; x.fillText(s.sub, 0, bottom + fs * .7); x.globalAlpha = 1; } }
+  x.restore();
+}
+
+var QT_PM_STYLES = { newspaper: qtPmNewspaper, cutout: qtPmCutout, unfold: qtPmUnfold, posts: qtPmPosts, typewriter: qtPmTypewriter, receipt: qtPmReceipt, sticky: qtPmSticky, marker: qtPmMarker };
 function qtPmRender(x, W, H, t, s) {
   x.save(); x.setTransform(1, 0, 0, 1, 0, 0);
   if (s.bg === "transparent") x.clearRect(0, 0, W, H); else x.drawImage(qtPmDesk(W, H, s.bg, s.bgColor), 0, 0);
@@ -421,4 +580,4 @@ function qtPmRender(x, W, H, t, s) {
   fontsReady.then(function () { qtPmCache = {}; restart(); requestAnimationFrame(loop); });
 })();
 
-if (typeof module !== "undefined") module.exports = { qtPmPieces: qtPmPieces, qtPmIsArabic: qtPmIsArabic, qtPmHash: qtPmHash, qtPmRng: qtPmRng };
+if (typeof module !== "undefined") module.exports = { qtPmPrefix: qtPmPrefix, qtPmLen: qtPmLen, qtPmPieces: qtPmPieces, qtPmIsArabic: qtPmIsArabic, qtPmHash: qtPmHash, qtPmRng: qtPmRng };

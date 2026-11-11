@@ -11,4 +11,6 @@ assert.deepStrictEqual(P.qtPmPieces("رمضان كريم").map((p) => p.space ? 
 assert.ok(P.qtPmIsArabic("مرحبا") && !P.qtPmIsArabic("Hello")); n += 1;
 const a = P.qtPmRng(42), b = P.qtPmRng(42); assert.strictEqual(a(), b()); n++;
 assert.strictEqual(P.qtPmHash("x"), P.qtPmHash("x")); assert.notStrictEqual(P.qtPmHash("x"), P.qtPmHash("y")); n++;
+assert.strictEqual(P.qtPmLen("مَرحبا"), 5); n++;
+assert.strictEqual(P.qtPmPrefix("مَرحبا", 2), "مَر"); n++;
 console.log("paper studio tests:", n, "passed");
