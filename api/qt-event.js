@@ -58,7 +58,9 @@ const ALLOWED_EVENTS = new Set([
   "paper_export",
   "titles_export",
   "glass_export",
-  "captions_export"
+  "captions_export",
+  "subtitles_transcribed",
+  "subtitles_export"
 ]);
 
 function cleanPage(value) {

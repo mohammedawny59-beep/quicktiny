@@ -1,0 +1,65 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Auto Subtitles</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your video never leaves your device</span><span class="badge">Free</span></div>
+    <h1>Auto Subtitles — Add Animated Captions to Your Video Automatically, Free</h1>
+    <p>Upload a video and get word-by-word animated captions in a minute: speech is turned into text right in your browser (Arabic, English and 90+ languages), you fix any word, pick a style and download the video with the captions burned in — sound included. Or grab an .srt file. Free, no watermark, no upload.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="sb">
+      <div class="sb-col">
+        <div class="sb-card sb-c1"><h2>1 · Your video</h2>
+          <label class="sb-drop" id="sbDrop"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></svg><strong>Choose a video or drop it here</strong><span>MP4, MOV or WebM · up to 20 minutes</span><span id="sbName"></span><input type="file" id="sbFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>
+          <div class="sb-row" style="margin-top:14px"><label for="sbLang">Spoken language</label><select id="sbLang"><option value="arabic">Arabic</option><option value="english">English</option><option value="">Detect automatically</option></select></div>
+          <div class="sb-row"><label for="sbModel">Accuracy</label><select id="sbModel"><option value="base">Fast (≈ 75 MB, once)</option><option value="small">Best (≈ 250 MB, once)</option></select></div>
+          <button type="button" class="btn sb-go" id="sbGo" disabled>Generate subtitles</button>
+          <div id="sbBar" hidden><i id="sbBarFill"></i></div><div id="sbStatus" role="status" aria-live="polite"></div><p class="sb-note">The first run downloads the speech model and keeps it in your browser, so the next videos start straight away.</p>
+        </div>
+        <div class="sb-card sb-c2" id="sbEdit" hidden><h2>2 · Fix the words <span id="sbInfo"></span></h2><div id="sbCues"></div></div>
+        <div class="sb-card sb-c2"><h2>3 · Caption style</h2>
+          <div id="sbStyles" style="margin-bottom:12px"><button type="button" class="sb-s" data-s="pop" aria-pressed="false">Pop</button><button type="button" class="sb-s" data-s="box" aria-pressed="false">Highlight box</button><button type="button" class="sb-s" data-s="karaoke" aria-pressed="false">Karaoke</button><button type="button" class="sb-s" data-s="bounce" aria-pressed="false">One word</button></div>
+          <div class="sb-row"><label for="sbPer">Words on screen</label><select id="sbPer"><option value="1">1 word</option><option value="2">2 words</option><option value="3">3 words</option><option value="4">4 words</option></select></div>
+          <div class="sb-row"><label for="sbAccent">Highlight</label><input type="color" id="sbAccent"></div>
+          <div class="sb-row"><label for="sbFont">Font</label><select id="sbFont"><option value="bold">Bold display</option><option value="sans">Clean sans</option></select></div>
+          <div class="sb-row"><label for="sbSize">Size</label><input type="range" id="sbSize" min="48" max="150" step="2"></div>
+          <div class="sb-row"><span class="sb-l"></span><div class="sb-checks"><label><input type="checkbox" id="sbOutline"> Outline</label><label><input type="checkbox" id="sbUpper"> UPPERCASE</label></div></div>
+          <div class="sb-row"><span class="sb-l">Position</span><div class="sb-chips" id="sbPos" role="group" aria-label="Position"><button type="button" class="chip" data-p="bottom">Bottom</button><button type="button" class="chip" data-p="middle">Middle</button><button type="button" class="chip" data-p="top">Top</button></div></div>
+        </div>
+      </div>
+      <div class="sb-stage" id="sbStage" hidden>
+        <div class="sb-screen" id="sbScreen"><video id="sbVideo" playsinline controls preload="metadata"></video><canvas id="sbOverlay" width="1280" height="720" aria-hidden="true"></canvas></div>
+        <div class="sb-out" id="sbOut" hidden><button type="button" class="btn" id="sbExport">Download video with captions</button><button type="button" class="btn btn-secondary" id="sbSrt">Download .srt</button></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/captions.js"></script>
+  <script src="/subtitles.js"></script>
+
+  <div class="content">
+    <h2>How it works</h2>
+    <ol class="benefits">
+      <li><span>Pick your video. Nothing is uploaded — the audio is read and transcribed on your phone or computer.</span></li>
+      <li><span>Press <strong>Generate subtitles</strong>. Whisper, an open speech-recognition model, writes down every word with its timing.</span></li>
+      <li><span>Tap any line to jump to it and correct a word. Timing stays in sync.</span></li>
+      <li><span>Choose a style and download the MP4 with the captions burned in, or an .srt for YouTube, CapCut or Premiere.</span></li>
+    </ol>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is it really free?</summary><p>Yes — no sign-up, no watermark, no limits on the number of videos.</p></details>
+    <details class="faq-item"><summary>Is my video uploaded?</summary><p>No. Speech recognition and video rendering both run on your device. Only the speech model itself is downloaded once.</p></details>
+    <details class="faq-item"><summary>How accurate is the Arabic?</summary><p>Clear Modern Standard Arabic comes out well; strong dialects and background music lower the accuracy, so review the text before exporting. “Best” accuracy helps.</p></details>
+    <details class="faq-item"><summary>How long does it take?</summary><p>Roughly real time for transcription on a laptop with “Fast”, and about the length of the video to render. Phones are slower.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/animated-captions">Animated Captions (text / .srt)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/creator-studio">Creator Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/motion-titles">Motion Titles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/glass-slides">Glass Slides<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/paper-animation">Paper Motion Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
