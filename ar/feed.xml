@@ -127,6 +127,13 @@
     <description>حوّل أي رقم إلى كلمات عربية صحيحة نحويًا: للشيكات والفواتير والعقود، بالريال والدرهم والدينار والجنيه أو بدون عملة. مجاني وفوري.</description>
   </item>
   <item>
+    <title>العناوين المتحركة — شريط اسم وزر اشتراك متحرك بشاشة خضراء مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/motion-titles</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/motion-titles</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>عناصر متحركة جاهزة لفيديوهات اليوتيوب والريلز: شريط الاسم، زر اشترك، عنوان متحرك، سهم، عد تنازلي، ولايك وتعليق. بالعربي، تنزيل MP4 بشاشة خضراء مجانًا وبدون علامة مائية.</description>
+  </item>
+  <item>
     <title>حاسبة التمويل الشخصي والقروض — القسط الشهري والنسبة الحقيقية</title>
     <link>https://quicktinyv2.vercel.app/ar/loan-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/loan-calculator</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/discount-calculator</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>احسب السعر بعد خصم بنسبة مئوية وكم توفّر بالضبط، أو أضف الضريبة والبقشيش. فورية ومجانية وبدون تسجيل.</description>
-  </item>
-  <item>
-    <title>حساب الأيام بين تاريخين — كم يوم بين تاريخين؟</title>
-    <link>https://quicktinyv2.vercel.app/ar/days-between-dates</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/days-between-dates</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>احسب عدد الأيام بين تاريخين بالسنوات والأشهر والأسابيع وأيام العمل، وأضف أو اطرح أيامًا من أي تاريخ، مع التاريخ الهجري. مجاني وفوري.</description>
   </item>
 </channel>
 </rss>

@@ -69,7 +69,7 @@ T = {
         ("Does it support Arabic?", "Yes. Arabic text is laid out right-to-left with proper letter joining, and cut-out letters split Arabic only where letters don't connect."),
         ("Which video format do I get?", "MP4 (H.264, 1080×1920 at 30 fps) in Chrome, Edge and Safari. Browsers without H.264 encoding get WebM, which CapCut and Instagram also accept."),
         ("Is my photo uploaded?", "No. Background removal and rendering run in your browser.")],
-   rel="More creator tools", links=[("/remove-background-from-image", "Remove Background"), ("/social-image-resizer", "Social Image Resizer"), ("/image-to-text", "Image to Text"), ("/qr-code-generator", "QR Code Generator")]),
+   rel="More creator tools", links=[("/motion-titles", "Motion Titles"), ("/remove-background-from-image", "Remove Background"), ("/social-image-resizer", "Social Image Resizer"), ("/image-to-text", "Image to Text"), ("/qr-code-generator", "QR Code Generator")]),
  "ar": dict(home="/ar", homeL="الرئيسية", crumb="استوديو أنيميشن الورق", b=("فيديو", "تعمل داخل متصفحك", "مجانية"),
    h1="استوديو أنيميشن الورق — فيديوهات نصوص وصور ورقية للريلز والتيك توك",
    intro="اكتب كلمة أو أضف صورة واحصل على أنيميشن ورقي يوقف التمرير للريلز والتيك توك والشورتس: قصاصات جرائد، حروف مقصوصة، صورة تنفتح كالورق، منشورات، آلة كاتبة، إيصال مطبوع، ملاحظات لاصقة، أو كتابة بقلم الماركر. يدعم العربي والإنجليزي. نزّله فيديو MP4 عموديًا أو بخلفية خضراء لبرنامج المونتاج — مجانًا وبدون علامة مائية ولا رفع.",
@@ -91,7 +91,7 @@ T = {
         ("هل يدعم العربي؟", "نعم، النص العربي من اليمين لليسار بحروف متصلة صحيحة، والحروف المقصوصة تُقسَّم فقط عند الحروف التي لا تتصل بما بعدها."),
         ("ما صيغة الفيديو؟", "MP4 (H.264، 1080×1920، 30 إطارًا) في كروم وإيدج وسفاري. المتصفحات التي لا تدعم ذلك تحصل على WebM ويقبله كاب كت وإنستغرام."),
         ("هل تُرفع صورتي؟", "لا، إزالة الخلفية والرسم يتمان داخل متصفحك.")],
-   rel="أدوات أخرى لصناع المحتوى", links=[("/remove-background-from-image", "إزالة خلفية الصورة"), ("/ar/social-image-resizer", "مقاسات السوشال ميديا"), ("/ar/image-to-text", "استخراج النص من الصور"), ("/ar/qr-code-generator", "مولّد QR")]),
+   rel="أدوات أخرى لصناع المحتوى", links=[("/ar/motion-titles", "العناوين المتحركة"), ("/remove-background-from-image", "إزالة خلفية الصورة"), ("/ar/social-image-resizer", "مقاسات السوشال ميديا"), ("/ar/image-to-text", "استخراج النص من الصور"), ("/ar/qr-code-generator", "مولّد QR")]),
 }
 def body(L, ar):
     t = T[L]

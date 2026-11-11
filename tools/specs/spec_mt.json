@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/motion-titles", "title": "العناوين المتحركة — شريط اسم وزر اشتراك متحرك بشاشة خضراء مجانًا | QuickTiny",
+  "desc": "عناصر متحركة جاهزة لفيديوهات اليوتيوب والريلز: شريط الاسم، زر اشترك، عنوان متحرك، سهم، عد تنازلي، ولايك وتعليق. بالعربي، تنزيل MP4 بشاشة خضراء مجانًا وبدون علامة مائية.",
+  "app_name": "QuickTiny العناوين المتحركة", "crumb": "العناوين المتحركة", "category": "MultimediaApplication", "body": "pages/mt_ar.html", "style": "pages/mt_style.html",
+  "alternates": [["en", "motion-titles"], ["ar", "ar/motion-titles"], ["x-default", "motion-titles"]],
+  "switch": [["EN", "motion-titles"], ["AR", "ar/motion-titles"]],
+  "faq": [["هل هو مجاني وبدون علامة مائية؟", "نعم، تنزيل مجاني غير محدود وبدون علامة مائية."], ["كيف أضعه فوق الفيديو؟", "في كاب كت أضفه كتراكب ثم استخدم مفتاح اللون (Chroma key) لإزالة الأخضر."]]}
+]}

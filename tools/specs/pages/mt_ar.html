@@ -1,0 +1,59 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">العناوين المتحركة</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">فيديو</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>العناوين المتحركة — شريط الاسم وزر الاشتراك وعناصر متحركة لفيديوهاتك مجانًا</h1>
+    <p>عناصر متحركة جاهزة لليوتيوب والريلز والتيك توك: شريط الاسم والصفة، زر «اشترك» يُضغط عليه، عنوان كبير متحرك، سهم مرسوم باليد، عد تنازلي 3-2-1، وتذكير اللايك والتعليق. اكتب نصك واختر لونك ونزّل فيديو MP4 بشاشة خضراء لتضعه فوق فيديوك. عربي وإنجليزي، مجانًا وبدون علامة مائية.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="mt">
+      <div>
+        <div class="mt-card"><h2>العنصر</h2><div id="mtTpl"><button type="button" class="mt-t" data-t="lower" aria-pressed="false"><i aria-hidden="true">🪪</i><b>شريط الاسم</b></button><button type="button" class="mt-t" data-t="subscribe" aria-pressed="false"><i aria-hidden="true">🔔</i><b>زر الاشتراك</b></button><button type="button" class="mt-t" data-t="title" aria-pressed="false"><i aria-hidden="true">🎬</i><b>عنوان كبير</b></button><button type="button" class="mt-t" data-t="arrow" aria-pressed="false"><i aria-hidden="true">↗️</i><b>سهم وتعليق</b></button><button type="button" class="mt-t" data-t="countdown" aria-pressed="false"><i aria-hidden="true">⏱️</i><b>عد تنازلي</b></button><button type="button" class="mt-t" data-t="like" aria-pressed="false"><i aria-hidden="true">❤️</i><b>لايك وتعليق</b></button></div></div>
+        <div class="mt-card"><h2>النص والشكل</h2>
+          <div class="mt-row"><label for="mtA">النص الرئيسي</label><input type="text" id="mtA" maxlength="40" dir="auto"></div>
+          <div class="mt-row" id="mtBRow"><label for="mtB">السطر الثاني</label><input type="text" id="mtB" maxlength="50" dir="auto"></div>
+          <div class="mt-row" id="mtCountRow"><label for="mtCount">عدد اللايكات</label><input type="number" id="mtCount" min="1" max="9999999"></div>
+          <div class="mt-row"><label for="mtAccent">اللون</label><input type="color" id="mtAccent"></div>
+          <div class="mt-row" id="mtPosRow"><label for="mtPos">الموضع</label><select id="mtPos"><option value="start">جهة البداية</option><option value="end">الجهة الأخرى</option></select></div>
+          <div class="mt-row"><span class="mt-l">الخلفية</span><div class="mt-chips" id="mtBg" role="group" aria-label="الخلفية"><button type="button" class="chip" data-b="green">شاشة خضراء</button><button type="button" class="chip" data-b="blue">شاشة زرقاء</button><button type="button" class="chip" data-b="black">سوداء</button><button type="button" class="chip" data-b="photo">معاينة فوق فيديو</button></div></div>
+          <div class="mt-row"><span class="mt-l">المقاس</span><div class="mt-chips" id="mtRatio" role="group" aria-label="المقاس"><button type="button" class="chip" data-r="16:9">16:9</button><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="1:1">1:1</button></div></div>
+        </div>
+      </div>
+      <div class="mt-stage">
+        <div class="mt-screen"><canvas id="mtCanvas" width="1920" height="1080" role="img" aria-label="العناوين المتحركة"></canvas></div>
+        <div class="mt-ctrl"><button type="button" id="mtPlay" aria-label="Play / pause">❚❚</button><input type="range" id="mtScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="mt-export"><button type="button" class="btn" id="mtExport">تنزيل MP4</button></div>
+        <div id="mtBar" hidden><i id="mtBarFill"></i></div><div id="mtStatus" role="status"></div><p class="mt-note">«معاينة فوق فيديو» للعرض فقط؛ التنزيل يكون بشاشة خضراء.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/motion-titles.js"></script>
+
+  <div class="content">
+    <h2>كيف تضعه فوق فيديوك</h2>
+    <ul class="benefits">
+      <li><span>نزّل الفيديو بـ<strong>شاشة خضراء</strong> (أو زرقاء إذا كان في فيديوك لون أخضر كثير).</span></li>
+      <li><span>في كاب كت: <em>تراكب</em> ← أضف المقطع ← <em>إزالة الخلفية</em> ← <em>مفتاح اللون (Chroma key)</em> ← اختر الأخضر. وفي بريمير أو دافنشي استخدم Ultra Key أو 3D Keyer.</span></li>
+      <li><span>استخدم 16:9 لليوتيوب و9:16 للريلز والتيك توك والشورتس حتى يظهر العنصر في مكانه الصحيح.</span></li>
+      <li><span>اختر لونًا يناسب هوية قناتك واستخدمه في كل العناصر لمظهر موحّد.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل هو مجاني وبدون علامة مائية؟</summary><p>نعم، تنزيل مجاني غير محدود وبدون علامة مائية.</p></details>
+    <details class="faq-item"><summary>هل يمكن تنزيله بخلفية شفافة؟</summary><p>أغلب برامج المونتاج على الجوال لا تدعم الفيديو الشفاف، لذلك نصدّره بشاشة خضراء أو زرقاء نظيفة تُزال بضغطة واحدة في أي برنامج.</p></details>
+    <details class="faq-item"><summary>هل يدعم العربي؟</summary><p>نعم، النص العربي من اليمين لليسار بحروف متصلة صحيحة، والتصميم ينعكس تلقائيًا للعربي.</p></details>
+    <details class="faq-item"><summary>هل فيه شعارات يوتيوب أو إنستغرام؟</summary><p>لا، التصاميم محايدة حتى تستخدمها على أي منصة بدون مشاكل حقوق.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى لصناع المحتوى</h2>
+    <div class="related-grid">
+      <a href="/ar/paper-animation">استوديو أنيميشن الورق<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-background-from-image">إزالة خلفية الصورة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/social-image-resizer">مقاسات السوشال ميديا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/image-to-text">استخراج النص من الصور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
