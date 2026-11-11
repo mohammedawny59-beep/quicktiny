@@ -681,3 +681,17 @@ function qtCountTo(el, to, fmt, dur){
   var after = panel; while (after.nextElementSibling && after.nextElementSibling.tagName === "SCRIPT") after = after.nextElementSibling;
   after.parentNode.insertBefore(box, after.nextSibling);
 })();
+// creator-hub: decorative preview videos play only while on screen (and never with reduced motion)
+(function () {
+  var vids = document.querySelectorAll("video[data-qt-autoplay]");
+  if (!vids.length || typeof IntersectionObserver === "undefined") return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else if (!v.paused) v.pause();
+    });
+  }, { threshold: .35 });
+  vids.forEach(function (v) { io.observe(v); });
+})();
+// /creator-hub

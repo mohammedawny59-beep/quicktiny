@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Studio preview generator (dev only)</title>
+<link rel="stylesheet" href="/styles.css">
+<style>
+@font-face{font-family:"QT Amiri";font-weight:700;font-display:swap;src:url(/fonts/display/amiri-arabic-700.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+@font-face{font-family:"QT Amiri";font-weight:700;font-display:swap;src:url(/fonts/display/amiri-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+@font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"QT Rakkas";font-weight:400;font-display:swap;src:url(/fonts/display/rakkas-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+@font-face{font-family:"QT Rakkas";font-weight:400;font-display:swap;src:url(/fonts/display/rakkas-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+body{padding:20px}canvas{width:180px;height:320px;border:1px solid #333;margin:4px}
+</style></head>
+<body>
+<h1>Studio preview generator</h1><p id="log">ready</p><canvas id="pv" width="360" height="640"></canvas>
+<script src="/vendor/mp4-muxer.js"></script>
+<script src="/paper-studio.js"></script>
+<script src="/motion-titles.js"></script>
+<script src="/glass-slides.js"></script>
+<script src="/captions.js"></script>
+<script>
+// Each clip: {name, dur, draw(ctx, W, H, t)}. Rendered with the same engines the studios use.
+function clips(lang) {
+  var ar = lang === "ar", out = [];
+  var pm = { style: "newspaper", text: ar ? "صنع المحتوى" : "Make it pop", sub: "", accent: "#ffd400", bg: "kraft", bgColor: "#6b6bff", duration: 4.6, image: null, cutout: null };
+  out.push({ name: "paper-" + lang, dur: 4.6, draw: function (x, W, H, t) { qtPmRender(x, W, H, t, pm); } });
+  var mt = { tpl: "subscribe", a: ar ? "اشترك" : "Subscribe", b: ar ? "تم الاشتراك" : "Subscribed", accent: "#ff2d55", bg: "photo", ratio: "9:16", pos: "start", count: 1200, duration: 4.2 };
+  out.push({ name: "titles-" + lang, dur: 4.2, poster: 1.6, draw: function (x, W, H, t) { qtMtRender(x, W, H, t, mt, true); } });
+  var gsSt = { slides: ar ? [{ t: "مرحبًا 👋", s: "سلايدات زجاجية ناعمة" }, { t: "جاهز للنشر", s: "MP4 بسلاسة 60 إطارًا" }] : [{ t: "Hello 👋", s: "Silky liquid-glass slides" }, { t: "Ready to post", s: "Smooth 60 fps MP4" }], theme: "aurora", per: 2.4, photo: null, align: "center" };
+  var gsCv = document.createElement("canvas"); gsCv.width = 360; gsCv.height = 640; var gsEng = qtGsEngine(gsCv, gsSt);
+  out.push({ name: "glass-" + lang, dur: gsEng.dur(), poster: 1.4, draw: function (x, W, H, t) { gsEng.render(t); x.drawImage(gsCv, 0, 0, W, H); } });
+  var cpSt = { style: "box", accent: "#ffd400", font: "bold", size: 112, pos: "middle", bg: "photo", upper: false, outline: true };
+  var cpPages = qtCapPages(qtCapWords(qtCapFromText(ar ? "كل كلمة تظهر في وقتها\nترجمة متحركة لفيديوهاتك" : "Every word pops on time\nCaptions for your Reels", 150)), 3);
+  var cpD = cpPages[cpPages.length - 1].end + .5;
+  out.push({ name: "captions-" + lang, dur: cpD, poster: cpPages[0].start + (cpPages[0].end - cpPages[0].start) * .7, draw: function (x, W, H, t) { qtCapRender(x, W, H, Math.min(t, cpD - .3), cpSt, cpPages, true); } });
+  return out;
+}
+function dl(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
+async function encode(c, cv) {
+  var W = cv.width, H = cv.height, fps = 30, frames = Math.round(c.dur * fps), x = cv.getContext("2d");
+  var mux = new Mp4Muxer.Muxer({ target: new Mp4Muxer.ArrayBufferTarget(), video: { codec: "avc", width: W, height: H }, fastStart: "in-memory" }), err = null;
+  var enc = new VideoEncoder({ output: function (ch, meta) { mux.addVideoChunk(ch, meta); }, error: function (e) { err = e; } });
+  enc.configure({ codec: "avc1.42001f", width: W, height: H, bitrate: 600000, framerate: fps });
+  for (var f = 0; f < frames; f++) {
+    x.setTransform(1, 0, 0, 1, 0, 0); x.globalAlpha = 1; c.draw(x, W, H, f / fps);
+    var vf = new VideoFrame(cv, { timestamp: Math.round(f * 1e6 / fps), duration: Math.round(1e6 / fps) }); enc.encode(vf, { keyFrame: f % 60 === 0 }); vf.close();
+    if (f % 10 === 0) await new Promise(function (r) { setTimeout(r, 0); });
+    if (err) throw err;
+  }
+  await enc.flush(); mux.finalize();
+  // poster: a representative frame
+  x.setTransform(1, 0, 0, 1, 0, 0); c.draw(x, W, H, c.poster != null ? c.poster : c.dur * .55);
+  var poster = await new Promise(function (r) { cv.toBlob(r, "image/jpeg", .78); });
+  return { mp4: new Blob([mux.target.buffer], { type: "video/mp4" }), poster: poster };
+}
+window.qtRunPreviews = async function () {
+  var fontsReady = ['400 40px "QT Lalezar"', '700 40px "QT Amiri"', '400 40px "QT Rakkas"', '800 40px Sora', '700 40px Sora', '700 40px "QT Arabic"', '500 40px "QT Arabic"'];
+  await Promise.all(fontsReady.map(function (f) { return document.fonts.load(f, "Ab ابج").catch(function () {}); }));
+  var cv = document.getElementById("pv"), log = [];
+  for (var lang of ["en", "ar"]) for (var c of clips(lang)) {
+    var r = await encode(c, cv); dl(r.mp4, c.name + ".mp4"); dl(r.poster, c.name + ".jpg");
+    log.push(c.name + " " + Math.round(r.mp4.size / 1024) + "KB " + c.dur.toFixed(1) + "s"); document.getElementById("log").textContent = log.join(" | ");
+    await new Promise(function (r) { setTimeout(r, 300); });
+  }
+  return log;
+};
+</script>
+</body></html>
