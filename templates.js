@@ -501,7 +501,7 @@ function qtTpDefaults(tpl, lang) { var o = {}; tpl.fields.forEach(function (fd) 
   else cards.forEach(function (k) { k.vis = true; });
   var lastG = 0;
   function galleryTick(now) {
-    if (now - lastG > 33) { lastG = now; cards.forEach(function (k) { if (!k.vis && k.drawn) return; var D = k.tpl.dur(k.f), tt = reduce ? D * .8 : ((now / 1000 + k.off) % (D + .8)); qtTpRender(k.x, 216, 384, Math.min(tt, D), k.tpl, k.f, null, {}, st.accent || null); k.drawn = true; }); }
+    if (!document.hidden && now - lastG > 50) { lastG = now; cards.forEach(function (k) { if (!k.vis && k.drawn) return; var D = k.tpl.dur(k.f), tt = reduce ? D * .8 : ((now / 1000 + k.off) % (D + .8)); qtTpRender(k.x, 216, 384, Math.min(tt, D), k.tpl, k.f, null, {}, st.accent || null); k.drawn = true; }); }
     requestAnimationFrame(galleryTick);
   }
   document.querySelectorAll("#tpCats .chip").forEach(function (b) { b.addEventListener("click", function () { var c = b.getAttribute("data-c"); document.querySelectorAll("#tpCats .chip").forEach(function (o) { o.classList.toggle("active", o === b); }); document.querySelectorAll(".tp-card").forEach(function (k) { k.hidden = c !== "all" && k.getAttribute("data-cat") !== c; }); }); });
@@ -583,6 +583,9 @@ function qtTpDefaults(tpl, lang) { var o = {}; tpl.fields.forEach(function (fd) 
   size();
   var want = (location.hash || "").replace("#", ""); open(QT_TEMPLATES.some(function (k) { return k.id === want; }) ? want : QT_TEMPLATES[0].id, false);
   var ready = document.fonts && document.fonts.load ? Promise.all(['400 60px "QT Lalezar"', '700 60px "QT Amiri"', '800 60px Sora', '600 60px Sora', '700 60px "QT Arabic"'].map(function (f) { return document.fonts.load(f, "Ab ابج").catch(function () {}); })) : Promise.resolve();
-  ready.then(function () { restart(); requestAnimationFrame(loop); requestAnimationFrame(galleryTick); });
+  ready.then(function () { restart(); requestAnimationFrame(loop); });
+  // gallery previews start once the page has settled (keeps the first load light)
+  var startGallery = function () { (window.requestIdleCallback || function (f) { setTimeout(f, 300); })(function () { requestAnimationFrame(galleryTick); }, { timeout: 1500 }); };
+  if (document.readyState === "complete") setTimeout(startGallery, 400); else window.addEventListener("load", function () { setTimeout(startGallery, 400); });
 })();
 if (typeof module !== "undefined") module.exports = { TP: TP, QT_TEMPLATES: QT_TEMPLATES, QT_TP_PALETTES: QT_TP_PALETTES, qtTpDefaults: qtTpDefaults, qtTpLines: qtTpLines };

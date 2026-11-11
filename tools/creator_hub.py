@@ -34,7 +34,7 @@ L = {
 def card(lang, key, href, name, desc, feats=None, eager=False):
     f = ""
     if feats: f = '<ul class="ch-feats">' + "".join("<li>%s</li>" % x for x in feats) + "</ul>"
-    return ('      <a class="ch-card" href="%s">\n        <span class="ch-phone"><video src="/assets/previews/%s-%s.mp4" poster="/assets/previews/%s-%s.jpg" muted loop playsinline preload="none" data-qt-autoplay aria-hidden="true" width="360" height="640"></video></span>\n'
+    return ('      <a class="ch-card" href="%s">\n        <span class="ch-phone"><video src="/assets/previews/%s-%s.mp4" poster="/assets/previews/%s-%s.webp" muted loop playsinline preload="none" data-qt-autoplay aria-hidden="true" width="360" height="640"></video></span>\n'
             '        <h3>%s</h3>\n        <p>%s</p>%s\n        <span class="go">%s %s</span>\n      </a>\n') % (href, key, lang, key, lang, name, desc, f, L[lang]["open"], GO)
 EXTRA = {
  "en": [("/video-templates", "✨", "Video Templates", "13 ready-made animated templates — sale, top 5, invite, Ramadan… 60 fps.", "New"),
@@ -171,7 +171,7 @@ def body(lang):
     s = ('<div class="wrap">\n  <div class="breadcrumb"><a href="%s">%s</a> <span>/</span><span style="color:var(--text-dim)">%s</span></div>\n'
          '%s  <section class="hero compact">\n    <div class="hero-badges"><span class="badge">%s</span><span class="badge local">%s%s</span><span class="badge">%s</span></div>\n'
          '    <h1>%s</h1>\n    <p>%s</p>\n  </section>\n\n') % (t["home"], t["homeL"], t["crumb"], "<!--LANG-SWITCH-->\n" if ar else "", t["b"][0], LOCK, t["b"][1], t["b"][2], t["h1"], t["intro"])
-    s += '  <section class="section ch">\n    <div class="ch-grid">\n%s    </div>\n%s  </section>\n\n' % ("".join(card(lang, k, h, n, d, f) for k, h, n, d, f in STUDIOS[lang]), more(lang))
+    s += '  <section class="section ch" aria-labelledby="chStudios">\n    <div class="section-head"><div><h2 class="section-title" id="chStudios">%s</h2></div></div>\n    <div class="ch-grid">\n%s    </div>\n%s  </section>\n\n' % ({"en": "The studios", "ar": "الاستوديوهات"}[lang], "".join(card(lang, k, h, n, d, f) for k, h, n, d, f in STUDIOS[lang]), more(lang))
     b = BK[lang]
     s += ('  <section class="section bk" id="brand-kit" aria-labelledby="bkTitle">\n    <div class="bk-card">\n      <div>\n        <span class="ch-kick">%s</span><h2 class="section-title" id="bkTitle">%s</h2><p class="section-sub">%s</p>\n'
           '        <form id="bkForm" class="bk-form">\n'
