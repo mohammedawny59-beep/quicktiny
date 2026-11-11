@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Promo video generator (dev only)</title>
+<link rel="stylesheet" href="/styles.css">
+<!-- Dev-only (tools/ is not deployed). Renders full-size 9:16 promo videos for social posts with the studios' own engines.
+     Fonts: copied by tools/previews.html's generator; here we just reuse its @font-face block via a fetch at load. -->
+<style>body{padding:20px}canvas{width:270px;height:480px;border:1px solid #333}</style>
+</head>
+<body>
+<h1>Promo generator</h1><p id="log">ready</p><canvas id="pv" width="1080" height="1920"></canvas>
+<script src="/vendor/mp4-muxer.js"></script>
+<script src="/paper-studio.js"></script>
+<script src="/motion-titles.js"></script>
+<script src="/glass-slides.js"></script>
+<script src="/captions.js"></script>
+<script>
+// pull the display-font @font-face rules from the previews generator so both stay in sync
+async function loadFaces() {
+  var html = await (await fetch("/tools/previews.html")).text(), m = html.match(/@font-face\{[^}]*\}/g) || [];
+  var st = document.createElement("style"); st.textContent = m.join("\n"); document.head.appendChild(st);
+  var fl = ['400 40px "QT Lalezar"', '700 40px "QT Amiri"', '400 40px "QT Rakkas"', '800 40px Sora', '700 40px Sora', '500 40px Sora', '700 40px "QT Arabic"', '500 40px "QT Arabic"'];
+  await Promise.all(fl.map(function (f) { return document.fonts.load(f, "Ab ابج").catch(function () {}); }));
+}
+function scenes(lang) {
+  var ar = lang === "ar", W = 1080, H = 1920, out = [];
+  // 1 — paper headline
+  var pm = { style: "newspaper", text: ar ? "أدوات فيديو مجانية" : "Free video tools", sub: "", accent: "#ffd400", bg: "kraft", bgColor: "#6b6bff", duration: 3.8, image: null, cutout: null };
+  out.push({ dur: 3.8, draw: function (x, t) { qtPmRender(x, W, H, t, pm); } });
+  // 2 — glass slides pitch
+  var gs = { slides: ar ? [{ t: "4 استوديوهات فيديو", s: "مجانية وتعمل داخل متصفحك" }, { t: "بدون علامة مائية", s: "MP4 خلال ثوانٍ · عربي وإنجليزي" }] : [{ t: "4 video studios", s: "Free, right in your browser" }, { t: "No watermark", s: "MP4 in seconds · Arabic & English" }], theme: "aurora", per: 2.7, photo: null, align: "center" };
+  var gcv = document.createElement("canvas"); gcv.width = W; gcv.height = H; var ge = qtGsEngine(gcv, gs);
+  out.push({ dur: ge.dur(), draw: function (x, t) { ge.render(t); x.drawImage(gcv, 0, 0); } });
+  // 3 — captions listing the studios
+  var cs = { style: "box", accent: "#ffd400", font: "bold", size: 128, pos: "middle", bg: "photo", upper: false, outline: true };
+  var cp = qtCapPages(qtCapWords(qtCapFromText(ar ? "ترجمة متحركة\nأنيميشن الورق\nسلايدات زجاجية\nعناوين متحركة" : "Animated captions\nPaper animation\nGlass slides\nMotion titles", 120)), 2);
+  var cD = cp[cp.length - 1].end + .35;
+  out.push({ dur: cD, draw: function (x, t) { qtCapRender(x, W, H, t, cs, cp, true); } });
+  // 4 — big title with the address
+  var mt = { tpl: "title", a: ar ? "كويك تايني" : "QuickTiny", b: "quicktinyv2.vercel.app", accent: "#3be2ff", bg: "photo", ratio: "9:16", pos: "start", count: 0, duration: 4 };
+  out.push({ dur: 4, draw: function (x, t) { qtMtRender(x, W, H, t, mt, true); } });
+  return out;
+}
+// one studio per clip, for posting one at a time
+function singles(lang) {
+  var ar = lang === "ar", W = 1080, H = 1920, out = {};
+  var pmS = ["newspaper", "cutout", "typewriter", "sticky"];
+  out["paper"] = pmS.map(function (style, i) { var s = { style: style, text: ar ? ["خبر عاجل", "قص ولصق", "اكتبها بنفسك", "لا تنسَ"][i] : ["Breaking news", "Cut & paste", "Type it out", "Don't forget"][i], sub: "", accent: "#ffd400", bg: "kraft", bgColor: "#6b6bff", duration: 3.6, image: null, cutout: null }; return { dur: 3.6, draw: function (x, t) { qtPmRender(x, W, H, t, s); } }; });
+  var gs = { slides: ar ? [{ t: "مرحبًا 👋", s: "هذه سلايدات زجاجية" }, { t: "ناعمة جدًا", s: "بسلاسة 60 إطارًا" }, { t: "مجانية", s: "على كويك تايني" }] : [{ t: "Hello 👋", s: "These are glass slides" }, { t: "Super smooth", s: "Silky 60 fps" }, { t: "Free", s: "on QuickTiny" }], theme: "sunset", per: 2.6, photo: null, align: "center" };
+  var gcv = document.createElement("canvas"); gcv.width = W; gcv.height = H; var ge = qtGsEngine(gcv, gs);
+  out["glass"] = [{ dur: ge.dur(), draw: function (x, t) { ge.render(t); x.drawImage(gcv, 0, 0); } }];
+  out["captions"] = ["pop", "box", "karaoke", "bounce"].map(function (style) {
+    var cs = { style: style, accent: "#ffd400", font: "bold", size: 120, pos: "middle", bg: "photo", upper: false, outline: true };
+    var cp = qtCapPages(qtCapWords(qtCapFromText(ar ? "هذا ستايل " + { pop: "التكبير", box: "المربع الملوّن", karaoke: "الكاريوكي", bounce: "كلمة كلمة" }[style] + "\nترجمة متحركة لفيديوهاتك" : "This is the " + style + " style\nCaptions for your videos", 140)), 3);
+    var d = cp[cp.length - 1].end + .3; return { dur: d, draw: function (x, t) { qtCapRender(x, W, H, t, cs, cp, true); } };
+  });
+  out["titles"] = ["lower", "subscribe", "countdown", "like"].map(function (tpl) {
+    var DEF = ar ? { lower: ["محمد أحمد", "صانع محتوى"], subscribe: ["اشترك", "تم الاشتراك"], countdown: ["يلا نبدأ!", ""], like: ["اكتب رأيك في التعليقات 👇", ""] } : { lower: ["Alex Morgan", "Content creator"], subscribe: ["Subscribe", "Subscribed"], countdown: ["Let's go!", ""], like: ["Tell me in the comments 👇", ""] };
+    var s = { tpl: tpl, a: DEF[tpl][0], b: DEF[tpl][1], accent: "#ff2d55", bg: "photo", ratio: "9:16", pos: "start", count: 1200, duration: tpl === "countdown" ? 4.2 : 4 };
+    return { dur: s.duration, draw: function (x, t) { qtMtRender(x, W, H, t, s, true); } };
+  });
+  return out;
+}
+function dl(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
+// Encode a list of scenes back to back with a short crossfade between them.
+async function encodeSeq(list, cv, fade) {
+  var W = cv.width, H = cv.height, fps = 30, x = cv.getContext("2d");
+  var a = document.createElement("canvas"), b = document.createElement("canvas"); a.width = b.width = W; a.height = b.height = H;
+  var ax = a.getContext("2d"), bx = b.getContext("2d");
+  var starts = [], T = 0; list.forEach(function (s, i) { starts.push(T); T += s.dur - (i < list.length - 1 ? fade : 0); });
+  var frames = Math.round(T * fps);
+  var mux = new Mp4Muxer.Muxer({ target: new Mp4Muxer.ArrayBufferTarget(), video: { codec: "avc", width: W, height: H }, fastStart: "in-memory" }), err = null;
+  var enc = new VideoEncoder({ output: function (ch, meta) { mux.addVideoChunk(ch, meta); }, error: function (e) { err = e; } });
+  enc.configure({ codec: "avc1.640028", width: W, height: H, bitrate: 9000000, framerate: fps });
+  for (var f = 0; f < frames; f++) {
+    var t = f / fps, i = 0; while (i < list.length - 1 && t >= starts[i + 1]) i++;
+    ax.setTransform(1, 0, 0, 1, 0, 0); ax.globalAlpha = 1; list[i].draw(ax, t - starts[i]);
+    x.globalAlpha = 1; x.drawImage(a, 0, 0);
+    if (i < list.length - 1 && t > starts[i] + list[i].dur - fade) {
+      var k = (t - (starts[i] + list[i].dur - fade)) / fade; bx.setTransform(1, 0, 0, 1, 0, 0); bx.globalAlpha = 1; list[i + 1].draw(bx, 0);
+      x.globalAlpha = Math.min(1, Math.max(0, k)); x.drawImage(b, 0, 0); x.globalAlpha = 1;
+    }
+    var vf = new VideoFrame(cv, { timestamp: Math.round(f * 1e6 / fps), duration: Math.round(1e6 / fps) }); enc.encode(vf, { keyFrame: f % 60 === 0 }); vf.close();
+    if (f % 8 === 0) { document.getElementById("log").textContent = "frame " + f + "/" + frames; await new Promise(function (r) { setTimeout(r, 0); }); }
+    if (enc.encodeQueueSize > 6) await new Promise(function (r) { setTimeout(r, 5); });
+    if (err) throw err;
+  }
+  await enc.flush(); mux.finalize(); return new Blob([mux.target.buffer], { type: "video/mp4" });
+}
+window.qtRunPromo = async function (which) {
+  await loadFaces();
+  var cv = document.getElementById("pv"), log = [];
+  for (var lang of ["en", "ar"]) {
+    if (!which || which === "promo") { var b = await encodeSeq(scenes(lang), cv, .35); dl(b, "quicktiny-promo-" + lang + ".mp4"); log.push("promo-" + lang + " " + Math.round(b.size / 1024) + "KB"); }
+    if (!which || which === "singles") {
+      var S = singles(lang);
+      for (var k in S) { var bb = await encodeSeq(S[k], cv, .3); dl(bb, "quicktiny-" + k + "-" + lang + ".mp4"); log.push(k + "-" + lang + " " + Math.round(bb.size / 1024) + "KB"); }
+    }
+    await new Promise(function (r) { setTimeout(r, 300); });
+  }
+  return log;
+};
+</script>
+</body></html>
