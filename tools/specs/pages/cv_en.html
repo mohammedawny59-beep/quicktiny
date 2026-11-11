@@ -1,0 +1,55 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">CV Builder</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Career</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Free CV / Resume Builder — Arabic or English, PDF Download, No Sign-up</h1>
+    <p>Fill in the form and watch your CV take shape on the right. Choose an English or Arabic CV, pick a template and colour, then download a clean A4 PDF with real, selectable text that applicant tracking systems can read. No account, no watermark; your data stays in this browser.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="cv-tools">
+      <button type="button" class="btn" id="cvPrint">Download PDF</button>
+      <span id="cvTpl" role="group" aria-label="Template"><button type="button" class="chip" data-t="classic">Classic</button><button type="button" class="chip" data-t="modern">Modern</button><button type="button" class="chip" data-t="compact">Compact</button></span>
+      <button type="button" class="btn btn-secondary" id="cvSample">Load example</button><button type="button" class="btn btn-secondary" id="cvExport">Save as file</button>
+      <label class="btn btn-secondary" for="cvImport" style="cursor:pointer">Open file</label><input type="file" id="cvImport" accept="application/json,.json" class="sr-only">
+      <button type="button" class="btn btn-secondary" id="cvReset">Clear</button> <span id="cvStatus" role="status"></span>
+    </div>
+    <p class="privacy-note" style="margin:0 0 12px">In the print window choose “Save as PDF”, paper size A4, and turn off “Headers and footers”.</p>
+    <div class="cv-grid">
+      <form class="cv-form" id="cvForm" onsubmit="return false">
+        <fieldset><legend>Personal details</legend><div class="cv-fs"><div class="cv-f"><label for="cv_name">Full name</label><input type="text" id="cv_name"></div><div class="cv-f"><label for="cv_title">Job title / headline</label><input type="text" id="cv_title"></div><div class="cv-f"><label for="cv_lang">CV language</label><select id="cv_lang"><option value="ar">Arabic</option><option value="en">English</option></select></div><div class="cv-f"><label for="cv_color">Accent colour</label><input type="color" id="cv_color" style="height:42px;padding:4px"></div><div class="cv-f"><label for="cv_email">Email</label><input type="text" id="cv_email" dir="auto"></div><div class="cv-f"><label for="cv_phone">Phone</label><input type="text" id="cv_phone" dir="auto"></div><div class="cv-f"><label for="cv_city">City</label><input type="text" id="cv_city"></div><div class="cv-f"><label for="cv_link">LinkedIn / website</label><input type="text" id="cv_link" dir="auto"></div></div></fieldset>
+        <fieldset><legend>Summary</legend><div class="cv-f cv-wide"><label for="cv_summary">Summary</label><textarea id="cv_summary" rows="3" placeholder="2–3 lines about your experience and what you're good at"></textarea></div></fieldset>
+        <fieldset><legend>Experience</legend><div id="cvExp"></div><button type="button" class="btn btn-secondary" id="cvAddExp">+ Add</button></fieldset>
+        <fieldset><legend>Education</legend><div id="cvEdu"></div><button type="button" class="btn btn-secondary" id="cvAddEdu">+ Add</button></fieldset>
+        <fieldset><legend>Skills</legend><div class="cv-fs"><div class="cv-f cv-wide"><label for="cv_skills">Skills (comma-separated)</label><textarea id="cv_skills" rows="3"></textarea></div><div class="cv-f cv-wide"><label for="cv_langs">Languages (comma-separated)</label><textarea id="cv_langs" rows="3"></textarea></div><div class="cv-f cv-wide"><label for="cv_certs">Certifications (one per line)</label><textarea id="cv_certs" rows="3"></textarea></div></div></fieldset>
+      </form>
+      <div class="cv-sticky"><div class="cv-paper" tabindex="0" role="region" aria-label="CV preview"><div id="cvPreview" aria-live="polite"></div></div></div>
+    </div>
+  </div>
+  <script src="/cv.js"></script>
+
+  <div class="content">
+    <h2>Tips for a CV that gets interviews</h2>
+    <ul class="benefits">
+      <li><span><strong>One or two pages.</strong> Recruiters skim; put your strongest, most recent work first.</span></li>
+      <li><span><strong>Start bullets with a verb and a number:</strong> “Cut reporting time from 3 days to 2 hours” beats “Responsible for reports”.</span></li>
+      <li><span><strong>Match the job ad.</strong> Use the same skill names the posting uses so ATS filters find you.</span></li>
+      <li><span><strong>Skip the photo, age and marital status</strong> unless the employer or country expects them.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is this CV builder really free?</summary><p>Yes — no account, no watermark, no paywall for the PDF.</p></details>
+    <details class="faq-item"><summary>Is the PDF ATS-friendly?</summary><p>Yes. The PDF contains real text in a simple one-column layout, which applicant tracking systems read well.</p></details>
+    <details class="faq-item"><summary>Where is my data stored?</summary><p>Only in this browser (localStorage). Use “Save as file” to keep a copy or move it to another device.</p></details>
+    <details class="faq-item"><summary>Can I make an Arabic CV?</summary><p>Yes — switch “CV language” to Arabic and the layout flips to right-to-left with Arabic headings.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/compress-image-to-kb">Compress a photo to an exact size<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/pdf-tools">PDF Tools<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/gpa-calculator">GPA Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

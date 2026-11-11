@@ -30,3 +30,4 @@ transparent WebP (per-row background removal, floor reflection faded) and resize
 - `graduation.webp` (2026-11-10) — GPA / weighted grade calculators (student pack), same pipeline.
 - `ramadan.webp` (2026-11-10) — Ramadan countdown, same pipeline.
 - `ruler.webp` (2026-11-11) — unit converter, same pipeline.
+- `resume.webp` (2026-11-11) — CV builder, same pipeline.

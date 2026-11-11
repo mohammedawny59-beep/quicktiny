@@ -211,6 +211,13 @@
     <description>Count the days between two dates with years, months, weeks, working days and hours, or add and subtract days from a date. Free, instant.</description>
   </item>
   <item>
+    <title>Free CV Builder — Resume in English or Arabic, PDF Download, No Sign-up</title>
+    <link>https://quicktinyv2.vercel.app/cv-builder</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/cv-builder</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Make a professional CV for free: live preview, three templates, English or Arabic, and an ATS-friendly A4 PDF download. No account, no watermark, data stays in your browser.</description>
+  </item>
+  <item>
     <title>Compress PDF — Reduce PDF File Size Free, No Upload</title>
     <link>https://quicktinyv2.vercel.app/compress-pdf</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-pdf</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/celsius-to-fahrenheit</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Convert Celsius to Fahrenheit instantly: °F = °C × 9/5 + 32. 37 °C = 98.6 °F, 100 °C = 212 °F. Kelvin too. Free, no sign-up.</description>
-  </item>
-  <item>
-    <title>BMI Calculator — Body Mass Index &amp; Healthy Weight for Your Height</title>
-    <link>https://quicktinyv2.vercel.app/bmi-calculator</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/bmi-calculator</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Calculate your BMI in kg/cm or lb/ft, see your WHO category on a visual scale and the healthy weight range for your height. Free and private.</description>
   </item>
 </channel>
 </rss>

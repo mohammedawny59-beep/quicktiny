@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Free CV Builder — Resume in English or Arabic, PDF Download, No Sign-up | QuickTiny</title>
+  <meta name="description" content="Make a professional CV for free: live preview, three templates, English or Arabic, and an ATS-friendly A4 PDF download. No account, no watermark, data stays in your browser.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/cv-builder">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/cv-builder">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/cv-builder">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/cv-builder">
+  <meta property="og:title" content="Free CV Builder — Resume in English or Arabic, PDF Download, No Sign-up | QuickTiny">
+  <meta property="og:description" content="Make a professional CV for free: live preview, three templates, English or Arabic, and an ATS-friendly A4 PDF download. No account, no watermark, data stays in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/cv-builder">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/cv.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/cv.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .cv-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:18px;align-items:start}
+    @media(max-width:980px){.cv-grid{grid-template-columns:1fr}}
+    .cv-form fieldset{border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin:0 0 12px;background:var(--card)}
+    .cv-form legend{font-weight:800;color:var(--text);padding:0 6px}
+    .cv-fs{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}
+    @media(max-width:520px){.cv-fs{grid-template-columns:1fr}}
+    .cv-f label,.cv-form .cv-lab{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:3px}
+    .cv-f input,.cv-f textarea,.cv-f select{margin:0}
+    .cv-f textarea{min-height:64px;font-family:var(--font-ui);font-size:14px}
+    .cv-wide{grid-column:1/-1}
+    .cv-entry{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;background:transparent!important;border-style:dashed!important}
+    @media(max-width:520px){.cv-entry{grid-template-columns:1fr}}
+    .cv-rm{justify-self:start;padding:6px 12px;font-size:12.5px}
+    .cv-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+    .cv-tools .btn{padding:9px 16px;font-size:14px}
+    #cvTpl{display:inline-flex;gap:6px}
+    #cvStatus{font-size:13px;color:var(--success);font-weight:700}
+    .cv-sticky{position:sticky;top:80px}
+    .cv-paper{background:#e9ebf3;border-radius:16px;padding:14px;overflow:auto;max-height:calc(100vh - 110px)}
+    @media(max-width:980px){.cv-sticky{position:static}.cv-paper{max-height:none}}
+    .cv-doc{background:#fff;color:#1d2030;width:100%;max-width:794px;min-height:1000px;margin:0 auto;padding:44px 48px;box-shadow:0 10px 30px -12px rgba(0,0,0,.35);border-radius:4px;
+      font-family:"QT Arabic",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:13.5px;line-height:1.55}
+    .cv-doc h1{margin:0;font-size:28px;line-height:1.2;color:#11131f;font-family:inherit;letter-spacing:0}
+    .cv-title{margin:4px 0 0;font-size:15px;font-weight:700;color:var(--cv-accent)}
+    .cv-contact{margin:8px 0 0;color:#4a4f66;font-size:12.5px;display:flex;flex-wrap:wrap;gap:4px 8px}
+    .cv-contact i{font-style:normal;color:#b5b9cc}
+    .cv-top{padding-bottom:12px;border-bottom:2px solid var(--cv-accent);margin-bottom:6px}
+    .cv-sec h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--cv-accent);margin:16px 0 8px;font-family:inherit}
+    .cv-doc[dir=rtl] .cv-sec h2{letter-spacing:0}
+    .cv-sec p{margin:0;color:#2a2e45}
+    .cv-item{margin-bottom:10px}
+    .cv-row{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+    .cv-row b{font-size:14px;color:#11131f}
+    .cv-date{color:#6b7090;font-size:12px;white-space:nowrap}
+    .cv-sub{color:#4a4f66;font-weight:600}
+    .cv-doc ul{margin:4px 0 0;padding-inline-start:18px}
+    .cv-doc li{margin:2px 0;color:#2a2e45}
+    .cv-tags{list-style:none;padding:0!important;display:flex;flex-wrap:wrap;gap:6px}
+    .cv-tags li{background:#f1f2f8;border:1px solid #e1e3ee;border-radius:6px;padding:2px 9px;margin:0!important}
+    /* Modern: coloured header band */
+    .cv-modern .cv-top{background:var(--cv-accent);color:#fff;margin:-44px -48px 10px;padding:30px 48px 20px;border:0}
+    .cv-modern h1{color:#fff}.cv-modern .cv-title{color:#fff;opacity:.92}.cv-modern .cv-contact{color:#fff;opacity:.9}.cv-modern .cv-contact i{color:#fff;opacity:.6}
+    /* Compact: smaller type, two-column skills */
+    .cv-compact{font-size:12.5px;padding:34px 38px}.cv-compact h1{font-size:24px}.cv-compact .cv-sec h2{margin-top:12px}
+    @media(max-width:520px){.cv-doc{padding:26px 22px;min-height:0}.cv-modern .cv-top{margin:-26px -22px 10px;padding:22px}}
+    @media print{
+      @page{size:A4;margin:12mm}
+      html,body{background:#fff!important}
+      body>*:not(#main),#main>*:not(.tool-panel),.tool-panel>*:not(.cv-grid),.cv-grid>*:not(.cv-sticky){display:none!important}
+      #main,.tool-panel,.cv-grid,.cv-sticky{display:block!important;position:static!important;margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;backdrop-filter:none!important;max-width:none!important;width:auto!important}
+      .cv-paper{background:none;padding:0;max-height:none;overflow:visible}
+      .cv-doc{box-shadow:none;max-width:none;min-height:0;padding:0;border-radius:0}
+      .cv-modern .cv-top{margin:0 0 10px;padding:18px 20px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .cv-tags li{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .aurora,.grain,.site-header,footer,.qt-fb{display:none!important}
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">CV Builder</span></div>
+  <div class="lang-switch">
+    <a href="/cv-builder" class="active">EN</a>
+    <a href="/ar/cv-builder" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Career</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Free CV / Resume Builder — Arabic or English, PDF Download, No Sign-up</h1>
+    <p>Fill in the form and watch your CV take shape on the right. Choose an English or Arabic CV, pick a template and colour, then download a clean A4 PDF with real, selectable text that applicant tracking systems can read. No account, no watermark; your data stays in this browser.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="cv-tools">
+      <button type="button" class="btn" id="cvPrint">Download PDF</button>
+      <span id="cvTpl" role="group" aria-label="Template"><button type="button" class="chip" data-t="classic">Classic</button><button type="button" class="chip" data-t="modern">Modern</button><button type="button" class="chip" data-t="compact">Compact</button></span>
+      <button type="button" class="btn btn-secondary" id="cvSample">Load example</button><button type="button" class="btn btn-secondary" id="cvExport">Save as file</button>
+      <label class="btn btn-secondary" for="cvImport" style="cursor:pointer">Open file</label><input type="file" id="cvImport" accept="application/json,.json" class="sr-only">
+      <button type="button" class="btn btn-secondary" id="cvReset">Clear</button> <span id="cvStatus" role="status"></span>
+    </div>
+    <p class="privacy-note" style="margin:0 0 12px">In the print window choose “Save as PDF”, paper size A4, and turn off “Headers and footers”.</p>
+    <div class="cv-grid">
+      <form class="cv-form" id="cvForm" onsubmit="return false">
+        <fieldset><legend>Personal details</legend><div class="cv-fs"><div class="cv-f"><label for="cv_name">Full name</label><input type="text" id="cv_name"></div><div class="cv-f"><label for="cv_title">Job title / headline</label><input type="text" id="cv_title"></div><div class="cv-f"><label for="cv_lang">CV language</label><select id="cv_lang"><option value="ar">Arabic</option><option value="en">English</option></select></div><div class="cv-f"><label for="cv_color">Accent colour</label><input type="color" id="cv_color" style="height:42px;padding:4px"></div><div class="cv-f"><label for="cv_email">Email</label><input type="text" id="cv_email" dir="auto"></div><div class="cv-f"><label for="cv_phone">Phone</label><input type="text" id="cv_phone" dir="auto"></div><div class="cv-f"><label for="cv_city">City</label><input type="text" id="cv_city"></div><div class="cv-f"><label for="cv_link">LinkedIn / website</label><input type="text" id="cv_link" dir="auto"></div></div></fieldset>
+        <fieldset><legend>Summary</legend><div class="cv-f cv-wide"><label for="cv_summary">Summary</label><textarea id="cv_summary" rows="3" placeholder="2–3 lines about your experience and what you're good at"></textarea></div></fieldset>
+        <fieldset><legend>Experience</legend><div id="cvExp"></div><button type="button" class="btn btn-secondary" id="cvAddExp">+ Add</button></fieldset>
+        <fieldset><legend>Education</legend><div id="cvEdu"></div><button type="button" class="btn btn-secondary" id="cvAddEdu">+ Add</button></fieldset>
+        <fieldset><legend>Skills</legend><div class="cv-fs"><div class="cv-f cv-wide"><label for="cv_skills">Skills (comma-separated)</label><textarea id="cv_skills" rows="3"></textarea></div><div class="cv-f cv-wide"><label for="cv_langs">Languages (comma-separated)</label><textarea id="cv_langs" rows="3"></textarea></div><div class="cv-f cv-wide"><label for="cv_certs">Certifications (one per line)</label><textarea id="cv_certs" rows="3"></textarea></div></div></fieldset>
+      </form>
+      <div class="cv-sticky"><div class="cv-paper" tabindex="0" role="region" aria-label="CV preview"><div id="cvPreview" aria-live="polite"></div></div></div>
+    </div>
+  </div>
+  <script src="/cv.js"></script>
+
+  <div class="content">
+    <h2>Tips for a CV that gets interviews</h2>
+    <ul class="benefits">
+      <li><span><strong>One or two pages.</strong> Recruiters skim; put your strongest, most recent work first.</span></li>
+      <li><span><strong>Start bullets with a verb and a number:</strong> “Cut reporting time from 3 days to 2 hours” beats “Responsible for reports”.</span></li>
+      <li><span><strong>Match the job ad.</strong> Use the same skill names the posting uses so ATS filters find you.</span></li>
+      <li><span><strong>Skip the photo, age and marital status</strong> unless the employer or country expects them.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is this CV builder really free?</summary><p>Yes — no account, no watermark, no paywall for the PDF.</p></details>
+    <details class="faq-item"><summary>Is the PDF ATS-friendly?</summary><p>Yes. The PDF contains real text in a simple one-column layout, which applicant tracking systems read well.</p></details>
+    <details class="faq-item"><summary>Where is my data stored?</summary><p>Only in this browser (localStorage). Use “Save as file” to keep a copy or move it to another device.</p></details>
+    <details class="faq-item"><summary>Can I make an Arabic CV?</summary><p>Yes — switch “CV language” to Arabic and the layout flips to right-to-left with Arabic headings.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More tools</h2>
+    <div class="related-grid">
+      <a href="/compress-image-to-kb">Compress a photo to an exact size<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/pdf-tools">PDF Tools<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/gpa-calculator">GPA Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/cv-builder">CV Builder</a>
+        <a href="/saudi-salary-calculator">Saudi Salary Calculator</a>
+        <a href="/unit-converter">Unit Converter</a>
+        <a href="/ramadan-countdown">Ramadan Countdown</a>
+        <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator</a>
+        <a href="/gpa-calculator">GPA Calculator</a>
+        <a href="/weighted-grade-calculator">Weighted Grade Calculator</a>
+        <a href="/prayer-times">Prayer Times</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny CV Builder","url":"https://quicktinyv2.vercel.app/cv-builder","description":"Make a professional CV for free: live preview, three templates, English or Arabic, and an ATS-friendly A4 PDF download. No account, no watermark, data stays in your browser.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"CV Builder","item":"https://quicktinyv2.vercel.app/cv-builder"}]}</script>
+</body>
+</html>
