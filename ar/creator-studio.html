@@ -90,6 +90,23 @@
     </div>
   </section>
 
+  <section class="section bk" id="brand-kit" aria-labelledby="bkTitle">
+    <div class="bk-card">
+      <div>
+        <span class="ch-kick">هوية القناة</span><h2 class="section-title" id="bkTitle">شكلك المميّز في كل استوديو</h2><p class="section-sub">احفظ لونك وخط الكابشن واسم قناتك مرة واحدة، والترجمة المتحركة وترجمة الفيديو التلقائية والعناوين المتحركة وأنيميشن الورق وصانع الصورة المصغّرة تستخدمها تلقائيًا. تُحفظ في متصفحك فقط.</p>
+        <form id="bkForm" class="bk-form">
+          <label>اسم القناة<input type="text" id="bkName" maxlength="40" dir="auto" autocomplete="off"></label>
+          <label>الوصف<input type="text" id="bkTag" maxlength="50" dir="auto" autocomplete="off"></label>
+          <div class="bk-two"><label>لون الهوية<input type="color" id="bkAccent"></label><label>خط الكابشن<select id="bkFont"><option value="bold">عريض</option><option value="sans">بسيط</option></select></label></div>
+          <div class="bk-btns"><button type="submit" class="btn">احفظ الهوية</button><button type="button" class="btn btn-secondary" id="bkClear" hidden>حذف</button></div>
+          <p id="bkStatus" role="status"></p>
+        </form>
+      </div>
+      <div class="bk-preview" id="bkPreview" aria-hidden="true"><div class="bk-lower"><b></b><span></span></div><div class="bk-cap">كابشن <em>بهويتك</em></div></div>
+    </div>
+  </section>
+  <script src="/brand.js"></script>
+
   <div class="content">
     <h2>فيديو واحد، أربعة استوديوهات</h2>
     <ol class="benefits">

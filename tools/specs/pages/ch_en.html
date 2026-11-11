@@ -39,6 +39,23 @@
     </div>
   </section>
 
+  <section class="section bk" id="brand-kit" aria-labelledby="bkTitle">
+    <div class="bk-card">
+      <div>
+        <span class="ch-kick">Brand kit</span><h2 class="section-title" id="bkTitle">Your look, in every studio</h2><p class="section-sub">Save your colour, caption font and channel name once. Captions, auto subtitles, motion titles, paper animation and the thumbnail maker pick them up automatically. Stored only in this browser.</p>
+        <form id="bkForm" class="bk-form">
+          <label>Channel name<input type="text" id="bkName" maxlength="40" dir="auto" autocomplete="off"></label>
+          <label>Tagline<input type="text" id="bkTag" maxlength="50" dir="auto" autocomplete="off"></label>
+          <div class="bk-two"><label>Brand colour<input type="color" id="bkAccent"></label><label>Caption font<select id="bkFont"><option value="bold">Bold display</option><option value="sans">Clean sans</option></select></label></div>
+          <div class="bk-btns"><button type="submit" class="btn">Save brand kit</button><button type="button" class="btn btn-secondary" id="bkClear" hidden>Clear</button></div>
+          <p id="bkStatus" role="status"></p>
+        </form>
+      </div>
+      <div class="bk-preview" id="bkPreview" aria-hidden="true"><div class="bk-lower"><b></b><span></span></div><div class="bk-cap">Your <em>captions</em></div></div>
+    </div>
+  </section>
+  <script src="/brand.js"></script>
+
   <div class="content">
     <h2>One video, four studios</h2>
     <ol class="benefits">

@@ -98,6 +98,7 @@ function qtCapRender(x, W, H, t, s, pages, preview) {
   var SIZES = { "9:16": [1080, 1920], "16:9": [1920, 1080], "1:1": [1080, 1080] };
   var st = { text: SAMPLE, srt: null, wpm: 150, per: 3, style: "pop", accent: "#ffd400", font: "bold", size: 112, pos: "bottom", bg: "photo", ratio: "9:16", upper: false, outline: true };
   try { var sv = JSON.parse(localStorage.getItem(KEY) || "null"); if (sv) ["text", "wpm", "per", "style", "accent", "font", "size", "pos", "ratio", "upper", "outline"].forEach(function (k) { if (sv[k] != null) st[k] = sv[k]; }); } catch (e) {}
+  if (window.qtBrand) qtBrand.apply(st, { accent: "accent", font: "font" });
   var cv = $("capCanvas"), ctx = cv.getContext("2d"), pages = [], D = 1, t0 = performance.now(), playing = true, exporting = false;
   function save() { try { var o = {}; ["text", "wpm", "per", "style", "accent", "font", "size", "pos", "ratio", "upper", "outline"].forEach(function (k) { o[k] = st[k]; }); localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} }
   function build() {

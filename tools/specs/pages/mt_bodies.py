@@ -98,7 +98,7 @@ def body(L, ar):
           '        <div class="mt-ctrl"><button type="button" id="mtPlay" aria-label="Play / pause">❚❚</button><input type="range" id="mtScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>\n'
           '        <div class="mt-export"><button type="button" class="btn" id="mtExport">%s</button></div>\n'
           '        <div id="mtBar" hidden><i id="mtBarFill"></i></div><div id="mtStatus" role="status"></div><p class="mt-note">%s</p>\n      </div>\n    </div>\n  </div>\n'
-          '  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/motion-titles.js"></script>\n\n') % (t["crumb"], t["export"], t["note"])
+          '  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/brand.js"></script>\n  <script src="/motion-titles.js"></script>\n\n') % (t["crumb"], t["export"], t["note"])
     s += ('  <div class="content">\n    <h2>%s</h2>\n    <ul class="benefits">\n%s    </ul>\n    <h2>%s</h2>\n%s  </div>\n\n'
           % (t["howT"], "".join("      <li><span>%s</span></li>\n" % h for h in t["how"]), t["faqT"],
              "".join('    <details class="faq-item"><summary>%s</summary><p>%s</p></details>\n' % (q, a) for q, a in t["faq"])))

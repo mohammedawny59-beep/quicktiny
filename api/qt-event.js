@@ -61,7 +61,8 @@ const ALLOWED_EVENTS = new Set([
   "captions_export",
   "subtitles_transcribed",
   "subtitles_export",
-  "thumbnail_export"
+  "thumbnail_export",
+  "brand_saved"
 ]);
 
 function cleanPage(value) {

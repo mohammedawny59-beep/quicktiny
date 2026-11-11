@@ -109,7 +109,7 @@ def body(L, ar):
           '        <div class="th-out"><button type="button" class="btn" id="thJpg">%s</button><button type="button" class="btn btn-secondary" id="thPng">%s</button></div><div id="thStatus" role="status"></div>\n'
           '        <div class="th-minis" aria-label="%s">\n          <div class="th-mini"><div class="th-mf"><canvas width="492" height="277" aria-hidden="true"></canvas><span class="th-dur">12:34</span></div><b>%s</b><span>QuickTiny · 12K views</span></div>\n'
           '          <div class="th-mini sm"><div class="th-mf"><canvas width="336" height="189" aria-hidden="true"></canvas><span class="th-dur">12:34</span></div><span>%s</span></div>\n        </div>\n      </div>\n    </div>\n  </div>\n'
-          '  <script src="/thumbnail.js"></script>\n\n') % (t["crumb"], t["jpg"], t["png"], t["miniT"], t["miniTitle"], t["mini2"])
+          '  <script src="/brand.js"></script>\n  <script src="/thumbnail.js"></script>\n\n') % (t["crumb"], t["jpg"], t["png"], t["miniT"], t["miniTitle"], t["mini2"])
     s += ('  <div class="content">\n    <h2>%s</h2>\n    <ul class="benefits">\n%s    </ul>\n    <h2>%s</h2>\n%s  </div>\n\n'
           % (t["howT"], "".join("      <li><span>%s</span></li>\n" % h for h in t["how"]), t["faqT"],
              "".join('    <details class="faq-item"><summary>%s</summary><p>%s</p></details>\n' % (q, a) for q, a in t["faq"])))
