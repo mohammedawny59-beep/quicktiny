@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Remove Silence From Video Automatically — Free Jump Cuts | QuickTiny</title>
+  <meta name="description" content="Cut pauses and dead air from talking videos automatically: see every cut on the waveform, tune the sensitivity, preview and download an MP4 with sound. Free, on-device, no watermark.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/remove-silence-from-video">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/remove-silence-from-video">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/remove-silence-from-video">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/remove-silence-from-video">
+  <meta property="og:title" content="Remove Silence From Video Automatically — Free Jump Cuts | QuickTiny">
+  <meta property="og:description" content="Cut pauses and dead air from talking videos automatically: see every cut on the waveform, tune the sensitivity, preview and download an MP4 with sound. Free, on-device, no watermark.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/remove-silence-from-video">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/silence.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/silence.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    .vt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+    @media(max-width:980px){.vt{grid-template-columns:1fr;gap:0}.vt-col{display:contents}.vt-c1{order:0}.vt-stage{order:1;margin-bottom:14px}.vt-c2{order:2}}
+    .vt-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card);margin-bottom:14px}
+    .vt-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    html[lang=ar] .vt-card h2{letter-spacing:0}
+    .vt-drop{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:24px 16px;border:2px dashed var(--line-strong);border-radius:16px;cursor:pointer;color:var(--text-dim);transition:border-color .2s,background .2s}
+    .vt-drop.over,.vt-drop:hover{border-color:var(--accent);background:rgba(91,91,255,.06)}.vt-drop strong{color:var(--text);font-size:16px}
+    .vt-drop input{position:absolute;width:1px;height:1px;opacity:0}.vt-drop:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+    .vt-name{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+    .vt-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}
+    .vt-row label,.vt-row .vt-l{font-weight:700;color:var(--text-dim);font-size:14px}
+    .vt-row input,.vt-row select{margin:0}.vt-row input[type=color]{height:42px;padding:4px;width:80px}.vt-row input[type=range]{accent-color:var(--accent);width:100%}
+    .vt-row output{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+    @media(max-width:520px){.vt-row{grid-template-columns:1fr}}
+    .vt-chips{display:flex;flex-wrap:wrap;gap:6px}.vt-checks label{display:flex;gap:6px;align-items:center;font-weight:600;font-size:14px;color:var(--text-dim)}
+    #rvTitle{width:100%;margin:0}
+    .vt-hint{font-size:13px;color:var(--muted);margin:4px 0 0}
+    @media(min-width:981px){.vt-stage{position:sticky;top:80px}}
+    .vt-screen{position:relative;margin:0 auto;max-width:100%;max-height:68vh;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -30px rgba(91,91,255,.6)}
+    .vt-screen canvas{display:block;width:100%;height:100%}
+    .vt-src{width:100%;border-radius:14px;background:#000;max-height:52vh;display:block}
+    .vt-ctrl{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .vt-ctrl button.round{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);background:var(--card);color:var(--text);cursor:pointer;flex:none}
+    .vt-trim{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;min-width:200px}.vt-trim input{margin:0;accent-color:var(--accent)}
+    #rvTrim{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+    .vt-out{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}.vt-out .btn{padding:12px 22px;font-size:15px}
+    .vt-status{text-align:center;font-weight:700;color:var(--text-dim);margin-top:10px;min-height:1.4em}
+    .vt-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;margin-top:8px}.vt-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+    .vt-next{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}.vt-next .btn{padding:10px 16px;font-size:14px}
+    #slWave{display:block;width:100%;height:110px;border-radius:12px;background:rgba(0,0,0,.35);cursor:pointer;margin-top:12px}
+    #slStats{margin-top:10px;font-size:14px;color:var(--text-dim);text-align:center}#slStats b{color:var(--text)}
+    .vt-legend{display:flex;gap:14px;justify-content:center;font-size:12px;color:var(--muted);margin-top:6px}.vt-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:5px;vertical-align:-1px}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Silence Remover</span></div>
+  <div class="lang-switch">
+    <a href="/remove-silence-from-video" class="active">EN</a>
+    <a href="/ar/remove-silence-from-video" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your video never leaves your device</span><span class="badge">Free</span></div>
+    <h1>Remove Silence From Video Automatically — Free Jump-Cut Editor</h1>
+    <p>Cut out the pauses, breaths and dead air from talking videos in one click. The audio is analysed on your device, you see every cut on the waveform, tune the sensitivity, preview the result and download a tighter MP4 with the sound — free, no watermark, no upload.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="vt">
+      <div class="vt-col">
+        <div class="vt-card vt-c1"><h2>1 · Your video</h2>
+          <label class="vt-drop" id="slDrop"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></svg><strong>Choose a video or drop it here</strong><span>MP4, MOV or WebM</span><span class="vt-name" id="slName"></span><input type="file" id="slFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>
+        </div>
+        <div class="vt-card vt-c2"><h2>2 · Sensitivity</h2>
+          <div class="vt-row"><label for="slThr">Silence below</label><div><input type="range" id="slThr" min="-60" max="-18" step="1"> <output id="slThrV"></output> <button type="button" class="chip" id="slAuto">Auto</button></div></div>
+          <div class="vt-row"><label for="slMin">Shortest pause</label><div><input type="range" id="slMin" min="0.15" max="1.5" step="0.05"> <output id="slMinV"></output></div></div>
+          <div class="vt-row"><label for="slPad">Keep around speech</label><div><input type="range" id="slPad" min="0" max="0.3" step="0.01"> <output id="slPadV"></output></div></div>
+          <div class="vt-row"><span class="vt-l"></span><div class="vt-checks"><label><input type="checkbox" id="slSkip" checked> Preview without the cuts</label></div></div>
+        </div>
+      </div>
+      <div class="vt-stage" id="slStage" hidden>
+        <video id="slVideo" class="vt-src" playsinline controls preload="auto"></video>
+        <canvas id="slWave" aria-hidden="true"></canvas><div class="vt-legend"><span><i style="background:#3be2ff"></i>Kept</span><span><i style="background:rgba(255,80,110,.85)"></i>Cut</span></div>
+        <div id="slStats" aria-live="polite"></div>
+        <div class="vt-out"><button type="button" class="btn" id="slGo" disabled>Download MP4</button></div>
+        <div class="vt-bar" id="slBar" hidden><i id="slBarFill"></i></div><div class="vt-status" id="slStatus" role="status" aria-live="polite"></div>
+        <div class="vt-next" id="slNext" hidden><button type="button" class="btn btn-secondary" data-to="/add-subtitles-to-video" data-input="sbFile">Add subtitles →</button><button type="button" class="btn btn-secondary" data-to="/horizontal-to-vertical-video" data-input="rvFile">Make it vertical →</button></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/brand.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/silence.js"></script>
+
+  <div class="content">
+    <h2>How it works</h2>
+    <ol class="benefits">
+      <li><span>Pick your video. Its audio is measured in 20 ms steps right in your browser.</span></li>
+      <li><span>Every stretch quieter than the threshold and longer than the shortest pause is marked for cutting (red on the waveform).</span></li>
+      <li><span>Play the preview — it jumps over the cuts so you hear exactly what you’ll get.</span></li>
+      <li><span>Download the MP4, then send it to Auto Subtitles or the vertical converter.</span></li>
+    </ol>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>The cuts sound abrupt — what do I change?</summary><p>Raise “Keep around speech” to 0.15–0.2 s, or increase the shortest pause so only long gaps are removed.</p></details>
+    <details class="faq-item"><summary>It cuts quiet words.</summary><p>Lower the threshold (more negative dB) or press Auto again after changing the microphone level.</p></details>
+    <details class="faq-item"><summary>Is my video uploaded?</summary><p>No — analysis and rendering happen on your device.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More video tools</h2>
+    <div class="related-grid">
+      <a href="/add-subtitles-to-video">Auto Subtitles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/horizontal-to-vertical-video">Horizontal to Vertical<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/creator-studio">Creator Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/animated-captions">Animated Captions<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/motion-titles">Motion Titles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/horizontal-to-vertical-video">Horizontal to Vertical Video</a>
+        <a href="/remove-silence-from-video">Silence Remover</a>
+        <a href="/youtube-thumbnail-maker">YouTube Thumbnail Maker</a>
+        <a href="/add-subtitles-to-video">Auto Subtitles</a>
+        <a href="/creator-studio">Creator Studio</a>
+        <a href="/animated-captions">Animated Captions</a>
+        <a href="/glass-slides">Glass Slides</a>
+        <a href="/motion-titles">Motion Titles</a>
+        <a href="/paper-animation">Paper Motion Studio</a>
+        <a href="/image-to-text">Image to Text</a>
+        <a href="/cv-builder">CV Builder</a>
+        <a href="/saudi-salary-calculator">Saudi Salary Calculator</a>
+        <a href="/unit-converter">Unit Converter</a>
+        <a href="/ramadan-countdown">Ramadan Countdown</a>
+        <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator</a>
+        <a href="/gpa-calculator">GPA Calculator</a>
+        <a href="/weighted-grade-calculator">Weighted Grade Calculator</a>
+        <a href="/prayer-times">Prayer Times</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Silence Remover","url":"https://quicktinyv2.vercel.app/remove-silence-from-video","description":"Cut pauses and dead air from talking videos automatically: see every cut on the waveform, tune the sensitivity, preview and download an MP4 with sound. Free, on-device, no watermark.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Silence Remover","item":"https://quicktinyv2.vercel.app/remove-silence-from-video"}]}</script>
+</body>
+</html>

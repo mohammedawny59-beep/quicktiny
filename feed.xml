@@ -64,6 +64,13 @@
     <description>Resize photos to an exact width, height or percentage in your browser. Batch resize, keep aspect ratio, convert format at the same time. No upload.</description>
   </item>
   <item>
+    <title>Remove Silence From Video Automatically — Free Jump Cuts</title>
+    <link>https://quicktinyv2.vercel.app/remove-silence-from-video</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/remove-silence-from-video</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Cut pauses and dead air from talking videos automatically: see every cut on the waveform, tune the sensitivity, preview and download an MP4 with sound. Free, on-device, no watermark.</description>
+  </item>
+  <item>
     <title>Ramadan Timetable 2027 (1448) — Suhoor &amp; Iftar Times for Your City</title>
     <link>https://quicktinyv2.vercel.app/ramadan-timetable</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ramadan-timetable</guid>
@@ -176,6 +183,13 @@
     <description>Convert HEIC, WebP, AVIF, PNG and JPG images in your browser — batch, resize, ZIP download. Nothing uploaded, GPS data removed. Free, no sign-up.</description>
   </item>
   <item>
+    <title>Horizontal to Vertical Video (16:9 → 9:16) for Reels &amp; TikTok — Free</title>
+    <link>https://quicktinyv2.vercel.app/horizontal-to-vertical-video</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/horizontal-to-vertical-video</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Convert a 16:9 video to 9:16 for Reels, TikTok and Shorts: blurred background, smart crop or colour fill, optional headline and trimming. MP4 with the original sound, free and on-device.</description>
+  </item>
+  <item>
     <title>HEIC to JPG Converter — Free, Batch, No Upload</title>
     <link>https://quicktinyv2.vercel.app/heic-to-jpg</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/heic-to-jpg</guid>
@@ -272,20 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/creator-studio</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Animated captions, paper-craft animation, liquid-glass slides and motion titles for your videos. Four free browser studios that export MP4 in seconds — Arabic and English, no watermark, nothing uploaded.</description>
-  </item>
-  <item>
-    <title>Compress PDF — Reduce PDF File Size Free, No Upload</title>
-    <link>https://quicktinyv2.vercel.app/compress-pdf</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-pdf</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Shrink scanned and image-heavy PDFs for email and upload limits. Three compression levels, black &amp; white option, see the size before you download. Nothing uploaded.</description>
-  </item>
-  <item>
-    <title>Compress Image to 20KB, 50KB, 100KB, 200KB — Exact Size, Free</title>
-    <link>https://quicktinyv2.vercel.app/compress-image-to-kb</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-kb</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Reduce photo file size to an exact KB limit for job, exam and visa forms — 20 KB, 50 KB, 100 KB, 200 KB. Best quality that fits, batch, no upload.</description>
   </item>
 </channel>
 </rss>

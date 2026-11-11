@@ -1,0 +1,8 @@
+{"en_cards": [{"slug": "horizontal-to-vertical-video", "icon": "paper", "cat": "Image", "badge": "Video &middot; New", "name": "Horizontal → Vertical Video", "desc": "16:9 to 9:16 for Reels with blurred fill or smart crop — MP4 with sound.", "search": "horizontal to vertical video convert 16:9 to 9:16 reels tiktok shorts resize video crop blur background"},
+              {"slug": "remove-silence-from-video", "icon": "paper", "cat": "Image", "badge": "Video &middot; New", "name": "Silence Remover", "desc": "Cut pauses and dead air automatically — jump cuts with sound.", "search": "remove silence from video jump cut auto cut pauses dead air talking head editor free"}],
+ "ar_cards": [{"slug": "ar/horizontal-to-vertical-video", "icon": "paper", "badge": "فيديو · جديد", "name": "تحويل الفيديو لعمودي", "desc": "من 16:9 إلى 9:16 للريلز بخلفية مموّهة أو قص ذكي.", "search": "تحويل فيديو افقي الى عمودي 9:16 ريلز تيك توك تغيير مقاس الفيديو"},
+              {"slug": "ar/remove-silence-from-video", "icon": "paper", "badge": "فيديو · جديد", "name": "حذف السكتات من الفيديو", "desc": "احذف الوقفات والصمت تلقائيًا بنفس الصوت.", "search": "حذف السكتات من الفيديو قص الوقفات jump cut حذف الصمت تلقائي"}],
+ "footer": [["horizontal-to-vertical-video", "Horizontal to Vertical Video"], ["remove-silence-from-video", "Silence Remover"]],
+ "popular_en": [["horizontal-to-vertical-video", "Make a video vertical"], ["remove-silence-from-video", "Remove pauses from a video"]],
+ "popular_ar": [["ar/horizontal-to-vertical-video", "تحويل فيديو لعمودي"], ["ar/remove-silence-from-video", "حذف السكتات من الفيديو"]],
+ "sitemap": ["horizontal-to-vertical-video", "ar/horizontal-to-vertical-video", "remove-silence-from-video", "ar/remove-silence-from-video"], "count_add": 2}
