@@ -1,0 +1,53 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Image to Text (OCR)</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Text</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Image to Text — Free OCR for Arabic &amp; English</h1>
+    <p>Extract text from photos, screenshots and scanned documents in Arabic or English. Drop an image or paste a screenshot, then copy or download the text. The image never leaves your device.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="oc-top"><label for="ocrLang">Text language</label><select id="ocrLang"><option value="eng">English</option><option value="ara">Arabic</option><option value="ara+eng">Arabic + English</option></select></div>
+    <div class="oc-grid">
+      <div>
+        <div class="dropzone" id="ocrDrop" tabindex="0" role="button"><strong>Drop an image here</strong> or click to choose — you can also paste a screenshot (Ctrl+V)<br><span style="font-size:13px">JPG, PNG, WebP · first use downloads the reader (~4 MB) once</span></div>
+        <input id="ocrFile" type="file" accept="image/*" class="sr-only" tabindex="-1" aria-label="Image to Text (OCR)">
+        <img id="ocrImg" alt="" hidden>
+      </div>
+      <div>
+        <div id="ocrStatus" role="status"></div>
+        <div class="oc-bar" id="ocrBar" hidden><i id="ocrBarFill"></i></div>
+        <label for="ocrOut" class="sr-only">Extracted text</label><textarea id="ocrOut" dir="auto" placeholder="Extracted text"></textarea>
+        <div class="oc-meta" id="ocrMeta"></div>
+        <div class="oc-actions"><button type="button" class="btn" id="ocrCopy" disabled>Copy text</button><button type="button" class="btn btn-secondary" id="ocrTxt" disabled>Download .txt</button></div>
+        <div id="ocrCopyStatus" class="result" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/ocr.js"></script>
+
+  <div class="content">
+    <h2>Tips for accurate results</h2>
+    <ul class="benefits">
+      <li><span>Use a sharp, well-lit photo with the text straight (not at an angle). Screenshots give the best results.</span></li>
+      <li><span>Pick the right language. Choose <strong>Arabic + English</strong> only when both appear, as it's a little slower.</span></li>
+      <li><span>Crop to the text you need. Busy backgrounds, stamps and handwriting reduce accuracy.</span></li>
+      <li><span>Always proof-read: OCR can confuse similar letters, especially in small or stylised fonts.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is the image uploaded?</summary><p>No. Recognition runs entirely in your browser with the open-source Tesseract engine.</p></details>
+    <details class="faq-item"><summary>Does it read handwriting?</summary><p>Printed text works best; handwriting is usually not recognised reliably.</p></details>
+    <details class="faq-item"><summary>Can it read PDFs?</summary><p>Convert the PDF page to an image first with PDF to JPG, then drop the image here.</p></details>
+    <details class="faq-item"><summary>Why is the first run slow?</summary><p>The engine and language data (a few MB) download once and are then cached by your browser.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More text and image tools</h2>
+    <div class="related-grid">
+      <a href="/pdf-to-jpg">PDF to JPG<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/image-converter">Image Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

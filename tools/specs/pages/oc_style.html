@@ -1,0 +1,14 @@
+  <style>
+    .oc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+    @media(max-width:860px){.oc-grid{grid-template-columns:1fr}}
+    .oc-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+    .oc-top label{font-weight:700;color:var(--text-dim)}
+    .oc-top select{width:auto;margin:0}
+    #ocrImg{display:block;max-width:100%;max-height:420px;margin:12px auto 0;border-radius:12px;border:1px solid var(--line)}
+    .oc-bar{height:8px;border-radius:999px;background:var(--card);overflow:hidden;margin:8px 0}
+    .oc-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .3s}
+    #ocrStatus{font-weight:700;color:var(--text-dim);min-height:1.4em}
+    #ocrOut{min-height:300px;font-family:var(--font-ui);font-size:15.5px;line-height:1.8;margin:0}
+    .oc-meta{font-size:13px;color:var(--muted);margin:6px 0 10px}
+    .oc-actions{display:flex;gap:8px;flex-wrap:wrap}
+  </style>

@@ -1,0 +1,54 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">استخراج النص من الصور</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">نصوص</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>استخراج النص من الصور — تحويل الصورة إلى نص عربي وإنجليزي مجانًا</h1>
+    <p>حوّل الصور ولقطات الشاشة والمستندات الممسوحة إلى نص قابل للنسخ بالعربي أو الإنجليزي. اسحب الصورة أو الصق لقطة شاشة، ثم انسخ النص أو نزّله. الصورة لا تغادر جهازك.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="oc-top"><label for="ocrLang">لغة النص</label><select id="ocrLang"><option value="ara">العربية</option><option value="eng">الإنجليزية</option><option value="ara+eng">العربية + الإنجليزية</option></select></div>
+    <div class="oc-grid">
+      <div>
+        <div class="dropzone" id="ocrDrop" tabindex="0" role="button"><strong>اسحب الصورة إلى هنا</strong> أو اضغط للاختيار — أو الصق لقطة شاشة (Ctrl+V)<br><span style="font-size:13px">JPG أو PNG أو WebP · أول استخدام يحمّل محرك القراءة (~4 ميجا) مرة واحدة</span></div>
+        <input id="ocrFile" type="file" accept="image/*" class="sr-only" tabindex="-1" aria-label="استخراج النص من الصور">
+        <img id="ocrImg" alt="" hidden>
+      </div>
+      <div>
+        <div id="ocrStatus" role="status"></div>
+        <div class="oc-bar" id="ocrBar" hidden><i id="ocrBarFill"></i></div>
+        <label for="ocrOut" class="sr-only">النص المستخرج</label><textarea id="ocrOut" dir="auto" placeholder="النص المستخرج"></textarea>
+        <div class="oc-meta" id="ocrMeta"></div>
+        <div class="oc-actions"><button type="button" class="btn" id="ocrCopy" disabled>نسخ النص</button><button type="button" class="btn btn-secondary" id="ocrTxt" disabled>تنزيل ملف نصي</button></div>
+        <div id="ocrCopyStatus" class="result" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/ocr.js"></script>
+
+  <div class="content">
+    <h2>نصائح لنتيجة أدق</h2>
+    <ul class="benefits">
+      <li><span>استخدم صورة واضحة وجيدة الإضاءة والنص فيها مستقيم. لقطات الشاشة تعطي أفضل نتيجة.</span></li>
+      <li><span>اختر اللغة الصحيحة، ولا تختر <strong>العربية + الإنجليزية</strong> إلا إذا وُجدت اللغتان، لأنها أبطأ قليلًا.</span></li>
+      <li><span>قصّ الصورة على النص المطلوب؛ الخلفيات المزدحمة والأختام والخط اليدوي تقلل الدقة.</span></li>
+      <li><span>راجع النص دائمًا: قد يخلط القارئ الآلي بين الحروف المتشابهة، خاصة في الخطوط الصغيرة أو المزخرفة.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل تُرفع الصورة إلى الإنترنت؟</summary><p>لا، القراءة تتم بالكامل داخل متصفحك بمحرك Tesseract مفتوح المصدر.</p></details>
+    <details class="faq-item"><summary>هل يقرأ الخط اليدوي؟</summary><p>يعمل أفضل مع النص المطبوع؛ الخط اليدوي غالبًا لا يُقرأ بدقة.</p></details>
+    <details class="faq-item"><summary>هل يقرأ ملفات PDF؟</summary><p>حوّل صفحة PDF إلى صورة أولًا بأداة PDF إلى صور، ثم اسحب الصورة هنا.</p></details>
+    <details class="faq-item"><summary>لماذا أول مرة أبطأ؟</summary><p>يحمّل المتصفح محرك القراءة وبيانات اللغة (بضعة ميجابايت) مرة واحدة ثم يحتفظ بها.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى للنصوص والصور</h2>
+    <div class="related-grid">
+      <a href="/ar/pdf-to-jpg">تحويل PDF إلى صور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/word-counter">عداد الكلمات<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/arabic-text-tools">أدوات النص العربي<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/image-converter">تحويل صيغ الصور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Image to Text — Free OCR for Arabic and English, No Upload | QuickTiny</title>
+  <meta name="description" content="Extract text from images, screenshots and scanned documents in Arabic or English. Copy or download the text instantly. Runs in your browser; the image is never uploaded.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/image-to-text">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/image-to-text">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/image-to-text">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/image-to-text">
+  <meta property="og:title" content="Image to Text — Free OCR for Arabic and English, No Upload | QuickTiny">
+  <meta property="og:description" content="Extract text from images, screenshots and scanned documents in Arabic or English. Copy or download the text instantly. Runs in your browser; the image is never uploaded.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/image-to-text">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/ocr.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/ocr.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .oc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+    @media(max-width:860px){.oc-grid{grid-template-columns:1fr}}
+    .oc-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+    .oc-top label{font-weight:700;color:var(--text-dim)}
+    .oc-top select{width:auto;margin:0}
+    #ocrImg{display:block;max-width:100%;max-height:420px;margin:12px auto 0;border-radius:12px;border:1px solid var(--line)}
+    .oc-bar{height:8px;border-radius:999px;background:var(--card);overflow:hidden;margin:8px 0}
+    .oc-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .3s}
+    #ocrStatus{font-weight:700;color:var(--text-dim);min-height:1.4em}
+    #ocrOut{min-height:300px;font-family:var(--font-ui);font-size:15.5px;line-height:1.8;margin:0}
+    .oc-meta{font-size:13px;color:var(--muted);margin:6px 0 10px}
+    .oc-actions{display:flex;gap:8px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Image to Text (OCR)</span></div>
+  <div class="lang-switch">
+    <a href="/image-to-text" class="active">EN</a>
+    <a href="/ar/image-to-text" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Text</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Image to Text — Free OCR for Arabic &amp; English</h1>
+    <p>Extract text from photos, screenshots and scanned documents in Arabic or English. Drop an image or paste a screenshot, then copy or download the text. The image never leaves your device.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="oc-top"><label for="ocrLang">Text language</label><select id="ocrLang"><option value="eng">English</option><option value="ara">Arabic</option><option value="ara+eng">Arabic + English</option></select></div>
+    <div class="oc-grid">
+      <div>
+        <div class="dropzone" id="ocrDrop" tabindex="0" role="button"><strong>Drop an image here</strong> or click to choose — you can also paste a screenshot (Ctrl+V)<br><span style="font-size:13px">JPG, PNG, WebP · first use downloads the reader (~4 MB) once</span></div>
+        <input id="ocrFile" type="file" accept="image/*" class="sr-only" tabindex="-1" aria-label="Image to Text (OCR)">
+        <img id="ocrImg" alt="" hidden>
+      </div>
+      <div>
+        <div id="ocrStatus" role="status"></div>
+        <div class="oc-bar" id="ocrBar" hidden><i id="ocrBarFill"></i></div>
+        <label for="ocrOut" class="sr-only">Extracted text</label><textarea id="ocrOut" dir="auto" placeholder="Extracted text"></textarea>
+        <div class="oc-meta" id="ocrMeta"></div>
+        <div class="oc-actions"><button type="button" class="btn" id="ocrCopy" disabled>Copy text</button><button type="button" class="btn btn-secondary" id="ocrTxt" disabled>Download .txt</button></div>
+        <div id="ocrCopyStatus" class="result" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/ocr.js"></script>
+
+  <div class="content">
+    <h2>Tips for accurate results</h2>
+    <ul class="benefits">
+      <li><span>Use a sharp, well-lit photo with the text straight (not at an angle). Screenshots give the best results.</span></li>
+      <li><span>Pick the right language. Choose <strong>Arabic + English</strong> only when both appear, as it's a little slower.</span></li>
+      <li><span>Crop to the text you need. Busy backgrounds, stamps and handwriting reduce accuracy.</span></li>
+      <li><span>Always proof-read: OCR can confuse similar letters, especially in small or stylised fonts.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is the image uploaded?</summary><p>No. Recognition runs entirely in your browser with the open-source Tesseract engine.</p></details>
+    <details class="faq-item"><summary>Does it read handwriting?</summary><p>Printed text works best; handwriting is usually not recognised reliably.</p></details>
+    <details class="faq-item"><summary>Can it read PDFs?</summary><p>Convert the PDF page to an image first with PDF to JPG, then drop the image here.</p></details>
+    <details class="faq-item"><summary>Why is the first run slow?</summary><p>The engine and language data (a few MB) download once and are then cached by your browser.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More text and image tools</h2>
+    <div class="related-grid">
+      <a href="/pdf-to-jpg">PDF to JPG<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/word-counter">Word Counter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/clean-text">Clean Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/image-converter">Image Converter<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/image-to-text">Image to Text</a>
+        <a href="/cv-builder">CV Builder</a>
+        <a href="/saudi-salary-calculator">Saudi Salary Calculator</a>
+        <a href="/unit-converter">Unit Converter</a>
+        <a href="/ramadan-countdown">Ramadan Countdown</a>
+        <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator</a>
+        <a href="/gpa-calculator">GPA Calculator</a>
+        <a href="/weighted-grade-calculator">Weighted Grade Calculator</a>
+        <a href="/prayer-times">Prayer Times</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Image to Text","url":"https://quicktinyv2.vercel.app/image-to-text","description":"Extract text from images, screenshots and scanned documents in Arabic or English. Copy or download the text instantly. Runs in your browser; the image is never uploaded.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Image to Text (OCR)","item":"https://quicktinyv2.vercel.app/image-to-text"}]}</script>
+</body>
+</html>
