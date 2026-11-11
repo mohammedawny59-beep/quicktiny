@@ -20,6 +20,8 @@ STYLE = """  <style>
     .guide-table th{background:rgba(255,255,255,.05);color:var(--text-dim)}
     .guide-cta{margin:26px 0;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(107,107,255,.18),rgba(59,226,255,.07));border:1px solid rgba(123,123,255,.35);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
     .guide-cta b{font-size:17px}
+    .guide .eq{display:inline-block;unicode-bidi:isolate;font-variant-numeric:tabular-nums;white-space:nowrap}
+    @media(max-width:520px){.guide .eq{white-space:normal}}
     .guide-meta{font-size:13px;color:var(--muted);margin-top:6px}
     .guide-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;margin-top:16px}
     .guide-card{display:block;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);text-decoration:none;color:var(--text)}
@@ -32,7 +34,7 @@ WRAP_START = '<div class="wrap">\n  <div class="breadcrumb">'
 
 def article_ld(g, url):
     return json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": g["h1"], "description": g["desc"], "inLanguage": g["lang"],
-        "datePublished": gc.DATE, "dateModified": gc.DATE, "mainEntityOfPage": url, "url": url, "image": B + ("/og-image-ar.png" if g["lang"] == "ar" else "/og-image.png"),
+        "datePublished": g.get("date", gc.DATE), "dateModified": g.get("date", gc.DATE), "mainEntityOfPage": url, "url": url, "image": B + ("/og-image-ar.png" if g["lang"] == "ar" else "/og-image.png"),
         "author": {"@type": "Organization", "name": "QuickTiny", "url": B + "/"}, "publisher": {"@type": "Organization", "name": "QuickTiny", "url": B + "/"}}, ensure_ascii=False)
 
 def faq_html(items): return "".join('<details class="faq-item"><summary>%s</summary><p>%s</p></details>' % (q, a) for q, a in items)
@@ -78,7 +80,7 @@ def body(g, others):
     <div class="hero-badges"><span class="badge">{'دليل' if ar else 'Guide'}</span></div>
     <h1>{g['h1']}</h1>
     <p>{g['lede']}</p>
-    <div class="guide-meta">{'آخر تحديث' if ar else 'Updated'}: {gc.DATE}</div>
+    <div class="guide-meta">{'آخر تحديث' if ar else 'Updated'}: {g.get('date', gc.DATE)}</div>
   </section>
   <article class="content guide">
     {g['body']}
@@ -124,8 +126,8 @@ for g in ar:
                   "body": fn, "style": "g_style.html", "alternates": [["ar", "ar/guides/" + g["slug"]], ["x-default", "ar/guides/" + g["slug"]]], "switch": [],
                   "faq": [[q, plain(a)] for q, a in g["faq"]]})
 io.open(os.path.join(tmp, "ar_index.html"), "w", encoding="utf-8").write(index_body(ar, True))
-specs.append({"slug": "ar/guides", "title": "أدلة وشروحات عملية بالأمثلة — الزكاة والضريبة ونهاية الخدمة والصور | QuickTiny",
-              "desc": "شروحات عملية بأمثلة محسوبة: حساب زكاة الذهب، ضريبة القيمة المضافة، مكافأة نهاية الخدمة، الفاتورة الضريبية، تحويل صور الآيفون وتصغير الصور للتقديم.",
+specs.append({"slug": "ar/guides", "title": "أدلة وشروحات عملية بالأمثلة — المعدل والزكاة والضريبة والصور | QuickTiny",
+              "desc": "شروحات عملية بأمثلة محسوبة: المعدل التراكمي من 5، النسبة الموزونة، زكاة الفطر وموعد رمضان، زكاة الذهب، ضريبة القيمة المضافة، نهاية الخدمة، وتحويل الصور وتصغيرها.",
               "app_name": "QuickTiny", "crumb": "أدلة وشروحات", "category": "Article", "body": "ar_index.html", "style": "g_style.html",
               "alternates": [["ar", "ar/guides"], ["x-default", "ar/guides"]], "switch": []})
 sp = os.path.join(tmp, "spec_guides.json"); io.open(sp, "w", encoding="utf-8").write(json.dumps({"pages": specs}, ensure_ascii=False))
