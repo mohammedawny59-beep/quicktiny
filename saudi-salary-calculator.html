@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Saudi Salary &amp; GOSI Calculator 2026 — Net Salary After Deductions | QuickTiny</title>
+  <meta name="description" content="Calculate your net salary in Saudi Arabia after GOSI: basic + housing + transport, annuity and SANED rates for Saudis and expats, old and new system, plus employer cost.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/saudi-salary-calculator">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/saudi-salary-calculator">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/salary-calculator">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/saudi-salary-calculator">
+  <meta property="og:title" content="Saudi Salary &amp; GOSI Calculator 2026 — Net Salary After Deductions | QuickTiny">
+  <meta property="og:description" content="Calculate your net salary in Saudi Arabia after GOSI: basic + housing + transport, annuity and SANED rates for Saudis and expats, old and new system, plus employer cost.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/saudi-salary-calculator">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/salary.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/salary.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .sl-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(270px,1fr);gap:16px;align-items:start}
+    @media(max-width:860px){.sl-grid{grid-template-columns:1fr}}
+    .sl-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card)}
+    .sl-card h2{margin:0 0 12px;font-size:15px;color:var(--text-dim)}
+    .sl-row{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:10px;align-items:center;margin-bottom:10px}
+    .sl-row label{font-weight:600}
+    .sl-row label small{display:block;color:var(--muted);font-weight:500;font-size:12.5px}
+    .sl-row input,.sl-row select{margin:0;text-align:center;direction:ltr;font-weight:700}
+    .sl-row select{direction:inherit;text-align:start;font-weight:600}
+    .sl-chips{display:inline-flex;gap:6px;margin-top:4px}
+    .sl-chips .chip{padding:3px 9px;font-size:12px}
+    .sl-res{position:sticky;top:84px;text-align:center}
+    .sl-big{font-size:38px;font-weight:800;direction:ltr;font-variant-numeric:tabular-nums;background:var(--grad-text);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.15}
+    .sl-cur{color:var(--muted);font-weight:700;font-size:13px}
+    .sl-bar{height:10px;border-radius:999px;background:rgba(255,107,107,.35);overflow:hidden;margin:12px 0 4px}
+    .sl-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .5s cubic-bezier(.16,1,.3,1)}
+    .sl-kv{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:14px;color:var(--text-dim);text-align:start}
+    .sl-kv b{color:var(--text);direction:ltr;font-variant-numeric:tabular-nums}
+    .sl-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+    .sl-table th,.sl-table td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:start}
+    .sl-table td+td,.sl-table th+th{text-align:end;direction:ltr;font-variant-numeric:tabular-nums}
+    .sl-table th{color:var(--muted);font-size:12.5px}
+    .sl-tot td{font-weight:800;color:var(--text)}
+    .sl-pct{color:var(--muted);font-size:12px;direction:ltr;display:inline-block}
+    .sl-note{font-size:13px;color:var(--muted);margin-top:10px}
+    @media(max-width:520px){.sl-row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Saudi Salary & GOSI Calculator</span></div>
+  <div class="lang-switch">
+    <a href="/saudi-salary-calculator" class="active">EN</a>
+    <a href="/ar/salary-calculator" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Finance</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Saudi Salary &amp; GOSI Calculator — Net Salary and Employer Cost</h1>
+    <p>Enter basic salary and allowances to see the GOSI deductions, your net monthly salary and the employer's total cost. Covers Saudi and non-Saudi employees and the old and new social insurance systems.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="sl-grid">
+      <div class="sl-card">
+        <h2>Salary details</h2>
+        <div class="sl-row"><label for="slBasic">Basic salary</label><input type="text" inputmode="decimal" id="slBasic" value="10000"></div>
+        <div class="sl-row"><label for="slHousing">Housing allowance<small>often 25% of basic</small><span class="sl-chips"><button type="button" class="chip" data-pct="25" data-for="slHousing">25%</button></span></label><input type="text" inputmode="decimal" id="slHousing" value="2500"></div>
+        <div class="sl-row"><label for="slTransport">Transport allowance<small>often 10% of basic</small><span class="sl-chips"><button type="button" class="chip" data-pct="10" data-for="slTransport">10%</button></span></label><input type="text" inputmode="decimal" id="slTransport" value="1000"></div>
+        <div class="sl-row"><label for="slOther">Other allowances</label><input type="text" inputmode="decimal" id="slOther" value="0"></div>
+        <div class="sl-row"><label for="slNat">Nationality</label><select id="slNat"><option value="saudi">Saudi</option><option value="non">Non-Saudi</option></select></div>
+        <div class="sl-row" id="slSysRow"><label for="slSys">Registered with GOSI</label><select id="slSys"><option value="old">Before 3 July 2024</option><option value="new">On/after 3 July 2024 (new system)</option></select></div>
+        <div class="sl-row"><label for="slAnnuity">Annuity rate override %<small id="slAnnHint">optional — leave empty for the default</small></label><input type="text" inputmode="decimal" id="slAnnuity" placeholder="—"></div>
+      </div>
+      <div class="sl-card sl-res" aria-live="polite">
+        <h2>Net monthly salary</h2>
+        <div class="sl-big" id="slNet">—</div><div class="sl-cur">SAR</div>
+        <div class="sl-bar" aria-hidden="true"><i id="slBarNet"></i></div>
+        <div class="sl-kv"><span>Gross salary</span><b id="slGross">—</b></div>
+        <div class="sl-kv"><span>GOSI contribution wage</span><b id="slBase">—</b></div>
+        <div class="sl-kv"><span>Your GOSI deduction</span><b id="slDed">—</b></div>
+        <div class="sl-kv"><span>Employer's total cost</span><b id="slCost">—</b></div>
+        <div class="sl-kv"><span>Net per year</span><b id="slYear">—</b></div>
+        <table class="sl-table" id="slTable"></table>
+        <p class="sl-note">Rates as published for 2026; GOSI may change them. Check gosi.gov.sa for your exact contribution.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/salary.js"></script>
+
+  <div class="content">
+    <h2>How GOSI is calculated</h2>
+    <ul class="benefits">
+      <li><span><strong>Contribution wage</strong> = basic salary + housing allowance (other allowances don't count), capped at 45,000 SAR a month.</span></li>
+      <li><span><strong>Saudi employees</strong> pay annuities (pension) 9% + SANED 0.75% = <strong>9.75%</strong>; the employer pays the same plus 2% occupational hazards = <strong>11.75%</strong>.</span></li>
+      <li><span><strong>New system</strong> (registered on or after 3 July 2024): the annuity rate starts at 9% each and rises 0.5 points every 3 July until 11% — 10% each from July 2026.</span></li>
+      <li><span><strong>Non-Saudi employees</strong> pay nothing; the employer pays 2% occupational hazards.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is GOSI deducted from the transport allowance?</summary><p>No. Only basic salary and housing allowance form the contribution wage.</p></details>
+    <details class="faq-item"><summary>How much GOSI does a Saudi employee pay?</summary><p>9.75% of basic + housing in the old system (9% annuities + 0.75% SANED). In the new system it's 10.75% from July 2026.</p></details>
+    <details class="faq-item"><summary>Do expats pay GOSI?</summary><p>Non-Saudi employees have no deduction; the employer pays 2% for occupational hazards.</p></details>
+    <details class="faq-item"><summary>What is the maximum GOSI wage?</summary><p>45,000 SAR a month; any amount above it isn't subject to contributions.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More finance tools</h2>
+    <div class="related-grid">
+      <a href="/loan-calculator">Loan Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/end-of-service-calculator">End of Service (Arabic)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/vat-calculator">VAT Calculator (Arabic)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/saudi-salary-calculator">Saudi Salary Calculator</a>
+        <a href="/unit-converter">Unit Converter</a>
+        <a href="/ramadan-countdown">Ramadan Countdown</a>
+        <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator</a>
+        <a href="/gpa-calculator">GPA Calculator</a>
+        <a href="/weighted-grade-calculator">Weighted Grade Calculator</a>
+        <a href="/prayer-times">Prayer Times</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Saudi Salary Calculator","url":"https://quicktinyv2.vercel.app/saudi-salary-calculator","description":"Calculate your net salary in Saudi Arabia after GOSI: basic + housing + transport, annuity and SANED rates for Saudis and expats, old and new system, plus employer cost.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Saudi Salary Calculator","item":"https://quicktinyv2.vercel.app/saudi-salary-calculator"}]}</script>
+</body>
+</html>

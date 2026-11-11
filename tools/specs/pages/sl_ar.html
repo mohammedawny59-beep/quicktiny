@@ -1,0 +1,62 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">حاسبة الراتب والتأمينات</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">مالية</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>حاسبة الراتب الصافي وخصم التأمينات الاجتماعية (GOSI)</h1>
+    <p>أدخل الراتب الأساسي والبدلات لتعرف خصم التأمينات الاجتماعية وراتبك الصافي الشهري والتكلفة الكاملة على صاحب العمل. للسعوديين وغير السعوديين، وللنظام القديم والجديد.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="sl-grid">
+      <div class="sl-card">
+        <h2>بيانات الراتب</h2>
+        <div class="sl-row"><label for="slBasic">الراتب الأساسي</label><input type="text" inputmode="decimal" id="slBasic" value="10000"></div>
+        <div class="sl-row"><label for="slHousing">بدل السكن<small>غالبًا 25% من الأساسي</small><span class="sl-chips"><button type="button" class="chip" data-pct="25" data-for="slHousing">25%</button></span></label><input type="text" inputmode="decimal" id="slHousing" value="2500"></div>
+        <div class="sl-row"><label for="slTransport">بدل النقل<small>غالبًا 10% من الأساسي</small><span class="sl-chips"><button type="button" class="chip" data-pct="10" data-for="slTransport">10%</button></span></label><input type="text" inputmode="decimal" id="slTransport" value="1000"></div>
+        <div class="sl-row"><label for="slOther">بدلات أخرى</label><input type="text" inputmode="decimal" id="slOther" value="0"></div>
+        <div class="sl-row"><label for="slNat">الجنسية</label><select id="slNat"><option value="saudi">سعودي</option><option value="non">غير سعودي</option></select></div>
+        <div class="sl-row" id="slSysRow"><label for="slSys">تاريخ التسجيل في التأمينات</label><select id="slSys"><option value="old">قبل 3 يوليو 2024</option><option value="new">في 3 يوليو 2024 أو بعده (النظام الجديد)</option></select></div>
+        <div class="sl-row"><label for="slAnnuity">نسبة المعاشات يدويًا %<small id="slAnnHint">اختياري — اتركه فارغًا للنسبة الافتراضية</small></label><input type="text" inputmode="decimal" id="slAnnuity" placeholder="—"></div>
+      </div>
+      <div class="sl-card sl-res" aria-live="polite">
+        <h2>الراتب الصافي الشهري</h2>
+        <div class="sl-big" id="slNet">—</div><div class="sl-cur">ريال</div>
+        <div class="sl-bar" aria-hidden="true"><i id="slBarNet"></i></div>
+        <div class="sl-kv"><span>إجمالي الراتب</span><b id="slGross">—</b></div>
+        <div class="sl-kv"><span>الأجر الخاضع للاشتراك</span><b id="slBase">—</b></div>
+        <div class="sl-kv"><span>خصم التأمينات من راتبك</span><b id="slDed">—</b></div>
+        <div class="sl-kv"><span>التكلفة الكاملة على صاحب العمل</span><b id="slCost">—</b></div>
+        <div class="sl-kv"><span>الصافي في السنة</span><b id="slYear">—</b></div>
+        <table class="sl-table" id="slTable"></table>
+        <p class="sl-note">النسب حسب المعلن لعام 2026 وقد تعدّلها التأمينات؛ تحقق من اشتراكك الفعلي في موقع التأمينات الاجتماعية.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/salary.js"></script>
+
+  <div class="content">
+    <h2>طريقة حساب التأمينات الاجتماعية</h2>
+    <ul class="benefits">
+      <li><span><strong>الأجر الخاضع للاشتراك</strong> = الراتب الأساسي + بدل السكن فقط (لا تدخل بقية البدلات)، وبحد أعلى 45,000 ريال شهريًا.</span></li>
+      <li><span><strong>الموظف السعودي</strong> يُخصم منه المعاشات 9% + ساند 0.75% = <strong>9.75%</strong>، ويدفع صاحب العمل مثلها + الأخطار المهنية 2% = <strong>11.75%</strong>.</span></li>
+      <li><span><strong>النظام الجديد</strong> (المسجلون من 3 يوليو 2024): تبدأ نسبة المعاشات 9% لكل طرف وتزيد 0.5% كل 3 يوليو حتى 11%، فتكون 10% من يوليو 2026.</span></li>
+      <li><span><strong>غير السعودي</strong> لا يُخصم منه شيء، ويدفع صاحب العمل 2% للأخطار المهنية.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل تُخصم التأمينات من بدل النقل؟</summary><p>لا، الأجر الخاضع للاشتراك هو الأساسي + بدل السكن فقط.</p></details>
+    <details class="faq-item"><summary>كم نسبة خصم التأمينات للسعودي؟</summary><p>9.75% من الأساسي والسكن في النظام القديم (9% معاشات + 0.75% ساند)، و10.75% في النظام الجديد من يوليو 2026.</p></details>
+    <details class="faq-item"><summary>هل يُخصم من غير السعودي تأمينات؟</summary><p>لا يُخصم من الموظف، ويدفع صاحب العمل 2% للأخطار المهنية.</p></details>
+    <details class="faq-item"><summary>ما الحد الأعلى للأجر الخاضع للتأمينات؟</summary><p>45,000 ريال شهريًا، وما زاد عنه لا تُحسب عليه اشتراكات.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات مالية أخرى</h2>
+    <div class="related-grid">
+      <a href="/ar/end-of-service-calculator">حاسبة نهاية الخدمة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/loan-calculator">حاسبة التمويل<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/vat-calculator">حاسبة الضريبة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/zakat-calculator">حاسبة الزكاة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

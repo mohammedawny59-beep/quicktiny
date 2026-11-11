@@ -1,0 +1,61 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Saudi Salary & GOSI Calculator</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Finance</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Saudi Salary &amp; GOSI Calculator — Net Salary and Employer Cost</h1>
+    <p>Enter basic salary and allowances to see the GOSI deductions, your net monthly salary and the employer's total cost. Covers Saudi and non-Saudi employees and the old and new social insurance systems.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="sl-grid">
+      <div class="sl-card">
+        <h2>Salary details</h2>
+        <div class="sl-row"><label for="slBasic">Basic salary</label><input type="text" inputmode="decimal" id="slBasic" value="10000"></div>
+        <div class="sl-row"><label for="slHousing">Housing allowance<small>often 25% of basic</small><span class="sl-chips"><button type="button" class="chip" data-pct="25" data-for="slHousing">25%</button></span></label><input type="text" inputmode="decimal" id="slHousing" value="2500"></div>
+        <div class="sl-row"><label for="slTransport">Transport allowance<small>often 10% of basic</small><span class="sl-chips"><button type="button" class="chip" data-pct="10" data-for="slTransport">10%</button></span></label><input type="text" inputmode="decimal" id="slTransport" value="1000"></div>
+        <div class="sl-row"><label for="slOther">Other allowances</label><input type="text" inputmode="decimal" id="slOther" value="0"></div>
+        <div class="sl-row"><label for="slNat">Nationality</label><select id="slNat"><option value="saudi">Saudi</option><option value="non">Non-Saudi</option></select></div>
+        <div class="sl-row" id="slSysRow"><label for="slSys">Registered with GOSI</label><select id="slSys"><option value="old">Before 3 July 2024</option><option value="new">On/after 3 July 2024 (new system)</option></select></div>
+        <div class="sl-row"><label for="slAnnuity">Annuity rate override %<small id="slAnnHint">optional — leave empty for the default</small></label><input type="text" inputmode="decimal" id="slAnnuity" placeholder="—"></div>
+      </div>
+      <div class="sl-card sl-res" aria-live="polite">
+        <h2>Net monthly salary</h2>
+        <div class="sl-big" id="slNet">—</div><div class="sl-cur">SAR</div>
+        <div class="sl-bar" aria-hidden="true"><i id="slBarNet"></i></div>
+        <div class="sl-kv"><span>Gross salary</span><b id="slGross">—</b></div>
+        <div class="sl-kv"><span>GOSI contribution wage</span><b id="slBase">—</b></div>
+        <div class="sl-kv"><span>Your GOSI deduction</span><b id="slDed">—</b></div>
+        <div class="sl-kv"><span>Employer's total cost</span><b id="slCost">—</b></div>
+        <div class="sl-kv"><span>Net per year</span><b id="slYear">—</b></div>
+        <table class="sl-table" id="slTable"></table>
+        <p class="sl-note">Rates as published for 2026; GOSI may change them. Check gosi.gov.sa for your exact contribution.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/salary.js"></script>
+
+  <div class="content">
+    <h2>How GOSI is calculated</h2>
+    <ul class="benefits">
+      <li><span><strong>Contribution wage</strong> = basic salary + housing allowance (other allowances don't count), capped at 45,000 SAR a month.</span></li>
+      <li><span><strong>Saudi employees</strong> pay annuities (pension) 9% + SANED 0.75% = <strong>9.75%</strong>; the employer pays the same plus 2% occupational hazards = <strong>11.75%</strong>.</span></li>
+      <li><span><strong>New system</strong> (registered on or after 3 July 2024): the annuity rate starts at 9% each and rises 0.5 points every 3 July until 11% — 10% each from July 2026.</span></li>
+      <li><span><strong>Non-Saudi employees</strong> pay nothing; the employer pays 2% occupational hazards.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is GOSI deducted from the transport allowance?</summary><p>No. Only basic salary and housing allowance form the contribution wage.</p></details>
+    <details class="faq-item"><summary>How much GOSI does a Saudi employee pay?</summary><p>9.75% of basic + housing in the old system (9% annuities + 0.75% SANED). In the new system it's 10.75% from July 2026.</p></details>
+    <details class="faq-item"><summary>Do expats pay GOSI?</summary><p>Non-Saudi employees have no deduction; the employer pays 2% for occupational hazards.</p></details>
+    <details class="faq-item"><summary>What is the maximum GOSI wage?</summary><p>45,000 SAR a month; any amount above it isn't subject to contributions.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More finance tools</h2>
+    <div class="related-grid">
+      <a href="/loan-calculator">Loan Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/percentage-calculator">Percentage Calculator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/end-of-service-calculator">End of Service (Arabic)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/vat-calculator">VAT Calculator (Arabic)<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

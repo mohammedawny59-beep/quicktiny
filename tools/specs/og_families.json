@@ -631,5 +631,25 @@
    "ar/celsius-to-fahrenheit",
    "ar/feddan-to-square-meter"
   ]
+ },
+ {
+  "key": "salary",
+  "icon": "briefcase",
+  "lang": "en",
+  "title": "Saudi Salary & GOSI",
+  "sub": "Net salary · deductions · employer cost",
+  "pages": [
+   "saudi-salary-calculator"
+  ]
+ },
+ {
+  "key": "salary-ar",
+  "icon": "briefcase",
+  "lang": "ar",
+  "title": "حاسبة الراتب والتأمينات",
+  "sub": "الراتب الصافي · خصم التأمينات · تكلفة صاحب العمل",
+  "pages": [
+   "ar/salary-calculator"
+  ]
  }
 ]
