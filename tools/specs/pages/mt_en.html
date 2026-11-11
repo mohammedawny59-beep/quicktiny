@@ -1,0 +1,58 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Motion Titles</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Motion Titles — Free Animated Lower Thirds, Subscribe Button &amp; Overlays</h1>
+    <p>Animated overlays for YouTube, Reels and TikTok: name lower thirds, a subscribe button that gets clicked, big animated titles, hand-drawn arrows, 3-2-1 countdowns and like/comment reminders. Type your text, pick a colour and download a green-screen MP4 to drop on top of your video. Arabic and English, free, no watermark.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="mt">
+      <div>
+        <div class="mt-card"><h2>Template</h2><div id="mtTpl"><button type="button" class="mt-t" data-t="lower" aria-pressed="false"><i aria-hidden="true">🪪</i><b>Lower third</b></button><button type="button" class="mt-t" data-t="subscribe" aria-pressed="false"><i aria-hidden="true">🔔</i><b>Subscribe</b></button><button type="button" class="mt-t" data-t="title" aria-pressed="false"><i aria-hidden="true">🎬</i><b>Big title</b></button><button type="button" class="mt-t" data-t="arrow" aria-pressed="false"><i aria-hidden="true">↗️</i><b>Arrow + label</b></button><button type="button" class="mt-t" data-t="countdown" aria-pressed="false"><i aria-hidden="true">⏱️</i><b>Countdown</b></button><button type="button" class="mt-t" data-t="like" aria-pressed="false"><i aria-hidden="true">❤️</i><b>Like &amp; comment</b></button></div></div>
+        <div class="mt-card"><h2>Text &amp; look</h2>
+          <div class="mt-row"><label for="mtA">Main text</label><input type="text" id="mtA" maxlength="40" dir="auto"></div>
+          <div class="mt-row" id="mtBRow"><label for="mtB">Second line</label><input type="text" id="mtB" maxlength="50" dir="auto"></div>
+          <div class="mt-row" id="mtCountRow"><label for="mtCount">Like count</label><input type="number" id="mtCount" min="1" max="9999999"></div>
+          <div class="mt-row"><label for="mtAccent">Colour</label><input type="color" id="mtAccent"></div>
+          <div class="mt-row" id="mtPosRow"><label for="mtPos">Position</label><select id="mtPos"><option value="start">Start side</option><option value="end">End side</option></select></div>
+          <div class="mt-row"><span class="mt-l">Background</span><div class="mt-chips" id="mtBg" role="group" aria-label="Background"><button type="button" class="chip" data-b="green">Green screen</button><button type="button" class="chip" data-b="blue">Blue screen</button><button type="button" class="chip" data-b="black">Black</button><button type="button" class="chip" data-b="photo">Preview on video</button></div></div>
+          <div class="mt-row"><span class="mt-l">Format</span><div class="mt-chips" id="mtRatio" role="group" aria-label="Format"><button type="button" class="chip" data-r="16:9">16:9</button><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="1:1">1:1</button></div></div>
+        </div>
+      </div>
+      <div class="mt-stage">
+        <div class="mt-screen"><canvas id="mtCanvas" width="1920" height="1080" role="img" aria-label="Motion Titles"></canvas></div>
+        <div class="mt-ctrl"><button type="button" id="mtPlay" aria-label="Play / pause">❚❚</button><input type="range" id="mtScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="mt-export"><button type="button" class="btn" id="mtExport">Download MP4</button></div>
+        <div id="mtBar" hidden><i id="mtBarFill"></i></div><div id="mtStatus" role="status"></div><p class="mt-note">“Preview on video” is only for looking; the download uses a green screen.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/motion-titles.js"></script>
+
+  <div class="content">
+    <h2>How to put it on your video</h2>
+    <ul class="benefits">
+      <li><span>Download the MP4 with a <strong>green screen</strong> (or blue if your video has a lot of green).</span></li>
+      <li><span>In CapCut: <em>Overlay</em> → add the clip → <em>Remove background</em> → <em>Chroma key</em> → pick the green. In Premiere / DaVinci use <em>Ultra Key</em> / <em>3D Keyer</em>.</span></li>
+      <li><span>Use 16:9 for YouTube and 9:16 for Reels, TikTok and Shorts so the overlay sits in the right place.</span></li>
+      <li><span>Pick a colour that matches your brand and reuse it everywhere for a consistent channel look.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is it free with no watermark?</summary><p>Yes, unlimited free downloads with no watermark.</p></details>
+    <details class="faq-item"><summary>Can I get a transparent background?</summary><p>Videos with transparency aren't supported by most phone editors, so the tool exports a clean green or blue screen that every editor can key out in one click.</p></details>
+    <details class="faq-item"><summary>Does it support Arabic?</summary><p>Yes. Arabic text runs right-to-left with proper letter joining, and the layout mirrors itself for Arabic.</p></details>
+    <details class="faq-item"><summary>Are the YouTube or Instagram logos included?</summary><p>No. The overlays use neutral designs, so you can use them on any platform without trademark issues.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/paper-animation">Paper Motion Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-background-from-image">Remove Background<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/social-image-resizer">Social Image Resizer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/image-to-text">Image to Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

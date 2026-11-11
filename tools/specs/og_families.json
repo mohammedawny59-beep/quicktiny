@@ -711,5 +711,25 @@
   "pages": [
    "ar/paper-animation"
   ]
+ },
+ {
+  "key": "titles",
+  "icon": "paper",
+  "lang": "en",
+  "title": "Motion Titles",
+  "sub": "Lower thirds · subscribe button · countdowns",
+  "pages": [
+   "motion-titles"
+  ]
+ },
+ {
+  "key": "titles-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "العناوين المتحركة",
+  "sub": "شريط الاسم · زر الاشتراك · عد تنازلي",
+  "pages": [
+   "ar/motion-titles"
+  ]
  }
 ]
