@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/paper-animation", "title": "استوديو أنيميشن الورق — فيديو قصاصات جرائد وحروف مقصوصة للريلز مجانًا | QuickTiny",
+  "desc": "اصنع أنيميشن ورقي للريلز والتيك توك من كلمة أو صورة: قصاصات جرائد، حروف مقصوصة، صورة تنفتح كالورق، ومنشورات. عربي وإنجليزي، تنزيل MP4 أو شاشة خضراء مجانًا وبدون علامة مائية.",
+  "app_name": "QuickTiny استوديو أنيميشن الورق", "crumb": "استوديو أنيميشن الورق", "category": "MultimediaApplication", "body": "pages/pm_ar.html", "style": "pages/pm_style.html",
+  "alternates": [["en", "paper-animation"], ["ar", "ar/paper-animation"], ["x-default", "paper-animation"]],
+  "switch": [["EN", "paper-animation"], ["AR", "ar/paper-animation"]],
+  "faq": [["هل هو مجاني وبدون علامة مائية؟", "نعم، التنزيل مجاني وغير محدود وبدون علامة مائية."], ["هل يدعم العربي؟", "نعم، النص العربي من اليمين لليسار بحروف متصلة صحيحة."]]}
+]}

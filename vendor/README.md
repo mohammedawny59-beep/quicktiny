@@ -21,3 +21,6 @@ Self-hosted so tool pages don't depend on a third-party CDN.
 - `tesseract.min.js` + `worker.min.js` from [tesseract.js](https://github.com/naptha/tesseract.js) 6.0.1, and `tesseract-core-lstm.wasm.js` / `tesseract-core-simd-lstm.wasm.js` from tesseract.js-core 6.0.0 (Emscripten build of [Tesseract](https://github.com/tesseract-ocr/tesseract)). License: Apache-2.0 (`LICENSE-tesseract.js.txt`).
 - `lang/ara.traineddata.gz`, `lang/eng.traineddata.gz`: `4.0.0_best_int` models from [@tesseract.js-data](https://github.com/naptha/tessdata) (tessdata, Apache-2.0).
 - Used by `/ocr.js` on the Image to Text pages; loaded only there. The worker needs `'wasm-unsafe-eval'`, set for `/vendor/tesseract/(.*)` in `vercel.json`.
+
+## mp4-muxer — `vendor/mp4-muxer.js`
+- [mp4-muxer](https://github.com/Vanilagy/mp4-muxer) 5.1.3 (MIT), UMD build. Used by `/paper-studio.js` to wrap WebCodecs H.264 frames into an MP4 file in the browser.

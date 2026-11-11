@@ -31,3 +31,4 @@ transparent WebP (per-row background removal, floor reflection faded) and resize
 - `ramadan.webp` (2026-11-10) — Ramadan countdown, same pipeline.
 - `ruler.webp` (2026-11-11) — unit converter, same pipeline.
 - `resume.webp` (2026-11-11) — CV builder, same pipeline.
+- `resume.webp`, `paper.webp` (2026-11-11) — CV builder, Paper Motion Studio; same pipeline.
