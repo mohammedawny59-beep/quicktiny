@@ -731,5 +731,25 @@
   "pages": [
    "ar/motion-titles"
   ]
+ },
+ {
+  "key": "glass",
+  "icon": "glass",
+  "lang": "en",
+  "title": "Glass Slides",
+  "sub": "Liquid-glass slide videos · silky 60 fps",
+  "pages": [
+   "glass-slides"
+  ]
+ },
+ {
+  "key": "glass-ar",
+  "icon": "glass",
+  "lang": "ar",
+  "title": "سلايدات زجاجية",
+  "sub": "تصميم الزجاج الشفاف · حركة ناعمة 60 إطارًا",
+  "pages": [
+   "ar/glass-slides"
+  ]
  }
 ]

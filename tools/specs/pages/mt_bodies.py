@@ -57,7 +57,7 @@ T = {
         ("Can I get a transparent background?", "Videos with transparency aren't supported by most phone editors, so the tool exports a clean green or blue screen that every editor can key out in one click."),
         ("Does it support Arabic?", "Yes. Arabic text runs right-to-left with proper letter joining, and the layout mirrors itself for Arabic."),
         ("Are the YouTube or Instagram logos included?", "No. The overlays use neutral designs, so you can use them on any platform without trademark issues.")],
-   rel="More creator tools", links=[("/paper-animation", "Paper Motion Studio"), ("/remove-background-from-image", "Remove Background"), ("/social-image-resizer", "Social Image Resizer"), ("/image-to-text", "Image to Text")]),
+   rel="More creator tools", links=[("/glass-slides", "Glass Slides"), ("/paper-animation", "Paper Motion Studio"), ("/remove-background-from-image", "Remove Background"), ("/social-image-resizer", "Social Image Resizer"), ("/image-to-text", "Image to Text")]),
  "ar": dict(home="/ar", homeL="الرئيسية", crumb="العناوين المتحركة", b=("فيديو", "تعمل داخل متصفحك", "مجانية"),
    h1="العناوين المتحركة — شريط الاسم وزر الاشتراك وعناصر متحركة لفيديوهاتك مجانًا",
    intro="عناصر متحركة جاهزة لليوتيوب والريلز والتيك توك: شريط الاسم والصفة، زر «اشترك» يُضغط عليه، عنوان كبير متحرك، سهم مرسوم باليد، عد تنازلي 3-2-1، وتذكير اللايك والتعليق. اكتب نصك واختر لونك ونزّل فيديو MP4 بشاشة خضراء لتضعه فوق فيديوك. عربي وإنجليزي، مجانًا وبدون علامة مائية.",
@@ -75,7 +75,7 @@ T = {
         ("هل يمكن تنزيله بخلفية شفافة؟", "أغلب برامج المونتاج على الجوال لا تدعم الفيديو الشفاف، لذلك نصدّره بشاشة خضراء أو زرقاء نظيفة تُزال بضغطة واحدة في أي برنامج."),
         ("هل يدعم العربي؟", "نعم، النص العربي من اليمين لليسار بحروف متصلة صحيحة، والتصميم ينعكس تلقائيًا للعربي."),
         ("هل فيه شعارات يوتيوب أو إنستغرام؟", "لا، التصاميم محايدة حتى تستخدمها على أي منصة بدون مشاكل حقوق.")],
-   rel="أدوات أخرى لصناع المحتوى", links=[("/ar/paper-animation", "استوديو أنيميشن الورق"), ("/remove-background-from-image", "إزالة خلفية الصورة"), ("/ar/social-image-resizer", "مقاسات السوشال ميديا"), ("/ar/image-to-text", "استخراج النص من الصور")]),
+   rel="أدوات أخرى لصناع المحتوى", links=[("/ar/glass-slides", "سلايدات زجاجية"), ("/ar/paper-animation", "استوديو أنيميشن الورق"), ("/remove-background-from-image", "إزالة خلفية الصورة"), ("/ar/social-image-resizer", "مقاسات السوشال ميديا"), ("/ar/image-to-text", "استخراج النص من الصور")]),
 }
 def body(L, ar):
     t = T[L]

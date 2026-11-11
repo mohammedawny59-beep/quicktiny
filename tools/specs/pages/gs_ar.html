@@ -1,0 +1,58 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">سلايدات زجاجية</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">فيديو</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>سلايدات زجاجية — فيديو سلايدات بتصميم الزجاج الشفاف بسلاسة 60 إطارًا</h1>
+    <p>اكتب عدة سلايدات واحصل على فيديو ناعم جدًا: بطاقات زجاجية شفافة تطفو فوق ألوان تتحرك ببطء (أو صورتك أنت)، بانتقالات نابضة سلسة ونص يظهر سطرًا سطرًا. نزّله MP4 بسلاسة 60 إطارًا للريلز والتيك توك والشورتس أو للعروض. عربي وإنجليزي، مجانًا وبدون علامة مائية.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="gs">
+      <div>
+        <div class="gs-card"><h2>السلايدات</h2><div id="gsList"></div><button type="button" class="btn btn-secondary" id="gsAdd">+ أضف سلايد</button></div>
+        <div class="gs-card"><h2>الشكل</h2>
+          <div class="gs-row"><span class="gs-l">الألوان</span><div id="gsThemes" role="group" aria-label="الألوان"><button type="button" class="gs-th" data-th="aurora" aria-label="aurora" aria-pressed="false"></button><button type="button" class="gs-th" data-th="sunset" aria-label="sunset" aria-pressed="false"></button><button type="button" class="gs-th" data-th="ocean" aria-label="ocean" aria-pressed="false"></button><button type="button" class="gs-th" data-th="candy" aria-label="candy" aria-pressed="false"></button><button type="button" class="gs-th" data-th="mono" aria-label="mono" aria-pressed="false"></button></div></div>
+          <div class="gs-row"><span class="gs-l">صورة خلفية</span><div class="gs-chips"><label class="btn btn-secondary" for="gsPhoto" style="cursor:pointer">استخدم صورتي</label><input type="file" id="gsPhoto" accept="image/*" class="sr-only"><button type="button" class="btn btn-secondary" id="gsPhotoClear" hidden>إزالة الصورة</button></div></div>
+          <div class="gs-row"><label for="gsAlign">محاذاة النص</label><select id="gsAlign"><option value="center">في الوسط</option><option value="start">من البداية</option></select></div>
+          <div class="gs-row"><label for="gsPer">ثوانٍ لكل سلايد <b id="gsPerV" dir="ltr"></b></label><input type="range" id="gsPer" min="1.5" max="5" step="0.1"></div>
+          <div class="gs-row"><span class="gs-l">المقاس</span><div class="gs-chips" id="gsRatio" role="group" aria-label="المقاس"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="16:9">16:9</button><button type="button" class="chip" data-r="1:1">1:1</button></div></div>
+          <div class="gs-row"><span class="gs-l">السلاسة</span><div class="gs-chips" id="gsFps" role="group" aria-label="السلاسة"><button type="button" class="chip" data-f="60">60 fps</button><button type="button" class="chip" data-f="30">30 fps</button></div></div>
+        </div>
+      </div>
+      <div class="gs-stage">
+        <div class="gs-frame"><div class="gs-screen"><canvas id="gsCanvas" width="1080" height="1920" role="img" aria-label="سلايدات زجاجية"></canvas></div></div>
+        <div class="gs-ctrl"><button type="button" id="gsPlay" aria-label="Play / pause">❚❚</button><input type="range" id="gsScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="gs-export"><button type="button" class="btn" id="gsExport">تنزيل MP4</button></div>
+        <div id="gsBar" hidden><i id="gsBarFill"></i></div><div id="gsStatus" role="status"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/glass-slides.js"></script>
+
+  <div class="content">
+    <h2>نصائح لنتيجة احترافية</h2>
+    <ul class="benefits">
+      <li><span>اجعل كل سلايد قصيرًا: عنوان من 2 إلى 5 كلمات وسطر واحد يشرحه يُقرأ أفضل على الجوال.</span></li>
+      <li><span><strong>60 إطارًا</strong> تعطي أنعم حركة (إنستغرام وتيك توك يحتفظان بها)، واختر 30 لملف أصغر.</span></li>
+      <li><span>استخدم صورتك كخلفية لمظهر خاص بك، والزجاج يمسح الصورة تلقائيًا خلف النص.</span></li>
+      <li><span>من 2 إلى 3 ثوانٍ لكل سلايد إيقاع هادئ، وأقل من ثانيتين إيقاع سريع وحماسي.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل هو مجاني وبدون علامة مائية؟</summary><p>نعم، التنزيل مجاني وغير محدود وبدون علامة مائية.</p></details>
+    <details class="faq-item"><summary>هل يدعم العربي؟</summary><p>نعم، السلايدات العربية من اليمين لليسار بحروف متصلة صحيحة.</p></details>
+    <details class="faq-item"><summary>لماذا 60 إطارًا؟</summary><p>ضعف عدد الإطارات في الفيديو العادي، فتبدو الانتقالات والخلفية المتحركة ناعمة جدًا خاصة على الجوالات الحديثة.</p></details>
+    <details class="faq-item"><summary>هل يُرفع شيء؟</summary><p>لا، نصك وصورتك يبقيان في متصفحك والفيديو يُصنع على جهازك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى لصناع المحتوى</h2>
+    <div class="related-grid">
+      <a href="/ar/paper-animation">استوديو أنيميشن الورق<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/motion-titles">العناوين المتحركة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/social-image-resizer">مقاسات السوشال ميديا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-background-from-image">إزالة خلفية الصورة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

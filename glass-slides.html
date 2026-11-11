@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Glass Slides — Smooth Liquid-Glass Slide Videos at 60 fps, Free | QuickTiny</title>
+  <meta name="description" content="Make a silky slide video with frosted glass cards over a moving colour mesh or your photo, spring-smooth transitions and line-by-line text. 60 fps MP4, Arabic and English, free, no watermark.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/glass-slides">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/glass-slides">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/glass-slides">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/glass-slides">
+  <meta property="og:title" content="Glass Slides — Smooth Liquid-Glass Slide Videos at 60 fps, Free | QuickTiny">
+  <meta property="og:description" content="Make a silky slide video with frosted glass cards over a moving colour mesh or your photo, spring-smooth transitions and line-by-line text. 60 fps MP4, Arabic and English, free, no watermark.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/glass-slides">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/glass.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/glass.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .gs{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,440px);gap:22px;align-items:start}
+    @media(max-width:940px){.gs{grid-template-columns:1fr}.gs-stage{order:-1}}
+    .gs-card{position:relative;border-radius:24px;padding:18px;margin-bottom:14px;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 20px 50px -30px rgba(0,0,0,.7);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4)}
+    html[data-theme=light] .gs-card{background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(255,255,255,.6));border-color:rgba(20,24,70,.1)}
+    .gs-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    html[lang=ar] .gs-card h2{letter-spacing:0}
+    .gs-slide{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:start;padding:10px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);margin-bottom:8px;animation:gsIn .35s cubic-bezier(.16,1,.3,1)}
+    @keyframes gsIn{from{opacity:0;transform:translateY(-6px)}}
+    .gs-n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;font-size:13px}
+    .gs-f input,.gs-f textarea{margin:0 0 6px;font-family:var(--font-ui)}
+    .gs-f input{font-weight:700}.gs-f textarea{min-height:52px;font-size:14px;margin:0}
+    .gs-b{display:flex;flex-direction:column;gap:4px}
+    .gs-b button{width:32px;height:30px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--text-dim);cursor:pointer}
+    .gs-b button:hover{border-color:var(--accent);color:var(--text)}
+    #gsThemes{display:flex;gap:10px;flex-wrap:wrap}
+    .gs-th{all:unset;cursor:pointer;width:54px;height:54px;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);transition:transform .2s,box-shadow .2s}
+    .gs-th:hover{transform:translateY(-3px)}
+    .gs-th.on{box-shadow:inset 0 0 0 2px #fff,0 0 0 3px rgba(59,226,255,.45)}
+    .gs-th:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .gs-row{display:grid;grid-template-columns:130px minmax(0,1fr);gap:10px;align-items:center;margin-top:10px}
+    .gs-row label,.gs-row .gs-l{font-weight:700;color:var(--text-dim);font-size:14px}
+    .gs-row select,.gs-row input{margin:0}
+    @media(max-width:520px){.gs-row{grid-template-columns:1fr}}
+    .gs-chips{display:flex;gap:6px;flex-wrap:wrap}
+    .gs-stage{position:sticky;top:80px}
+    .gs-frame{position:relative;margin:0 auto;width:min(100%,400px);padding:10px;border-radius:40px;background:linear-gradient(160deg,rgba(255,255,255,.22),rgba(255,255,255,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 40px 90px -30px rgba(107,91,255,.75);backdrop-filter:blur(10px)}
+    .gs-screen{position:relative;border-radius:32px;overflow:hidden;background:#000;aspect-ratio:9/16}
+    #gsCanvas{display:block;width:100%;height:100%}
+    .gs-ctrl{display:flex;align-items:center;gap:10px;margin:12px auto 0;width:min(100%,400px)}
+    .gs-ctrl button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);background:var(--card);color:var(--text);cursor:pointer;flex:none}
+    .gs-ctrl input{flex:1;margin:0;accent-color:var(--accent)}
+    .gs-export{display:flex;justify-content:center;margin-top:14px}.gs-export .btn{padding:13px 26px;font-size:15px}
+    #gsStatus{text-align:center;font-weight:700;color:var(--text-dim);margin-top:10px;min-height:1.4em}
+    #gsBar{height:6px;border-radius:999px;background:var(--card);overflow:hidden;width:min(100%,400px);margin:8px auto 0}
+    #gsBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+    @media (prefers-reduced-motion:reduce){.gs-slide{animation:none}}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Glass Slides</span></div>
+  <div class="lang-switch">
+    <a href="/glass-slides" class="active">EN</a>
+    <a href="/ar/glass-slides" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Glass Slides — Smooth Liquid-Glass Slide Videos at 60 fps</h1>
+    <p>Write a few slides and get a silky slide video: frosted glass cards floating over a slowly moving colour mesh (or your own photo), with spring-smooth transitions and text that fades in line by line. Export a 60 fps MP4 for Reels, TikTok, Shorts or a presentation. Arabic and English, free, no watermark.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="gs">
+      <div>
+        <div class="gs-card"><h2>Slides</h2><div id="gsList"></div><button type="button" class="btn btn-secondary" id="gsAdd">+ Add slide</button></div>
+        <div class="gs-card"><h2>Look</h2>
+          <div class="gs-row"><span class="gs-l">Colour mood</span><div id="gsThemes" role="group" aria-label="Colour mood"><button type="button" class="gs-th" data-th="aurora" aria-label="aurora" aria-pressed="false"></button><button type="button" class="gs-th" data-th="sunset" aria-label="sunset" aria-pressed="false"></button><button type="button" class="gs-th" data-th="ocean" aria-label="ocean" aria-pressed="false"></button><button type="button" class="gs-th" data-th="candy" aria-label="candy" aria-pressed="false"></button><button type="button" class="gs-th" data-th="mono" aria-label="mono" aria-pressed="false"></button></div></div>
+          <div class="gs-row"><span class="gs-l">Background photo</span><div class="gs-chips"><label class="btn btn-secondary" for="gsPhoto" style="cursor:pointer">Use my photo</label><input type="file" id="gsPhoto" accept="image/*" class="sr-only"><button type="button" class="btn btn-secondary" id="gsPhotoClear" hidden>Remove photo</button></div></div>
+          <div class="gs-row"><label for="gsAlign">Text alignment</label><select id="gsAlign"><option value="center">Centred</option><option value="start">Start</option></select></div>
+          <div class="gs-row"><label for="gsPer">Seconds per slide <b id="gsPerV" dir="ltr"></b></label><input type="range" id="gsPer" min="1.5" max="5" step="0.1"></div>
+          <div class="gs-row"><span class="gs-l">Format</span><div class="gs-chips" id="gsRatio" role="group" aria-label="Format"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="16:9">16:9</button><button type="button" class="chip" data-r="1:1">1:1</button></div></div>
+          <div class="gs-row"><span class="gs-l">Smoothness</span><div class="gs-chips" id="gsFps" role="group" aria-label="Smoothness"><button type="button" class="chip" data-f="60">60 fps</button><button type="button" class="chip" data-f="30">30 fps</button></div></div>
+        </div>
+      </div>
+      <div class="gs-stage">
+        <div class="gs-frame"><div class="gs-screen"><canvas id="gsCanvas" width="1080" height="1920" role="img" aria-label="Glass Slides"></canvas></div></div>
+        <div class="gs-ctrl"><button type="button" id="gsPlay" aria-label="Play / pause">❚❚</button><input type="range" id="gsScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="gs-export"><button type="button" class="btn" id="gsExport">Download MP4</button></div>
+        <div id="gsBar" hidden><i id="gsBarFill"></i></div><div id="gsStatus" role="status"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/glass-slides.js"></script>
+
+  <div class="content">
+    <h2>Tips for a polished result</h2>
+    <ul class="benefits">
+      <li><span>Keep each slide short: a title of 2–5 words and one supporting line reads best on a phone.</span></li>
+      <li><span><strong>60 fps</strong> gives the smoothest motion (Instagram and TikTok keep it); choose 30 fps for smaller files.</span></li>
+      <li><span>Use your own photo as the background for a branded look; the glass blurs it automatically behind the text.</span></li>
+      <li><span>Between 2 and 3 seconds per slide feels calm; under 2 seconds feels energetic.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is it free with no watermark?</summary><p>Yes. Downloads are free, unlimited and watermark-free.</p></details>
+    <details class="faq-item"><summary>Does it support Arabic?</summary><p>Yes. Arabic slides run right-to-left with proper letter joining.</p></details>
+    <details class="faq-item"><summary>Why 60 fps?</summary><p>Twice as many frames as standard video, so transitions and the moving background look silky, especially on newer phones.</p></details>
+    <details class="faq-item"><summary>Is anything uploaded?</summary><p>No. Your text and photo stay in your browser and the video is created on your device.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/paper-animation">Paper Motion Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/motion-titles">Motion Titles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/social-image-resizer">Social Image Resizer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-background-from-image">Remove Background<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/glass-slides">Glass Slides</a>
+        <a href="/motion-titles">Motion Titles</a>
+        <a href="/paper-animation">Paper Motion Studio</a>
+        <a href="/image-to-text">Image to Text</a>
+        <a href="/cv-builder">CV Builder</a>
+        <a href="/saudi-salary-calculator">Saudi Salary Calculator</a>
+        <a href="/unit-converter">Unit Converter</a>
+        <a href="/ramadan-countdown">Ramadan Countdown</a>
+        <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator</a>
+        <a href="/gpa-calculator">GPA Calculator</a>
+        <a href="/weighted-grade-calculator">Weighted Grade Calculator</a>
+        <a href="/prayer-times">Prayer Times</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny Glass Slides","url":"https://quicktinyv2.vercel.app/glass-slides","description":"Make a silky slide video with frosted glass cards over a moving colour mesh or your photo, spring-smooth transitions and line-by-line text. 60 fps MP4, Arabic and English, free, no watermark.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"Glass Slides","item":"https://quicktinyv2.vercel.app/glass-slides"}]}</script>
+</body>
+</html>
