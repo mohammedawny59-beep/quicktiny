@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/salary-calculator", "title": "حاسبة الراتب الصافي وخصم التأمينات الاجتماعية 2026 (GOSI) | QuickTiny",
+  "desc": "احسب راتبك الصافي بعد خصم التأمينات الاجتماعية: الأساسي + السكن + النقل، نسبة المعاشات وساند، للسعودي وغير السعودي والنظام القديم والجديد، مع تكلفة صاحب العمل.",
+  "app_name": "QuickTiny حاسبة الراتب والتأمينات", "crumb": "حاسبة الراتب والتأمينات", "category": "FinanceApplication", "body": "pages/sl_ar.html", "style": "pages/sl_style.html",
+  "alternates": [["en", "saudi-salary-calculator"], ["ar", "ar/salary-calculator"], ["x-default", "saudi-salary-calculator"]],
+  "switch": [["EN", "saudi-salary-calculator"], ["AR", "ar/salary-calculator"]],
+  "faq": [["كم نسبة خصم التأمينات للسعودي؟", "9.75% من الأساسي وبدل السكن في النظام القديم، و10.75% للنظام الجديد من يوليو 2026."], ["هل تُخصم التأمينات من بدل النقل؟", "لا، الأجر الخاضع للاشتراك هو الأساسي + بدل السكن فقط، بحد أعلى 45,000 ريال."]]}
+]}

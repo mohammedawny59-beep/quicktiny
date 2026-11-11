@@ -1,0 +1,8 @@
+{"en_cards": [
+  {"slug": "saudi-salary-calculator", "icon": "briefcase", "cat": "Utility", "badge": "Finance &middot; New", "name": "Saudi Salary &amp; GOSI", "desc": "Net salary after GOSI, for Saudis and expats, and the employer's total cost.", "search": "saudi salary calculator gosi deduction net salary social insurance saned housing allowance ksa finance utility"}],
+ "ar_cards": [
+  {"slug": "ar/salary-calculator", "icon": "briefcase", "badge": "مالية · جديد", "name": "حاسبة الراتب والتأمينات", "desc": "راتبك الصافي بعد خصم التأمينات وتكلفة صاحب العمل.", "search": "حاسبة الراتب الصافي خصم التأمينات الاجتماعية gosi ساند بدل سكن نقل"}],
+ "footer": [["saudi-salary-calculator", "Saudi Salary Calculator"]],
+ "popular_ar": [["ar/salary-calculator", "حاسبة الراتب والتأمينات"]],
+ "sitemap": ["saudi-salary-calculator", "ar/salary-calculator"],
+ "count_add": 1}

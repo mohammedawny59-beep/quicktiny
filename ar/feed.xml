@@ -57,6 +57,13 @@
     <description>اصنع فاتورة ضريبية مبسطة بالعربي مع رمز QR بصيغة هيئة الزكاة والضريبة والجمارك، ضريبة 15% والمبلغ بالحروف، واطبعها PDF. بدون تسجيل وبدون علامة مائية، واقرأ رموز الفواتير وتحقق منها.</description>
   </item>
   <item>
+    <title>حاسبة الراتب الصافي وخصم التأمينات الاجتماعية 2026 (GOSI)</title>
+    <link>https://quicktinyv2.vercel.app/ar/salary-calculator</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/salary-calculator</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>احسب راتبك الصافي بعد خصم التأمينات الاجتماعية: الأساسي + السكن + النقل، نسبة المعاشات وساند، للسعودي وغير السعودي والنظام القديم والجديد، مع تكلفة صاحب العمل.</description>
+  </item>
+  <item>
     <title>إمساكية رمضان 1448 — مواعيد الإمساك والإفطار لمدينتك</title>
     <link>https://quicktinyv2.vercel.app/ar/ramadan-imsakiya</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/ramadan-imsakiya</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-kb</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>صغّر حجم الصورة إلى حجم محدد بالكيلوبايت لمنصات التوظيف والجامعات والتأشيرات: 20 أو 50 أو 100 أو 200 كيلوبايت بأفضل جودة ممكنة. عدة صور، وبدون رفع.</description>
-  </item>
-  <item>
-    <title>تصغير حجم الصورة إلى 50 كيلوبايت — مجانًا وبأفضل جودة</title>
-    <link>https://quicktinyv2.vercel.app/ar/compress-image-to-50kb</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/compress-image-to-50kb</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>صغّر حجم الصورة إلى أقل من 50 كيلوبايت لـصور الهوية الشخصية ومنصات التوظيف. أعلى جودة ممكنة ضمن الحد مع الحفاظ على التناسب، لعدة صور مرة واحدة. بدون رفع وبدون تسجيل.</description>
   </item>
 </channel>
 </rss>
