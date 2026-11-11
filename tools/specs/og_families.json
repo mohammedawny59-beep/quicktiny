@@ -876,5 +876,25 @@
   "pages": [
    "ar/remove-silence-from-video"
   ]
+ },
+ {
+  "key": "templates",
+  "icon": "paper",
+  "lang": "en",
+  "title": "Video Templates",
+  "sub": "13 animated templates · 60 fps MP4 · free",
+  "pages": [
+   "video-templates"
+  ]
+ },
+ {
+  "key": "templates-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "قوالب فيديو جاهزة",
+  "sub": "13 قالبًا متحركًا · 60 إطارًا · مجانًا",
+  "pages": [
+   "ar/video-templates"
+  ]
  }
 ]

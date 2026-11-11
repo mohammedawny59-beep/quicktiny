@@ -1,0 +1,58 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">قوالب فيديو جاهزة</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">فيديو</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>قوالب فيديو متحركة جاهزة مجانًا — للريلز والتيك توك والستوري واليوتيوب</h1>
+    <p>13 قالبًا متحركًا جاهزًا لأكثر المنشورات استخدامًا: إعلان، قائمة أفضل 5، عروض وخصومات، اقتباس، دعوة، قبل وبعد، عرض منتج، تهنئة رمضان والعيد، إعلان عقار، طبق من المنيو، رأي عميل، أرقام وإنجازات، وافتتاحية ريلز. اختر القالب واكتب نصك وأضف صورتك ونزّل فيديو MP4 ناعم بسرعة 30 أو 60 إطارًا — عربي وإنجليزي، مجانًا وبدون علامة مائية.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="tp-cats" id="tpCats" role="group"><button type="button" class="chip active" data-c="all">الكل</button><button type="button" class="chip" data-c="promo">ترويج</button><button type="button" class="chip" data-c="list">قوائم</button><button type="button" class="chip" data-c="social">سوشال</button><button type="button" class="chip" data-c="event">مناسبات</button></div>
+    <div id="tpGallery"></div>
+    <div class="tp-ed" id="tpEditor" hidden>
+      <div class="tp-col">
+        <div class="tp-box tp-c1"><h2>المحتوى</h2><h3 id="tpName"></h3><p class="tp-hint">نصيحة: ضع الكلمات بين *نجمتين* لتمييزها.</p><div id="tpFields"></div></div>
+        <div class="tp-box tp-c2"><h2>الشكل</h2>
+          <div class="tp-line"><span class="tp-l">الألوان</span><div id="tpPals" role="group" aria-label="الألوان"><button type="button" class="tp-p" data-p="electric" aria-pressed="false" aria-label="electric" style="background:linear-gradient(135deg,#170a3a,#3a0ca3 60%,#ffd60a 61%)"></button><button type="button" class="tp-p" data-p="sunset" aria-pressed="false" aria-label="sunset" style="background:linear-gradient(135deg,#ff5f6d,#ffc371 60%,#2b1055 61%)"></button><button type="button" class="tp-p" data-p="mint" aria-pressed="false" aria-label="mint" style="background:linear-gradient(135deg,#06302d,#0f766e 60%,#a7f3d0 61%)"></button><button type="button" class="tp-p" data-p="noir" aria-pressed="false" aria-label="noir" style="background:linear-gradient(135deg,#0b0b0f,#22222b 60%,#ff2d55 61%)"></button><button type="button" class="tp-p" data-p="cream" aria-pressed="false" aria-label="cream" style="background:linear-gradient(135deg,#fff8ea,#ffe3c2 60%,#e4572e 61%)"></button><button type="button" class="tp-p" data-p="royal" aria-pressed="false" aria-label="royal" style="background:linear-gradient(135deg,#081a36,#13406f 60%,#e9c46a 61%)"></button></div></div>
+          <div class="tp-line"><label class="tp-l" for="tpAccent">لون التمييز</label><input type="color" id="tpAccent"></div>
+          <div class="tp-line"><span class="tp-l">المقاس</span><div class="tp-chips" id="tpRatio" role="group" aria-label="المقاس"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="4:5">4:5</button><button type="button" class="chip" data-r="1:1">1:1</button><button type="button" class="chip" data-r="16:9">16:9</button></div></div>
+          <div class="tp-line"><span class="tp-l">النعومة</span><div class="tp-chips" id="tpFps" role="group" aria-label="النعومة"><button type="button" class="chip" data-f="30">30 fps</button><button type="button" class="chip" data-f="60">60 fps</button></div></div>
+        </div>
+      </div>
+      <div class="tp-stage">
+        <div class="tp-screen" id="tpScreen"><canvas id="tpCanvas" width="540" height="960" role="img" aria-label="قوالب فيديو جاهزة"></canvas></div>
+        <div class="tp-ctrl"><button type="button" id="tpPlay" aria-label="Play / pause">❚❚</button><button type="button" id="tpRestart" aria-label="Restart">↺</button><input type="range" id="tpScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="tp-out"><button type="button" class="btn" id="tpExport">تنزيل MP4</button></div><div id="tpBar" hidden><i id="tpBarFill"></i></div><div id="tpStatus" role="status"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/brand.js"></script>
+  <script src="/templates.js"></script>
+
+  <div class="content">
+    <h2>كيف تستخدم القالب</h2>
+    <ol class="benefits">
+      <li><span>اضغط على أي قالب في الأعلى — المعاينات تتحرك مباشرة.</span></li>
+      <li><span>غيّر النصوص وأضف صورتك إذا كان القالب فيه صورة.</span></li>
+      <li><span>اختر الألوان (أو احفظ هوية قناتك في استوديو صناع المحتوى لتُطبّق تلقائيًا) والمقاس: 9:16 للريلز والتيك توك، 1:1 أو 4:5 للمنشورات، 16:9 لليوتيوب.</span></li>
+      <li><span>نزّل الفيديو MP4. خيار 60 إطارًا يبدو ناعمًا جدًا على الجوال.</span></li>
+    </ol>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل القوالب مجانية للاستخدام التجاري؟</summary><p>نعم. الحركة تُنشأ داخل هذه الصفحة، فتقدر تستخدم الفيديوهات لمشروعك أو عملائك بدون ذكر المصدر.</p></details>
+    <details class="faq-item"><summary>هل أقدر أضيف موسيقى؟</summary><p>أضف الموسيقى في كاب كت أو إنستغرام أو تيك توك بعد التنزيل — الفيديو بدون صوت حتى تختار الصوت الترند.</p></details>
+    <details class="faq-item"><summary>هل تُرفع صوري؟</summary><p>لا. الصور تبقى في متصفحك والفيديو يُجهَّز على جهازك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى لصناع المحتوى</h2>
+    <div class="related-grid">
+      <a href="/ar/creator-studio">استوديو صناع المحتوى<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/add-subtitles-to-video">ترجمة الفيديو تلقائيًا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/youtube-thumbnail-maker">صانع صورة اليوتيوب<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/glass-slides">سلايدات زجاجية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/motion-titles">العناوين المتحركة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

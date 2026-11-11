@@ -1,0 +1,57 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Video Templates</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Free Animated Video Templates — Reels, TikTok, Stories &amp; YouTube</h1>
+    <p>13 ready-made animated templates for the posts people make most: announcements, top-5 lists, sales, quotes, invites, before/after, product showcases, Ramadan &amp; Eid greetings, real estate, menu items, reviews, stats and Reels hooks. Pick one, type your text, add a photo and download a smooth 30 or 60 fps MP4 — Arabic and English, free, no watermark.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="tp-cats" id="tpCats" role="group"><button type="button" class="chip active" data-c="all">All</button><button type="button" class="chip" data-c="promo">Promo</button><button type="button" class="chip" data-c="list">Lists</button><button type="button" class="chip" data-c="social">Social</button><button type="button" class="chip" data-c="event">Events</button></div>
+    <div id="tpGallery"></div>
+    <div class="tp-ed" id="tpEditor" hidden>
+      <div class="tp-col">
+        <div class="tp-box tp-c1"><h2>Your content</h2><h3 id="tpName"></h3><p class="tp-hint">Tip: wrap words in *stars* to highlight them.</p><div id="tpFields"></div></div>
+        <div class="tp-box tp-c2"><h2>Look</h2>
+          <div class="tp-line"><span class="tp-l">Colours</span><div id="tpPals" role="group" aria-label="Colours"><button type="button" class="tp-p" data-p="electric" aria-pressed="false" aria-label="electric" style="background:linear-gradient(135deg,#170a3a,#3a0ca3 60%,#ffd60a 61%)"></button><button type="button" class="tp-p" data-p="sunset" aria-pressed="false" aria-label="sunset" style="background:linear-gradient(135deg,#ff5f6d,#ffc371 60%,#2b1055 61%)"></button><button type="button" class="tp-p" data-p="mint" aria-pressed="false" aria-label="mint" style="background:linear-gradient(135deg,#06302d,#0f766e 60%,#a7f3d0 61%)"></button><button type="button" class="tp-p" data-p="noir" aria-pressed="false" aria-label="noir" style="background:linear-gradient(135deg,#0b0b0f,#22222b 60%,#ff2d55 61%)"></button><button type="button" class="tp-p" data-p="cream" aria-pressed="false" aria-label="cream" style="background:linear-gradient(135deg,#fff8ea,#ffe3c2 60%,#e4572e 61%)"></button><button type="button" class="tp-p" data-p="royal" aria-pressed="false" aria-label="royal" style="background:linear-gradient(135deg,#081a36,#13406f 60%,#e9c46a 61%)"></button></div></div>
+          <div class="tp-line"><label class="tp-l" for="tpAccent">Accent</label><input type="color" id="tpAccent"></div>
+          <div class="tp-line"><span class="tp-l">Format</span><div class="tp-chips" id="tpRatio" role="group" aria-label="Format"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="4:5">4:5</button><button type="button" class="chip" data-r="1:1">1:1</button><button type="button" class="chip" data-r="16:9">16:9</button></div></div>
+          <div class="tp-line"><span class="tp-l">Smoothness</span><div class="tp-chips" id="tpFps" role="group" aria-label="Smoothness"><button type="button" class="chip" data-f="30">30 fps</button><button type="button" class="chip" data-f="60">60 fps</button></div></div>
+        </div>
+      </div>
+      <div class="tp-stage">
+        <div class="tp-screen" id="tpScreen"><canvas id="tpCanvas" width="540" height="960" role="img" aria-label="Video Templates"></canvas></div>
+        <div class="tp-ctrl"><button type="button" id="tpPlay" aria-label="Play / pause">❚❚</button><button type="button" id="tpRestart" aria-label="Restart">↺</button><input type="range" id="tpScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="tp-out"><button type="button" class="btn" id="tpExport">Download MP4</button></div><div id="tpBar" hidden><i id="tpBarFill"></i></div><div id="tpStatus" role="status"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/brand.js"></script>
+  <script src="/templates.js"></script>
+
+  <div class="content">
+    <h2>How to use a template</h2>
+    <ol class="benefits">
+      <li><span>Tap a template above — the previews play live.</span></li>
+      <li><span>Replace the text and add your photo where there is one.</span></li>
+      <li><span>Pick colours (or save your brand kit in the Creator Studio to apply it automatically) and the format: 9:16 for Reels and TikTok, 1:1 or 4:5 for feed, 16:9 for YouTube.</span></li>
+      <li><span>Download the MP4. 60 fps looks extra smooth on phones.</span></li>
+    </ol>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Are the templates free for commercial use?</summary><p>Yes. The animations are generated by this page, so you can use the videos for your business or clients without attribution.</p></details>
+    <details class="faq-item"><summary>Can I add music?</summary><p>Add music in CapCut, Instagram or TikTok after downloading — the MP4 is silent so you can pick a trending sound.</p></details>
+    <details class="faq-item"><summary>Do my photos get uploaded?</summary><p>No. Photos stay in your browser and the video is rendered on your device.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/creator-studio">Creator Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/add-subtitles-to-video">Auto Subtitles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/youtube-thumbnail-maker">YouTube Thumbnail Maker<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/glass-slides">Glass Slides<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/motion-titles">Motion Titles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
