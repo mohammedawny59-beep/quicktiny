@@ -97,7 +97,7 @@ def body(L, ar):
          '    <h1>%s</h1>\n    <p>%s</p>\n  </section>\n\n') % (t["home"], t["homeL"], t["crumb"], "<!--LANG-SWITCH-->\n" if ar else "", t["b"][0], LOCK, t["b"][1], t["b"][2], t["h1"], t["intro"])
     s += '  <div class="tool-panel" id="tool">\n    <div class="cp">\n      <div>\n'
     s += ('        <div class="cp-card"><h2>%s</h2>\n          <label for="capText" class="sr-only">%s</label><textarea id="capText" dir="auto" maxlength="3000" placeholder="%s"></textarea>\n'
-          '          <div class="cp-srt"><label class="btn btn-ghost" for="capSrt">%s</label><input type="file" id="capSrt" accept=".srt,.vtt,text/plain"><button type="button" class="chip" id="capSrtClear" hidden>%s</button><span id="capInfo"></span></div>\n'
+          '          <div class="cp-srt"><label class="btn btn-secondary" for="capSrt">%s</label><input type="file" id="capSrt" accept=".srt,.vtt,text/plain"><button type="button" class="chip" id="capSrtClear" hidden>%s</button><span id="capInfo"></span></div>\n'
           '          <div class="cp-row" id="capWpmRow" style="margin-top:12px"><label for="capWpm">%s</label><div><input type="range" id="capWpm" min="80" max="260" step="5" style="width:100%%"> <span id="capWpmV"></span> wpm</div></div>\n        </div>\n') % (t["s0"], t["s0"], t["ph"], t["srt"], t["srtClear"], t["wpm"])
     s += '        <div class="cp-card"><h2>%s</h2><div id="capStyles">%s</div></div>\n' % (t["s1"], "".join('<button type="button" class="cp-s" data-s="%s" aria-pressed="false"><i aria-hidden="true">%s</i><b>%s</b></button>' % x for x in t["styles"]))
     s += ('        <div class="cp-card"><h2>%s</h2>\n'

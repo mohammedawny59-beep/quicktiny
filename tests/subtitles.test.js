@@ -1,0 +1,28 @@
+// Tests for subtitles.js (cues, SRT, retiming, sizing) and asr-worker.js (word merging).
+const ROOT = require("path").join(__dirname, "..");
+const assert = require("assert");
+global.qtCapWords = require(ROOT + "/captions.js").qtCapWords;
+const S = require(ROOT + "/subtitles.js");
+const A = require(ROOT + "/asr-worker.js");
+let n = 0; const ok = (c, m) => { assert.ok(c, m); n++; };
+const w = (s, a, b) => ({ w: s, start: a, end: b });
+const words = [w("Hello", 0, .4), w("there.", .4, .8), w("How", .9, 1.1), w("are", 1.1, 1.3), w("you", 1.3, 1.6), w("today", 2.6, 3.0)];
+const cues = S.qtSbCues(words, 7);
+assert.deepStrictEqual(cues.map((c) => c.text), ["Hello there.", "How are you", "today"]); n++;
+ok(S.qtSbCues(words.slice(2, 5), 2).length === 2, "max words per cue");
+assert.strictEqual(S.qtSbFmt(3723.456), "01:02:03,456"); n++;
+assert.strictEqual(S.qtSbFmt(-1), "00:00:00,000"); n++;
+const srt = S.qtSbSrt(cues);
+ok(srt.startsWith("1\n00:00:00,000 --> 00:00:00,800\nHello there.\n"), "srt first cue");
+ok(srt.includes("3\n00:00:02,600 --> 00:00:03,000\ntoday"), "srt numbering");
+const same = S.qtSbRetime(cues[1], "Who are we");
+assert.deepStrictEqual(same.map((x) => [x.w, x.start]), [["Who", .9], ["are", 1.1], ["we", 1.3]]); n++;
+const more = S.qtSbRetime(cues[1], "How are you doing now");
+ok(more.length === 5 && Math.abs(more[0].start - .9) < 1e-9 && Math.abs(more[4].end - 1.6) < 1e-9, "spread over cue span");
+ok(S.qtSbRetime(cues[1], "  ").length === 0, "empty edit");
+assert.deepStrictEqual(S.qtSbFit(3840, 2160, 1920), [1920, 1080]); n++;
+assert.deepStrictEqual(S.qtSbFit(721, 1281, 1920), [722, 1282]); n++;
+const merged = A.qtAsrWords([{ text: " مرحبا", timestamp: [0, .5] }, { text: " بكم", timestamp: [.5, .8] }, { text: "ات", timestamp: [.8, 1] }, { text: " Hi", timestamp: [1.2, null] }]);
+assert.deepStrictEqual(merged.map((x) => x.w), ["مرحبا", "بكمات", "Hi"]); n++;
+ok(merged[1].end === 1 && merged[2].end > merged[2].start, "merged timing");
+console.log("subtitles tests:", n, "passed");

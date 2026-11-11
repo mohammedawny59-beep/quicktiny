@@ -791,5 +791,25 @@
   "pages": [
    "ar/creator-studio"
   ]
+ },
+ {
+  "key": "subtitles",
+  "icon": "paper",
+  "lang": "en",
+  "title": "Auto Subtitles",
+  "sub": "Speech → animated captions on your video · on-device",
+  "pages": [
+   "add-subtitles-to-video"
+  ]
+ },
+ {
+  "key": "subtitles-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "ترجمة الفيديو تلقائيًا",
+  "sub": "الكلام يتحوّل لكابشن متحرك على فيديوك",
+  "pages": [
+   "ar/add-subtitles-to-video"
+  ]
  }
 ]

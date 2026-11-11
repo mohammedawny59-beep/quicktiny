@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/add-subtitles-to-video", "title": "ترجمة الفيديو تلقائيًا — كابشن متحرك بالذكاء الاصطناعي مجانًا | QuickTiny",
+  "desc": "ارفع فيديوك واحصل على ترجمة وكابشن متحرك كلمة بكلمة تلقائيًا، بالعربي والإنجليزي. عدّل النص ونزّل الفيديو مع الترجمة والصوت أو ملف SRT. مجانًا وبدون رفع أو علامة مائية.",
+  "app_name": "QuickTiny ترجمة الفيديو تلقائيًا", "crumb": "ترجمة الفيديو تلقائيًا", "category": "MultimediaApplication", "body": "pages/sb_ar.html", "style": "pages/sb_style.html",
+  "alternates": [["en", "add-subtitles-to-video"], ["ar", "ar/add-subtitles-to-video"], ["x-default", "add-subtitles-to-video"]],
+  "switch": [["EN", "add-subtitles-to-video"], ["AR", "ar/add-subtitles-to-video"]],
+  "faq": [["هل يُرفع الفيديو؟", "لا. تحويل الكلام لنص وتجهيز الفيديو يتمّان على جهازك."], ["ما دقة العربي؟", "الفصحى الواضحة ممتازة؛ راجع النص قبل التنزيل خصوصًا مع اللهجات."]]}
+]}

@@ -50,7 +50,8 @@ function qtCapClamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
 function qtCapBack(k) { k = qtCapClamp(k); var c = 1.70158, c3 = c + 1; return 1 + c3 * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); }
 function qtCapRender(x, W, H, t, s, pages, preview) {
   x.setTransform(1, 0, 0, 1, 0, 0);
-  if (preview && s.bg === "photo") { var g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, "#41507a"); g.addColorStop(1, "#151a2c"); x.fillStyle = g; x.fillRect(0, 0, W, H); }
+  if (s.bg === "none") { /* caller already drew the video frame underneath */ }
+  else if (preview && s.bg === "photo") { var g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, "#41507a"); g.addColorStop(1, "#151a2c"); x.fillStyle = g; x.fillRect(0, 0, W, H); }
   else { x.fillStyle = { green: "#00ff00", blue: "#0047ff", black: "#000000" }[s.bg] || "#00ff00"; x.fillRect(0, 0, W, H); }
   var page = null; for (var i = 0; i < pages.length; i++) if (t >= pages[i].start - .05 && t < pages[i].end + .15) { page = pages[i]; break; }
   if (!page) return;
