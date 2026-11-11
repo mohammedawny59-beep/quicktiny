@@ -113,6 +113,13 @@
     <description>حوّل صفحات PDF إلى صور JPG أو PNG بدقة حتى 300 DPI، اختر الصفحات ونزّلها واحدة واحدة أو في ملف ZIP. مجاني وبدون رفع ملفاتك.</description>
   </item>
   <item>
+    <title>استوديو أنيميشن الورق — فيديو قصاصات جرائد وحروف مقصوصة للريلز مجانًا</title>
+    <link>https://quicktinyv2.vercel.app/ar/paper-animation</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/paper-animation</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>اصنع أنيميشن ورقي للريلز والتيك توك من كلمة أو صورة: قصاصات جرائد، حروف مقصوصة، صورة تنفتح كالورق، ومنشورات. عربي وإنجليزي، تنزيل MP4 أو شاشة خضراء مجانًا وبدون علامة مائية.</description>
+  </item>
+  <item>
     <title>كتابة الأرقام بالحروف العربية — تحويل الرقم إلى كلمات</title>
     <link>https://quicktinyv2.vercel.app/ar/number-to-words</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/number-to-words</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/days-between-dates</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>احسب عدد الأيام بين تاريخين بالسنوات والأشهر والأسابيع وأيام العمل، وأضف أو اطرح أيامًا من أي تاريخ، مع التاريخ الهجري. مجاني وفوري.</description>
-  </item>
-  <item>
-    <title>صانع السيرة الذاتية مجانًا — سيرة ذاتية عربي وإنجليزي PDF بدون تسجيل</title>
-    <link>https://quicktinyv2.vercel.app/ar/cv-builder</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/cv-builder</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>اعمل سيرة ذاتية احترافية مجانًا بالعربي أو الإنجليزي: قوالب جاهزة، معاينة مباشرة، وتحميل PDF متوافق مع أنظمة التوظيف ATS. بدون تسجيل ولا علامة مائية.</description>
   </item>
 </channel>
 </rss>

@@ -691,5 +691,25 @@
   "pages": [
    "ar/image-to-text"
   ]
+ },
+ {
+  "key": "paper",
+  "icon": "paper",
+  "lang": "en",
+  "title": "Paper Motion Studio",
+  "sub": "Paper text animations for Reels · MP4 · no watermark",
+  "pages": [
+   "paper-animation"
+  ]
+ },
+ {
+  "key": "paper-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "استوديو أنيميشن الورق",
+  "sub": "قصاصات جرائد وحروف مقصوصة · MP4 مجانًا",
+  "pages": [
+   "ar/paper-animation"
+  ]
  }
 ]

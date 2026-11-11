@@ -113,6 +113,13 @@
     <description>Convert PDF pages to JPG, PNG or WebP images at 72, 150 or 300 DPI. Pick pages, download one by one or as a ZIP. Free, private, nothing uploaded.</description>
   </item>
   <item>
+    <title>Paper Motion Studio — Free Paper Text Animations for Reels &amp; TikTok, No Watermark</title>
+    <link>https://quicktinyv2.vercel.app/paper-animation</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/paper-animation</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>Turn a word or photo into a paper animation for Reels, TikTok and Shorts: newspaper clippings, cut-out letters, paper unfold and posts. Arabic and English, MP4 or green screen, free with no watermark.</description>
+  </item>
+  <item>
     <title>Loan Calculator — Monthly Payment, Total Interest &amp; Real APR</title>
     <link>https://quicktinyv2.vercel.app/loan-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/loan-calculator</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/compress-image-to-100kb</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>Reduce a photo to under 100 KB for government, university and visa forms. Finds the best quality that fits, keeps proportions, works on many photos at once. No upload, no sign-up.</description>
-  </item>
-  <item>
-    <title>cm to Inches Converter — Centimetres to Inches (with Chart)</title>
-    <link>https://quicktinyv2.vercel.app/cm-to-inches</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/cm-to-inches</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>Convert centimetres to inches instantly: 1 cm = 0.3937 in, 1 in = 2.54 cm. Type any value, swap units, and see feet and millimetres too. Free, no sign-up.</description>
   </item>
 </channel>
 </rss>

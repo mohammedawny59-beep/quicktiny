@@ -1,0 +1,62 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Paper Motion Studio</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Paper Motion Studio — Paper-Cut Text &amp; Image Animations for Reels</h1>
+    <p>Type a word or drop a photo and get a scroll-stopping paper animation for Reels, TikTok and Shorts: newspaper clippings, cut-out letters, a photo that unfolds like paper, or posts stacking up. Works in Arabic and English. Export a vertical MP4 or a green-screen version for your editor — free, no watermark, nothing uploaded.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="pm">
+      <div class="pm-controls">
+        <div class="pm-card"><h2>Style</h2><div id="pmStyles"><button type="button" class="pm-style" data-s="newspaper" aria-pressed="false"><i aria-hidden="true">📰</i><b>Newspaper</b><span>Your word in headline after headline, then highlighted</span></button><button type="button" class="pm-style" data-s="cutout" aria-pressed="false"><i aria-hidden="true">✂️</i><b>Cut-out letters</b><span>Ransom-note letters drop in one by one</span></button><button type="button" class="pm-style" data-s="unfold" aria-pressed="false"><i aria-hidden="true">🧾</i><b>Paper unfold</b><span>Your photo unfolds like folded paper (with AI cut-out)</span></button><button type="button" class="pm-style" data-s="posts" aria-pressed="false"><i aria-hidden="true">💬</i><b>Posts</b><span>Posts stack up with your word highlighted</span></button></div></div>
+        <div class="pm-card"><h2>Text</h2>
+          <div class="pm-row"><label for="pmText">Main word</label><input type="text" id="pmText" maxlength="40" dir="auto"></div>
+          <div class="pm-row"><label for="pmSub">Second line</label><input type="text" id="pmSub" maxlength="60" dir="auto" placeholder="optional"></div>
+          <div class="pm-row"><span class="cv-lab" style="font-weight:700;color:var(--text-dim);font-size:14px">Photo</span><div id="pmImgWrap"><img id="pmThumb" alt="" hidden><label class="btn btn-secondary" for="pmImg" style="cursor:pointer">Choose photo</label><input type="file" id="pmImg" accept="image/*" class="sr-only"><label style="display:flex;gap:6px;align-items:center;font-size:13.5px"><input type="checkbox" id="pmCut" checked> Remove background (AI)</label></div></div>
+        </div>
+        <div class="pm-card"><h2>Look</h2>
+          <div class="pm-row"><label for="pmAccent">Highlight</label><input type="color" id="pmAccent"></div>
+          <div class="pm-row"><label for="pmBg">Background</label><select id="pmBg"><option value="kraft">Kraft paper desk</option><option value="dark">Dark</option><option value="color">Solid colour</option><option value="green">Green screen (for editors)</option></select></div>
+          <div class="pm-row" id="pmBgColorWrap"><label for="pmBgColor">Colour</label><input type="color" id="pmBgColor"></div>
+          <div class="pm-row"><label for="pmDur">Length <b id="pmDurV" dir="ltr"></b></label><input type="range" id="pmDur" min="3" max="10" step="1"></div>
+          <div class="pm-row"><span style="font-weight:700;color:var(--text-dim);font-size:14px">Format</span><span id="pmRatio" role="group" aria-label="Format"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="1:1">1:1</button><button type="button" class="chip" data-r="16:9">16:9</button></span></div>
+        </div>
+      </div>
+      <div class="pm-stage">
+        <div class="pm-phone"><div class="pm-screen"><canvas id="pmCanvas" width="1080" height="1920" aria-label="Paper Motion Studio" role="img"></canvas></div></div>
+        <div class="pm-ctrl"><button type="button" id="pmPlay" aria-label="Play / pause">❚❚</button><input type="range" id="pmScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="pm-export"><button type="button" class="btn" id="pmExport">Download MP4</button><button type="button" class="btn btn-secondary" id="pmPng">Save frame (PNG)</button></div>
+        <div id="pmBar" hidden><i id="pmBarFill"></i></div><div id="pmStatus" role="status"></div>
+        <div class="pm-badges"><span>1080×1920</span><span>No watermark</span><span>Nothing uploaded</span><span>Arabic + English</span></div>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/paper-studio.js"></script>
+
+  <div class="content">
+    <h2>How to use it in your video</h2>
+    <ul class="benefits">
+      <li><span>Pick a style, type your word (or drop a photo for <strong>Paper unfold</strong>), then press <strong>Download MP4</strong>.</span></li>
+      <li><span>Use <strong>Green screen</strong> to drop the animation over your own footage. Key out the green in CapCut, Premiere or DaVinci (Chroma key).</span></li>
+      <li><span>Keep the main word short, 1–3 words. Put the details in the second line or in your voice-over.</span></li>
+      <li><span>Every frame is drawn on your device, so the download is the exact animation you see.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is it really free with no watermark?</summary><p>Yes. Exports are free, unlimited and watermark-free.</p></details>
+    <details class="faq-item"><summary>Does it support Arabic?</summary><p>Yes. Arabic text is laid out right-to-left with proper letter joining, and cut-out letters split Arabic only where letters don't connect.</p></details>
+    <details class="faq-item"><summary>Which video format do I get?</summary><p>MP4 (H.264, 1080×1920 at 30 fps) in Chrome, Edge and Safari. Browsers without H.264 encoding get WebM, which CapCut and Instagram also accept.</p></details>
+    <details class="faq-item"><summary>Is my photo uploaded?</summary><p>No. Background removal and rendering run in your browser.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/remove-background-from-image">Remove Background<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/social-image-resizer">Social Image Resizer<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/image-to-text">Image to Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/qr-code-generator">QR Code Generator<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
