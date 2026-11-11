@@ -623,3 +623,61 @@ function qtCountTo(el, to, fmt, dur){
   // Follow the device setting live until the visitor picks a theme.
   if (window.matchMedia) { var mq = matchMedia("(prefers-color-scheme: light)"); var on = function(){ if (!saved()) set(sys(), false); }; if (mq.addEventListener) mq.addEventListener("change", on); }
 })();
+
+/* ---------- Feedback under each tool: 👍/👎 and an optional "suggest a tool" note (api/qt-feedback.js) ---------- */
+(function(){
+  var panel = document.querySelector(".tool-panel");
+  var path = location.pathname;
+  if (!panel || path === "/" || path === "/ar" || /^\/(embed)\b/.test(path)) return;
+  var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
+  var T = AR ? { q: "هل أفادتك هذه الأداة؟", up: "نعم، أفادتني", down: "لا", thanks: "شكرًا لك! 🙏", ask: "ما الأداة التي تتمنى أن نضيفها، أو ما الذي ينقص هذه الأداة؟", ph: "اكتب اقتراحك… (اختياري، بدون بيانات شخصية)", send: "إرسال", sent: "✓ وصل اقتراحك، شكرًا!", fail: "تعذّر الإرسال، حاول لاحقًا.", suggest: "اقترح أداة" }
+             : { q: "Was this tool helpful?", up: "Yes, it helped", down: "No", thanks: "Thank you! 🙏", ask: "Which tool should we build next, or what is this one missing?", ph: "Your idea… (optional, no personal details please)", send: "Send", sent: "✓ Got it, thank you!", fail: "Couldn't send, please try again later.", suggest: "Suggest a tool" };
+  var KEY = "qtVoted:" + path, voted = null;
+  try { voted = localStorage.getItem(KEY); } catch (e) {}
+  function post(data){
+    data.page = path; data.lang = AR ? "ar" : "en";
+    return fetch("/api/qt-feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+  }
+  var box = document.createElement("section"); box.className = "qt-fb"; box.setAttribute("aria-label", T.q);
+  box.innerHTML =
+    '<div class="qt-fb-row"><span class="qt-fb-q"></span><span class="qt-fb-btns"><button type="button" class="qt-fb-v" data-v="up" aria-label=""><span aria-hidden="true">👍</span></button><button type="button" class="qt-fb-v" data-v="down" aria-label=""><span aria-hidden="true">👎</span></button></span>' +
+    '<button type="button" class="qt-fb-link"></button></div>' +
+    '<form class="qt-fb-form" hidden><label class="qt-fb-ask"></label><textarea maxlength="500" rows="3"></textarea>' +
+    '<input type="text" name="website" tabindex="-1" autocomplete="off" class="qt-fb-hp" aria-hidden="true">' +
+    '<div class="qt-fb-actions"><button type="submit" class="btn"></button><span class="qt-fb-msg" role="status"></span></div></form>';
+  var q = box.querySelector(".qt-fb-q"), form = box.querySelector("form"), ta = form.querySelector("textarea"), msg = box.querySelector(".qt-fb-msg");
+  q.textContent = voted ? T.thanks : T.q;
+  box.querySelector('[data-v="up"]').setAttribute("aria-label", T.up);
+  box.querySelector('[data-v="down"]').setAttribute("aria-label", T.down);
+  box.querySelector(".qt-fb-link").textContent = T.suggest;
+  form.querySelector("label").textContent = T.ask; ta.placeholder = T.ph;
+  var taId = "qtFbText"; ta.id = taId; form.querySelector("label").setAttribute("for", taId);
+  form.querySelector(".btn").textContent = T.send;
+  if (voted) box.querySelectorAll(".qt-fb-v").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-v") === voted); b.disabled = true; });
+  function openForm(){ form.hidden = false; ta.focus(); }
+  box.querySelectorAll(".qt-fb-v").forEach(function(b){
+    b.addEventListener("click", function(){
+      var v = b.getAttribute("data-v");
+      b.classList.add("on", "pop"); box.querySelectorAll(".qt-fb-v").forEach(function(x){ x.disabled = true; });
+      q.textContent = T.thanks;
+      voted = v;
+      try { localStorage.setItem(KEY, v); } catch (e) {}
+      post({ vote: v }).catch(function(){});
+      if (v === "up" && typeof qtCelebrate === "function") qtCelebrate(b);
+      openForm();
+    });
+  });
+  box.querySelector(".qt-fb-link").addEventListener("click", openForm);
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var text = ta.value.trim(); if (!text) { ta.focus(); return; }
+    var btn = form.querySelector(".btn"); btn.disabled = true;
+    post({ text: text, vote: voted || null, website: form.querySelector(".qt-fb-hp").value }).then(function(r){
+      if (!r.ok && r.status !== 204) throw new Error(r.status);
+      msg.textContent = T.sent; msg.className = "qt-fb-msg ok"; ta.value = ""; ta.disabled = true;
+    }).catch(function(){ msg.textContent = T.fail; msg.className = "qt-fb-msg bad"; btn.disabled = false; });
+  });
+  // After the tool's own panel (and any helper rows right below it), before the explanatory content.
+  var after = panel; while (after.nextElementSibling && after.nextElementSibling.tagName === "SCRIPT") after = after.nextElementSibling;
+  after.parentNode.insertBefore(box, after.nextSibling);
+})();

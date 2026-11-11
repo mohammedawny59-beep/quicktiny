@@ -787,3 +787,25 @@ html[data-theme="light"] .mt-table tr.hl td{color:var(--text)}
 html[data-theme="light"] #smartInput{background:#fff}
 html[data-theme="light"] .badge.trust{color:var(--text-dim)}
 html[data-theme="light"] .badge.local{color:#0b7d4f}
+
+/* ---------- Feedback under each tool ---------- */
+.qt-fb{margin:18px 0 6px;padding:14px 18px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.qt-fb-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.qt-fb-q{font-weight:700;color:var(--text)}
+.qt-fb-btns{display:inline-flex;gap:8px}
+.qt-fb-v{width:42px;height:38px;border-radius:12px;border:1px solid var(--line-strong);background:var(--card);font-size:18px;cursor:pointer;transition:transform .15s,border-color .15s,background .15s;padding:0}
+.qt-fb-v:hover:not(:disabled){transform:translateY(-2px);border-color:var(--accent)}
+.qt-fb-v:disabled{cursor:default;opacity:.55}
+.qt-fb-v.on{opacity:1;border-color:var(--accent);background:var(--accent-dim)}
+.qt-fb-v.pop{animation:favPop .45s cubic-bezier(.16,1,.3,1)}
+.qt-fb-link{all:unset;cursor:pointer;margin-inline-start:auto;font-size:13.5px;font-weight:700;color:var(--accent-hover);padding:4px 6px;border-radius:8px}
+.qt-fb-link:hover{text-decoration:underline}
+.qt-fb-link:focus-visible{outline:2px solid var(--accent)}
+.qt-fb-form{margin-top:12px;animation:hdIn .3s cubic-bezier(.16,1,.3,1)}
+.qt-fb-ask{display:block;font-size:14px;color:var(--text-dim);margin-bottom:6px}
+.qt-fb-form textarea{min-height:76px;font-family:var(--font-ui);font-size:14.5px;margin:0 0 8px}
+.qt-fb-hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0}
+.qt-fb-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.qt-fb-actions .btn{padding:8px 18px;font-size:14px}
+.qt-fb-msg.ok{color:var(--success);font-weight:700}.qt-fb-msg.bad{color:var(--danger);font-weight:700}
+@media (prefers-reduced-motion:reduce){.qt-fb-form,.qt-fb-v.pop{animation:none}}
