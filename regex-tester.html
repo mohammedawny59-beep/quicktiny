@@ -59,6 +59,7 @@
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -75,7 +76,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Regex Tester</span></div>
   <section class="hero compact">
     <div class="hero-badges">
@@ -111,7 +112,7 @@ Not a date: 2026-1-9 or 26/11/2026.</textarea>
     </div>
 
     <div class="rx-grid">
-      <div class="rx-box"><h2>What it means</h2><ul id="rxExplain"></ul></div>
+      <div class="rx-box"><h2>What it means</h2><ul id="rxExplain" tabindex="0" aria-label="Pattern explanation"></ul></div>
       <div class="rx-box"><h2>Matches &amp; groups</h2><div class="rx-tablewrap" id="rxTable"></div></div>
     </div>
     <div class="rx-box" style="margin-top:16px">

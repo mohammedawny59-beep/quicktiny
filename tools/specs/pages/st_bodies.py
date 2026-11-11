@@ -191,10 +191,10 @@ def wt_body(L, ar):
           '        <div class="st-actions"><button type="button" class="btn btn-secondary" id="wtAdd">%s</button><button type="button" class="btn btn-secondary" id="wtReset">%s</button></div>\n'
           '        <div class="st-note" id="wtSum"></div>\n'
           '        <h2 style="margin-top:18px">%s</h2>\n'
-          '        <div class="st-line"><span>%s</span><input type="text" inputmode="decimal" id="fnCur" value="78"><span>·</span><span>%s</span><input type="text" inputmode="decimal" id="fnW" value="40"><span>·</span><span>%s</span><input type="text" inputmode="decimal" id="fnTarget" value="80"></div>\n'
+          '        <div class="st-line"><span>%s</span><input type="text" inputmode="decimal" id="fnCur" aria-label="%s" value="78"><span>·</span><span>%s</span><input type="text" inputmode="decimal" id="fnW" aria-label="%s" value="40"><span>·</span><span>%s</span><input type="text" inputmode="decimal" id="fnTarget" aria-label="%s" value="80"></div>\n'
           '        <div class="st-note" id="fnOut" aria-live="polite"></div>\n      </div>\n'
           '      <div class="st-card st-res" aria-live="polite">\n        <h2>%s</h2>\n%s        <span class="st-rate" id="wtLetter"></span>\n        <p class="st-saved">%s</p>\n      </div>\n    </div>\n  </div>\n  <script src="/student.js"></script>\n\n'
-          ) % (' style="margin-top:16px"' if ar else "", t["cardT"], t["cols"][0], t["cols"][1], t["cols"][2], t["cols"][3], t["add"], t["reset"], t["finT"], t["fin1"], t["fin2"], t["fin3"], t["resL"], ring("wtRing", "wtPct"), t["saved"])
+          ) % (' style="margin-top:16px"' if ar else "", t["cardT"], t["cols"][0], t["cols"][1], t["cols"][2], t["cols"][3], t["add"], t["reset"], t["finT"], t["fin1"], t["fin1"], t["fin2"], t["fin2"], t["fin3"], t["fin3"], t["resL"], ring("wtRing", "wtPct"), t["saved"])
     s += ('  <div class="content">\n    <h2>%s</h2>\n    <ul class="benefits">\n%s    </ul>\n    <h2>%s</h2>\n%s  </div>\n\n'
           ) % (t["howT"], "".join("      <li><span>%s</span></li>\n" % h for h in t["how"]), t["faqT"], faq(t["faq"]))
     return s + related(t["rel"], t["links"]) + "</div>\n"

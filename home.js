@@ -42,7 +42,7 @@
   var host = document.getElementById("smart-actions") || document.querySelector(".hero .search-row");
   if (host && window.indexedDB) {
     var box = el("div", "home-drop");
-    box.innerHTML = '<input type="file" id="homeFile" class="sr-only" tabindex="-1" multiple accept="image/*,.heic,.heif,application/pdf,.pdf">';
+    box.innerHTML = '<input type="file" id="homeFile" class="sr-only" tabindex="-1" aria-label="' + T.choose + '" multiple accept="image/*,.heic,.heif,application/pdf,.pdf">';
     var row = el("div", "hd-row");
     var ico = el("span", "hd-ico"); ico.setAttribute("aria-hidden", "true"); ico.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>';
     var txt = el("span", "hd-text"); txt.appendChild(el("strong", "", T.drop)); txt.appendChild(document.createTextNode(" " + T.or + " "));

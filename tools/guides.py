@@ -58,6 +58,7 @@ def make_en(slug, title, desc, crumb, body_html):
           '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": "Home", "item": B + "/"}, {"@type": "ListItem", "position": 2, "name": crumb, "item": url}]}, ensure_ascii=False) + "</script>\n</body>\n</html>\n")
     if os.path.dirname(slug): os.makedirs(os.path.dirname(slug), exist_ok=True)
+    body_html = body_html.replace('<div class="wrap">', '<div class="wrap" id="main" role="main" tabindex="-1">', 1)
     io.open(slug + ".html", "w", encoding="utf-8", newline="").write(header + body_html + footer + ld)
 
 def patch(path, g, url, faq=True):

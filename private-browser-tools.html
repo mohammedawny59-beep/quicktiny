@@ -22,6 +22,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do local browser tools work without uploading my input?","acceptedAnswer":{"@type":"Answer","text":"Yes, when the transformation is implemented in client-side JavaScript. The page code runs on your device and can produce the result without sending the input to an application server."}},{"@type":"Question","name":"Can I safely paste secrets into any local tool?","acceptedAnswer":{"@type":"Answer","text":"No. Local processing reduces server exposure, but a compromised device, malicious extension or dishonest page can still capture data. Use dedicated offline tooling for production secrets and regulated data."}},{"@type":"Question","name":"Does QuickTiny store pasted Smart Actions content?","acceptedAnswer":{"@type":"Answer","text":"No. Smart Actions detection happens in the browser, and its measurement events contain categories rather than the pasted value."}},{"@type":"Question","name":"Can I verify local processing myself?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the browser Network panel while running the action and inspect outgoing requests for the input or file."}}]}</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -57,6 +58,6 @@
     <p>Use <a href="/">Smart Actions</a> to paste a non-sensitive example and let QuickTiny suggest the right browser tool, or open a tool directly from the links above.</p>
   </article>
 </main>
-<footer><div class="wrap"><div class="footer-bottom"><span>&copy; <span data-year></span> QuickTiny</span><span><a href="/about-quicktiny">About</a> · <a href="/privacy">Privacy</a> · <a href="/llms.txt">Product facts</a></span></div></div></footer>
+<footer><div class="wrap" id="main" role="main" tabindex="-1"><div class="footer-bottom"><span>&copy; <span data-year></span> QuickTiny</span><span><a href="/about-quicktiny">About</a> · <a href="/privacy">Privacy</a> · <a href="/llms.txt">Product facts</a></span></div></div></footer>
 <script src="/site.js"></script><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script><script defer src="/_vercel/insights/script.js"></script>
 </body></html>

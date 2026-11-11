@@ -22,6 +22,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does QuickTiny upload my JSON?","acceptedAnswer":{"@type":"Answer","text":"No. Formatting, validation and repair run in the browser. Usage measurement contains categorical events rather than the JSON value."}},{"@type":"Question","name":"Can QuickTiny repair invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"It can repair several common issues such as code fences, trailing commas, simple unquoted keys and single-quoted strings. Review repaired output before using it."}},{"@type":"Question","name":"Does the formatter use AI?","acceptedAnswer":{"@type":"Answer","text":"No. The formatter and repair steps use deterministic browser-side code."}},{"@type":"Question","name":"Should I paste API keys or production secrets?","acceptedAnswer":{"@type":"Answer","text":"No. Use an audited offline workflow for secrets even when a web tool performs processing locally."}}]}</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -57,6 +58,6 @@
     <p>Use <a href="/">Smart Actions</a> to paste a non-sensitive example and let QuickTiny suggest the right browser tool, or open a tool directly from the links above.</p>
   </article>
 </main>
-<footer><div class="wrap"><div class="footer-bottom"><span>&copy; <span data-year></span> QuickTiny</span><span><a href="/about-quicktiny">About</a> · <a href="/privacy">Privacy</a> · <a href="/llms.txt">Product facts</a></span></div></div></footer>
+<footer><div class="wrap" id="main" role="main" tabindex="-1"><div class="footer-bottom"><span>&copy; <span data-year></span> QuickTiny</span><span><a href="/about-quicktiny">About</a> · <a href="/privacy">Privacy</a> · <a href="/llms.txt">Product facts</a></span></div></div></footer>
 <script src="/site.js"></script><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script><script defer src="/_vercel/insights/script.js"></script>
 </body></html>

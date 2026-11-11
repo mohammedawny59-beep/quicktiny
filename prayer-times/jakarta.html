@@ -94,6 +94,7 @@
   <script>window.QT_PRESET = {"city": "jakarta"};</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -110,7 +111,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Prayer Times in Jakarta</span></div>
   <div class="lang-switch">
     <a href="/prayer-times/jakarta" class="active">EN</a>
@@ -140,7 +141,7 @@
         <p class="pt-howto" id="ptHowto">Without the live compass: lay the phone flat and turn it until N on the dial points north, then face the 🕋 arrow — or turn until your phone's compass app shows the degree above.</p></div>
       <div class="pt-box"><h2>Countdown</h2><div id="ptCount"></div></div>
     </div>
-    <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>Monthly timetable</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth"><button type="button" class="btn btn-secondary" data-print="month">Print</button></div></div>
+    <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>Monthly timetable</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth" aria-label="Month"><button type="button" class="btn btn-secondary" data-print="month">Print</button></div></div>
       <div class="pt-tablewrap"><table class="pt-table"><thead><tr><th>Day</th><th>Hijri</th><th>Fajr</th><th>Sunrise</th><th>Dhuhr</th><th>Asr</th><th>Maghrib</th><th>Isha</th></tr></thead><tbody id="ptMonthBody"></tbody></table></div></div>
     <div class="pt-sec pt-print" id="ptRamadan"><div class="pt-sec-head"><h2 id="ptRamadanTitle">Ramadan</h2><button type="button" class="btn" data-print="ramadan">Print timetable</button></div>
       <div class="pt-tablewrap"><table class="pt-table"><thead><tr><th>Day</th><th>Date</th><th>Imsak</th><th>Fajr</th><th>Dhuhr</th><th>Asr</th><th>Iftar (Maghrib)</th><th>Isha</th></tr></thead><tbody id="ptRamadanBody"></tbody></table></div></div>

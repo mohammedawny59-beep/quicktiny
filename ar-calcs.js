@@ -114,7 +114,7 @@ function qtEndOfService(o) {
     function country() { return QT_VAT.filter(function (c) { return c.id === sel.value; })[0] || QT_VAT[0]; }
     function addRow(desc, qty, price) {
       var tr = document.createElement("tr");
-      tr.innerHTML = '<td><input type="text" class="vt-desc" placeholder="وصف البند (اختياري)" value="' + esc(desc || "") + '"></td><td><input type="text" inputmode="decimal" class="vt-qty" value="' + (qty || 1) + '"></td><td><input type="text" inputmode="decimal" class="vt-price" placeholder="0.00" value="' + (price || "") + '"></td><td class="vt-line"></td><td><button type="button" class="vt-del" aria-label="حذف البند">×</button></td>';
+      tr.innerHTML = '<td><input type="text" class="vt-desc" aria-label="وصف البند" placeholder="وصف البند (اختياري)" value="' + esc(desc || "") + '"></td><td><input type="text" inputmode="decimal" class="vt-qty" aria-label="الكمية" value="' + (qty || 1) + '"></td><td><input type="text" inputmode="decimal" class="vt-price" aria-label="سعر الوحدة" placeholder="0.00" value="' + (price || "") + '"></td><td class="vt-line"></td><td><button type="button" class="vt-del" aria-label="حذف البند">×</button></td>';
       tr.querySelector(".vt-del").addEventListener("click", function () { if ($("vtRows").children.length > 1) tr.remove(); run(); });
       tr.querySelectorAll("input").forEach(function (i) { i.addEventListener("input", run); });
       $("vtRows").appendChild(tr);

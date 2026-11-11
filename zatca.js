@@ -77,7 +77,7 @@ function qtIsoLocal(d) {
   }
   function addRow(desc, qty, price) {
     var tr = document.createElement("tr");
-    tr.innerHTML = '<td><input type="text" class="zv-desc" placeholder="وصف المنتج أو الخدمة" value="' + esc(desc || "") + '"></td><td><input type="text" inputmode="decimal" class="zv-qty cl-num" value="' + (qty || 1) + '"></td><td><input type="text" inputmode="decimal" class="zv-price cl-num" placeholder="0.00" value="' + (price || "") + '"></td><td><button type="button" class="vt-del" aria-label="حذف البند">×</button></td>';
+    tr.innerHTML = '<td><input type="text" class="zv-desc" aria-label="وصف المنتج أو الخدمة" placeholder="وصف المنتج أو الخدمة" value="' + esc(desc || "") + '"></td><td><input type="text" inputmode="decimal" class="zv-qty cl-num" aria-label="الكمية" value="' + (qty || 1) + '"></td><td><input type="text" inputmode="decimal" class="zv-price cl-num" aria-label="سعر الوحدة" placeholder="0.00" value="' + (price || "") + '"></td><td><button type="button" class="vt-del" aria-label="حذف البند">×</button></td>';
     tr.querySelector(".vt-del").addEventListener("click", function () { if ($("zvRows").children.length > 1) tr.remove(); render(); });
     tr.querySelectorAll("input").forEach(function (i) { i.addEventListener("input", render); });
     $("zvRows").appendChild(tr);
@@ -101,10 +101,10 @@ function qtIsoLocal(d) {
     var buyer = $("zvBuyer").value.trim(), buyerVat = $("zvBuyerVat").value.trim();
     var dateTxt = when.toLocaleString("ar-SA-u-nu-latn-ca-gregory", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
     $("zvPreview").innerHTML =
-      '<header class="iv-head"><div class="iv-seller">' + (logo ? '<img class="iv-logo" alt="" src="' + logo + '">' : "") + "<div><b>" + esc(seller || "اسم المنشأة") + "</b>" +
+      '<div class="iv-head"><div class="iv-seller">' + (logo ? '<img class="iv-logo" alt="" src="' + logo + '">' : "") + "<div><b>" + esc(seller || "اسم المنشأة") + "</b>" +
       (vat ? "<span>الرقم الضريبي: " + esc(vat) + "</span>" : "") + ($("zvCr").value ? "<span>السجل التجاري: " + esc($("zvCr").value) + "</span>" : "") +
       ($("zvAddr").value ? "<span>" + esc($("zvAddr").value) + "</span>" : "") + ($("zvPhone").value ? "<span>" + esc($("zvPhone").value) + "</span>" : "") + "</div></div>" +
-      '<div class="iv-title"><h2>فاتورة ضريبية مبسطة</h2><span>Simplified Tax Invoice</span></div></header>' +
+      '<div class="iv-title"><h2>فاتورة ضريبية مبسطة</h2><span>Simplified Tax Invoice</span></div></div>' +
       '<div class="iv-meta"><div><span>رقم الفاتورة</span><b>' + esc($("zvNo").value || "—") + "</b></div><div><span>التاريخ والوقت</span><b>" + esc(dateTxt) + "</b></div>" +
       (buyer ? "<div><span>العميل</span><b>" + esc(buyer) + "</b>" + (buyerVat ? "<small>ر.ض: " + esc(buyerVat) + "</small>" : "") + "</div>" : "") + "</div>" +
       '<table class="iv-items"><thead><tr><th>#</th><th>البيان</th><th>الكمية</th><th>سعر الوحدة</th><th>الضريبة 15%</th><th>المجموع شامل الضريبة</th></tr></thead><tbody>' + (rows || '<tr><td colspan="6" class="iv-empty">أضف بنود الفاتورة</td></tr>') + "</tbody></table>" +

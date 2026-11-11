@@ -20,6 +20,7 @@ header = header.replace("https://quicktinyv2.vercel.app/compress-image", url)
 header = re.sub(r'\s*<link rel="alternate" hreflang="(hi|en|ar|x-default)"[^>]*>', "", header)
 style = io.open(style_path, encoding="utf-8").read() if style_path != "-" else ""
 body = io.open(body_path, encoding="utf-8").read()
+body = body.replace('<div class="wrap">', '<div class="wrap" id="main" role="main" tabindex="-1">', 1)
 if style:
     header = header.replace('<link rel="stylesheet" href="/styles.css">', '<link rel="stylesheet" href="/styles.css">\n' + style.rstrip())
 plain = lambda s: s.replace("&amp;", "&")

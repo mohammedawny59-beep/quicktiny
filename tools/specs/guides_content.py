@@ -178,7 +178,7 @@ dict(slug="gpa-5-calculation", lang="ar", date="2026-11-11",
 <table class="guide-table"><tr><th>المادة</th><th>الساعات</th><th>التقدير</th><th>النقاط</th></tr>
 <tr><td>مادة 1</td><td>3</td><td>أ+ (5)</td><td>15</td></tr><tr><td>مادة 2</td><td>3</td><td>أ (4.75)</td><td>14.25</td></tr>
 <tr><td>مادة 3</td><td>2</td><td>ب+ (4.5)</td><td>9</td></tr><tr><td>مادة 4</td><td>4</td><td>ب (4)</td><td>16</td></tr>
-<tr><td>مادة 5</td><td>3</td><td>ج+ (3.5)</td><td>10.5</td></tr><tr><th>المجموع</th><th>15</th><th></th><th>64.75</th></tr></table>
+<tr><td>مادة 5</td><td>3</td><td>ج+ (3.5)</td><td>10.5</td></tr><tr><th>المجموع</th><th>15</th><td></td><th>64.75</th></tr></table>
 <h2>الخطوة 2: المعدل الفصلي</h2>
 <p><strong>المعدل الفصلي = مجموع النقاط ÷ مجموع الساعات</strong> = <span class="eq" dir="ltr">64.75 ÷ 15 = <strong>4.32</strong></span> من 5 (جيد جدًا).</p>
 <h2>الخطوة 3: المعدل التراكمي</h2>
@@ -233,7 +233,7 @@ dict(slug="weighted-percentage-calculation", lang="ar", date="2026-11-11",
 <p>طالب نسبته في الثانوية 96، وفي القدرات 82، وفي التحصيلي 88:</p>
 <table class="guide-table"><tr><th>الجزء</th><th>الدرجة</th><th>الوزن</th><th>الناتج</th></tr>
 <tr><td>الثانوية</td><td>96</td><td>30%</td><td>28.8</td></tr><tr><td>القدرات</td><td>82</td><td>30%</td><td>24.6</td></tr>
-<tr><td>التحصيلي</td><td>88</td><td>40%</td><td>35.2</td></tr><tr><th>النسبة الموزونة</th><th></th><th>100%</th><th>88.6%</th></tr></table>
+<tr><td>التحصيلي</td><td>88</td><td>40%</td><td>35.2</td></tr><tr><th>النسبة الموزونة</th><td></td><th>100%</th><th>88.6%</th></tr></table>
 <h2>نفس الطالب بأوزان مختلفة</h2>
 <ul><li><strong>40 / 30 / 30:</strong> <span class="eq" dir="ltr">38.4 + 24.6 + 26.4 = <strong>89.4%</strong></span></li>
 <li><strong>25 / 25 / 50:</strong> <span class="eq" dir="ltr">24 + 20.5 + 44 = <strong>88.5%</strong></span></li>
@@ -281,7 +281,7 @@ dict(slug="zakat-al-fitr-amount", lang="ar", date="2026-11-11",
  body="""<h2>كم مقدار زكاة الفطر للفرد؟</h2>
 <p>زكاة الفطر <strong>صاع من غالب قوت البلد</strong> (أرز، قمح، تمر، زبيب…) عن كل فرد. والصاع مكيال حجم وليس وزنًا، لذلك يختلف وزنه باختلاف الطعام، ويُقدَّر غالبًا بـ <strong>نحو 2.5 إلى 3 كيلوغرامات</strong>؛ وكثير من جهات الفتوى في الخليج تعتمد 3 كغ احتياطًا.</p>
 <h2>مثال لأسرة من 6 أفراد</h2>
-<table class="guide-table"><tr><th></th><th>بمقدار 3 كغ</th><th>بمقدار 2.5 كغ</th></tr>
+<table class="guide-table"><tr><td></td><th>بمقدار 3 كغ</th><th>بمقدار 2.5 كغ</th></tr>
 <tr><td>الكمية</td><td>6 × 3 = <strong>18 كغ</strong></td><td>6 × 2.5 = <strong>15 كغ</strong></td></tr>
 <tr><td>القيمة (أرز بسعر 7 للكيلو)</td><td><span class="eq" dir="ltr">18 × 7 = <strong>126</strong></span></td><td><span class="eq" dir="ltr">15 × 7 = <strong>105</strong></span></td></tr></table>
 <p>السعر هنا للتوضيح فقط؛ أدخل سعر الطعام في بلدك في <a href="/ar/zakat-al-fitr-calculator">الحاسبة</a>.</p>

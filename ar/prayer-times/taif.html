@@ -92,6 +92,7 @@
   <script>window.QT_PRESET = {"city": "taif"};</script>
 </head>
 <body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
 <div class="aurora" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -108,7 +109,7 @@
     </div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="main" role="main" tabindex="-1">
   <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">مواقيت الصلاة في الطائف</span></div>
 
   <section class="hero compact">
@@ -134,7 +135,7 @@
         <p class="pt-howto" id="ptHowto">بدون البوصلة الحية: ضع الجوال مسطحًا وأدره حتى يشير حرف N في الدائرة إلى الشمال، ثم اتجه نحو سهم 🕋 — أو افتح تطبيق البوصلة في جوالك واستدر حتى تظهر الدرجة المكتوبة أعلاه.</p></div>
       <div class="pt-box"><h2>العد التنازلي</h2><div id="ptCount"></div></div>
     </div>
-    <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>الجدول الشهري</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth"><button type="button" class="btn btn-secondary" data-print="month">طباعة</button></div></div>
+    <div class="pt-sec pt-print" id="ptMonthSec"><div class="pt-sec-head"><h2>الجدول الشهري</h2><div style="display:flex;gap:8px"><input type="month" id="ptMonth" aria-label="الشهر"><button type="button" class="btn btn-secondary" data-print="month">طباعة</button></div></div>
       <div class="pt-tablewrap"><table class="pt-table"><thead><tr><th>اليوم</th><th>الهجري</th><th>الفجر</th><th>الشروق</th><th>الظهر</th><th>العصر</th><th>المغرب</th><th>العشاء</th></tr></thead><tbody id="ptMonthBody"></tbody></table></div></div>
     <div class="pt-sec pt-print" id="ptRamadan"><div class="pt-sec-head"><h2 id="ptRamadanTitle">إمساكية رمضان</h2><button type="button" class="btn" data-print="ramadan">طباعة الإمساكية</button></div>
       <div class="pt-tablewrap"><table class="pt-table"><thead><tr><th>اليوم</th><th>التاريخ</th><th>الإمساك</th><th>الفجر</th><th>الظهر</th><th>العصر</th><th>المغرب (الإفطار)</th><th>العشاء</th></tr></thead><tbody id="ptRamadanBody"></tbody></table></div></div>
