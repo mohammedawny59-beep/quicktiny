@@ -847,8 +847,8 @@ html[dir=rtl] .ch-feats{padding:0 18px 0 0}
 .bk-cap{position:absolute;inset-inline:0;top:22%;text-align:center;font:400 clamp(22px,4vw,36px)/1.1 "QT Lalezar","Arial Black",sans-serif;color:#fff;text-shadow:0 3px 0 #000,0 0 6px #000}
 .bk-preview.sans .bk-cap{font:800 clamp(20px,3.6vw,32px)/1.1 Sora,"QT Arabic",sans-serif}
 .bk-cap em{font-style:normal;color:var(--bk)}
-.ch-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
-@media(max-width:700px){.ch-more{grid-template-columns:1fr}}
+.ch-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin-top:16px}
+
 .ch-wide{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:linear-gradient(135deg,rgba(91,91,255,.16),rgba(59,226,255,.06));border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
 .ch-wide:hover{transform:translateY(-3px);border-color:var(--accent)}.ch-wide:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .ch-emo{font-size:34px;line-height:1;flex:none}

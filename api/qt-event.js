@@ -64,7 +64,9 @@ const ALLOWED_EVENTS = new Set([
   "thumbnail_export",
   "brand_saved",
   "vertical_export",
-  "silence_export"
+  "silence_export",
+  "template_open",
+  "template_export"
 ]);
 
 function cleanPage(value) {

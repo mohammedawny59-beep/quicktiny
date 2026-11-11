@@ -37,13 +37,19 @@ def card(lang, key, href, name, desc, feats=None, eager=False):
     return ('      <a class="ch-card" href="%s">\n        <span class="ch-phone"><video src="/assets/previews/%s-%s.mp4" poster="/assets/previews/%s-%s.jpg" muted loop playsinline preload="none" data-qt-autoplay aria-hidden="true" width="360" height="640"></video></span>\n'
             '        <h3>%s</h3>\n        <p>%s</p>%s\n        <span class="go">%s %s</span>\n      </a>\n') % (href, key, lang, key, lang, name, desc, f, L[lang]["open"], GO)
 EXTRA = {
- "en": [("/add-subtitles-to-video", "🎙️", "Auto Subtitles", "Your speech becomes animated captions on your video — on-device AI.", "AI · New"),
-        ("/youtube-thumbnail-maker", "🖼️", "YouTube Thumbnail Maker", "Photo cut-out, huge outlined title and themes — 1280×720.", "New")],
- "ar": [("/ar/add-subtitles-to-video", "🎙️", "ترجمة الفيديو تلقائيًا", "كلامك يتحوّل لكابشن متحرك على فيديوك — ذكاء اصطناعي على جهازك.", "ذكاء اصطناعي · جديد"),
-        ("/ar/youtube-thumbnail-maker", "🖼️", "صانع صورة اليوتيوب المصغّرة", "صورتك بدون خلفية وعنوان عريض وألوان — 1280×720.", "جديد")],
+ "en": [("/video-templates", "✨", "Video Templates", "13 ready-made animated templates — sale, top 5, invite, Ramadan… 60 fps.", "New"),
+        ("/add-subtitles-to-video", "🎙️", "Auto Subtitles", "Your speech becomes animated captions on your video — on-device AI.", "AI"),
+        ("/horizontal-to-vertical-video", "📱", "Horizontal → Vertical", "Turn 16:9 into a 9:16 Reel with blurred fill or smart crop.", "New"),
+        ("/remove-silence-from-video", "✂️", "Silence Remover", "Cut the pauses automatically — tighter jump-cut videos.", "New"),
+        ("/youtube-thumbnail-maker", "🖼️", "YouTube Thumbnail Maker", "Photo cut-out, huge outlined title and themes — 1280×720.", "")],
+ "ar": [("/ar/video-templates", "✨", "قوالب فيديو جاهزة", "13 قالبًا متحركًا: عروض، أفضل 5، دعوة، رمضان… بسلاسة 60 إطارًا.", "جديد"),
+        ("/ar/add-subtitles-to-video", "🎙️", "ترجمة الفيديو تلقائيًا", "كلامك يتحوّل لكابشن متحرك على فيديوك — ذكاء اصطناعي على جهازك.", "ذكاء اصطناعي"),
+        ("/ar/horizontal-to-vertical-video", "📱", "تحويل الفيديو لعمودي", "حوّل 16:9 إلى ريل 9:16 بخلفية مموّهة أو قص ذكي.", "جديد"),
+        ("/ar/remove-silence-from-video", "✂️", "حذف السكتات من الفيديو", "احذف الوقفات تلقائيًا لفيديو أسرع وأقصر.", "جديد"),
+        ("/ar/youtube-thumbnail-maker", "🖼️", "صانع صورة اليوتيوب المصغّرة", "صورتك بدون خلفية وعنوان عريض وألوان — 1280×720.", "")],
 }
 def more(lang):
-    return '    <div class="ch-more">\n' + "".join('      <a class="ch-wide" href="%s"><span class="ch-emo" aria-hidden="true">%s</span><span><b>%s <i>%s</i></b><span>%s</span></span>%s</a>\n' % (h, e, n, tag, d, GO) for h, e, n, d, tag in EXTRA[lang]) + "    </div>\n"
+    return '    <div class="ch-more">\n' + "".join('      <a class="ch-wide" href="%s"><span class="ch-emo" aria-hidden="true">%s</span><span><b>%s%s</b><span>%s</span></span>%s</a>\n' % (h, e, n, (' <i>' + tag + '</i>') if tag else '', d, GO) for h, e, n, d, tag in EXTRA[lang]) + "    </div>\n"
 def strip(lang):
     t = L[lang]; hub = "/creator-studio" if lang == "en" else "/ar/creator-studio"
     return ('  <!--CREATOR-HUB-->\n  <section class="section ch" id="creator-studio" aria-labelledby="chTitle">\n    <div class="section-head"><div><span class="ch-kick">%s</span><h2 class="section-title" id="chTitle">%s</h2><p class="section-sub">%s</p></div></div>\n'
@@ -91,8 +97,8 @@ html[dir=rtl] .ch-feats{padding:0 18px 0 0}
 .bk-cap{position:absolute;inset-inline:0;top:22%;text-align:center;font:400 clamp(22px,4vw,36px)/1.1 "QT Lalezar","Arial Black",sans-serif;color:#fff;text-shadow:0 3px 0 #000,0 0 6px #000}
 .bk-preview.sans .bk-cap{font:800 clamp(20px,3.6vw,32px)/1.1 Sora,"QT Arabic",sans-serif}
 .bk-cap em{font-style:normal;color:var(--bk)}
-.ch-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
-@media(max-width:700px){.ch-more{grid-template-columns:1fr}}
+.ch-more{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin-top:16px}
+
 .ch-wide{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:linear-gradient(135deg,rgba(91,91,255,.16),rgba(59,226,255,.06));border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
 .ch-wide:hover{transform:translateY(-3px);border-color:var(--accent)}.ch-wide:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .ch-emo{font-size:34px;line-height:1;flex:none}

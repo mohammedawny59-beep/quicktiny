@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/video-templates", "title": "قوالب فيديو متحركة جاهزة مجانًا للريلز والتيك توك والستوري | QuickTiny",
+  "desc": "13 قالب فيديو متحرك جاهز: إعلان، قائمة أفضل 5، عروض وخصومات، اقتباس، دعوة، قبل وبعد، عرض منتج، تهنئة رمضان والعيد، عقار، منيو، رأي عميل وأرقام. اكتب نصك ونزّل MP4 بسرعة 60 إطارًا مجانًا.",
+  "app_name": "QuickTiny قوالب فيديو جاهزة", "crumb": "قوالب فيديو جاهزة", "category": "MultimediaApplication", "body": "pages/tp_ar.html", "style": "pages/tp_style.html",
+  "alternates": [["en", "video-templates"], ["ar", "ar/video-templates"], ["x-default", "video-templates"]],
+  "switch": [["EN", "video-templates"], ["AR", "ar/video-templates"]],
+  "faq": [["هل القوالب مجانية للاستخدام التجاري؟", "نعم، تقدر تستخدم الفيديوهات لمشروعك أو عملائك بدون ذكر المصدر."], ["هل أقدر أضيف موسيقى؟", "أضفها في كاب كت أو إنستغرام أو تيك توك بعد التنزيل."]]}
+]}
