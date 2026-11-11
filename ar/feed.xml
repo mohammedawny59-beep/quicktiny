@@ -29,6 +29,13 @@
     <description>احسب زكاة الفطر عن أسرتك: صاع لكل فرد (نحو 2.5 إلى 3 كغ)، قيمتها بسعر بلدك أو بالمبلغ النقدي الرسمي، مع حاسبة فدية الصيام. مجانًا وبدون تسجيل.</description>
   </item>
   <item>
+    <title>صانع صورة اليوتيوب المصغّرة — مجانًا مع إزالة الخلفية وخط عربي</title>
+    <link>https://quicktinyv2.vercel.app/ar/youtube-thumbnail-maker</link>
+    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/youtube-thumbnail-maker</guid>
+    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+    <description>اصنع صورة مصغّرة لليوتيوب 1280×720 خلال دقيقة: إزالة خلفية صورتك تلقائيًا، عنوان عربي عريض بحدود، كلمات مميّزة، ألوان وشارة وسهم. JPG أقل من 2 ميغا، مجانًا وبدون رفع.</description>
+  </item>
+  <item>
     <title>حساب النسبة الموزونة — ثانوي وقدرات وتحصيلي</title>
     <link>https://quicktinyv2.vercel.app/ar/weighted-percentage-calculator</link>
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/weighted-percentage-calculator</guid>
@@ -279,13 +286,6 @@
     <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/feddan-to-square-meter</guid>
     <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
     <description>الفدان = 4,200.83 متر مربع تقريبًا (24 قيراطًا). حوّل الفدان إلى متر مربع وهكتار ودونم فورًا، أو العكس. مجانًا وبدون تسجيل.</description>
-  </item>
-  <item>
-    <title>حاسبة مكافأة نهاية الخدمة — السعودية والإمارات 2026</title>
-    <link>https://quicktinyv2.vercel.app/ar/end-of-service-calculator</link>
-    <guid isPermaLink="true">https://quicktinyv2.vercel.app/ar/end-of-service-calculator</guid>
-    <pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
-    <description>احسب مكافأة نهاية الخدمة وفق نظام العمل السعودي والقانون الإماراتي: مدة الخدمة، أثر الاستقالة، الحد الأقصى، وخطوات الحساب مع المبلغ بالحروف. مجانية وبدون تسجيل.</description>
   </item>
 </channel>
 </rss>

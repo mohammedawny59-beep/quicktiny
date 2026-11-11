@@ -36,11 +36,19 @@ def card(lang, key, href, name, desc, feats=None, eager=False):
     if feats: f = '<ul class="ch-feats">' + "".join("<li>%s</li>" % x for x in feats) + "</ul>"
     return ('      <a class="ch-card" href="%s">\n        <span class="ch-phone"><video src="/assets/previews/%s-%s.mp4" poster="/assets/previews/%s-%s.jpg" muted loop playsinline preload="none" data-qt-autoplay aria-hidden="true" width="360" height="640"></video></span>\n'
             '        <h3>%s</h3>\n        <p>%s</p>%s\n        <span class="go">%s %s</span>\n      </a>\n') % (href, key, lang, key, lang, name, desc, f, L[lang]["open"], GO)
+EXTRA = {
+ "en": [("/add-subtitles-to-video", "🎙️", "Auto Subtitles", "Your speech becomes animated captions on your video — on-device AI.", "AI · New"),
+        ("/youtube-thumbnail-maker", "🖼️", "YouTube Thumbnail Maker", "Photo cut-out, huge outlined title and themes — 1280×720.", "New")],
+ "ar": [("/ar/add-subtitles-to-video", "🎙️", "ترجمة الفيديو تلقائيًا", "كلامك يتحوّل لكابشن متحرك على فيديوك — ذكاء اصطناعي على جهازك.", "ذكاء اصطناعي · جديد"),
+        ("/ar/youtube-thumbnail-maker", "🖼️", "صانع صورة اليوتيوب المصغّرة", "صورتك بدون خلفية وعنوان عريض وألوان — 1280×720.", "جديد")],
+}
+def more(lang):
+    return '    <div class="ch-more">\n' + "".join('      <a class="ch-wide" href="%s"><span class="ch-emo" aria-hidden="true">%s</span><span><b>%s <i>%s</i></b><span>%s</span></span>%s</a>\n' % (h, e, n, tag, d, GO) for h, e, n, d, tag in EXTRA[lang]) + "    </div>\n"
 def strip(lang):
     t = L[lang]; hub = "/creator-studio" if lang == "en" else "/ar/creator-studio"
     return ('  <!--CREATOR-HUB-->\n  <section class="section ch" id="creator-studio" aria-labelledby="chTitle">\n    <div class="section-head"><div><span class="ch-kick">%s</span><h2 class="section-title" id="chTitle">%s</h2><p class="section-sub">%s</p></div></div>\n'
-            '    <div class="ch-grid">\n%s    </div>\n    <p class="ch-all"><a class="btn" href="%s">%s %s</a></p>\n  </section>\n  <!--/CREATOR-HUB-->\n\n') % (
-            t["kick"], t["h"], t["sub"], "".join(card(lang, k, h, n, d) for k, h, n, d, _ in STUDIOS[lang]), hub, t["all"], GO)
+            '    <div class="ch-grid">\n%s    </div>\n%s    <p class="ch-all"><a class="btn" href="%s">%s %s</a></p>\n  </section>\n  <!--/CREATOR-HUB-->\n\n') % (
+            t["kick"], t["h"], t["sub"], "".join(card(lang, k, h, n, d) for k, h, n, d, _ in STUDIOS[lang]), more(lang), hub, t["all"], GO)
 
 for page, lang in (("index.html", "en"), ("ar.html", "ar")):
     s = rd(page)
@@ -70,6 +78,14 @@ html[dir=rtl] .ch-card .go-ico{transform:scaleX(-1)}
 .ch-feats{margin:0 4px 10px;padding:0 0 0 18px;font-size:13px;color:var(--text-dim);line-height:1.6}
 html[dir=rtl] .ch-feats{padding:0 18px 0 0}
 .ch-all{text-align:center;margin:18px 0 0}
+.ch-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+@media(max-width:700px){.ch-more{grid-template-columns:1fr}}
+.ch-wide{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:linear-gradient(135deg,rgba(91,91,255,.16),rgba(59,226,255,.06));border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
+.ch-wide:hover{transform:translateY(-3px);border-color:var(--accent)}.ch-wide:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ch-emo{font-size:34px;line-height:1;flex:none}
+.ch-wide b{display:block;font-size:16px;margin-bottom:3px}.ch-wide b i{font-style:normal;font-size:11px;font-weight:800;color:var(--cyan);margin-inline-start:6px;letter-spacing:.04em}
+.ch-wide>span:nth-child(2){flex:1;min-width:0}.ch-wide>span>span{font-size:13px;color:var(--muted);line-height:1.45}
+.ch-wide .go-ico{width:16px;height:16px;flex:none;color:var(--muted)}html[dir=rtl] .ch-wide .go-ico{transform:scaleX(-1)}
 /* /creator-hub */
 """
 s = rd("styles.css")
@@ -130,7 +146,7 @@ def body(lang):
     s = ('<div class="wrap">\n  <div class="breadcrumb"><a href="%s">%s</a> <span>/</span><span style="color:var(--text-dim)">%s</span></div>\n'
          '%s  <section class="hero compact">\n    <div class="hero-badges"><span class="badge">%s</span><span class="badge local">%s%s</span><span class="badge">%s</span></div>\n'
          '    <h1>%s</h1>\n    <p>%s</p>\n  </section>\n\n') % (t["home"], t["homeL"], t["crumb"], "<!--LANG-SWITCH-->\n" if ar else "", t["b"][0], LOCK, t["b"][1], t["b"][2], t["h1"], t["intro"])
-    s += '  <section class="section ch">\n    <div class="ch-grid">\n%s    </div>\n  </section>\n\n' % "".join(card(lang, k, h, n, d, f) for k, h, n, d, f in STUDIOS[lang])
+    s += '  <section class="section ch">\n    <div class="ch-grid">\n%s    </div>\n%s  </section>\n\n' % ("".join(card(lang, k, h, n, d, f) for k, h, n, d, f in STUDIOS[lang]), more(lang))
     s += ('  <div class="content">\n    <h2>%s</h2>\n    <ol class="benefits">\n%s    </ol>\n    <h2>%s</h2>\n%s  </div>\n\n'
           % (t["flowT"], "".join("      <li><span>%s</span></li>\n" % h for h in t["flow"]), t["faqT"],
              "".join('    <details class="faq-item"><summary>%s</summary><p>%s</p></details>\n' % (q, a) for q, a in t["faq"])))

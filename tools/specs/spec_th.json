@@ -1,0 +1,8 @@
+{"pages": [
+ {"slug": "ar/youtube-thumbnail-maker", "title": "صانع صورة اليوتيوب المصغّرة — مجانًا مع إزالة الخلفية وخط عربي | QuickTiny",
+  "desc": "اصنع صورة مصغّرة لليوتيوب 1280×720 خلال دقيقة: إزالة خلفية صورتك تلقائيًا، عنوان عربي عريض بحدود، كلمات مميّزة، ألوان وشارة وسهم. JPG أقل من 2 ميغا، مجانًا وبدون رفع.",
+  "app_name": "QuickTiny صانع صورة اليوتيوب المصغّرة", "crumb": "صانع صورة يوتيوب المصغّرة", "category": "MultimediaApplication", "body": "pages/th_ar.html", "style": "pages/th_style.html",
+  "alternates": [["en", "youtube-thumbnail-maker"], ["ar", "ar/youtube-thumbnail-maker"], ["x-default", "youtube-thumbnail-maker"]],
+  "switch": [["EN", "youtube-thumbnail-maker"], ["AR", "ar/youtube-thumbnail-maker"]],
+  "faq": [["ما مقاس صورة اليوتيوب المصغّرة؟", "1280×720 بكسل، JPG أو PNG، أقل من 2 ميغا."], ["هل تُرفع صورتي؟", "لا، إزالة الخلفية تتم على جهازك."]]}
+]}

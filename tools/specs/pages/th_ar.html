@@ -1,0 +1,68 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">صانع صورة يوتيوب المصغّرة</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">صورة</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>صانع الصورة المصغّرة لليوتيوب — مجانًا مع إزالة الخلفية وخط عربي عريض</h1>
+    <p>اصنع صورة مصغّرة جذابة لليوتيوب بمقاس 1280×720 خلال دقيقة: أضف صورتك وتُزال خلفيتها تلقائيًا، اكتب عنوانًا عريضًا بحدود سوداء، ميّز الكلمات المهمة، اختر الألوان وأضف شارة أو سهمًا. نزّلها JPG أقل من 2 ميغا كما يشترط يوتيوب — مجانًا، بدون علامة مائية ولا يُرفع شيء.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="th">
+      <div class="th-col">
+        <div class="th-card th-c1"><h2>العنوان</h2><label for="thTitle" class="sr-only">العنوان</label><textarea id="thTitle" dir="auto" maxlength="120"></textarea><p class="th-hint">ضع الكلمات بين *نجمتين* لتمييزها — مثال: ربحت *10,000$*.</p>
+          <div class="th-row" style="margin-top:10px"><label for="thHi">التمييز</label><select id="thHi"><option value="color">كلمات ملوّنة</option><option value="box">مربع ملوّن</option></select></div>
+          <div class="th-row"><label for="thBadge">الشارة</label><input type="text" id="thBadge" maxlength="16" dir="auto"></div>
+          <div class="th-row"><span class="th-l"></span><div class="th-checks"><label><input type="checkbox" id="thUpper"> أحرف كبيرة (EN)</label></div></div>
+        </div>
+        <div class="th-card th-c2"><h2>الصورة والخلفية</h2>
+          <div class="th-files"><label class="btn">أضف صورتك<input type="file" id="thPhoto" accept="image/*"></label><button type="button" class="chip" id="thPhotoClear" hidden>إزالة الصورة</button></div>
+          <div class="th-checks" style="margin:10px 0 14px"><label><input type="checkbox" id="thCut"> إزالة الخلفية</label><label><input type="checkbox" id="thOutline"> حدود بيضاء</label></div>
+          <div class="th-files"><label class="btn btn-secondary">صورة خلفية<input type="file" id="thBg" accept="image/*"></label><button type="button" class="chip" id="thBgClear" hidden>إزالة صورة الخلفية</button><label class="th-checks"><span style="display:flex;gap:6px;align-items:center;font-weight:600;font-size:14px;color:var(--text-dim)"><input type="checkbox" id="thBlur"> تمويه الخلفية</span></label></div>
+        </div>
+        <div class="th-card th-c2"><h2>التصميم والألوان</h2>
+          <div class="th-row"><span class="th-l">التصميم</span><div class="th-chips" id="thLayout" role="group" aria-label="التصميم"><button type="button" class="chip" data-l="right">الصورة يمين</button><button type="button" class="chip" data-l="left">الصورة يسار</button><button type="button" class="chip" data-l="bottom">الصورة أسفل</button><button type="button" class="chip" data-l="center">نص فقط</button></div></div>
+          <div class="th-row"><span class="th-l">الألوان</span><div id="thThemes" role="group" aria-label="الألوان"><button type="button" class="th-t" data-t="fire" aria-pressed="false" aria-label="fire" style="background:linear-gradient(135deg,#ff4d00,#8a0b00)"></button><button type="button" class="th-t" data-t="neon" aria-pressed="false" aria-label="neon" style="background:linear-gradient(135deg,#7b2bff,#12002e)"></button><button type="button" class="th-t" data-t="ocean" aria-pressed="false" aria-label="ocean" style="background:linear-gradient(135deg,#00b4ff,#002a6b)"></button><button type="button" class="th-t" data-t="lime" aria-pressed="false" aria-label="lime" style="background:linear-gradient(135deg,#c6ff00,#1f7a00)"></button><button type="button" class="th-t" data-t="dark" aria-pressed="false" aria-label="dark" style="background:linear-gradient(135deg,#2b2f3a,#06070a)"></button><button type="button" class="th-t" data-t="sun" aria-pressed="false" aria-label="sun" style="background:linear-gradient(135deg,#ffe600,#ff9500)"></button></div></div>
+          <div class="th-row"><label for="thAccent">لون التمييز</label><input type="color" id="thAccent"></div>
+          <div class="th-row"><span class="th-l"></span><div class="th-checks"><label><input type="checkbox" id="thArrow"> سهم نحو الصورة</label></div></div>
+        </div>
+      </div>
+      <div class="th-stage">
+        <div class="th-screen"><canvas id="thCanvas" width="1280" height="720" role="img" aria-label="صانع صورة يوتيوب المصغّرة"></canvas></div>
+        <div class="th-out"><button type="button" class="btn" id="thJpg">تنزيل JPG</button><button type="button" class="btn btn-secondary" id="thPng">تنزيل PNG</button></div><div id="thStatus" role="status"></div>
+        <div class="th-minis" aria-label="كيف تظهر في الصفحة الرئيسية">
+          <div class="th-mini"><div class="th-mf"><canvas width="492" height="277" aria-hidden="true"></canvas><span class="th-dur">12:34</span></div><b>عنوان الفيديو هنا — اجعله قصيرًا وواضحًا</b><span>QuickTiny · 12K views</span></div>
+          <div class="th-mini sm"><div class="th-mf"><canvas width="336" height="189" aria-hidden="true"></canvas><span class="th-dur">12:34</span></div><span>الجوال</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/thumbnail.js"></script>
+
+  <div class="content">
+    <h2>نصائح لصورة مصغّرة تجيب ضغطات</h2>
+    <ul class="benefits">
+      <li><span>استخدم 3–5 كلمات كبيرة فقط. الصورة تكمّل العنوان ولا تكرره.</span></li>
+      <li><span>الوجه مع تعبير واضح يجيب ضغطات أكثر — إزالة الخلفية تقصّك وتضيف حدودًا بيضاء مثل الملصق.</span></li>
+      <li><span>ميّز رقمًا أو كلمة واحدة بلون قوي.</span></li>
+      <li><span>اترك الزاوية السفلية اليمنى فاضية: يوتيوب يضع عليها مدة الفيديو.</span></li>
+      <li><span>شوف المعاينة الصغيرة — إذا ما انقرأت بحجم الجوال، قصّر النص.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>ما مقاس صورة اليوتيوب المصغّرة؟</summary><p>1280×720 بكسل (16:9)، JPG أو PNG، أقل من 2 ميغا. الأداة تصدّر هذا المقاس بالضبط وتخفّض جودة JPG تلقائيًا إذا كان الملف كبيرًا.</p></details>
+    <details class="faq-item"><summary>هل تُرفع صورتي؟</summary><p>لا. إزالة الخلفية تتم على جهازك بنموذج ذكاء اصطناعي صغير، وصورتك لا تغادر المتصفح.</p></details>
+    <details class="faq-item"><summary>هل تدعم العناوين العربية؟</summary><p>نعم — العربي من اليمين لليسار بخط عربي عريض، والتصميم ينعكس تلقائيًا.</p></details>
+    <details class="faq-item"><summary>هل هي مجانية؟</summary><p>نعم، مجانية بدون علامة مائية وبدون تسجيل.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى لصناع المحتوى</h2>
+    <div class="related-grid">
+      <a href="/remove-background-from-image">إزالة خلفية الصورة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/add-subtitles-to-video">ترجمة الفيديو تلقائيًا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/creator-studio">استوديو صناع المحتوى<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/motion-titles">العناوين المتحركة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/social-image-resizer">مقاسات السوشال ميديا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

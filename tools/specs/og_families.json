@@ -811,5 +811,25 @@
   "pages": [
    "ar/add-subtitles-to-video"
   ]
+ },
+ {
+  "key": "thumb",
+  "icon": "paper",
+  "lang": "en",
+  "title": "YouTube Thumbnail Maker",
+  "sub": "Photo cut-out · huge title · 1280×720",
+  "pages": [
+   "youtube-thumbnail-maker"
+  ]
+ },
+ {
+  "key": "thumb-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "صانع صورة اليوتيوب المصغّرة",
+  "sub": "صورتك بدون خلفية وعنوان عربي عريض",
+  "pages": [
+   "ar/youtube-thumbnail-maker"
+  ]
  }
 ]

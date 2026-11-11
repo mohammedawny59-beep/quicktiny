@@ -834,4 +834,12 @@ html[dir=rtl] .ch-card .go-ico{transform:scaleX(-1)}
 .ch-feats{margin:0 4px 10px;padding:0 0 0 18px;font-size:13px;color:var(--text-dim);line-height:1.6}
 html[dir=rtl] .ch-feats{padding:0 18px 0 0}
 .ch-all{text-align:center;margin:18px 0 0}
+.ch-more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+@media(max-width:700px){.ch-more{grid-template-columns:1fr}}
+.ch-wide{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:linear-gradient(135deg,rgba(91,91,255,.16),rgba(59,226,255,.06));border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .25s,border-color .25s}
+.ch-wide:hover{transform:translateY(-3px);border-color:var(--accent)}.ch-wide:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ch-emo{font-size:34px;line-height:1;flex:none}
+.ch-wide b{display:block;font-size:16px;margin-bottom:3px}.ch-wide b i{font-style:normal;font-size:11px;font-weight:800;color:var(--cyan);margin-inline-start:6px;letter-spacing:.04em}
+.ch-wide>span:nth-child(2){flex:1;min-width:0}.ch-wide>span>span{font-size:13px;color:var(--muted);line-height:1.45}
+.ch-wide .go-ico{width:16px;height:16px;flex:none;color:var(--muted)}html[dir=rtl] .ch-wide .go-ico{transform:scaleX(-1)}
 /* /creator-hub */

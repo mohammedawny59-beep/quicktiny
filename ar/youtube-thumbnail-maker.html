@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>صانع صورة اليوتيوب المصغّرة — مجانًا مع إزالة الخلفية وخط عربي | QuickTiny</title>
+  <meta name="description" content="اصنع صورة مصغّرة لليوتيوب 1280×720 خلال دقيقة: إزالة خلفية صورتك تلقائيًا، عنوان عربي عريض بحدود، كلمات مميّزة، ألوان وشارة وسهم. JPG أقل من 2 ميغا، مجانًا وبدون رفع.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/youtube-thumbnail-maker">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/youtube-thumbnail-maker">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/youtube-thumbnail-maker">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/youtube-thumbnail-maker">
+  <meta property="og:title" content="صانع صورة اليوتيوب المصغّرة — مجانًا مع إزالة الخلفية وخط عربي | QuickTiny">
+  <meta property="og:description" content="اصنع صورة مصغّرة لليوتيوب 1280×720 خلال دقيقة: إزالة خلفية صورتك تلقائيًا، عنوان عربي عريض بحدود، كلمات مميّزة، ألوان وشارة وسهم. JPG أقل من 2 ميغا، مجانًا وبدون رفع.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/youtube-thumbnail-maker">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/thumb-ar.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/thumb-ar.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    .th{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:22px;align-items:start}
+    @media(max-width:980px){.th{grid-template-columns:1fr;gap:0}.th-col{display:contents}.th-c1{order:0}.th-stage{order:1;margin-bottom:14px}.th-c2{order:2}}
+    .th-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card);margin-bottom:14px}
+    .th-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    html[lang=ar] .th-card h2{letter-spacing:0}
+    #thTitle{width:100%;min-height:84px;resize:vertical;margin:0;font:700 17px/1.5 inherit;font-family:inherit}
+    .th-hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+    .th-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}
+    .th-row label,.th-row .th-l{font-weight:700;color:var(--text-dim);font-size:14px}
+    .th-row input,.th-row select{margin:0}.th-row input[type=color]{height:42px;padding:4px;width:80px}
+    @media(max-width:520px){.th-row{grid-template-columns:1fr}}
+    .th-files{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .th-files label.btn{cursor:pointer;padding:10px 16px;font-size:14px}.th-files input[type=file]{position:absolute;width:1px;height:1px;opacity:0}
+    .th-files label.btn:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+    .th-checks{display:flex;flex-wrap:wrap;gap:6px 16px}.th-checks label{display:flex;gap:6px;align-items:center;font-weight:600;font-size:14px;color:var(--text-dim)}
+    .th-chips{display:flex;flex-wrap:wrap;gap:6px}
+    #thThemes{display:flex;flex-wrap:wrap;gap:8px}
+    .th-t{all:unset;cursor:pointer;width:44px;height:44px;border-radius:12px;border:2px solid transparent;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15);transition:transform .15s}
+    .th-t:hover{transform:translateY(-2px)}.th-t.on{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(59,226,255,.25)}.th-t:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    @media(min-width:981px){.th-stage{position:sticky;top:80px}}
+    .th-screen{border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -30px rgba(91,91,255,.6);background:#000;aspect-ratio:16/9}
+    #thCanvas{display:block;width:100%;height:100%}
+    .th-out{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}.th-out .btn{padding:12px 22px;font-size:15px}
+    #thStatus{text-align:center;font-weight:700;color:var(--text-dim);margin-top:10px;min-height:1.4em}
+    .th-minis{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;justify-content:center}
+    .th-mini{display:flex;flex-direction:column;gap:6px;width:246px;font-size:12px;color:var(--muted)}
+    .th-mini .th-mf{position:relative;border-radius:10px;overflow:hidden}
+    .th-mini canvas{display:block;width:100%;height:auto}
+    .th-mini .th-dur{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.8);color:#fff;font:600 11px/1 system-ui;padding:3px 5px;border-radius:4px}
+    .th-mini b{color:var(--text);font-size:13px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .th-mini.sm{width:168px}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">صانع صورة يوتيوب المصغّرة</span></div>
+  <div class="lang-switch">
+    <a href="/youtube-thumbnail-maker">EN</a>
+    <a href="/ar/youtube-thumbnail-maker" class="active">AR</a>
+  </div>
+
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">صورة</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>صانع الصورة المصغّرة لليوتيوب — مجانًا مع إزالة الخلفية وخط عربي عريض</h1>
+    <p>اصنع صورة مصغّرة جذابة لليوتيوب بمقاس 1280×720 خلال دقيقة: أضف صورتك وتُزال خلفيتها تلقائيًا، اكتب عنوانًا عريضًا بحدود سوداء، ميّز الكلمات المهمة، اختر الألوان وأضف شارة أو سهمًا. نزّلها JPG أقل من 2 ميغا كما يشترط يوتيوب — مجانًا، بدون علامة مائية ولا يُرفع شيء.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="th">
+      <div class="th-col">
+        <div class="th-card th-c1"><h2>العنوان</h2><label for="thTitle" class="sr-only">العنوان</label><textarea id="thTitle" dir="auto" maxlength="120"></textarea><p class="th-hint">ضع الكلمات بين *نجمتين* لتمييزها — مثال: ربحت *10,000$*.</p>
+          <div class="th-row" style="margin-top:10px"><label for="thHi">التمييز</label><select id="thHi"><option value="color">كلمات ملوّنة</option><option value="box">مربع ملوّن</option></select></div>
+          <div class="th-row"><label for="thBadge">الشارة</label><input type="text" id="thBadge" maxlength="16" dir="auto"></div>
+          <div class="th-row"><span class="th-l"></span><div class="th-checks"><label><input type="checkbox" id="thUpper"> أحرف كبيرة (EN)</label></div></div>
+        </div>
+        <div class="th-card th-c2"><h2>الصورة والخلفية</h2>
+          <div class="th-files"><label class="btn">أضف صورتك<input type="file" id="thPhoto" accept="image/*"></label><button type="button" class="chip" id="thPhotoClear" hidden>إزالة الصورة</button></div>
+          <div class="th-checks" style="margin:10px 0 14px"><label><input type="checkbox" id="thCut"> إزالة الخلفية</label><label><input type="checkbox" id="thOutline"> حدود بيضاء</label></div>
+          <div class="th-files"><label class="btn btn-secondary">صورة خلفية<input type="file" id="thBg" accept="image/*"></label><button type="button" class="chip" id="thBgClear" hidden>إزالة صورة الخلفية</button><label class="th-checks"><span style="display:flex;gap:6px;align-items:center;font-weight:600;font-size:14px;color:var(--text-dim)"><input type="checkbox" id="thBlur"> تمويه الخلفية</span></label></div>
+        </div>
+        <div class="th-card th-c2"><h2>التصميم والألوان</h2>
+          <div class="th-row"><span class="th-l">التصميم</span><div class="th-chips" id="thLayout" role="group" aria-label="التصميم"><button type="button" class="chip" data-l="right">الصورة يمين</button><button type="button" class="chip" data-l="left">الصورة يسار</button><button type="button" class="chip" data-l="bottom">الصورة أسفل</button><button type="button" class="chip" data-l="center">نص فقط</button></div></div>
+          <div class="th-row"><span class="th-l">الألوان</span><div id="thThemes" role="group" aria-label="الألوان"><button type="button" class="th-t" data-t="fire" aria-pressed="false" aria-label="fire" style="background:linear-gradient(135deg,#ff4d00,#8a0b00)"></button><button type="button" class="th-t" data-t="neon" aria-pressed="false" aria-label="neon" style="background:linear-gradient(135deg,#7b2bff,#12002e)"></button><button type="button" class="th-t" data-t="ocean" aria-pressed="false" aria-label="ocean" style="background:linear-gradient(135deg,#00b4ff,#002a6b)"></button><button type="button" class="th-t" data-t="lime" aria-pressed="false" aria-label="lime" style="background:linear-gradient(135deg,#c6ff00,#1f7a00)"></button><button type="button" class="th-t" data-t="dark" aria-pressed="false" aria-label="dark" style="background:linear-gradient(135deg,#2b2f3a,#06070a)"></button><button type="button" class="th-t" data-t="sun" aria-pressed="false" aria-label="sun" style="background:linear-gradient(135deg,#ffe600,#ff9500)"></button></div></div>
+          <div class="th-row"><label for="thAccent">لون التمييز</label><input type="color" id="thAccent"></div>
+          <div class="th-row"><span class="th-l"></span><div class="th-checks"><label><input type="checkbox" id="thArrow"> سهم نحو الصورة</label></div></div>
+        </div>
+      </div>
+      <div class="th-stage">
+        <div class="th-screen"><canvas id="thCanvas" width="1280" height="720" role="img" aria-label="صانع صورة يوتيوب المصغّرة"></canvas></div>
+        <div class="th-out"><button type="button" class="btn" id="thJpg">تنزيل JPG</button><button type="button" class="btn btn-secondary" id="thPng">تنزيل PNG</button></div><div id="thStatus" role="status"></div>
+        <div class="th-minis" aria-label="كيف تظهر في الصفحة الرئيسية">
+          <div class="th-mini"><div class="th-mf"><canvas width="492" height="277" aria-hidden="true"></canvas><span class="th-dur">12:34</span></div><b>عنوان الفيديو هنا — اجعله قصيرًا وواضحًا</b><span>QuickTiny · 12K views</span></div>
+          <div class="th-mini sm"><div class="th-mf"><canvas width="336" height="189" aria-hidden="true"></canvas><span class="th-dur">12:34</span></div><span>الجوال</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/thumbnail.js"></script>
+
+  <div class="content">
+    <h2>نصائح لصورة مصغّرة تجيب ضغطات</h2>
+    <ul class="benefits">
+      <li><span>استخدم 3–5 كلمات كبيرة فقط. الصورة تكمّل العنوان ولا تكرره.</span></li>
+      <li><span>الوجه مع تعبير واضح يجيب ضغطات أكثر — إزالة الخلفية تقصّك وتضيف حدودًا بيضاء مثل الملصق.</span></li>
+      <li><span>ميّز رقمًا أو كلمة واحدة بلون قوي.</span></li>
+      <li><span>اترك الزاوية السفلية اليمنى فاضية: يوتيوب يضع عليها مدة الفيديو.</span></li>
+      <li><span>شوف المعاينة الصغيرة — إذا ما انقرأت بحجم الجوال، قصّر النص.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>ما مقاس صورة اليوتيوب المصغّرة؟</summary><p>1280×720 بكسل (16:9)، JPG أو PNG، أقل من 2 ميغا. الأداة تصدّر هذا المقاس بالضبط وتخفّض جودة JPG تلقائيًا إذا كان الملف كبيرًا.</p></details>
+    <details class="faq-item"><summary>هل تُرفع صورتي؟</summary><p>لا. إزالة الخلفية تتم على جهازك بنموذج ذكاء اصطناعي صغير، وصورتك لا تغادر المتصفح.</p></details>
+    <details class="faq-item"><summary>هل تدعم العناوين العربية؟</summary><p>نعم — العربي من اليمين لليسار بخط عربي عريض، والتصميم ينعكس تلقائيًا.</p></details>
+    <details class="faq-item"><summary>هل هي مجانية؟</summary><p>نعم، مجانية بدون علامة مائية وبدون تسجيل.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى لصناع المحتوى</h2>
+    <div class="related-grid">
+      <a href="/remove-background-from-image">إزالة خلفية الصورة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/add-subtitles-to-video">ترجمة الفيديو تلقائيًا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/creator-studio">استوديو صناع المحتوى<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/motion-titles">العناوين المتحركة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/social-image-resizer">مقاسات السوشال ميديا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny صانع صورة اليوتيوب المصغّرة", "url": "https://quicktinyv2.vercel.app/ar/youtube-thumbnail-maker", "description": "اصنع صورة مصغّرة لليوتيوب 1280×720 خلال دقيقة: إزالة خلفية صورتك تلقائيًا، عنوان عربي عريض بحدود، كلمات مميّزة، ألوان وشارة وسهم. JPG أقل من 2 ميغا، مجانًا وبدون رفع.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "صانع صورة يوتيوب المصغّرة", "item": "https://quicktinyv2.vercel.app/ar/youtube-thumbnail-maker"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "ما مقاس صورة اليوتيوب المصغّرة؟", "acceptedAnswer": {"@type": "Answer", "text": "1280×720 بكسل، JPG أو PNG، أقل من 2 ميغا."}}, {"@type": "Question", "name": "هل تُرفع صورتي؟", "acceptedAnswer": {"@type": "Answer", "text": "لا، إزالة الخلفية تتم على جهازك."}}]}</script>
+</body>
+</html>
