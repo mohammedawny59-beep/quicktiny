@@ -429,3 +429,127 @@ dict(slug="percentage-increase-decrease", lang="en",
       ("How do I find the original price before a discount?", "Divide the sale price by (1 − discount): 150 after 25% off → 150 ÷ 0.75 = 200."),
       ("Can percent change be more than 100%?", "Yes — going from 50 to 150 is a 200% increase.")]),
 ]
+
+# ---- creator guides (2026-11-11) ----
+GUIDES += [
+ dict(slug="add-captions-to-reels", lang="ar", date="2026-11-11",
+      title="كيف تضيف ترجمة متحركة على الريلز والتيك توك مجانًا (بالعربي) | QuickTiny",
+      h1="كيف تضيف ترجمة متحركة على الريلز والتيك توك مجانًا",
+      lede="أغلب الناس تشاهد الريلز بدون صوت. الترجمة كلمة بكلمة تخليهم يكملوا الفيديو — وهذه أسهل طريقة لعملها بالعربي بدون برامج مدفوعة.",
+      desc="طريقة إضافة كابشن متحرك كلمة بكلمة على الريلز والتيك توك والشورتس بالعربي مجانًا: تحويل الكلام لنص تلقائيًا، تصحيح الكلمات، اختيار الستايل وتنزيل الفيديو مع الترجمة.",
+      tool=["/ar/add-subtitles-to-video", "افتح أداة ترجمة الفيديو تلقائيًا"],
+      body="""<h2>ليش الترجمة مهمة؟</h2>
+<p>نسبة كبيرة من المشاهدين يتصفحون بدون صوت، والكابشن الواضح يرفع مدة المشاهدة لأن العين تتابع الكلمات. والترجمة كلمة بكلمة (كل كلمة تتلوّن وقت ما تنقال) هي الستايل المنتشر حاليًا.</p>
+<h2>الطريقة الأسرع: ترجمة تلقائية من صوتك</h2>
+<ol><li>افتح <a href="/ar/add-subtitles-to-video">ترجمة الفيديو تلقائيًا</a> واختر فيديوك — الفيديو لا يُرفع لأي سيرفر.</li>
+<li>اختر لغة الكلام «العربية» واضغط <strong>استخرج الترجمة</strong>. أول مرة يتنزّل نموذج التعرّف على الكلام (حوالي 75 ميغا) ويبقى محفوظًا.</li>
+<li>راجع الأسطر وصحّح أي كلمة — خصوصًا الأسماء والكلمات العامية.</li>
+<li>اختر الستايل: <strong>تكبير</strong> أو <strong>مربع ملوّن</strong> أو <strong>كاريوكي</strong> أو <strong>كلمة كلمة</strong>، ولون التمييز والموضع.</li>
+<li>اضغط <strong>تنزيل الفيديو مع الترجمة</strong> — يطلع لك MP4 بنفس الصوت والترجمة مطبوعة عليه.</li></ol>
+<h2>عندك ملف ترجمة جاهز؟</h2>
+<p>إذا طلّعت ملف SRT من كاب كت أو يوتيوب ستوديو، ارفعه في <a href="/ar/animated-captions">الترجمة المتحركة</a> واختر الستايل، ثم نزّل فيديو بشاشة خضراء وضعه فوق فيديوك (شوف <a href="/ar/guides/remove-green-screen-capcut">طريقة إزالة الشاشة الخضراء في كاب كت</a>).</p>
+<h2>نصائح لكابشن يقرأ بسهولة</h2>
+<ul><li>2–3 كلمات على الشاشة للريلز السريعة، و4 للكلام الهادئ.</li>
+<li>خط عريض مع حدود سوداء يقرأ فوق أي خلفية.</li>
+<li>ضع الكابشن في منتصف الشاشة أو فوق الثلث السفلي — الأسفل تمامًا تغطيه أزرار تيك توك وإنستغرام.</li>
+<li>لون تمييز واحد ثابت لكل فيديوهاتك؛ احفظه في <a href="/ar/creator-studio#brand-kit">هوية القناة</a> ليُطبّق تلقائيًا.</li></ul>""",
+      faq=[("هل الترجمة التلقائية تفهم اللهجات؟", "تفهم الفصحى بشكل ممتاز واللهجات بدرجة أقل، لذلك راجع النص وصحّحه قبل التنزيل."),
+           ("هل يظهر شعار أو علامة مائية؟", "لا، الفيديو ينزل بدون أي علامة مائية."),
+           ("كم يستغرق فيديو مدته دقيقة؟", "على اللابتوب تقريبًا دقيقة للتحويل ودقيقة للتنزيل؛ الجوال أبطأ قليلًا.")]),
+ dict(slug="remove-green-screen-capcut", lang="ar", date="2026-11-11",
+      title="طريقة إزالة الشاشة الخضراء في كاب كت (Chroma Key) خطوة بخطوة | QuickTiny",
+      h1="طريقة إزالة الشاشة الخضراء في كاب كت",
+      lede="عندك مقطع بشاشة خضراء — زر اشتراك، شريط اسم أو ترجمة متحركة — وتبي تحطه فوق فيديوك؟ هذه الخطوات على الجوال والكمبيوتر.",
+      desc="شرح إزالة الشاشة الخضراء في كاب كت بخاصية مفتاح اللون Chroma Key على الجوال والكمبيوتر، مع حل مشكلة الحواف الخضراء ومتى تستخدم الشاشة الزرقاء.",
+      tool=["/ar/motion-titles", "صمّم عنصرًا متحركًا بشاشة خضراء"],
+      body="""<h2>على الجوال</h2>
+<ol><li>افتح مشروعك وأضف فيديوك الأساسي.</li>
+<li>اضغط <strong>تراكب</strong> (Overlay) ← <strong>إضافة تراكب</strong> واختر المقطع ذو الشاشة الخضراء.</li>
+<li>كبّر المقطع ليغطي الشاشة، ثم اضغط عليه واختر <strong>إزالة الخلفية</strong> ← <strong>مفتاح اللون</strong> (Chroma key).</li>
+<li>حرّك أداة اختيار اللون على المنطقة الخضراء، ثم ارفع <strong>الشدة</strong> حتى يختفي الأخضر، و<strong>الظل</strong> قليلًا لتنعيم الحواف.</li></ol>
+<h2>على الكمبيوتر</h2>
+<ol><li>اسحب المقطع الأخضر إلى مسار فوق فيديوك.</li>
+<li>من لوحة <strong>الفيديو</strong> افتح تبويب <strong>إزالة الخلفية</strong> وفعّل <strong>مفتاح اللون</strong>.</li>
+<li>اختر الأخضر بالقطارة واضبط القوة والظل.</li></ol>
+<h2>مشاكل شائعة وحلولها</h2>
+<ul><li><strong>حواف خضراء حول النص:</strong> زِد الشدة قليلًا أو الظل.</li>
+<li><strong>أجزاء من فيديوك اختفت:</strong> فيديوك فيه لون أخضر قريب — صدّر العنصر بـ<strong>شاشة زرقاء</strong> بدلًا من الخضراء.</li>
+<li><strong>العنصر في مكان غلط:</strong> صدّر العنصر بنفس مقاس فيديوك (9:16 للريلز، 16:9 لليوتيوب).</li></ul>
+<h2>من وين تجيب عناصر بشاشة خضراء؟</h2>
+<p>من <a href="/ar/motion-titles">العناوين المتحركة</a> (شريط الاسم، زر الاشتراك، عد تنازلي)، و<a href="/ar/animated-captions">الترجمة المتحركة</a>، و<a href="/ar/paper-animation">أنيميشن الورق</a> — كلها مجانية وبدون علامة مائية وتعطيك خيار الشاشة الخضراء أو الزرقاء.</p>""",
+      faq=[("هل كاب كت يدعم الفيديو الشفاف؟", "أغلب برامج الجوال لا تدعم الفيديو الشفاف، لذلك الشاشة الخضراء هي الطريقة الأسهل والأضمن."),
+           ("هل أستخدم الأخضر أو الأزرق؟", "الأخضر افتراضيًا؛ استخدم الأزرق إذا كان في فيديوك ملابس أو نباتات خضراء."),
+           ("هل الطريقة نفسها في إن شوت؟", "نعم تقريبًا: أضف المقطع كتراكب أو «صورة داخل صورة» واستخدم أداة Chroma.")]),
+ dict(slug="youtube-thumbnail-design-tips", lang="ar", date="2026-11-11",
+      title="مقاس صورة اليوتيوب المصغّرة ونصائح تصميمها لتجيب ضغطات | QuickTiny",
+      h1="مقاس صورة اليوتيوب المصغّرة ونصائح تصميمها",
+      lede="الصورة المصغّرة أول شيء يقرر فيه المشاهد يضغط أو لا. هذا المقاس الصحيح وأهم القواعد اللي يستخدمها أصحاب القنوات الكبيرة.",
+      desc="مقاس صورة اليوتيوب المصغّرة 1280×720 وحدها الأقصى 2 ميغا، ونصائح تصميم عملية: عدد الكلمات، الوجه، الألوان، والزاوية التي يغطيها يوتيوب — مع أداة مجانية بالعربي.",
+      tool=["/ar/youtube-thumbnail-maker", "افتح صانع الصورة المصغّرة"],
+      body="""<h2>المقاس الصحيح</h2>
+<table class="guide-table"><tr><th>البند</th><th>القيمة</th></tr>
+<tr><td>الأبعاد</td><td>1280×720 بكسل (نسبة 16:9)</td></tr>
+<tr><td>الحد الأدنى للعرض</td><td>640 بكسل</td></tr>
+<tr><td>الصيغة</td><td>JPG أو PNG</td></tr>
+<tr><td>الحجم الأقصى</td><td>2 ميغابايت</td></tr></table>
+<h2>7 قواعد لصورة تجيب ضغطات</h2>
+<ol><li><strong>3–5 كلمات فقط</strong> بخط عريض جدًا. الصورة تكمّل العنوان ولا تكرره.</li>
+<li><strong>وجه بتعبير واضح</strong> (دهشة، فرح، تركيز) — الوجوه تلفت النظر بسرعة.</li>
+<li><strong>ميّز كلمة أو رقمًا واحدًا</strong> بلون قوي مثل الأصفر أو الأحمر.</li>
+<li><strong>تباين عالٍ</strong>: نص أبيض بحدود سوداء فوق خلفية ملوّنة.</li>
+<li><strong>اترك الزاوية السفلية اليمنى فاضية</strong> لأن يوتيوب يكتب عليها مدة الفيديو.</li>
+<li><strong>اختبرها بحجم صغير</strong> — إذا ما انقرأت بحجم الجوال، قصّر النص.</li>
+<li><strong>ثبّت ألوانك</strong> على كل فيديوهاتك حتى يعرف المتابع قناتك من أول نظرة.</li></ol>
+<h2>صمّمها خلال دقيقة</h2>
+<p><a href="/ar/youtube-thumbnail-maker">صانع الصورة المصغّرة</a> يزيل خلفية صورتك تلقائيًا، يكبّر العنوان العربي لأقصى حجم مناسب، ويريك المعاينة بحجم الصفحة الرئيسية والجوال، وينزّل JPG أقل من 2 ميغا.</p>""",
+      faq=[("هل يمكن رفع صورة مصغّرة من الجوال؟", "نعم من تطبيق YouTube Studio بعد توثيق الحساب برقم الهاتف."),
+           ("لماذا لا أستطيع رفع صورة مخصّصة؟", "يجب توثيق القناة أولًا من إعدادات يوتيوب."),
+           ("هل أكتب العنوان بالعربي أو الإنجليزي؟", "بلغة جمهورك؛ العربي العريض يلفت النظر في الصفحة الرئيسية للمستخدمين العرب.")]),
+ dict(slug="add-subtitles-to-video-free", lang="en", date="2026-11-11",
+      title="How to Add Subtitles to a Video Automatically — Free, No Upload | QuickTiny",
+      h1="How to Add Subtitles to a Video Automatically (Free)",
+      lede="Most short videos are watched on mute. Here’s how to turn your speech into animated, word-by-word captions — or an .srt file — without paying for an editor or uploading your video.",
+      desc="Add subtitles to any video automatically for free: on-device speech-to-text, fix the words, choose a caption style and download the video with captions burned in, or an SRT for YouTube.",
+      tool=["/add-subtitles-to-video", "Open Auto Subtitles"],
+      body="""<h2>Burned-in captions vs. an .srt file</h2>
+<p><strong>Burned-in</strong> captions are part of the picture — they show everywhere, in your style, which is what Reels, TikTok and Shorts need. An <strong>.srt</strong> file is separate text with timings that viewers can switch on and off; YouTube and most editors accept it.</p>
+<h2>Steps</h2>
+<ol><li>Open <a href="/add-subtitles-to-video">Auto Subtitles</a> and pick your video. It stays on your device.</li>
+<li>Choose the spoken language and press <strong>Generate subtitles</strong>. The first run downloads a speech-recognition model once (about 75 MB).</li>
+<li>Check each line and correct names or unusual words — click a timestamp to jump there.</li>
+<li>Pick a style (pop, highlight box, karaoke or one word at a time), the number of words on screen and the position.</li>
+<li>Download the <strong>video with captions</strong> (sound included), or the <strong>.srt</strong>.</li></ol>
+<h2>Uploading the .srt to YouTube</h2>
+<p>In YouTube Studio open <em>Subtitles</em>, choose the video, add the language, then <em>Upload file → With timing</em> and select the .srt.</p>
+<h2>Tips for readable captions</h2>
+<ul><li>2–3 words on screen for fast-paced clips, up to 4 for talking-head videos.</li>
+<li>Keep captions above the bottom fifth — app buttons cover it.</li>
+<li>Use one highlight colour across your channel; save it in the <a href="/creator-studio#brand-kit">brand kit</a>.</li></ul>""",
+      faq=[("Is it really free?", "Yes — no sign-up, no watermark and no limit on videos."),
+           ("Which languages work?", "Whisper recognises 90+ languages; English and Modern Standard Arabic are especially good."),
+           ("Can I use my own subtitle file instead?", "Yes — upload an .srt to Animated Captions to get the same animated styles on a green screen.")]),
+ dict(slug="green-screen-overlay-capcut", lang="en", date="2026-11-11",
+      title="How to Remove a Green Screen in CapCut (Chroma Key) | QuickTiny",
+      h1="How to Remove a Green Screen in CapCut",
+      lede="Got a subscribe button, lower third or caption clip on a green screen? Here’s how to lay it over your video in CapCut on phone and desktop — and fix green edges.",
+      desc="Step-by-step: remove a green screen in CapCut with Chroma key on mobile and desktop, fix green edges, and when to export a blue screen instead.",
+      tool=["/motion-titles", "Make a green-screen overlay"],
+      body="""<h2>On your phone</h2>
+<ol><li>Open your project with your main video.</li>
+<li>Tap <strong>Overlay → Add overlay</strong> and pick the green-screen clip.</li>
+<li>Stretch it to fill the frame, tap it, then <strong>Remove BG → Chroma key</strong>.</li>
+<li>Drag the colour picker onto the green, raise <strong>Intensity</strong> until it disappears and add a little <strong>Shadow</strong> to soften edges.</li></ol>
+<h2>On desktop</h2>
+<ol><li>Drag the green clip onto a track above your video.</li>
+<li>In the <strong>Video</strong> panel open <strong>Remove BG</strong> and enable <strong>Chroma key</strong>.</li>
+<li>Pick the green with the eyedropper and adjust strength and shadow.</li></ol>
+<h2>Fixing common problems</h2>
+<ul><li><strong>Green fringe around text:</strong> nudge intensity or shadow up.</li>
+<li><strong>Parts of your video vanish:</strong> your footage contains similar green — export the overlay on a <strong>blue screen</strong>.</li>
+<li><strong>Overlay in the wrong place:</strong> export it in the same format as your video (9:16 for Reels, 16:9 for YouTube).</li></ul>
+<h2>Free green-screen overlays</h2>
+<p><a href="/motion-titles">Motion Titles</a> (lower thirds, subscribe button, countdowns), <a href="/animated-captions">Animated Captions</a> and <a href="/paper-animation">Paper Motion Studio</a> all export green or blue screen MP4s — free and without a watermark.</p>""",
+      faq=[("Does CapCut support transparent video?", "Most phone editors don’t, which is why a clean green screen is the most reliable option."),
+           ("Green or blue?", "Green by default; blue when your footage has green clothes or plants."),
+           ("Does this work in InShot or Premiere?", "Yes — InShot has a Chroma tool for picture-in-picture clips, and Premiere uses Ultra Key.")]),
+]
