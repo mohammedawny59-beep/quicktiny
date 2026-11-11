@@ -1,0 +1,65 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">Animated Captions</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Runs in your browser</span><span class="badge">Free</span></div>
+    <h1>Animated Captions — Free Word-by-Word Subtitles for Reels, TikTok &amp; Shorts</h1>
+    <p>Make the bold, word-by-word captions viral short videos use. Paste your script (or upload an .srt from CapCut or any editor), pick a style — pop, highlight box, karaoke or one word at a time — and download a green-screen MP4 to lay over your video. Arabic and English, free, no watermark, nothing uploaded.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="cp">
+      <div>
+        <div class="cp-card"><h2>Your words</h2>
+          <label for="capText" class="sr-only">Your words</label><textarea id="capText" dir="auto" maxlength="3000" placeholder="Type or paste your script. Each line becomes its own caption."></textarea>
+          <div class="cp-srt"><label class="btn btn-ghost" for="capSrt">Upload .srt</label><input type="file" id="capSrt" accept=".srt,.vtt,text/plain"><button type="button" class="chip" id="capSrtClear" hidden>Use typed text</button><span id="capInfo"></span></div>
+          <div class="cp-row" id="capWpmRow" style="margin-top:12px"><label for="capWpm">Speaking speed</label><div><input type="range" id="capWpm" min="80" max="260" step="5" style="width:100%"> <span id="capWpmV"></span> wpm</div></div>
+        </div>
+        <div class="cp-card"><h2>Style</h2><div id="capStyles"><button type="button" class="cp-s" data-s="pop" aria-pressed="false"><i aria-hidden="true">a <em>big</em> word</i><b>Pop</b></button><button type="button" class="cp-s" data-s="box" aria-pressed="false"><i aria-hidden="true">a <u>big</u> word</i><b>Highlight box</b></button><button type="button" class="cp-s" data-s="karaoke" aria-pressed="false"><i aria-hidden="true"><em>a big</em> word</i><b>Karaoke</b></button><button type="button" class="cp-s" data-s="bounce" aria-pressed="false"><i aria-hidden="true"><em>big</em></i><b>One word</b></button></div></div>
+        <div class="cp-card"><h2>Look</h2>
+          <div class="cp-row"><label for="capPer">Words on screen</label><select id="capPer"><option value="1">1 word</option><option value="2">2 words</option><option value="3">3 words</option><option value="4">4 words</option></select></div>
+          <div class="cp-row"><label for="capAccent">Highlight</label><input type="color" id="capAccent"></div>
+          <div class="cp-row"><label for="capFont">Font</label><select id="capFont"><option value="bold">Bold display</option><option value="sans">Clean sans</option></select></div>
+          <div class="cp-row"><label for="capSize">Size</label><input type="range" id="capSize" min="56" max="150" step="2"></div>
+          <div class="cp-row"><span class="cp-l"></span><div class="cp-checks"><label><input type="checkbox" id="capOutline"> Outline</label><label><input type="checkbox" id="capUpper"> UPPERCASE</label></div></div>
+          <div class="cp-row"><span class="cp-l">Position</span><div class="cp-chips" id="capPos" role="group" aria-label="Position"><button type="button" class="chip" data-p="bottom">Bottom</button><button type="button" class="chip" data-p="middle">Middle</button><button type="button" class="chip" data-p="top">Top</button></div></div>
+          <div class="cp-row"><span class="cp-l">Background</span><div class="cp-chips" id="capBg" role="group" aria-label="Background"><button type="button" class="chip" data-b="green">Green screen</button><button type="button" class="chip" data-b="blue">Blue screen</button><button type="button" class="chip" data-b="black">Black</button><button type="button" class="chip" data-b="photo">Preview</button></div></div>
+          <div class="cp-row"><span class="cp-l">Format</span><div class="cp-chips" id="capRatio" role="group" aria-label="Format"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="16:9">16:9</button><button type="button" class="chip" data-r="1:1">1:1</button></div></div>
+        </div>
+      </div>
+      <div class="cp-stage">
+        <div class="cp-screen"><canvas id="capCanvas" width="1080" height="1920" role="img" aria-label="Animated Captions"></canvas></div>
+        <div class="cp-ctrl"><button type="button" id="capPlay" aria-label="Play / pause">❚❚</button><input type="range" id="capScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="cp-export"><button type="button" class="btn" id="capExport">Download MP4</button></div>
+        <div id="capBar" hidden><i id="capBarFill"></i></div><div id="capStatus" role="status"></div><p class="cp-note">“Preview” is only for looking; the download uses a green screen.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/captions.js"></script>
+
+  <div class="content">
+    <h2>How to add the captions to your video</h2>
+    <ul class="benefits">
+      <li><span>Got a subtitle file? Export <strong>.srt</strong> from CapCut, Premiere or YouTube Studio and upload it here — every word keeps its timing.</span></li>
+      <li><span>No subtitles yet? Paste your script, set the speaking speed and nudge it until it matches your voice.</span></li>
+      <li><span>Download the MP4, add it as an <em>overlay</em> above your video and apply <em>Chroma key</em> to remove the green. Line the start up with your first word.</span></li>
+      <li><span>Use 2–3 words on screen for fast Reels and 4 for slower talking videos.</span></li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Does it transcribe my audio automatically?</summary><p>Not yet — it animates captions from your text or an .srt file. Most editors (CapCut, YouTube Studio) can auto-generate an .srt you can upload here.</p></details>
+    <details class="faq-item"><summary>Is it free with no watermark?</summary><p>Yes, unlimited free downloads with no watermark.</p></details>
+    <details class="faq-item"><summary>Does it support Arabic?</summary><p>Yes. Arabic words run right-to-left with proper letter joining, and the karaoke highlight moves from right to left.</p></details>
+    <details class="faq-item"><summary>Is my script uploaded anywhere?</summary><p>No. Everything — including the video encoding — happens on your device.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/motion-titles">Motion Titles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/glass-slides">Glass Slides<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/paper-animation">Paper Motion Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-background-from-image">Remove Background<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/image-to-text">Image to Text<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

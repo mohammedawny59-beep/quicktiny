@@ -1,0 +1,25 @@
+// Tests for captions.js: SRT parsing, word timing, paging.
+const ROOT = require("path").join(__dirname, "..");
+const assert = require("assert");
+const C = require(ROOT + "/captions.js");
+let n = 0; const near = (a, b, m) => { assert.ok(Math.abs(a - b) < 1e-6, m + ": " + a + " vs " + b); n++; };
+const srt = "1\r\n00:00:01,000 --> 00:00:02,500\r\nHi <i>everyone</i>\r\n\r\n2\n00:00:03,000 --> 00:00:04,000\nمرحبا بكم\n\nbroken block\n";
+const cues = C.qtCapParseSrt(srt);
+assert.strictEqual(cues.length, 2); n++;
+near(cues[0].start, 1, "start"); near(cues[0].end, 2.5, "end"); assert.strictEqual(cues[0].text, "Hi everyone"); n++;
+const words = C.qtCapWords(cues);
+assert.strictEqual(words.length, 4); n++;
+near(words[0].start, 1, "first word starts with the cue"); near(words[1].end, 2.5, "last word of the cue ends with it");
+assert.ok(words[1].end - words[1].start > words[0].end - words[0].start, "longer word gets more time"); n++;
+const pages = C.qtCapPages(words, 3);
+assert.strictEqual(pages.length, 2, "gap between cues starts a new page"); n++;
+assert.strictEqual(C.qtCapPages(C.qtCapWords(C.qtCapFromText("one two\nthree four", 160)), 4).length, 2, "each typed line is its own page"); n++;
+const plain = C.qtCapFromText("one two three\nfour five", 120);
+assert.strictEqual(plain.length, 2); assert.ok(plain[1].start > plain[0].end, "lines follow each other"); n += 2;
+near(plain[0].end - plain[0].start, 3 * 0.5 * 1.05, "120 wpm pace");
+const many = C.qtCapPages(C.qtCapWords([{ start: 0, end: 5, text: "a b c d e f g" }]), 3);
+assert.deepStrictEqual(many.map((p) => p.words.length), [3, 3, 1]); n++;
+console.log("captions tests:", n, "passed");
+assert.strictEqual(C.qtCapInk("#ffd400"), "#111111", "dark ink on yellow box");
+assert.strictEqual(C.qtCapInk("#5b2bff"), "#ffffff", "white ink on purple box");
+console.log("ink ok");

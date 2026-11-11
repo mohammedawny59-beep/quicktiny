@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>الترجمة المتحركة — كابشن كلمة بكلمة للريلز والتيك توك مجانًا | QuickTiny</title>
+  <meta name="description" content="اعمل كابشن متحرك كلمة بكلمة لفيديوهات الريلز والتيك توك والشورتس: الصق نصك أو ارفع ملف SRT، اختر الستايل ونزّل MP4 بشاشة خضراء. بالعربي، مجانًا وبدون علامة مائية.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ar/animated-captions">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/animated-captions">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/animated-captions">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/animated-captions">
+  <meta property="og:title" content="الترجمة المتحركة — كابشن كلمة بكلمة للريلز والتيك توك مجانًا | QuickTiny">
+  <meta property="og:description" content="اعمل كابشن متحرك كلمة بكلمة لفيديوهات الريلز والتيك توك والشورتس: الصق نصك أو ارفع ملف SRT، اختر الستايل ونزّل MP4 بشاشة خضراء. بالعربي، مجانًا وبدون علامة مائية.">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ar/animated-captions">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/captions-ar.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/captions-ar.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    .cp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+    @media(max-width:980px){.cp{grid-template-columns:1fr}.cp-stage{order:-1;position:static}.cp-screen{max-width:min(100%,320px)}}
+    .cp-card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card);margin-bottom:14px}
+    .cp-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    html[lang=ar] .cp-card h2{letter-spacing:0}
+    #capText{width:100%;min-height:150px;resize:vertical;margin:0;font:600 16px/1.6 inherit;font-family:inherit}
+    #capText:disabled{opacity:.55}
+    .cp-srt{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+    .cp-srt label.btn{cursor:pointer;padding:9px 16px;font-size:14px}
+    .cp-srt input[type=file]{position:absolute;width:1px;height:1px;opacity:0}
+    #capInfo{font-size:13px;color:var(--muted)}
+    #capStyles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    @media(max-width:520px){#capStyles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .cp-s{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;padding:12px 6px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.01));transition:transform .2s,border-color .2s,box-shadow .2s}
+    .cp-s i{font-style:normal;font-family:"QT Lalezar",Impact,sans-serif;font-size:20px;line-height:1.2;color:#fff;text-shadow:0 2px 0 #000}
+    .cp-s i em{font-style:normal;color:#ffd400}.cp-s i u{text-decoration:none;background:#ffd400;color:#111;border-radius:5px;padding:0 4px;text-shadow:none}
+    .cp-s b{font-size:13px;color:var(--text)}
+    .cp-s:hover{transform:translateY(-3px);border-color:var(--accent)}
+    .cp-s.on{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(59,226,255,.25),0 14px 30px -18px rgba(59,226,255,.6)}
+    .cp-s:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .cp-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}
+    .cp-row label,.cp-row .cp-l{font-weight:700;color:var(--text-dim);font-size:14px}
+    .cp-row input,.cp-row select{margin:0}.cp-row input[type=color]{height:42px;padding:4px;width:80px}
+    .cp-row input[type=range]{accent-color:var(--accent)}
+    .cp-checks{display:flex;gap:16px;flex-wrap:wrap}.cp-checks label{display:flex;gap:6px;align-items:center;font-weight:600;font-size:14px;color:var(--text-dim)}
+    @media(max-width:520px){.cp-row{grid-template-columns:1fr}}
+    .cp-chips{display:flex;flex-wrap:wrap;gap:6px}
+    @media(min-width:981px){.cp-stage{position:sticky;top:80px}}
+    .cp-screen{position:relative;margin:0 auto;max-width:100%;max-height:72vh;border-radius:22px;overflow:hidden;border:10px solid #15172a;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -30px rgba(91,91,255,.7);background:#000}
+    #capCanvas{display:block;width:100%;height:100%}
+    .cp-ctrl{display:flex;align-items:center;gap:10px;margin-top:12px}
+    .cp-ctrl button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);background:var(--card);color:var(--text);cursor:pointer;flex:none}
+    .cp-ctrl input{flex:1;margin:0;accent-color:var(--accent)}
+    .cp-export{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}.cp-export .btn{padding:12px 22px;font-size:15px}
+    #capStatus{text-align:center;font-weight:700;color:var(--text-dim);margin-top:10px;min-height:1.4em}
+    #capBar{height:6px;border-radius:999px;background:var(--card);overflow:hidden;margin-top:8px}
+    #capBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+    .cp-note{font-size:13px;color:var(--muted);text-align:center;margin-top:8px}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/ar">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/ar#tools">الأدوات</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">الخصوصية</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">الترجمة المتحركة</span></div>
+  <div class="lang-switch">
+    <a href="/animated-captions">EN</a>
+    <a href="/ar/animated-captions" class="active">AR</a>
+  </div>
+
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">فيديو</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>تعمل داخل متصفحك</span><span class="badge">مجانية</span></div>
+    <h1>الترجمة المتحركة — كابشن كلمة بكلمة للريلز والتيك توك والشورتس مجانًا</h1>
+    <p>اعمل الكابشن العريض اللي يظهر كلمة كلمة مثل الفيديوهات المنتشرة. الصق نص كلامك (أو ارفع ملف ‎.srt من كاب كت أو أي برنامج)، اختر الستايل — تكبير، مربع ملوّن، كاريوكي أو كلمة كلمة — ونزّل فيديو MP4 بشاشة خضراء تضعه فوق فيديوك. عربي وإنجليزي، مجانًا وبدون علامة مائية، ولا شيء يُرفع.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="cp">
+      <div>
+        <div class="cp-card"><h2>كلامك</h2>
+          <label for="capText" class="sr-only">كلامك</label><textarea id="capText" dir="auto" maxlength="3000" placeholder="اكتب أو الصق نص كلامك. كل سطر يصير كابشن مستقل."></textarea>
+          <div class="cp-srt"><label class="btn btn-ghost" for="capSrt">رفع ملف ترجمة SRT</label><input type="file" id="capSrt" accept=".srt,.vtt,text/plain"><button type="button" class="chip" id="capSrtClear" hidden>استخدم النص المكتوب</button><span id="capInfo"></span></div>
+          <div class="cp-row" id="capWpmRow" style="margin-top:12px"><label for="capWpm">سرعة الكلام</label><div><input type="range" id="capWpm" min="80" max="260" step="5" style="width:100%"> <span id="capWpmV"></span> wpm</div></div>
+        </div>
+        <div class="cp-card"><h2>الستايل</h2><div id="capStyles"><button type="button" class="cp-s" data-s="pop" aria-pressed="false"><i aria-hidden="true">كلمة <em>كبيرة</em></i><b>تكبير</b></button><button type="button" class="cp-s" data-s="box" aria-pressed="false"><i aria-hidden="true">كلمة <u>كبيرة</u></i><b>مربع ملوّن</b></button><button type="button" class="cp-s" data-s="karaoke" aria-pressed="false"><i aria-hidden="true"><em>كلمة</em> كبيرة</i><b>كاريوكي</b></button><button type="button" class="cp-s" data-s="bounce" aria-pressed="false"><i aria-hidden="true"><em>كبيرة</em></i><b>كلمة كلمة</b></button></div></div>
+        <div class="cp-card"><h2>الشكل</h2>
+          <div class="cp-row"><label for="capPer">كلمات على الشاشة</label><select id="capPer"><option value="1">كلمة واحدة</option><option value="2">كلمتان</option><option value="3">3 كلمات</option><option value="4">4 كلمات</option></select></div>
+          <div class="cp-row"><label for="capAccent">لون التمييز</label><input type="color" id="capAccent"></div>
+          <div class="cp-row"><label for="capFont">الخط</label><select id="capFont"><option value="bold">عريض</option><option value="sans">بسيط</option></select></div>
+          <div class="cp-row"><label for="capSize">الحجم</label><input type="range" id="capSize" min="56" max="150" step="2"></div>
+          <div class="cp-row"><span class="cp-l"></span><div class="cp-checks"><label><input type="checkbox" id="capOutline"> حدود</label><label><input type="checkbox" id="capUpper"> أحرف كبيرة (EN)</label></div></div>
+          <div class="cp-row"><span class="cp-l">الموضع</span><div class="cp-chips" id="capPos" role="group" aria-label="الموضع"><button type="button" class="chip" data-p="bottom">أسفل</button><button type="button" class="chip" data-p="middle">منتصف</button><button type="button" class="chip" data-p="top">أعلى</button></div></div>
+          <div class="cp-row"><span class="cp-l">الخلفية</span><div class="cp-chips" id="capBg" role="group" aria-label="الخلفية"><button type="button" class="chip" data-b="green">شاشة خضراء</button><button type="button" class="chip" data-b="blue">شاشة زرقاء</button><button type="button" class="chip" data-b="black">سوداء</button><button type="button" class="chip" data-b="photo">معاينة</button></div></div>
+          <div class="cp-row"><span class="cp-l">المقاس</span><div class="cp-chips" id="capRatio" role="group" aria-label="المقاس"><button type="button" class="chip" data-r="9:16">9:16</button><button type="button" class="chip" data-r="16:9">16:9</button><button type="button" class="chip" data-r="1:1">1:1</button></div></div>
+        </div>
+      </div>
+      <div class="cp-stage">
+        <div class="cp-screen"><canvas id="capCanvas" width="1080" height="1920" role="img" aria-label="الترجمة المتحركة"></canvas></div>
+        <div class="cp-ctrl"><button type="button" id="capPlay" aria-label="Play / pause">❚❚</button><input type="range" id="capScrub" min="0" max="1000" value="0" aria-label="Timeline"></div>
+        <div class="cp-export"><button type="button" class="btn" id="capExport">تنزيل MP4</button></div>
+        <div id="capBar" hidden><i id="capBarFill"></i></div><div id="capStatus" role="status"></div><p class="cp-note">«معاينة» للعرض فقط؛ التنزيل يكون بشاشة خضراء.</p>
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/captions.js"></script>
+
+  <div class="content">
+    <h2>كيف تضيف الترجمة على فيديوك</h2>
+    <ul class="benefits">
+      <li><span>عندك ملف ترجمة؟ صدّر <strong>‎.srt</strong> من كاب كت أو بريمير أو يوتيوب ستوديو وارفعه هنا — كل كلمة تحافظ على توقيتها.</span></li>
+      <li><span>ما عندك ترجمة؟ الصق نص كلامك واضبط سرعة الكلام حتى تطابق صوتك.</span></li>
+      <li><span>نزّل الفيديو وأضفه <em>تراكب</em> فوق فيديوك ثم استخدم <em>مفتاح اللون (Chroma key)</em> لإزالة الأخضر، وطابق البداية مع أول كلمة.</span></li>
+      <li><span>استخدم 2–3 كلمات على الشاشة للريلز السريعة و4 كلمات للفيديوهات الهادئة.</span></li>
+    </ul>
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل تحوّل الصوت لنص تلقائيًا؟</summary><p>ليس بعد — الأداة تحرّك الترجمة من نصك أو من ملف ‎.srt. أغلب البرامج (كاب كت، يوتيوب ستوديو) تولّد ملف ‎.srt تلقائيًا وتقدر ترفعه هنا.</p></details>
+    <details class="faq-item"><summary>هل هي مجانية وبدون علامة مائية؟</summary><p>نعم، تنزيل مجاني غير محدود وبدون علامة مائية.</p></details>
+    <details class="faq-item"><summary>هل تدعم العربي؟</summary><p>نعم، الكلمات العربية من اليمين لليسار بحروف متصلة صحيحة، وتمييز الكاريوكي يمشي من اليمين لليسار.</p></details>
+    <details class="faq-item"><summary>هل يُرفع النص لأي مكان؟</summary><p>لا، كل شيء بما فيه تجهيز الفيديو يتم على جهازك.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى لصناع المحتوى</h2>
+    <div class="related-grid">
+      <a href="/ar/motion-titles">العناوين المتحركة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/glass-slides">سلايدات زجاجية<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/paper-animation">استوديو أنيميشن الورق<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-background-from-image">إزالة خلفية الصورة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/image-to-text">استخراج النص من الصور<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات بالعربية</h2>
+        <a href="/ar/tafqeet">تفقيط المبالغ</a>
+        <a href="/ar/hijri-converter">تحويل التاريخ هجري ميلادي</a>
+        <a href="/ar/keyboard-fix">مصحح لغة الكيبورد</a>
+        <a href="/ar/arabic-text-tools">إزالة التشكيل</a>
+        <a href="/ar/pdf-tools">أدوات PDF</a>
+        <a href="/ar/compress-image">ضغط الصور</a>
+        <a href="/ar/word-counter">عداد الكلمات</a>
+        <a href="/ar/name-decorator">زخرفة أسماء الألعاب</a>
+        <a href="/ar/qr-code-generator">إنشاء باركود QR</a>
+        <a href="/ar/social-image-resizer">مقاسات صور السوشيال</a>
+        <a href="/seo-slug-generator">مولّد الروابط (Slug)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">أدوات أخرى (بالإنجليزية)</h2>
+        <a href="/product-photo-studio">Product Photo Studio</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/json-converter">JSON Converter</a>
+        <a href="/base64-encode-decode">Base64</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">QuickTiny</h2>
+        <a href="/ar">الرئيسية</a>
+        <a href="/">English</a>
+        <a href="/privacy">الخصوصية</a>
+        <a href="/terms">الشروط</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>بدون تسجيل &middot; يعمل داخل المتصفح &middot; يحترم خصوصيتك</span>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "QuickTiny الترجمة المتحركة", "url": "https://quicktinyv2.vercel.app/ar/animated-captions", "description": "اعمل كابشن متحرك كلمة بكلمة لفيديوهات الريلز والتيك توك والشورتس: الصق نصك أو ارفع ملف SRT، اختر الستايل ونزّل MP4 بشاشة خضراء. بالعربي، مجانًا وبدون علامة مائية.", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "inLanguage": "ar"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://quicktinyv2.vercel.app/"}, {"@type": "ListItem", "position": 2, "name": "الترجمة المتحركة", "item": "https://quicktinyv2.vercel.app/ar/animated-captions"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "هل تحوّل الصوت لنص تلقائيًا؟", "acceptedAnswer": {"@type": "Answer", "text": "ليس بعد — ارفع ملف SRT من كاب كت أو يوتيوب ستوديو أو الصق نص كلامك."}}, {"@type": "Question", "name": "كيف أضعها فوق الفيديو؟", "acceptedAnswer": {"@type": "Answer", "text": "في كاب كت أضفها كتراكب ثم استخدم مفتاح اللون (Chroma key) لإزالة الأخضر."}}]}</script>
+</body>
+</html>
