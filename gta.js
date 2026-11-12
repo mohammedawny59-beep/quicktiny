@@ -85,7 +85,7 @@ var QT_GTA_OVL = {
 };
 function qtGtaOverlay(x, W, H, t, o) {
   x.setTransform(1, 0, 0, 1, 0, 0);
-  x.fillStyle = { green: "#00ff00", blue: "#0047ff", black: "#000000" }[o.bg] || "#00ff00"; x.fillRect(0, 0, W, H);
+  if (o.bg !== "none") { x.fillStyle = { green: "#00ff00", blue: "#0047ff", black: "#000000" }[o.bg] || "#00ff00"; x.fillRect(0, 0, W, H); } // "none" = draw over a video frame
   var u = Math.min(W, H) / 1080, D = 3.6, inK = Math.min(1, t / .35), out = Math.max(0, Math.min(1, (t - (D - .4)) / .4)), vis = (1 - out);
   // cinematic letterbox bars
   var bar = H * .11 * (1 - Math.pow(1 - inK, 3)) * vis; x.fillStyle = "#000"; x.fillRect(0, 0, W, bar); x.fillRect(0, H - bar, W, bar);

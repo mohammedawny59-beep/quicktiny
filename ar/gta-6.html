@@ -123,6 +123,20 @@
     .gs-space label{font-weight:800;color:#fff}.gs-space input{max-width:180px;margin:8px 0}
     .gs-sbar{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}#gsSpaceBar{display:block;height:100%;width:0;transition:width .4s,background .4s;background:#ff3b4e}#gsSpaceBar.ok{background:linear-gradient(90deg,#47ff9c,#3cf0ff)}#gsSpaceBar.tight{background:#ffb347}
     #gsSpaceMsg{margin-top:8px;font-weight:800;color:#fff;min-height:1.4em}
+    /* CLIP STUDIO */
+    .gc-box{padding:24px;border-radius:26px;background:linear-gradient(160deg,rgba(255,45,149,.16),rgba(155,48,255,.12)),var(--card);border:1px solid rgba(255,45,149,.45);box-shadow:0 30px 70px -40px rgba(255,45,149,.9)}
+    .gc-drop{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.gc-drop label.btn{cursor:pointer;font-size:16px;padding:14px 22px}.gc-drop input{position:absolute;width:1px;height:1px;opacity:0}
+    #gcName{color:#f3dcff;font-weight:700;word-break:break-all}
+    .gc-prog{height:8px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;margin:12px 0 4px}#gcBar{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2d95,#ffb347,#3cf0ff);transition:width .3s}
+    #gcMsg{font-weight:800;color:#fff;min-height:1.4em}
+    #gcList{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:14px}
+    .gc-card{border-radius:18px;overflow:hidden;background:rgba(10,3,26,.85);border:1px solid rgba(255,255,255,.12);animation:gsCard .5s cubic-bezier(.2,.9,.2,1) both}
+    .gc-card canvas{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#000}
+    .gc-meta{padding:12px;display:grid;gap:8px}.gc-meta b{color:#fff;font-size:14.5px}
+    .gc-score{height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}.gc-score i{display:block;height:100%;background:linear-gradient(90deg,#ffb347,#ff2d95)}
+    .gc-btns{display:flex;gap:8px;flex-wrap:wrap}.gc-btns .btn{padding:8px 14px;font-size:14px}
+    #gcStageBox{margin-top:16px;text-align:center}#gcStage{width:min(100%,300px);height:auto;aspect-ratio:9/16;border-radius:18px;background:#000;box-shadow:0 20px 50px -20px rgba(255,45,149,.9)}
+    .gc-priv{font-size:12.5px;color:#cfa8ff;margin:10px 0 0}
     /* GEAR ADVISOR */
     .gs-gear{padding:24px;border-radius:26px;background:linear-gradient(150deg,rgba(60,240,255,.12),rgba(255,45,149,.14)),var(--card);border:1px solid rgba(60,240,255,.35);box-shadow:0 30px 70px -40px rgba(60,240,255,.7)}
     .gs-gear .gta-row{grid-template-columns:130px minmax(0,1fr)}
@@ -239,6 +253,24 @@
     <div class="gs-space" data-reveal><label for="gsFree">كم مساحة فاضية عندك؟ (غيغا)</label><br><input type="number" id="gsFree" min="0" max="20000" inputmode="numeric" placeholder="250"> <span class="gta-note" style="color:#d9b8ff">التنزيل المسبق يحتاج حتى 212 غيغا.</span><div class="gs-sbar"><i id="gsSpaceBar"></i></div><div id="gsSpaceMsg" role="status"></div></div>
   </section>
 
+  <section class="gs-sec" id="clip-studio"><span class="gs-kick" data-reveal>استوديو المقاطع</span><h2 class="gs-h2" data-reveal>لعبك ← ريلز بتكسّر</h2><p class="gs-lead" data-reveal>حط تسجيل لعب طويل. منلاقي أقوى اللحظات — حوادث، اشتباكات، انفجارات — ومنحوّل كل وحدة لريل عمودي فيه زوم قوي على اللحظة، عنوان بيشد، اسم حسابك وختم بالآخر. جاهز للنشر.</p>
+    <div class="gc-box" id="gcStudio" data-reveal>
+      <div class="gc-drop"><label class="btn">🎮 اختر فيديو اللعب<input type="file" id="gcFile" accept="video/*"></label><span id="gcName"></span></div>
+      <div class="gta-row"><span class="gl">طول المقطع</span><div class="gta-chips" id="gcLen" role="group"><button type="button" class="chip" data-v="15">15 ث</button><button type="button" class="chip active" data-v="30">30 ث</button><button type="button" class="chip" data-v="45">45 ث</button></div></div>
+      <div class="gta-row"><span class="gl">كم مقطع</span><div class="gta-chips" id="gcCount" role="group"><button type="button" class="chip active" data-v="3">3</button><button type="button" class="chip" data-v="5">5</button></div></div>
+      <div class="gta-row"><span class="gl">ختم النهاية</span><div class="gta-chips" id="gcStamp" role="group"><button type="button" class="chip active" data-v="passed">نجحت</button><button type="button" class="chip" data-v="respect">احترام +</button><button type="button" class="chip" data-v="busted">انمسكت</button><button type="button" class="chip" data-v="failed">فشلت</button><button type="button" class="chip" data-v="none">بدون</button></div></div>
+      <div class="gta-row"><label for="gcTitle">العنوان</label><input type="text" id="gcTitle" dir="auto" maxlength="40"></div>
+      <div class="gta-row"><label for="gcHandle">اسم حسابك</label><input type="text" id="gcHandle" dir="ltr" maxlength="30" placeholder="@yourname"></div>
+      <button type="button" class="btn" id="gcFind">⚡ لاقيلي أقوى اللحظات</button>
+      <div class="gc-prog"><i id="gcBar"></i></div><div id="gcMsg" role="status"></div>
+      <div id="gcList"></div>
+      <button type="button" class="btn" id="gcAll" hidden style="margin-top:12px">⬇ نزّل الكل</button>
+      <div id="gcStageBox" hidden><canvas id="gcStage" width="540" height="960"></canvas></div>
+      <video id="gcVid" playsinline preload="auto" hidden></video>
+      <p class="gc-priv">🔒 الفيديو ما بيطلع من جهازك أبدًا — كل شي بيصير داخل متصفحك.</p>
+    </div>
+  </section>
+
   <section class="gs-sec" id="gear"><span class="gs-kick" data-reveal>جهّز حالك</span><h2 class="gs-h2" data-reveal>جهازك جاهز لـ GTA 6؟</h2><p class="gs-lead" data-reveal>اختار جهازك وكم مساحة عندك وشو ناوي تعمل — وبتطلعلك قائمة مخصّصة إلك مع المواصفات اللي بتفرق فعلًا.</p>
     <div class="gs-gear" id="gsGear" data-reveal>
       <div class="gta-row"><span class="gl">الجهاز</span><div class="gta-chips" id="gsGearCon" role="group"><button type="button" class="chip" data-v="ps5" aria-pressed="false">PS5</button><button type="button" class="chip" data-v="ps5pro" aria-pressed="false">PS5 Pro</button><button type="button" class="chip" data-v="xsx" aria-pressed="false">Series X</button><button type="button" class="chip" data-v="xss" aria-pressed="false">Series S</button><button type="button" class="chip" data-v="xone" aria-pressed="false">Xbox One (سحابي)</button></div></div>
@@ -335,6 +367,8 @@
   <script src="/gta.js"></script>
   <script src="/gta-story.js"></script>
   <script src="/gta-gear.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/gta-clips.js"></script>
   <script type="module" src="/gta-map.js"></script>
 </div>
 <footer>

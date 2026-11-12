@@ -36,6 +36,24 @@
     <div class="gs-space" data-reveal><label for="gsFree">How much free space do you have? (GB)</label><br><input type="number" id="gsFree" min="0" max="20000" inputmode="numeric" placeholder="250"> <span class="gta-note" style="color:#d9b8ff">The pre-load needs up to 212 GB.</span><div class="gs-sbar"><i id="gsSpaceBar"></i></div><div id="gsSpaceMsg" role="status"></div></div>
   </section>
 
+  <section class="gs-sec" id="clip-studio"><span class="gs-kick" data-reveal>Clip Studio</span><h2 class="gs-h2" data-reveal>Your gameplay → viral Reels</h2><p class="gs-lead" data-reveal>Drop in a long recording. We find the loudest, wildest moments — crashes, shootouts, explosions — and turn each into a vertical Reel with a punch zoom on the peak, a hook title, your @handle and an end stamp. Ready to post.</p>
+    <div class="gc-box" id="gcStudio" data-reveal>
+      <div class="gc-drop"><label class="btn">🎮 Choose gameplay video<input type="file" id="gcFile" accept="video/*"></label><span id="gcName"></span></div>
+      <div class="gta-row"><span class="gl">Clip length</span><div class="gta-chips" id="gcLen" role="group"><button type="button" class="chip" data-v="15">15 s</button><button type="button" class="chip active" data-v="30">30 s</button><button type="button" class="chip" data-v="45">45 s</button></div></div>
+      <div class="gta-row"><span class="gl">How many</span><div class="gta-chips" id="gcCount" role="group"><button type="button" class="chip active" data-v="3">3</button><button type="button" class="chip" data-v="5">5</button></div></div>
+      <div class="gta-row"><span class="gl">End stamp</span><div class="gta-chips" id="gcStamp" role="group"><button type="button" class="chip active" data-v="passed">Passed</button><button type="button" class="chip" data-v="respect">Respect +</button><button type="button" class="chip" data-v="busted">Busted</button><button type="button" class="chip" data-v="failed">Failed</button><button type="button" class="chip" data-v="none">None</button></div></div>
+      <div class="gta-row"><label for="gcTitle">Hook title</label><input type="text" id="gcTitle" dir="auto" maxlength="40"></div>
+      <div class="gta-row"><label for="gcHandle">Your handle</label><input type="text" id="gcHandle" dir="ltr" maxlength="30" placeholder="@yourname"></div>
+      <button type="button" class="btn" id="gcFind">⚡ Find the best moments</button>
+      <div class="gc-prog"><i id="gcBar"></i></div><div id="gcMsg" role="status"></div>
+      <div id="gcList"></div>
+      <button type="button" class="btn" id="gcAll" hidden style="margin-top:12px">⬇ Download all</button>
+      <div id="gcStageBox" hidden><canvas id="gcStage" width="540" height="960"></canvas></div>
+      <video id="gcVid" playsinline preload="auto" hidden></video>
+      <p class="gc-priv">🔒 Your video never leaves your device — everything runs in your browser.</p>
+    </div>
+  </section>
+
   <section class="gs-sec" id="gear"><span class="gs-kick" data-reveal>Get set up</span><h2 class="gs-h2" data-reveal>Is your setup ready for GTA 6?</h2><p class="gs-lead" data-reveal>Pick your console, how much space you have and what you’ll do — get a personal checklist with the specs that matter.</p>
     <div class="gs-gear" id="gsGear" data-reveal>
       <div class="gta-row"><span class="gl">Console</span><div class="gta-chips" id="gsGearCon" role="group"><button type="button" class="chip" data-v="ps5" aria-pressed="false">PS5</button><button type="button" class="chip" data-v="ps5pro" aria-pressed="false">PS5 Pro</button><button type="button" class="chip" data-v="xsx" aria-pressed="false">Series X</button><button type="button" class="chip" data-v="xss" aria-pressed="false">Series S</button><button type="button" class="chip" data-v="xone" aria-pressed="false">Xbox One (cloud)</button></div></div>
@@ -132,5 +150,7 @@
   <script src="/gta.js"></script>
   <script src="/gta-story.js"></script>
   <script src="/gta-gear.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/gta-clips.js"></script>
   <script type="module" src="/gta-map.js"></script>
 </div>
