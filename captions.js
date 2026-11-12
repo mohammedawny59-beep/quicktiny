@@ -150,8 +150,8 @@ function qtCapRender(x, W, H, t, s, pages, preview) {
   }
   function webm() {
     return new Promise(function (res, rej) {
-      var rec = new MediaRecorder(cv.captureStream(30), { mimeType: MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm", videoBitsPerSecond: 6e6 }), ch = [];
-      rec.ondataavailable = function (e) { if (e.data.size) ch.push(e.data); }; rec.onstop = function () { res(new Blob(ch, { type: "video/webm" })); }; rec.onerror = rej;
+      var rec = new MediaRecorder(cv.captureStream(30), { mimeType: (window.qtRecMime = ["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"].find(function (m) { return MediaRecorder.isTypeSupported(m); })), videoBitsPerSecond: 6e6 }), ch = [];
+      rec.ondataavailable = function (e) { if (e.data.size) ch.push(e.data); }; rec.onstop = function () { res(new Blob(ch, { type: (window.qtRecMime || "video/webm").split(";")[0] })); }; rec.onerror = rej;
       var s0 = performance.now(); rec.start();
       (function step() { var t = (performance.now() - s0) / 1000; qtCapRender(ctx, cv.width, cv.height, Math.min(t, D), st, pages, false); if (t < D) requestAnimationFrame(step); else rec.stop(); })();
     });
@@ -160,7 +160,7 @@ function qtCapRender(x, W, H, t, s, pages, preview) {
     if (exporting) return; exporting = true; this.disabled = true; $("capBar").hidden = false; $("capStatus").textContent = T.wait;
     try { var blob = null, ext = "mp4";
       if (typeof VideoEncoder !== "undefined" && typeof Mp4Muxer !== "undefined") { try { blob = await mp4(); } catch (e) { if (String(e.message) !== "no-h264") throw e; } }
-      if (!blob) { $("capStatus").textContent = T.webm; blob = await webm(); ext = "webm"; }
+      if (!blob) { if (!/mp4/.test(["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"].find(function (m) { return MediaRecorder.isTypeSupported(m); }) || "")) $("capStatus").textContent = T.webm; blob = await webm(); ext = /mp4/.test(blob.type) ? "mp4" : "webm"; }
       download(blob, "captions-" + st.style + "-" + (st.bg === "photo" ? "green" : st.bg) + "-" + st.ratio.replace(":", "x") + "." + ext); $("capStatus").textContent = T.done;
       if (typeof qtEvent === "function") qtEvent("captions_export");
     } catch (e) { $("capStatus").textContent = T.fail + (e && e.message || e); }

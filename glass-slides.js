@@ -203,8 +203,8 @@ function qtGsEngine(cv, st) {
   }
   function webm() {
     return new Promise(function (res, rej) {
-      var rec = new MediaRecorder(cv.captureStream(st.fps), { mimeType: MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm", videoBitsPerSecond: 10e6 }), ch = [];
-      rec.ondataavailable = function (e) { if (e.data.size) ch.push(e.data); }; rec.onstop = function () { res(new Blob(ch, { type: "video/webm" })); }; rec.onerror = rej;
+      var rec = new MediaRecorder(cv.captureStream(st.fps), { mimeType: (window.qtRecMime = ["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"].find(function (m) { return MediaRecorder.isTypeSupported(m); })), videoBitsPerSecond: 10e6 }), ch = [];
+      rec.ondataavailable = function (e) { if (e.data.size) ch.push(e.data); }; rec.onstop = function () { res(new Blob(ch, { type: (window.qtRecMime || "video/webm").split(";")[0] })); }; rec.onerror = rej;
       var s0 = performance.now(); rec.start();
       (function step() { var t = (performance.now() - s0) / 1000; render(Math.min(t, dur())); if (t < dur() + .2) requestAnimationFrame(step); else rec.stop(); })();
     });
@@ -213,7 +213,7 @@ function qtGsEngine(cv, st) {
     if (exporting) return; exporting = true; this.disabled = true; $("gsBar").hidden = false; $("gsStatus").textContent = T.wait;
     try { var blob = null, ext = "mp4";
       if (typeof VideoEncoder !== "undefined" && typeof Mp4Muxer !== "undefined") { try { blob = await mp4(); } catch (e) { if (String(e.message) !== "no-h264") throw e; } }
-      if (!blob) { $("gsStatus").textContent = T.webm; blob = await webm(); ext = "webm"; }
+      if (!blob) { if (!/mp4/.test(["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"].find(function (m) { return MediaRecorder.isTypeSupported(m); }) || "")) $("gsStatus").textContent = T.webm; blob = await webm(); ext = /mp4/.test(blob.type) ? "mp4" : "webm"; }
       download(blob, "glass-slides-" + st.ratio.replace(":", "x") + "-" + st.fps + "fps." + ext); $("gsStatus").textContent = T.done;
       if (typeof qtEvent === "function") qtEvent("glass_export");
     } catch (e) { $("gsStatus").textContent = T.fail + (e && e.message || e); }

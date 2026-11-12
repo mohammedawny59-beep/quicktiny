@@ -106,14 +106,14 @@ function qtRvTitle(x, W, H, s, r) {
   $("rvB").addEventListener("input", function () { st.b = Math.max(+this.value, st.a + .5); this.value = st.b; v.currentTime = Math.max(st.a, st.b - .1); trimLabel(); });
   $("rvPlay").addEventListener("click", function () { if (v.paused) { if (v.currentTime < st.a || v.currentTime >= st.b) v.currentTime = st.a; v.play(); this.textContent = "❚❚"; } else { v.pause(); this.textContent = "▶"; } });
   $("rvGo").addEventListener("click", async function () {
-    if (busy || !file) return; busy = true; this.disabled = true; $("rvBar").hidden = false; $("rvStatus").textContent = T.exp; v.pause(); $("rvPlay").textContent = "▶";
+    if (busy || !file) return; qtVxUnlockAudio(); busy = true; this.disabled = true; $("rvBar").hidden = false; $("rvStatus").textContent = T.exp; v.pause(); $("rvPlay").textContent = "▶";
     try {
       var z = SIZES[st.ratio], big = document.createElement("canvas"); big.width = Math.ceil(z[0] / 14); big.height = Math.ceil(z[1] / 14);
       var r = await qtVxExport({ file: file, video: v, W: z[0], H: z[1], fps: 30, segs: [[st.a, st.b]],
         draw: function (cx, srcT, outT, W, H) { qtRvDraw(cx, W, H, v, st, big); },
         onProgress: function (p) { $("rvBarFill").style.width = Math.round(p * 100) + "%"; $("rvStatus").textContent = T.exp + " " + Math.round(p * 100) + "%"; } });
       if (!r) throw new Error(T.noEnc);
-      last = r.blob; qtVxDownload(r.blob, file.name.replace(/\.[^.]+$/, "").slice(0, 60) + "-" + st.ratio.replace(":", "x") + ".mp4");
+      last = r.blob; qtVxDownload(r.blob, file.name.replace(/\.[^.]+$/, "").slice(0, 60) + "-" + st.ratio.replace(":", "x") + (r.blob.type.indexOf("webm") >= 0 ? ".webm" : ".mp4"));
       $("rvStatus").textContent = T.done + (r.audio ? "" : T.silent); $("rvNext").hidden = false;
       if (typeof qtEvent === "function") qtEvent("vertical_export");
     } catch (e) { $("rvStatus").textContent = T.fail + (e && e.message || e); }

@@ -316,7 +316,7 @@ function qtClDraw(x, W, H, v, srcT, outT, total, clip, st, low) {
     requestAnimationFrame(tick);
   })();
   async function exportClip(c, silent) {
-    if (busy && !silent) return; busy = true; v.pause();
+    if (busy && !silent) return; if (!silent) qtVxUnlockAudio(); busy = true; v.pause();
     try {
       if (st.frame === "face") await track(c, function (p) { status(T.faces + " " + Math.round(p * 100) + "%", p * .3); });
       c.pages = qtCapPages(c.words, st.per);
@@ -325,13 +325,13 @@ function qtClDraw(x, W, H, v, srcT, outT, total, clip, st, low) {
         draw: function (x, srcT, outT, W, H) { qtClDraw(x, W, H, v, srcT, outT, total, c, st, big); },
         onProgress: function (p) { status(T.exp + " " + (c.i + 1) + " · " + Math.round(p * 100) + "%", .3 + p * .7); } });
       if (!r) throw new Error("WebCodecs");
-      var name = "clip-" + String(c.i + 1).padStart(2, "0") + "-" + (c.title || "reel").replace(/[\\/:*?"<>|…]+/g, "").trim().slice(0, 40).replace(/\s+/g, "-") + ".mp4";
+      var name = "clip-" + String(c.i + 1).padStart(2, "0") + "-" + (c.title || "reel").replace(/[\\/:*?"<>|…]+/g, "").trim().slice(0, 40).replace(/\s+/g, "-") + (r.blob.type.indexOf("webm") >= 0 ? ".webm" : ".mp4");
       qtVxDownload(r.blob, name); status(T.done); if (typeof qtEvent === "function") qtEvent("clip_export");
     } catch (e) { status(T.fail + (e && e.message || e)); }
     if (!silent) busy = false;
   }
   $("clAll").addEventListener("click", async function () {
-    if (busy || !clips.length) return; this.disabled = true;
+    if (busy || !clips.length) return; qtVxUnlockAudio(); this.disabled = true;
     for (var i = 0; i < clips.length; i++) { await exportClip(clips[i], true); await new Promise(function (r) { setTimeout(r, 600); }); }
     busy = false; this.disabled = false;
   });

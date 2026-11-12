@@ -28,3 +28,10 @@ const fit = V.qtVxPlace(1920, 1080, 1080, 1920, "fit"); near(fit.w, 1080, "fit w
 const fill = V.qtVxPlace(1920, 1080, 1080, 1920, "fill", 0); near(fill.h, 1920, "fill height"); near(fill.x, 0, "focus left");
 assert.deepStrictEqual(V.qtVxFit(3840, 2160, 1920), [1920, 1080]); n++;
 console.log("video export tests:", n, "passed");
+// resampler: 48 kHz → 16 kHz keeps length ratio and a DC level, and averages (no plain decimation)
+const src48 = new Float32Array(4800).fill(.5); const r16 = V.qtVxResample(src48, 48000, 16000);
+assert.strictEqual(r16.length, 1600); assert.ok(r16.every((x) => Math.abs(x - .5) < 1e-6), "level kept");
+const alt = Float32Array.from({ length: 4800 }, (_, i) => (i % 3 === 0 ? 1 : 0)); const ra = V.qtVxResample(alt, 48000, 16000);
+assert.ok(ra.every((x) => Math.abs(x - 1 / 3) < 1e-6), "box filter averages each window");
+assert.strictEqual(V.qtVxResample(src48, 16000, 16000), src48, "same rate is a no-op");
+console.log("resample ok");

@@ -116,7 +116,7 @@ function qtSbFit(w, h, maxSide) {
     if (!file || busy) return; busy = true; this.disabled = true;
     try {
       status(T.reading, 0);
-      var ab; try { ab = await decode(16000, 1); } catch (e) { throw new Error(T.noAudio); }
+      var ab; try { var m16 = await qtVxMono16k(file); ab = { duration: m16.duration, length: m16.samples.length, numberOfChannels: 1, getChannelData: function () { return m16.samples; } }; } catch (e) { throw new Error(T.noAudio); }
       if (ab.duration > 20 * 60 + 1) throw new Error(T.tooLong);
       var mono = new Float32Array(ab.length); for (var c = 0; c < ab.numberOfChannels; c++) { var d = ab.getChannelData(c); for (var i = 0; i < d.length; i++) mono[i] += d[i] / ab.numberOfChannels; }
       if (!worker) worker = new Worker("/asr-worker.js");
@@ -195,7 +195,7 @@ function qtSbFit(w, h, maxSide) {
     });
   }
   $("sbExport").addEventListener("click", async function () {
-    if (busy || !cues.length) return; busy = true; this.disabled = true; status(T.exp, 0);
+    if (busy || !cues.length) return; qtVxUnlockAudio(); busy = true; this.disabled = true; status(T.exp, 0);
     try {
       var blob = null;
       if (typeof VideoEncoder !== "undefined" && typeof Mp4Muxer !== "undefined") blob = await exportWebCodecs();

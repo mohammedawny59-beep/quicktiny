@@ -81,14 +81,14 @@ function qtSlAuto(levels) {
   [["slThr", "thr"], ["slMin", "min"], ["slPad", "pad"]].forEach(function (c) { $(c[0]).addEventListener("input", function () { st[c[1]] = +this.value; save(); sync(); recompute(); }); });
   $("slAuto").addEventListener("click", function () { if (levels) { st.thr = qtSlAuto(levels); sync(); recompute(); } });
   $("slGo").addEventListener("click", async function () {
-    if (busy || !file || !keep) return; busy = true; this.disabled = true; $("slBar").hidden = false; v.pause();
+    if (busy || !file || !keep) return; qtVxUnlockAudio(); busy = true; this.disabled = true; $("slBar").hidden = false; v.pause();
     try {
       var f = qtVxFit(v.videoWidth, v.videoHeight, 1920);
       var r = await qtVxExport({ file: file, video: v, W: f[0], H: f[1], fps: 30, segs: keep,
         draw: function (cx, srcT, outT, W, H) { cx.drawImage(v, 0, 0, W, H); },
         onProgress: function (p) { $("slBarFill").style.width = Math.round(p * 100) + "%"; $("slStatus").textContent = T.exp + " " + Math.round(p * 100) + "%"; } });
       if (!r) throw new Error(T.noEnc);
-      last = r.blob; qtVxDownload(r.blob, file.name.replace(/\.[^.]+$/, "").slice(0, 60) + "-no-silence.mp4");
+      last = r.blob; qtVxDownload(r.blob, file.name.replace(/\.[^.]+$/, "").slice(0, 60) + "-no-silence" + (r.blob.type.indexOf("webm") >= 0 ? ".webm" : ".mp4"));
       $("slStatus").textContent = T.done + (r.audio ? "" : T.silent); $("slNext").hidden = false;
       if (typeof qtEvent === "function") qtEvent("silence_export");
     } catch (e) { $("slStatus").textContent = T.fail + (e && e.message || e); }
