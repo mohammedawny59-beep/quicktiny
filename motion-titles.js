@@ -211,8 +211,8 @@ function qtMtRender(x, W, H, t, s, preview) {
   }
   function webm() {
     return new Promise(function (res, rej) {
-      var rec = new MediaRecorder(cv.captureStream(30), { mimeType: MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm", videoBitsPerSecond: 8e6 }), ch = [];
-      rec.ondataavailable = function (e) { if (e.data.size) ch.push(e.data); }; rec.onstop = function () { res(new Blob(ch, { type: "video/webm" })); }; rec.onerror = rej;
+      var rec = new MediaRecorder(cv.captureStream(30), { mimeType: (window.qtRecMime = ["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"].find(function (m) { return MediaRecorder.isTypeSupported(m); })), videoBitsPerSecond: 8e6 }), ch = [];
+      rec.ondataavailable = function (e) { if (e.data.size) ch.push(e.data); }; rec.onstop = function () { res(new Blob(ch, { type: (window.qtRecMime || "video/webm").split(";")[0] })); }; rec.onerror = rej;
       var s0 = performance.now(); rec.start();
       (function step() { var t = (performance.now() - s0) / 1000; qtMtRender(ctx, cv.width, cv.height, Math.min(t, st.duration), st, false); if (t < st.duration + .3) requestAnimationFrame(step); else rec.stop(); })();
     });
@@ -221,7 +221,7 @@ function qtMtRender(x, W, H, t, s, preview) {
     if (exporting) return; exporting = true; this.disabled = true; $("mtBar").hidden = false; $("mtStatus").textContent = T.wait;
     try { var blob = null, ext = "mp4";
       if (typeof VideoEncoder !== "undefined" && typeof Mp4Muxer !== "undefined") { try { blob = await mp4(); } catch (e) { if (String(e.message) !== "no-h264") throw e; } }
-      if (!blob) { $("mtStatus").textContent = T.webm; blob = await webm(); ext = "webm"; }
+      if (!blob) { if (!/mp4/.test(["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"].find(function (m) { return MediaRecorder.isTypeSupported(m); }) || "")) $("mtStatus").textContent = T.webm; blob = await webm(); ext = /mp4/.test(blob.type) ? "mp4" : "webm"; }
       download(blob, "motion-" + st.tpl + "-" + st.bg + "-" + st.ratio.replace(":", "x") + "." + ext); $("mtStatus").textContent = T.done;
       if (typeof qtEvent === "function") qtEvent("titles_export");
     } catch (e) { $("mtStatus").textContent = T.fail + (e && e.message || e); }

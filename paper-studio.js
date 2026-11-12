@@ -557,8 +557,8 @@ function qtPmRender(x, W, H, t, s) {
   }
   function exportWebm() {
     return new Promise(function (resolve, reject) {
-      var stream = cv.captureStream(30), rec = new MediaRecorder(stream, { mimeType: MediaRecorder.isTypeSupported("video/webm;codecs=vp9") ? "video/webm;codecs=vp9" : "video/webm", videoBitsPerSecond: 8e6 }), chunks = [];
-      rec.ondataavailable = function (e) { if (e.data.size) chunks.push(e.data); }; rec.onstop = function () { resolve(new Blob(chunks, { type: "video/webm" })); }; rec.onerror = reject;
+      var stream = cv.captureStream(30), rec = new MediaRecorder(stream, { mimeType: (window.qtRecMime = ["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"].find(function (m) { return MediaRecorder.isTypeSupported(m); })), videoBitsPerSecond: 8e6 }), chunks = [];
+      rec.ondataavailable = function (e) { if (e.data.size) chunks.push(e.data); }; rec.onstop = function () { resolve(new Blob(chunks, { type: (window.qtRecMime || "video/webm").split(";")[0] })); }; rec.onerror = reject;
       var start = performance.now(); rec.start();
       (function step() { var t = (performance.now() - start) / 1000; qtPmRender(ctx, cv.width, cv.height, Math.min(t, state.duration), state); $("pmBarFill").style.width = Math.round(Math.min(1, t / (state.duration + .5)) * 100) + "%"; if (t < state.duration + .5) requestAnimationFrame(step); else rec.stop(); })();
     });
@@ -568,7 +568,7 @@ function qtPmRender(x, W, H, t, s) {
     try {
       var blob, ext = "mp4";
       if (typeof VideoEncoder !== "undefined" && typeof Mp4Muxer !== "undefined") { try { blob = await exportMp4(); } catch (e) { if (String(e.message) !== "no-h264") throw e; } }
-      if (!blob) { $("pmStatus").textContent = T.webm; blob = await exportWebm(); ext = "webm"; }
+      if (!blob) { if (!/mp4/.test(["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm"].find(function (m) { return MediaRecorder.isTypeSupported(m); }) || "")) $("pmStatus").textContent = T.webm; blob = await exportWebm(); ext = /mp4/.test(blob.type) ? "mp4" : "webm"; }
       download(blob, fileName(ext)); $("pmStatus").textContent = T.done;
       if (typeof qtEvent === "function") qtEvent("paper_export");
     } catch (e) { $("pmStatus").textContent = T.fail + (e && e.message || e); }
