@@ -108,7 +108,7 @@ function qtGtaOverlay(x, W, H, t, o) {
   var $ = function (id) { return document.getElementById(id); };
   if (!$("gtaZone")) return;
   var AR = (document.documentElement.lang || "").indexOf("ar") === 0, L = AR ? "ar" : "en";
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = (function () { try { return localStorage.getItem("qtGsMotion") === "off"; } catch (e) { return false; } })(); window.qtGsStill = reduce; if (reduce) document.documentElement.classList.add("gs-still");
   var T = AR ? { d: "يوم", h: "ساعة", m: "دقيقة", s: "ثانية", out: "🎮 نزلت! استمتع", copied: "✓ تم النسخ", exp: "جارٍ تجهيز الفيديو…", done: "✓ تم التنزيل", fail: "تعذّر إنشاء الفيديو: ", saved: "✓ تم تنزيل الخلفية", photo: "اختر لقطة شاشة أولًا" }
              : { d: "days", h: "hours", m: "min", s: "sec", out: "🎮 It's out! Have fun", copied: "✓ Copied", exp: "Rendering video…", done: "✓ Downloaded", fail: "Couldn't create the video: ", saved: "✓ Wallpaper downloaded", photo: "Choose a screenshot first" };
 

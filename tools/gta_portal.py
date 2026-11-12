@@ -41,7 +41,6 @@ html[lang=ar] .gp-kick{letter-spacing:0;font-family:"QT Arabic",sans-serif}
 .gp-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:6px}
 .gp-count{font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:8px 14px;border-radius:12px;border:1px solid rgba(255,45,149,.5)}.gp-count b{font:800 20px/1 Sora,sans-serif;color:#ffb347}
 .gp-cta{font-weight:800;padding:10px 18px;border-radius:999px;background:linear-gradient(135deg,#ff2d95,#ff7a3d);box-shadow:0 10px 24px -10px rgba(255,45,149,.9)}
-@media (prefers-reduced-motion: reduce){.gp-grid,.gp-palm{animation:none}}
 /* warp transition into the zone */
 .gta-warp{position:fixed;inset:0;z-index:99999;pointer-events:none;overflow:hidden;background:#0b0420;animation:gtaWarpIn .7s cubic-bezier(.7,0,.3,1) forwards}
 .gta-warp::before{content:"";position:absolute;inset:-20%;background:conic-gradient(from 0deg,#ff2d95,#ffb347,#3cf0ff,#9b30ff,#ff2d95);filter:blur(30px);animation:gtaSpin .7s linear forwards;opacity:.85}
@@ -57,7 +56,7 @@ JS = """// gta-portal: days-to-go on the homepage banner + cinematic warp into t
 (function () {
   var launch = new Date("2026-11-19T00:00:00").getTime();
   document.querySelectorAll("[data-gta-days]").forEach(function (el) { el.textContent = String(Math.max(0, Math.ceil((launch - Date.now()) / 86400000))); });
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = (function () { try { return localStorage.getItem("qtGsMotion") === "off"; } catch (x) { return false; } })();
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a[href]"); if (!a || reduce || e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
     var u; try { u = new URL(a.href, location.href); } catch (x) { return; }
