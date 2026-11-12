@@ -55,7 +55,13 @@ function qtGsObsParams(search) {
   var $ = function (id) { return document.getElementById(id); };
   if (!$("gtaZone")) return;
   var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = !!window.qtGsStill;
+  var mBtn = $("gsMotion");
+  if (mBtn) {
+    mBtn.textContent = reduce ? (AR ? "▶ شغّل الحركة" : "▶ Motion on") : (AR ? "⏸ أوقف الحركة" : "⏸ Motion off");
+    mBtn.setAttribute("aria-pressed", reduce ? "false" : "true");
+    mBtn.addEventListener("click", function () { try { localStorage.setItem("qtGsMotion", reduce ? "on" : "off"); } catch (e) {} location.reload(); });
+  }
 
   /* ===== OBS mode: the page becomes a single transparent browser-source widget ===== */
   var obs = qtGsObsParams(location.search);

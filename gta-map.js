@@ -33,7 +33,7 @@ function qtMapHeight(u, v) {
   var fallback = function () { box.classList.add("nogl"); };
   var test = document.createElement("canvas"); if (!(test.getContext("webgl2") || test.getContext("webgl"))) return fallback();
   var THREE; try { THREE = await import("https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.min.js"); } catch (e) { return fallback(); }
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = !!window.qtGsStill;
   var W = box.clientWidth, H = box.clientHeight;
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
   renderer.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1)); renderer.setSize(W, H); renderer.outputColorSpace = THREE.SRGBColorSpace;

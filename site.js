@@ -699,7 +699,7 @@ function qtCountTo(el, to, fmt, dur){
 (function () {
   var launch = new Date("2026-11-19T00:00:00").getTime();
   document.querySelectorAll("[data-gta-days]").forEach(function (el) { el.textContent = String(Math.max(0, Math.ceil((launch - Date.now()) / 86400000))); });
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = (function () { try { return localStorage.getItem("qtGsMotion") === "off"; } catch (x) { return false; } })();
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a[href]"); if (!a || reduce || e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
     var u; try { u = new URL(a.href, location.href); } catch (x) { return; }

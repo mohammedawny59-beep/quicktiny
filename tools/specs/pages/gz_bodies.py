@@ -144,7 +144,9 @@ STYLE = """  <style>
     html.gs-obs,html.gs-obs body,html.gs-obs body:has(#gtaZone){background:transparent!important;overflow:hidden}
     html.gs-obs body>*:not(.gs-obs-canvas){display:none!important}
     .gs-obs-canvas{position:fixed;inset:0;width:100vw;height:100vh;object-fit:contain}
-    @media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1;transform:none;transition:none}.gs-ch,.gs-title,.gs-ticker div,.gs-scroll::after,.gs-badge i{animation:none}html.gta-arrive body::after{display:none}}
+    html.gs-still [data-reveal]{opacity:1;transform:none;transition:none}html.gs-still .gs-ch,html.gs-still .gs-title,html.gs-still .gs-ticker div,html.gs-still .gs-scroll::after,html.gs-still .gs-badge i{animation:none}html.gs-still.gta-arrive body::after{display:none}
+    html.gs-still #gsPlaces{height:auto}html.gs-still .gs-sticky{position:static;height:auto;padding:40px 0}html.gs-still #gsRail{flex-wrap:wrap;width:auto;justify-content:center}html.gs-still .gs-place{width:min(100%,560px);height:360px}html.gs-still .gs-pbar{display:none}
+    .gs-motion{all:unset;position:fixed;z-index:50;bottom:16px;inset-inline-end:16px;cursor:pointer;font:800 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(11,4,32,.85);border:1px solid rgba(60,240,255,.5);padding:10px 14px;border-radius:999px;backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(255,45,149,.8)}.gs-motion:focus-visible{outline:2px solid #3cf0ff}
   </style>
 """
 PLACES = {
@@ -241,7 +243,7 @@ def body(L, ar):
     t = T[L]; pl = PLACES[L]
     data = json.dumps([{"id": i, "name": n, "desc": d, "real": r, "u": u, "v": v, "css": c, "color": int(c[1:], 16), "img": "/assets/gta6/%s.webp" % i} for i, n, d, r, u, v, c in pl], ensure_ascii=False)
     s = '<div class="wrap">\n  <canvas id="gtaWorld" aria-hidden="true"></canvas>\n  <div class="breadcrumb"><a href="%s">%s</a> <span>/</span><span style="color:var(--text-dim)">%s</span></div>\n%s' % (t["home"], t["homeL"], t["crumb"], "<!--LANG-SWITCH-->\n" if ar else "")
-    s += '<div id="gtaZone">\n'
+    s += '<div id="gtaZone">\n  <button type="button" class="gs-motion" id="gsMotion" aria-pressed="true"></button>\n'
     s += ('  <section id="gsHero" class="gs-full"><div id="gsHeroImg" aria-hidden="true"></div>\n    <div class="gs-hero-in"><span class="gs-badge"><i></i>%s</span>\n      <h1 class="gs-title" data-split>%s</h1>\n      <p class="gs-sub">%s</p>\n'
           '      <div id="gtaCount" role="timer" aria-live="off">%s</div>\n    </div><span class="gs-scroll" aria-hidden="true"></span>\n  </section>\n\n') % (t["badge"], t["title"], t["sub"], "".join('<div class="gta-cell" id="%s"><b>--</b><span></span></div>' % i for i in ("gtaD", "gtaH", "gtaM", "gtaS")))
     items = "".join("<span>✦ %s</span>" % x for x in t["ticker"]) * 2

@@ -135,5 +135,7 @@
     html.gs-obs,html.gs-obs body,html.gs-obs body:has(#gtaZone){background:transparent!important;overflow:hidden}
     html.gs-obs body>*:not(.gs-obs-canvas){display:none!important}
     .gs-obs-canvas{position:fixed;inset:0;width:100vw;height:100vh;object-fit:contain}
-    @media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1;transform:none;transition:none}.gs-ch,.gs-title,.gs-ticker div,.gs-scroll::after,.gs-badge i{animation:none}html.gta-arrive body::after{display:none}}
+    html.gs-still [data-reveal]{opacity:1;transform:none;transition:none}html.gs-still .gs-ch,html.gs-still .gs-title,html.gs-still .gs-ticker div,html.gs-still .gs-scroll::after,html.gs-still .gs-badge i{animation:none}html.gs-still.gta-arrive body::after{display:none}
+    html.gs-still #gsPlaces{height:auto}html.gs-still .gs-sticky{position:static;height:auto;padding:40px 0}html.gs-still #gsRail{flex-wrap:wrap;width:auto;justify-content:center}html.gs-still .gs-place{width:min(100%,560px);height:360px}html.gs-still .gs-pbar{display:none}
+    .gs-motion{all:unset;position:fixed;z-index:50;bottom:16px;inset-inline-end:16px;cursor:pointer;font:800 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(11,4,32,.85);border:1px solid rgba(60,240,255,.5);padding:10px 14px;border-radius:999px;backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(255,45,149,.8)}.gs-motion:focus-visible{outline:2px solid #3cf0ff}
   </style>
