@@ -36,6 +36,17 @@
     <div class="gs-space" data-reveal><label for="gsFree">How much free space do you have? (GB)</label><br><input type="number" id="gsFree" min="0" max="20000" inputmode="numeric" placeholder="250"> <span class="gta-note" style="color:#d9b8ff">The pre-load needs up to 212 GB.</span><div class="gs-sbar"><i id="gsSpaceBar"></i></div><div id="gsSpaceMsg" role="status"></div></div>
   </section>
 
+  <section class="gs-sec" id="gear"><span class="gs-kick" data-reveal>Get set up</span><h2 class="gs-h2" data-reveal>Is your setup ready for GTA 6?</h2><p class="gs-lead" data-reveal>Pick your console, how much space you have and what you’ll do — get a personal checklist with the specs that matter.</p>
+    <div class="gs-gear" id="gsGear" data-reveal>
+      <div class="gta-row"><span class="gl">Console</span><div class="gta-chips" id="gsGearCon" role="group"><button type="button" class="chip" data-v="ps5" aria-pressed="false">PS5</button><button type="button" class="chip" data-v="ps5pro" aria-pressed="false">PS5 Pro</button><button type="button" class="chip" data-v="xsx" aria-pressed="false">Series X</button><button type="button" class="chip" data-v="xss" aria-pressed="false">Series S</button><button type="button" class="chip" data-v="xone" aria-pressed="false">Xbox One (cloud)</button></div></div>
+      <div class="gta-row"><label for="gsGearFree">Free space (GB)</label><input type="number" id="gsGearFree" min="0" max="20000" inputmode="numeric" placeholder="150" style="max-width:160px"></div>
+      <div class="gta-row"><span class="gl">I’ll…</span><div class="gta-chips" id="gsGearUse" role="group"><button type="button" class="chip" data-v="play" aria-pressed="false">Play</button><button type="button" class="chip" data-v="stream" aria-pressed="false">Stream</button><button type="button" class="chip" data-v="record" aria-pressed="false">Record clips</button></div></div>
+      <div class="gta-row"><span class="gl">Store</span><div class="gta-chips" id="gsGearStore" role="group"><button type="button" class="chip" data-v="sa" aria-pressed="false">Amazon.sa</button><button type="button" class="chip" data-v="ae" aria-pressed="false">Amazon.ae</button><button type="button" class="chip" data-v="eg" aria-pressed="false">Amazon.eg</button><button type="button" class="chip" data-v="com" aria-pressed="false">Amazon.com</button></div></div>
+      <div id="gsGearList" aria-live="polite"></div>
+      <p class="gs-aff">Affiliate disclosure: links go to Amazon search results; if you buy something we may earn a small commission at no extra cost to you. We pick specs, not brands — compare prices before you buy.</p>
+    </div>
+  </section>
+
   <section class="gs-sec" id="facts-vs-guesses"><span class="gs-kick" data-reveal>Facts vs. guesses</span>
     <div class="gs-cvp"><div data-reveal><h3>✓ Confirmed</h3><ul><li>Out Thursday 19 November 2026 on PS5 and Xbox Series X|S</li><li>Pre-load live since 10 November — up to 212 GB</li><li>Targets 30 fps; PS5 Pro adds PSSR and ray-traced shadows</li><li>Xbox Cloud Gaming — including Xbox One</li><li>Two leads: Jason and Lucia, in the state of Leonida (Vice City)</li><li>Free official printable poster + map of Leonida on launch day</li></ul></div><div class="pred" data-reveal style="--d:.12s"><h3>? Our predictions (unconfirmed)</h3><ul><li>A PC version later — unofficial reports point to 2027</li><li>A brand-new online mode, detailed after launch</li><li>Regular post-launch updates, as Rockstar usually does</li></ul></div></div>
   </section>
@@ -120,5 +131,6 @@
   <script src="/vendor/mp4-muxer.js"></script>
   <script src="/gta.js"></script>
   <script src="/gta-story.js"></script>
+  <script src="/gta-gear.js"></script>
   <script type="module" src="/gta-map.js"></script>
 </div>

@@ -96,6 +96,18 @@
     .gs-space label{font-weight:800;color:#fff}.gs-space input{max-width:180px;margin:8px 0}
     .gs-sbar{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}#gsSpaceBar{display:block;height:100%;width:0;transition:width .4s,background .4s;background:#ff3b4e}#gsSpaceBar.ok{background:linear-gradient(90deg,#47ff9c,#3cf0ff)}#gsSpaceBar.tight{background:#ffb347}
     #gsSpaceMsg{margin-top:8px;font-weight:800;color:#fff;min-height:1.4em}
+    /* GEAR ADVISOR */
+    .gs-gear{padding:24px;border-radius:26px;background:linear-gradient(150deg,rgba(60,240,255,.12),rgba(255,45,149,.14)),var(--card);border:1px solid rgba(60,240,255,.35);box-shadow:0 30px 70px -40px rgba(60,240,255,.7)}
+    .gs-gear .gta-row{grid-template-columns:130px minmax(0,1fr)}
+    #gsGearList{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:16px}
+    .gs-gear-card{position:relative;display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:18px;text-decoration:none;color:#fff;background:rgba(10,3,26,.78);border:1px solid rgba(255,255,255,.12);transition:transform .2s,border-color .2s,box-shadow .2s;animation:gsCard .5s cubic-bezier(.2,.9,.2,1) both;animation-delay:var(--d,0s)}
+    .gs-gear-card:hover{transform:translateY(-4px);border-color:#3cf0ff;box-shadow:0 18px 40px -20px rgba(60,240,255,.8)}.gs-gear-card:focus-visible{outline:2px solid #3cf0ff}
+    .gs-gear-card.p1{border-color:rgba(255,45,149,.6);box-shadow:0 0 0 1px rgba(255,45,149,.25)}
+    .gs-gear-card .pri{align-self:flex-start;font-size:11.5px;font-weight:800;padding:4px 9px;border-radius:999px;background:#3cf0ff;color:#12042c}.gs-gear-card.p1 .pri{background:#ff2d95;color:#fff}.gs-gear-card.p3 .pri{background:rgba(255,255,255,.16);color:#fff}
+    .gs-gear-card b{font-size:17px}.gs-gear-card p{margin:0;color:#e9d6ff;font-size:14px;line-height:1.6;flex:1}.gs-gear-card .go{font-weight:800;color:#ffb347;font-size:14px}
+    .gs-aff{font-size:12px;color:#cfa8ff;margin:12px 0 0;line-height:1.6}
+    html.gs-still .gs-gear-card{animation:none}
+    @media(max-width:520px){.gs-gear .gta-row{grid-template-columns:1fr}}
     /* CONFIRMED vs PREDICTIONS */
     .gs-cvp{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.gs-cvp{grid-template-columns:1fr}}
     .gs-cvp>div{padding:22px;border-radius:22px;background:var(--card);border:1px solid var(--line)}

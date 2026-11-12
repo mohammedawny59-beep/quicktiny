@@ -75,7 +75,8 @@ const ALLOWED_EVENTS = new Set([
   "gta_wallpaper",
   "gta_poster",
   "gta_obs",
-  "gta_map_pin"
+  "gta_map_pin",
+  "gta_gear_click"
 ]);
 
 function cleanPage(value) {

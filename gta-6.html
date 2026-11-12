@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>GTA 6 Zone — Countdown, 3D Leonida Map, Consoles &amp; Creator Tools | QuickTiny</title>
-  <meta name="description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
+  <meta name="description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
   <link rel="canonical" href="https://quicktinyv2.vercel.app/gta-6">
   <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/gta-6">
   <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/gta-6">
   <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/gta-6">
   <meta property="og:title" content="GTA 6 Zone — Countdown, 3D Leonida Map, Consoles &amp; Creator Tools | QuickTiny">
-  <meta property="og:description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
+  <meta property="og:description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quicktinyv2.vercel.app/gta-6">
   <meta property="og:site_name" content="QuickTiny">
@@ -122,6 +122,18 @@
     .gs-space label{font-weight:800;color:#fff}.gs-space input{max-width:180px;margin:8px 0}
     .gs-sbar{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}#gsSpaceBar{display:block;height:100%;width:0;transition:width .4s,background .4s;background:#ff3b4e}#gsSpaceBar.ok{background:linear-gradient(90deg,#47ff9c,#3cf0ff)}#gsSpaceBar.tight{background:#ffb347}
     #gsSpaceMsg{margin-top:8px;font-weight:800;color:#fff;min-height:1.4em}
+    /* GEAR ADVISOR */
+    .gs-gear{padding:24px;border-radius:26px;background:linear-gradient(150deg,rgba(60,240,255,.12),rgba(255,45,149,.14)),var(--card);border:1px solid rgba(60,240,255,.35);box-shadow:0 30px 70px -40px rgba(60,240,255,.7)}
+    .gs-gear .gta-row{grid-template-columns:130px minmax(0,1fr)}
+    #gsGearList{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:16px}
+    .gs-gear-card{position:relative;display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:18px;text-decoration:none;color:#fff;background:rgba(10,3,26,.78);border:1px solid rgba(255,255,255,.12);transition:transform .2s,border-color .2s,box-shadow .2s;animation:gsCard .5s cubic-bezier(.2,.9,.2,1) both;animation-delay:var(--d,0s)}
+    .gs-gear-card:hover{transform:translateY(-4px);border-color:#3cf0ff;box-shadow:0 18px 40px -20px rgba(60,240,255,.8)}.gs-gear-card:focus-visible{outline:2px solid #3cf0ff}
+    .gs-gear-card.p1{border-color:rgba(255,45,149,.6);box-shadow:0 0 0 1px rgba(255,45,149,.25)}
+    .gs-gear-card .pri{align-self:flex-start;font-size:11.5px;font-weight:800;padding:4px 9px;border-radius:999px;background:#3cf0ff;color:#12042c}.gs-gear-card.p1 .pri{background:#ff2d95;color:#fff}.gs-gear-card.p3 .pri{background:rgba(255,255,255,.16);color:#fff}
+    .gs-gear-card b{font-size:17px}.gs-gear-card p{margin:0;color:#e9d6ff;font-size:14px;line-height:1.6;flex:1}.gs-gear-card .go{font-weight:800;color:#ffb347;font-size:14px}
+    .gs-aff{font-size:12px;color:#cfa8ff;margin:12px 0 0;line-height:1.6}
+    html.gs-still .gs-gear-card{animation:none}
+    @media(max-width:520px){.gs-gear .gta-row{grid-template-columns:1fr}}
     /* CONFIRMED vs PREDICTIONS */
     .gs-cvp{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.gs-cvp{grid-template-columns:1fr}}
     .gs-cvp>div{padding:22px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
@@ -225,6 +237,17 @@
     <div class="gs-space" data-reveal><label for="gsFree">How much free space do you have? (GB)</label><br><input type="number" id="gsFree" min="0" max="20000" inputmode="numeric" placeholder="250"> <span class="gta-note" style="color:#d9b8ff">The pre-load needs up to 212 GB.</span><div class="gs-sbar"><i id="gsSpaceBar"></i></div><div id="gsSpaceMsg" role="status"></div></div>
   </section>
 
+  <section class="gs-sec" id="gear"><span class="gs-kick" data-reveal>Get set up</span><h2 class="gs-h2" data-reveal>Is your setup ready for GTA 6?</h2><p class="gs-lead" data-reveal>Pick your console, how much space you have and what you’ll do — get a personal checklist with the specs that matter.</p>
+    <div class="gs-gear" id="gsGear" data-reveal>
+      <div class="gta-row"><span class="gl">Console</span><div class="gta-chips" id="gsGearCon" role="group"><button type="button" class="chip" data-v="ps5" aria-pressed="false">PS5</button><button type="button" class="chip" data-v="ps5pro" aria-pressed="false">PS5 Pro</button><button type="button" class="chip" data-v="xsx" aria-pressed="false">Series X</button><button type="button" class="chip" data-v="xss" aria-pressed="false">Series S</button><button type="button" class="chip" data-v="xone" aria-pressed="false">Xbox One (cloud)</button></div></div>
+      <div class="gta-row"><label for="gsGearFree">Free space (GB)</label><input type="number" id="gsGearFree" min="0" max="20000" inputmode="numeric" placeholder="150" style="max-width:160px"></div>
+      <div class="gta-row"><span class="gl">I’ll…</span><div class="gta-chips" id="gsGearUse" role="group"><button type="button" class="chip" data-v="play" aria-pressed="false">Play</button><button type="button" class="chip" data-v="stream" aria-pressed="false">Stream</button><button type="button" class="chip" data-v="record" aria-pressed="false">Record clips</button></div></div>
+      <div class="gta-row"><span class="gl">Store</span><div class="gta-chips" id="gsGearStore" role="group"><button type="button" class="chip" data-v="sa" aria-pressed="false">Amazon.sa</button><button type="button" class="chip" data-v="ae" aria-pressed="false">Amazon.ae</button><button type="button" class="chip" data-v="eg" aria-pressed="false">Amazon.eg</button><button type="button" class="chip" data-v="com" aria-pressed="false">Amazon.com</button></div></div>
+      <div id="gsGearList" aria-live="polite"></div>
+      <p class="gs-aff">Affiliate disclosure: links go to Amazon search results; if you buy something we may earn a small commission at no extra cost to you. We pick specs, not brands — compare prices before you buy.</p>
+    </div>
+  </section>
+
   <section class="gs-sec" id="facts-vs-guesses"><span class="gs-kick" data-reveal>Facts vs. guesses</span>
     <div class="gs-cvp"><div data-reveal><h3>✓ Confirmed</h3><ul><li>Out Thursday 19 November 2026 on PS5 and Xbox Series X|S</li><li>Pre-load live since 10 November — up to 212 GB</li><li>Targets 30 fps; PS5 Pro adds PSSR and ray-traced shadows</li><li>Xbox Cloud Gaming — including Xbox One</li><li>Two leads: Jason and Lucia, in the state of Leonida (Vice City)</li><li>Free official printable poster + map of Leonida on launch day</li></ul></div><div class="pred" data-reveal style="--d:.12s"><h3>? Our predictions (unconfirmed)</h3><ul><li>A PC version later — unofficial reports point to 2027</li><li>A brand-new online mode, detailed after launch</li><li>Regular post-launch updates, as Rockstar usually does</li></ul></div></div>
   </section>
@@ -309,6 +332,7 @@
   <script src="/vendor/mp4-muxer.js"></script>
   <script src="/gta.js"></script>
   <script src="/gta-story.js"></script>
+  <script src="/gta-gear.js"></script>
   <script type="module" src="/gta-map.js"></script>
 </div>
 <footer>
@@ -395,7 +419,7 @@
 <script src="/site.js"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny GTA 6 Zone","url":"https://quicktinyv2.vercel.app/gta-6","description":"Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny GTA 6 Zone","url":"https://quicktinyv2.vercel.app/gta-6","description":"Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"GTA 6 Zone","item":"https://quicktinyv2.vercel.app/gta-6"}]}</script>
 </body>
 </html>
