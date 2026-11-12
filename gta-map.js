@@ -1,8 +1,8 @@
 // GTA 6 Zone — illustrative 3D map of Leonida (NOT the official map; Rockstar releases that on launch day).
-// Leonida is Rockstar's take on Florida, so the land is shaped after Florida's real, public-domain geography:
-// panhandle, peninsula, a big inland lake, swamps in the south, a chain of keys with a long bridge.
-// Everything is generated here (three.js 0.179.1 from jsDelivr): terrain with beaches / farmland / swamp pools /
-// forests, turquoise shallows, a dense city with lit windows, highways with moving traffic, sunset + night modes.
+// Leonida is Rockstar's take on Florida, so our land is shaped after Florida's real, public-domain geography.
+// Look: an original AI-painted top-down texture (assets/gta6/leonida-map.webp) draped over 3D terrain whose
+// heightmap, night lights and building footprints are all derived from that painting (tools/gta_map_assets.py),
+// so relief, city blocks and coastline line up. The outline helpers below are kept for tests and pin sanity.
 // three.js is only downloaded when the map is about to scroll into view, and it renders only while visible.
 var QT_MAP_OUTLINE = [[.02, .10], [.20, .09], [.40, .10], [.56, .09], [.60, .08], [.63, .12], [.66, .20], [.69, .29], [.72, .38], [.76, .47], [.80, .56], [.83, .64], [.86, .72], [.875, .79], [.87, .85], [.85, .89], [.81, .905], [.76, .895], [.72, .875], [.69, .85], [.665, .81], [.645, .77], [.62, .72], [.60, .67], [.585, .62], [.575, .57], [.56, .53], [.545, .48], [.53, .43], [.51, .38], [.48, .33], [.44, .28], [.39, .245], [.33, .23], [.27, .225], [.21, .215], [.15, .205], [.09, .20], [.04, .19], [.02, .15]];
 var QT_MAP_KEYS = [[.80, .925, .012], [.77, .94, .011], [.74, .952, .012], [.71, .962, .010], [.68, .97, .012], [.65, .976, .011], [.62, .981, .013], [.595, .985, .014]];
@@ -65,155 +65,120 @@ function qtMapHeight(u, v) {
   function start() { if (started) return; started = true; build().catch(function () { box.classList.add("nogl"); }); }
 })();
 
+// heightmap byte -> world height: 128..255 land, 0..127 sea depth (see tools/gta_map_assets.py)
+function qtMapDecode(b) { return b >= 128 ? (b - 128) / 127 : -(127 - b) / 127; }
+function qtMapLoadImg(src) { return new Promise(function (ok, bad) { var im = new Image(); im.decoding = "async"; im.onload = function () { ok(im); }; im.onerror = bad; im.src = src; }); }
+
 async function build() {
   var box = document.getElementById("gsMap");
   var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
   var places = []; try { places = JSON.parse(document.getElementById("gsPlacesData").textContent); } catch (e) {}
   var fallback = function () { box.classList.add("nogl"); };
   var test = document.createElement("canvas"); if (!(test.getContext("webgl2") || test.getContext("webgl"))) return fallback();
-  var THREE; try { THREE = await import("https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.min.js"); } catch (e) { return fallback(); }
+  var A = "/assets/gta6/leonida-";
+  var loaded; try {
+    loaded = await Promise.all([import("https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.min.js"), qtMapLoadImg(A + "height.png"), fetch(A + "city.json").then(function (r) { return r.json(); })]);
+  } catch (e) { return fallback(); }
+  var THREE = loaded[0], himg = loaded[1], city = loaded[2];
   var reduce = !!window.qtGsStill, small = innerWidth < 760;
-  var W = box.clientWidth, H = box.clientHeight, S = 14, Y = 1.25;
+  var W = box.clientWidth, H = box.clientHeight, S = 14, Y = .9, SEA = .07;
   var X = function (u) { return (u - .5) * S; }, Z = function (v) { return (v - .5) * S; };
-  var groundY = function (u, v) { var h = qtMapHeight(u, v); return h > 0 ? h * Y : h; };
-  var R = function (s) { var x = Math.sin(s * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); };
+  // heightmap sampler (bilinear)
+  var hc = document.createElement("canvas"), HN = himg.width; hc.width = hc.height = HN; var hx = hc.getContext("2d", { willReadFrequently: true }); hx.drawImage(himg, 0, 0);
+  var hd = hx.getImageData(0, 0, HN, HN).data;
+  function hAt(u, v) {
+    var x = Math.max(0, Math.min(HN - 1.001, u * HN - .5)), y = Math.max(0, Math.min(HN - 1.001, v * HN - .5)), x0 = x | 0, y0 = y | 0, fx = x - x0, fy = y - y0;
+    var p = function (i, j) { return qtMapDecode(hd[((y0 + j) * HN + x0 + i) * 4]); };
+    return p(0, 0) * (1 - fx) * (1 - fy) + p(1, 0) * fx * (1 - fy) + p(0, 1) * (1 - fx) * fy + p(1, 1) * fx * fy;
+  }
+  var groundY = function (u, v) { var h = hAt(u, v); return h > 0 ? .004 + h * h * Y * 1.6 + h * Y * .2 : h * SEA; }; // gentle shores, shallow water
 
   var renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
   renderer.setPixelRatio(Math.min(small ? 1.5 : 1.25, window.devicePixelRatio || 1)); renderer.setSize(W, H);
-  renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.08;
   if (!small) { renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; }
   box.insertBefore(renderer.domElement, box.firstChild); renderer.domElement.setAttribute("aria-hidden", "true");
-  var scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(40, W / H, .05, 120);
+  var scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(38, W / H, .05, 120);
+  var maxAniso = renderer.capabilities.getMaxAnisotropy();
+  var texL = new THREE.TextureLoader();
+  function tex(src, srgb) { return new Promise(function (ok, bad) { texL.load(src, function (t) { if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = Math.min(8, maxAniso); ok(t); }, undefined, bad); }); }
+  var tx; try { tx = await Promise.all([tex(A + "map.webp", true), tex(A + "lights.webp", true)]); } catch (e) { return fallback(); }
 
-  // ---------- sky + lights (two moods) ----------
+  // ---------- sky + lights ----------
   function skyTex(stops) { var c = document.createElement("canvas"); c.width = 2; c.height = 256; var g = c.getContext("2d"), gr = g.createLinearGradient(0, 0, 0, 256); stops.forEach(function (s) { gr.addColorStop(s[0], s[1]); }); g.fillStyle = gr; g.fillRect(0, 0, 2, 256); var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; }
-  var SKY = { sunset: skyTex([[0, "#140736"], [.42, "#4a1470"], [.7, "#d12c6e"], [.86, "#ff8a3d"], [1, "#ffd27a"]]), night: skyTex([[0, "#02010a"], [.6, "#0d0830"], [1, "#2a0f4a"]]) };
-  var hemi = new THREE.HemisphereLight(0xffd6f0, 0x203048, 1.15); scene.add(hemi);
-  var sun = new THREE.DirectionalLight(0xffb27a, 2.6); sun.position.set(-7, 7, 5); scene.add(sun);
-  if (!small) { sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); var sc = sun.shadow.camera; sc.left = -9; sc.right = 9; sc.top = 9; sc.bottom = -9; sc.near = 1; sc.far = 30; sun.shadow.bias = -.0006; sun.shadow.normalBias = .02; }
-  scene.fog = new THREE.Fog(0x7a2a6e, 14, 34);
+  var SKY = { day: skyTex([[0, "#2b1060"], [.45, "#7a2a8a"], [.72, "#ff6f7d"], [.88, "#ffb26b"], [1, "#ffe1a0"]]), night: skyTex([[0, "#02010a"], [.6, "#0b0a2e"], [1, "#24124a"]]) };
+  var hemi = new THREE.HemisphereLight(0xfff0f6, 0x2a3a5a, 1.25); scene.add(hemi);
+  var sun = new THREE.DirectionalLight(0xffc28a, 2.4); sun.position.set(-6, 6.5, 4); scene.add(sun);
+  if (!small) { sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); var sc = sun.shadow.camera; sc.left = -8; sc.right = 8; sc.top = 8; sc.bottom = -8; sc.near = 1; sc.far = 28; sun.shadow.bias = -.0005; sun.shadow.normalBias = .03; }
+  scene.fog = new THREE.Fog(0x8a4a7e, 16, 38);
 
-  // ---------- terrain ----------
-  var N = small ? 180 : 260, geo = new THREE.PlaneGeometry(S, S, N, N); geo.rotateX(-Math.PI / 2);
-  var pos = geo.attributes.position, colors = new Float32Array(pos.count * 3), c = new THREE.Color(), c2 = new THREE.Color();
-  var C = { deep: new THREE.Color(0x0b2a5c), shallow: new THREE.Color(0x46e6d2), sand: new THREE.Color(0xeedaa6), grass: new THREE.Color(0x5aa452), grass2: new THREE.Color(0x3f8a45), forest: new THREE.Color(0x2b6136), swamp: new THREE.Color(0x56683a), pool: new THREE.Color(0x2c6f6a), farmA: new THREE.Color(0xa9be4e), farmB: new THREE.Color(0xd2b85c), rock: new THREE.Color(0x8d8a80), snow: new THREE.Color(0xd8d2c8), urban: new THREE.Color(0x77707e) };
-  for (var i = 0; i < pos.count; i++) {
-    var u = pos.getX(i) / S + .5, v = pos.getZ(i) / S + .5, h = qtMapHeight(u, v), d = qtMapDist(u, v), n = qtMapNoise(u * 55, v * 55);
-    pos.setY(i, h > 0 ? h * Y : h);
-    if (d <= 0) c.copy(C.deep).lerp(C.shallow, Math.max(0, 1 + h * 2.4));
-    else if (h <= 0) c.copy(C.pool);
-    else {
-      c.copy(C.grass).lerp(C.grass2, n);
-      var sw = qtMapSwamp(u, v); if (sw > .05) c.lerp(C.swamp, Math.min(1, sw * 1.6));
-      var lk = qtMapLake(u, v), farm = Math.exp(-((u - .7) * (u - .7) + (v - .6) * (v - .6)) / .004);
-      if (farm * (.6 + qtMapNoise(u * 25, v * 25) * .8) > .3 && lk > 1.4) c.copy(Math.sin(u * 420 + Math.floor(v * 60) * 1.7) > 0 ? C.farmA : C.farmB).lerp(C.grass, .2);
-      if (v < .33 && sw < .1) c.lerp(C.forest, Math.min(1, (.33 - v) * 6) * (.6 + n * .4));
-      if (h > .45) c.copy(C.forest).lerp(C.rock, Math.min(1, (h - .45) * 2.6)); if (h > .82) c.lerp(C.snow, .5);
-      var town = 0; for (var t = 0; t < QT_MAP_TOWNS.length; t++) { var T0 = QT_MAP_TOWNS[t]; town = Math.max(town, Math.exp(-((u - T0[0]) * (u - T0[0]) + (v - T0[1]) * (v - T0[1])) / (T0[2] * T0[2]))); }
-      if (town > .25) c.lerp(C.urban, Math.min(.85, town));
-      if (d < .006) c.lerp(C.sand, 1 - d / .006);
-    }
-    colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
-  }
-  geo.setAttribute("color", new THREE.BufferAttribute(colors, 3)); geo.computeVertexNormals();
-  var land = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .95 })); land.receiveShadow = true; scene.add(land);
-  // water: translucent so the turquoise shallows show through, with gentle swell
-  var wgeo = new THREE.PlaneGeometry(60, 60, 48, 48); wgeo.rotateX(-Math.PI / 2);
-  var waterMat = new THREE.MeshStandardMaterial({ color: 0x1aa6c4, transparent: true, opacity: .55, roughness: .12, metalness: .35, emissive: 0x062a44 });
-  var floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshBasicMaterial({ color: 0x0a2550 })); floor.rotation.x = -Math.PI / 2; floor.position.y = -.47; scene.add(floor);
-  var water = new THREE.Mesh(wgeo, waterMat); water.position.y = 0; scene.add(water); var wbase = Float32Array.from(wgeo.attributes.position.array);
+  // ---------- painted terrain ----------
+  var N = small ? 200 : 300, geo = new THREE.PlaneGeometry(S, S, N, N); geo.rotateX(-Math.PI / 2);
+  var pos = geo.attributes.position;
+  for (var i = 0; i < pos.count; i++) pos.setY(i, groundY(pos.getX(i) / S + .5, pos.getZ(i) / S + .5));
+  geo.computeVertexNormals();
+  var landMat = new THREE.MeshStandardMaterial({ map: tx[0], emissiveMap: tx[1], emissive: 0xffffff, emissiveIntensity: 0, roughness: .92, metalness: 0 });
+  var land = new THREE.Mesh(geo, landMat); land.receiveShadow = !small; scene.add(land);
+  // skirt + far ocean so the edges never show the sky
+  var ocean = new THREE.Mesh(new THREE.PlaneGeometry(90, 90), new THREE.MeshStandardMaterial({ color: 0x0b4f8f, roughness: .3 })); ocean.rotation.x = -Math.PI / 2; ocean.position.y = -SEA * 1.05; scene.add(ocean);
+  // glossy water film with a gentle swell (sun glints)
+  var wgeo = new THREE.PlaneGeometry(S, S, 64, 64); wgeo.rotateX(-Math.PI / 2);
+  var waterMat = new THREE.MeshStandardMaterial({ color: 0x47c8e0, transparent: true, opacity: .16, roughness: .05, metalness: .6, depthWrite: false });
+  var water = new THREE.Mesh(wgeo, waterMat); water.position.y = -.004; scene.add(water); var wbase = Float32Array.from(wgeo.attributes.position.array);
 
-  // ---------- buildings with lit windows ----------
-  var wc = document.createElement("canvas"); wc.width = 32; wc.height = 64; var wg = wc.getContext("2d"); wg.fillStyle = "#1b1426"; wg.fillRect(0, 0, 32, 64);
-  for (var wy = 2; wy < 64; wy += 5) for (var wx = 2; wx < 32; wx += 5) { var r0 = R(wx * 7 + wy * 13); wg.fillStyle = r0 > .55 ? (r0 > .9 ? "#3cf0ff" : r0 > .82 ? "#ff6bd6" : "#ffd98a") : "#2a2238"; wg.fillRect(wx, wy, 3, 3); }
+  // ---------- 3D buildings on the painted city blocks ----------
+  var wc = document.createElement("canvas"); wc.width = 32; wc.height = 64; var wg = wc.getContext("2d"); wg.fillStyle = "#7d8aa6"; wg.fillRect(0, 0, 32, 64);
+  var R = function (s) { var x = Math.sin(s * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); };
+  for (var wy = 3; wy < 62; wy += 5) for (var wx = 2; wx < 31; wx += 5) { var r0 = R(wx * 7 + wy * 13); wg.fillStyle = r0 > .5 ? "#ffd98a" : r0 > .42 ? "#7ad8ff" : "#55607a"; wg.fillRect(wx, wy, 3, 3); }
   var winTex = new THREE.CanvasTexture(wc); winTex.colorSpace = THREE.SRGBColorSpace; winTex.magFilter = THREE.NearestFilter;
-  var bMat = new THREE.MeshStandardMaterial({ map: winTex, emissiveMap: winTex, emissive: 0xffffff, emissiveIntensity: .25, roughness: .6, metalness: .15 });
-  var total = QT_MAP_TOWNS.reduce(function (a, t) { return a + t[3]; }, 0), blds = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), bMat, total);
-  blds.castShadow = !small; blds.receiveShadow = !small;
-  var m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), sc3 = new THREE.Vector3(), p3 = new THREE.Vector3(), bi = 0, seed = 1;
-  var used = {};
-  var tint = [0xffffff, 0xd7e8ff, 0xffe1f0, 0xfff1d6, 0xc9fff6];
-  QT_MAP_TOWNS.forEach(function (T0, ti) {
-    for (var k = 0; k < T0[3]; k++) {
-      var blk = .0075, gx = Math.round((R(seed++) - .5) * 2 * T0[2] / blk), gz = Math.round((R(seed++) - .5) * 2 * T0[2] / blk), bu = T0[0] + gx * blk + (R(seed++) - .5) * .002, bv = T0[1] + gz * blk + (R(seed++) - .5) * .002, rr = Math.hypot(gx * blk, gz * blk); if (rr > T0[2]) { k--; seed++; if (seed > 1e5) break; continue; } var key = ti + ":" + gx + ":" + gz; if (used[key]) continue; used[key] = 1;
-      if (qtMapHeight(bu, bv) <= .004 || qtMapDist(bu, bv) < .004) { bu = T0[0]; bv = T0[1]; if (qtMapHeight(bu, bv) <= 0) continue; }
-      var core = 1 - rr / T0[2], hgt = .03 + Math.pow(core, 2.2) * T0[4] * (.4 + R(seed++) * .9), wdt = .035 + R(seed++) * .05;
-      if (ti === 0 && R(seed++) > .965) hgt *= 1.7; // a few Vice City skyscrapers
-      p3.set(X(bu), groundY(bu, bv) + hgt / 2, Z(bv)); q.identity(); sc3.set(Math.min(wdt, blk * S * .8), hgt, Math.min(wdt * (.7 + R(seed++) * .6), blk * S * .8));
-      m4.compose(p3, q, sc3); blds.setMatrixAt(bi, m4); blds.setColorAt(bi, new THREE.Color(tint[Math.floor(R(seed++) * tint.length)])); bi++;
-    }
+  var dark = document.createElement("canvas"); dark.width = 32; dark.height = 64; var dg = dark.getContext("2d"); dg.drawImage(wc, 0, 0); var id = dg.getImageData(0, 0, 32, 64);
+  for (var p4 = 0; p4 < id.data.length; p4 += 4) { var lit = id.data[p4] > 230 && id.data[p4 + 2] < 160 || id.data[p4 + 2] > 230 && id.data[p4] < 140; if (!lit) { id.data[p4] = id.data[p4 + 1] = id.data[p4 + 2] = 0; } } dg.putImageData(id, 0, 0);
+  var glowTex = new THREE.CanvasTexture(dark); glowTex.colorSpace = THREE.SRGBColorSpace; glowTex.magFilter = THREE.NearestFilter;
+  var bMat = new THREE.MeshStandardMaterial({ map: winTex, emissiveMap: glowTex, emissive: 0xffffff, emissiveIntensity: 0, roughness: .45, metalness: .25 });
+  city = city.filter(function (b) { return b[3] > .05; });
+  var blds = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), bMat, city.length); blds.castShadow = !small; blds.receiveShadow = !small;
+  var m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), sc3 = new THREE.Vector3(), p3 = new THREE.Vector3(), tints = [0xffffff, 0xcfe4ff, 0xf3e6ff, 0xe8f6ff, 0xd8fff6];
+  city.forEach(function (b, k) {
+    var w = b[2] * S * .8, h = b[3] * 2.4; p3.set(X(b[0]), groundY(b[0], b[1]) + h / 2 - .005, Z(b[1])); sc3.set(w, h, w * (.75 + R(k) * .5));
+    m4.compose(p3, q, sc3); blds.setMatrixAt(k, m4); blds.setColorAt(k, new THREE.Color(tints[k % tints.length]));
   });
-  blds.count = bi; scene.add(blds);
-
-  // ---------- forests ----------
-  var TREES = small ? 900 : 2200, trees = new THREE.InstancedMesh(new THREE.ConeGeometry(.045, .14, 6), new THREE.MeshStandardMaterial({ color: 0x2f6e3a, roughness: 1 }), TREES), tc = 0;
-  trees.castShadow = !small;
-  for (var tt = 0; tt < TREES * 4 && tc < TREES; tt++) {
-    var tu = .02 + R(tt * 3.1) * .9, tv = .08 + R(tt * 5.7) * .35, th = qtMapHeight(tu, tv);
-    if (th < .05 || th > .7 || qtMapDist(tu, tv) < .012 || qtMapNoise(tu * 30, tv * 30) < .42) continue;
-    var near = false; for (var t2 = 0; t2 < QT_MAP_TOWNS.length; t2++) if (Math.hypot(tu - QT_MAP_TOWNS[t2][0], tv - QT_MAP_TOWNS[t2][1]) < QT_MAP_TOWNS[t2][2]) near = true; if (near) continue;
-    var ts = .7 + R(tt) * .7; m4.compose(p3.set(X(tu), th * Y + .06 * ts, Z(tv)), q.identity(), sc3.set(ts, ts, ts)); trees.setMatrixAt(tc, m4); trees.setColorAt(tc, new THREE.Color().setHSL(.3 + R(tt + 1) * .06, .45, .2 + R(tt + 2) * .1)); tc++;
-  }
-  trees.count = tc; scene.add(trees);
-
-  // ---------- highways, the keys bridge, traffic ----------
-  var roadMat = new THREE.MeshStandardMaterial({ color: 0x45404c, roughness: .6, emissive: 0xffb347, emissiveIntensity: .08 }), routes = [];
-  QT_MAP_ROADS.forEach(function (rd) {
-    var pts = []; for (var s = 0; s < rd.pts.length - 1; s++) { var a = rd.pts[s], b = rd.pts[s + 1], n2 = Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / .004); for (var k = 0; k < n2; k++) pts.push([a[0] + (b[0] - a[0]) * k / n2, a[1] + (b[1] - a[1]) * k / n2]); }
-    pts.push(rd.pts[rd.pts.length - 1]);
-    var verts = [], idx = [], path = [], halfW = rd.w * S * .5 * .2;
-    pts.forEach(function (p, k) {
-      var pn = pts[Math.min(pts.length - 1, k + 1)], pp = pts[Math.max(0, k - 1)], dx = (pn[0] - pp[0]) * S, dz = (pn[1] - pp[1]) * S, L = Math.hypot(dx, dz) || 1, nx = -dz / L, nz = dx / L;
-      var gy = groundY(p[0], p[1]), y = rd.bridge || gy < .02 ? Math.max(gy, 0) + .06 : gy + .012;
-      verts.push(X(p[0]) + nx * halfW, y, Z(p[1]) + nz * halfW, X(p[0]) - nx * halfW, y, Z(p[1]) - nz * halfW);
-      if (k) { var o = (k - 1) * 2; idx.push(o, o + 2, o + 1, o + 1, o + 2, o + 3); }
-      path.push(new THREE.Vector3(X(p[0]), y + .02, Z(p[1])));
-    });
-    var g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.Float32BufferAttribute(verts, 3)); g.setIndex(idx); g.computeVertexNormals();
-    var mesh = new THREE.Mesh(g, roadMat); mesh.receiveShadow = !small; scene.add(mesh);
-    if (rd.bridge) { var pil = new THREE.InstancedMesh(new THREE.CylinderGeometry(.012, .012, .1, 6), new THREE.MeshStandardMaterial({ color: 0xcfc6d8 }), Math.ceil(path.length / 4)), pc = 0; for (var k2 = 0; k2 < path.length; k2 += 4) { m4.makeTranslation(path[k2].x, .02, path[k2].z); pil.setMatrixAt(pc++, m4); } pil.count = pc; scene.add(pil); }
-    var len = [0]; for (var k3 = 1; k3 < path.length; k3++) len.push(len[k3 - 1] + path[k3].distanceTo(path[k3 - 1]));
-    routes.push({ path: path, len: len, total: len[len.length - 1] });
-  });
-  var CARS = small ? 90 : 180, carMat = new THREE.MeshBasicMaterial({ color: 0xffffff }), cars = new THREE.InstancedMesh(new THREE.SphereGeometry(.018, 6, 4), carMat, CARS), carState = [];
-  for (var cI = 0; cI < CARS; cI++) { var rI = cI % routes.length; carState.push({ r: routes[rI], s: R(cI * 9) * routes[rI].total, sp: (.25 + R(cI * 4) * .25) * (R(cI * 2) > .5 ? 1 : -1) }); cars.setColorAt(cI, new THREE.Color(carState[cI].sp > 0 ? 0xfff2c4 : 0xff3b4e)); }
-  scene.add(cars);
-  function placeCar(cs, i) { var r = cs.r, s = ((cs.s % r.total) + r.total) % r.total, lo = 0, hi = r.len.length - 1; while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (r.len[mid] < s) lo = mid; else hi = mid; } var f = (s - r.len[lo]) / ((r.len[hi] - r.len[lo]) || 1); p3.copy(r.path[lo]).lerp(r.path[hi], f); m4.makeTranslation(p3.x, p3.y, p3.z); cars.setMatrixAt(i, m4); }
+  scene.add(blds);
 
   // ---------- clouds ----------
   var cc = document.createElement("canvas"); cc.width = cc.height = 64; var cg = cc.getContext("2d"), rg = cg.createRadialGradient(32, 32, 2, 32, 32, 32); rg.addColorStop(0, "rgba(255,255,255,.9)"); rg.addColorStop(1, "rgba(255,255,255,0)"); cg.fillStyle = rg; cg.fillRect(0, 0, 64, 64);
   var cloudTex = new THREE.CanvasTexture(cc), clouds = [];
-  for (var k4 = 0; k4 < (small ? 8 : 16); k4++) { var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: cloudTex, color: 0xffd6ec, transparent: true, opacity: .35, depthWrite: false })); sp.position.set((R(k4 * 3) - .5) * 18, 2.2 + R(k4) * 1.2, (R(k4 * 7) - .5) * 16); sp.scale.set(2.4 + R(k4 * 5) * 2, 1 + R(k4 * 6), 1); scene.add(sp); clouds.push(sp); }
+  for (var k4 = 0; k4 < (small ? 7 : 14); k4++) { var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: cloudTex, color: 0xffffff, transparent: true, opacity: .3, depthWrite: false })); sp.position.set((R(k4 * 3) - .5) * 18, 2.6 + R(k4) * 1.2, (R(k4 * 7) - .5) * 16); sp.scale.set(2.6 + R(k4 * 5) * 2.2, 1 + R(k4 * 6), 1); scene.add(sp); clouds.push(sp); }
 
   // ---------- pins ----------
   var pins = [], layer = document.getElementById("gsMapPins");
   places.forEach(function (p) {
     var y = Math.max(groundY(p.u, p.v), 0), x = X(p.u), z = Z(p.v), col = p.color || 0xff2d95;
-    var beam = new THREE.Mesh(new THREE.CylinderGeometry(.02, .05, 1.5, 10, 1, true), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: .45, depthWrite: false, blending: THREE.AdditiveBlending })); beam.position.set(x, y + .75, z); scene.add(beam);
-    var ring = new THREE.Mesh(new THREE.RingGeometry(.12, .16, 32), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: .8, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; ring.position.set(x, y + .03, z); scene.add(ring);
-    var orb = new THREE.Mesh(new THREE.SphereGeometry(.07, 16, 12), new THREE.MeshBasicMaterial({ color: col })); orb.position.set(x, y + 1.52, z); scene.add(orb);
+    var beam = new THREE.Mesh(new THREE.CylinderGeometry(.015, .04, 1.4, 10, 1, true), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: .5, depthWrite: false, blending: THREE.AdditiveBlending })); beam.position.set(x, y + .7, z); scene.add(beam);
+    var ring = new THREE.Mesh(new THREE.RingGeometry(.1, .135, 40), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: .85, side: THREE.DoubleSide, depthWrite: false })); ring.rotation.x = -Math.PI / 2; ring.position.set(x, y + .02, z); scene.add(ring);
+    var orb = new THREE.Mesh(new THREE.SphereGeometry(.06, 16, 12), new THREE.MeshBasicMaterial({ color: col })); orb.position.set(x, y + 1.42, z); scene.add(orb);
     var btn = document.createElement("button"); btn.type = "button"; btn.className = "gs-pin"; btn.textContent = p.name; btn.style.setProperty("--pc", p.css || "#ff2d95");
     btn.addEventListener("click", function () { focus(p); }); layer.appendChild(btn);
-    pins.push({ p: p, v: new THREE.Vector3(x, y + 1.65, z), btn: btn, orb: orb, ring: ring });
+    pins.push({ p: p, v: new THREE.Vector3(x, y + 1.55, z), btn: btn, orb: orb, ring: ring });
   });
 
-  // ---------- moods ----------
+  // ---------- day / night ----------
   var tools = box.querySelector(".gs-maptools"), moodBtn = document.createElement("button"); moodBtn.type = "button"; moodBtn.className = "chip"; tools.insertBefore(moodBtn, tools.firstChild);
   var night = false;
   function mood(n) {
-    night = n; scene.background = n ? SKY.night : SKY.sunset;
-    hemi.intensity = n ? .35 : 1.15; sun.intensity = n ? .35 : 2.6; sun.color.set(n ? 0x8fa8ff : 0xffb27a);
-    scene.fog.color.set(n ? 0x120a2a : 0x7a2a6e); bMat.emissiveIntensity = n ? 1.6 : .25; roadMat.emissiveIntensity = n ? .9 : .12;
-    waterMat.emissive.set(n ? 0x02101e : 0x062a44); clouds.forEach(function (s) { s.material.color.set(n ? 0x6a5a9a : 0xffd6ec); s.material.opacity = n ? .18 : .35; });
-    moodBtn.textContent = n ? (AR ? "🌅 غروب" : "🌅 Sunset") : (AR ? "🌙 ليل" : "🌙 Night");
+    night = n; scene.background = n ? SKY.night : SKY.day;
+    hemi.intensity = n ? .5 : 1.25; sun.intensity = n ? .3 : 2.4; sun.color.set(n ? 0x8fa8ff : 0xffc28a);
+    landMat.color.set(n ? 0x7880b8 : 0xffffff); landMat.emissiveIntensity = n ? 3 : 0; bMat.emissiveIntensity = n ? 2.2 : 0;
+    ocean.material.color.set(n ? 0x061a36 : 0x0b4f8f); waterMat.color.set(n ? 0x1a2a6a : 0x47c8e0);
+    scene.fog.color.set(n ? 0x0b0a26 : 0x8a4a7e); clouds.forEach(function (s) { s.material.color.set(n ? 0x5a4a8a : 0xffffff); s.material.opacity = n ? .14 : .3; });
+    moodBtn.textContent = n ? (AR ? "☀️ نهار" : "☀️ Day") : (AR ? "🌙 ليل" : "🌙 Night");
   }
   moodBtn.addEventListener("click", function () { mood(!night); }); mood(false);
 
   // ---------- camera rig ----------
-  var HOME = { az: -.35, el: .9, dist: 15.5, x: .3, z: .4 };
+  var HOME = { az: -.28, el: 1.0, dist: 14.5, x: .4, z: .5 };
   var rig = { az: HOME.az, el: HOME.el, dist: HOME.dist, tAz: HOME.az, tEl: HOME.el, tDist: HOME.dist, target: new THREE.Vector3(HOME.x, 0, HOME.z), tTarget: new THREE.Vector3(HOME.x, 0, HOME.z) }, idle = 0, card = document.getElementById("gsMapCard");
   function focus(p) {
-    rig.tTarget.set(X(p.u), Math.max(groundY(p.u, p.v), 0), Z(p.v)); rig.tDist = 4.2; rig.tEl = .62; idle = -8;
+    rig.tTarget.set(X(p.u), Math.max(groundY(p.u, p.v), 0), Z(p.v)); rig.tDist = 3.6; rig.tEl = .58; idle = -8;
     card.hidden = false; var im = card.querySelector("img"); im.src = p.img; im.alt = p.name; card.querySelector("b").textContent = p.name; card.querySelector("p").textContent = p.desc; card.querySelector("em").textContent = p.real || "";
     pins.forEach(function (o) { o.btn.classList.toggle("on", o.p === p); });
     if (typeof qtEvent === "function") qtEvent("gta_map_pin");
@@ -225,13 +190,13 @@ async function build() {
   el.addEventListener("contextmenu", function (e) { e.preventDefault(); });
   el.addEventListener("pointermove", function (e) {
     if (!pts[e.pointerId]) return; var ids = Object.keys(pts);
-    if (ids.length === 2) { var o = pts[ids[0] == e.pointerId ? ids[1] : ids[0]], prev = pts[e.pointerId], d0 = Math.hypot(prev[0] - o[0], prev[1] - o[1]), d1 = Math.hypot(e.clientX - o[0], e.clientY - o[1]); rig.tDist = Math.max(2.2, Math.min(20, rig.tDist * d0 / Math.max(1, d1))); }
+    if (ids.length === 2) { var o = pts[ids[0] == e.pointerId ? ids[1] : ids[0]], prev = pts[e.pointerId], d0 = Math.hypot(prev[0] - o[0], prev[1] - o[1]), d1 = Math.hypot(e.clientX - o[0], e.clientY - o[1]); rig.tDist = Math.max(1.6, Math.min(20, rig.tDist * d0 / Math.max(1, d1))); }
     else if (drag && drag.pan) { var f = rig.dist * .0016, dx = e.clientX - drag.x, dy = e.clientY - drag.y, ca = Math.cos(rig.az), sa = Math.sin(rig.az); rig.tTarget.set(Math.max(-7, Math.min(7, drag.t.x - (dx * ca + dy * sa) * f)), drag.t.y, Math.max(-7, Math.min(7, drag.t.z - (-dx * sa + dy * ca) * f))); }
-    else if (drag) { rig.tAz = drag.az - (e.clientX - drag.x) * .006; rig.tEl = Math.max(.22, Math.min(1.4, drag.el + (e.clientY - drag.y) * .004)); }
+    else if (drag) { rig.tAz = drag.az - (e.clientX - drag.x) * .006; rig.tEl = Math.max(.2, Math.min(1.45, drag.el + (e.clientY - drag.y) * .004)); }
     pts[e.pointerId] = [e.clientX, e.clientY];
   });
   var up = function (e) { delete pts[e.pointerId]; drag = null; }; el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up);
-  el.addEventListener("wheel", function (e) { e.preventDefault(); rig.tDist = Math.max(2.2, Math.min(20, rig.tDist * (1 + e.deltaY * .001))); idle = -5; }, { passive: false });
+  el.addEventListener("wheel", function (e) { e.preventDefault(); rig.tDist = Math.max(1.6, Math.min(20, rig.tDist * (1 + e.deltaY * .001))); idle = -5; }, { passive: false });
 
   // ---------- render loop (only while visible) ----------
   var visible = false, last = performance.now(), v3 = new THREE.Vector3();
@@ -240,21 +205,20 @@ async function build() {
   function loop(now) {
     if (!visible || document.hidden) { visible = visible && !document.hidden; return; }
     var dt = Math.min(.05, (now - last) / 1000); last = now; idle += dt;
-    if (idle > 3 && !reduce) rig.tAz += dt * .05;
+    if (idle > 3 && !reduce) rig.tAz += dt * .045;
     var k = 1 - Math.pow(.003, dt); rig.az += (rig.tAz - rig.az) * k; rig.el += (rig.tEl - rig.el) * k; rig.dist += (rig.tDist - rig.dist) * k; rig.target.lerp(rig.tTarget, k);
     camera.position.set(rig.target.x + Math.cos(rig.el) * Math.sin(rig.az) * rig.dist, rig.target.y + Math.sin(rig.el) * rig.dist, rig.target.z + Math.cos(rig.el) * Math.cos(rig.az) * rig.dist); camera.lookAt(rig.target);
     var tt = now / 1000;
     if (!reduce) {
-      var a = wgeo.attributes.position.array; for (var i = 1; i < a.length; i += 3) a[i] = Math.sin(wbase[i - 1] * 1.4 + tt) * .012 + Math.cos(wbase[i + 1] * 1.2 + tt * .8) * .012; wgeo.attributes.position.needsUpdate = true;
-      for (var c5 = 0; c5 < carState.length; c5++) { carState[c5].s += carState[c5].sp * dt; placeCar(carState[c5], c5); } cars.instanceMatrix.needsUpdate = true;
+      var a = wgeo.attributes.position.array; for (var i = 1; i < a.length; i += 3) a[i] = Math.sin(wbase[i - 1] * 1.6 + tt) * .006 + Math.cos(wbase[i + 1] * 1.3 + tt * .8) * .006; wgeo.attributes.position.needsUpdate = true;
       clouds.forEach(function (s, i2) { s.position.x += dt * (.08 + i2 % 3 * .03); if (s.position.x > 10) s.position.x = -10; });
-    } else if (!cars.userData.placed) { carState.forEach(placeCar); cars.instanceMatrix.needsUpdate = true; cars.userData.placed = true; }
+    }
     pins.forEach(function (o, i3) {
-      o.orb.scale.setScalar(1 + .25 * Math.sin(tt * 3 + i3)); o.ring.scale.setScalar(1 + ((tt * .8 + i3 * .3) % 1) * 1.6); o.ring.material.opacity = .8 * (1 - ((tt * .8 + i3 * .3) % 1));
+      var ph = (tt * .8 + i3 * .3) % 1; o.orb.scale.setScalar(1 + .25 * Math.sin(tt * 3 + i3)); o.ring.scale.setScalar(1 + ph * 1.6); o.ring.material.opacity = .85 * (1 - ph);
       v3.copy(o.v).project(camera); var sx = (v3.x * .5 + .5) * W, sy = Math.max(46, (-v3.y * .5 + .5) * H);
       o.btn.style.transform = "translate(-50%,-100%) translate(" + sx.toFixed(1) + "px," + sy.toFixed(1) + "px)"; o.btn.style.opacity = v3.z < 1 && sx > -40 && sx < W + 40 ? 1 : 0;
     });
     renderer.render(scene, camera); requestAnimationFrame(loop);
   }
 }
-if (typeof module !== "undefined") module.exports = { qtMapInside: qtMapInside, qtMapHeight: qtMapHeight, qtMapDist: qtMapDist, QT_MAP_OUTLINE: QT_MAP_OUTLINE, QT_MAP_ROADS: QT_MAP_ROADS };
+if (typeof module !== "undefined") module.exports = { qtMapInside: qtMapInside, qtMapHeight: qtMapHeight, qtMapDist: qtMapDist, qtMapDecode: qtMapDecode, QT_MAP_OUTLINE: QT_MAP_OUTLINE, QT_MAP_ROADS: QT_MAP_ROADS };
