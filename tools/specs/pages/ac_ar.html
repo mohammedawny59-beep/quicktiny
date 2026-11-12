@@ -1,0 +1,63 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">صانع الريلز بالذكاء الاصطناعي</span></div>
+<!--LANG-SWITCH-->
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">فيديو · ذكاء اصطناعي</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>فيديوك لا يغادر جهازك</span><span class="badge">مجاني</span></div>
+    <h1>صانع الريلز بالذكاء الاصطناعي — حوّل الفيديو الطويل إلى ريلز جاهزة تلقائيًا ومجانًا</h1>
+    <p>ارفع بودكاست أو محاضرة أو بث مباشر واحصل على أقوى اللحظات كريلز عمودية جاهزة للنشر: الكلام يتحوّل لنص على جهازك، تُختار أقوى المقاطع المكتملة مع عنوان لكل مقطع، كاميرا ذكية تتبع وجه المتحدث، تُحذف السكتات وتُضاف ترجمة متحركة — MP4 بالصوت، عربي وإنجليزي، بدون رفع وبدون علامة مائية.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="ac-top">
+      <div>
+        <div class="ac-card"><h2>١ · فيديوك الطويل</h2>
+          <label class="ac-drop" id="clDrop"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></svg><strong>اختر فيديو أو اسحبه هنا</strong><span>بودكاست، محاضرة، مقابلة أو بث · حتى 45 دقيقة</span><span id="clName"></span><input type="file" id="clFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>
+          <div class="ac-row" style="margin-top:14px"><label for="clLang">لغة الكلام</label><select id="clLang"><option value="arabic">العربية</option><option value="english">الإنجليزية</option><option value="">تحديد تلقائي</option></select></div>
+          <div class="ac-row"><label for="clModel">الدقة</label><select id="clModel"><option value="base">سريع (≈ 75 ميغا، مرة واحدة)</option><option value="small">أدق (≈ 250 ميغا، مرة واحدة)</option></select></div>
+          <div class="ac-row"><span class="ac-l">طول المقطع</span><div class="ac-chips" id="clLen" role="group"><button type="button" class="chip" data-l="short">15–35 ث</button><button type="button" class="chip" data-l="mid">30–60 ث</button><button type="button" class="chip" data-l="long">55–90 ث</button></div></div>
+          <div class="ac-row"><label for="clCount">عدد المقاطع</label><select id="clCount"><option>3</option><option>5</option><option>8</option><option>10</option></select></div>
+          <button type="button" class="btn ac-go" id="clGo" disabled>✨ استخرج أقوى المقاطع</button>
+          <div id="clBar" hidden><i id="clBarFill"></i></div><div id="clStatus" role="status" aria-live="polite"></div><p class="ac-note">أول مرة يتنزّل نموذج التعرّف على الكلام مرة واحدة. فيديو 10 دقائق يحتاج بضع دقائق للتحويل على اللابتوب.</p>
+        </div>
+      </div>
+      <div>
+        <div class="ac-card"><h2>٢ · الشكل</h2>
+          <div class="ac-row"><span class="ac-l">الكادر</span><div class="ac-chips" id="clFrame" role="group"><button type="button" class="chip" data-f="face">تتبّع الوجه</button><button type="button" class="chip" data-f="blur">خلفية مموّهة</button></div></div>
+          <div class="ac-row"><span class="ac-l">الترجمة</span><div class="ac-chips" id="clStyle" role="group"><button type="button" class="chip" data-s="box">مربع ملوّن</button><button type="button" class="chip" data-s="pop">تكبير</button><button type="button" class="chip" data-s="karaoke">كاريوكي</button><button type="button" class="chip" data-s="bounce">كلمة كلمة</button></div></div>
+          <div class="ac-row"><label for="clAccent">اللون</label><input type="color" id="clAccent"></div>
+          <div class="ac-checks"><label><input type="checkbox" id="clCaps"> ترجمة متحركة</label><label><input type="checkbox" id="clHook"> عنوان جذاب في البداية</label><label><input type="checkbox" id="clCut"> حذف السكتات</label><label><input type="checkbox" id="clBarOn"> شريط التقدّم</label></div>
+        </div>
+        <div class="ac-card"><h2>ماذا يحدث</h2><ol class="ac-steps"><li>يحوّل كل كلمة لنص على جهازك (Whisper).</li><li>يقيّم كل مقطع ممكن: بداية تشد، فكرة مكتملة، سرعة كلام وحماس — ويختار الأفضل بدون تكرار.</li><li>يتتبّع وجه المتحدث حتى يبقى في منتصف كادر 9:16 بحركة ناعمة.</li><li>يحذف السكتات ويضيف ترجمة متحركة وعنوانًا وشريط تقدّم — وينزّل كل مقطع MP4 بالصوت.</li></ol></div>
+      </div>
+    </div>
+    <div id="clResults" hidden>
+      <div class="ac-head"><h2>أقوى مقاطعك</h2><button type="button" class="btn" id="clAll">⬇ نزّل كل المقاطع</button></div>
+      <div id="clList"></div>
+      <div class="ac-stage" id="clStage" hidden><div class="ac-phone"><canvas id="clCanvas" width="540" height="960" role="img" aria-label="معاينة"></canvas></div><div class="ac-src"><video id="clVideo" playsinline controls preload="metadata"></video></div></div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/brand.js"></script>
+  <script src="/captions.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/clipper.js"></script>
+
+  <div class="content">
+    <h2>أسئلة شائعة</h2>
+    <details class="faq-item"><summary>هل هو مجاني فعلًا وبدون علامة مائية؟</summary><p>نعم — مقاطع غير محدودة، بدون تسجيل وبدون علامة مائية.</p></details>
+    <details class="faq-item"><summary>هل يُرفع الفيديو إلى سيرفر؟</summary><p>لا. تحويل الكلام وتتبّع الوجه والتجهيز كلها داخل متصفحك. فقط نماذج الذكاء الاصطناعي تتنزّل مرة واحدة.</p></details>
+    <details class="faq-item"><summary>كيف يختار المقاطع؟</summary><p>يبحث عن لحظات تبدأ بشيء يشد (سؤال، رقم، جملة قوية)، وتُكمل فكرة كاملة، وبإيقاع حيوي وضمن الطول الذي اخترته. تقدر تغيّر العنوان وتشاهد وتتجاوز أي مقطع.</p></details>
+    <details class="faq-item"><summary>ما أفضل الفيديوهات له؟</summary><p>فيديوهات الكلام — بودكاست، مقابلات، محاضرات، شروحات وبث مباشر. الكلام الواضح ومتحدث رئيسي واحد يعطيان أفضل نتيجة.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">أدوات أخرى لصناع المحتوى</h2>
+    <div class="related-grid">
+      <a href="/ar/add-subtitles-to-video">ترجمة الفيديو تلقائيًا<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/remove-silence-from-video">حذف السكتات<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/horizontal-to-vertical-video">تحويل الفيديو لعمودي<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/video-templates">قوالب فيديو جاهزة<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/creator-studio">استوديو صناع المحتوى<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

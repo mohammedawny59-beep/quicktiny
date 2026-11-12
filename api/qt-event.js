@@ -66,7 +66,9 @@ const ALLOWED_EVENTS = new Set([
   "vertical_export",
   "silence_export",
   "template_open",
-  "template_export"
+  "template_export",
+  "clips_found",
+  "clip_export"
 ]);
 
 function cleanPage(value) {
