@@ -1,0 +1,68 @@
+<div class="wrap">
+  <canvas id="gtaWorld" aria-hidden="true"></canvas>
+  <div class="breadcrumb"><a href="/ar">الرئيسية</a> <span>/</span><span style="color:var(--text-dim)">منطقة GTA 6</span></div>
+<!--LANG-SWITCH-->
+  <section class="gta-hero" id="gtaZone">
+    <span class="gta-kick">منطقة اللاعبين · غير رسمية</span>
+    <h1 class="gta-title">منطقة GTA 6</h1>
+    <p class="gta-sub">كل اللي يحتاجه اللاعب وصانع المحتوى بأسبوع الإطلاق: عدّاد مباشر، طبقات مهمات متحركة لمقاطعك، أسماء عصابات، خلفيات من لقطاتك وقائمة تجهيز ليوم النزول. مجانًا بالعربي والإنجليزي.</p>
+    <div id="gtaCount" role="timer" aria-live="off"><div class="gta-cell" id="gtaD"><b>--</b><span></span></div><div class="gta-cell" id="gtaH"><b>--</b><span></span></div><div class="gta-cell" id="gtaM"><b>--</b><span></span></div><div class="gta-cell" id="gtaS"><b>--</b><span></span></div></div>
+    <p class="gta-note">العدّاد لـ 19 نوفمبر 2026 منتصف الليل بتوقيتك — روكستار لم تعلن ساعة الفتح بالضبط بعد.</p>
+    <nav class="gta-nav" aria-label="منطقة GTA 6"><a href="#facts">اللي نعرفه</a><a href="#overlays">طبقات المهمات</a><a href="#crews">أسماء العصابات</a><a href="#wallpapers">الخلفيات</a><a href="#checklist">قائمة التجهيز</a><a href="#kit">أدوات صناع المحتوى</a></nav>
+  </section>
+
+  <section class="gta-box" id="facts">
+    <h2>اللي نعرفه لحد الآن</h2>
+    <div class="gta-facts"><figure><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="شعار Grand Theft Auto VI" loading="lazy"><figcaption>شعار Grand Theft Auto VI ملك لـ Rockstar Games — معروض لأغراض إخبارية وتعريفية فقط.</figcaption></figure>
+    <div><ul><li><b>موعد النزول:</b> الخميس 19 نوفمبر 2026</li><li><b>المنصات:</b> بلايستيشن 5 وإكسبوكس سيريس X|S</li><li><b>الكمبيوتر:</b> لم يُعلن بعد</li><li><b>ساعة الفتح:</b> لم تُعلن بعد</li></ul><p class="gta-src">المصادر: <a href="https://www.rockstargames.com/VI" rel="noopener" target="_blank">Rockstar Games</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener" target="_blank">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener" target="_blank">Tom's Guide</a></p></div></div>
+  </section>
+
+  <section class="gta-box" id="overlays">
+    <h2>طبقات المهمات</h2>
+    <p>طبقات متحركة على نمط «المهمة نجحت / فشلت / انمسكت» بتصميمنا الخاص — نزّلها MP4 بشاشة خضراء وحطها على مقطع اللعب.</p>
+    <div class="gta-two"><div>
+      <div class="gta-row"><span class="gl">النوع</span><div class="gta-chips" id="gtaOvlKind" role="group"><button type="button" class="chip active" data-k="passed">نجحت</button><button type="button" class="chip" data-k="failed">فشلت</button><button type="button" class="chip" data-k="busted">انمسكت</button><button type="button" class="chip" data-k="respect">احترام +</button></div></div>
+      <div class="gta-row"><label for="gtaOvlTitle">النص الكبير</label><input type="text" id="gtaOvlTitle" dir="auto" maxlength="40"></div>
+      <div class="gta-row"><label for="gtaOvlSub">النص الصغير</label><input type="text" id="gtaOvlSub" dir="auto" maxlength="50"></div>
+      <div class="gta-row"><span class="gl">الخلفية</span><div class="gta-chips" id="gtaOvlBg" role="group"><button type="button" class="chip active" data-b="green">خضراء</button><button type="button" class="chip" data-b="blue">زرقاء</button><button type="button" class="chip" data-b="black">سوداء</button></div></div>
+      <div class="gta-row"><span class="gl">المقاس</span><div class="gta-chips" id="gtaOvlRatio" role="group"><button type="button" class="chip active" data-r="16:9">16:9</button><button type="button" class="chip" data-r="9:16">9:16</button></div></div>
+      <button type="button" class="btn" id="gtaOvlGo">⬇ نزّل الطبقة MP4</button><div class="gta-msg" id="gtaOvlMsg" role="status"></div>
+    </div><div class="gta-screen"><canvas id="gtaOvl" width="960" height="540" role="img" aria-label="طبقات المهمات"></canvas></div></div>
+  </section>
+
+  <section class="gta-box" id="crews">
+    <h2>مولّد أسماء العصابات</h2>
+    <p>اضغط على أي اسم لتنسخه مع التاغ.</p>
+    <div id="gtaCrews"></div>
+    <button type="button" class="btn" id="gtaCrewGo">🎲 أسماء جديدة</button><div class="gta-msg" id="gtaCrewMsg" role="status"></div>
+  </section>
+
+  <section class="gta-box" id="wallpapers">
+    <h2>خلفيات من لقطات التصوير</h2>
+    <p>حوّل أحلى لقطة عندك لخلفية جوال أو كمبيوتر بلمسة نيون. صورتك تبقى على جهازك.</p>
+    <div class="gta-two"><div>
+      <div class="gta-files" style="margin-bottom:12px"><label class="btn">اختر لقطة شاشة<input type="file" id="gtaWpFile" accept="image/*"></label></div>
+      <div class="gta-row"><span class="gl">المقاس</span><div class="gta-chips" id="gtaWpPre" role="group"><button type="button" class="chip active" data-p="phone">جوال</button><button type="button" class="chip" data-p="iphone">آيفون</button><button type="button" class="chip" data-p="desktop">كمبيوتر 1440p</button><button type="button" class="chip" data-p="uhd">4K</button></div></div>
+      <div class="gta-row"><span class="gl">اللمسة</span><div class="gta-chips" id="gtaWpFx" role="group"><button type="button" class="chip active" data-f="neon">نيون</button><button type="button" class="chip" data-f="vhs">VHS</button><button type="button" class="chip" data-f="none">بدون</button></div></div>
+      <div class="gta-row"><label for="gtaWpX">التركيز ↔</label><input type="range" id="gtaWpX" min="0" max="100" value="50"></div>
+      <div class="gta-row"><label for="gtaWpY">التركيز ↕</label><input type="range" id="gtaWpY" min="0" max="100" value="50"></div>
+      <button type="button" class="btn" id="gtaWpGo">⬇ نزّل الخلفية</button><div class="gta-msg" id="gtaWpMsg" role="status"></div>
+    </div><div><canvas id="gtaWp" width="180" height="390" role="img" aria-label="خلفيات من لقطات التصوير"></canvas></div></div>
+  </section>
+
+  <section class="gta-box" id="checklist">
+    <h2>قائمة التجهيز ليوم النزول</h2>
+    <p>العلامات تنحفظ في متصفحك. <b id="gtaCheckN"></b></p>
+    <div class="gta-bar"><i id="gtaCheckBar"></i></div>
+    <div id="gtaCheck"><label><input type="checkbox" id="gtaC0"> <span>حدّث نظام الجهاز</span></label><label><input type="checkbox" id="gtaC1"> <span>فضّي مساحة تخزين (الحجم الرسمي لم يُعلن بعد — خلّي مساحة كبيرة)</span></label><label><input type="checkbox" id="gtaC2"> <span>للعب أونلاين: اشتراك فعّال في PlayStation Plus أو Xbox Game Pass (Core أو أعلى)</span></label><label><input type="checkbox" id="gtaC3"> <span>اشحن اليد وجهّز كيبل احتياط</span></label><label><input type="checkbox" id="gtaC4"> <span>جهّز التسجيل أو البث (كرت كابتشر أو التسجيل المدمج بالجهاز)</span></label><label><input type="checkbox" id="gtaC5"> <span>فعّل التنزيل التلقائي أو التنزيل المسبق إذا المتجر وفّره</span></label><label><input type="checkbox" id="gtaC6"> <span>خطّط لأول مقطع: بداية تشد، ترجمة، وصورة مصغّرة</span></label></div>
+  </section>
+
+  <section class="gta-box" id="kit">
+    <h2>أدوات صناع المحتوى لفيديوهات GTA</h2>
+    <div class="gta-kit"><a href="/youtube-thumbnail-maker?theme=vice&title=GTA+6+*أول+نظرة*&badge=جديد"><b>صورة مصغّرة نيون</b><span>صانع الصورة المصغّرة يفتح بثيم نيون وعنوان جاهز.</span></a><a href="/ar/ai-clip-maker"><b>صانع الريلز بالذكاء الاصطناعي</b><span>بث طويل ← أقوى اللحظات كريلز مع الترجمة.</span></a><a href="/ar/horizontal-to-vertical-video"><b>اللعب ← عمودي</b><span>حوّل مقطع 16:9 لشورت 9:16 بخلفية مموّهة.</span></a><a href="/ar/add-subtitles-to-video"><b>ترجمة تلقائية</b><span>حط تعليقك كترجمة متحركة على الفيديو.</span></a><a href="/ar/video-templates#hook"><b>افتتاحية ريلز</b><span>بداية متحركة قوية لمقطعك.</span></a></div>
+  </section>
+
+  <p class="gta-disc">قسم معجبين غير رسمي، غير تابع أو معتمد أو مموّل من Rockstar Games أو Take-Two Interactive. Grand Theft Auto وGTA وشعار GTA VI علامات تجارية لأصحابها. كل التصاميم في هذه الصفحة أصلية ما عدا الشعار المذكور مصدره.</p>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/gta.js"></script>
+</div>

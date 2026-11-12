@@ -1,0 +1,22 @@
+// Tests for gta.js helpers: countdown maths, crew names/tags, wallpaper cover-crop.
+const ROOT = require("path").join(__dirname, "..");
+const assert = require("assert");
+const G = require(ROOT + "/gta.js");
+let n = 0;
+const t = new Date(G.QT_GTA_LAUNCH).getTime();
+assert.deepStrictEqual(G.qtGtaLeft(t - (2 * 86400 + 3 * 3600 + 4 * 60 + 5) * 1000, t), { done: false, days: 2, hours: 3, mins: 4, secs: 5 }); n++;
+assert.strictEqual(G.qtGtaLeft(t + 1000, t).done, true, "after launch"); n++;
+assert.strictEqual(new Date(G.QT_GTA_LAUNCH).getDate(), 19, "launch day is the 19th"); n++;
+const en = G.qtGtaCrews("en", 42, 8), ar = G.qtGtaCrews("ar", 42, 8);
+assert.strictEqual(en.length, 8); assert.strictEqual(ar.length, 8); n++;
+assert.strictEqual(new Set(en.map((c) => c.name)).size, 8, "unique names"); n++;
+assert.ok(en.every((c) => /^[A-Z]{2,4}$/.test(c.tag)), "tags are 2–4 capitals"); n++;
+assert.ok(ar.every((c) => /[؀-ۿ]/.test(c.name) && /^[A-Z]{2,4}$/.test(c.tag)), "Arabic names keep Latin tags"); n++;
+assert.deepStrictEqual(G.qtGtaCrews("en", 42, 8), en, "same seed, same names"); n++;
+const r = G.qtGtaCover(1920, 1080, 1080, 2340, 0, .5);
+assert.ok(Math.abs(r.h - 2340) < 1e-6 && Math.abs(r.x) < 1e-6, "cover fills height, focus left"); n++;
+const r2 = G.qtGtaCover(1920, 1080, 1080, 2340, 1, .5);
+assert.ok(Math.abs(r2.x + r2.w - 1080) < 1e-6, "focus right"); n++;
+assert.strictEqual(Object.keys(G.QT_GTA_OVL).length, 4); n++;
+console.log("gta tests:", n, "passed");
+assert.strictEqual(G.qtGtaTag("Neon Kings"), "NEKI"); console.log("tag ok");

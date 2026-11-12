@@ -6,7 +6,7 @@ LOCK = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 FACES = "".join('    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-%s-400.woff2) format("woff2");unicode-range:%s}\n' % (sub, ur)
     for sub, ur in (("arabic", "U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC"),
                     ("latin", "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD")))
-THEMES = [("fire", "#ff4d00", "#8a0b00"), ("neon", "#7b2bff", "#12002e"), ("ocean", "#00b4ff", "#002a6b"), ("lime", "#c6ff00", "#1f7a00"), ("dark", "#2b2f3a", "#06070a"), ("sun", "#ffe600", "#ff9500")]
+THEMES = [("fire", "#ff4d00", "#8a0b00"), ("neon", "#7b2bff", "#12002e"), ("ocean", "#00b4ff", "#002a6b"), ("lime", "#c6ff00", "#1f7a00"), ("dark", "#2b2f3a", "#06070a"), ("sun", "#ffe600", "#ff9500"), ("vice", "#ff2d95", "#2b0b5c")]
 STYLE = """  <style>
 """ + FACES + """    .th{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);gap:22px;align-items:start}
     @media(max-width:980px){.th{grid-template-columns:1fr;gap:0}.th-col{display:contents}.th-c1{order:0}.th-stage{order:1;margin-bottom:14px}.th-c2{order:2}}

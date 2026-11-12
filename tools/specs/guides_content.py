@@ -553,3 +553,63 @@ GUIDES += [
            ("Green or blue?", "Green by default; blue when your footage has green clothes or plants."),
            ("Does this work in InShot or Premiere?", "Yes — InShot has a Chroma tool for picture-in-picture clips, and Premiere uses Ultra Key.")]),
 ]
+
+# ---- GTA 6 launch guides (2026-11-12) ----
+GUIDES += [
+ dict(slug="gta-6-release-date-arab-countries", lang="ar", date="2026-11-12",
+      title="موعد نزول GTA 6 في السعودية والإمارات ومصر والأردن — كل اللي نعرفه | QuickTiny",
+      h1="موعد نزول GTA 6 في الدول العربية — كل اللي نعرفه",
+      lede="GTA 6 تنزل الخميس 19 نوفمبر 2026 على بلايستيشن 5 وإكسبوكس سيريس. هذا ملخص المؤكد فقط، مع المصادر، وكيف تتجهّز ليوم النزول.",
+      desc="موعد نزول GTA 6 في السعودية والإمارات ومصر والأردن: الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S. هل في نسخة كمبيوتر؟ ساعة الفتح؟ كيف تتجهّز؟ مع المصادر وعدّاد مباشر.",
+      tool=["/ar/gta-6", "افتح منطقة GTA 6 والعدّاد"],
+      body="""<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="شعار Grand Theft Auto VI" loading="lazy" style="max-width:200px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">شعار Grand Theft Auto VI ملك لـ Rockstar Games — معروض لأغراض إخبارية.</figcaption></figure>
+<h2>المؤكد لحد الآن</h2>
+<table class="guide-table"><tr><th>البند</th><th>المعلومة</th></tr>
+<tr><td>موعد النزول</td><td>الخميس 19 نوفمبر 2026</td></tr>
+<tr><td>المنصات</td><td>بلايستيشن 5 وإكسبوكس سيريس X|S</td></tr>
+<tr><td>الكمبيوتر (PC)</td><td>لم يُعلن بعد</td></tr>
+<tr><td>ساعة الفتح</td><td>لم تُعلن بعد</td></tr></table>
+<h2>هل يختلف الموعد بين السعودية والإمارات ومصر والأردن؟</h2>
+<p>الموعد المعلن هو 19 نوفمبر 2026. روكستار لم تعلن بعد ساعة الفتح، ولا إذا كان الفتح بنفس اللحظة عالميًا أو حسب منتصف الليل في كل منطقة. لذلك أي ساعة دقيقة منتشرة الآن مجرد توقع. <a href="/ar/gta-6">العدّاد في منطقة GTA 6</a> يعدّ لمنتصف ليل 19 نوفمبر بتوقيتك، وسنحدّثه أول ما تُعلن الساعة الرسمية.</p>
+<h2>هل GTA 6 على الكمبيوتر؟</h2>
+<p>ليس عند الإطلاق. لم تُعلن نسخة PC رسميًا حتى الآن؛ أي تاريخ متداول لها هو تقارير غير رسمية.</p>
+<h2>كيف تتجهّز ليوم النزول</h2>
+<ul><li>حدّث نظام جهازك وفضّي مساحة تخزين كبيرة (الحجم الرسمي لم يُعلن بعد).</li>
+<li>للعب أونلاين على الأجهزة عادة تحتاج اشتراك PlayStation Plus أو Xbox Game Pass Core أو أعلى.</li>
+<li>إذا ناوي تصوّر أو تبث: جهّز التسجيل، واستخدم <a href="/ar/ai-clip-maker">صانع الريلز</a> و<a href="/ar/horizontal-to-vertical-video">تحويل الفيديو لعمودي</a> لمقاطعك.</li>
+<li>تابع <a href="/ar/gta-6#checklist">قائمة التجهيز</a> في منطقة GTA 6 — تنحفظ في متصفحك.</li></ul>
+<h2>المصادر</h2>
+<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener">Tom's Guide</a></p>
+<p style="font-size:13px;color:var(--muted)">QuickTiny غير تابع لـ Rockstar Games أو Take-Two. Grand Theft Auto علامة تجارية لأصحابها.</p>""",
+      faq=[("متى تنزل GTA 6 في السعودية؟", "الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S. ساعة الفتح لم تُعلن بعد."),
+           ("هل GTA 6 تنزل على PS4؟", "لا، المنصات المعلنة هي PS5 وXbox Series X|S فقط."),
+           ("هل في نسخة كمبيوتر؟", "لم تُعلن نسخة الكمبيوتر رسميًا حتى الآن.")]),
+ dict(slug="gta-6-release-date-time", lang="en", date="2026-11-12",
+      title="GTA 6 Release Date, Time & Platforms — What’s Confirmed | QuickTiny",
+      h1="GTA 6 Release Date, Time and Platforms — What’s Confirmed",
+      lede="GTA 6 launches Thursday, 19 November 2026 on PS5 and Xbox Series X|S. Here’s only what’s confirmed, with sources — plus a live countdown and a launch-day checklist.",
+      desc="GTA 6 release date: Thursday 19 November 2026 on PS5 and Xbox Series X|S. Is there a PC version? What time does it unlock? Confirmed facts with sources, a live countdown and a launch checklist.",
+      tool=["/gta-6", "Open the GTA 6 Zone countdown"],
+      body="""<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="Grand Theft Auto VI logo" loading="lazy" style="max-width:200px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">Grand Theft Auto VI logo © Rockstar Games — shown for news purposes.</figcaption></figure>
+<h2>Confirmed so far</h2>
+<table class="guide-table"><tr><th>Item</th><th>Status</th></tr>
+<tr><td>Release date</td><td>Thursday 19 November 2026</td></tr>
+<tr><td>Platforms</td><td>PlayStation 5 and Xbox Series X|S</td></tr>
+<tr><td>PC</td><td>Not announced</td></tr>
+<tr><td>Unlock time</td><td>Not announced</td></tr></table>
+<h2>What time does GTA 6 unlock?</h2>
+<p>Rockstar hasn’t announced an unlock time, or whether it’s a single global moment or midnight per region — so any exact time you see now is a guess. The <a href="/gta-6">GTA 6 Zone countdown</a> counts to midnight on 19 November in your time zone and will be updated when the official time is out.</p>
+<h2>Is GTA 6 on PC?</h2>
+<p>Not at launch. A PC version hasn’t been officially announced; dates floating around are unofficial reports.</p>
+<h2>Get ready for launch day</h2>
+<ul><li>Update your console and free up plenty of storage (the official size isn’t announced yet).</li>
+<li>Online play on consoles normally needs PlayStation Plus or Xbox Game Pass Core or above.</li>
+<li>Creating content? Use the <a href="/ai-clip-maker">AI Clip Maker</a> and <a href="/horizontal-to-vertical-video">gameplay → vertical</a> for Shorts.</li>
+<li>Tick off the <a href="/gta-6#checklist">launch checklist</a> — it’s saved in your browser.</li></ul>
+<h2>Sources</h2>
+<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener">Tom's Guide</a></p>
+<p style="font-size:13px;color:var(--muted)">QuickTiny is not affiliated with Rockstar Games or Take-Two. Grand Theft Auto is a trademark of its owner.</p>""",
+      faq=[("When does GTA 6 come out?", "Thursday 19 November 2026 on PS5 and Xbox Series X|S. The unlock time hasn’t been announced."),
+           ("Is GTA 6 coming to PS4 or Xbox One?", "No — the announced platforms are PS5 and Xbox Series X|S."),
+           ("Is GTA 6 on PC?", "A PC version hasn’t been officially announced yet.")]),
+]

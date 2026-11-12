@@ -16,5 +16,5 @@ assert.ok(fit.lines.every((l) => mono(l.map((t) => t.w).join(" "), fit.fs) <= 60
 assert.strictEqual(T.qtThFit(T.qtThTokens("x"), 600, 400, 3, mono, 40, 200).fs, 200, "short title gets the max size"); n++;
 assert.ok(T.qtThAr("ربحت") && !T.qtThAr("win")); n++;
 assert.strictEqual(T.qtThInk("#ffe600"), "#111111"); n++;
-assert.strictEqual(Object.keys(T.QT_TH_THEMES).length, 6); n++;
+assert.strictEqual(Object.keys(T.QT_TH_THEMES).length, 7); n++;
 console.log("thumbnail tests:", n, "passed");

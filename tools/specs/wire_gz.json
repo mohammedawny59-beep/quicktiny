@@ -1,0 +1,6 @@
+{"en_cards": [{"slug": "gta-6", "icon": "controller", "cat": "Gaming", "badge": "Gaming &middot; New", "name": "GTA 6 Zone", "desc": "Launch countdown, mission overlays, crew names, wallpapers and a launch-day checklist.", "search": "gta 6 gta vi countdown release date overlay mission passed wasted crew name generator wallpaper photo mode checklist launch"}],
+ "ar_cards": [{"slug": "ar/gta-6", "icon": "controller", "badge": "ألعاب · جديد", "name": "منطقة GTA 6", "desc": "عدّاد النزول، طبقات مهمات، أسماء عصابات وخلفيات.", "search": "جاتا 6 gta 6 موعد نزول عداد اسماء عصابات خلفيات قائمة تجهيز"}],
+ "footer": [["gta-6", "GTA 6 Zone"]],
+ "popular_en": [["gta-6", "GTA 6 countdown"]],
+ "popular_ar": [["ar/gta-6", "عدّاد نزول GTA 6"]],
+ "sitemap": ["gta-6", "ar/gta-6"], "count_add": 0}
