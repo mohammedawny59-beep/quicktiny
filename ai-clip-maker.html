@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Clip Maker — Turn Long Videos Into Viral Reels Automatically, Free | QuickTiny</title>
+  <meta name="description" content="Upload a podcast, lecture or livestream and get the best moments as vertical Reels: on-device transcription, automatic clip picking, face-tracking reframe, silence cuts and animated captions. MP4 with sound, Arabic and English, free, no upload.">
+  <link rel="canonical" href="https://quicktinyv2.vercel.app/ai-clip-maker">
+  <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/ai-clip-maker">
+  <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/ai-clip-maker">
+  <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/ai-clip-maker">
+  <meta property="og:title" content="AI Clip Maker — Turn Long Videos Into Viral Reels Automatically, Free | QuickTiny">
+  <meta property="og:description" content="Upload a podcast, lecture or livestream and get the best moments as vertical Reels: on-device transcription, automatic clip picking, face-tracking reframe, silence cuts and animated captions. MP4 with sound, Arabic and English, free, no upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quicktinyv2.vercel.app/ai-clip-maker">
+  <meta property="og:site_name" content="QuickTiny">
+  <meta property="og:image" content="https://quicktinyv2.vercel.app/assets/og/clips.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://quicktinyv2.vercel.app/assets/og/clips.jpg">
+  <meta name="theme-color" content="#05060f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2305060f'/%3E%3Crect x='2' y='2' width='96' height='96' rx='14' fill='none' stroke='%237b7bff' stroke-opacity='.35' stroke-width='1.5'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%237b7bff' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){try{var t=localStorage.getItem("qt-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+    @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+    .ac-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:22px;align-items:start}
+    @media(max-width:900px){.ac-top{grid-template-columns:1fr}}
+    .ac-card{border:1px solid var(--line);border-radius:20px;padding:18px 20px;background:var(--card);margin-bottom:14px}
+    .ac-card h2{margin:0 0 12px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}html[lang=ar] .ac-card h2{letter-spacing:0}
+    .ac-drop{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:30px 16px;border:2px dashed var(--line-strong);border-radius:18px;cursor:pointer;color:var(--text-dim);transition:border-color .2s,background .2s;background:linear-gradient(135deg,rgba(91,91,255,.08),rgba(59,226,255,.04))}
+    .ac-drop.over,.ac-drop:hover{border-color:var(--accent);background:rgba(91,91,255,.1)}.ac-drop strong{color:var(--text);font-size:17px}
+    .ac-drop input{position:absolute;width:1px;height:1px;opacity:0}.ac-drop:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+    #clName{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+    .ac-row{display:grid;grid-template-columns:130px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}
+    .ac-row label,.ac-row .ac-l{font-weight:700;color:var(--text-dim);font-size:14px}.ac-row select,.ac-row input{margin:0}.ac-row input[type=color]{height:42px;padding:4px;width:80px}
+    @media(max-width:520px){.ac-row{grid-template-columns:1fr}}
+    .ac-chips{display:flex;flex-wrap:wrap;gap:6px}.ac-checks{display:flex;flex-wrap:wrap;gap:8px 16px}.ac-checks label{display:flex;gap:6px;align-items:center;font-weight:600;font-size:14px;color:var(--text-dim)}
+    .ac-go{width:100%;padding:15px 22px;font-size:17px;margin-top:8px}
+    #clStatus{font-weight:700;color:var(--text-dim);margin-top:10px;min-height:1.4em;text-align:center}
+    #clBar{height:7px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:8px}#clBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--cyan));transition:width .3s}
+    .ac-note{font-size:13px;color:var(--muted);margin:8px 0 0}
+    .ac-steps{display:grid;gap:10px;counter-reset:s}.ac-steps li{list-style:none;display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--text-dim);line-height:1.5}
+    .ac-steps li::before{counter-increment:s;content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;font-size:13px}
+    .ac-steps{padding:0;margin:0}
+    #clResults{margin-top:10px}
+    .ac-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;margin:8px 0 14px}.ac-head h2{margin:0;font-size:22px}
+    #clList{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));gap:14px}
+    .cl-card{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;padding:12px;border-radius:18px;border:1px solid var(--line);background:var(--card)}
+    .cl-thumb{width:110px;height:196px;border-radius:12px;background:#000;object-fit:cover}
+    .cl-body{display:flex;flex-direction:column;gap:8px;min-width:0}
+    .cl-meta{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted);flex-wrap:wrap}
+    .cl-score{font-weight:800;color:#fff;background:linear-gradient(135deg,#ff5f6d,#ffb347);padding:3px 9px;border-radius:999px;font-size:12.5px}
+    .cl-title{margin:0;font-weight:800;font-size:15.5px}
+    .cl-text{margin:0;font-size:13px;line-height:1.55;color:var(--text-dim);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .cl-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}.cl-btns .btn{padding:9px 14px;font-size:14px}
+    .ac-stage{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:22px;align-items:start;margin-top:18px}
+    @media(max-width:760px){.ac-stage{grid-template-columns:1fr}}
+    .ac-phone{border-radius:24px;overflow:hidden;border:8px solid #15172a;background:#000;aspect-ratio:9/16;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -30px rgba(91,91,255,.7);max-height:72vh;margin:0 auto}
+    #clCanvas{display:block;width:100%;height:100%}
+    .ac-src video{width:100%;border-radius:14px;background:#000;max-height:46vh}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/">QuickTiny<span class="dot">.</span></a>
+    <div class="nav-right">
+      <nav class="nav-links" id="navLinks">
+        <a href="/#tools">Tools</a>
+        <a href="/batch-image-compressor">Pro</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" role="main" tabindex="-1">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">AI Clip Maker</span></div>
+  <div class="lang-switch">
+    <a href="/ai-clip-maker" class="active">EN</a>
+    <a href="/ar/ai-clip-maker" lang="ar">AR</a>
+  </div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video · AI</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your video never leaves your device</span><span class="badge">Free</span></div>
+    <h1>AI Clip Maker — Turn a Long Video Into Viral Reels Automatically, Free</h1>
+    <p>Drop in a podcast, lecture or livestream and get the best moments as ready-to-post vertical clips: speech is transcribed on your device, the strongest self-contained moments are picked and titled, a virtual camera follows the speaker’s face, pauses are cut and animated captions are burned in — MP4 with sound, Arabic and English, no upload, no watermark.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="ac-top">
+      <div>
+        <div class="ac-card"><h2>1 · Your long video</h2>
+          <label class="ac-drop" id="clDrop"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></svg><strong>Choose a video or drop it here</strong><span>Podcast, lecture, interview or livestream · up to 45 min</span><span id="clName"></span><input type="file" id="clFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>
+          <div class="ac-row" style="margin-top:14px"><label for="clLang">Spoken language</label><select id="clLang"><option value="arabic">Arabic</option><option value="english">English</option><option value="">Detect automatically</option></select></div>
+          <div class="ac-row"><label for="clModel">Accuracy</label><select id="clModel"><option value="base">Fast (≈ 75 MB, once)</option><option value="small">Best (≈ 250 MB, once)</option></select></div>
+          <div class="ac-row"><span class="ac-l">Clip length</span><div class="ac-chips" id="clLen" role="group"><button type="button" class="chip" data-l="short">15–35 s</button><button type="button" class="chip" data-l="mid">30–60 s</button><button type="button" class="chip" data-l="long">55–90 s</button></div></div>
+          <div class="ac-row"><label for="clCount">Clips</label><select id="clCount"><option>3</option><option>5</option><option>8</option><option>10</option></select></div>
+          <button type="button" class="btn ac-go" id="clGo" disabled>✨ Find my best clips</button>
+          <div id="clBar" hidden><i id="clBarFill"></i></div><div id="clStatus" role="status" aria-live="polite"></div><p class="ac-note">The first run downloads the speech model once. A 10-minute video takes a few minutes to transcribe on a laptop.</p>
+        </div>
+      </div>
+      <div>
+        <div class="ac-card"><h2>2 · Style</h2>
+          <div class="ac-row"><span class="ac-l">Framing</span><div class="ac-chips" id="clFrame" role="group"><button type="button" class="chip" data-f="face">Follow the face</button><button type="button" class="chip" data-f="blur">Blurred background</button></div></div>
+          <div class="ac-row"><span class="ac-l">Captions</span><div class="ac-chips" id="clStyle" role="group"><button type="button" class="chip" data-s="box">Highlight box</button><button type="button" class="chip" data-s="pop">Pop</button><button type="button" class="chip" data-s="karaoke">Karaoke</button><button type="button" class="chip" data-s="bounce">One word</button></div></div>
+          <div class="ac-row"><label for="clAccent">Colour</label><input type="color" id="clAccent"></div>
+          <div class="ac-checks"><label><input type="checkbox" id="clCaps"> Animated captions</label><label><input type="checkbox" id="clHook"> Hook title at the start</label><label><input type="checkbox" id="clCut"> Cut silences</label><label><input type="checkbox" id="clBarOn"> Progress bar</label></div>
+        </div>
+        <div class="ac-card"><h2>What happens</h2><ol class="ac-steps"><li>Transcribes every word on your device (Whisper).</li><li>Scores every possible clip for a strong hook, a complete thought, pace and energy — then picks the best ones that don’t overlap.</li><li>Tracks the speaker’s face so the 9:16 crop keeps them centred, smoothly.</li><li>Cuts pauses, adds animated captions, a hook title and a progress bar — and exports each clip as MP4 with sound.</li></ol></div>
+      </div>
+    </div>
+    <div id="clResults" hidden>
+      <div class="ac-head"><h2>Your best clips</h2><button type="button" class="btn" id="clAll">⬇ Download all clips</button></div>
+      <div id="clList"></div>
+      <div class="ac-stage" id="clStage" hidden><div class="ac-phone"><canvas id="clCanvas" width="540" height="960" role="img" aria-label="Preview"></canvas></div><div class="ac-src"><video id="clVideo" playsinline controls preload="metadata"></video></div></div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/brand.js"></script>
+  <script src="/captions.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/clipper.js"></script>
+
+  <div class="content">
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is it really free with no watermark?</summary><p>Yes — unlimited clips, no sign-up, no watermark.</p></details>
+    <details class="faq-item"><summary>Is my video uploaded to a server?</summary><p>No. Transcription, face tracking and rendering all run in your browser. Only the AI models are downloaded once.</p></details>
+    <details class="faq-item"><summary>How does it pick the clips?</summary><p>It looks for moments that open with a hook (a question, a number, a strong claim), finish a complete thought, keep a lively pace and stay within the length you chose. You can rename, preview and skip any clip.</p></details>
+    <details class="faq-item"><summary>Which videos work best?</summary><p>Talking videos — podcasts, interviews, lectures, tutorials and livestreams. Clear speech and one main speaker give the best results.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/add-subtitles-to-video">Auto Subtitles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-silence-from-video">Silence Remover<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/horizontal-to-vertical-video">Horizontal → Vertical<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/video-templates">Video Templates<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/creator-studio">Creator Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2 class="fc-title">Free Tools</h2>
+        <a href="/compress-image">Image Compressor</a>
+        <a href="/word-counter">Word Counter</a>
+        <a href="/clean-text">Clean Text</a>
+        <a href="/json-formatter">JSON Formatter</a>
+        <a href="/seo-slug-generator">SEO Slug Generator</a>
+        <a href="/case-converter">Case Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">More Tools</h2>
+        <a href="/remove-duplicate-lines">Remove Duplicate Lines</a>
+        <a href="/sort-lines">Sort Lines</a>
+        <a href="/base64-encode-decode">Base64 Encode/Decode</a>
+        <a href="/url-encode-decode">URL Encode/Decode</a>
+        <a href="/timestamp-converter">Timestamp Converter</a>
+        <a href="/password-generator">Password Generator</a>
+        <a href="/batch-image-compressor">Batch Image Compressor (Pro)</a>
+        <a href="/controller-tester">Controller Tester</a>
+        <a href="/mouse-test">Mouse Test</a>
+        <a href="/sensitivity-converter">Sensitivity Converter</a>
+        <a href="/fancy-name-generator">Fancy Name Generator</a>
+        <a href="/qr-code-generator">QR Code Generator</a>
+        <a href="/utm-builder">UTM Builder</a>
+        <a href="/social-image-resizer">Social Image Resizer</a>
+        <a href="/meta-tag-preview">SERP &amp; Social Preview</a>
+        <a href="/color-palette-extractor">Brand Color Palette</a>
+        <a href="/regex-tester">Regex Tester</a>
+        <a href="/diff-checker">Diff Checker</a>
+        <a href="/jwt-decoder">JWT Decoder</a>
+        <a href="/cron-explainer">Cron Explainer</a>
+        <a href="/ai-clip-maker">AI Clip Maker</a>
+        <a href="/video-templates">Video Templates</a>
+        <a href="/horizontal-to-vertical-video">Horizontal to Vertical Video</a>
+        <a href="/remove-silence-from-video">Silence Remover</a>
+        <a href="/youtube-thumbnail-maker">YouTube Thumbnail Maker</a>
+        <a href="/add-subtitles-to-video">Auto Subtitles</a>
+        <a href="/creator-studio">Creator Studio</a>
+        <a href="/animated-captions">Animated Captions</a>
+        <a href="/glass-slides">Glass Slides</a>
+        <a href="/motion-titles">Motion Titles</a>
+        <a href="/paper-animation">Paper Motion Studio</a>
+        <a href="/image-to-text">Image to Text</a>
+        <a href="/cv-builder">CV Builder</a>
+        <a href="/saudi-salary-calculator">Saudi Salary Calculator</a>
+        <a href="/unit-converter">Unit Converter</a>
+        <a href="/ramadan-countdown">Ramadan Countdown</a>
+        <a href="/zakat-al-fitr-calculator">Zakat al-Fitr Calculator</a>
+        <a href="/gpa-calculator">GPA Calculator</a>
+        <a href="/weighted-grade-calculator">Weighted Grade Calculator</a>
+        <a href="/prayer-times">Prayer Times</a>
+        <a href="/days-between-dates">Days Between Dates</a>
+        <a href="/loan-calculator">Loan Calculator</a>
+        <a href="/bmi-calculator">BMI Calculator</a>
+        <a href="/pregnancy-due-date-calculator">Due Date Calculator</a>
+        <a href="/compress-image-to-kb">Compress Image to KB</a>
+        <a href="/percentage-calculator">Percentage Calculator</a>
+        <a href="/image-converter">Image Converter</a>
+      </div>
+      <div class="footer-col">
+        <h2 class="fc-title">Company</h2>
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> QuickTiny</span>
+      <span>No signup &middot; Browser-first &middot; Privacy-friendly</span>
+      <a href="https://tools.launchllama.co?utm_source=badge&utm_medium=referral" target="_blank" rel="noopener noreferrer">
+        <img src="https://tools.launchllama.co/featured-badge-white.jpg?v=5" loading="lazy" decoding="async"
+          alt="As seen on Launch Llama Newsletter"
+          width="200" height="52" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script src="/site.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny AI Clip Maker","url":"https://quicktinyv2.vercel.app/ai-clip-maker","description":"Upload a podcast, lecture or livestream and get the best moments as vertical Reels: on-device transcription, automatic clip picking, face-tracking reframe, silence cuts and animated captions. MP4 with sound, Arabic and English, free, no upload.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"AI Clip Maker","item":"https://quicktinyv2.vercel.app/ai-clip-maker"}]}</script>
+</body>
+</html>

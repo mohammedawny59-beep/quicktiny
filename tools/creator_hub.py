@@ -37,12 +37,14 @@ def card(lang, key, href, name, desc, feats=None, eager=False):
     return ('      <a class="ch-card" href="%s">\n        <span class="ch-phone"><video src="/assets/previews/%s-%s.mp4" poster="/assets/previews/%s-%s.webp" muted loop playsinline preload="none" data-qt-autoplay aria-hidden="true" width="360" height="640"></video></span>\n'
             '        <h3>%s</h3>\n        <p>%s</p>%s\n        <span class="go">%s %s</span>\n      </a>\n') % (href, key, lang, key, lang, name, desc, f, L[lang]["open"], GO)
 EXTRA = {
- "en": [("/video-templates", "✨", "Video Templates", "13 ready-made animated templates — sale, top 5, invite, Ramadan… 60 fps.", "New"),
+ "en": [("/ai-clip-maker", "🤖", "AI Clip Maker", "Long video in → the best moments out as Reels, with face tracking and captions.", "AI · New"),
+        ("/video-templates", "✨", "Video Templates", "13 ready-made animated templates — sale, top 5, invite, Ramadan… 60 fps.", "New"),
         ("/add-subtitles-to-video", "🎙️", "Auto Subtitles", "Your speech becomes animated captions on your video — on-device AI.", "AI"),
         ("/horizontal-to-vertical-video", "📱", "Horizontal → Vertical", "Turn 16:9 into a 9:16 Reel with blurred fill or smart crop.", "New"),
         ("/remove-silence-from-video", "✂️", "Silence Remover", "Cut the pauses automatically — tighter jump-cut videos.", "New"),
         ("/youtube-thumbnail-maker", "🖼️", "YouTube Thumbnail Maker", "Photo cut-out, huge outlined title and themes — 1280×720.", "")],
- "ar": [("/ar/video-templates", "✨", "قوالب فيديو جاهزة", "13 قالبًا متحركًا: عروض، أفضل 5، دعوة، رمضان… بسلاسة 60 إطارًا.", "جديد"),
+ "ar": [("/ar/ai-clip-maker", "🤖", "صانع الريلز بالذكاء الاصطناعي", "فيديو طويل ← أقوى اللحظات كريلز جاهزة بتتبّع الوجه والترجمة.", "ذكاء اصطناعي · جديد"),
+        ("/ar/video-templates", "✨", "قوالب فيديو جاهزة", "13 قالبًا متحركًا: عروض، أفضل 5، دعوة، رمضان… بسلاسة 60 إطارًا.", "جديد"),
         ("/ar/add-subtitles-to-video", "🎙️", "ترجمة الفيديو تلقائيًا", "كلامك يتحوّل لكابشن متحرك على فيديوك — ذكاء اصطناعي على جهازك.", "ذكاء اصطناعي"),
         ("/ar/horizontal-to-vertical-video", "📱", "تحويل الفيديو لعمودي", "حوّل 16:9 إلى ريل 9:16 بخلفية مموّهة أو قص ذكي.", "جديد"),
         ("/ar/remove-silence-from-video", "✂️", "حذف السكتات من الفيديو", "احذف الوقفات تلقائيًا لفيديو أسرع وأقصر.", "جديد"),

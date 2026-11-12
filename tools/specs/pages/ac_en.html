@@ -1,0 +1,62 @@
+<div class="wrap">
+  <div class="breadcrumb"><a href="/">Home</a> <span>/</span><span style="color:var(--text-dim)">AI Clip Maker</span></div>
+  <section class="hero compact">
+    <div class="hero-badges"><span class="badge">Video · AI</span><span class="badge local"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your video never leaves your device</span><span class="badge">Free</span></div>
+    <h1>AI Clip Maker — Turn a Long Video Into Viral Reels Automatically, Free</h1>
+    <p>Drop in a podcast, lecture or livestream and get the best moments as ready-to-post vertical clips: speech is transcribed on your device, the strongest self-contained moments are picked and titled, a virtual camera follows the speaker’s face, pauses are cut and animated captions are burned in — MP4 with sound, Arabic and English, no upload, no watermark.</p>
+  </section>
+
+  <div class="tool-panel" id="tool">
+    <div class="ac-top">
+      <div>
+        <div class="ac-card"><h2>1 · Your long video</h2>
+          <label class="ac-drop" id="clDrop"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></svg><strong>Choose a video or drop it here</strong><span>Podcast, lecture, interview or livestream · up to 45 min</span><span id="clName"></span><input type="file" id="clFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>
+          <div class="ac-row" style="margin-top:14px"><label for="clLang">Spoken language</label><select id="clLang"><option value="arabic">Arabic</option><option value="english">English</option><option value="">Detect automatically</option></select></div>
+          <div class="ac-row"><label for="clModel">Accuracy</label><select id="clModel"><option value="base">Fast (≈ 75 MB, once)</option><option value="small">Best (≈ 250 MB, once)</option></select></div>
+          <div class="ac-row"><span class="ac-l">Clip length</span><div class="ac-chips" id="clLen" role="group"><button type="button" class="chip" data-l="short">15–35 s</button><button type="button" class="chip" data-l="mid">30–60 s</button><button type="button" class="chip" data-l="long">55–90 s</button></div></div>
+          <div class="ac-row"><label for="clCount">Clips</label><select id="clCount"><option>3</option><option>5</option><option>8</option><option>10</option></select></div>
+          <button type="button" class="btn ac-go" id="clGo" disabled>✨ Find my best clips</button>
+          <div id="clBar" hidden><i id="clBarFill"></i></div><div id="clStatus" role="status" aria-live="polite"></div><p class="ac-note">The first run downloads the speech model once. A 10-minute video takes a few minutes to transcribe on a laptop.</p>
+        </div>
+      </div>
+      <div>
+        <div class="ac-card"><h2>2 · Style</h2>
+          <div class="ac-row"><span class="ac-l">Framing</span><div class="ac-chips" id="clFrame" role="group"><button type="button" class="chip" data-f="face">Follow the face</button><button type="button" class="chip" data-f="blur">Blurred background</button></div></div>
+          <div class="ac-row"><span class="ac-l">Captions</span><div class="ac-chips" id="clStyle" role="group"><button type="button" class="chip" data-s="box">Highlight box</button><button type="button" class="chip" data-s="pop">Pop</button><button type="button" class="chip" data-s="karaoke">Karaoke</button><button type="button" class="chip" data-s="bounce">One word</button></div></div>
+          <div class="ac-row"><label for="clAccent">Colour</label><input type="color" id="clAccent"></div>
+          <div class="ac-checks"><label><input type="checkbox" id="clCaps"> Animated captions</label><label><input type="checkbox" id="clHook"> Hook title at the start</label><label><input type="checkbox" id="clCut"> Cut silences</label><label><input type="checkbox" id="clBarOn"> Progress bar</label></div>
+        </div>
+        <div class="ac-card"><h2>What happens</h2><ol class="ac-steps"><li>Transcribes every word on your device (Whisper).</li><li>Scores every possible clip for a strong hook, a complete thought, pace and energy — then picks the best ones that don’t overlap.</li><li>Tracks the speaker’s face so the 9:16 crop keeps them centred, smoothly.</li><li>Cuts pauses, adds animated captions, a hook title and a progress bar — and exports each clip as MP4 with sound.</li></ol></div>
+      </div>
+    </div>
+    <div id="clResults" hidden>
+      <div class="ac-head"><h2>Your best clips</h2><button type="button" class="btn" id="clAll">⬇ Download all clips</button></div>
+      <div id="clList"></div>
+      <div class="ac-stage" id="clStage" hidden><div class="ac-phone"><canvas id="clCanvas" width="540" height="960" role="img" aria-label="Preview"></canvas></div><div class="ac-src"><video id="clVideo" playsinline controls preload="metadata"></video></div></div>
+    </div>
+  </div>
+  <script src="/vendor/mp4-muxer.js"></script>
+  <script src="/brand.js"></script>
+  <script src="/captions.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/clipper.js"></script>
+
+  <div class="content">
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item"><summary>Is it really free with no watermark?</summary><p>Yes — unlimited clips, no sign-up, no watermark.</p></details>
+    <details class="faq-item"><summary>Is my video uploaded to a server?</summary><p>No. Transcription, face tracking and rendering all run in your browser. Only the AI models are downloaded once.</p></details>
+    <details class="faq-item"><summary>How does it pick the clips?</summary><p>It looks for moments that open with a hook (a question, a number, a strong claim), finish a complete thought, keep a lively pace and stay within the length you chose. You can rename, preview and skip any clip.</p></details>
+    <details class="faq-item"><summary>Which videos work best?</summary><p>Talking videos — podcasts, interviews, lectures, tutorials and livestreams. Clear speech and one main speaker give the best results.</p></details>
+  </div>
+
+  <div class="section related-section">
+    <h2 class="related-title">More creator tools</h2>
+    <div class="related-grid">
+      <a href="/add-subtitles-to-video">Auto Subtitles<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/remove-silence-from-video">Silence Remover<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/horizontal-to-vertical-video">Horizontal → Vertical<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/video-templates">Video Templates<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/creator-studio">Creator Studio<svg class="go-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</div>

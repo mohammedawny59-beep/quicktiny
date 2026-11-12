@@ -896,5 +896,25 @@
   "pages": [
    "ar/video-templates"
   ]
+ },
+ {
+  "key": "clips",
+  "icon": "paper",
+  "lang": "en",
+  "title": "AI Clip Maker",
+  "sub": "Long video → viral Reels · face tracking · captions",
+  "pages": [
+   "ai-clip-maker"
+  ]
+ },
+ {
+  "key": "clips-ar",
+  "icon": "paper",
+  "lang": "ar",
+  "title": "صانع الريلز بالذكاء الاصطناعي",
+  "sub": "فيديو طويل ← ريلز جاهزة تلقائيًا",
+  "pages": [
+   "ar/ai-clip-maker"
+  ]
  }
 ]
