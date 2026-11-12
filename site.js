@@ -695,3 +695,21 @@ function qtCountTo(el, to, fmt, dur){
   vids.forEach(function (v) { io.observe(v); });
 })();
 // /creator-hub
+// gta-portal: days-to-go on the homepage banner + cinematic warp into the GTA 6 Zone
+(function () {
+  var launch = new Date("2026-11-19T00:00:00").getTime();
+  document.querySelectorAll("[data-gta-days]").forEach(function (el) { el.textContent = String(Math.max(0, Math.ceil((launch - Date.now()) / 86400000))); });
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]"); if (!a || reduce || e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+    var u; try { u = new URL(a.href, location.href); } catch (x) { return; }
+    if (u.origin !== location.origin || !/^\/(ar\/)?gta-6\/?$/.test(u.pathname) || u.pathname === location.pathname) return;
+    e.preventDefault();
+    try { sessionStorage.setItem("qtGtaWarp", "1"); } catch (x) {}
+    var w = document.createElement("div"); w.className = "gta-warp"; w.style.setProperty("--wx", e.clientX + "px"); w.style.setProperty("--wy", e.clientY + "px");
+    var b = document.createElement("b"); b.textContent = (document.documentElement.lang || "").indexOf("ar") === 0 ? "أهلًا بك في المنطقة" : "ENTERING THE ZONE"; w.appendChild(b);
+    document.body.appendChild(w); if (typeof qtEvent === "function") qtEvent("gta_portal");
+    setTimeout(function () { location.href = u.href; }, 720);
+  });
+})();
+// /gta-portal

@@ -7,7 +7,8 @@ var QT_TH_THEMES = {
   ocean: { bg: ["#00b4ff", "#002a6b"], ray: "#7dffef", accent: "#ffe600" },
   lime: { bg: ["#c6ff00", "#1f7a00"], ray: "#ffffff", accent: "#ff2d55" },
   dark: { bg: ["#2b2f3a", "#06070a"], ray: "#5b5bff", accent: "#ffd400" },
-  sun: { bg: ["#ffe600", "#ff9500"], ray: "#ffffff", accent: "#e8001c" }
+  sun: { bg: ["#ffe600", "#ff9500"], ray: "#ffffff", accent: "#e8001c" },
+  vice: { bg: ["#ff2d95", "#2b0b5c"], ray: "#ffb347", accent: "#3cf0ff" }
 };
 function qtThAr(s) { return /[؀-ۿ]/.test(s || ""); }
 // Split "Make *money* online" into words with a highlight flag; *...* may span several words.
@@ -157,6 +158,8 @@ function qtThInk(hex) { var m = /^#?([0-9a-f]{6})$/i.exec(hex || ""); if (!m) re
   var st = { title: AR ? "ربحت *10,000$* في شهر!" : "I made *$10,000* in 30 days", layout: "right", theme: "fire", accent: "", badge: AR ? "جديد" : "NEW", arrow: true, outline: true, upper: false, hiStyle: "color", bgBlur: true, cut: true };
   try { var sv = JSON.parse(localStorage.getItem("qtThumb") || "null"); if (sv) Object.keys(st).forEach(function (k) { if (sv[k] != null) st[k] = sv[k]; }); } catch (e) {}
   if (window.qtBrand) window.qtBrand.apply(st, { accent: "accent" });
+  // presets from a link, e.g. /youtube-thumbnail-maker?theme=vice&title=...&badge=...
+  try { var qp = new URLSearchParams(location.search); if (qp.get("theme") && QT_TH_THEMES[qp.get("theme")]) { st.theme = qp.get("theme"); st.accent = ""; } if (qp.get("title")) st.title = qp.get("title").slice(0, 120); if (qp.get("badge") != null) st.badge = qp.get("badge").slice(0, 16); } catch (e) {}
   function save() { try { localStorage.setItem("qtThumb", JSON.stringify(st)); } catch (e) {} }
   var A = { person: null, raw: null, cutImg: null, bg: null, cut: false };
   var cv = $("thCanvas"), x = cv.getContext("2d");

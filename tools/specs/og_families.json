@@ -916,5 +916,27 @@
   "pages": [
    "ar/ai-clip-maker"
   ]
+ },
+ {
+  "key": "gta6",
+  "icon": "controller",
+  "lang": "en",
+  "title": "GTA 6 Zone",
+  "sub": "Countdown · mission overlays · crew names · wallpapers",
+  "pages": [
+   "gta-6",
+   "guides/gta-6-release-date-time"
+  ]
+ },
+ {
+  "key": "gta6-ar",
+  "icon": "controller",
+  "lang": "ar",
+  "title": "منطقة GTA 6",
+  "sub": "عدّاد النزول · طبقات مهمات · أسماء عصابات",
+  "pages": [
+   "ar/gta-6",
+   "ar/guides/gta-6-release-date-arab-countries"
+  ]
  }
 ]

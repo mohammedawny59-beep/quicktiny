@@ -68,7 +68,11 @@ const ALLOWED_EVENTS = new Set([
   "template_open",
   "template_export",
   "clips_found",
-  "clip_export"
+  "clip_export",
+  "gta_portal",
+  "gta_crews",
+  "gta_overlay",
+  "gta_wallpaper"
 ]);
 
 function cleanPage(value) {
