@@ -105,6 +105,20 @@ STYLE = """  <style>
     .gs-space label{font-weight:800;color:#fff}.gs-space input{max-width:180px;margin:8px 0}
     .gs-sbar{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}#gsSpaceBar{display:block;height:100%;width:0;transition:width .4s,background .4s;background:#ff3b4e}#gsSpaceBar.ok{background:linear-gradient(90deg,#47ff9c,#3cf0ff)}#gsSpaceBar.tight{background:#ffb347}
     #gsSpaceMsg{margin-top:8px;font-weight:800;color:#fff;min-height:1.4em}
+    /* CLIP STUDIO */
+    .gc-box{padding:24px;border-radius:26px;background:linear-gradient(160deg,rgba(255,45,149,.16),rgba(155,48,255,.12)),var(--card);border:1px solid rgba(255,45,149,.45);box-shadow:0 30px 70px -40px rgba(255,45,149,.9)}
+    .gc-drop{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.gc-drop label.btn{cursor:pointer;font-size:16px;padding:14px 22px}.gc-drop input{position:absolute;width:1px;height:1px;opacity:0}
+    #gcName{color:#f3dcff;font-weight:700;word-break:break-all}
+    .gc-prog{height:8px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;margin:12px 0 4px}#gcBar{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2d95,#ffb347,#3cf0ff);transition:width .3s}
+    #gcMsg{font-weight:800;color:#fff;min-height:1.4em}
+    #gcList{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:14px}
+    .gc-card{border-radius:18px;overflow:hidden;background:rgba(10,3,26,.85);border:1px solid rgba(255,255,255,.12);animation:gsCard .5s cubic-bezier(.2,.9,.2,1) both}
+    .gc-card canvas{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#000}
+    .gc-meta{padding:12px;display:grid;gap:8px}.gc-meta b{color:#fff;font-size:14.5px}
+    .gc-score{height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}.gc-score i{display:block;height:100%;background:linear-gradient(90deg,#ffb347,#ff2d95)}
+    .gc-btns{display:flex;gap:8px;flex-wrap:wrap}.gc-btns .btn{padding:8px 14px;font-size:14px}
+    #gcStageBox{margin-top:16px;text-align:center}#gcStage{width:min(100%,300px);height:auto;aspect-ratio:9/16;border-radius:18px;background:#000;box-shadow:0 20px 50px -20px rgba(255,45,149,.9)}
+    .gc-priv{font-size:12.5px;color:#cfa8ff;margin:10px 0 0}
     /* GEAR ADVISOR */
     .gs-gear{padding:24px;border-radius:26px;background:linear-gradient(150deg,rgba(60,240,255,.12),rgba(255,45,149,.14)),var(--card);border:1px solid rgba(60,240,255,.35);box-shadow:0 30px 70px -40px rgba(60,240,255,.7)}
     .gs-gear .gta-row{grid-template-columns:130px minmax(0,1fr)}
@@ -205,6 +219,7 @@ T = {
          ("Xbox One", "Cloud only", ["Via Xbox Cloud Gaming", "Uses Series S settings", "Depends on your connection"], False),
          ("PC", "Not announced", ["No PC version announced yet"], False)],
    remote="Remote Play is supported on both PlayStation and Xbox.", spaceL="How much free space do you have? (GB)", spaceN="The pre-load needs up to 212 GB.",
+   gcK="Clip Studio", gcT="Your gameplay → viral Reels", gcP="Drop in a long recording. We find the loudest, wildest moments — crashes, shootouts, explosions — and turn each into a vertical Reel with a punch zoom on the peak, a hook title, your @handle and an end stamp. Ready to post.", gcPick="🎮 Choose gameplay video", gcLenL="Clip length", gcLens=[("15", "15 s"), ("30", "30 s"), ("45", "45 s")], gcCountL="How many", gcCounts=[("3", "3"), ("5", "5")], gcStampL="End stamp", gcStamps=[("passed", "Passed"), ("respect", "Respect +"), ("busted", "Busted"), ("failed", "Failed"), ("none", "None")], gcTitleL="Hook title", gcHandleL="Your handle", gcFind="⚡ Find the best moments", gcAll="⬇ Download all", gcPriv="Your video never leaves your device — everything runs in your browser.",
    gearK="Get set up", gearT="Is your setup ready for GTA 6?", gearP="Pick your console, how much space you have and what you’ll do — get a personal checklist with the specs that matter.", gCon="Console", gCons=[("ps5", "PS5"), ("ps5pro", "PS5 Pro"), ("xsx", "Series X"), ("xss", "Series S"), ("xone", "Xbox One (cloud)")], gFree="Free space (GB)", gUse="I’ll…", gUses=[("play", "Play"), ("stream", "Stream"), ("record", "Record clips")], gStore="Store", gStores=[("sa", "Amazon.sa"), ("ae", "Amazon.ae"), ("eg", "Amazon.eg"), ("com", "Amazon.com")], gAff="Affiliate disclosure: links go to Amazon search results; if you buy something we may earn a small commission at no extra cost to you. We pick specs, not brands — compare prices before you buy.",
    cvpK="Facts vs. guesses", conf="Confirmed", pred="Our predictions (unconfirmed)",
    confs=["Out Thursday 19 November 2026 on PS5 and Xbox Series X|S", "Pre-load live since 10 November — up to 212 GB", "Targets 30 fps; PS5 Pro adds PSSR and ray-traced shadows", "Xbox Cloud Gaming — including Xbox One", "Two leads: Jason and Lucia, in the state of Leonida (Vice City)", "Free official printable poster + map of Leonida on launch day"],
@@ -233,6 +248,7 @@ T = {
          ("Xbox One", "سحابي فقط", ["عبر Xbox Cloud Gaming", "بإعدادات Series S", "حسب سرعة الإنترنت"], False),
          ("الكمبيوتر PC", "لم يُعلن", ["لا توجد نسخة كمبيوتر معلنة بعد"], False)],
    remote="اللعب عن بعد Remote Play مدعوم على بلايستيشن وإكسبوكس.", spaceL="كم مساحة فاضية عندك؟ (غيغا)", spaceN="التنزيل المسبق يحتاج حتى 212 غيغا.",
+   gcK="استوديو المقاطع", gcT="لعبك ← ريلز بتكسّر", gcP="حط تسجيل لعب طويل. منلاقي أقوى اللحظات — حوادث، اشتباكات، انفجارات — ومنحوّل كل وحدة لريل عمودي فيه زوم قوي على اللحظة، عنوان بيشد، اسم حسابك وختم بالآخر. جاهز للنشر.", gcPick="🎮 اختر فيديو اللعب", gcLenL="طول المقطع", gcLens=[("15", "15 ث"), ("30", "30 ث"), ("45", "45 ث")], gcCountL="كم مقطع", gcCounts=[("3", "3"), ("5", "5")], gcStampL="ختم النهاية", gcStamps=[("passed", "نجحت"), ("respect", "احترام +"), ("busted", "انمسكت"), ("failed", "فشلت"), ("none", "بدون")], gcTitleL="العنوان", gcHandleL="اسم حسابك", gcFind="⚡ لاقيلي أقوى اللحظات", gcAll="⬇ نزّل الكل", gcPriv="الفيديو ما بيطلع من جهازك أبدًا — كل شي بيصير داخل متصفحك.",
    gearK="جهّز حالك", gearT="جهازك جاهز لـ GTA 6؟", gearP="اختار جهازك وكم مساحة عندك وشو ناوي تعمل — وبتطلعلك قائمة مخصّصة إلك مع المواصفات اللي بتفرق فعلًا.", gCon="الجهاز", gCons=[("ps5", "PS5"), ("ps5pro", "PS5 Pro"), ("xsx", "Series X"), ("xss", "Series S"), ("xone", "Xbox One (سحابي)")], gFree="المساحة الفاضية (غيغا)", gUse="رح…", gUses=[("play", "ألعب"), ("stream", "أبث"), ("record", "أسجّل مقاطع")], gStore="المتجر", gStores=[("sa", "أمازون السعودية"), ("ae", "أمازون الإمارات"), ("eg", "أمازون مصر"), ("com", "Amazon.com")], gAff="إفصاح: الروابط بتوديك لنتائج البحث بأمازون، وإذا اشتريت ممكن ناخد عمولة صغيرة بدون أي تكلفة إضافية عليك. نحنا منختار المواصفات مش الماركات — قارن الأسعار قبل ما تشتري.",
    cvpK="حقائق وتوقعات", conf="مؤكد", pred="توقعاتنا (غير مؤكدة)",
    confs=["تنزل الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S", "التنزيل المسبق متاح من 10 نوفمبر — حتى 212 غيغا", "30 إطارًا؛ وPS5 Pro فيه PSSR وظلال بتتبع الأشعة", "Xbox Cloud Gaming — حتى على Xbox One", "بطلين: جيسون ولوسيا، بولاية ليونيدا (فايس سيتي)", "بوستر وخريطة ليونيدا الرسمية مجانًا للطباعة يوم الإطلاق"],
@@ -252,6 +268,7 @@ T = {
 }
 SOURCES = [("https://www.rockstargames.com/VI", "Rockstar Games — GTA VI"), ("https://www.rockstargames.com/newswire/article/k4ak9okk485712", "Rockstar Newswire — pre-load"), ("https://www.rockstargames.com/newswire/article/89834o94713o21", "Rockstar Newswire — platforms"), ("https://www.rockstargames.com/VI/only-in-leonida", "Only in Leonida")]
 def chips(i, attr, o, active): return '<div class="gta-chips" id="%s" role="group">%s</div>' % (i, "".join('<button type="button" class="chip%s" data-%s="%s">%s</button>' % (" active" if k == active else "", attr, k, v) for k, v in o))
+def chipsa(i, o, act): return '<div class="gta-chips" id="%s" role="group">%s</div>' % (i, "".join('<button type="button" class="chip%s" data-v="%s">%s</button>' % (" active" if k == act else "", k, v) for k, v in o))
 def chipsv(i, o): return '<div class="gta-chips" id="%s" role="group">%s</div>' % (i, "".join('<button type="button" class="chip" data-v="%s" aria-pressed="false">%s</button>' % (k, v) for k, v in o))
 def body(L, ar):
     t = T[L]; pl = PLACES[L]
@@ -276,6 +293,14 @@ def body(L, ar):
           '    <div class="gs-space" data-reveal><label for="gsFree">%s</label><br><input type="number" id="gsFree" min="0" max="20000" inputmode="numeric" placeholder="250"> <span class="gta-note" style="color:#d9b8ff">%s</span><div class="gs-sbar"><i id="gsSpaceBar"></i></div><div id="gsSpaceMsg" role="status"></div></div>\n  </section>\n\n') % (
           t["consK"], t["consT"], "".join('<div class="gs-con%s" data-reveal style="--d:%.2fs"><h3>%s</h3><span class="tag">%s</span><ul>%s</ul></div>' % (" best" if best else "", k * .07, n, tag, "".join("<li>%s</li>" % f for f in fs)) for k, (n, tag, fs, best) in enumerate(t["cons"])),
           t["remote"], t["spaceL"], t["spaceN"])
+    s += ('  <section class="gs-sec" id="clip-studio"><span class="gs-kick" data-reveal>%s</span><h2 class="gs-h2" data-reveal>%s</h2><p class="gs-lead" data-reveal>%s</p>\n'
+          '    <div class="gc-box" id="gcStudio" data-reveal>\n      <div class="gc-drop"><label class="btn">%s<input type="file" id="gcFile" accept="video/*"></label><span id="gcName"></span></div>\n'
+          '      <div class="gta-row"><span class="gl">%s</span>%s</div>\n      <div class="gta-row"><span class="gl">%s</span>%s</div>\n      <div class="gta-row"><span class="gl">%s</span>%s</div>\n'
+          '      <div class="gta-row"><label for="gcTitle">%s</label><input type="text" id="gcTitle" dir="auto" maxlength="40"></div>\n      <div class="gta-row"><label for="gcHandle">%s</label><input type="text" id="gcHandle" dir="ltr" maxlength="30" placeholder="@yourname"></div>\n'
+          '      <button type="button" class="btn" id="gcFind">%s</button>\n      <div class="gc-prog"><i id="gcBar"></i></div><div id="gcMsg" role="status"></div>\n'
+          '      <div id="gcList"></div>\n      <button type="button" class="btn" id="gcAll" hidden style="margin-top:12px">%s</button>\n'
+          '      <div id="gcStageBox" hidden><canvas id="gcStage" width="540" height="960"></canvas></div>\n      <video id="gcVid" playsinline preload="auto" hidden></video>\n      <p class="gc-priv">🔒 %s</p>\n    </div>\n  </section>\n\n') % (
+          t["gcK"], t["gcT"], t["gcP"], t["gcPick"], t["gcLenL"], chipsa("gcLen", t["gcLens"], "30"), t["gcCountL"], chipsa("gcCount", t["gcCounts"], "3"), t["gcStampL"], chipsa("gcStamp", t["gcStamps"], "passed"), t["gcTitleL"], t["gcHandleL"], t["gcFind"], t["gcAll"], t["gcPriv"])
     s += ('  <section class="gs-sec" id="gear"><span class="gs-kick" data-reveal>%s</span><h2 class="gs-h2" data-reveal>%s</h2><p class="gs-lead" data-reveal>%s</p>\n'
           '    <div class="gs-gear" id="gsGear" data-reveal>\n      <div class="gta-row"><span class="gl">%s</span>%s</div>\n'
           '      <div class="gta-row"><label for="gsGearFree">%s</label><input type="number" id="gsGearFree" min="0" max="20000" inputmode="numeric" placeholder="150" style="max-width:160px"></div>\n'
@@ -312,7 +337,7 @@ def body(L, ar):
     s += '  <section class="gta-box" id="kit">\n    <h2>%s</h2>\n    <div class="gta-kit">%s</div>\n  </section>\n\n' % (t["kitT"], "".join('<a href="%s"><b>%s</b><span>%s</span></a>' % k for k in t["kit"]))
     s += ('  <section class="gta-box" id="facts">\n    <h2>%s</h2>\n    <div class="gta-facts"><figure><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="%s" loading="lazy"><figcaption>%s</figcaption></figure>\n'
           '    <div><ul>%s</ul><p class="gta-src">%s: %s</p></div></div>\n  </section>\n\n') % (t["factsT"], t["logoAlt"], t["credit"], "".join("<li>%s</li>" % f for f in t["facts"]), t["src"], " · ".join('<a href="%s" rel="noopener" target="_blank">%s</a>' % x for x in SOURCES))
-    s += '</div>\n  <p class="gta-disc">%s</p>\n  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/gta.js"></script>\n  <script src="/gta-story.js"></script>\n  <script src="/gta-gear.js"></script>\n  <script type="module" src="/gta-map.js"></script>\n</div>\n' % t["disc"]
+    s += '</div>\n  <p class="gta-disc">%s</p>\n  <script src="/vendor/mp4-muxer.js"></script>\n  <script src="/gta.js"></script>\n  <script src="/gta-story.js"></script>\n  <script src="/gta-gear.js"></script>\n  <script src="/video-export.js"></script>\n  <script src="/gta-clips.js"></script>\n  <script type="module" src="/gta-map.js"></script>\n</div>\n' % t["disc"]
     return s
 def w(n, x): io.open(os.path.join(here, n), "w", encoding="utf-8", newline="\n").write(x)
 w("gz_style.html", STYLE); w("gz_en.html", body("en", False)); w("gz_ar.html", body("ar", True))

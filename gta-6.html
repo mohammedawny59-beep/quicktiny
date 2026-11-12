@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>GTA 6 Zone — Countdown, 3D Leonida Map, Consoles &amp; Creator Tools | QuickTiny</title>
-  <meta name="description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
+  <title>GTA 6 Zone — Countdown, 3D Leonida Map, Clip Studio &amp; Creator Tools | QuickTiny</title>
+  <meta name="description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, a Clip Studio that turns gameplay into Reels, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
   <link rel="canonical" href="https://quicktinyv2.vercel.app/gta-6">
   <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/gta-6">
   <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/gta-6">
   <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/gta-6">
-  <meta property="og:title" content="GTA 6 Zone — Countdown, 3D Leonida Map, Consoles &amp; Creator Tools | QuickTiny">
-  <meta property="og:description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
+  <meta property="og:title" content="GTA 6 Zone — Countdown, 3D Leonida Map, Clip Studio &amp; Creator Tools | QuickTiny">
+  <meta property="og:description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, a Clip Studio that turns gameplay into Reels, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quicktinyv2.vercel.app/gta-6">
   <meta property="og:site_name" content="QuickTiny">
@@ -122,6 +122,20 @@
     .gs-space label{font-weight:800;color:#fff}.gs-space input{max-width:180px;margin:8px 0}
     .gs-sbar{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}#gsSpaceBar{display:block;height:100%;width:0;transition:width .4s,background .4s;background:#ff3b4e}#gsSpaceBar.ok{background:linear-gradient(90deg,#47ff9c,#3cf0ff)}#gsSpaceBar.tight{background:#ffb347}
     #gsSpaceMsg{margin-top:8px;font-weight:800;color:#fff;min-height:1.4em}
+    /* CLIP STUDIO */
+    .gc-box{padding:24px;border-radius:26px;background:linear-gradient(160deg,rgba(255,45,149,.16),rgba(155,48,255,.12)),var(--card);border:1px solid rgba(255,45,149,.45);box-shadow:0 30px 70px -40px rgba(255,45,149,.9)}
+    .gc-drop{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.gc-drop label.btn{cursor:pointer;font-size:16px;padding:14px 22px}.gc-drop input{position:absolute;width:1px;height:1px;opacity:0}
+    #gcName{color:#f3dcff;font-weight:700;word-break:break-all}
+    .gc-prog{height:8px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;margin:12px 0 4px}#gcBar{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2d95,#ffb347,#3cf0ff);transition:width .3s}
+    #gcMsg{font-weight:800;color:#fff;min-height:1.4em}
+    #gcList{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:14px}
+    .gc-card{border-radius:18px;overflow:hidden;background:rgba(10,3,26,.85);border:1px solid rgba(255,255,255,.12);animation:gsCard .5s cubic-bezier(.2,.9,.2,1) both}
+    .gc-card canvas{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#000}
+    .gc-meta{padding:12px;display:grid;gap:8px}.gc-meta b{color:#fff;font-size:14.5px}
+    .gc-score{height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}.gc-score i{display:block;height:100%;background:linear-gradient(90deg,#ffb347,#ff2d95)}
+    .gc-btns{display:flex;gap:8px;flex-wrap:wrap}.gc-btns .btn{padding:8px 14px;font-size:14px}
+    #gcStageBox{margin-top:16px;text-align:center}#gcStage{width:min(100%,300px);height:auto;aspect-ratio:9/16;border-radius:18px;background:#000;box-shadow:0 20px 50px -20px rgba(255,45,149,.9)}
+    .gc-priv{font-size:12.5px;color:#cfa8ff;margin:10px 0 0}
     /* GEAR ADVISOR */
     .gs-gear{padding:24px;border-radius:26px;background:linear-gradient(150deg,rgba(60,240,255,.12),rgba(255,45,149,.14)),var(--card);border:1px solid rgba(60,240,255,.35);box-shadow:0 30px 70px -40px rgba(60,240,255,.7)}
     .gs-gear .gta-row{grid-template-columns:130px minmax(0,1fr)}
@@ -237,6 +251,24 @@
     <div class="gs-space" data-reveal><label for="gsFree">How much free space do you have? (GB)</label><br><input type="number" id="gsFree" min="0" max="20000" inputmode="numeric" placeholder="250"> <span class="gta-note" style="color:#d9b8ff">The pre-load needs up to 212 GB.</span><div class="gs-sbar"><i id="gsSpaceBar"></i></div><div id="gsSpaceMsg" role="status"></div></div>
   </section>
 
+  <section class="gs-sec" id="clip-studio"><span class="gs-kick" data-reveal>Clip Studio</span><h2 class="gs-h2" data-reveal>Your gameplay → viral Reels</h2><p class="gs-lead" data-reveal>Drop in a long recording. We find the loudest, wildest moments — crashes, shootouts, explosions — and turn each into a vertical Reel with a punch zoom on the peak, a hook title, your @handle and an end stamp. Ready to post.</p>
+    <div class="gc-box" id="gcStudio" data-reveal>
+      <div class="gc-drop"><label class="btn">🎮 Choose gameplay video<input type="file" id="gcFile" accept="video/*"></label><span id="gcName"></span></div>
+      <div class="gta-row"><span class="gl">Clip length</span><div class="gta-chips" id="gcLen" role="group"><button type="button" class="chip" data-v="15">15 s</button><button type="button" class="chip active" data-v="30">30 s</button><button type="button" class="chip" data-v="45">45 s</button></div></div>
+      <div class="gta-row"><span class="gl">How many</span><div class="gta-chips" id="gcCount" role="group"><button type="button" class="chip active" data-v="3">3</button><button type="button" class="chip" data-v="5">5</button></div></div>
+      <div class="gta-row"><span class="gl">End stamp</span><div class="gta-chips" id="gcStamp" role="group"><button type="button" class="chip active" data-v="passed">Passed</button><button type="button" class="chip" data-v="respect">Respect +</button><button type="button" class="chip" data-v="busted">Busted</button><button type="button" class="chip" data-v="failed">Failed</button><button type="button" class="chip" data-v="none">None</button></div></div>
+      <div class="gta-row"><label for="gcTitle">Hook title</label><input type="text" id="gcTitle" dir="auto" maxlength="40"></div>
+      <div class="gta-row"><label for="gcHandle">Your handle</label><input type="text" id="gcHandle" dir="ltr" maxlength="30" placeholder="@yourname"></div>
+      <button type="button" class="btn" id="gcFind">⚡ Find the best moments</button>
+      <div class="gc-prog"><i id="gcBar"></i></div><div id="gcMsg" role="status"></div>
+      <div id="gcList"></div>
+      <button type="button" class="btn" id="gcAll" hidden style="margin-top:12px">⬇ Download all</button>
+      <div id="gcStageBox" hidden><canvas id="gcStage" width="540" height="960"></canvas></div>
+      <video id="gcVid" playsinline preload="auto" hidden></video>
+      <p class="gc-priv">🔒 Your video never leaves your device — everything runs in your browser.</p>
+    </div>
+  </section>
+
   <section class="gs-sec" id="gear"><span class="gs-kick" data-reveal>Get set up</span><h2 class="gs-h2" data-reveal>Is your setup ready for GTA 6?</h2><p class="gs-lead" data-reveal>Pick your console, how much space you have and what you’ll do — get a personal checklist with the specs that matter.</p>
     <div class="gs-gear" id="gsGear" data-reveal>
       <div class="gta-row"><span class="gl">Console</span><div class="gta-chips" id="gsGearCon" role="group"><button type="button" class="chip" data-v="ps5" aria-pressed="false">PS5</button><button type="button" class="chip" data-v="ps5pro" aria-pressed="false">PS5 Pro</button><button type="button" class="chip" data-v="xsx" aria-pressed="false">Series X</button><button type="button" class="chip" data-v="xss" aria-pressed="false">Series S</button><button type="button" class="chip" data-v="xone" aria-pressed="false">Xbox One (cloud)</button></div></div>
@@ -333,6 +365,8 @@
   <script src="/gta.js"></script>
   <script src="/gta-story.js"></script>
   <script src="/gta-gear.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/gta-clips.js"></script>
   <script type="module" src="/gta-map.js"></script>
 </div>
 <footer>
@@ -419,7 +453,7 @@
 <script src="/site.js"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny GTA 6 Zone","url":"https://quicktinyv2.vercel.app/gta-6","description":"Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny GTA 6 Zone","url":"https://quicktinyv2.vercel.app/gta-6","description":"Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, a Clip Studio that turns gameplay into Reels, a setup checker, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"GTA 6 Zone","item":"https://quicktinyv2.vercel.app/gta-6"}]}</script>
 </body>
 </html>

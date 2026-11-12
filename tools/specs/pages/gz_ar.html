@@ -37,6 +37,24 @@
     <div class="gs-space" data-reveal><label for="gsFree">كم مساحة فاضية عندك؟ (غيغا)</label><br><input type="number" id="gsFree" min="0" max="20000" inputmode="numeric" placeholder="250"> <span class="gta-note" style="color:#d9b8ff">التنزيل المسبق يحتاج حتى 212 غيغا.</span><div class="gs-sbar"><i id="gsSpaceBar"></i></div><div id="gsSpaceMsg" role="status"></div></div>
   </section>
 
+  <section class="gs-sec" id="clip-studio"><span class="gs-kick" data-reveal>استوديو المقاطع</span><h2 class="gs-h2" data-reveal>لعبك ← ريلز بتكسّر</h2><p class="gs-lead" data-reveal>حط تسجيل لعب طويل. منلاقي أقوى اللحظات — حوادث، اشتباكات، انفجارات — ومنحوّل كل وحدة لريل عمودي فيه زوم قوي على اللحظة، عنوان بيشد، اسم حسابك وختم بالآخر. جاهز للنشر.</p>
+    <div class="gc-box" id="gcStudio" data-reveal>
+      <div class="gc-drop"><label class="btn">🎮 اختر فيديو اللعب<input type="file" id="gcFile" accept="video/*"></label><span id="gcName"></span></div>
+      <div class="gta-row"><span class="gl">طول المقطع</span><div class="gta-chips" id="gcLen" role="group"><button type="button" class="chip" data-v="15">15 ث</button><button type="button" class="chip active" data-v="30">30 ث</button><button type="button" class="chip" data-v="45">45 ث</button></div></div>
+      <div class="gta-row"><span class="gl">كم مقطع</span><div class="gta-chips" id="gcCount" role="group"><button type="button" class="chip active" data-v="3">3</button><button type="button" class="chip" data-v="5">5</button></div></div>
+      <div class="gta-row"><span class="gl">ختم النهاية</span><div class="gta-chips" id="gcStamp" role="group"><button type="button" class="chip active" data-v="passed">نجحت</button><button type="button" class="chip" data-v="respect">احترام +</button><button type="button" class="chip" data-v="busted">انمسكت</button><button type="button" class="chip" data-v="failed">فشلت</button><button type="button" class="chip" data-v="none">بدون</button></div></div>
+      <div class="gta-row"><label for="gcTitle">العنوان</label><input type="text" id="gcTitle" dir="auto" maxlength="40"></div>
+      <div class="gta-row"><label for="gcHandle">اسم حسابك</label><input type="text" id="gcHandle" dir="ltr" maxlength="30" placeholder="@yourname"></div>
+      <button type="button" class="btn" id="gcFind">⚡ لاقيلي أقوى اللحظات</button>
+      <div class="gc-prog"><i id="gcBar"></i></div><div id="gcMsg" role="status"></div>
+      <div id="gcList"></div>
+      <button type="button" class="btn" id="gcAll" hidden style="margin-top:12px">⬇ نزّل الكل</button>
+      <div id="gcStageBox" hidden><canvas id="gcStage" width="540" height="960"></canvas></div>
+      <video id="gcVid" playsinline preload="auto" hidden></video>
+      <p class="gc-priv">🔒 الفيديو ما بيطلع من جهازك أبدًا — كل شي بيصير داخل متصفحك.</p>
+    </div>
+  </section>
+
   <section class="gs-sec" id="gear"><span class="gs-kick" data-reveal>جهّز حالك</span><h2 class="gs-h2" data-reveal>جهازك جاهز لـ GTA 6؟</h2><p class="gs-lead" data-reveal>اختار جهازك وكم مساحة عندك وشو ناوي تعمل — وبتطلعلك قائمة مخصّصة إلك مع المواصفات اللي بتفرق فعلًا.</p>
     <div class="gs-gear" id="gsGear" data-reveal>
       <div class="gta-row"><span class="gl">الجهاز</span><div class="gta-chips" id="gsGearCon" role="group"><button type="button" class="chip" data-v="ps5" aria-pressed="false">PS5</button><button type="button" class="chip" data-v="ps5pro" aria-pressed="false">PS5 Pro</button><button type="button" class="chip" data-v="xsx" aria-pressed="false">Series X</button><button type="button" class="chip" data-v="xss" aria-pressed="false">Series S</button><button type="button" class="chip" data-v="xone" aria-pressed="false">Xbox One (سحابي)</button></div></div>
@@ -133,5 +151,7 @@
   <script src="/gta.js"></script>
   <script src="/gta-story.js"></script>
   <script src="/gta-gear.js"></script>
+  <script src="/video-export.js"></script>
+  <script src="/gta-clips.js"></script>
   <script type="module" src="/gta-map.js"></script>
 </div>
