@@ -1,65 +1,139 @@
   <style>
     @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
     @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-    /* the whole page turns into the zone while #gtaZone is on it */
-    body:has(#gtaZone){--accent:#ff2d95;--cyan:#3cf0ff;--card:rgba(20,6,40,.62);--line:rgba(255,120,220,.22);--line-strong:rgba(255,120,220,.4);--muted:#d9b8ff;--text-dim:#f3dcff;background:#0b0420!important}
+    body:has(#gtaZone){--accent:#ff2d95;--cyan:#3cf0ff;--card:rgba(20,6,40,.62);--line:rgba(255,120,220,.22);--line-strong:rgba(255,120,220,.4);--muted:#d9b8ff;--text-dim:#f3dcff;background:#0b0420!important;overflow-x:clip}
     body:has(#gtaZone) header,body:has(#gtaZone) .site-header{background:rgba(11,4,32,.72)!important;backdrop-filter:blur(10px)}
-    body:has(#gtaZone) footer{background:rgba(8,2,18,.85)}
+    body:has(#gtaZone) footer{background:rgba(8,2,18,.9)}
+    html:has(#gtaZone){overflow-x:clip}
+    .gs-ticker{max-width:100vw}
     #gtaWorld{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;display:block}
-    .gta-hero{text-align:center;padding:40px 0 10px}
-    .gta-kick{display:inline-block;font:800 12px/1 Sora,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3cf0ff;border:1px solid rgba(60,240,255,.45);padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.25)}
-    html[lang=ar] .gta-kick{letter-spacing:0;font-family:"QT Arabic",sans-serif}
-    .gta-title{margin:18px 0 8px;font:400 clamp(54px,12vw,128px)/.95 "QT Lalezar",Sora,sans-serif;background:linear-gradient(180deg,#fff6a8 0%,#ffb347 40%,#ff2d95 75%,#9b30ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45)) drop-shadow(0 0 28px rgba(255,45,149,.55));animation:gtaGlow 3s ease-in-out infinite alternate}
-    html[lang=en] .gta-title{font-family:Sora,"Arial Black",sans-serif;font-weight:800;letter-spacing:-.03em}
-    @keyframes gtaGlow{to{filter:drop-shadow(0 6px 0 rgba(0,0,0,.45)) drop-shadow(0 0 46px rgba(60,240,255,.55))}}
-    .gta-sub{max-width:720px;margin:0 auto;font-size:17px;line-height:1.7;color:#f3dcff;text-shadow:0 2px 10px rgba(0,0,0,.5)}
-    #gtaCount{display:flex;justify-content:center;gap:12px;margin:26px 0 8px;flex-wrap:wrap}
-    .gta-cell{min-width:92px;padding:14px 10px 10px;border-radius:18px;background:rgba(10,2,25,.6);border:1px solid rgba(255,45,149,.45);box-shadow:0 0 24px rgba(255,45,149,.25),inset 0 0 20px rgba(60,240,255,.08)}
-    .gta-cell b{display:block;font:800 46px/1 Sora,sans-serif;color:#fff;text-shadow:0 0 18px #ff2d95;font-variant-numeric:tabular-nums}
-    .gta-cell span{display:block;margin-top:6px;font-size:12px;color:#3cf0ff;letter-spacing:.12em;text-transform:uppercase}
-    html[lang=ar] .gta-cell span{letter-spacing:0}
-    .gta-cell.tick b{animation:gtaTick .45s cubic-bezier(.2,1.6,.4,1)}
-    @keyframes gtaTick{from{transform:translateY(-10px) scale(1.15);opacity:.4}}
-    @media(max-width:480px){#gtaCount{gap:7px}.gta-cell{min-width:0;flex:1 1 0;padding:10px 4px 8px}.gta-cell b{font-size:30px}.gta-cell span{font-size:10.5px}}
+    .gs-full{width:100vw;margin-inline:calc(50% - 50vw);position:relative}
+    .gs-h2{font:400 clamp(34px,6vw,68px)/1 "QT Lalezar",Sora,sans-serif;color:#fff;margin:0 0 10px;text-shadow:0 0 30px rgba(255,45,149,.55)}
+    html[lang=en] .gs-h2{font:800 clamp(30px,5vw,58px)/1.02 Sora,sans-serif;letter-spacing:-.02em}
+    .gs-kick{display:inline-block;font:800 12px/1 Sora,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#3cf0ff;margin-bottom:12px}
+    html[lang=ar] .gs-kick{letter-spacing:0;font-family:"QT Arabic",sans-serif}
+    .gs-lead{color:#f3dcff;font-size:17px;line-height:1.75;max-width:760px}
+    [data-reveal]{opacity:0;transform:translateY(48px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+    [data-reveal="left"]{transform:translateX(-60px)}[data-reveal="zoom"]{transform:scale(.9)}
+    [data-reveal].in{opacity:1;transform:none}
+    /* HERO */
+    #gsHero{height:100vh;min-height:620px;overflow:hidden;display:grid;place-items:center;text-align:center;margin-top:-20px;--mx:0;--my:0}
+    #gsHeroImg{position:absolute;inset:-6% -4%;background:url(/assets/gta6/hero.webp) center/cover;transform:scale(1.12);will-change:transform;filter:saturate(1.15)}
+    #gsHero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 50% 60%,rgba(11,4,32,.15),rgba(11,4,32,.85) 75%),linear-gradient(180deg,rgba(11,4,32,.55),transparent 30%,transparent 60%,#0b0420)}
+    .gs-hero-in{position:relative;z-index:2;padding:0 18px;opacity:var(--gs-fade,1);transform:translate3d(calc(var(--mx)*-18px),calc(var(--my)*-12px),0)}
+    .gs-badge{display:inline-flex;gap:8px;align-items:center;font:700 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(0,0,0,.45);border:1px solid rgba(60,240,255,.45);padding:9px 14px;border-radius:999px}
+    .gs-badge i{width:8px;height:8px;border-radius:50%;background:#47ff9c;box-shadow:0 0 10px #47ff9c;animation:gsBlink 1.2s infinite}
+    @keyframes gsBlink{50%{opacity:.25}}
+    .gs-title{margin:18px 0 6px;font:400 clamp(70px,15vw,190px)/.9 "QT Lalezar",Sora,sans-serif;background:linear-gradient(180deg,#fff6a8 5%,#ffb347 40%,#ff2d95 72%,#9b30ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 0 rgba(0,0,0,.45)) drop-shadow(0 0 40px rgba(255,45,149,.6))}
+    html[lang=en] .gs-title{font:800 clamp(64px,13vw,170px)/.9 Sora,"Arial Black",sans-serif;letter-spacing:-.04em}
+    html[lang=ar] .gs-title{animation:gsRise 1.2s cubic-bezier(.2,.9,.2,1) both}
+    .gs-ch{display:inline-block;animation:gsRise 1s cubic-bezier(.2,.9,.2,1) both;animation-delay:calc(var(--i)*.06s + .2s);background:inherit;-webkit-background-clip:text;background-clip:text}
+    @keyframes gsRise{from{opacity:0;transform:translateY(60%) rotate(8deg) scale(.8);filter:blur(10px)}}
+    .gs-sub{color:#fff;font-size:clamp(16px,2vw,21px);text-shadow:0 2px 14px rgba(0,0,0,.8);max-width:700px;margin:0 auto}
+    #gtaCount{display:flex;justify-content:center;gap:12px;margin:22px 0 6px;flex-wrap:nowrap}
+    .gta-cell{min-width:88px;padding:14px 10px 10px;border-radius:18px;background:rgba(10,2,25,.55);border:1px solid rgba(255,45,149,.45);backdrop-filter:blur(6px);box-shadow:0 0 24px rgba(255,45,149,.25)}
+    .gta-cell b{display:block;font:800 44px/1 Sora,sans-serif;color:#fff;text-shadow:0 0 18px #ff2d95;font-variant-numeric:tabular-nums}
+    .gta-cell span{display:block;margin-top:6px;font-size:12px;color:#3cf0ff;text-transform:uppercase;letter-spacing:.1em}html[lang=ar] .gta-cell span{letter-spacing:0}
+    .gta-cell.tick b{animation:gtaTick .45s cubic-bezier(.2,1.6,.4,1)}@keyframes gtaTick{from{transform:translateY(-10px) scale(1.15);opacity:.4}}
+    @media(max-width:480px){#gtaCount{gap:6px}.gta-cell{min-width:0;flex:1 1 0;padding:10px 4px 8px}.gta-cell b{font-size:28px}.gta-cell span{font-size:10px}}
     .gta-out{font:800 34px/1.2 Sora,"QT Lalezar",sans-serif;color:#fff;text-shadow:0 0 22px #3cf0ff}
-    .gta-note{font-size:13px;color:#d9b8ff}
-    .gta-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0 6px}
-    .gta-nav a{padding:10px 16px;border-radius:999px;border:1px solid rgba(60,240,255,.4);color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:rgba(0,0,0,.3);transition:background .2s,transform .2s}
-    .gta-nav a:hover{background:rgba(255,45,149,.35);transform:translateY(-2px)}
+    .gs-scroll{position:absolute;z-index:2;bottom:26px;left:50%;translate:-50% 0;width:26px;height:42px;border:2px solid rgba(255,255,255,.7);border-radius:14px}
+    .gs-scroll::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:gsWheel 1.6s infinite}
+    @keyframes gsWheel{to{transform:translateY(14px);opacity:0}}
+    /* TICKER */
+    .gs-ticker{overflow:hidden;border-block:1px solid rgba(255,45,149,.4);background:linear-gradient(90deg,#ff2d95,#ff8a3d,#ff2d95);padding:12px 0;transform:rotate(-1.2deg);margin:10px 0 50px}
+    .gs-ticker div{display:flex;gap:46px;width:max-content;animation:gsMarquee 40s linear infinite;font:800 17px/1 Sora,"QT Arabic",sans-serif;color:#12042c;white-space:nowrap}
+    html[dir=rtl] .gs-ticker div{animation-direction:reverse}
+    @keyframes gsMarquee{to{transform:translateX(-50%)}}
+    /* STORY */
+    #gsStoryBox{min-height:120vh;display:flex;align-items:center;padding:60px 0}
+    #gsStory{font:400 clamp(28px,4.4vw,56px)/1.35 "QT Lalezar",Sora,sans-serif;color:rgba(255,255,255,.14);margin:0}
+    html[lang=en] #gsStory{font:700 clamp(26px,3.8vw,50px)/1.3 Sora,sans-serif;letter-spacing:-.01em}
+    #gsStory span{transition:color .35s,text-shadow .35s}#gsStory span.lit{color:#fff;text-shadow:0 0 24px rgba(255,45,149,.45)}
+    /* PLACES (pinned horizontal track) */
+    #gsPlaces{height:520vh}
+    .gs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:22px}
+    .gs-sticky header{padding:0 max(18px,calc(50vw - 590px))}
+    #gsRail{display:flex;gap:26px;width:max-content;padding:0 max(18px,calc(50vw - 590px));will-change:transform}
+    .gs-place{position:relative;width:min(72vw,880px);height:min(58vh,520px);border-radius:28px;overflow:hidden;flex:none;box-shadow:0 40px 80px -40px rgba(255,45,149,.8);border:1px solid rgba(255,255,255,.12)}
+    .gs-place img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 6s ease-out}
+    .gs-place:hover img{transform:scale(1.18)}
+    .gs-place::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(11,4,32,.92))}
+    .gs-place div{position:absolute;z-index:1;inset:auto 0 0 0;padding:26px 30px}
+    .gs-place small{font:800 12px/1 Sora,sans-serif;color:#3cf0ff;letter-spacing:.18em}
+    .gs-place h3{margin:8px 0 6px;font:400 clamp(34px,4.6vw,58px)/1 "QT Lalezar",Sora,sans-serif;color:#fff}
+    html[lang=en] .gs-place h3{font:800 clamp(30px,4vw,52px)/1 Sora,sans-serif}
+    .gs-place p{margin:0;color:#f3dcff;max-width:560px;font-size:15.5px;line-height:1.6}.gs-place em{display:block;margin-top:6px;font-style:normal;font-size:12.5px;color:#ffb347}
+    .gs-pbar{height:4px;margin:0 max(18px,calc(50vw - 590px));background:rgba(255,255,255,.12);border-radius:4px;overflow:hidden}#gsPlacesBar{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2d95,#3cf0ff)}
+    @media(max-width:760px){#gsPlaces{height:auto}.gs-sticky{position:static;height:auto;padding:40px 0}#gsRail{flex-direction:column;width:auto;transform:none!important}.gs-place{width:auto;height:62vh}.gs-pbar{display:none}}
+    /* MAP */
+    .gs-sec{padding:70px 0;scroll-margin-top:70px}
+    #gsMap{position:relative;height:min(78vh,720px);border-radius:28px;overflow:hidden;border:1px solid rgba(255,120,220,.35);box-shadow:0 40px 90px -40px rgba(255,45,149,.9);background:#12042c;touch-action:none}
+    #gsMap canvas{display:block;width:100%;height:100%;cursor:grab}#gsMap canvas:active{cursor:grabbing}
+    #gsMapPins{position:absolute;inset:0;pointer-events:none}
+    .gs-pin{all:unset;position:absolute;left:0;top:0;pointer-events:auto;cursor:pointer;font:800 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(11,4,32,.82);border:1px solid var(--pc);box-shadow:0 0 16px var(--pc);padding:8px 12px;border-radius:999px;white-space:nowrap;transition:opacity .3s,background .2s}
+    .gs-pin:hover,.gs-pin.on{background:var(--pc);color:#12042c}.gs-pin:focus-visible{outline:2px solid #fff}
+    #gsMapCard{position:absolute;inset-inline-start:16px;bottom:16px;width:min(340px,calc(100% - 32px));border-radius:20px;overflow:hidden;background:rgba(11,4,32,.9);border:1px solid rgba(255,120,220,.4);backdrop-filter:blur(10px);animation:gsCard .5s cubic-bezier(.2,.9,.2,1)}
+    @keyframes gsCard{from{opacity:0;transform:translateY(20px)}}
+    #gsMapCard img{display:block;width:100%;height:150px;object-fit:cover}#gsMapCard div{padding:14px 16px}#gsMapCard b{font-size:20px;color:#fff}#gsMapCard p{margin:6px 0 0;color:#f3dcff;font-size:14px;line-height:1.55}#gsMapCard em{display:block;margin-top:6px;font-style:normal;font-size:12px;color:#ffb347}
+    .gs-x{all:unset;position:absolute;top:8px;inset-inline-end:10px;cursor:pointer;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;text-align:center;line-height:30px}
+    .gs-maptools{position:absolute;top:14px;inset-inline-end:14px;display:flex;gap:8px;align-items:center}
+    .gs-maptools span{font-size:12px;color:#fff;background:rgba(0,0,0,.55);padding:7px 11px;border-radius:999px}
+    #gsMap.nogl{display:grid;place-items:center;color:#fff;padding:24px;text-align:center}#gsMap.nogl::after{content:attr(data-nogl)}
+    /* CHARACTERS */
+    .gs-cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+    .gs-cc{position:relative;padding:22px;border-radius:24px;min-height:190px;overflow:hidden;background:linear-gradient(150deg,var(--c1),var(--c2));transition:transform .2s ease-out;transform-style:preserve-3d;border:1px solid rgba(255,255,255,.18)}
+    .gs-cc::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.28),transparent 45%);pointer-events:none}
+    .gs-cc .mono{position:absolute;inset-inline-end:-6px;bottom:-26px;font:800 120px/1 Sora,sans-serif;color:rgba(255,255,255,.14)}
+    .gs-cc b{display:block;font:800 21px/1.1 Sora,"QT Arabic",sans-serif;color:#fff}.gs-cc small{display:block;margin:4px 0 10px;color:rgba(255,255,255,.8);font-weight:700}
+    .gs-cc p{position:relative;margin:0;color:#fff;font-size:14.5px;line-height:1.55;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+    /* CONSOLES */
+    .gs-cons{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .gs-con{padding:20px;border-radius:22px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(8px)}
+    .gs-con.best{border-color:#3cf0ff;box-shadow:0 0 30px rgba(60,240,255,.25)}
+    .gs-con h3{margin:0 0 4px;font-size:19px;color:#fff}.gs-con .tag{display:inline-block;font-size:11.5px;font-weight:800;color:#12042c;background:#3cf0ff;border-radius:999px;padding:4px 9px;margin-bottom:10px}
+    .gs-con ul{margin:0;padding-inline-start:18px;color:#f3dcff;font-size:14px;line-height:1.7}
+    .gs-space{margin-top:20px;padding:20px;border-radius:22px;background:rgba(0,0,0,.35);border:1px solid rgba(255,45,149,.35)}
+    .gs-space label{font-weight:800;color:#fff}.gs-space input{max-width:180px;margin:8px 0}
+    .gs-sbar{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}#gsSpaceBar{display:block;height:100%;width:0;transition:width .4s,background .4s;background:#ff3b4e}#gsSpaceBar.ok{background:linear-gradient(90deg,#47ff9c,#3cf0ff)}#gsSpaceBar.tight{background:#ffb347}
+    #gsSpaceMsg{margin-top:8px;font-weight:800;color:#fff;min-height:1.4em}
+    /* CONFIRMED vs PREDICTIONS */
+    .gs-cvp{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.gs-cvp{grid-template-columns:1fr}}
+    .gs-cvp>div{padding:22px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+    .gs-cvp h3{margin:0 0 12px;font-size:20px;color:#fff}.gs-cvp li{color:#f3dcff;margin-bottom:8px;line-height:1.55}
+    .gs-cvp .pred{border-style:dashed;border-color:rgba(255,179,71,.6)}.gs-cvp .pred h3{color:#ffb347}
+    /* FACTS + generic boxes (from the first edition) */
     .gta-box{border-radius:24px;padding:22px;margin:22px 0;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(8px);box-shadow:0 30px 60px -40px rgba(255,45,149,.8);scroll-margin-top:80px}
-    .gta-box h2{margin:0 0 6px;font:400 30px/1.15 "QT Lalezar",Sora,sans-serif;color:#fff;text-shadow:0 0 18px rgba(255,45,149,.6)}
-    html[lang=en] .gta-box h2{font:800 26px/1.2 Sora,sans-serif}
+    .gta-box h2{margin:0 0 6px;font:400 30px/1.15 "QT Lalezar",Sora,sans-serif;color:#fff;text-shadow:0 0 18px rgba(255,45,149,.6)}html[lang=en] .gta-box h2{font:800 26px/1.2 Sora,sans-serif}
     .gta-box>p{color:#f3dcff;margin:0 0 14px}
-    .gta-facts{display:grid;grid-template-columns:200px minmax(0,1fr);gap:22px;align-items:center}
-    @media(max-width:640px){.gta-facts{grid-template-columns:1fr;text-align:center}}
+    .gta-facts{display:grid;grid-template-columns:200px minmax(0,1fr);gap:22px;align-items:center}@media(max-width:640px){.gta-facts{grid-template-columns:1fr;text-align:center}}
     .gta-facts figure{margin:0}.gta-facts img{width:100%;max-width:200px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5))}
     .gta-facts figcaption{font-size:11.5px;color:#cfa8ff;margin-top:8px;line-height:1.5}
     .gta-facts ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}.gta-facts li{color:#fff;font-size:15px}.gta-facts li b{color:#ffb347}
     .gta-src{font-size:12.5px;color:#cfa8ff;margin-top:10px}.gta-src a{color:#3cf0ff}
-    .gta-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
-    @media(max-width:860px){.gta-two{grid-template-columns:1fr}}
-    .gta-row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}.gta-row label,.gta-row .gl{font-weight:700;color:#f3dcff;font-size:14px}
-    .gta-row input{margin:0}.gta-chips{display:flex;flex-wrap:wrap;gap:6px}
-    @media(max-width:520px){.gta-row{grid-template-columns:1fr}}
-    .gta-screen{border-radius:16px;overflow:hidden;border:6px solid #15052b;box-shadow:0 0 0 1px rgba(255,120,220,.35),0 24px 50px -24px rgba(255,45,149,.8);background:#000;max-height:60vh;margin:0 auto}
-    .gta-screen canvas{display:block;width:100%;height:100%}
+    .gta-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}@media(max-width:860px){.gta-two{grid-template-columns:1fr}}
+    .gta-row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}.gta-row label,.gta-row .gl{font-weight:700;color:#f3dcff;font-size:14px}.gta-row input{margin:0}
+    .gta-chips{display:flex;flex-wrap:wrap;gap:6px}@media(max-width:520px){.gta-row{grid-template-columns:1fr}}
+    .gta-screen{border-radius:16px;overflow:hidden;border:6px solid #15052b;box-shadow:0 0 0 1px rgba(255,120,220,.35),0 24px 50px -24px rgba(255,45,149,.8);background:#000;max-height:60vh;margin:0 auto}.gta-screen canvas{display:block;width:100%;height:100%}
     .gta-msg{font-weight:700;color:#f3dcff;min-height:1.4em;margin-top:8px;text-align:center}
     #gtaCrews{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0}
     .gta-crew{all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(255,45,149,.18),rgba(60,240,255,.08));border:1px solid rgba(255,120,220,.3);transition:transform .2s,border-color .2s}
-    .gta-crew:hover{transform:translateY(-2px);border-color:#3cf0ff}.gta-crew.ok{border-color:#47ff9c}.gta-crew:focus-visible{outline:2px solid #3cf0ff}
-    .gta-crew b{color:#fff;font-size:16px}.gta-crew span{font:800 13px/1 Sora,monospace;color:#3cf0ff}
-    #gtaWp{display:block;margin:0 auto;border-radius:14px;box-shadow:0 20px 40px -20px rgba(0,0,0,.8)}
+    .gta-crew:hover{transform:translateY(-2px);border-color:#3cf0ff}.gta-crew.ok{border-color:#47ff9c}.gta-crew:focus-visible{outline:2px solid #3cf0ff}.gta-crew b{color:#fff;font-size:16px}.gta-crew span{font:800 13px/1 Sora,monospace;color:#3cf0ff}
+    #gtaWp,#gsPoster{display:block;margin:0 auto;border-radius:14px;box-shadow:0 20px 40px -20px rgba(0,0,0,.8);max-width:100%;height:auto}
     .gta-files label.btn{cursor:pointer}.gta-files input{position:absolute;width:1px;height:1px;opacity:0}
-    #gtaCheck{display:grid;gap:8px;margin:10px 0}
-    #gtaCheck label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,120,220,.2);color:#fff;cursor:pointer;line-height:1.5}
+    #gtaCheck{display:grid;gap:8px;margin:10px 0}#gtaCheck label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,120,220,.2);color:#fff;cursor:pointer;line-height:1.5}
     #gtaCheck input{margin-top:3px;accent-color:#ff2d95;width:18px;height:18px;flex:none}
     .gta-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}.gta-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2d95,#ffb347,#3cf0ff);transition:width .4s}
     .gta-kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-    .gta-kit a{display:block;padding:16px;border-radius:16px;text-decoration:none;color:#fff;background:rgba(0,0,0,.3);border:1px solid rgba(60,240,255,.3);transition:transform .2s,border-color .2s}
-    .gta-kit a:hover{transform:translateY(-3px);border-color:#ff2d95}.gta-kit b{display:block;font-size:16px;margin-bottom:4px}.gta-kit span{font-size:13px;color:#d9b8ff;line-height:1.5}
+    .gta-kit a{display:block;padding:16px;border-radius:16px;text-decoration:none;color:#fff;background:rgba(0,0,0,.3);border:1px solid rgba(60,240,255,.3);transition:transform .2s,border-color .2s}.gta-kit a:hover{transform:translateY(-3px);border-color:#ff2d95}.gta-kit b{display:block;font-size:16px;margin-bottom:4px}.gta-kit span{font-size:13px;color:#d9b8ff;line-height:1.5}
+    .gs-obs-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.gs-obs-row input{flex:1;min-width:220px;margin:0;font:600 13px/1.4 ui-monospace,monospace}
+    #gsObsFrame{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;background:repeating-conic-gradient(#222 0 25%,#333 0 50%) 0 0/24px 24px;display:block}
     .gta-disc{font-size:12.5px;color:#cfa8ff;text-align:center;margin:26px 0 8px;line-height:1.6}
-    /* arrival through the portal: scanline wipe + chroma flash */
     html.gta-arrive body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,45,149,.35) 0 2px,rgba(60,240,255,.18) 2px 4px),linear-gradient(180deg,#ff2d95,#3cf0ff);mix-blend-mode:screen;animation:gtaArrive 1.3s cubic-bezier(.2,.8,.2,1) forwards}
     @keyframes gtaArrive{0%{opacity:1;clip-path:inset(0 0 0 0)}60%{opacity:.8}100%{opacity:0;clip-path:inset(100% 0 0 0)}}
-    @media (prefers-reduced-motion: reduce){.gta-title{animation:none}html.gta-arrive body::after{display:none}}
+    /* OBS browser-source mode */
+    html.gs-obs,html.gs-obs body,html.gs-obs body:has(#gtaZone){background:transparent!important;overflow:hidden}
+    html.gs-obs body>*:not(.gs-obs-canvas){display:none!important}
+    .gs-obs-canvas{position:fixed;inset:0;width:100vw;height:100vh;object-fit:contain}
+    @media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1;transform:none;transition:none}.gs-ch,.gs-title,.gs-ticker div,.gs-scroll::after,.gs-badge i{animation:none}html.gta-arrive body::after{display:none}}
   </style>

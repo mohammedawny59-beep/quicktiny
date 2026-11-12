@@ -72,7 +72,10 @@ const ALLOWED_EVENTS = new Set([
   "gta_portal",
   "gta_crews",
   "gta_overlay",
-  "gta_wallpaper"
+  "gta_wallpaper",
+  "gta_poster",
+  "gta_obs",
+  "gta_map_pin"
 ]);
 
 function cleanPage(value) {
