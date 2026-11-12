@@ -566,7 +566,9 @@ GUIDES += [
 <h2>المؤكد لحد الآن</h2>
 <table class="guide-table"><tr><th>البند</th><th>المعلومة</th></tr>
 <tr><td>موعد النزول</td><td>الخميس 19 نوفمبر 2026</td></tr>
-<tr><td>المنصات</td><td>بلايستيشن 5 وإكسبوكس سيريس X|S</td></tr>
+<tr><td>المنصات</td><td>بلايستيشن 5 وPS5 Pro وإكسبوكس سيريس X|S (+ Xbox Cloud Gaming حتى على Xbox One)</td></tr>
+<tr><td>التنزيل المسبق</td><td>متاح من 10 نوفمبر — حتى 212 غيغا</td></tr>
+<tr><td>الأداء</td><td>30 إطارًا بالثانية؛ PS5 Pro فيه PSSR وظلال بتتبع الأشعة</td></tr>
 <tr><td>الكمبيوتر (PC)</td><td>لم يُعلن بعد</td></tr>
 <tr><td>ساعة الفتح</td><td>لم تُعلن بعد</td></tr></table>
 <h2>هل يختلف الموعد بين السعودية والإمارات ومصر والأردن؟</h2>
@@ -574,15 +576,19 @@ GUIDES += [
 <h2>هل GTA 6 على الكمبيوتر؟</h2>
 <p>ليس عند الإطلاق. لم تُعلن نسخة PC رسميًا حتى الآن؛ أي تاريخ متداول لها هو تقارير غير رسمية.</p>
 <h2>كيف تتجهّز ليوم النزول</h2>
-<ul><li>حدّث نظام جهازك وفضّي مساحة تخزين كبيرة (الحجم الرسمي لم يُعلن بعد).</li>
+<ul><li>ابدأ التنزيل المسبق الآن إذا حاجز رقميًا، وفضّي 212 غيغا على الأقل — <a href="/ar/gta-6#consoles">احسب مساحتك</a>.</li>
 <li>للعب أونلاين على الأجهزة عادة تحتاج اشتراك PlayStation Plus أو Xbox Game Pass Core أو أعلى.</li>
 <li>إذا ناوي تصوّر أو تبث: جهّز التسجيل، واستخدم <a href="/ar/ai-clip-maker">صانع الريلز</a> و<a href="/ar/horizontal-to-vertical-video">تحويل الفيديو لعمودي</a> لمقاطعك.</li>
-<li>تابع <a href="/ar/gta-6#checklist">قائمة التجهيز</a> في منطقة GTA 6 — تنحفظ في متصفحك.</li></ul>
+<li>تابع <a href="/ar/gta-6#checklist">قائمة التجهيز</a> في منطقة GTA 6 — تنحفظ في متصفحك.</li>
+<li>ستريمر؟ خذ <a href="/ar/gta-6#obs">عدة OBS</a> الجاهزة: شاشة «البث يبدأ قريبًا» وعدّاد وبانر مباشر.</li></ul>
+<h2>هل تشتغل على Xbox One أو PS4؟</h2>
+<p>على PS4 لا. على Xbox One فقط سحابيًا عبر Xbox Cloud Gaming بإعدادات Series S، والجودة حسب سرعة الإنترنت عندك. وفي Remote Play على بلايستيشن وإكسبوكس.</p>
 <h2>المصادر</h2>
-<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener">Tom's Guide</a></p>
+<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">Rockstar Newswire</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener">Tom's Guide</a></p>
 <p style="font-size:13px;color:var(--muted)">QuickTiny غير تابع لـ Rockstar Games أو Take-Two. Grand Theft Auto علامة تجارية لأصحابها.</p>""",
       faq=[("متى تنزل GTA 6 في السعودية؟", "الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S. ساعة الفتح لم تُعلن بعد."),
-           ("هل GTA 6 تنزل على PS4؟", "لا، المنصات المعلنة هي PS5 وXbox Series X|S فقط."),
+           ("هل GTA 6 تنزل على PS4؟", "لا. على Xbox One فقط سحابيًا عبر Xbox Cloud Gaming."),
+           ("كم حجم GTA 6؟", "التنزيل المسبق يحتاج حتى 212 غيغا، وهو متاح من 10 نوفمبر."),
            ("هل في نسخة كمبيوتر؟", "لم تُعلن نسخة الكمبيوتر رسميًا حتى الآن.")]),
  dict(slug="gta-6-release-date-time", lang="en", date="2026-11-12",
       title="GTA 6 Release Date, Time & Platforms — What’s Confirmed | QuickTiny",
@@ -594,7 +600,9 @@ GUIDES += [
 <h2>Confirmed so far</h2>
 <table class="guide-table"><tr><th>Item</th><th>Status</th></tr>
 <tr><td>Release date</td><td>Thursday 19 November 2026</td></tr>
-<tr><td>Platforms</td><td>PlayStation 5 and Xbox Series X|S</td></tr>
+<tr><td>Platforms</td><td>PS5, PS5 Pro and Xbox Series X|S (+ Xbox Cloud Gaming, including Xbox One)</td></tr>
+<tr><td>Pre-load</td><td>Live since 10 November — up to 212 GB</td></tr>
+<tr><td>Performance</td><td>Targets 30 fps; PS5 Pro adds PSSR and ray-traced shadows</td></tr>
 <tr><td>PC</td><td>Not announced</td></tr>
 <tr><td>Unlock time</td><td>Not announced</td></tr></table>
 <h2>What time does GTA 6 unlock?</h2>
@@ -602,14 +610,18 @@ GUIDES += [
 <h2>Is GTA 6 on PC?</h2>
 <p>Not at launch. A PC version hasn’t been officially announced; dates floating around are unofficial reports.</p>
 <h2>Get ready for launch day</h2>
-<ul><li>Update your console and free up plenty of storage (the official size isn’t announced yet).</li>
+<ul><li>Start the pre-load now if you bought digitally, and free at least 212 GB — <a href="/gta-6#consoles">check your space</a>.</li>
 <li>Online play on consoles normally needs PlayStation Plus or Xbox Game Pass Core or above.</li>
 <li>Creating content? Use the <a href="/ai-clip-maker">AI Clip Maker</a> and <a href="/horizontal-to-vertical-video">gameplay → vertical</a> for Shorts.</li>
-<li>Tick off the <a href="/gta-6#checklist">launch checklist</a> — it’s saved in your browser.</li></ul>
+<li>Tick off the <a href="/gta-6#checklist">launch checklist</a> — it’s saved in your browser.</li>
+<li>Streaming? Grab the free <a href="/gta-6#obs">OBS kit</a>: a starting-soon screen, countdown and live banner.</li></ul>
+<h2>Does it run on Xbox One or PS4?</h2>
+<p>Not on PS4. On Xbox One only through Xbox Cloud Gaming, using Series S settings — quality depends on your connection. Remote Play is supported on PlayStation and Xbox.</p>
 <h2>Sources</h2>
-<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener">Tom's Guide</a></p>
+<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">Rockstar Newswire</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener">Tom's Guide</a></p>
 <p style="font-size:13px;color:var(--muted)">QuickTiny is not affiliated with Rockstar Games or Take-Two. Grand Theft Auto is a trademark of its owner.</p>""",
       faq=[("When does GTA 6 come out?", "Thursday 19 November 2026 on PS5 and Xbox Series X|S. The unlock time hasn’t been announced."),
-           ("Is GTA 6 coming to PS4 or Xbox One?", "No — the announced platforms are PS5 and Xbox Series X|S."),
+           ("Is GTA 6 coming to PS4 or Xbox One?", "Not PS4. Xbox One can play it only via Xbox Cloud Gaming."),
+           ("How big is GTA 6?", "The pre-load needs up to 212 GB and has been live since 10 November."),
            ("Is GTA 6 on PC?", "A PC version hasn’t been officially announced yet.")]),
 ]

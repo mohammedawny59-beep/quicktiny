@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>GTA 6 Zone — Launch Countdown, Mission Overlays &amp; Creator Tools | QuickTiny</title>
-  <meta name="description" content="Everything for GTA 6 launch week: a live countdown to 19 November 2026, mission-style overlay videos, a crew name generator, photo-mode wallpapers and a launch-day checklist. Unofficial fan zone, free.">
+  <title>GTA 6 Zone — Countdown, 3D Leonida Map, Consoles &amp; Creator Tools | QuickTiny</title>
+  <meta name="description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
   <link rel="canonical" href="https://quicktinyv2.vercel.app/gta-6">
   <link rel="alternate" hreflang="en" href="https://quicktinyv2.vercel.app/gta-6">
   <link rel="alternate" hreflang="ar" href="https://quicktinyv2.vercel.app/ar/gta-6">
   <link rel="alternate" hreflang="x-default" href="https://quicktinyv2.vercel.app/gta-6">
-  <meta property="og:title" content="GTA 6 Zone — Launch Countdown, Mission Overlays &amp; Creator Tools | QuickTiny">
-  <meta property="og:description" content="Everything for GTA 6 launch week: a live countdown to 19 November 2026, mission-style overlay videos, a crew name generator, photo-mode wallpapers and a launch-day checklist. Unofficial fan zone, free.">
+  <meta property="og:title" content="GTA 6 Zone — Countdown, 3D Leonida Map, Consoles &amp; Creator Tools | QuickTiny">
+  <meta property="og:description" content="Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://quicktinyv2.vercel.app/gta-6">
   <meta property="og:site_name" content="QuickTiny">
@@ -27,67 +27,141 @@
   <style>
     @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-arabic-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
     @font-face{font-family:"QT Lalezar";font-weight:400;font-display:swap;src:url(/fonts/display/lalezar-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-    /* the whole page turns into the zone while #gtaZone is on it */
-    body:has(#gtaZone){--accent:#ff2d95;--cyan:#3cf0ff;--card:rgba(20,6,40,.62);--line:rgba(255,120,220,.22);--line-strong:rgba(255,120,220,.4);--muted:#d9b8ff;--text-dim:#f3dcff;background:#0b0420!important}
+    body:has(#gtaZone){--accent:#ff2d95;--cyan:#3cf0ff;--card:rgba(20,6,40,.62);--line:rgba(255,120,220,.22);--line-strong:rgba(255,120,220,.4);--muted:#d9b8ff;--text-dim:#f3dcff;background:#0b0420!important;overflow-x:clip}
     body:has(#gtaZone) header,body:has(#gtaZone) .site-header{background:rgba(11,4,32,.72)!important;backdrop-filter:blur(10px)}
-    body:has(#gtaZone) footer{background:rgba(8,2,18,.85)}
+    body:has(#gtaZone) footer{background:rgba(8,2,18,.9)}
+    html:has(#gtaZone){overflow-x:clip}
+    .gs-ticker{max-width:100vw}
     #gtaWorld{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;display:block}
-    .gta-hero{text-align:center;padding:40px 0 10px}
-    .gta-kick{display:inline-block;font:800 12px/1 Sora,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#3cf0ff;border:1px solid rgba(60,240,255,.45);padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.25)}
-    html[lang=ar] .gta-kick{letter-spacing:0;font-family:"QT Arabic",sans-serif}
-    .gta-title{margin:18px 0 8px;font:400 clamp(54px,12vw,128px)/.95 "QT Lalezar",Sora,sans-serif;background:linear-gradient(180deg,#fff6a8 0%,#ffb347 40%,#ff2d95 75%,#9b30ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 0 rgba(0,0,0,.45)) drop-shadow(0 0 28px rgba(255,45,149,.55));animation:gtaGlow 3s ease-in-out infinite alternate}
-    html[lang=en] .gta-title{font-family:Sora,"Arial Black",sans-serif;font-weight:800;letter-spacing:-.03em}
-    @keyframes gtaGlow{to{filter:drop-shadow(0 6px 0 rgba(0,0,0,.45)) drop-shadow(0 0 46px rgba(60,240,255,.55))}}
-    .gta-sub{max-width:720px;margin:0 auto;font-size:17px;line-height:1.7;color:#f3dcff;text-shadow:0 2px 10px rgba(0,0,0,.5)}
-    #gtaCount{display:flex;justify-content:center;gap:12px;margin:26px 0 8px;flex-wrap:wrap}
-    .gta-cell{min-width:92px;padding:14px 10px 10px;border-radius:18px;background:rgba(10,2,25,.6);border:1px solid rgba(255,45,149,.45);box-shadow:0 0 24px rgba(255,45,149,.25),inset 0 0 20px rgba(60,240,255,.08)}
-    .gta-cell b{display:block;font:800 46px/1 Sora,sans-serif;color:#fff;text-shadow:0 0 18px #ff2d95;font-variant-numeric:tabular-nums}
-    .gta-cell span{display:block;margin-top:6px;font-size:12px;color:#3cf0ff;letter-spacing:.12em;text-transform:uppercase}
-    html[lang=ar] .gta-cell span{letter-spacing:0}
-    .gta-cell.tick b{animation:gtaTick .45s cubic-bezier(.2,1.6,.4,1)}
-    @keyframes gtaTick{from{transform:translateY(-10px) scale(1.15);opacity:.4}}
-    @media(max-width:480px){#gtaCount{gap:7px}.gta-cell{min-width:0;flex:1 1 0;padding:10px 4px 8px}.gta-cell b{font-size:30px}.gta-cell span{font-size:10.5px}}
+    .gs-full{width:100vw;margin-inline:calc(50% - 50vw);position:relative}
+    .gs-h2{font:400 clamp(34px,6vw,68px)/1 "QT Lalezar",Sora,sans-serif;color:#fff;margin:0 0 10px;text-shadow:0 0 30px rgba(255,45,149,.55)}
+    html[lang=en] .gs-h2{font:800 clamp(30px,5vw,58px)/1.02 Sora,sans-serif;letter-spacing:-.02em}
+    .gs-kick{display:inline-block;font:800 12px/1 Sora,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#3cf0ff;margin-bottom:12px}
+    html[lang=ar] .gs-kick{letter-spacing:0;font-family:"QT Arabic",sans-serif}
+    .gs-lead{color:#f3dcff;font-size:17px;line-height:1.75;max-width:760px}
+    [data-reveal]{opacity:0;transform:translateY(48px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+    [data-reveal="left"]{transform:translateX(-60px)}[data-reveal="zoom"]{transform:scale(.9)}
+    [data-reveal].in{opacity:1;transform:none}
+    /* HERO */
+    #gsHero{height:100vh;min-height:620px;overflow:hidden;display:grid;place-items:center;text-align:center;margin-top:-20px;--mx:0;--my:0}
+    #gsHeroImg{position:absolute;inset:-6% -4%;background:url(/assets/gta6/hero.webp) center/cover;transform:scale(1.12);will-change:transform;filter:saturate(1.15)}
+    #gsHero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 50% 60%,rgba(11,4,32,.15),rgba(11,4,32,.85) 75%),linear-gradient(180deg,rgba(11,4,32,.55),transparent 30%,transparent 60%,#0b0420)}
+    .gs-hero-in{position:relative;z-index:2;padding:0 18px;opacity:var(--gs-fade,1);transform:translate3d(calc(var(--mx)*-18px),calc(var(--my)*-12px),0)}
+    .gs-badge{display:inline-flex;gap:8px;align-items:center;font:700 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(0,0,0,.45);border:1px solid rgba(60,240,255,.45);padding:9px 14px;border-radius:999px}
+    .gs-badge i{width:8px;height:8px;border-radius:50%;background:#47ff9c;box-shadow:0 0 10px #47ff9c;animation:gsBlink 1.2s infinite}
+    @keyframes gsBlink{50%{opacity:.25}}
+    .gs-title{margin:18px 0 6px;font:400 clamp(70px,15vw,190px)/.9 "QT Lalezar",Sora,sans-serif;background:linear-gradient(180deg,#fff6a8 5%,#ffb347 40%,#ff2d95 72%,#9b30ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 0 rgba(0,0,0,.45)) drop-shadow(0 0 40px rgba(255,45,149,.6))}
+    html[lang=en] .gs-title{font:800 clamp(64px,13vw,170px)/.9 Sora,"Arial Black",sans-serif;letter-spacing:-.04em}
+    html[lang=ar] .gs-title{animation:gsRise 1.2s cubic-bezier(.2,.9,.2,1) both}
+    .gs-ch{display:inline-block;animation:gsRise 1s cubic-bezier(.2,.9,.2,1) both;animation-delay:calc(var(--i)*.06s + .2s);background:inherit;-webkit-background-clip:text;background-clip:text}
+    @keyframes gsRise{from{opacity:0;transform:translateY(60%) rotate(8deg) scale(.8);filter:blur(10px)}}
+    .gs-sub{color:#fff;font-size:clamp(16px,2vw,21px);text-shadow:0 2px 14px rgba(0,0,0,.8);max-width:700px;margin:0 auto}
+    #gtaCount{display:flex;justify-content:center;gap:12px;margin:22px 0 6px;flex-wrap:nowrap}
+    .gta-cell{min-width:88px;padding:14px 10px 10px;border-radius:18px;background:rgba(10,2,25,.55);border:1px solid rgba(255,45,149,.45);backdrop-filter:blur(6px);box-shadow:0 0 24px rgba(255,45,149,.25)}
+    .gta-cell b{display:block;font:800 44px/1 Sora,sans-serif;color:#fff;text-shadow:0 0 18px #ff2d95;font-variant-numeric:tabular-nums}
+    .gta-cell span{display:block;margin-top:6px;font-size:12px;color:#3cf0ff;text-transform:uppercase;letter-spacing:.1em}html[lang=ar] .gta-cell span{letter-spacing:0}
+    .gta-cell.tick b{animation:gtaTick .45s cubic-bezier(.2,1.6,.4,1)}@keyframes gtaTick{from{transform:translateY(-10px) scale(1.15);opacity:.4}}
+    @media(max-width:480px){#gtaCount{gap:6px}.gta-cell{min-width:0;flex:1 1 0;padding:10px 4px 8px}.gta-cell b{font-size:28px}.gta-cell span{font-size:10px}}
     .gta-out{font:800 34px/1.2 Sora,"QT Lalezar",sans-serif;color:#fff;text-shadow:0 0 22px #3cf0ff}
-    .gta-note{font-size:13px;color:#d9b8ff}
-    .gta-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0 6px}
-    .gta-nav a{padding:10px 16px;border-radius:999px;border:1px solid rgba(60,240,255,.4);color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:rgba(0,0,0,.3);transition:background .2s,transform .2s}
-    .gta-nav a:hover{background:rgba(255,45,149,.35);transform:translateY(-2px)}
+    .gs-scroll{position:absolute;z-index:2;bottom:26px;left:50%;translate:-50% 0;width:26px;height:42px;border:2px solid rgba(255,255,255,.7);border-radius:14px}
+    .gs-scroll::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:gsWheel 1.6s infinite}
+    @keyframes gsWheel{to{transform:translateY(14px);opacity:0}}
+    /* TICKER */
+    .gs-ticker{overflow:hidden;border-block:1px solid rgba(255,45,149,.4);background:linear-gradient(90deg,#ff2d95,#ff8a3d,#ff2d95);padding:12px 0;transform:rotate(-1.2deg);margin:10px 0 50px}
+    .gs-ticker div{display:flex;gap:46px;width:max-content;animation:gsMarquee 40s linear infinite;font:800 17px/1 Sora,"QT Arabic",sans-serif;color:#12042c;white-space:nowrap}
+    html[dir=rtl] .gs-ticker div{animation-direction:reverse}
+    @keyframes gsMarquee{to{transform:translateX(-50%)}}
+    /* STORY */
+    #gsStoryBox{min-height:120vh;display:flex;align-items:center;padding:60px 0}
+    #gsStory{font:400 clamp(28px,4.4vw,56px)/1.35 "QT Lalezar",Sora,sans-serif;color:rgba(255,255,255,.14);margin:0}
+    html[lang=en] #gsStory{font:700 clamp(26px,3.8vw,50px)/1.3 Sora,sans-serif;letter-spacing:-.01em}
+    #gsStory span{transition:color .35s,text-shadow .35s}#gsStory span.lit{color:#fff;text-shadow:0 0 24px rgba(255,45,149,.45)}
+    /* PLACES (pinned horizontal track) */
+    #gsPlaces{height:520vh}
+    .gs-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:22px}
+    .gs-sticky header{padding:0 max(18px,calc(50vw - 590px))}
+    #gsRail{display:flex;gap:26px;width:max-content;padding:0 max(18px,calc(50vw - 590px));will-change:transform}
+    .gs-place{position:relative;width:min(72vw,880px);height:min(58vh,520px);border-radius:28px;overflow:hidden;flex:none;box-shadow:0 40px 80px -40px rgba(255,45,149,.8);border:1px solid rgba(255,255,255,.12)}
+    .gs-place img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 6s ease-out}
+    .gs-place:hover img{transform:scale(1.18)}
+    .gs-place::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(11,4,32,.92))}
+    .gs-place div{position:absolute;z-index:1;inset:auto 0 0 0;padding:26px 30px}
+    .gs-place small{font:800 12px/1 Sora,sans-serif;color:#3cf0ff;letter-spacing:.18em}
+    .gs-place h3{margin:8px 0 6px;font:400 clamp(34px,4.6vw,58px)/1 "QT Lalezar",Sora,sans-serif;color:#fff}
+    html[lang=en] .gs-place h3{font:800 clamp(30px,4vw,52px)/1 Sora,sans-serif}
+    .gs-place p{margin:0;color:#f3dcff;max-width:560px;font-size:15.5px;line-height:1.6}.gs-place em{display:block;margin-top:6px;font-style:normal;font-size:12.5px;color:#ffb347}
+    .gs-pbar{height:4px;margin:0 max(18px,calc(50vw - 590px));background:rgba(255,255,255,.12);border-radius:4px;overflow:hidden}#gsPlacesBar{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2d95,#3cf0ff)}
+    @media(max-width:760px){#gsPlaces{height:auto}.gs-sticky{position:static;height:auto;padding:40px 0}#gsRail{flex-direction:column;width:auto;transform:none!important}.gs-place{width:auto;height:62vh}.gs-pbar{display:none}}
+    /* MAP */
+    .gs-sec{padding:70px 0;scroll-margin-top:70px}
+    #gsMap{position:relative;height:min(78vh,720px);border-radius:28px;overflow:hidden;border:1px solid rgba(255,120,220,.35);box-shadow:0 40px 90px -40px rgba(255,45,149,.9);background:#12042c;touch-action:none}
+    #gsMap canvas{display:block;width:100%;height:100%;cursor:grab}#gsMap canvas:active{cursor:grabbing}
+    #gsMapPins{position:absolute;inset:0;pointer-events:none}
+    .gs-pin{all:unset;position:absolute;left:0;top:0;pointer-events:auto;cursor:pointer;font:800 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(11,4,32,.82);border:1px solid var(--pc);box-shadow:0 0 16px var(--pc);padding:8px 12px;border-radius:999px;white-space:nowrap;transition:opacity .3s,background .2s}
+    .gs-pin:hover,.gs-pin.on{background:var(--pc);color:#12042c}.gs-pin:focus-visible{outline:2px solid #fff}
+    #gsMapCard{position:absolute;inset-inline-start:16px;bottom:16px;width:min(340px,calc(100% - 32px));border-radius:20px;overflow:hidden;background:rgba(11,4,32,.9);border:1px solid rgba(255,120,220,.4);backdrop-filter:blur(10px);animation:gsCard .5s cubic-bezier(.2,.9,.2,1)}
+    @keyframes gsCard{from{opacity:0;transform:translateY(20px)}}
+    #gsMapCard img{display:block;width:100%;height:150px;object-fit:cover}#gsMapCard div{padding:14px 16px}#gsMapCard b{font-size:20px;color:#fff}#gsMapCard p{margin:6px 0 0;color:#f3dcff;font-size:14px;line-height:1.55}#gsMapCard em{display:block;margin-top:6px;font-style:normal;font-size:12px;color:#ffb347}
+    .gs-x{all:unset;position:absolute;top:8px;inset-inline-end:10px;cursor:pointer;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;text-align:center;line-height:30px}
+    .gs-maptools{position:absolute;top:14px;inset-inline-end:14px;display:flex;gap:8px;align-items:center}
+    .gs-maptools span{font-size:12px;color:#fff;background:rgba(0,0,0,.55);padding:7px 11px;border-radius:999px}
+    #gsMap.nogl{display:grid;place-items:center;color:#fff;padding:24px;text-align:center}#gsMap.nogl::after{content:attr(data-nogl)}
+    /* CHARACTERS */
+    .gs-cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+    .gs-cc{position:relative;padding:22px;border-radius:24px;min-height:190px;overflow:hidden;background:linear-gradient(150deg,var(--c1),var(--c2));transition:transform .2s ease-out;transform-style:preserve-3d;border:1px solid rgba(255,255,255,.18)}
+    .gs-cc::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.28),transparent 45%);pointer-events:none}
+    .gs-cc .mono{position:absolute;inset-inline-end:-6px;bottom:-26px;font:800 120px/1 Sora,sans-serif;color:rgba(255,255,255,.14)}
+    .gs-cc b{display:block;font:800 21px/1.1 Sora,"QT Arabic",sans-serif;color:#fff}.gs-cc small{display:block;margin:4px 0 10px;color:rgba(255,255,255,.8);font-weight:700}
+    .gs-cc p{position:relative;margin:0;color:#fff;font-size:14.5px;line-height:1.55;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+    /* CONSOLES */
+    .gs-cons{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .gs-con{padding:20px;border-radius:22px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(8px)}
+    .gs-con.best{border-color:#3cf0ff;box-shadow:0 0 30px rgba(60,240,255,.25)}
+    .gs-con h3{margin:0 0 4px;font-size:19px;color:#fff}.gs-con .tag{display:inline-block;font-size:11.5px;font-weight:800;color:#12042c;background:#3cf0ff;border-radius:999px;padding:4px 9px;margin-bottom:10px}
+    .gs-con ul{margin:0;padding-inline-start:18px;color:#f3dcff;font-size:14px;line-height:1.7}
+    .gs-space{margin-top:20px;padding:20px;border-radius:22px;background:rgba(0,0,0,.35);border:1px solid rgba(255,45,149,.35)}
+    .gs-space label{font-weight:800;color:#fff}.gs-space input{max-width:180px;margin:8px 0}
+    .gs-sbar{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}#gsSpaceBar{display:block;height:100%;width:0;transition:width .4s,background .4s;background:#ff3b4e}#gsSpaceBar.ok{background:linear-gradient(90deg,#47ff9c,#3cf0ff)}#gsSpaceBar.tight{background:#ffb347}
+    #gsSpaceMsg{margin-top:8px;font-weight:800;color:#fff;min-height:1.4em}
+    /* CONFIRMED vs PREDICTIONS */
+    .gs-cvp{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.gs-cvp{grid-template-columns:1fr}}
+    .gs-cvp>div{padding:22px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+    .gs-cvp h3{margin:0 0 12px;font-size:20px;color:#fff}.gs-cvp li{color:#f3dcff;margin-bottom:8px;line-height:1.55}
+    .gs-cvp .pred{border-style:dashed;border-color:rgba(255,179,71,.6)}.gs-cvp .pred h3{color:#ffb347}
+    /* FACTS + generic boxes (from the first edition) */
     .gta-box{border-radius:24px;padding:22px;margin:22px 0;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(8px);box-shadow:0 30px 60px -40px rgba(255,45,149,.8);scroll-margin-top:80px}
-    .gta-box h2{margin:0 0 6px;font:400 30px/1.15 "QT Lalezar",Sora,sans-serif;color:#fff;text-shadow:0 0 18px rgba(255,45,149,.6)}
-    html[lang=en] .gta-box h2{font:800 26px/1.2 Sora,sans-serif}
+    .gta-box h2{margin:0 0 6px;font:400 30px/1.15 "QT Lalezar",Sora,sans-serif;color:#fff;text-shadow:0 0 18px rgba(255,45,149,.6)}html[lang=en] .gta-box h2{font:800 26px/1.2 Sora,sans-serif}
     .gta-box>p{color:#f3dcff;margin:0 0 14px}
-    .gta-facts{display:grid;grid-template-columns:200px minmax(0,1fr);gap:22px;align-items:center}
-    @media(max-width:640px){.gta-facts{grid-template-columns:1fr;text-align:center}}
+    .gta-facts{display:grid;grid-template-columns:200px minmax(0,1fr);gap:22px;align-items:center}@media(max-width:640px){.gta-facts{grid-template-columns:1fr;text-align:center}}
     .gta-facts figure{margin:0}.gta-facts img{width:100%;max-width:200px;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5))}
     .gta-facts figcaption{font-size:11.5px;color:#cfa8ff;margin-top:8px;line-height:1.5}
     .gta-facts ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}.gta-facts li{color:#fff;font-size:15px}.gta-facts li b{color:#ffb347}
     .gta-src{font-size:12.5px;color:#cfa8ff;margin-top:10px}.gta-src a{color:#3cf0ff}
-    .gta-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
-    @media(max-width:860px){.gta-two{grid-template-columns:1fr}}
-    .gta-row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}.gta-row label,.gta-row .gl{font-weight:700;color:#f3dcff;font-size:14px}
-    .gta-row input{margin:0}.gta-chips{display:flex;flex-wrap:wrap;gap:6px}
-    @media(max-width:520px){.gta-row{grid-template-columns:1fr}}
-    .gta-screen{border-radius:16px;overflow:hidden;border:6px solid #15052b;box-shadow:0 0 0 1px rgba(255,120,220,.35),0 24px 50px -24px rgba(255,45,149,.8);background:#000;max-height:60vh;margin:0 auto}
-    .gta-screen canvas{display:block;width:100%;height:100%}
+    .gta-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}@media(max-width:860px){.gta-two{grid-template-columns:1fr}}
+    .gta-row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}.gta-row label,.gta-row .gl{font-weight:700;color:#f3dcff;font-size:14px}.gta-row input{margin:0}
+    .gta-chips{display:flex;flex-wrap:wrap;gap:6px}@media(max-width:520px){.gta-row{grid-template-columns:1fr}}
+    .gta-screen{border-radius:16px;overflow:hidden;border:6px solid #15052b;box-shadow:0 0 0 1px rgba(255,120,220,.35),0 24px 50px -24px rgba(255,45,149,.8);background:#000;max-height:60vh;margin:0 auto}.gta-screen canvas{display:block;width:100%;height:100%}
     .gta-msg{font-weight:700;color:#f3dcff;min-height:1.4em;margin-top:8px;text-align:center}
     #gtaCrews{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0}
     .gta-crew{all:unset;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,rgba(255,45,149,.18),rgba(60,240,255,.08));border:1px solid rgba(255,120,220,.3);transition:transform .2s,border-color .2s}
-    .gta-crew:hover{transform:translateY(-2px);border-color:#3cf0ff}.gta-crew.ok{border-color:#47ff9c}.gta-crew:focus-visible{outline:2px solid #3cf0ff}
-    .gta-crew b{color:#fff;font-size:16px}.gta-crew span{font:800 13px/1 Sora,monospace;color:#3cf0ff}
-    #gtaWp{display:block;margin:0 auto;border-radius:14px;box-shadow:0 20px 40px -20px rgba(0,0,0,.8)}
+    .gta-crew:hover{transform:translateY(-2px);border-color:#3cf0ff}.gta-crew.ok{border-color:#47ff9c}.gta-crew:focus-visible{outline:2px solid #3cf0ff}.gta-crew b{color:#fff;font-size:16px}.gta-crew span{font:800 13px/1 Sora,monospace;color:#3cf0ff}
+    #gtaWp,#gsPoster{display:block;margin:0 auto;border-radius:14px;box-shadow:0 20px 40px -20px rgba(0,0,0,.8);max-width:100%;height:auto}
     .gta-files label.btn{cursor:pointer}.gta-files input{position:absolute;width:1px;height:1px;opacity:0}
-    #gtaCheck{display:grid;gap:8px;margin:10px 0}
-    #gtaCheck label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,120,220,.2);color:#fff;cursor:pointer;line-height:1.5}
+    #gtaCheck{display:grid;gap:8px;margin:10px 0}#gtaCheck label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.25);border:1px solid rgba(255,120,220,.2);color:#fff;cursor:pointer;line-height:1.5}
     #gtaCheck input{margin-top:3px;accent-color:#ff2d95;width:18px;height:18px;flex:none}
     .gta-bar{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}.gta-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff2d95,#ffb347,#3cf0ff);transition:width .4s}
     .gta-kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-    .gta-kit a{display:block;padding:16px;border-radius:16px;text-decoration:none;color:#fff;background:rgba(0,0,0,.3);border:1px solid rgba(60,240,255,.3);transition:transform .2s,border-color .2s}
-    .gta-kit a:hover{transform:translateY(-3px);border-color:#ff2d95}.gta-kit b{display:block;font-size:16px;margin-bottom:4px}.gta-kit span{font-size:13px;color:#d9b8ff;line-height:1.5}
+    .gta-kit a{display:block;padding:16px;border-radius:16px;text-decoration:none;color:#fff;background:rgba(0,0,0,.3);border:1px solid rgba(60,240,255,.3);transition:transform .2s,border-color .2s}.gta-kit a:hover{transform:translateY(-3px);border-color:#ff2d95}.gta-kit b{display:block;font-size:16px;margin-bottom:4px}.gta-kit span{font-size:13px;color:#d9b8ff;line-height:1.5}
+    .gs-obs-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.gs-obs-row input{flex:1;min-width:220px;margin:0;font:600 13px/1.4 ui-monospace,monospace}
+    #gsObsFrame{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;background:repeating-conic-gradient(#222 0 25%,#333 0 50%) 0 0/24px 24px;display:block}
     .gta-disc{font-size:12.5px;color:#cfa8ff;text-align:center;margin:26px 0 8px;line-height:1.6}
-    /* arrival through the portal: scanline wipe + chroma flash */
     html.gta-arrive body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,45,149,.35) 0 2px,rgba(60,240,255,.18) 2px 4px),linear-gradient(180deg,#ff2d95,#3cf0ff);mix-blend-mode:screen;animation:gtaArrive 1.3s cubic-bezier(.2,.8,.2,1) forwards}
     @keyframes gtaArrive{0%{opacity:1;clip-path:inset(0 0 0 0)}60%{opacity:.8}100%{opacity:0;clip-path:inset(100% 0 0 0)}}
-    @media (prefers-reduced-motion: reduce){.gta-title{animation:none}html.gta-arrive body::after{display:none}}
+    /* OBS browser-source mode */
+    html.gs-obs,html.gs-obs body,html.gs-obs body:has(#gtaZone){background:transparent!important;overflow:hidden}
+    html.gs-obs body>*:not(.gs-obs-canvas){display:none!important}
+    .gs-obs-canvas{position:fixed;inset:0;width:100vw;height:100vh;object-fit:contain}
+    @media (prefers-reduced-motion: reduce){[data-reveal]{opacity:1;transform:none;transition:none}.gs-ch,.gs-title,.gs-ticker div,.gs-scroll::after,.gs-badge i{animation:none}html.gta-arrive body::after{display:none}}
   </style>
 </head>
 <body>
@@ -115,24 +189,71 @@
     <a href="/gta-6" class="active">EN</a>
     <a href="/ar/gta-6" lang="ar">AR</a>
   </div>
-  <section class="gta-hero" id="gtaZone">
-    <span class="gta-kick">Fan zone · unofficial</span>
-    <h1 class="gta-title">GTA 6 ZONE</h1>
-    <p class="gta-sub">Everything a player and creator needs for launch week: a live countdown, mission-style overlays for your clips, crew names, photo-mode wallpapers and a launch-day checklist. Free, in Arabic and English.</p>
-    <div id="gtaCount" role="timer" aria-live="off"><div class="gta-cell" id="gtaD"><b>--</b><span></span></div><div class="gta-cell" id="gtaH"><b>--</b><span></span></div><div class="gta-cell" id="gtaM"><b>--</b><span></span></div><div class="gta-cell" id="gtaS"><b>--</b><span></span></div></div>
-    <p class="gta-note">Countdown to 19 November 2026, midnight your time — Rockstar hasn’t announced the exact unlock time yet.</p>
-    <nav class="gta-nav" aria-label="GTA 6 Zone"><a href="#facts">What we know</a><a href="#overlays">Mission overlays</a><a href="#crews">Crew names</a><a href="#wallpapers">Wallpapers</a><a href="#checklist">Launch checklist</a><a href="#kit">Creator kit</a></nav>
+<div id="gtaZone">
+  <section id="gsHero" class="gs-full"><div id="gsHeroImg" aria-hidden="true"></div>
+    <div class="gs-hero-in"><span class="gs-badge"><i></i>Pre-load is live</span>
+      <h1 class="gs-title" data-split>GTA 6 ZONE</h1>
+      <p class="gs-sub">Leonida opens 19 November. Countdown, an interactive 3D map, the places and the people, console guide — and creator tools built for launch week.</p>
+      <div id="gtaCount" role="timer" aria-live="off"><div class="gta-cell" id="gtaD"><b>--</b><span></span></div><div class="gta-cell" id="gtaH"><b>--</b><span></span></div><div class="gta-cell" id="gtaM"><b>--</b><span></span></div><div class="gta-cell" id="gtaS"><b>--</b><span></span></div></div>
+    </div><span class="gs-scroll" aria-hidden="true"></span>
   </section>
 
-  <section class="gta-box" id="facts">
-    <h2>What we know so far</h2>
-    <div class="gta-facts"><figure><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="Grand Theft Auto VI logo" loading="lazy"><figcaption>Grand Theft Auto VI logo © Rockstar Games — shown for news and identification only.</figcaption></figure>
-    <div><ul><li><b>Release:</b> Thursday 19 November 2026</li><li><b>Platforms:</b> PlayStation 5 and Xbox Series X|S</li><li><b>PC:</b> not announced yet</li><li><b>Unlock time:</b> not announced yet</li></ul><p class="gta-src">Sources: <a href="https://www.rockstargames.com/VI" rel="noopener" target="_blank">Rockstar Games</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener" target="_blank">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener" target="_blank">Tom's Guide</a></p></div></div>
+  <div class="gs-ticker gs-full" aria-hidden="true"><div><span>✦ PRE-LOAD IS LIVE</span><span>✦ UP TO 212 GB</span><span>✦ 19 NOVEMBER 2026</span><span>✦ PS5 · PS5 PRO · XBOX SERIES X|S</span><span>✦ TARGETING 30 FPS</span><span>✦ XBOX CLOUD GAMING — EVEN ON XBOX ONE</span><span>✦ REMOTE PLAY SUPPORTED</span><span>✦ OFFICIAL MAP DROPS ON LAUNCH DAY</span><span>✦ PRE-LOAD IS LIVE</span><span>✦ UP TO 212 GB</span><span>✦ 19 NOVEMBER 2026</span><span>✦ PS5 · PS5 PRO · XBOX SERIES X|S</span><span>✦ TARGETING 30 FPS</span><span>✦ XBOX CLOUD GAMING — EVEN ON XBOX ONE</span><span>✦ REMOTE PLAY SUPPORTED</span><span>✦ OFFICIAL MAP DROPS ON LAUNCH DAY</span></div></div>
+
+  <section id="gsStoryBox"><div><span class="gs-kick" data-reveal>The story</span><p id="gsStory">Two people, one easy score that goes wrong, and the sunniest state in America showing its darkest side. Jason and Lucia only have each other — and a conspiracy that stretches across all of Leonida.</p></div></section>
+
+  <section id="gsPlaces" class="gs-full"><div class="gs-sticky"><header><span class="gs-kick">Only in Leonida</span><h2 class="gs-h2">Six places to know</h2></header>
+    <div id="gsRail"><article class="gs-place"><img src="/assets/gta6/vice-city.webp" alt="" loading="lazy" decoding="async" width="1280" height="720"><div><small>01</small><h3>Vice City</h3><p>Neon nights, art deco hotels and the beachfront strip — the beating heart of Leonida.</p><em>Seems inspired by Miami</em></div></article><article class="gs-place"><img src="/assets/gta6/leonida-keys.webp" alt="" loading="lazy" decoding="async" width="1280" height="720"><div><small>02</small><h3>Leonida Keys</h3><p>A chain of islands and long bridges over turquoise water, where boats move more than tourists.</p><em>Seems inspired by the Florida Keys</em></div></article><article class="gs-place"><img src="/assets/gta6/grassrivers.webp" alt="" loading="lazy" decoding="async" width="1280" height="720"><div><small>03</small><h3>Grassrivers</h3><p>Endless sawgrass swamps, airboats and wildlife — the wild south of the state.</p><em>Seems inspired by the Everglades</em></div></article><article class="gs-place"><img src="/assets/gta6/port-gellhorn.webp" alt="" loading="lazy" decoding="async" width="1280" height="720"><div><small>04</small><h3>Port Gellhorn</h3><p>A gritty Gulf-coast port town of cranes, warehouses and roadside motels.</p><em>Seems inspired by Florida’s Gulf coast</em></div></article><article class="gs-place"><img src="/assets/gta6/ambrosia.webp" alt="" loading="lazy" decoding="async" width="1280" height="720"><div><small>05</small><h3>Ambrosia</h3><p>Sugar-cane country around a huge inland lake, ruled by mills and farm roads.</p><em>Seems inspired by the Lake Okeechobee area</em></div></article><article class="gs-place"><img src="/assets/gta6/mount-kalaga.webp" alt="" loading="lazy" decoding="async" width="1280" height="720"><div><small>06</small><h3>Mount Kalaga</h3><p>Forested hills, rivers and springs — the state’s wild national park up north.</p><em>Seems inspired by North Florida’s parks</em></div></article></div>
+    <div class="gs-pbar"><i id="gsPlacesBar"></i></div></div></section>
+
+  <section class="gs-sec" id="map"><span class="gs-kick" data-reveal>Interactive</span><h2 class="gs-h2" data-reveal>Leonida in 3D</h2><p class="gs-lead" data-reveal>Drag to spin, scroll or pinch to zoom, tap a pin to fly there.</p>
+    <div id="gsMap" data-reveal="zoom" data-nogl="3D isn’t available on this device — explore the places above."><div id="gsMapPins"></div><div class="gs-maptools"><span>🧭 3D</span><button type="button" class="chip" id="gsMapReset">Reset view</button></div>
+      <div id="gsMapCard" hidden><button type="button" class="gs-x" aria-label="Close">×</button><img alt=""><div><b></b><p></p><em></em></div></div></div>
+    <p class="gta-msg" style="text-align:start;font-weight:600">Illustrative fan map — not the official one. Rockstar releases the official printable map of Leonida for free on 19 November.</p>
+    <script type="application/json" id="gsPlacesData">[{"id": "vice-city", "name": "Vice City", "desc": "Neon nights, art deco hotels and the beachfront strip — the beating heart of Leonida.", "real": "Seems inspired by Miami", "u": 0.8, "v": 0.7, "css": "#ff2d95", "color": 16723349, "img": "/assets/gta6/vice-city.webp"}, {"id": "leonida-keys", "name": "Leonida Keys", "desc": "A chain of islands and long bridges over turquoise water, where boats move more than tourists.", "real": "Seems inspired by the Florida Keys", "u": 0.6, "v": 0.962, "css": "#3cf0ff", "color": 3993855, "img": "/assets/gta6/leonida-keys.webp"}, {"id": "grassrivers", "name": "Grassrivers", "desc": "Endless sawgrass swamps, airboats and wildlife — the wild south of the state.", "real": "Seems inspired by the Everglades", "u": 0.63, "v": 0.76, "css": "#47ff9c", "color": 4718492, "img": "/assets/gta6/grassrivers.webp"}, {"id": "port-gellhorn", "name": "Port Gellhorn", "desc": "A gritty Gulf-coast port town of cranes, warehouses and roadside motels.", "real": "Seems inspired by Florida’s Gulf coast", "u": 0.18, "v": 0.16, "css": "#ffb347", "color": 16757575, "img": "/assets/gta6/port-gellhorn.webp"}, {"id": "ambrosia", "name": "Ambrosia", "desc": "Sugar-cane country around a huge inland lake, ruled by mills and farm roads.", "real": "Seems inspired by the Lake Okeechobee area", "u": 0.6, "v": 0.5, "css": "#ffe66d", "color": 16770669, "img": "/assets/gta6/ambrosia.webp"}, {"id": "mount-kalaga", "name": "Mount Kalaga", "desc": "Forested hills, rivers and springs — the state’s wild national park up north.", "real": "Seems inspired by North Florida’s parks", "u": 0.55, "v": 0.22, "css": "#9b7bff", "color": 10189823, "img": "/assets/gta6/mount-kalaga.webp"}]</script>
   </section>
 
+  <section class="gs-sec" id="cast"><span class="gs-kick" data-reveal>People</span><h2 class="gs-h2" data-reveal>Who’s who</h2>
+    <div class="gs-cast"><div class="gs-cc" data-tilt data-reveal style="--c1:#ff2d95;--c2:#6a1b9a;--d:0.00s"><span class="mono" aria-hidden="true">J</span><b>Jason Duval</b><small>Lead</small><p>An ex-soldier running jobs for smugglers in the Keys, chasing an easier life that keeps slipping away.</p></div><div class="gs-cc" data-tilt data-reveal style="--c1:#ff8a3d;--c2:#c2185b;--d:0.06s"><span class="mono" aria-hidden="true">L</span><b>Lucia Caminos</b><small>Lead</small><p>Fresh out of prison with a plan — this time only smart moves, for the life her family dreamed of.</p></div><div class="gs-cc" data-tilt data-reveal style="--c1:#3cf0ff;--c2:#1a237e;--d:0.12s"><span class="mono" aria-hidden="true">C</span><b>Cal Hampton</b><small>Jason’s friend</small><p>A happily paranoid homebody who listens in on Coast Guard radio.</p></div><div class="gs-cc" data-tilt data-reveal style="--c1:#ffb347;--c2:#bf360c;--d:0.18s"><span class="mono" aria-hidden="true">B</span><b>Boobie Ike</b><small>Vice City legend</small><p>Turned street years into an empire: real estate, a club and a studio.</p></div><div class="gs-cc" data-tilt data-reveal style="--c1:#47ff9c;--c2:#00695c;--d:0.24s"><span class="mono" aria-hidden="true">D</span><b>Dre’Quan Priest</b><small>Music hustler</small><p>Runs a young record label and wants his first real hit.</p></div><div class="gs-cc" data-tilt data-reveal style="--c1:#ff6bd6;--c2:#4a148c;--d:0.30s"><span class="mono" aria-hidden="true">R</span><b>Real Dimez</b><small>Rap duo</small><p>Two friends riding viral hooks and social media towards fame.</p></div><div class="gs-cc" data-tilt data-reveal style="--c1:#ffe66d;--c2:#5d4037;--d:0.36s"><span class="mono" aria-hidden="true">R</span><b>Raul Bautista</b><small>Bank robber</small><p>A charming veteran of big scores, always recruiting bold talent.</p></div><div class="gs-cc" data-tilt data-reveal style="--c1:#8ecae6;--c2:#0d47a1;--d:0.42s"><span class="mono" aria-hidden="true">B</span><b>Brian Heder</b><small>Old-school smuggler</small><p>A Keys veteran who lets others do the dirty work from his boat yard.</p></div></div>
+  </section>
+
+  <section class="gs-sec" id="consoles"><span class="gs-kick" data-reveal>Consoles</span><h2 class="gs-h2" data-reveal>Where it runs and how well</h2>
+    <div class="gs-cons"><div class="gs-con best" data-reveal style="--d:0.00s"><h3>PlayStation 5 Pro</h3><span class="tag">Best visuals</span><ul><li>Sharper image with PSSR</li><li>Ray-traced shadows — Pro only</li><li>Targets 30 fps</li></ul></div><div class="gs-con" data-reveal style="--d:0.07s"><h3>PlayStation 5</h3><span class="tag">Native</span><ul><li>DualSense haptics across the game</li><li>Tempest 3D Audio</li><li>Faster loading</li></ul></div><div class="gs-con" data-reveal style="--d:0.14s"><h3>Xbox Series X</h3><span class="tag">Native</span><ul><li>Targets 30 fps</li><li>Full-quality local play</li></ul></div><div class="gs-con" data-reveal style="--d:0.21s"><h3>Xbox Series S</h3><span class="tag">Native</span><ul><li>Targets 30 fps</li><li>Series S settings</li></ul></div><div class="gs-con" data-reveal style="--d:0.28s"><h3>Xbox One</h3><span class="tag">Cloud only</span><ul><li>Via Xbox Cloud Gaming</li><li>Uses Series S settings</li><li>Depends on your connection</li></ul></div><div class="gs-con" data-reveal style="--d:0.35s"><h3>PC</h3><span class="tag">Not announced</span><ul><li>No PC version announced yet</li></ul></div></div>
+    <p class="gs-lead" data-reveal style="margin-top:14px">Remote Play is supported on both PlayStation and Xbox.</p>
+    <div class="gs-space" data-reveal><label for="gsFree">How much free space do you have? (GB)</label><br><input type="number" id="gsFree" min="0" max="20000" inputmode="numeric" placeholder="250"> <span class="gta-note" style="color:#d9b8ff">The pre-load needs up to 212 GB.</span><div class="gs-sbar"><i id="gsSpaceBar"></i></div><div id="gsSpaceMsg" role="status"></div></div>
+  </section>
+
+  <section class="gs-sec" id="facts-vs-guesses"><span class="gs-kick" data-reveal>Facts vs. guesses</span>
+    <div class="gs-cvp"><div data-reveal><h3>✓ Confirmed</h3><ul><li>Out Thursday 19 November 2026 on PS5 and Xbox Series X|S</li><li>Pre-load live since 10 November — up to 212 GB</li><li>Targets 30 fps; PS5 Pro adds PSSR and ray-traced shadows</li><li>Xbox Cloud Gaming — including Xbox One</li><li>Two leads: Jason and Lucia, in the state of Leonida (Vice City)</li><li>Free official printable poster + map of Leonida on launch day</li></ul></div><div class="pred" data-reveal style="--d:.12s"><h3>? Our predictions (unconfirmed)</h3><ul><li>A PC version later — unofficial reports point to 2027</li><li>A brand-new online mode, detailed after launch</li><li>Regular post-launch updates, as Rockstar usually does</li></ul></div></div>
+  </section>
+
+  <section class="gta-box" id="poster" data-reveal>
+    <h2>Vice poster maker</h2>
+    <p>Turn any photo into a neon comic-style poster — posterised colours, ink edges and halftone. Original effect, all on your device.</p>
+    <div class="gta-two"><div>
+      <div class="gta-files" style="margin-bottom:12px"><label class="btn">Choose a photo<input type="file" id="gsPosterFile" accept="image/*"></label></div>
+      <div class="gta-row"><span class="gl">Palette</span><div class="gta-chips" id="gsPosterPal" role="group"><button type="button" class="chip active" data-p="vice">Vice</button><button type="button" class="chip" data-p="ocean">Ocean</button><button type="button" class="chip" data-p="sunset">Sunset</button><button type="button" class="chip" data-p="noir">Noir</button></div></div>
+      <div class="gta-row"><label for="gsPosterTitle">Title</label><input type="text" id="gsPosterTitle" dir="auto" maxlength="24"></div>
+      <div class="gta-row"><label for="gsPosterSub">Line</label><input type="text" id="gsPosterSub" dir="auto" maxlength="40"></div>
+      <div class="gta-row"><span class="gl"></span><label style="display:flex;gap:6px;align-items:center;color:#f3dcff"><input type="checkbox" id="gsPosterHalf" checked> Halftone dots</label></div>
+      <button type="button" class="btn" id="gsPosterGo">⬇ Download poster</button>
+    </div><div><canvas id="gsPoster" width="1080" height="1350" style="width:min(100%,380px)" role="img" aria-label="Vice poster maker"></canvas></div></div>
+  </section>
+
+  <section class="gta-box" id="obs" data-reveal>
+    <h2>Stream kit for OBS</h2>
+    <p>Animated widgets for streamers. Copy the link, then in OBS: Sources → + → Browser, paste it, set 1920 × 1080.</p>
+    <div class="gta-row"><span class="gl"></span><div class="gta-chips" id="gsObsW" role="group"><button type="button" class="chip active" data-w="soon">Starting soon screen</button><button type="button" class="chip" data-w="countdown">Launch countdown</button><button type="button" class="chip" data-w="live">Live now banner</button></div></div>
+    <div class="gta-row"><label for="gsObsName">Channel name</label><input type="text" id="gsObsName" maxlength="40" dir="auto"></div>
+    <div class="gta-row" id="gsObsMinRow"><label for="gsObsMin">Minutes</label><input type="number" id="gsObsMin" min="1" max="120" value="5" style="max-width:120px"></div>
+    <div class="gs-obs-row" style="margin:6px 0 14px"><input type="text" id="gsObsUrl" readonly aria-label="OBS URL"><button type="button" class="btn" id="gsObsCopy">Copy link</button></div>
+    <iframe id="gsObsFrame" title="OBS preview" loading="lazy"></iframe>
+  </section>
+
+  <section class="gs-sec" style="padding-bottom:0"><span class="gs-kick" data-reveal>Launch-week tools</span></section>
   <section class="gta-box" id="overlays">
     <h2>Mission overlays</h2>
-    <p>Animated “mission passed / failed / busted” style overlays in our own design — download a green-screen MP4 and drop it on your gameplay clip.</p>
+    <p>“Mission passed / failed / busted” style overlays in our own design — green-screen MP4 for your clips.</p>
     <div class="gta-two"><div>
       <div class="gta-row"><span class="gl">Type</span><div class="gta-chips" id="gtaOvlKind" role="group"><button type="button" class="chip active" data-k="passed">Passed</button><button type="button" class="chip" data-k="failed">Failed</button><button type="button" class="chip" data-k="busted">Busted</button><button type="button" class="chip" data-k="respect">Respect +</button></div></div>
       <div class="gta-row"><label for="gtaOvlTitle">Big text</label><input type="text" id="gtaOvlTitle" dir="auto" maxlength="40"></div>
@@ -152,9 +273,9 @@
 
   <section class="gta-box" id="wallpapers">
     <h2>Photo-mode wallpapers</h2>
-    <p>Turn your best screenshot into a phone or desktop wallpaper with a neon finish. Your photo stays on your device.</p>
+    <p>Turn your best screenshot into a wallpaper with a neon finish.</p>
     <div class="gta-two"><div>
-      <div class="gta-files" style="margin-bottom:12px"><label class="btn">Choose a screenshot<input type="file" id="gtaWpFile" accept="image/*"></label></div>
+      <div class="gta-files" style="margin-bottom:12px"><label class="btn">Choose a photo<input type="file" id="gtaWpFile" accept="image/*"></label></div>
       <div class="gta-row"><span class="gl">Size</span><div class="gta-chips" id="gtaWpPre" role="group"><button type="button" class="chip active" data-p="phone">Phone</button><button type="button" class="chip" data-p="iphone">iPhone</button><button type="button" class="chip" data-p="desktop">Desktop 1440p</button><button type="button" class="chip" data-p="uhd">4K</button></div></div>
       <div class="gta-row"><span class="gl">Finish</span><div class="gta-chips" id="gtaWpFx" role="group"><button type="button" class="chip active" data-f="neon">Neon</button><button type="button" class="chip" data-f="vhs">VHS</button><button type="button" class="chip" data-f="none">Clean</button></div></div>
       <div class="gta-row"><label for="gtaWpX">Focus ↔</label><input type="range" id="gtaWpX" min="0" max="100" value="50"></div>
@@ -167,17 +288,26 @@
     <h2>Launch-day checklist</h2>
     <p>Ticks are saved in this browser. <b id="gtaCheckN"></b></p>
     <div class="gta-bar"><i id="gtaCheckBar"></i></div>
-    <div id="gtaCheck"><label><input type="checkbox" id="gtaC0"> <span>Console system software updated</span></label><label><input type="checkbox" id="gtaC1"> <span>Free up storage space (the official size isn’t announced yet — leave plenty)</span></label><label><input type="checkbox" id="gtaC2"> <span>Online play: an active PlayStation Plus / Xbox Game Pass (Core or above) subscription</span></label><label><input type="checkbox" id="gtaC3"> <span>Controller charged + a spare cable</span></label><label><input type="checkbox" id="gtaC4"> <span>Recording/streaming set up (capture card or the console’s built-in capture)</span></label><label><input type="checkbox" id="gtaC5"> <span>Turn on auto-download / pre-load if your store offers it</span></label><label><input type="checkbox" id="gtaC6"> <span>Plan your first clip: hook, captions, thumbnail</span></label></div>
+    <div id="gtaCheck"><label><input type="checkbox" id="gtaC0"> <span>Pre-load started (digital pre-orders) — or your code-in-box activated</span></label><label><input type="checkbox" id="gtaC1"> <span>At least 212 GB free (+ room for a day-one patch)</span></label><label><input type="checkbox" id="gtaC2"> <span>Console system software updated</span></label><label><input type="checkbox" id="gtaC3"> <span>Online play: active PlayStation Plus / Xbox Game Pass (Core or above)</span></label><label><input type="checkbox" id="gtaC4"> <span>Controller charged + a spare cable</span></label><label><input type="checkbox" id="gtaC5"> <span>Recording/streaming set up — grab the OBS kit above</span></label><label><input type="checkbox" id="gtaC6"> <span>Plan your first clip: hook, captions, thumbnail</span></label></div>
   </section>
 
   <section class="gta-box" id="kit">
     <h2>Creator kit for your GTA videos</h2>
-    <div class="gta-kit"><a href="/youtube-thumbnail-maker?theme=vice&title=GTA+6+*first+look*&badge=NEW"><b>Neon thumbnail</b><span>The thumbnail maker opens with a neon theme and a ready title.</span></a><a href="/ai-clip-maker"><b>AI Clip Maker</b><span>Long stream → the best moments as Reels, captions included.</span></a><a href="/horizontal-to-vertical-video"><b>Gameplay → vertical</b><span>16:9 gameplay to 9:16 Shorts with a blurred fill.</span></a><a href="/add-subtitles-to-video"><b>Auto subtitles</b><span>Burn your commentary in as animated captions.</span></a><a href="/video-templates#hook"><b>Reels hook</b><span>A punchy animated opener for your clip.</span></a></div>
+    <div class="gta-kit"><a href="/youtube-thumbnail-maker?theme=vice&title=GTA+6+*first+look*&badge=NEW"><b>Neon thumbnail</b><span>Opens with a neon theme and a ready title.</span></a><a href="/ai-clip-maker"><b>AI Clip Maker</b><span>Long stream → the best moments as Reels.</span></a><a href="/horizontal-to-vertical-video"><b>Gameplay → vertical</b><span>16:9 gameplay to 9:16 Shorts.</span></a><a href="/add-subtitles-to-video"><b>Auto subtitles</b><span>Your commentary as animated captions.</span></a><a href="/video-templates#hook"><b>Reels hook</b><span>A punchy animated opener.</span></a></div>
   </section>
 
-  <p class="gta-disc">Unofficial fan section. Not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto, GTA and the GTA VI logo are trademarks of their respective owners. All visuals on this page except the credited logo are original.</p>
+  <section class="gta-box" id="facts">
+    <h2>Official sources</h2>
+    <div class="gta-facts"><figure><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="Grand Theft Auto VI logo" loading="lazy"><figcaption>Grand Theft Auto VI logo © Rockstar Games — shown for news and identification only.</figcaption></figure>
+    <div><ul><li><b>Release:</b> Thursday 19 November 2026</li><li><b>Pre-load:</b> live since 10 November, up to 212 GB</li><li><b>Platforms:</b> PS5, PS5 Pro, Xbox Series X|S (+ Xbox Cloud Gaming)</li><li><b>Unlock time:</b> not announced yet</li></ul><p class="gta-src">Sources: <a href="https://www.rockstargames.com/VI" rel="noopener" target="_blank">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener" target="_blank">Rockstar Newswire — pre-load</a> · <a href="https://www.rockstargames.com/newswire/article/89834o94713o21" rel="noopener" target="_blank">Rockstar Newswire — platforms</a> · <a href="https://www.rockstargames.com/VI/only-in-leonida" rel="noopener" target="_blank">Only in Leonida</a></p></div></div>
+  </section>
+
+</div>
+  <p class="gta-disc">Unofficial fan section. Not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto, GTA and the GTA VI logo are trademarks of their respective owners. Scenery images are original AI-generated art; character and place summaries are our own words.</p>
   <script src="/vendor/mp4-muxer.js"></script>
   <script src="/gta.js"></script>
+  <script src="/gta-story.js"></script>
+  <script type="module" src="/gta-map.js"></script>
 </div>
 <footer>
   <div class="wrap">
@@ -263,7 +393,7 @@
 <script src="/site.js"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); }; window.va("beforeSend", function (e) { try { if (localStorage.getItem("va-disable")) return null; } catch (x) {} return e; });</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny GTA 6 Zone","url":"https://quicktinyv2.vercel.app/gta-6","description":"Everything for GTA 6 launch week: a live countdown to 19 November 2026, mission-style overlay videos, a crew name generator, photo-mode wallpapers and a launch-day checklist. Unofficial fan zone, free.","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QuickTiny GTA 6 Zone","url":"https://quicktinyv2.vercel.app/gta-6","description":"Everything for GTA 6 launch: a live countdown to 19 November 2026, an interactive 3D map of Leonida, places and characters, console and 212 GB storage guide, a Vice poster maker, an OBS stream kit and mission overlays. Unofficial fan zone, free.","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"isAccessibleForFree":true}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://quicktinyv2.vercel.app/"},{"@type":"ListItem","position":2,"name":"GTA 6 Zone","item":"https://quicktinyv2.vercel.app/gta-6"}]}</script>
 </body>
 </html>
