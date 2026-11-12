@@ -44,12 +44,12 @@ function qtSbFit(w, h, maxSide) {
   var T = AR ? {
       pick: "اختر فيديو أو اسحبه هنا", tooLong: "الفيديو أطول من 20 دقيقة. قصّه أولًا ثم جرّب.", noAudio: "تعذّر قراءة الصوت من هذا الفيديو. جرّب ملف MP4 أو MOV.",
       reading: "جارٍ قراءة الصوت…", model: "تنزيل نموذج التعرّف على الكلام (مرة واحدة فقط)…", run: "جارٍ تحويل الكلام إلى نص… (قد يستغرق دقيقة أو أكثر)", done: "✓ جاهز! راجع النص وعدّل أي كلمة ثم نزّل الفيديو.",
-      fail: "تعذّر التحويل: ", empty: "لم نسمع كلامًا واضحًا في هذا الفيديو.", exp: "جارٍ تجهيز الفيديو مع الترجمة… أبقِ هذه الصفحة مفتوحة.", expDone: "✓ تم تنزيل الفيديو", expFail: "تعذّر إنشاء الفيديو: ",
+      fail: "تعذّر التحويل: ", modelFail: "تعذّر تنزيل نموذج التعرّف على الكلام. تأكد من اتصالك بالإنترنت وجرّب مرة أخرى — يحتاج الإنترنت أول مرة فقط.", empty: "لم نسمع كلامًا واضحًا في هذا الفيديو.", exp: "جارٍ تجهيز الفيديو مع الترجمة… أبقِ هذه الصفحة مفتوحة.", expDone: "✓ تم تنزيل الفيديو", expFail: "تعذّر إنشاء الفيديو: ",
       noAudioOut: "متصفحك لا يدعم ترميز الصوت هنا — سيكون الفيديو بدون صوت. جرّب كروم أو إيدج.", words: "كلمة", sec: "ث", noEnc: "متصفحك لا يدعم تصدير الفيديو هنا. نزّل ملف SRT أو جرّب كروم أو إيدج." }
     : {
       pick: "Choose a video or drop it here", tooLong: "This video is longer than 20 minutes. Trim it first, then try again.", noAudio: "Couldn't read the audio in this video. Try an MP4 or MOV file.",
       reading: "Reading the audio…", model: "Downloading the speech model (one time only)…", run: "Turning speech into text… (this can take a minute or more)", done: "✓ Done! Check the text, fix any word, then download your video.",
-      fail: "Couldn't transcribe: ", empty: "We couldn't hear clear speech in this video.", exp: "Rendering your video with captions… keep this page open.", expDone: "✓ Video downloaded", expFail: "Couldn't create the video: ",
+      fail: "Couldn't transcribe: ", modelFail: "Couldn't download the speech model. Check your connection and try again — it's only needed the first time.", empty: "We couldn't hear clear speech in this video.", exp: "Rendering your video with captions… keep this page open.", expDone: "✓ Video downloaded", expFail: "Couldn't create the video: ",
       noAudioOut: "This browser can't encode audio here — the video will be silent. Try Chrome or Edge.", words: "words", sec: "s", noEnc: "This browser can't export video here. Download the .srt instead, or try Chrome or Edge." };
   var st = { style: "pop", accent: "#ffd400", font: "bold", size: 96, pos: "bottom", per: 3, upper: false, outline: true, bg: "none", lang: AR ? "arabic" : "english", model: "base" };
   try { var sv = JSON.parse(localStorage.getItem("qtSubtitles") || "null"); if (sv) ["style", "accent", "font", "size", "pos", "per", "upper", "outline", "model"].forEach(function (k) { if (sv[k] != null) st[k] = sv[k]; }); } catch (e) {}
@@ -127,7 +127,7 @@ function qtSbFit(w, h, maxSide) {
           if (m.type === "progress" && m.total) { sizes[m.file] = [m.loaded, m.total]; var L = 0, Tt = 0; for (var k in sizes) { L += sizes[k][0]; Tt += sizes[k][1]; } status(T.model + " " + Math.round(L / 1048576) + " / " + Math.round(Tt / 1048576) + " MB", L / Tt * .5); }
           else if (m.type === "status" && m.stage === "run") { t0 = performance.now(); status(T.run, .5); }
           else if (m.type === "done") resolve(m);
-          else if (m.type === "error") reject(new Error(m.message));
+          else if (m.type === "error") reject(new Error(m.code === "model" ? T.modelFail : m.message));
         };
         worker.onerror = function (e) { reject(new Error(e.message || "worker")); };
         worker.postMessage({ type: "run", audio: mono, model: st.model, language: $("sbLang").value || null }, [mono.buffer]);
