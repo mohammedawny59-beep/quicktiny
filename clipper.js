@@ -148,11 +148,11 @@ function qtClDraw(x, W, H, v, srcT, outT, total, clip, st, low) {
   var AR = (document.documentElement.lang || "").indexOf("ar") === 0;
   var T = AR ? {
       reading: "جارٍ قراءة الصوت…", model: "تنزيل نموذج التعرّف على الكلام (مرة واحدة)…", asr: "جارٍ تحويل الكلام إلى نص", finding: "جارٍ اختيار أقوى اللحظات…", found: "✓ وجدنا أفضل المقاطع — راجعها ونزّلها",
-      none: "لم نجد مقاطع بهذا الطول — جرّب طولًا أقصر أو فيديو فيه كلام أكثر.", noAudio: "تعذّر قراءة الصوت من هذا الفيديو. جرّب MP4 أو MOV.", tooLong: "الفيديو أطول من 45 دقيقة — قصّه أولًا.", fail: "حدث خطأ: ",
+      none: "لم نجد مقاطع بهذا الطول — جرّب طولًا أقصر أو فيديو فيه كلام أكثر.", noAudio: "تعذّر قراءة الصوت من هذا الفيديو. جرّب MP4 أو MOV.", tooLong: "الفيديو أطول من 45 دقيقة — قصّه أولًا.", fail: "حدث خطأ: ", modelFail: "تعذّر تنزيل نموذج التعرّف على الكلام. تأكد من اتصالك بالإنترنت وجرّب مرة أخرى — يحتاج الإنترنت أول مرة فقط.",
       faces: "جارٍ تتبّع الوجه", exp: "جارٍ تجهيز المقطع", done: "✓ تم التنزيل", preview: "معاينة", download: "تنزيل", all: "تنزيل كل المقاطع", left: "متبقٍ تقريبًا", min: "د", s: "ث", noFaceLib: "تعذّر تحميل تتبّع الوجه — سنستخدم الخلفية المموّهة." }
     : {
       reading: "Reading the audio…", model: "Downloading the speech model (one time)…", asr: "Transcribing", finding: "Picking the strongest moments…", found: "✓ Your best clips are ready — review and download",
-      none: "No clips of that length found — try a shorter length or a video with more talking.", noAudio: "Couldn't read the audio in this video. Try MP4 or MOV.", tooLong: "This video is longer than 45 minutes — trim it first.", fail: "Something went wrong: ",
+      none: "No clips of that length found — try a shorter length or a video with more talking.", noAudio: "Couldn't read the audio in this video. Try MP4 or MOV.", tooLong: "This video is longer than 45 minutes — trim it first.", fail: "Something went wrong: ", modelFail: "Couldn't download the speech model. Check your connection and try again — it's only needed the first time.",
       faces: "Tracking the speaker", exp: "Rendering clip", done: "✓ Downloaded", preview: "Preview", download: "Download", all: "Download all clips", left: "left", min: "min", s: "s", noFaceLib: "Couldn't load face tracking — using the blurred background instead." };
   var LENS = { short: [15, 35, 25], mid: [30, 60, 45], long: [55, 90, 70] };
   var st = { len: "mid", count: 5, frame: "face", captions: true, hook: true, hookFor: 3, bar: true, cut: true, lang: AR ? "arabic" : "english", model: "base",
@@ -194,7 +194,7 @@ function qtClDraw(x, W, H, v, srcT, outT, total, clip, st, low) {
         var m = ev.data;
         if (m.type === "progress" && m.total) { sizes[m.file] = [m.loaded, m.total]; var L = 0, Tt = 0; for (var k in sizes) { L += sizes[k][0]; Tt += sizes[k][1]; } status(T.model + " " + Math.round(L / 1048576) + " / " + Math.round(Tt / 1048576) + " MB", L / Tt * .2); }
         else if (m.type === "done") resolve(m.words.map(function (w) { return { w: w.w, start: w.start + offset, end: w.end + offset }; }));
-        else if (m.type === "error") reject(new Error(m.message));
+        else if (m.type === "error") reject(new Error(m.code === "model" ? T.modelFail : m.message));
       };
       worker.onerror = function (e) { reject(new Error(e.message || "worker")); };
       worker.postMessage({ type: "run", audio: chunk, model: st.model, language: st.lang || null }, [chunk.buffer]);
