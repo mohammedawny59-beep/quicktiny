@@ -73,10 +73,13 @@ function qtGsObsParams(search) {
   else { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { threshold: .18 }); revealEls.forEach(function (e) { io.observe(e); }); }
   // split the hero title into letters for the staggered entrance
   document.querySelectorAll("[data-split]").forEach(function (el) {
-    if (AR) return; // Arabic letters must stay joined — animate the whole word instead
-    var txt = el.textContent; el.textContent = ""; el.setAttribute("aria-label", txt);
-    Array.prototype.forEach.call(txt, function (ch, i) { var s = document.createElement("span"); s.className = "gs-ch"; s.setAttribute("aria-hidden", "true"); s.style.setProperty("--i", i); s.textContent = ch === " " ? "\u00a0" : ch; el.appendChild(s); });
+    var txt = el.textContent.trim(); el.textContent = ""; el.setAttribute("aria-label", txt);
+    // Arabic: keep Latin runs like "GTA 6" in one left-to-right piece so the order never flips
+    (AR ? txt.match(/[A-Za-z0-9]+(?:\s+[A-Za-z0-9]+)*|\S+/g) : txt.split(/\s+/)).forEach(function (w, i) { var s = document.createElement("span"); s.className = "gs-w"; s.setAttribute("aria-hidden", "true"); s.style.setProperty("--i", i); if (/^[A-Za-z0-9]/.test(w)) s.dir = "ltr"; s.textContent = w; el.appendChild(s); });
   });
+  // load the slider photos before the pinned track reaches the screen (they sit off-screen sideways)
+  var placesBox = $("gsPlaces");
+  if (placesBox && typeof IntersectionObserver !== "undefined") { var pio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { placesBox.querySelectorAll("img").forEach(function (im) { im.loading = "eager"; }); pio.disconnect(); } }, { rootMargin: "150% 0px" }); pio.observe(placesBox); }
   // story text: one span per word so scroll can light them up
   var story = $("gsStory"), storyWords = [];
   if (story) { var words = story.textContent.trim().split(/\s+/); story.textContent = ""; words.forEach(function (w) { var s = document.createElement("span"); s.textContent = w + " "; story.appendChild(s); storyWords.push(s); }); }
