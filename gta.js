@@ -114,10 +114,11 @@ function qtGtaOverlay(x, W, H, t, o) {
 
   // ---- world background (paused when hidden / reduced motion draws one frame) ----
   var wc = $("gtaWorld"), wx = wc.getContext("2d"), dpr = Math.min(1.5, window.devicePixelRatio || 1);
-  function size() { wc.width = Math.round(innerWidth * dpr * .75); wc.height = Math.round(innerHeight * dpr * .75); }
+  function size() { wc.width = Math.round(innerWidth * dpr * .5); wc.height = Math.round(innerHeight * dpr * .5); }
   size(); addEventListener("resize", size);
   var t0 = performance.now(), last = 0;
-  (function tick(now) { if (!document.hidden && now - last > 33) { last = now; qtGtaWorld(wx, wc.width, wc.height, reduce ? 4 : (now - t0) / 1000); } if (!reduce) requestAnimationFrame(tick); })(performance.now());
+  var heroEl = $("gsHero");
+  (function tick(now) { if (!document.hidden && now - last > 40 && !(heroEl && heroEl.getBoundingClientRect().bottom > innerHeight * .92)) { last = now; qtGtaWorld(wx, wc.width, wc.height, reduce ? 4 : (now - t0) / 1000); } if (!reduce) requestAnimationFrame(tick); })(performance.now());
   if (reduce) qtGtaWorld(wx, wc.width, wc.height, 4);
   // arrival effect when coming through the portal
   try { if (sessionStorage.getItem("qtGtaWarp")) { sessionStorage.removeItem("qtGtaWarp"); if (!reduce) document.documentElement.classList.add("gta-arrive"); setTimeout(function () { document.documentElement.classList.remove("gta-arrive"); }, 1400); } } catch (e) {}

@@ -10,8 +10,8 @@ FACES = "".join('    @font-face{font-family:"QT Lalezar";font-weight:400;font-di
     for sub, ur in (("arabic", "U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC"),
                     ("latin", "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD")))
 STYLE = """  <style>
-""" + FACES + """    body:has(#gtaZone){--accent:#ff2d95;--cyan:#3cf0ff;--card:rgba(20,6,40,.62);--line:rgba(255,120,220,.22);--line-strong:rgba(255,120,220,.4);--muted:#d9b8ff;--text-dim:#f3dcff;background:#0b0420!important;overflow-x:clip}
-    body:has(#gtaZone) header,body:has(#gtaZone) .site-header{background:rgba(11,4,32,.72)!important;backdrop-filter:blur(10px)}
+""" + FACES + """    body:has(#gtaZone){--accent:#ff2d95;--cyan:#3cf0ff;--card:rgba(24,8,46,.88);--line:rgba(255,120,220,.22);--line-strong:rgba(255,120,220,.4);--muted:#d9b8ff;--text-dim:#f3dcff;background:#0b0420!important;overflow-x:clip}
+    body:has(#gtaZone) header,body:has(#gtaZone) .site-header{background:rgba(11,4,32,.94)!important}
     body:has(#gtaZone) footer{background:rgba(8,2,18,.9)}
     html:has(#gtaZone){overflow-x:clip}
     .gs-ticker{max-width:100vw}
@@ -20,7 +20,7 @@ STYLE = """  <style>
     .gs-h2{font:400 clamp(34px,6vw,68px)/1 "QT Lalezar",Sora,sans-serif;color:#fff;margin:0 0 10px;text-shadow:0 0 30px rgba(255,45,149,.55)}
     html[lang=en] .gs-h2{font:800 clamp(30px,5vw,58px)/1.02 Sora,sans-serif;letter-spacing:-.02em}
     .gs-kick{display:inline-block;font:800 12px/1 Sora,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#3cf0ff;margin-bottom:12px}
-    html[lang=ar] .gs-kick{letter-spacing:0;font-family:"QT Arabic",sans-serif}
+    html[lang=ar] .gs-kick{letter-spacing:0;font:800 15px/1.2 "QT Arabic",sans-serif}
     .gs-lead{color:#f3dcff;font-size:17px;line-height:1.75;max-width:760px}
     [data-reveal]{opacity:0;transform:translateY(48px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
     [data-reveal="left"]{transform:translateX(-60px)}[data-reveal="zoom"]{transform:scale(.9)}
@@ -35,12 +35,11 @@ STYLE = """  <style>
     @keyframes gsBlink{50%{opacity:.25}}
     .gs-title{margin:18px 0 6px;font:400 clamp(70px,15vw,190px)/.9 "QT Lalezar",Sora,sans-serif;background:linear-gradient(180deg,#fff6a8 5%,#ffb347 40%,#ff2d95 72%,#9b30ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 0 rgba(0,0,0,.45)) drop-shadow(0 0 40px rgba(255,45,149,.6))}
     html[lang=en] .gs-title{font:800 clamp(64px,13vw,170px)/.9 Sora,"Arial Black",sans-serif;letter-spacing:-.04em}
-    html[lang=ar] .gs-title{animation:gsRise 1.2s cubic-bezier(.2,.9,.2,1) both}
-    .gs-ch{display:inline-block;animation:gsRise 1s cubic-bezier(.2,.9,.2,1) both;animation-delay:calc(var(--i)*.06s + .2s);background:inherit;-webkit-background-clip:text;background-clip:text}
-    @keyframes gsRise{from{opacity:0;transform:translateY(60%) rotate(8deg) scale(.8);filter:blur(10px)}}
+    .gs-w{display:inline-block;padding:.04em .08em .1em;margin:0 .06em;background:linear-gradient(180deg,#fff6a8 5%,#ffb347 40%,#ff2d95 72%,#9b30ff);-webkit-background-clip:text;background-clip:text;color:transparent;animation:gsRise .9s cubic-bezier(.2,.9,.2,1) both;animation-delay:calc(var(--i)*.14s + .15s);will-change:transform}
+    @keyframes gsRise{from{opacity:0;transform:translateY(40%) scale(.85)}}
     .gs-sub{color:#fff;font-size:clamp(16px,2vw,21px);text-shadow:0 2px 14px rgba(0,0,0,.8);max-width:700px;margin:0 auto}
     #gtaCount{display:flex;justify-content:center;gap:12px;margin:22px 0 6px;flex-wrap:nowrap}
-    .gta-cell{min-width:88px;padding:14px 10px 10px;border-radius:18px;background:rgba(10,2,25,.55);border:1px solid rgba(255,45,149,.45);backdrop-filter:blur(6px);box-shadow:0 0 24px rgba(255,45,149,.25)}
+    .gta-cell{min-width:88px;padding:14px 10px 10px;border-radius:18px;background:rgba(10,2,25,.78);border:1px solid rgba(255,45,149,.45);box-shadow:0 0 24px rgba(255,45,149,.25)}
     .gta-cell b{display:block;font:800 44px/1 Sora,sans-serif;color:#fff;text-shadow:0 0 18px #ff2d95;font-variant-numeric:tabular-nums}
     .gta-cell span{display:block;margin-top:6px;font-size:12px;color:#3cf0ff;text-transform:uppercase;letter-spacing:.1em}html[lang=ar] .gta-cell span{letter-spacing:0}
     .gta-cell.tick b{animation:gtaTick .45s cubic-bezier(.2,1.6,.4,1)}@keyframes gtaTick{from{transform:translateY(-10px) scale(1.15);opacity:.4}}
@@ -82,7 +81,7 @@ STYLE = """  <style>
     #gsMapPins{position:absolute;inset:0;pointer-events:none}
     .gs-pin{all:unset;position:absolute;left:0;top:0;pointer-events:auto;cursor:pointer;font:800 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(11,4,32,.82);border:1px solid var(--pc);box-shadow:0 0 16px var(--pc);padding:8px 12px;border-radius:999px;white-space:nowrap;transition:opacity .3s,background .2s}
     .gs-pin:hover,.gs-pin.on{background:var(--pc);color:#12042c}.gs-pin:focus-visible{outline:2px solid #fff}
-    #gsMapCard{position:absolute;inset-inline-start:16px;bottom:16px;width:min(340px,calc(100% - 32px));border-radius:20px;overflow:hidden;background:rgba(11,4,32,.9);border:1px solid rgba(255,120,220,.4);backdrop-filter:blur(10px);animation:gsCard .5s cubic-bezier(.2,.9,.2,1)}
+    #gsMapCard{position:absolute;inset-inline-start:16px;bottom:16px;width:min(340px,calc(100% - 32px));border-radius:20px;overflow:hidden;background:rgba(11,4,32,.9);border:1px solid rgba(255,120,220,.4);animation:gsCard .5s cubic-bezier(.2,.9,.2,1)}
     @keyframes gsCard{from{opacity:0;transform:translateY(20px)}}
     #gsMapCard img{display:block;width:100%;height:150px;object-fit:cover}#gsMapCard div{padding:14px 16px}#gsMapCard b{font-size:20px;color:#fff}#gsMapCard p{margin:6px 0 0;color:#f3dcff;font-size:14px;line-height:1.55}#gsMapCard em{display:block;margin-top:6px;font-style:normal;font-size:12px;color:#ffb347}
     .gs-x{all:unset;position:absolute;top:8px;inset-inline-end:10px;cursor:pointer;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;text-align:center;line-height:30px}
@@ -93,12 +92,12 @@ STYLE = """  <style>
     .gs-cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
     .gs-cc{position:relative;padding:22px;border-radius:24px;min-height:190px;overflow:hidden;background:linear-gradient(150deg,var(--c1),var(--c2));transition:transform .2s ease-out;transform-style:preserve-3d;border:1px solid rgba(255,255,255,.18)}
     .gs-cc::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.28),transparent 45%);pointer-events:none}
-    .gs-cc .mono{position:absolute;inset-inline-end:-6px;bottom:-26px;font:800 120px/1 Sora,sans-serif;color:rgba(255,255,255,.14)}
+    .gs-cc .mono{position:absolute;inset-inline-end:-6px;bottom:-26px;font:800 120px/1 Sora,sans-serif;color:rgba(255,255,255,.09);pointer-events:none}
     .gs-cc b{display:block;font:800 21px/1.1 Sora,"QT Arabic",sans-serif;color:#fff}.gs-cc small{display:block;margin:4px 0 10px;color:rgba(255,255,255,.8);font-weight:700}
     .gs-cc p{position:relative;margin:0;color:#fff;font-size:14.5px;line-height:1.55;text-shadow:0 1px 6px rgba(0,0,0,.35)}
     /* CONSOLES */
     .gs-cons{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-    .gs-con{padding:20px;border-radius:22px;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(8px)}
+    .gs-con{padding:20px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
     .gs-con.best{border-color:#3cf0ff;box-shadow:0 0 30px rgba(60,240,255,.25)}
     .gs-con h3{margin:0 0 4px;font-size:19px;color:#fff}.gs-con .tag{display:inline-block;font-size:11.5px;font-weight:800;color:#12042c;background:#3cf0ff;border-radius:999px;padding:4px 9px;margin-bottom:10px}
     .gs-con ul{margin:0;padding-inline-start:18px;color:#f3dcff;font-size:14px;line-height:1.7}
@@ -112,7 +111,7 @@ STYLE = """  <style>
     .gs-cvp h3{margin:0 0 12px;font-size:20px;color:#fff}.gs-cvp li{color:#f3dcff;margin-bottom:8px;line-height:1.55}
     .gs-cvp .pred{border-style:dashed;border-color:rgba(255,179,71,.6)}.gs-cvp .pred h3{color:#ffb347}
     /* FACTS + generic boxes (from the first edition) */
-    .gta-box{border-radius:24px;padding:22px;margin:22px 0;background:var(--card);border:1px solid var(--line);backdrop-filter:blur(8px);box-shadow:0 30px 60px -40px rgba(255,45,149,.8);scroll-margin-top:80px}
+    .gta-box{border-radius:24px;padding:22px;margin:22px 0;background:var(--card);border:1px solid var(--line);box-shadow:0 30px 60px -40px rgba(255,45,149,.8);scroll-margin-top:80px}
     .gta-box h2{margin:0 0 6px;font:400 30px/1.15 "QT Lalezar",Sora,sans-serif;color:#fff;text-shadow:0 0 18px rgba(255,45,149,.6)}html[lang=en] .gta-box h2{font:800 26px/1.2 Sora,sans-serif}
     .gta-box>p{color:#f3dcff;margin:0 0 14px}
     .gta-facts{display:grid;grid-template-columns:200px minmax(0,1fr);gap:22px;align-items:center}@media(max-width:640px){.gta-facts{grid-template-columns:1fr;text-align:center}}
@@ -144,24 +143,24 @@ STYLE = """  <style>
     html.gs-obs,html.gs-obs body,html.gs-obs body:has(#gtaZone){background:transparent!important;overflow:hidden}
     html.gs-obs body>*:not(.gs-obs-canvas){display:none!important}
     .gs-obs-canvas{position:fixed;inset:0;width:100vw;height:100vh;object-fit:contain}
-    html.gs-still [data-reveal]{opacity:1;transform:none;transition:none}html.gs-still .gs-ch,html.gs-still .gs-title,html.gs-still .gs-ticker div,html.gs-still .gs-scroll::after,html.gs-still .gs-badge i{animation:none}html.gs-still.gta-arrive body::after{display:none}
+    html.gs-still [data-reveal]{opacity:1;transform:none;transition:none}html.gs-still .gs-w,html.gs-still .gs-title,html.gs-still .gs-ticker div,html.gs-still .gs-scroll::after,html.gs-still .gs-badge i{animation:none}html.gs-still.gta-arrive body::after{display:none}
     html.gs-still #gsPlaces{height:auto}html.gs-still .gs-sticky{position:static;height:auto;padding:40px 0}html.gs-still #gsRail{flex-wrap:wrap;width:auto;justify-content:center}html.gs-still .gs-place{width:min(100%,560px);height:360px}html.gs-still .gs-pbar{display:none}
-    .gs-motion{all:unset;position:fixed;z-index:50;bottom:16px;inset-inline-end:16px;cursor:pointer;font:800 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(11,4,32,.85);border:1px solid rgba(60,240,255,.5);padding:10px 14px;border-radius:999px;backdrop-filter:blur(8px);box-shadow:0 8px 24px -10px rgba(255,45,149,.8)}.gs-motion:focus-visible{outline:2px solid #3cf0ff}
+    .gs-motion{all:unset;position:fixed;z-index:50;bottom:16px;inset-inline-end:16px;cursor:pointer;font:800 13px/1 Sora,"QT Arabic",sans-serif;color:#fff;background:rgba(11,4,32,.85);border:1px solid rgba(60,240,255,.5);padding:10px 14px;border-radius:999px;box-shadow:0 8px 24px -10px rgba(255,45,149,.8)}.gs-motion:focus-visible{outline:2px solid #3cf0ff}
   </style>
 """
 PLACES = {
- "en": [("vice-city", "Vice City", "Neon nights, art deco hotels and the beachfront strip — the beating heart of Leonida.", "Seems inspired by Miami", .80, .70, "#ff2d95"),
-        ("leonida-keys", "Leonida Keys", "A chain of islands and long bridges over turquoise water, where boats move more than tourists.", "Seems inspired by the Florida Keys", .60, .962, "#3cf0ff"),
-        ("grassrivers", "Grassrivers", "Endless sawgrass swamps, airboats and wildlife — the wild south of the state.", "Seems inspired by the Everglades", .63, .76, "#47ff9c"),
-        ("port-gellhorn", "Port Gellhorn", "A gritty Gulf-coast port town of cranes, warehouses and roadside motels.", "Seems inspired by Florida’s Gulf coast", .18, .16, "#ffb347"),
-        ("ambrosia", "Ambrosia", "Sugar-cane country around a huge inland lake, ruled by mills and farm roads.", "Seems inspired by the Lake Okeechobee area", .60, .50, "#ffe66d"),
-        ("mount-kalaga", "Mount Kalaga", "Forested hills, rivers and springs — the state’s wild national park up north.", "Seems inspired by North Florida’s parks", .55, .22, "#9b7bff")],
- "ar": [("vice-city", "فايس سيتي", "ليالي النيون وفنادق آرت ديكو وشارع الشاطئ — قلب ليونيدا النابض.", "مستوحاة على ما يبدو من ميامي", .80, .70, "#ff2d95"),
-        ("leonida-keys", "جزر ليونيدا", "سلسلة جزر وجسور طويلة فوق مياه فيروزية، القوارب فيها أكثر من السياح.", "مستوحاة على ما يبدو من جزر فلوريدا كيز", .60, .962, "#3cf0ff"),
-        ("grassrivers", "غراس ريفرز", "مستنقعات أعشاب لا نهاية لها وقوارب هوائية وحياة برية — جنوب الولاية المتوحش.", "مستوحاة على ما يبدو من الإيفرغليدز", .63, .76, "#47ff9c"),
-        ("port-gellhorn", "بورت جيلهورن", "مدينة ميناء قاسية على الخليج: رافعات ومستودعات وموتيلات على الطريق.", "مستوحاة على ما يبدو من ساحل خليج فلوريدا", .18, .16, "#ffb347"),
-        ("ambrosia", "أمبروسيا", "أرض قصب السكر حول بحيرة داخلية ضخمة، تحكمها المصانع وطرق المزارع.", "مستوحاة على ما يبدو من منطقة بحيرة أوكيتشوبي", .60, .50, "#ffe66d"),
-        ("mount-kalaga", "جبل كالاغا", "تلال وغابات وأنهار وينابيع — الحديقة الوطنية البرية في الشمال.", "مستوحاة على ما يبدو من حدائق شمال فلوريدا", .55, .22, "#9b7bff")],
+ "en": [("vice-city", "Vice City", "Neon nights, art deco hotels and the beachfront strip — the beating heart of Leonida.", "Seems inspired by Miami", .845, .80, "#ff2d95"),
+        ("leonida-keys", "Leonida Keys", "A chain of islands and long bridges over turquoise water, where boats move more than tourists.", "Seems inspired by the Florida Keys", .68, .97, "#3cf0ff"),
+        ("grassrivers", "Grassrivers", "Endless sawgrass swamps, airboats and wildlife — the wild south of the state.", "Seems inspired by the Everglades", .73, .80, "#47ff9c"),
+        ("port-gellhorn", "Port Gellhorn", "A gritty Gulf-coast port town of cranes, warehouses and roadside motels.", "Seems inspired by Florida’s Gulf coast", .16, .19, "#ffb347"),
+        ("ambrosia", "Ambrosia", "Sugar-cane country around a huge inland lake, ruled by mills and farm roads.", "Seems inspired by the Lake Okeechobee area", .72, .56, "#ffe66d"),
+        ("mount-kalaga", "Mount Kalaga", "Forested hills, rivers and springs — the state’s wild national park up north.", "Seems inspired by North Florida’s parks", .50, .17, "#9b7bff")],
+ "ar": [("vice-city", "فايس سيتي", "ليالي النيون وفنادق آرت ديكو وشارع الشاطئ — قلب ليونيدا النابض.", "مستوحاة على ما يبدو من ميامي", .845, .80, "#ff2d95"),
+        ("leonida-keys", "جزر ليونيدا", "سلسلة جزر وجسور طويلة فوق مياه فيروزية، القوارب فيها أكثر من السياح.", "مستوحاة على ما يبدو من جزر فلوريدا كيز", .68, .97, "#3cf0ff"),
+        ("grassrivers", "غراس ريفرز", "مستنقعات أعشاب لا نهاية لها وقوارب هوائية وحياة برية — جنوب الولاية المتوحش.", "مستوحاة على ما يبدو من الإيفرغليدز", .73, .80, "#47ff9c"),
+        ("port-gellhorn", "بورت جيلهورن", "مدينة ميناء قاسية على الخليج: رافعات ومستودعات وموتيلات على الطريق.", "مستوحاة على ما يبدو من ساحل خليج فلوريدا", .16, .19, "#ffb347"),
+        ("ambrosia", "أمبروسيا", "أرض قصب السكر حول بحيرة داخلية ضخمة، تحكمها المصانع وطرق المزارع.", "مستوحاة على ما يبدو من منطقة بحيرة أوكيتشوبي", .72, .56, "#ffe66d"),
+        ("mount-kalaga", "جبل كالاغا", "تلال وغابات وأنهار وينابيع — الحديقة الوطنية البرية في الشمال.", "مستوحاة على ما يبدو من حدائق شمال فلوريدا", .50, .17, "#9b7bff")],
 }
 CAST = {
  "en": [("Jason Duval", "Lead", "An ex-soldier running jobs for smugglers in the Keys, chasing an easier life that keeps slipping away.", "#ff2d95", "#6a1b9a"),
@@ -185,7 +184,7 @@ T = {
  "en": dict(home="/", homeL="Home", crumb="GTA 6 Zone", badge="Pre-load is live", title="GTA 6 ZONE", sub="Leonida opens 19 November. Countdown, an interactive 3D map, the places and the people, console guide — and creator tools built for launch week.",
    ticker=["PRE-LOAD IS LIVE", "UP TO 212 GB", "19 NOVEMBER 2026", "PS5 · PS5 PRO · XBOX SERIES X|S", "TARGETING 30 FPS", "XBOX CLOUD GAMING — EVEN ON XBOX ONE", "REMOTE PLAY SUPPORTED", "OFFICIAL MAP DROPS ON LAUNCH DAY"],
    storyK="The story", story="Two people, one easy score that goes wrong, and the sunniest state in America showing its darkest side. Jason and Lucia only have each other — and a conspiracy that stretches across all of Leonida.",
-   placesK="Only in Leonida", placesT="Six places to know", mapK="Interactive", mapT="Leonida in 3D", mapP="Drag to spin, scroll or pinch to zoom, tap a pin to fly there.", mapNote="Illustrative fan map — not the official one. Rockstar releases the official printable map of Leonida for free on 19 November.", reset="Reset view", nogl="3D isn’t available on this device — explore the places above.",
+   placesK="Only in Leonida", placesT="Six places to know", mapK="Interactive", mapT="Leonida in 3D", mapP="Drag to spin, right-drag or Shift-drag to move, scroll or pinch to zoom, tap a pin to fly there. Switch to night to see the city light up.", mapNote="Illustrative fan map, shaped after Florida — the real state Leonida is based on. It is not Rockstar’s map: the official printable map of Leonida comes out free on 19 November, and we’ll line our pins up with it then.", reset="Reset view", nogl="3D isn’t available on this device — explore the places above.",
    castK="People", castT="Who’s who", consK="Consoles", consT="Where it runs and how well",
    cons=[("PlayStation 5 Pro", "Best visuals", ["Sharper image with PSSR", "Ray-traced shadows — Pro only", "Targets 30 fps"], True),
          ("PlayStation 5", "Native", ["DualSense haptics across the game", "Tempest 3D Audio", "Faster loading"], False),
@@ -212,7 +211,7 @@ T = {
  "ar": dict(home="/ar", homeL="الرئيسية", crumb="منطقة GTA 6", badge="التنزيل المسبق متاح الآن", title="منطقة GTA 6", sub="ليونيدا تفتح أبوابها 19 نوفمبر. عدّاد، خريطة ثلاثية الأبعاد تفاعلية، الأماكن والشخصيات، دليل الأجهزة — وأدوات لصناع المحتوى لأسبوع الإطلاق.",
    ticker=["التنزيل المسبق متاح", "حتى 212 غيغا", "19 نوفمبر 2026", "PS5 · PS5 PRO · XBOX SERIES X|S", "30 إطارًا بالثانية", "XBOX CLOUD GAMING — حتى على XBOX ONE", "يدعم Remote Play", "الخريطة الرسمية يوم الإطلاق"],
    storyK="القصة", story="شخصين، وعملية سهلة بتخرب، وأكثر ولاية مشمسة بأمريكا بتورجيهم أظلم وجه عندها. جيسون ولوسيا ما إلهم غير بعض — ومؤامرة ممتدة على كل ليونيدا.",
-   placesK="فقط في ليونيدا", placesT="ستة أماكن لازم تعرفها", mapK="تفاعلية", mapT="ليونيدا ثلاثية الأبعاد", mapP="اسحب لتلف، كبّر بالعجلة أو بإصبعين، واضغط على أي دبوس لتطير له.", mapNote="خريطة توضيحية من المعجبين — ليست الرسمية. روكستار تنزّل خريطة ليونيدا الرسمية مجانًا يوم 19 نوفمبر.", reset="رجوع للعرض", nogl="الثلاثي الأبعاد غير متاح على جهازك — شوف الأماكن بالأعلى.",
+   placesK="فقط في ليونيدا", placesT="ستة أماكن لازم تعرفها", mapK="تفاعلية", mapT="ليونيدا ثلاثية الأبعاد", mapP="اسحب لتلف، اسحب بالزر اليمين أو مع Shift لتتنقل، كبّر بالعجلة أو بإصبعين، واضغط أي دبوس لتطير له. جرّب وضع الليل لتشوف المدينة تضوي.", mapNote="خريطة توضيحية من المعجبين، مبنية على شكل فلوريدا الحقيقية اللي ليونيدا مستوحاة منها. ليست خريطة روكستار: الخريطة الرسمية بتنزل مجانًا يوم 19 نوفمبر، ووقتها منضبط مواقع الدبابيس عليها.", reset="رجوع للعرض", nogl="الثلاثي الأبعاد غير متاح على جهازك — شوف الأماكن بالأعلى.",
    castK="الشخصيات", castT="مين مين", consK="الأجهزة", consT="وين تشتغل وكيف",
    cons=[("PlayStation 5 Pro", "أفضل صورة", ["وضوح أعلى بتقنية PSSR", "ظلال بتتبع الأشعة — حصريًا على Pro", "30 إطارًا بالثانية"], True),
          ("PlayStation 5", "تشغيل أصلي", ["اهتزاز DualSense بكل اللعبة", "صوت Tempest ثلاثي الأبعاد", "تحميل أسرع"], False),
