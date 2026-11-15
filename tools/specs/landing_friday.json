@@ -1,0 +1,18 @@
+[
+ {"base": "ar/percentage-calculator", "slug": "ar/white-friday-discount-calculator", "preset": {"focus": "pc4p"}, "crumb": "حاسبة خصم الجمعة البيضاء",
+  "title": "حاسبة خصم الجمعة البيضاء 2026 — السعر بعد الخصم وكم وفرت | QuickTiny",
+  "desc": "احسب السعر النهائي لعروض الجمعة البيضاء والبلاك فرايدي 2026 وكم بتوفر، حتى مع خصم فوق خصم أو كوبون إضافي. مجانية، فورية، بالريال أو أي عملة.",
+  "h1": "حاسبة خصم الجمعة البيضاء",
+  "intro": "اكتب السعر ونسبة الخصم وبتطلعلك فورًا السعر النهائي وكم وفرت. في كوبون فوق الخصم؟ احسب الخصم الأول، وبعدين حط الناتج وطبّق الخصم الثاني — 20% وبعدها 10% بيطلعوا 28% مش 30%.",
+  "about": "<h2>أمثلة سريعة لعروض الجمعة البيضاء</h2><ul class='benefits'><li><span>جوال 2,000 ريال بخصم 15% = 1,700 ريال (وفرت 300).</span></li><li><span>شاشة 1,299 ريال بخصم 30% = 909.30 ريال.</span></li><li><span>خصم 20% ثم كوبون 10% = خصم كلي 28%.</span></li></ul><p>قبل ما تشتري، شوف <a href='/ar/guides/white-friday-real-discount'>كيف تعرف إذا الخصم حقيقي</a>.</p>",
+  "faq": [["متى الجمعة البيضاء 2026؟", "عادة آخر جمعة من نوفمبر — حوالي 27 نوفمبر 2026، والعروض كثير منها بيبلّش قبلها."], ["كيف أحسب خصم فوق خصم؟", "طبّق الخصم الأول، وبعدين طبّق الثاني على الناتج. 20% ثم 10% = 28%."]],
+  "alts": {"en": "black-friday-discount-calculator"}},
+ {"base": "percentage-calculator", "slug": "black-friday-discount-calculator", "preset": {"focus": "pc4p"}, "crumb": "Black Friday Discount Calculator",
+  "title": "Black Friday Discount Calculator 2026 — Sale Price & Savings | QuickTiny",
+  "desc": "Work out the final Black Friday or Cyber Monday price and how much you save — including stacked discounts and extra coupons. Free, instant, any currency.",
+  "h1": "Black Friday Discount Calculator",
+  "intro": "Enter the price and the discount to see the sale price and your saving instantly. Got a coupon on top? Apply the first discount, then run the result through the second — 20% then 10% is 28% off, not 30%.",
+  "about": "<h2>Quick Black Friday examples</h2><ul class='benefits'><li><span>$500 TV at 15% off = $425 (save $75).</span></li><li><span>$1,299 laptop at 30% off = $909.30.</span></li><li><span>20% off plus a 10% coupon = 28% off in total.</span></li></ul><p>Before you buy, read <a href='/guides/black-friday-real-discount'>how to tell if a deal is real</a>.</p>",
+  "faq": [["When is Black Friday 2026?", "Friday 27 November 2026; Cyber Monday is 30 November."], ["How do I stack two discounts?", "Apply the first, then apply the second to the result. 20% then 10% is 28% off."]],
+  "alts": {"ar": "ar/white-friday-discount-calculator"}}
+]

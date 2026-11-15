@@ -862,3 +862,158 @@ GUIDES += [
            ("Do I need a capture card to stream GTA 6?", "No — PS5 and Xbox stream directly. A capture card helps if you want OBS, a camera and alerts."),
            ("How do I turn gameplay into vertical Reels?", "Drop it into QuickTiny’s Clip Studio; it finds the big moments and exports 1080×1920 clips with sound.")]),
 ]
+
+# ---- launch-season guides (2026-11-15): GTA 6 cheats + crash fixes (living pages, updated at launch) and White/Black Friday ----
+_RS_SUPPORT = '<a href="https://support.rockstargames.com" rel="noopener">support.rockstargames.com</a>'
+GUIDES += [
+ dict(slug="gta-6-cheats", lang="ar", date="2026-11-15",
+      title="كودات GTA 6 (الغشات): هل في كودات وكيف تكتبها؟ — يتحدّث يوم الإطلاق | QuickTiny",
+      h1="كودات GTA 6: هل في غشات وكيف بتشتغل؟",
+      lede="أكثر سؤال رح ينبحث يوم 19 نوفمبر. لحد الآن روكستار ما أعلنت أي كودات لـ GTA 6. هون بنشرح كيف كانت الكودات بتشتغل بالجزء الخامس، وشو لازم تعرف قبل ما تستعملها — وبنحدّث الصفحة أول ما تنعرف الكودات الحقيقية.",
+      desc="هل في كودات وغشات في GTA 6؟ الوضع الرسمي قبل الإطلاق، كيف كانت كودات GTA 5 تشتغل على البلايستيشن والإكسبوكس، تأثيرها على الكؤوس والإنجازات، وتحديث مباشر يوم 19 نوفمبر.",
+      tool=["/ar/gta-6", "افتح منطقة GTA 6"],
+      body=_GTA_LOGO_AR + """<h2>الوضع الحالي (15 نوفمبر)</h2>
+<p><b>روكستار ما أعلنت أي كودات لـ GTA 6.</b> أي قائمة كودات منتشرة قبل الإطلاق غالبًا مخترعة أو منقولة من الجزء الخامس. هذه الصفحة بتتحدّث أول ما تطلع كودات مؤكدة بعد نزول اللعبة يوم الخميس 19 نوفمبر 2026.</p>
+<h2>كيف كانت الكودات بتشتغل في GTA 5؟</h2>
+<ul><li><b>على الأجهزة:</b> سلسلة أزرار بتضغطها بسرعة أثناء اللعب (مثل أسهم واتجاهات وأزرار الكتف).</li>
+<li><b>بالجوال داخل اللعبة:</b> أرقام بتتصل فيها من جوال الشخصية لتفعّل الكود.</li>
+<li><b>على الكمبيوتر:</b> نافذة بتكتب فيها اسم الكود.</li>
+<li>الكودات كانت للعب الفردي (القصة) فقط، وما بتشتغل أونلاين.</li></ul>
+<h2>انتبه قبل ما تستعمل أي كود</h2>
+<ul><li>في GTA 5، استعمال الكودات كان يوقف الكؤوس والإنجازات لهذاك المشوار من اللعب. توقع شي مشابه إذا نزلت كودات لـ GTA 6.</li>
+<li>ما تحفظ اللعبة فوق ملف حفظك المهم بعد ما تجرّب كود — خليه بملف حفظ منفصل.</li>
+<li>ابعد عن مواقع "كودات مجانية" بتطلب تنزيل برامج أو تسجيل دخول بحسابك — هذي احتيال.</li></ul>
+<h2>بتسجّل لعبك؟</h2>
+<p>إذا بدك تعمل مقاطع للكودات والفوضى اللي بتصير، <a href="/ar/gta-6#clip-studio">استوديو المقاطع</a> بيطلع أقوى اللحظات من تسجيلك كريلز جاهزة، و<a href="/ar/guides/gta-6-record-stream-clips">دليل التسجيل والبث</a> بيشرح الطريقة.</p>
+""" + _GTA_SRC_AR,
+      faq=[("هل في كودات في GTA 6؟", "لحد 15 نوفمبر ما أعلنت روكستار أي كودات. منحدّث الصفحة أول ما تنعرف الكودات الحقيقية بعد الإطلاق."),
+           ("هل الكودات بتشتغل بالأونلاين؟", "في GTA 5 كانت للعب الفردي فقط. ما في معلومات رسمية عن GTA 6 بعد."),
+           ("هل الكودات بتوقف الكؤوس؟", "في GTA 5 نعم، كانت توقف الكؤوس والإنجازات لهذاك المشوار. توقع شي مشابه.")]),
+ dict(slug="gta-6-crash-fix", lang="ar", date="2026-11-15",
+      title="GTA 6 بتعلّق أو بتطلع من اللعبة؟ حلول على PS5 وإكسبوكس | QuickTiny",
+      h1="GTA 6 بتعلّق أو بتكرش؟ حلول خطوة بخطوة",
+      lede="أيام الإطلاق مشاكل التعليق والخروج المفاجئ والشاشة السوداء شائعة مع أي لعبة كبيرة. هذه حلول مجربة على PS5 وإكسبوكس، من الأسرع للأقوى — وبنضيف أي حل رسمي تنشره روكستار.",
+      desc="GTA 6 بتعلّق، بتطلع لحالها، أو شاشة سوداء على PS5 أو Xbox؟ حلول عملية: تحديث اللعبة والنظام، إعادة تشغيل كاملة، المساحة، إعادة بناء قاعدة البيانات على PS5، وإعادة التثبيت.",
+      tool=["/ar/gta-6#gear", "افحص جهازك ومساحتك"],
+      body=_GTA_LOGO_AR + """<h2>قبل كل شي</h2>
+<p>إذا المشكلة صارت عند ناس كثير بنفس الوقت (خصوصًا أول يومين)، غالبًا من السيرفرات أو من اللعبة نفسها، وبيصلحها تحديث من روكستار. شيك حالة الخدمة على صفحة الدعم الرسمية: """ + _RS_SUPPORT + """.</p>
+<h2>الحلول على PS5</h2>
+<ol><li><b>حدّث اللعبة:</b> على أيقونة GTA 6 اضغط Options ← البحث عن تحديث.</li>
+<li><b>حدّث نظام الجهاز:</b> الإعدادات ← النظام ← برامج النظام ← تحديث برامج النظام.</li>
+<li><b>إعادة تشغيل كاملة</b> (مش وضع الراحة): اطفي الجهاز كليًا وشغّله من جديد.</li>
+<li><b>تأكد من المساحة:</b> خلي أكثر من 20 غيغا فاضية فوق حجم اللعبة — <a href="/ar/guides/gta-6-size-storage">دليل الحجم</a>.</li>
+<li><b>إعادة بناء قاعدة البيانات:</b> اطفي الجهاز، اضغط زر التشغيل وخليه لحد ما تسمع الصفارة الثانية (الوضع الآمن)، وصل اليد بالكيبل، واختار "مسح ذاكرة التخزين المؤقت وإعادة بناء قاعدة البيانات" ← "إعادة بناء قاعدة البيانات". ما بيمسح ألعابك ولا حفظك.</li>
+<li><b>إذا مركّب هارد M.2:</b> جرّب تنقل اللعبة للتخزين الأصلي لتتأكد إن المشكلة مش من الهارد أو حرارته.</li>
+<li><b>آخر حل: احذف اللعبة ونزّلها من جديد</b> (حفظك محفوظ عادة على الجهاز وبالسحابة مع PlayStation Plus).</li></ol>
+<h2>الحلول على إكسبوكس</h2>
+<ol><li><b>حدّث اللعبة والنظام:</b> الإعدادات ← النظام ← التحديثات.</li>
+<li><b>إعادة تشغيل كاملة:</b> اضغط زر التشغيل على الجهاز 10 ثواني لحد ما يطفي تمامًا، افصل الكهرباء دقيقة، وشغّله.</li>
+<li><b>تأكد من المساحة</b> على التخزين الداخلي أو كرت التوسعة.</li>
+<li><b>اللعب السحابي (Xbox One):</b> المشاكل غالبًا من الإنترنت — جرّب كيبل إيثرنت، وشوف <a href="/ar/guides/gta-6-slow-download-fix">نصائح الشبكة</a>.</li>
+<li><b>آخر حل:</b> إلغاء التثبيت وإعادة التنزيل (الحفظ محفوظ على السحابة).</li></ol>
+<h2>شاشة سوداء أو صوت بدون صورة</h2>
+<p>جرّب تغيّر منفذ HDMI أو الكيبل، وطفّي إعدادات HDR مؤقتًا للتجربة، وتأكد إن التلفزيون على الوضع الصحيح للإدخال.</p>
+""" + _GTA_SRC_AR,
+      faq=[("ليش GTA 6 بتطلع لحالها من اللعبة؟", "أشهر الأسباب: نسخة قديمة من اللعبة أو النظام، مساحة قليلة، أو مشكلة عامة أول أيام الإطلاق. ابدأ بالتحديث والإعادة الكاملة."),
+           ("هل إعادة بناء قاعدة البيانات بتمسح ألعابي؟", "لا، بتعيد ترتيب الملفات فقط ولا تمسح الألعاب أو الحفظ."),
+           ("وين أبلّغ عن مشكلة في GTA 6؟", "على صفحة دعم روكستار الرسمية support.rockstargames.com.")]),
+ dict(slug="gta-6-cheats", lang="en", date="2026-11-15",
+      title="GTA 6 Cheats: Are There Cheat Codes? (Updated at Launch) | QuickTiny",
+      h1="GTA 6 cheats: are there cheat codes?",
+      lede="Everyone will search this on 19 November. As of now Rockstar hasn’t announced any GTA 6 cheat codes. Here’s how cheats worked in GTA 5 and what to know before using them — and we’ll update this page as soon as real codes are confirmed.",
+      desc="Are there cheats in GTA 6? The official status before launch, how GTA 5 cheats worked on PlayStation and Xbox, what they do to trophies and achievements, and live updates on 19 November.",
+      tool=["/gta-6", "Open the GTA 6 Zone"],
+      body=_GTA_LOGO_EN + """<h2>Current status (15 November)</h2>
+<p><b>Rockstar hasn’t announced any GTA 6 cheat codes.</b> Any list circulating before launch is either made up or copied from GTA 5. This page will be updated as soon as confirmed codes appear after the game releases on Thursday 19 November 2026.</p>
+<h2>How cheats worked in GTA 5</h2>
+<ul><li><b>Consoles:</b> a quick sequence of button presses during play.</li>
+<li><b>In-game phone:</b> numbers you dial on your character’s phone.</li>
+<li><b>PC:</b> a console where you type the cheat’s name.</li>
+<li>Cheats worked in story mode only, not online.</li></ul>
+<h2>Before you use any cheat</h2>
+<ul><li>In GTA 5, using cheats disabled trophies and achievements for that session. Expect something similar if GTA 6 has cheats.</li>
+<li>Don’t overwrite your main save after experimenting — use a separate slot.</li>
+<li>Avoid “free cheats” sites that ask you to download software or log in with your account — they’re scams.</li></ul>
+<p>Recording the chaos? The <a href="/gta-6#clip-studio">Clip Studio</a> turns your gameplay into ready-to-post Reels.</p>
+""" + _GTA_SRC_EN,
+      faq=[("Does GTA 6 have cheats?", "As of 15 November, Rockstar hasn’t announced any. We’ll update this page when real codes are confirmed."),
+           ("Do cheats work online?", "In GTA 5 they were story-mode only. There’s no official word for GTA 6 yet."),
+           ("Do cheats disable trophies?", "In GTA 5 they did for that session. Expect something similar.")]),
+ dict(slug="gta-6-crash-fix", lang="en", date="2026-11-15",
+      title="GTA 6 Crashing or Freezing on PS5 or Xbox? Fixes That Work | QuickTiny",
+      h1="GTA 6 crashing or freezing? Step-by-step fixes",
+      lede="Freezes, crashes to the home screen and black screens are common in the first days of any huge launch. These are proven fixes on PS5 and Xbox, quickest first — plus any official fix Rockstar publishes.",
+      desc="GTA 6 crashing, freezing or showing a black screen on PS5 or Xbox? Practical fixes: update the game and system, full restart, free space, rebuild the PS5 database, and reinstall.",
+      tool=["/gta-6#gear", "Check your setup and storage"],
+      body=_GTA_LOGO_EN + """<h2>First</h2>
+<p>If lots of people hit the same problem at once — especially in the first two days — it’s usually the servers or the game itself, and a Rockstar patch fixes it. Check the official support site: """ + _RS_SUPPORT + """.</p>
+<h2>PS5</h2>
+<ol><li><b>Update the game:</b> highlight GTA 6 → Options → Check for update.</li>
+<li><b>Update system software:</b> Settings → System → System software.</li>
+<li><b>Full restart</b> (not rest mode).</li>
+<li><b>Free space:</b> keep 20+ GB free on top of the game — see the <a href="/guides/gta-6-file-size-storage">file size guide</a>.</li>
+<li><b>Rebuild the database:</b> turn the PS5 off, hold the power button until the second beep (Safe Mode), connect the controller by cable, choose “Clear cache and rebuild database” → “Rebuild database”. Games and saves are kept.</li>
+<li><b>Using an M.2 SSD?</b> Move the game to internal storage to rule out the drive or its temperature.</li>
+<li><b>Last resort:</b> delete and reinstall.</li></ol>
+<h2>Xbox</h2>
+<ol><li><b>Update the game and console:</b> Settings → System → Updates.</li>
+<li><b>Full power cycle:</b> hold the console’s power button for 10 seconds, unplug for a minute, then start it.</li>
+<li><b>Check free space</b> on internal storage or the expansion card.</li>
+<li><b>Cloud play on Xbox One:</b> most issues are network-related — use Ethernet.</li>
+<li><b>Last resort:</b> uninstall and reinstall (saves are in the cloud).</li></ol>
+""" + _GTA_SRC_EN,
+      faq=[("Why does GTA 6 keep crashing?", "Usually an outdated game or system version, low storage, or a launch-day issue. Start with updates and a full restart."),
+           ("Does rebuilding the PS5 database delete games?", "No. It reorganises files; games and saves stay."),
+           ("Where can I report a GTA 6 bug?", "On Rockstar’s official support site, support.rockstargames.com.")]),
+ # ---- White / Black Friday ----
+ dict(slug="white-friday-real-discount", lang="ar", date="2026-11-15",
+      title="الجمعة البيضاء 2026: كيف تعرف إذا الخصم حقيقي؟ 7 علامات | QuickTiny",
+      h1="الجمعة البيضاء: كيف تعرف إذا الخصم حقيقي؟",
+      lede="الجمعة البيضاء (البلاك فرايدي بالخليج) هالسنة حوالي 27 نوفمبر 2026، وكثير من «الخصومات» مش حقيقية. هذه 7 علامات بتكشف الخصم الوهمي، مع حاسبة تطلعلك السعر النهائي والتوفير بثانية.",
+      desc="كيف تعرف إذا خصم الجمعة البيضاء أو البلاك فرايدي حقيقي؟ 7 علامات للخصم الوهمي، طريقة حساب الخصم المضاعف صح، ومقارنة السعر قبل الشراء — مع حاسبة خصم مجانية.",
+      tool=["/ar/white-friday-discount-calculator", "احسب السعر بعد الخصم"],
+      body="""<h2>متى الجمعة البيضاء 2026؟</h2>
+<p>الجمعة البيضاء هي اسم البلاك فرايدي بالسعودية والإمارات والخليج، وتكون عادة آخر جمعة من نوفمبر — هالسنة <b>27 نوفمبر 2026</b>. كثير من المتاجر بتبلّش العروض قبلها بأيام وتمددها لـ"السايبر مندي" بعدها.</p>
+<h2>7 علامات إن الخصم وهمي</h2>
+<ol><li><b>السعر "قبل الخصم" مرفوع فجأة:</b> شيك سعر المنتج قبل أسابيع — إذا كان أصلًا قريب من السعر "بعد الخصم"، الخصم وهمي.</li>
+<li><b>نفس المنتج أرخص بمتجر ثاني بدون عرض.</b> قارن على الأقل متجرين.</li>
+<li><b>خصم كبير على موديل قديم:</b> تأكد من رقم الموديل وسنة الإصدار.</li>
+<li><b>عدّاد "باقي ساعة!" بيرجع يبلّش من جديد:</b> ضغط نفسي مش عرض حقيقي.</li>
+<li><b>الشحن أو الرسوم بتاكل الخصم:</b> احسب السعر النهائي مع التوصيل.</li>
+<li><b>سياسة إرجاع أقصر أيام العروض:</b> اقرأها قبل ما تدفع.</li>
+<li><b>"خصم فوق خصم" مش مجموع النسبتين:</b> خصم 20% وبعده 10% = 28% مش 30%.</li></ol>
+<h2>احسبها صح</h2>
+<p class="eq">السعر بعد الخصم = السعر × (1 − الخصم ÷ 100)</p>
+<p>مثال: جوال سعره 2,000 ريال عليه خصم 15% ← 2,000 × 0.85 = <b>1,700 ريال</b> (وفرت 300). وإذا في كوبون إضافي 10% ← 1,700 × 0.9 = <b>1,530 ريال</b>، يعني الخصم الكلي 23.5% مش 25%.</p>
+<p>استعمل <a href="/ar/white-friday-discount-calculator">حاسبة خصم الجمعة البيضاء</a> لتطلعلك النتيجة فورًا.</p>
+<h2>قبل ما تشتري</h2>
+<ul><li>اكتب قائمة باللي محتاجه فعلًا قبل يوم العروض.</li>
+<li>حدد ميزانية وما تتعداها.</li>
+<li>صوّر السعر والعرض وقت الشراء — بيفيدك إذا صار خلاف.</li></ul>""",
+      faq=[("متى الجمعة البيضاء 2026؟", "تكون عادة آخر جمعة من نوفمبر، يعني حوالي 27 نوفمبر 2026، والعروض غالبًا بتبلّش قبلها بأيام."),
+           ("كيف أحسب خصم فوق خصم؟", "اضرب السعر بـ (1 − الخصم الأول) وبعدين بـ (1 − الخصم الثاني). خصم 20% ثم 10% = 28% مش 30%."),
+           ("كيف أعرف إن الخصم وهمي؟", "قارن السعر قبل أسابيع وفي متجر ثاني، وانتبه للشحن والرسوم ولعدّادات الوقت اللي بترجع تبلّش.")]),
+ dict(slug="black-friday-real-discount", lang="en", date="2026-11-15",
+      title="Black Friday 2026: How to Tell If a Deal Is Real — 7 Red Flags | QuickTiny",
+      h1="Black Friday: how to tell if a discount is real",
+      lede="Black Friday falls on 27 November 2026, and plenty of “deals” aren’t. Here are 7 red flags for fake discounts, the right way to stack percentages, and a calculator that shows the final price and your real saving in a second.",
+      desc="How to tell if a Black Friday deal is real: 7 red flags for fake discounts, how to calculate stacked discounts correctly, and a free calculator for the final price and savings.",
+      tool=["/black-friday-discount-calculator", "Calculate the sale price"],
+      body="""<h2>When is Black Friday 2026?</h2>
+<p>Black Friday is the day after US Thanksgiving — <b>Friday 27 November 2026</b> — with many stores starting earlier and running into Cyber Monday (30 November). In the Gulf it’s often called White Friday.</p>
+<h2>7 red flags</h2>
+<ol><li><b>A suddenly inflated “was” price:</b> check what it cost a few weeks ago.</li>
+<li><b>Cheaper elsewhere without a deal:</b> compare at least two stores.</li>
+<li><b>Big discount on an old model:</b> check the model number and release year.</li>
+<li><b>A countdown that keeps resetting:</b> pressure, not a real deadline.</li>
+<li><b>Shipping or fees eat the saving:</b> compare the final price.</li>
+<li><b>Shorter return windows on sale items:</b> read them before paying.</li>
+<li><b>Stacked discounts don’t add up:</b> 20% then 10% is 28% off, not 30%.</li></ol>
+<h2>Do the maths</h2>
+<p class="eq">Sale price = price × (1 − discount ÷ 100)</p>
+<p>Example: a $500 TV at 15% off → 500 × 0.85 = <b>$425</b> (you save $75). With an extra 10% coupon → 425 × 0.9 = <b>$382.50</b>, which is 23.5% off in total, not 25%.</p>
+<p>Use the <a href="/black-friday-discount-calculator">Black Friday discount calculator</a> for instant answers.</p>""",
+      faq=[("When is Black Friday 2026?", "Friday 27 November 2026, with Cyber Monday on 30 November."),
+           ("How do I calculate two discounts together?", "Multiply by (1 − first) and then by (1 − second). 20% then 10% is 28% off in total."),
+           ("How can I spot a fake deal?", "Check the price history and another store, include shipping and fees, and ignore countdowns that reset.")]),
+]
