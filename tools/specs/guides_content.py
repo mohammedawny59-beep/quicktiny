@@ -562,7 +562,7 @@ GUIDES += [
       lede="GTA 6 تنزل الخميس 19 نوفمبر 2026 على بلايستيشن 5 وإكسبوكس سيريس. هذا ملخص المؤكد فقط، مع المصادر، وكيف تتجهّز ليوم النزول.",
       desc="موعد نزول GTA 6 في السعودية والإمارات ومصر والأردن: الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S. هل في نسخة كمبيوتر؟ ساعة الفتح؟ كيف تتجهّز؟ مع المصادر وعدّاد مباشر.",
       tool=["/ar/gta-6", "افتح منطقة GTA 6 والعدّاد"],
-      body="""<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="شعار Grand Theft Auto VI" loading="lazy" style="max-width:200px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">شعار Grand Theft Auto VI ملك لـ Rockstar Games — معروض لأغراض إخبارية.</figcaption></figure>
+      body="""<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="شعار Grand Theft Auto VI" loading="lazy" style="display:block;margin:0 auto;max-width:200px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">شعار Grand Theft Auto VI ملك لـ Rockstar Games — معروض لأغراض إخبارية.</figcaption></figure>
 <h2>المؤكد لحد الآن</h2>
 <table class="guide-table"><tr><th>البند</th><th>المعلومة</th></tr>
 <tr><td>موعد النزول</td><td>الخميس 19 نوفمبر 2026</td></tr>
@@ -596,7 +596,7 @@ GUIDES += [
       lede="GTA 6 launches Thursday, 19 November 2026 on PS5 and Xbox Series X|S. Here’s only what’s confirmed, with sources — plus a live countdown and a launch-day checklist.",
       desc="GTA 6 release date: Thursday 19 November 2026 on PS5 and Xbox Series X|S. Is there a PC version? What time does it unlock? Confirmed facts with sources, a live countdown and a launch checklist.",
       tool=["/gta-6", "Open the GTA 6 Zone countdown"],
-      body="""<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="Grand Theft Auto VI logo" loading="lazy" style="max-width:200px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">Grand Theft Auto VI logo © Rockstar Games — shown for news purposes.</figcaption></figure>
+      body="""<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="Grand Theft Auto VI logo" loading="lazy" style="display:block;margin:0 auto;max-width:200px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">Grand Theft Auto VI logo © Rockstar Games — shown for news purposes.</figcaption></figure>
 <h2>Confirmed so far</h2>
 <table class="guide-table"><tr><th>Item</th><th>Status</th></tr>
 <tr><td>Release date</td><td>Thursday 19 November 2026</td></tr>
@@ -624,4 +624,241 @@ GUIDES += [
            ("Is GTA 6 coming to PS4 or Xbox One?", "Not PS4. Xbox One can play it only via Xbox Cloud Gaming."),
            ("How big is GTA 6?", "The pre-load needs up to 212 GB and has been live since 10 November."),
            ("Is GTA 6 on PC?", "A PC version hasn’t been officially announced yet.")]),
+]
+
+# ---- GTA 6 launch-week guides (2026-11-15). Facts: rockstargames.com/VI + Rockstar Newswire (pre-load / platforms). ----
+_GTA_LOGO_AR = '<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="شعار Grand Theft Auto VI" loading="lazy" style="display:block;margin:0 auto;max-width:180px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">شعار Grand Theft Auto VI ملك لـ Rockstar Games — معروض لأغراض إخبارية.</figcaption></figure>'
+_GTA_LOGO_EN = '<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="Grand Theft Auto VI logo" loading="lazy" style="display:block;margin:0 auto;max-width:180px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">Grand Theft Auto VI logo © Rockstar Games — shown for news purposes.</figcaption></figure>'
+_GTA_SRC_AR = '<h2>المصادر</h2><p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">Rockstar Newswire — التنزيل المسبق</a> · <a href="https://www.rockstargames.com/newswire/article/89834o94713o21" rel="noopener">Rockstar Newswire — المنصات</a></p><p style="font-size:13px;color:var(--muted)">QuickTiny غير تابع لـ Rockstar Games أو Take-Two. Grand Theft Auto علامة تجارية لأصحابها.</p>'
+_GTA_SRC_EN = '<h2>Sources</h2><p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">Rockstar Newswire — pre-load</a> · <a href="https://www.rockstargames.com/newswire/article/89834o94713o21" rel="noopener">Rockstar Newswire — platforms</a></p><p style="font-size:13px;color:var(--muted)">QuickTiny is not affiliated with Rockstar Games or Take-Two. Grand Theft Auto is a trademark of its owner.</p>'
+GUIDES += [
+ dict(slug="gta-6-size-storage", lang="ar", date="2026-11-15",
+      title="حجم GTA 6: كم مساحة بدها وكيف تفضّي مكان على PS5 وإكسبوكس | QuickTiny",
+      h1="حجم GTA 6 وكيف تفضّي مساحة على PS5 وإكسبوكس",
+      lede="التنزيل المسبق لـ GTA 6 يحتاج حتى 212 غيغابايت. هذا الدليل يحسب لك المساحة الآمنة، ويشرح كيف تفضّي مكانًا أو توسّع التخزين بالطريقة الصحيحة لكل جهاز.",
+      desc="كم حجم GTA 6؟ التنزيل المسبق يحتاج حتى 212 غيغا على PS5 وXbox Series. كيف تشوف المساحة الفاضية، شو تحذف، وأي هارد SSD أو كرت توسعة يشتغل مع اللعبة — مع حاسبة مساحة مجانية.",
+      tool=["/ar/gta-6#gear", "احسب مساحتك وشوف شو ناقصك"],
+      body=_GTA_LOGO_AR + """<h2>كم حجم GTA 6؟</h2>
+<p>حسب روكستار، التنزيل المسبق لـ GTA 6 يحتاج <b>حتى 212 غيغابايت</b>، وهو متاح من 10 نوفمبر لمن حجز النسخة الرقمية. ننصح بترك هامش إضافي بحدود 10% لتحديث اليوم الأول والملفات المؤقتة، يعني تقريبًا <b>233 غيغابايت فاضية</b>.</p>
+<table class="guide-table"><tr><th>الجهاز</th><th>المساحة الداخلية المتاحة تقريبًا</th><th>هل تكفي؟</th></tr>
+<tr><td>PS5 (825 غيغا)</td><td>حوالي 667 غيغا قبل أي لعبة</td><td>نعم، لكن غالبًا لازم تحذف ألعاب قديمة</td></tr>
+<tr><td>PS5 Slim / Pro (1 تيرا وأكثر)</td><td>حوالي 840 غيغا أو أكثر</td><td>نعم في الغالب</td></tr>
+<tr><td>Xbox Series X (1 تيرا)</td><td>حوالي 800 غيغا</td><td>نعم في الغالب</td></tr>
+<tr><td>Xbox Series S (512 غيغا)</td><td>حوالي 364 غيغا</td><td>بالكاد — اللعبة وحدها تاخد معظم المساحة</td></tr></table>
+<p style="font-size:14px;color:var(--muted)">الأرقام تقريبية لأن النظام نفسه يحجز جزءًا من التخزين، وتختلف حسب إصدار الجهاز.</p>
+<h2>كيف تشوف المساحة الفاضية</h2>
+<ul><li><b>PS5:</b> الإعدادات ← التخزين ← تخزين وحدة التحكم.</li>
+<li><b>إكسبوكس:</b> زر Xbox ← ألعابي وتطبيقاتي ← إدارة ← الأجهزة المتصلة (أو الإعدادات ← النظام ← أجهزة التخزين).</li></ul>
+<h2>شو تحذف أولًا</h2>
+<ol><li>الألعاب اللي ما لعبتها من شهور — حفظك غالبًا موجود على السحابة.</li>
+<li>مقاطع الفيديو واللقطات (ممكن تاخد عشرات الغيغات).</li>
+<li>التحديثات واللغات الإضافية للألعاب الكبيرة.</li></ol>
+<h2>توسيع التخزين: شو يشتغل وشو لا</h2>
+<ul><li><b>PS5 — هارد M.2 داخلي:</b> هذا الحل الوحيد اللي يخليك تلعب ألعاب PS5 من غير التخزين الأصلي. اختار NVMe بواجهة PCIe Gen4 وسرعة قراءة 5,500 ميغابايت/ثانية أو أكثر، ومعه مبرّد (heatsink)، ويتركّب بمنفذ التوسعة داخل الجهاز.</li>
+<li><b>PS5 — هارد USB خارجي:</b> ممكن تخزّن عليه ألعاب PS5 لتوفّر مكان، لكن لازم تنقلها للداخلي لتلعبها.</li>
+<li><b>Xbox Series X|S — كرت التوسعة:</b> ألعاب الجيل الجديد لازم تشتغل من التخزين الداخلي أو كرت التوسعة الرسمي (Seagate أو WD).</li>
+<li><b>Xbox — هارد USB:</b> مفيد للتخزين ونقل الألعاب، لكن ما بيشغّل ألعاب Series X|S مباشرة.</li></ul>
+<p>إذا ما عرفت شو يناسبك، <a href="/ar/gta-6#gear">أداة "جهازك جاهز لـ GTA 6؟"</a> تحسب كم غيغا ناقصك وتقترح المواصفات الصحيحة لجهازك.</p>
+""" + _GTA_SRC_AR,
+      faq=[("كم حجم GTA 6 على PS5؟", "التنزيل المسبق يحتاج حتى 212 غيغابايت حسب روكستار، والأفضل تترك هامشًا إضافيًا لتحديث اليوم الأول."),
+           ("هل تكفي مساحة Xbox Series S لـ GTA 6؟", "مساحته المتاحة حوالي 364 غيغا، فتكفي للعبة لكن غالبًا لازم تحذف معظم الألعاب الثانية أو تضيف كرت توسعة."),
+           ("هل أقدر ألعب GTA 6 من هارد USB خارجي؟", "لا على PS5 ولا على Xbox Series. الهارد الخارجي للتخزين فقط؛ اللعب يكون من التخزين الداخلي أو M.2 على PS5 أو كرت التوسعة الرسمي على إكسبوكس.")]),
+ dict(slug="gta-6-ps4-xbox-one-pc", lang="ar", date="2026-11-15",
+      title="هل GTA 6 على PS4 أو Xbox One أو الكمبيوتر؟ الجواب الرسمي | QuickTiny",
+      h1="هل GTA 6 تنزل على PS4 أو Xbox One أو الكمبيوتر؟",
+      lede="GTA 6 تنزل يوم 19 نوفمبر 2026 على PS5 وXbox Series X|S فقط. لكن في طريقة رسمية تلعبها على Xbox One، وفي Remote Play. هنا الجواب لكل جهاز.",
+      desc="هل GTA 6 على PS4؟ هل تشتغل على Xbox One أو الكمبيوتر PC؟ الجواب الرسمي لكل جهاز: PS5 وSeries X|S أصلي، Xbox One عبر اللعب السحابي، والكمبيوتر لم يُعلن بعد.",
+      tool=["/ar/gta-6#consoles", "شوف دليل الأجهزة في منطقة GTA 6"],
+      body=_GTA_LOGO_AR + """<h2>الجواب السريع</h2>
+<table class="guide-table"><tr><th>الجهاز</th><th>هل تشتغل GTA 6؟</th></tr>
+<tr><td>PS5 وPS5 Pro</td><td>نعم — تشغيل أصلي</td></tr>
+<tr><td>Xbox Series X وSeries S</td><td>نعم — تشغيل أصلي</td></tr>
+<tr><td>Xbox One</td><td>نعم، لكن <b>سحابيًا فقط</b> عبر Xbox Cloud Gaming</td></tr>
+<tr><td>PS4</td><td>لا</td></tr>
+<tr><td>الكمبيوتر (PC)</td><td>لم تُعلن نسخة بعد</td></tr></table>
+<h2>Xbox One: كيف تلعبها سحابيًا</h2>
+<p>أعلنت روكستار أن GTA 6 متاحة عبر <b>Xbox Cloud Gaming</b> على أجهزة Xbox One أيضًا، وتشتغل بإعدادات Series S. يعني اللعبة تشتغل على سيرفرات مايكروسوفت وتنبث لجهازك. الجودة تعتمد كثيرًا على الإنترنت: الأفضل كيبل إيثرنت بدل الواي فاي، وسرعة ثابتة.</p>
+<h2>PS4: ليش لا؟</h2>
+<p>المنصات المعلنة هي PS5 وXbox Series X|S، ولا توجد نسخة PS4. إذا عندك PS4 فالخيار هو الترقية لـ PS5.</p>
+<h2>الكمبيوتر: متى؟</h2>
+<p>روكستار لم تعلن نسخة PC حتى الآن. أي تاريخ تشوفه منتشر هو تقارير غير رسمية — ألعاب روكستار السابقة نزلت على الكمبيوتر بعد الأجهزة بفترة، لكن هذا ليس تأكيدًا.</p>
+<h2>Remote Play</h2>
+<p>اللعب عن بعد (Remote Play) مدعوم على بلايستيشن وإكسبوكس، يعني تقدر تلعب من جوالك أو جهاز ثاني ما دام جهازك الأساسي شغال على نفس الشبكة أو بإنترنت قوي.</p>
+""" + _GTA_SRC_AR,
+      faq=[("هل GTA 6 تنزل على PS4؟", "لا. المنصات الرسمية هي PS5 وXbox Series X|S."),
+           ("هل أقدر ألعب GTA 6 على Xbox One؟", "نعم، لكن عبر اللعب السحابي Xbox Cloud Gaming فقط، وبإعدادات Series S."),
+           ("متى تنزل GTA 6 على الكمبيوتر؟", "لم تُعلن نسخة الكمبيوتر رسميًا حتى الآن.")]),
+ dict(slug="gta-6-ps5-pro-vs-xbox", lang="ar", date="2026-11-15",
+      title="GTA 6 على PS5 ولا PS5 Pro ولا إكسبوكس؟ وين أحسن تلعبها | QuickTiny",
+      h1="GTA 6 على PS5 أو PS5 Pro أو إكسبوكس: وين أحسن؟",
+      lede="كل الأجهزة تستهدف 30 إطارًا بالثانية، لكن في فروق حقيقية بالصورة والتحكم والصوت. هذا ملخص الفروق الرسمية ونصيحة لكل نوع لاعب.",
+      desc="مقارنة GTA 6 بين PS5 وPS5 Pro وXbox Series X وSeries S: الأداء 30 إطارًا، PSSR والظلال بتتبع الأشعة على Pro، اهتزاز DualSense وصوت Tempest، واللعب السحابي على Xbox One.",
+      tool=["/ar/gta-6#consoles", "قارن الأجهزة في منطقة GTA 6"],
+      body=_GTA_LOGO_AR + """<h2>الفروق الرسمية</h2>
+<table class="guide-table"><tr><th>الجهاز</th><th>الأداء</th><th>ميزات خاصة</th></tr>
+<tr><td>PS5 Pro</td><td>30 إطارًا</td><td>صورة أوضح بتقنية PSSR، وظلال بتتبع الأشعة <b>حصرية لـ Pro</b></td></tr>
+<tr><td>PS5</td><td>30 إطارًا</td><td>اهتزاز DualSense في كل اللعبة، صوت Tempest ثلاثي الأبعاد، تحميل أسرع</td></tr>
+<tr><td>Xbox Series X</td><td>30 إطارًا</td><td>تشغيل أصلي بالجودة الكاملة</td></tr>
+<tr><td>Xbox Series S</td><td>30 إطارًا</td><td>إعدادات Series S (دقة أقل)</td></tr>
+<tr><td>Xbox One</td><td>سحابي</td><td>عبر Xbox Cloud Gaming بإعدادات Series S</td></tr></table>
+<h2>نصيحتنا حسب وضعك</h2>
+<ul><li><b>عندك PS5 Pro وشاشة 4K:</b> هذه أفضل صورة متاحة رسميًا عند الإطلاق.</li>
+<li><b>عندك PS5 عادي:</b> تجربة ممتازة، والاهتزاز والصوت ثلاثي الأبعاد يضيفوا كثيرًا — استعمل سماعة.</li>
+<li><b>عندك Series X:</b> نفس الإطارات، وجودة كاملة.</li>
+<li><b>عندك Series S:</b> تشتغل كويس، لكن انتبه للمساحة (حوالي 364 غيغا متاحة).</li>
+<li><b>بتبث أو بتسجّل:</b> أي جهاز يكفي؛ المهم كرت تسجيل وإعداد البث — جرّب <a href="/ar/gta-6#obs">عدة OBS</a> و<a href="/ar/gta-6#clip-studio">استوديو المقاطع</a>.</li></ul>
+<h2>هل يستاهل أشتري PS5 Pro عشان GTA 6؟</h2>
+<p>إذا عندك PS5 عادي، الفرق في الصورة والظلال، مش في عدد الإطارات. يستاهل إذا عندك شاشة 4K وتهتم بالتفاصيل؛ غير هيك PS5 العادي يعطيك نفس اللعبة ونفس السلاسة.</p>
+""" + _GTA_SRC_AR,
+      faq=[("كم إطار GTA 6 على PS5 Pro؟", "كل الأجهزة تستهدف 30 إطارًا بالثانية؛ PS5 Pro يضيف PSSR وظلالًا بتتبع الأشعة."),
+           ("هل GTA 6 أحسن على PS5 ولا إكسبوكس؟", "الأداء متقارب (30 إطارًا). PS5 يضيف اهتزاز DualSense وصوت Tempest، وPS5 Pro أفضل صورة رسميًا."),
+           ("هل GTA 6 على Series S ضعيفة؟", "تشتغل بإعدادات Series S بدقة أقل، ونفس معدل الإطارات المستهدف.")]),
+ dict(slug="gta-6-slow-download-fix", lang="ar", date="2026-11-15",
+      title="تنزيل GTA 6 بطيء؟ 9 حلول لتسريع التحميل على PS5 وإكسبوكس | QuickTiny",
+      h1="تنزيل GTA 6 بطيء؟ 9 حلول تسرّع التحميل",
+      lede="212 غيغابايت حجم كبير، وأيام الإطلاق السيرفرات بتكون مضغوطة. هذه حلول عملية تسرّع التنزيل على PS5 وإكسبوكس — من الأسهل للأقوى.",
+      desc="تحميل GTA 6 بطيء أو واقف؟ حلول عملية لتسريع تنزيل 212 غيغا على PS5 وXbox: كيبل إيثرنت، وضع الراحة، إيقاف التنزيلات الثانية، إعادة تشغيل الراوتر، وفحص حالة الشبكة.",
+      tool=["/ar/gta-6#gear", "شوف المعدات اللي بتفرق (كيبل وراوتر)"],
+      body=_GTA_LOGO_AR + """<h2>قبل كل شي: احسبها</h2>
+<p>بسرعة 50 ميغابت/ثانية، تنزيل 212 غيغابايت ياخد تقريبًا <span class="eq">212 × 8 ÷ 50 ≈ 34,000 ثانية</span>، يعني حوالي <b>9 ساعات ونص</b>. بسرعة 100 ميغابت حوالي 5 ساعات. لهيك التنزيل المسبق من بدري مهم.</p>
+<h2>الحلول</h2>
+<ol><li><b>كيبل إيثرنت بدل الواي فاي:</b> أكبر فرق غالبًا، خصوصًا إذا الجهاز بعيد عن الراوتر.</li>
+<li><b>نزّل وهو في وضع الراحة:</b> على PS5: الإعدادات ← النظام ← توفير الطاقة ← الميزات المتاحة في وضع الراحة ← فعّل "البقاء متصلًا بالإنترنت". على إكسبوكس: اختار وضع الطاقة "السكون" (Sleep).</li>
+<li><b>أوقف كل التنزيلات والتحديثات الثانية</b> على الجهاز.</li>
+<li><b>خفّف الضغط على الشبكة:</b> أوقف البث والتنزيل على الأجهزة الثانية بالبيت مؤقتًا.</li>
+<li><b>أعد تشغيل الراوتر والجهاز</b> إذا التنزيل وقف أو صار بطيء فجأة.</li>
+<li><b>أوقف التنزيل وكمّله:</b> أحيانًا يعيد الاتصال بسيرفر أسرع.</li>
+<li><b>جرّب بأوقات أقل ازدحامًا</b> مثل بعد منتصف الليل أو الصبح بدري.</li>
+<li><b>شيك حالة الشبكة:</b> إذا المشكلة من سيرفرات PlayStation Network أو Xbox Live، الانتظار هو الحل.</li>
+<li><b>تأكد من المساحة:</b> إذا المساحة ناقصة التنزيل بيوقف — <a href="/ar/guides/gta-6-size-storage">دليل حجم GTA 6</a> بيشرح كيف تفضّي مكان.</li></ol>
+<h2>متى المشكلة مش منك؟</h2>
+<p>يوم الإطلاق ملايين الناس بتنزّل نفس الملفات. إذا سرعتك بباقي المواقع طبيعية وبس اللعبة بطيئة، غالبًا ضغط على السيرفرات — وبيتحسن خلال ساعات.</p>
+""" + _GTA_SRC_AR,
+      faq=[("ليش تنزيل GTA 6 بطيء؟", "الحجم كبير (حتى 212 غيغا) والسيرفرات مضغوطة وقت الإطلاق. الواي فاي والتنزيلات الثانية بتبطّئه أكثر."),
+           ("هل أقدر أنزّل GTA 6 والجهاز مطفي؟", "نعم في وضع الراحة على PS5 أو وضع السكون على إكسبوكس، بشرط تفعيل البقاء متصلًا بالإنترنت."),
+           ("كم ساعة ياخد تنزيل GTA 6؟", "حوالي 9 ساعات ونص بسرعة 50 ميغابت، وحوالي 5 ساعات بسرعة 100 ميغابت، تقريبًا.")]),
+ dict(slug="gta-6-map-leonida", lang="ar", date="2026-11-15",
+      title="خريطة GTA 6: ولاية ليونيدا ومناطقها الست اللي أعلنتها روكستار | QuickTiny",
+      h1="خريطة GTA 6: ليونيدا ومناطقها",
+      lede="GTA 6 تدور في ولاية ليونيدا الخيالية المستوحاة من فلوريدا. هذا ملخص المناطق الست اللي أعلنتها روكستار، مع خريطة ثلاثية الأبعاد توضيحية تقدر تلف فيها.",
+      desc="خريطة GTA 6 وولاية ليونيدا: فايس سيتي، جزر ليونيدا، غراس ريفرز، بورت جيلهورن، أمبروسيا وجبل كالاغا. وصف كل منطقة، وموعد الخريطة الرسمية، وخريطة ثلاثية الأبعاد تفاعلية.",
+      tool=["/ar/gta-6#map", "افتح الخريطة ثلاثية الأبعاد"],
+      body=_GTA_LOGO_AR + """<h2>ليونيدا: الولاية</h2>
+<p>أحداث GTA 6 في ولاية <b>ليونيدا</b>، وهي نسخة روكستار الساخرة من فلوريدا. المدينة الكبيرة هي <b>فايس سيتي</b>، وحولها مناطق مختلفة كثير بالطبيعة والأجواء.</p>
+<h2>المناطق الست المعلنة</h2>
+<table class="guide-table"><tr><th>المنطقة</th><th>شو فيها</th><th>مستوحاة على ما يبدو من</th></tr>
+<tr><td>فايس سيتي</td><td>ليالي النيون وفنادق آرت ديكو والشاطئ</td><td>ميامي</td></tr>
+<tr><td>جزر ليونيدا</td><td>سلسلة جزر وجسور فوق مياه فيروزية</td><td>جزر فلوريدا كيز</td></tr>
+<tr><td>غراس ريفرز</td><td>مستنقعات وأعشاب وقوارب هوائية</td><td>الإيفرغليدز</td></tr>
+<tr><td>بورت جيلهورن</td><td>ميناء ومستودعات وموتيلات على الخليج</td><td>ساحل خليج فلوريدا</td></tr>
+<tr><td>أمبروسيا</td><td>مزارع قصب سكر ومصانع حول بحيرة كبيرة</td><td>منطقة بحيرة أوكيتشوبي</td></tr>
+<tr><td>جبل كالاغا</td><td>غابات وأنهار وينابيع في الشمال</td><td>حدائق شمال فلوريدا</td></tr></table>
+<p style="font-size:14px;color:var(--muted)">عمود "مستوحاة من" هو قراءتنا للعروض، مش تصريح رسمي.</p>
+<h2>متى تنزل الخريطة الرسمية؟</h2>
+<p>روكستار تنزّل خريطة ليونيدا والبوستر الرسميين <b>مجانًا للطباعة يوم 19 نوفمبر</b> مع الإطلاق. لحد ذلك، جرّب <a href="/ar/gta-6#map">خريطتنا ثلاثية الأبعاد التوضيحية</a> — مرسومة بأسلوب أصلي على شكل فلوريدا، فيها وضع ليل، وتطير لكل منطقة بضغطة.</p>
+""" + _GTA_SRC_AR,
+      faq=[("وين تدور أحداث GTA 6؟", "في ولاية ليونيدا الخيالية المستوحاة من فلوريدا، ومدينتها الكبرى فايس سيتي."),
+           ("كم منطقة في خريطة GTA 6؟", "أعلنت روكستار ست مناطق: فايس سيتي، جزر ليونيدا، غراس ريفرز، بورت جيلهورن، أمبروسيا وجبل كالاغا."),
+           ("متى تنزل خريطة GTA 6 الرسمية؟", "مع الإطلاق يوم 19 نوفمبر 2026، مجانًا للطباعة.")]),
+ dict(slug="gta-6-record-stream-clips", lang="ar", date="2026-11-15",
+      title="كيف تسجّل وتبث GTA 6 وتعمل منها ريلز وتيك توك | QuickTiny",
+      h1="كيف تسجّل وتبث GTA 6 وتحوّلها لريلز",
+      lede="أسبوع الإطلاق أحسن وقت تبني فيه قناة. هذا دليل عملي: كيف تسجّل من PS5 وإكسبوكس، كيف تبث، وكيف تحوّل ساعات اللعب لريلز جاهزة بدقائق.",
+      desc="دليل تسجيل وبث GTA 6 من PS5 وXbox: إعدادات التسجيل، كرت التسجيل وOBS، وكيف تطلع أقوى اللحظات ريلز وتيك توك عمودية تلقائيًا بأدوات مجانية.",
+      tool=["/ar/gta-6#clip-studio", "افتح استوديو المقاطع"],
+      body=_GTA_LOGO_AR + """<h2>1. التسجيل من الجهاز نفسه</h2>
+<ul><li><b>PS5:</b> زر Create. اضبط مدة "اللعب الأخير" من الإعدادات ← اللقطات والبث ← اللقطات (من 15 ثانية لحد ساعة). اضغط Create وبعدين "حفظ المقطع الأخير" بعد أي لحظة قوية.</li>
+<li><b>إكسبوكس:</b> زر Xbox ← التقاط ومشاركة ← "سجّل اللي صار". مدة التسجيل ومكان الحفظ بتنضبط من الإعدادات ← التفضيلات ← التقاط ومشاركة.</li></ul>
+<h2>2. البث المباشر</h2>
+<ul><li><b>من الجهاز مباشرة:</b> PS5 وإكسبوكس بيبثوا لتويتش ويوتيوب من غير أي معدات — أسهل بداية.</li>
+<li><b>باحتراف:</b> كرت تسجيل (Capture card) يوصل الجهاز بالكمبيوتر، وبرنامج OBS. هيك بتقدر تضيف كاميرا وتنبيهات وشاشات.</li>
+<li><b>شاشات جاهزة مجانًا:</b> <a href="/ar/gta-6#obs">عدة OBS في منطقة GTA 6</a> فيها شاشة "البث يبدأ قريبًا" وعدّاد وبانر "مباشر الآن" — تنسخ الرابط وتحطه بالـ OBS.</li></ul>
+<h2>3. من ساعات لعب لريلز بدقائق</h2>
+<ol><li>نزّل تسجيل اللعب على الكمبيوتر أو الجوال.</li>
+<li>افتح <a href="/ar/gta-6#clip-studio">استوديو المقاطع</a> وحط الفيديو — بيلاقي أقوى اللحظات من الصوت والحركة (حوادث، اشتباكات، انفجارات).</li>
+<li>اختار طول المقطع وعنوان يشد واسم حسابك وختم النهاية.</li>
+<li>نزّل الريلز العمودية 1080×1920 مع الصوت — جاهزة لتيك توك وإنستغرام ويوتيوب شورتس.</li></ol>
+<p>الفيديو ما بيطلع من جهازك أبدًا؛ كل المعالجة داخل المتصفح.</p>
+<h2>نصائح تجيب مشاهدات</h2>
+<ul><li>أول ثانيتين أهم شي — ابدأ قبل اللحظة القوية بشوي.</li>
+<li>عنوان قصير بيخلّي الناس تستنى: "استنى للأخير…".</li>
+<li>انشر بسرعة أيام الإطلاق؛ البحث عن GTA 6 بيكون بأعلى مستوياته.</li>
+<li>انتبه من حرق القصة: حط تنبيه "سبويلر" إذا المقطع من المهمات.</li></ul>
+""" + _GTA_SRC_AR,
+      faq=[("كيف أسجّل آخر دقائق لعب على PS5؟", "اضغط زر Create واختار حفظ المقطع الأخير؛ المدة بتنضبط من إعدادات اللقطات والبث."),
+           ("هل أحتاج كرت تسجيل عشان أبث GTA 6؟", "لا، PS5 وإكسبوكس بيبثوا مباشرة. كرت التسجيل مفيد إذا بدك OBS وكاميرا وتنبيهات."),
+           ("كيف أحوّل فيديو اللعب لريلز عمودي؟", "حطه في استوديو المقاطع على QuickTiny؛ بيلاقي اللحظات القوية ويصدّرها 1080×1920 مع الصوت.")]),
+ # ---- English ----
+ dict(slug="gta-6-file-size-storage", lang="en", date="2026-11-15",
+      title="GTA 6 File Size: How Much Space You Need on PS5 & Xbox | QuickTiny",
+      h1="GTA 6 file size and how to free space on PS5 and Xbox",
+      lede="The GTA 6 pre-load needs up to 212 GB. Here’s the safe amount to free, what to delete, and which storage upgrades actually run the game on each console.",
+      desc="How big is GTA 6? The pre-load needs up to 212 GB on PS5 and Xbox Series. Check your free space, what to delete, and which SSD or expansion card works — with a free storage checker.",
+      tool=["/gta-6#gear", "Check your space and setup"],
+      body=_GTA_LOGO_EN + """<h2>How big is GTA 6?</h2>
+<p>Per Rockstar, the GTA 6 pre-load needs <b>up to 212 GB</b>; it has been live since 10 November for digital pre-orders. Leave about 10% extra for the day-one patch and temp files — roughly <b>233 GB free</b>.</p>
+<table class="guide-table"><tr><th>Console</th><th>Usable internal space (approx.)</th><th>Enough?</th></tr>
+<tr><td>PS5 (825 GB)</td><td>~667 GB before any games</td><td>Yes, but you’ll likely delete old games</td></tr>
+<tr><td>PS5 Slim / Pro (1 TB+)</td><td>~840 GB or more</td><td>Usually</td></tr>
+<tr><td>Xbox Series X (1 TB)</td><td>~800 GB</td><td>Usually</td></tr>
+<tr><td>Xbox Series S (512 GB)</td><td>~364 GB</td><td>Barely — the game takes most of it</td></tr></table>
+<h2>Storage upgrades: what works</h2>
+<ul><li><b>PS5 internal M.2:</b> the only way to play PS5 games outside the built-in drive. Pick a PCIe Gen4 NVMe rated 5,500 MB/s or faster, with a heatsink.</li>
+<li><b>PS5 USB drive:</b> stores PS5 games to save space, but you must move them back to play.</li>
+<li><b>Xbox Series X|S expansion card:</b> current-gen games must run from internal storage or the official Seagate/WD card.</li>
+<li><b>Xbox USB drive:</b> storage and transfers only for Series X|S games.</li></ul>
+<p>Not sure? The <a href="/gta-6#gear">GTA 6 setup checker</a> works out how many GB you’re short and the right specs for your console.</p>
+""" + _GTA_SRC_EN,
+      faq=[("How big is GTA 6 on PS5?", "Rockstar says the pre-load needs up to 212 GB; leave extra room for the day-one patch."),
+           ("Is the Xbox Series S big enough for GTA 6?", "It has about 364 GB usable, so yes — but you’ll likely need to delete most other games or add an expansion card."),
+           ("Can I play GTA 6 from an external USB drive?", "No. USB drives store current-gen games only; play from internal storage, a PS5 M.2 SSD or the official Xbox expansion card.")]),
+ dict(slug="gta-6-ps4-xbox-one-pc", lang="en", date="2026-11-15",
+      title="Is GTA 6 on PS4, Xbox One or PC? The Official Answer | QuickTiny",
+      h1="Is GTA 6 coming to PS4, Xbox One or PC?",
+      lede="GTA 6 launches 19 November 2026 on PS5 and Xbox Series X|S only — but there’s an official way to play on Xbox One, plus Remote Play. Here’s the answer for every device.",
+      desc="Is GTA 6 on PS4? Does it run on Xbox One or PC? The official answer per device: native on PS5 and Series X|S, Xbox One via cloud gaming, and no PC version announced yet.",
+      tool=["/gta-6#consoles", "See the console guide"],
+      body=_GTA_LOGO_EN + """<h2>Quick answer</h2>
+<table class="guide-table"><tr><th>Device</th><th>Does GTA 6 run?</th></tr>
+<tr><td>PS5 and PS5 Pro</td><td>Yes — native</td></tr>
+<tr><td>Xbox Series X and Series S</td><td>Yes — native</td></tr>
+<tr><td>Xbox One</td><td>Yes, but <b>cloud only</b> via Xbox Cloud Gaming</td></tr>
+<tr><td>PS4</td><td>No</td></tr>
+<tr><td>PC</td><td>Not announced yet</td></tr></table>
+<h2>Xbox One via the cloud</h2>
+<p>Rockstar confirmed GTA 6 is playable through <b>Xbox Cloud Gaming</b> on Xbox One too, using Series S settings. The game runs on Microsoft’s servers and streams to you, so a wired, stable connection matters most.</p>
+<h2>PC</h2>
+<p>No PC version has been announced. Rockstar’s previous games reached PC after consoles, but that isn’t a confirmation — treat any date you see as a rumour.</p>
+<h2>Remote Play</h2>
+<p>Remote Play is supported on both PlayStation and Xbox, so you can play on a phone or another screen while your console runs the game.</p>
+""" + _GTA_SRC_EN,
+      faq=[("Is GTA 6 on PS4?", "No. The official platforms are PS5 and Xbox Series X|S."),
+           ("Can I play GTA 6 on Xbox One?", "Yes, through Xbox Cloud Gaming only, using Series S settings."),
+           ("When is GTA 6 coming to PC?", "A PC version hasn’t been officially announced.")]),
+ dict(slug="gta-6-record-stream-clips", lang="en", date="2026-11-15",
+      title="How to Record & Stream GTA 6 and Turn It Into Reels | QuickTiny",
+      h1="How to record and stream GTA 6 — and turn it into Reels",
+      lede="Launch week is the best time to grow a channel. Record on PS5 or Xbox, stream with or without a capture card, and turn hours of gameplay into vertical clips in minutes.",
+      desc="Record and stream GTA 6 on PS5 and Xbox: capture settings, capture card and OBS, and how to auto-find the best moments and export vertical Reels and TikToks with free tools.",
+      tool=["/gta-6#clip-studio", "Open the Clip Studio"],
+      body=_GTA_LOGO_EN + """<h2>1. Record on the console</h2>
+<ul><li><b>PS5:</b> press Create. Set the recent-gameplay length in Settings → Captures and Broadcasts → Captures (15 seconds up to an hour), then save the recent clip after a big moment.</li>
+<li><b>Xbox:</b> Xbox button → Capture &amp; share → Record what happened. Length and save location live under Settings → Preferences → Capture &amp; share.</li></ul>
+<h2>2. Stream</h2>
+<ul><li><b>Straight from the console:</b> PS5 and Xbox stream to Twitch and YouTube with no extra gear.</li>
+<li><b>Pro setup:</b> a capture card into a PC running OBS lets you add a camera, alerts and scenes — grab our free <a href="/gta-6#obs">OBS kit</a> (starting-soon screen, countdown, live banner).</li></ul>
+<h2>3. Hours of gameplay → Reels in minutes</h2>
+<ol><li>Copy your recording to your computer or phone.</li>
+<li>Drop it into the <a href="/gta-6#clip-studio">Clip Studio</a> — it finds the biggest moments from the sound and motion.</li>
+<li>Pick the clip length, a hook title, your @handle and an end stamp.</li>
+<li>Download 1080×1920 clips with sound, ready for TikTok, Reels and Shorts. Your video never leaves your device.</li></ol>
+<h2>Tips that get views</h2>
+<ul><li>The first two seconds decide everything — start just before the action.</li>
+<li>Use a short hook like “Wait for it…”.</li>
+<li>Post fast during launch week, when GTA 6 searches peak.</li>
+<li>Flag story spoilers clearly.</li></ul>
+""" + _GTA_SRC_EN,
+      faq=[("How do I record the last few minutes on PS5?", "Press Create and save the recent gameplay clip; set its length in Captures settings."),
+           ("Do I need a capture card to stream GTA 6?", "No — PS5 and Xbox stream directly. A capture card helps if you want OBS, a camera and alerts."),
+           ("How do I turn gameplay into vertical Reels?", "Drop it into QuickTiny’s Clip Studio; it finds the big moments and exports 1080×1920 clips with sound.")]),
 ]
