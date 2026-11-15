@@ -120,7 +120,8 @@ async function build() {
   var landMat = new THREE.MeshStandardMaterial({ map: tx[0], emissiveMap: tx[1], emissive: 0xffffff, emissiveIntensity: 0, roughness: .92, metalness: 0 });
   var land = new THREE.Mesh(geo, landMat); land.receiveShadow = !small; scene.add(land);
   // skirt + far ocean so the edges never show the sky
-  var ocean = new THREE.Mesh(new THREE.PlaneGeometry(90, 90), new THREE.MeshStandardMaterial({ color: 0x0b4f8f, roughness: .3 })); ocean.rotation.x = -Math.PI / 2; ocean.position.y = -SEA * 1.05; scene.add(ocean);
+  var ocean = new THREE.Mesh(new THREE.PlaneGeometry(S * 7, S * 7), new THREE.MeshBasicMaterial({ color: 0x064974 })); // the painting's own deep-sea tone (median of its border)
+  ocean.rotation.x = -Math.PI / 2; ocean.position.y = -SEA * 1.05 - .01; scene.add(ocean);
   // glossy water film with a gentle swell (sun glints)
   var wgeo = new THREE.PlaneGeometry(S, S, 64, 64); wgeo.rotateX(-Math.PI / 2);
   var waterMat = new THREE.MeshStandardMaterial({ color: 0x47c8e0, transparent: true, opacity: .16, roughness: .05, metalness: .6, depthWrite: false });
@@ -168,14 +169,16 @@ async function build() {
     night = n; scene.background = n ? SKY.night : SKY.day;
     hemi.intensity = n ? .5 : 1.25; sun.intensity = n ? .3 : 2.4; sun.color.set(n ? 0x8fa8ff : 0xffc28a);
     landMat.color.set(n ? 0x7880b8 : 0xffffff); landMat.emissiveIntensity = n ? 3 : 0; bMat.emissiveIntensity = n ? 2.2 : 0;
-    ocean.material.color.set(n ? 0x061a36 : 0x0b4f8f); waterMat.color.set(n ? 0x1a2a6a : 0x47c8e0);
+    ocean.material.color.set(n ? 0x061a36 : 0x064974); waterMat.color.set(n ? 0x1a2a6a : 0x47c8e0);
     scene.fog.color.set(n ? 0x0b0a26 : 0x8a4a7e); clouds.forEach(function (s) { s.material.color.set(n ? 0x5a4a8a : 0xffffff); s.material.opacity = n ? .14 : .3; });
     moodBtn.textContent = n ? (AR ? "☀️ نهار" : "☀️ Day") : (AR ? "🌙 ليل" : "🌙 Night");
   }
   moodBtn.addEventListener("click", function () { mood(!night); }); mood(false);
 
   // ---------- camera rig ----------
-  var HOME = { az: -.28, el: 1.0, dist: 14.5, x: .4, z: .5 };
+  // portrait boxes (phones) need the camera further back to fit the whole state
+  var fitDist = function () { var a = W / Math.max(1, H); return 14.5 * Math.max(1, Math.pow(1.15 / a, .85)); };
+  var HOME = { az: -.28, el: 1.0, dist: fitDist(), x: .4, z: .5 };
   var rig = { az: HOME.az, el: HOME.el, dist: HOME.dist, tAz: HOME.az, tEl: HOME.el, tDist: HOME.dist, target: new THREE.Vector3(HOME.x, 0, HOME.z), tTarget: new THREE.Vector3(HOME.x, 0, HOME.z) }, idle = 0, card = document.getElementById("gsMapCard");
   function focus(p) {
     rig.tTarget.set(X(p.u), Math.max(groundY(p.u, p.v), 0), Z(p.v)); rig.tDist = 3.6; rig.tEl = .58; idle = -8;
@@ -199,13 +202,15 @@ async function build() {
   el.addEventListener("wheel", function (e) { e.preventDefault(); rig.tDist = Math.max(1.6, Math.min(20, rig.tDist * (1 + e.deltaY * .001))); idle = -5; }, { passive: false });
 
   // ---------- render loop (only while visible) ----------
-  var visible = false, last = performance.now(), v3 = new THREE.Vector3();
+  var visible = false, last = performance.now(), v3 = new THREE.Vector3(), tb = box.querySelector(".gs-maptools"), top = 46;
+  var measureTop = function () { top = tb ? tb.offsetTop + tb.offsetHeight + 34 : 46; }; measureTop();
   new IntersectionObserver(function (es) { var was = visible; visible = es[0].isIntersecting; if (visible && !was) { last = performance.now(); requestAnimationFrame(loop); } }, { threshold: .02 }).observe(box);
-  addEventListener("resize", function () { W = box.clientWidth; H = box.clientHeight; renderer.setSize(W, H); camera.aspect = W / H; camera.updateProjectionMatrix(); });
+  addEventListener("resize", function () { W = box.clientWidth; H = box.clientHeight; renderer.setSize(W, H); camera.aspect = W / H; camera.updateProjectionMatrix(); measureTop(); var d = fitDist(); if (Math.abs(rig.tDist - HOME.dist) < .01) rig.tDist = d; HOME.dist = d; });
   function loop(now) {
     if (!visible || document.hidden) { visible = visible && !document.hidden; return; }
     var dt = Math.min(.05, (now - last) / 1000); last = now; idle += dt;
     if (idle > 3 && !reduce) rig.tAz += dt * .045;
+    scene.fog.near = rig.dist + 1.5; scene.fog.far = rig.dist * 1.6 + 16; // haze scales with zoom, so a far (phone) view stays clear
     var k = 1 - Math.pow(.003, dt); rig.az += (rig.tAz - rig.az) * k; rig.el += (rig.tEl - rig.el) * k; rig.dist += (rig.tDist - rig.dist) * k; rig.target.lerp(rig.tTarget, k);
     camera.position.set(rig.target.x + Math.cos(rig.el) * Math.sin(rig.az) * rig.dist, rig.target.y + Math.sin(rig.el) * rig.dist, rig.target.z + Math.cos(rig.el) * Math.cos(rig.az) * rig.dist); camera.lookAt(rig.target);
     var tt = now / 1000;
@@ -215,7 +220,7 @@ async function build() {
     }
     pins.forEach(function (o, i3) {
       var ph = (tt * .8 + i3 * .3) % 1; o.orb.scale.setScalar(1 + .25 * Math.sin(tt * 3 + i3)); o.ring.scale.setScalar(1 + ph * 1.6); o.ring.material.opacity = .85 * (1 - ph);
-      v3.copy(o.v).project(camera); var sx = (v3.x * .5 + .5) * W, sy = Math.max(46, (-v3.y * .5 + .5) * H);
+      v3.copy(o.v).project(camera); var sx = (v3.x * .5 + .5) * W, sy = Math.max(top, (-v3.y * .5 + .5) * H);
       o.btn.style.transform = "translate(-50%,-100%) translate(" + sx.toFixed(1) + "px," + sy.toFixed(1) + "px)"; o.btn.style.opacity = v3.z < 1 && sx > -40 && sx < W + 40 ? 1 : 0;
     });
     renderer.render(scene, camera); requestAnimationFrame(loop);
