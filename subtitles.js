@@ -54,6 +54,9 @@ function qtSbFit(w, h, maxSide) {
   var st = { style: "pop", accent: "#ffd400", font: "bold", size: 96, pos: "bottom", per: 3, upper: false, outline: true, bg: "none", lang: AR ? "arabic" : "english", model: "base" };
   try { var sv = JSON.parse(localStorage.getItem("qtSubtitles") || "null"); if (sv) ["style", "accent", "font", "size", "pos", "per", "upper", "outline", "model"].forEach(function (k) { if (sv[k] != null) st[k] = sv[k]; }); } catch (e) {}
   if (window.qtBrand) window.qtBrand.apply(st, { accent: "accent", font: "font" });
+  // landing pages (tools/landing.py) open the tool already set up for their search: {task, style, pos, per, upper, size}
+  var PRE = window.QT_PRESET || {}; ["style", "pos", "per", "upper", "size"].forEach(function (k) { if (PRE[k] != null) st[k] = PRE[k]; });
+  if (PRE.task && $("sbTask")) $("sbTask").value = PRE.task;
   function save() { try { var o = {}; ["style", "accent", "font", "size", "pos", "per", "upper", "outline", "model"].forEach(function (k) { o[k] = st[k]; }); localStorage.setItem("qtSubtitles", JSON.stringify(o)); } catch (e) {} }
 
   var file = null, url = null, cues = [], pages = [], busy = false, worker = null;
@@ -130,7 +133,7 @@ function qtSbFit(w, h, maxSide) {
           else if (m.type === "error") reject(new Error(m.code === "model" ? T.modelFail : m.message));
         };
         worker.onerror = function (e) { reject(new Error(e.message || "worker")); };
-        worker.postMessage({ type: "run", audio: mono, model: st.model, language: $("sbLang").value || null }, [mono.buffer]);
+        worker.postMessage({ type: "run", audio: mono, model: st.model, language: $("sbLang").value || null, task: $("sbTask") ? $("sbTask").value : "transcribe" }, [mono.buffer]);
       });
       if (!res.words.length) throw new Error(T.empty);
       cues = qtSbCues(res.words, 7); editor(); rebuild();

@@ -1,6 +1,7 @@
 // QuickTiny speech-to-text worker: Whisper (via transformers.js) running entirely on the device.
 // The model is downloaded once from Hugging Face and cached by the browser; audio never leaves the device.
-// in:  {type:"run", audio: Float32Array (16 kHz mono), model: "base"|"small", language: "arabic"|"english"|null}
+// in:  {type:"run", audio: Float32Array (16 kHz mono), model: "base"|"small", language: "arabic"|"english"|null,
+//       task: "transcribe" (default) | "translate" (any language -> English subtitles)}
 // out: {type:"progress", file, loaded, total} | {type:"status", stage} | {type:"done", words:[{w,start,end}], text} | {type:"error", message}
 var TFJS = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2/dist/transformers.min.js";
 // Models are pinned to an exact Hugging Face commit, so a change or re-upload upstream can never silently swap the
@@ -49,6 +50,20 @@ function qtAsrWords(chunks) {
   return out;
 }
 
+// Translation has no reliable word timings, so each translated sentence's time span is shared across its words
+// in proportion to their length (Whisper sentence chunks are short, so this tracks the speech closely).
+function qtAsrSpread(chunks) {
+  var out = [];
+  (chunks || []).forEach(function (c) {
+    var ws = String(c.text || "").trim().split(/\s+/).filter(Boolean), ts = c.timestamp || [];
+    if (!ws.length) return;
+    var s = +ts[0] || 0, e = ts[1] == null ? s + ws.length * .35 : +ts[1]; if (e <= s) e = s + ws.length * .3;
+    var tot = ws.reduce(function (a, w) { return a + w.length + 1; }, 0), t = s;
+    ws.forEach(function (w) { var d = (e - s) * (w.length + 1) / tot; out.push({ w: w, start: +t.toFixed(3), end: +(t + d).toFixed(3) }); t += d; });
+  });
+  return out;
+}
+
 if (typeof self !== "undefined") self.onmessage = async function (ev) {
   var d = ev.data || {};
   if (d.type !== "run") return;
@@ -58,13 +73,14 @@ if (typeof self !== "undefined") self.onmessage = async function (ev) {
     var asr = await getPipe(d.model);
     stage = "run";
     postMessage({ type: "status", stage: "run" });
-    var opts = { return_timestamps: "word", chunk_length_s: 30, stride_length_s: 5, task: "transcribe" };
+    var tr = d.task === "translate";
+    var opts = { return_timestamps: tr ? true : "word", chunk_length_s: 30, stride_length_s: 5, task: tr ? "translate" : "transcribe" };
     if (d.language) opts.language = d.language;
     var r = await asr(d.audio, opts);
-    postMessage({ type: "done", text: r.text, words: qtAsrWords(r.chunks) });
+    postMessage({ type: "done", text: r.text, words: tr ? qtAsrSpread(r.chunks) : qtAsrWords(r.chunks) });
   } catch (e) {
     // code "model": the speech model couldn't be downloaded (offline, blocked network, CDN outage) — pages show a friendly hint
     postMessage({ type: "error", code: stage === "load" ? "model" : "run", message: String(e && e.message || e) });
   }
 };
-if (typeof module !== "undefined") module.exports = { qtAsrWords: qtAsrWords };
+if (typeof module !== "undefined") module.exports = { qtAsrWords: qtAsrWords, qtAsrSpread: qtAsrSpread };

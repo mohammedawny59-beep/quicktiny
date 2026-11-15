@@ -173,6 +173,7 @@ function qtMtRender(x, W, H, t, s, preview) {
   var SIZES = { "16:9": [1920, 1080], "9:16": [1080, 1920], "1:1": [1080, 1080] };
   var st = { tpl: "lower", a: DEF.lower[0], b: DEF.lower[1], accent: "#ff2d55", bg: "green", ratio: "16:9", pos: "start", count: 1200, duration: 5 };
   if (window.qtBrand) { qtBrand.apply(st, { accent: "accent" }); var qtBk = qtBrand.get(); if (qtBk && qtBk.name) { DEF.lower = [qtBk.name, qtBk.tagline || DEF.lower[1]]; if (st.tpl === "lower") { st.a = DEF.lower[0]; st.b = DEF.lower[1]; } } }
+  var PRE = window.QT_PRESET || {}; if (PRE.tpl && DEF[PRE.tpl]) { st.tpl = PRE.tpl; st.a = DEF[PRE.tpl][0]; st.b = DEF[PRE.tpl][1]; st.duration = DUR[PRE.tpl]; } if (PRE.bg) st.bg = PRE.bg; if (PRE.ratio) st.ratio = PRE.ratio; // landing pages
   var cv = $("mtCanvas"), ctx = cv.getContext("2d"), t0 = performance.now(), playing = true, exporting = false;
   function size() { var z = SIZES[st.ratio]; cv.width = z[0]; cv.height = z[1]; cv.parentNode.style.aspectRatio = z[0] + " / " + z[1]; }
   function sync() {

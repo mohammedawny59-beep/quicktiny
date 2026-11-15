@@ -52,7 +52,7 @@ T = {
  "en": dict(home="/", homeL="Home", crumb="Auto Subtitles", b=("Video", "Your video never leaves your device", "Free"),
    h1="Auto Subtitles — Add Animated Captions to Your Video Automatically, Free",
    intro="Upload a video and get word-by-word animated captions in a minute: speech is turned into text right in your browser (Arabic, English and 90+ languages), you fix any word, pick a style and download the video with the captions burned in — sound included. Or grab an .srt file. Free, no watermark, no upload.",
-   s1="1 · Your video", drop="Choose a video or drop it here", dropS="MP4, MOV or WebM · up to 20 minutes", lang="Spoken language", langO=[("arabic", "Arabic"), ("english", "English"), ("", "Detect automatically")],
+   s1="1 · Your video", drop="Choose a video or drop it here", dropS="MP4, MOV or WebM · up to 20 minutes", task="Subtitles in", taskO=[("transcribe", "Same language as the video"), ("translate", "English (translate)")], lang="Spoken language", langO=[("arabic", "Arabic"), ("english", "English"), ("", "Detect automatically")],
    model="Accuracy", modelO=[("base", "Fast (≈ 75 MB, once)"), ("small", "Best (≈ 250 MB, once)")], go="Generate subtitles",
    note="The first run downloads the speech model and keeps it in your browser, so the next videos start straight away.",
    s2="2 · Fix the words", s3="3 · Caption style", styles=[("pop", "Pop"), ("box", "Highlight box"), ("karaoke", "Karaoke"), ("bounce", "One word")],
@@ -73,7 +73,7 @@ T = {
  "ar": dict(home="/ar", homeL="الرئيسية", crumb="ترجمة الفيديو تلقائيًا", b=("فيديو", "فيديوك لا يغادر جهازك", "مجانية"),
    h1="ترجمة الفيديو تلقائيًا — أضف كابشن متحرك لفيديوك بالذكاء الاصطناعي مجانًا",
    intro="ارفع فيديوك واحصل على كابشن متحرك كلمة بكلمة خلال دقيقة: الكلام يتحوّل إلى نص داخل متصفحك (عربي وإنجليزي وأكثر من 90 لغة)، تعدّل أي كلمة، تختار الستايل وتنزّل الفيديو والترجمة مطبوعة عليه — مع الصوت. أو نزّل ملف SRT. مجانًا، بدون علامة مائية وبدون رفع.",
-   s1="١ · فيديوك", drop="اختر فيديو أو اسحبه هنا", dropS="MP4 أو MOV أو WebM · حتى 20 دقيقة", lang="لغة الكلام", langO=[("arabic", "العربية"), ("english", "الإنجليزية"), ("", "تحديد تلقائي")],
+   s1="١ · فيديوك", drop="اختر فيديو أو اسحبه هنا", dropS="MP4 أو MOV أو WebM · حتى 20 دقيقة", task="لغة الترجمة", taskO=[("transcribe", "نفس لغة الفيديو"), ("translate", "الإنجليزية (ترجمة)")], lang="لغة الكلام", langO=[("arabic", "العربية"), ("english", "الإنجليزية"), ("", "تحديد تلقائي")],
    model="الدقة", modelO=[("base", "سريع (≈ 75 ميغا، مرة واحدة)"), ("small", "أدق (≈ 250 ميغا، مرة واحدة)")], go="استخرج الترجمة",
    note="أول مرة يتنزّل نموذج التعرّف على الكلام ويبقى محفوظًا في متصفحك، فالفيديوهات التالية تبدأ فورًا.",
    s2="٢ · صحّح الكلمات", s3="٣ · شكل الكابشن", styles=[("pop", "تكبير"), ("box", "مربع ملوّن"), ("karaoke", "كاريوكي"), ("bounce", "كلمة كلمة")],
@@ -101,10 +101,11 @@ def body(L, ar):
     s += '  <div class="tool-panel" id="tool">\n    <div class="sb">\n      <div class="sb-col">\n'
     s += ('        <div class="sb-card sb-c1"><h2>%s</h2>\n          <label class="sb-drop" id="sbDrop">%s<strong>%s</strong><span>%s</span><span id="sbName"></span><input type="file" id="sbFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>\n'
           '          <div class="sb-row" style="margin-top:14px"><label for="sbLang">%s</label><select id="sbLang">%s</select></div>\n'
+          '          <div class="sb-row"><label for="sbTask">%s</label><select id="sbTask">%s</select></div>\n'
           '          <div class="sb-row"><label for="sbModel">%s</label><select id="sbModel">%s</select></div>\n'
           '          <button type="button" class="btn sb-go" id="sbGo" disabled>%s</button>\n'
           '          <div id="sbBar" hidden><i id="sbBarFill"></i></div><div id="sbStatus" role="status" aria-live="polite"></div><p class="sb-note">%s</p>\n        </div>\n') % (
-          t["s1"], UP, t["drop"], t["dropS"], t["lang"], opts(t["langO"]), t["model"], opts(t["modelO"]), t["go"], t["note"])
+          t["s1"], UP, t["drop"], t["dropS"], t["lang"], opts(t["langO"]), t["task"], opts(t["taskO"]), t["model"], opts(t["modelO"]), t["go"], t["note"])
     s += ('        <div class="sb-card sb-c2" id="sbEdit" hidden><h2>%s <span id="sbInfo"></span></h2><div id="sbCues"></div>\n'
           '          <div class="sb-clip" id="sbClipRow" hidden><b>%s</b><label>%s <select id="sbFrom"></select></label><label>%s <select id="sbTo"></select></label><span id="sbClipInfo"></span><p class="sb-note">%s</p></div></div>\n') % (t["s2"], t["clip"], t["cfrom"], t["cto"], t["clipNote"])
     s += ('        <div class="sb-card sb-c2"><h2>%s</h2>\n          <div id="sbStyles" style="margin-bottom:12px">%s</div>\n'
