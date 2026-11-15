@@ -13,6 +13,7 @@
         <div class="sb-card sb-c1"><h2>١ · فيديوك</h2>
           <label class="sb-drop" id="sbDrop"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/></svg><strong>اختر فيديو أو اسحبه هنا</strong><span>MP4 أو MOV أو WebM · حتى 20 دقيقة</span><span id="sbName"></span><input type="file" id="sbFile" accept="video/*,.mp4,.mov,.webm,.m4v"></label>
           <div class="sb-row" style="margin-top:14px"><label for="sbLang">لغة الكلام</label><select id="sbLang"><option value="arabic">العربية</option><option value="english">الإنجليزية</option><option value="">تحديد تلقائي</option></select></div>
+          <div class="sb-row"><label for="sbTask">لغة الترجمة</label><select id="sbTask"><option value="transcribe">نفس لغة الفيديو</option><option value="translate">الإنجليزية (ترجمة)</option></select></div>
           <div class="sb-row"><label for="sbModel">الدقة</label><select id="sbModel"><option value="base">سريع (≈ 75 ميغا، مرة واحدة)</option><option value="small">أدق (≈ 250 ميغا، مرة واحدة)</option></select></div>
           <button type="button" class="btn sb-go" id="sbGo" disabled>استخرج الترجمة</button>
           <div id="sbBar" hidden><i id="sbBarFill"></i></div><div id="sbStatus" role="status" aria-live="polite"></div><p class="sb-note">أول مرة يتنزّل نموذج التعرّف على الكلام ويبقى محفوظًا في متصفحك، فالفيديوهات التالية تبدأ فورًا.</p>
