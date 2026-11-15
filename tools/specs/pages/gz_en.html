@@ -92,6 +92,15 @@
     <iframe id="gsObsFrame" title="OBS preview" loading="lazy"></iframe>
   </section>
 
+  <section class="gta-box" id="embed" data-reveal>
+    <h2>Put the countdown on your site</h2>
+    <p>Free widget for blogs, forums and fan sites — paste the code into any page (WordPress, Blogger, your own HTML). It updates itself and switches to “out now” on launch day.</p>
+    <div class="gta-two"><div><textarea id="gsEmbCode" readonly rows="5" dir="ltr" style="width:100%;font:12.5px/1.5 ui-monospace,monospace" onclick="this.select()">&lt;iframe src="https://quicktinyv2.vercel.app/embed/gta-6-countdown" title="GTA 6 countdown" width="100%" height="190" style="border:0;max-width:420px" loading="lazy"&gt;&lt;/iframe&gt;
+&lt;p style="font-size:13px"&gt;&lt;a href="https://quicktinyv2.vercel.app/gta-6"&gt;GTA 6 countdown by QuickTiny&lt;/a&gt;&lt;/p&gt;</textarea>
+      <button type="button" class="btn" style="margin-top:10px" onclick="var b=this;navigator.clipboard.writeText(document.getElementById('gsEmbCode').value).then(function(){b.textContent='✓ Copied';if(typeof qtEvent==='function')qtEvent('gta_embed_copy')})">Copy code</button></div>
+      <div><iframe src="/embed/gta-6-countdown" title="GTA 6 countdown" width="100%" height="190" style="border:0;max-width:420px;display:block;margin:0 auto" loading="lazy"></iframe></div></div>
+  </section>
+
   <section class="gs-sec" style="padding-bottom:0"><span class="gs-kick" data-reveal>Launch-week tools</span></section>
   <section class="gta-box" id="overlays">
     <h2>Mission overlays</h2>

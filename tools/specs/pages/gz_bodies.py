@@ -225,6 +225,7 @@ T = {
    confs=["Out Thursday 19 November 2026 on PS5 and Xbox Series X|S", "Pre-load live since 10 November — up to 212 GB", "Targets 30 fps; PS5 Pro adds PSSR and ray-traced shadows", "Xbox Cloud Gaming — including Xbox One", "Two leads: Jason and Lucia, in the state of Leonida (Vice City)", "Free official printable poster + map of Leonida on launch day"],
    preds=["A PC version later — unofficial reports point to 2027", "A brand-new online mode, detailed after launch", "Regular post-launch updates, as Rockstar usually does"],
    posterT="Vice poster maker", posterP="Turn any photo into a neon comic-style poster — posterised colours, ink edges and halftone. Original effect, all on your device.", pick="Choose a photo", pal="Palette", pals=[("vice", "Vice"), ("ocean", "Ocean"), ("sunset", "Sunset"), ("noir", "Noir")], ptitle="Title", psub="Line", half="Halftone dots", pgo="⬇ Download poster",
+   embT="Put the countdown on your site", embP="Free widget for blogs, forums and fan sites — paste the code into any page (WordPress, Blogger, your own HTML). It updates itself and switches to “out now” on launch day.", embCopy="Copy code", embCopied="✓ Copied", embFoot="GTA 6 countdown by QuickTiny", embSlug="gta-6-countdown", embLink="/gta-6",
    obsT="Stream kit for OBS", obsP="Animated widgets for streamers. Copy the link, then in OBS: Sources → + → Browser, paste it, set 1920 × 1080.", w=[("soon", "Starting soon screen"), ("countdown", "Launch countdown"), ("live", "Live now banner")], chan="Channel name", mins="Minutes", copy="Copy link",
    factsT="Official sources", logoAlt="Grand Theft Auto VI logo", credit="Grand Theft Auto VI logo © Rockstar Games — shown for news and identification only.",
    facts=["<b>Release:</b> Thursday 19 November 2026", "<b>Pre-load:</b> live since 10 November, up to 212 GB", "<b>Platforms:</b> PS5, PS5 Pro, Xbox Series X|S (+ Xbox Cloud Gaming)", "<b>Unlock time:</b> not announced yet"], src="Sources",
@@ -254,6 +255,7 @@ T = {
    confs=["تنزل الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S", "التنزيل المسبق متاح من 10 نوفمبر — حتى 212 غيغا", "30 إطارًا؛ وPS5 Pro فيه PSSR وظلال بتتبع الأشعة", "Xbox Cloud Gaming — حتى على Xbox One", "بطلين: جيسون ولوسيا، بولاية ليونيدا (فايس سيتي)", "بوستر وخريطة ليونيدا الرسمية مجانًا للطباعة يوم الإطلاق"],
    preds=["نسخة كمبيوتر لاحقًا — تقارير غير رسمية تتحدث عن 2027", "طور أونلاين جديد بتفاصيل بعد الإطلاق", "تحديثات مستمرة بعد الإطلاق مثل عادة روكستار"],
    posterT="صانع بوستر فايس", posterP="حوّل أي صورة لبوستر كوميكس نيون — ألوان مبسّطة وحدود حبر ونقاط طباعة. تأثير أصلي، كله على جهازك.", pick="اختر صورة", pal="الألوان", pals=[("vice", "فايس"), ("ocean", "محيط"), ("sunset", "غروب"), ("noir", "أبيض وأسود")], ptitle="العنوان", psub="السطر", half="نقاط الطباعة", pgo="⬇ نزّل البوستر",
+   embT="حط العدّاد على موقعك", embP="ويدجت مجاني للمدونات والمنتديات وصفحات المعجبين — الصق الكود بأي صفحة (ووردبريس، بلوجر، أو موقعك). بيتحدّث لحاله وبيتحوّل لـ «نزلت!» يوم الإطلاق.", embCopy="نسخ الكود", embCopied="✓ تم النسخ", embFoot="عدّاد GTA 6 من QuickTiny", embSlug="gta-6-countdown-ar", embLink="/ar/gta-6",
    obsT="عدة الستريمرز لـ OBS", obsP="عناصر متحركة للبث. انسخ الرابط، وبالـ OBS: المصادر ← + ← متصفح (Browser)، الصق الرابط واضبط 1920 × 1080.", w=[("soon", "شاشة البث يبدأ قريبًا"), ("countdown", "عدّاد الإطلاق"), ("live", "بانر مباشر الآن")], chan="اسم القناة", mins="الدقائق", copy="نسخ الرابط",
    factsT="المصادر الرسمية", logoAlt="شعار Grand Theft Auto VI", credit="شعار Grand Theft Auto VI ملك لـ Rockstar Games — معروض لأغراض إخبارية وتعريفية فقط.",
    facts=["<b>موعد النزول:</b> الخميس 19 نوفمبر 2026", "<b>التنزيل المسبق:</b> متاح من 10 نوفمبر، حتى 212 غيغا", "<b>المنصات:</b> PS5 وPS5 Pro وXbox Series X|S (+ Xbox Cloud Gaming)", "<b>ساعة الفتح:</b> لم تُعلن بعد"], src="المصادر",
@@ -270,6 +272,7 @@ SOURCES = [("https://www.rockstargames.com/VI", "Rockstar Games — GTA VI"), ("
 def chips(i, attr, o, active): return '<div class="gta-chips" id="%s" role="group">%s</div>' % (i, "".join('<button type="button" class="chip%s" data-%s="%s">%s</button>' % (" active" if k == active else "", attr, k, v) for k, v in o))
 def chipsa(i, o, act): return '<div class="gta-chips" id="%s" role="group">%s</div>' % (i, "".join('<button type="button" class="chip%s" data-v="%s">%s</button>' % (" active" if k == act else "", k, v) for k, v in o))
 def chipsv(i, o): return '<div class="gta-chips" id="%s" role="group">%s</div>' % (i, "".join('<button type="button" class="chip" data-v="%s" aria-pressed="false">%s</button>' % (k, v) for k, v in o))
+BASE = "https://quicktinyv2.vercel.app"
 def body(L, ar):
     t = T[L]; pl = PLACES[L]
     data = json.dumps([{"id": i, "name": n, "desc": d, "real": r, "u": u, "v": v, "css": c, "color": int(c[1:], 16), "img": "/assets/gta6/%s.webp" % i} for i, n, d, r, u, v, c in pl], ensure_ascii=False)
@@ -320,6 +323,12 @@ def body(L, ar):
           '    <div class="gta-row" id="gsObsMinRow"><label for="gsObsMin">%s</label><input type="number" id="gsObsMin" min="1" max="120" value="5" style="max-width:120px"></div>\n'
           '    <div class="gs-obs-row" style="margin:6px 0 14px"><input type="text" id="gsObsUrl" readonly aria-label="OBS URL"><button type="button" class="btn" id="gsObsCopy">%s</button></div>\n'
           '    <iframe id="gsObsFrame" title="OBS preview" loading="lazy"></iframe>\n  </section>\n\n') % (t["obsT"], t["obsP"], chips("gsObsW", "w", t["w"], "soon"), t["chan"], t["mins"], t["copy"])
+    snip = '<iframe src="%s/embed/%s" title="GTA 6 countdown" width="100%%" height="190" style="border:0;max-width:420px" loading="lazy"></iframe>\n<p style="font-size:13px"><a href="%s%s">%s</a></p>' % (BASE, t["embSlug"], BASE, t["embLink"], t["embFoot"])
+    esc = snip.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    s += ('  <section class="gta-box" id="embed" data-reveal>\n    <h2>%s</h2>\n    <p>%s</p>\n    <div class="gta-two"><div><textarea id="gsEmbCode" readonly rows="5" dir="ltr" style="width:100%%;font:12.5px/1.5 ui-monospace,monospace" onclick="this.select()">%s</textarea>\n'
+          '      <button type="button" class="btn" style="margin-top:10px" onclick="var b=this;navigator.clipboard.writeText(document.getElementById(\'gsEmbCode\').value).then(function(){b.textContent=\'%s\';if(typeof qtEvent===\'function\')qtEvent(\'gta_embed_copy\')})">%s</button></div>\n'
+          '      <div><iframe src="/embed/%s" title="GTA 6 countdown" width="100%%" height="190" style="border:0;max-width:420px;display:block;margin:0 auto" loading="lazy"></iframe></div></div>\n  </section>\n\n') % (
+          t["embT"], t["embP"], esc, t["embCopied"], t["embCopy"], t["embSlug"])
     s += '  <section class="gs-sec" style="padding-bottom:0"><span class="gs-kick" data-reveal>%s</span></section>\n' % t["toolsK"]
     s += ('  <section class="gta-box" id="overlays">\n    <h2>%s</h2>\n    <p>%s</p>\n    <div class="gta-two"><div>\n'
           '      <div class="gta-row"><span class="gl">%s</span>%s</div>\n      <div class="gta-row"><label for="gtaOvlTitle">%s</label><input type="text" id="gtaOvlTitle" dir="auto" maxlength="40"></div>\n'
