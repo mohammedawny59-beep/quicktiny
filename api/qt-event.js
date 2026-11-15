@@ -78,7 +78,8 @@ const ALLOWED_EVENTS = new Set([
   "gta_map_pin",
   "gta_gear_click",
   "gta_clip_find",
-  "gta_clip_export"
+  "gta_clip_export",
+  "gta_embed_copy"
 ]);
 
 function cleanPage(value) {

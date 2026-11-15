@@ -119,6 +119,47 @@ function qtEvent(name){
       body: JSON.stringify({ event: name, page: location.pathname })
     }).catch(function(){});
   } catch (e) {}
+  if (QT_SHARE_AFTER[name]) qtShareNudge();
+}
+
+/* ---------- Share nudge: after a successful export, invite the user to share the tool (once per page per session) ---------- */
+/* Links carry utm_source=share&utm_medium=<channel> so shares show up in Vercel Analytics (utmSource / utmMedium). */
+var QT_SHARE_AFTER = { subtitles_export: 1, titles_export: 1, paper_export: 1, clip_export: 1, gta_clip_export: 1, vertical_export: 1, silence_export: 1,
+  template_export: 1, thumbnail_export: 1, glass_export: 1, gta_overlay: 1, gta_poster: 1, gta_wallpaper: 1 };
+function qtShareUrl(medium) { return location.origin + location.pathname + "?utm_source=share&utm_medium=" + medium; }
+function qtShareNudge() {
+  try { var k = "qtShared:" + location.pathname; if (sessionStorage.getItem(k)) return; sessionStorage.setItem(k, "1"); } catch (e) {}
+  setTimeout(function () {
+    if (document.getElementById("qtShareNudge")) return;
+    var ar = (document.documentElement.lang || "").indexOf("ar") === 0;
+    var title = (document.querySelector("h1") || {}).textContent || document.title;
+    var T = ar ? { h: "تم! 🎉 عجبتك الأداة؟", p: "شاركها مع صديق بيعمل محتوى — مجانية وبدون علامة مائية.", copy: "نسخ الرابط", copied: "✓ تم النسخ", share: "مشاركة", close: "إغلاق" }
+               : { h: "Done! 🎉 Liked this tool?", p: "Share it with a friend who makes content — it's free and has no watermark.", copy: "Copy link", copied: "✓ Copied", share: "Share", close: "Close" };
+    if (!document.getElementById("qtShareCss")) {
+      var css = document.createElement("style"); css.id = "qtShareCss";
+      css.textContent = "#qtShareNudge{position:fixed;z-index:9990;inset-inline-end:16px;bottom:16px;width:min(360px,calc(100vw - 32px));padding:16px 16px 14px;border-radius:18px;background:#141826;color:#eef0fb;border:1px solid rgba(123,123,255,.45);box-shadow:0 24px 60px -20px rgba(0,0,0,.7);animation:qtSnIn .45s cubic-bezier(.2,.9,.2,1)}"
+        + "@keyframes qtSnIn{from{opacity:0;transform:translateY(20px)}}#qtShareNudge b{display:block;font-size:16px;margin-bottom:4px}#qtShareNudge p{margin:0 0 12px;font-size:13.5px;color:#c8cde0;line-height:1.55}"
+        + "#qtShareNudge .r{display:flex;flex-wrap:wrap;gap:8px}#qtShareNudge a,#qtShareNudge button{all:unset;cursor:pointer;font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;background:#232a40;color:#fff}"
+        + "#qtShareNudge a:hover,#qtShareNudge button:hover{background:#2f3756}#qtShareNudge .main{background:linear-gradient(135deg,#6b6bff,#3be2ff);color:#0b0d17}#qtShareNudge .x{position:absolute;top:8px;inset-inline-end:10px;padding:2px 8px;background:transparent;font-size:18px;color:#9aa3b8}"
+        + "#qtShareNudge a:focus-visible,#qtShareNudge button:focus-visible{outline:2px solid #3be2ff}@media (prefers-reduced-motion:reduce){#qtShareNudge{animation:none}}";
+      document.head.appendChild(css);
+    }
+    var box = document.createElement("div"); box.id = "qtShareNudge"; box.setAttribute("role", "dialog"); box.setAttribute("aria-label", T.h);
+    var x = document.createElement("button"); x.type = "button"; x.className = "x"; x.textContent = "×"; x.setAttribute("aria-label", T.close); x.onclick = function () { box.remove(); };
+    var h = document.createElement("b"); h.textContent = T.h; var p = document.createElement("p"); p.textContent = T.p;
+    var row = document.createElement("div"); row.className = "r";
+    function link(label, href, medium) { var a = document.createElement("a"); a.href = href; a.target = "_blank"; a.rel = "noopener"; a.textContent = label; a.onclick = function () { qtEvent("share_clicked"); }; row.appendChild(a); }
+    if (navigator.share) { var sh = document.createElement("button"); sh.type = "button"; sh.className = "main"; sh.textContent = T.share;
+      sh.onclick = function () { qtEvent("share_clicked"); navigator.share({ title: title, url: qtShareUrl("native") }).then(function () { qtEvent("share_completed"); box.remove(); }).catch(function () {}); }; row.appendChild(sh); }
+    var cp = document.createElement("button"); cp.type = "button"; cp.className = navigator.share ? "" : "main"; cp.textContent = T.copy;
+    cp.onclick = function () { qtEvent("share_clicked"); try { navigator.clipboard.writeText(qtShareUrl("copy")).then(function () { cp.textContent = T.copied; qtEvent("share_completed"); }); } catch (e) {} }; row.appendChild(cp);
+    var msg = title + " — " ;
+    link("WhatsApp", "https://wa.me/?text=" + encodeURIComponent(msg + qtShareUrl("whatsapp")));
+    link("X", "https://twitter.com/intent/tweet?text=" + encodeURIComponent(title) + "&url=" + encodeURIComponent(qtShareUrl("x")));
+    link("Telegram", "https://t.me/share/url?url=" + encodeURIComponent(qtShareUrl("telegram")) + "&text=" + encodeURIComponent(title));
+    box.appendChild(x); box.appendChild(h); box.appendChild(p); box.appendChild(row); document.body.appendChild(box);
+    setTimeout(function () { if (box.isConnected && !box.matches(":hover") && !box.contains(document.activeElement)) box.remove(); }, 25000);
+  }, 1200);
 }
 
 /* ---------- Smart Actions handoff: pass pasted input from the homepage to a tool page ---------- */
