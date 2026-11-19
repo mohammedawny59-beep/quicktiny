@@ -34,7 +34,7 @@ WRAP_START = '<div class="wrap" id="main" role="main" tabindex="-1">\n  <div cla
 
 def article_ld(g, url):
     return json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": g["h1"], "description": g["desc"], "inLanguage": g["lang"],
-        "datePublished": g.get("date", gc.DATE), "dateModified": g.get("date", gc.DATE), "mainEntityOfPage": url, "url": url, "image": B + ("/og-image-ar.png" if g["lang"] == "ar" else "/og-image.png"),
+        "datePublished": g.get("date", gc.DATE), "dateModified": g.get("updated", g.get("date", gc.DATE)), "mainEntityOfPage": url, "url": url, "image": B + ("/og-image-ar.png" if g["lang"] == "ar" else "/og-image.png"),
         "author": {"@type": "Organization", "name": "QuickTiny", "url": B + "/"}, "publisher": {"@type": "Organization", "name": "QuickTiny", "url": B + "/"}}, ensure_ascii=False)
 
 def faq_html(items): return "".join('<details class="faq-item"><summary>%s</summary><p>%s</p></details>' % (q, a) for q, a in items)
@@ -81,7 +81,7 @@ def body(g, others):
     <div class="hero-badges"><span class="badge">{'دليل' if ar else 'Guide'}</span></div>
     <h1>{g['h1']}</h1>
     <p>{g['lede']}</p>
-    <div class="guide-meta">{'آخر تحديث' if ar else 'Updated'}: {g.get('date', gc.DATE)}</div>
+    <div class="guide-meta">{'آخر تحديث' if ar else 'Updated'}: {g.get('updated', g.get('date', gc.DATE))}</div>
   </section>
   <article class="content guide">
     {g['body']}

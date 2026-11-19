@@ -556,27 +556,30 @@ GUIDES += [
 
 # ---- GTA 6 launch guides (2026-11-12) ----
 GUIDES += [
- dict(slug="gta-6-release-date-arab-countries", lang="ar", date="2026-11-12",
+ dict(slug="gta-6-release-date-arab-countries", lang="ar", date="2026-11-12", updated="2026-11-19",
       title="موعد نزول GTA 6 في السعودية والإمارات ومصر والأردن — كل اللي نعرفه | QuickTiny",
       h1="موعد نزول GTA 6 في الدول العربية — كل اللي نعرفه",
-      lede="GTA 6 تنزل الخميس 19 نوفمبر 2026 على بلايستيشن 5 وإكسبوكس سيريس. هذا ملخص المؤكد فقط، مع المصادر، وكيف تتجهّز ليوم النزول.",
-      desc="موعد نزول GTA 6 في السعودية والإمارات ومصر والأردن: الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S. هل في نسخة كمبيوتر؟ ساعة الفتح؟ كيف تتجهّز؟ مع المصادر وعدّاد مباشر.",
+      lede="GTA 6 نزلت اليوم الخميس 19 نوفمبر 2026 على بلايستيشن 5 وإكسبوكس سيريس X|S، وبتفتح الساعة 12 منتصف الليل بتوقيتك المحلي حسب روكستار. هذا ملخص المؤكد رسميًا فقط، مع المصادر.",
+      desc="GTA 6 نزلت 19 نوفمبر 2026 على PS5 وXbox Series X|S. ساعة الفتح بالسعودية والإمارات ومصر والأردن: منتصف الليل بالتوقيت المحلي حسب روكستار. النسخة الفيزيائية كود بدون ديسك، والكمبيوتر غير معلن — مع المصادر الرسمية.",
       tool=["/ar/gta-6", "افتح منطقة GTA 6 والعدّاد"],
       body="""<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="شعار Grand Theft Auto VI" loading="lazy" style="display:block;margin:0 auto;max-width:200px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">شعار Grand Theft Auto VI ملك لـ Rockstar Games — معروض لأغراض إخبارية.</figcaption></figure>
-<h2>المؤكد لحد الآن</h2>
+<h2>المؤكد رسميًا (تحديث يوم الإطلاق، 19 نوفمبر)</h2>
 <table class="guide-table"><tr><th>البند</th><th>المعلومة</th></tr>
-<tr><td>موعد النزول</td><td>الخميس 19 نوفمبر 2026</td></tr>
+<tr><td>موعد النزول</td><td>نزلت الخميس 19 نوفمبر 2026</td></tr>
 <tr><td>المنصات</td><td>بلايستيشن 5 وPS5 Pro وإكسبوكس سيريس X|S (+ Xbox Cloud Gaming حتى على Xbox One)</td></tr>
 <tr><td>التنزيل المسبق</td><td>متاح من 10 نوفمبر — حتى 212 غيغا</td></tr>
 <tr><td>الأداء</td><td>30 إطارًا بالثانية؛ PS5 Pro فيه PSSR وظلال بتتبع الأشعة</td></tr>
 <tr><td>الكمبيوتر (PC)</td><td>لم يُعلن بعد</td></tr>
-<tr><td>ساعة الفتح</td><td>لم تُعلن بعد</td></tr></table>
-<h2>هل يختلف الموعد بين السعودية والإمارات ومصر والأردن؟</h2>
-<p>الموعد المعلن هو 19 نوفمبر 2026. روكستار لم تعلن بعد ساعة الفتح، ولا إذا كان الفتح بنفس اللحظة عالميًا أو حسب منتصف الليل في كل منطقة. لذلك أي ساعة دقيقة منتشرة الآن مجرد توقع. <a href="/ar/gta-6">العدّاد في منطقة GTA 6</a> يعدّ لمنتصف ليل 19 نوفمبر بتوقيتك، وسنحدّثه أول ما تُعلن الساعة الرسمية.</p>
+<tr><td>ساعة الفتح</td><td>12 منتصف الليل بالتوقيت المحلي، بكل المناطق، على PS5 وXbox Series X|S</td></tr>
+<tr><td>النسخة الفيزيائية</td><td>كود تنزيل داخل العلبة — بدون ديسك</td></tr></table>
+<h2>إيمتى بتفتح بالسعودية والإمارات ومصر والأردن؟</h2>
+<p>حسب <a href="https://support.rockstargames.com/articles/29jV3Cv2cCgvwM1XgtMO5o" rel="noopener">صفحة الدعم الرسمية</a>، GTA 6 بتفتح <b>الساعة 12 منتصف الليل بالتوقيت المحلي يوم 19 نوفمبر 2026 بكل المناطق</b>، على PS5 وXbox Series X|S. يعني ما في لحظة وحدة لكل العالم: كل بلد بيفتح عند منتصف ليله. أي ساعة ثانية منتشرة لبلدك (أو حكي عن فتح أبكر على جهاز معيّن) <b>غير مؤكدة رسميًا</b>. <a href="/ar/gta-6">العدّاد في منطقة GTA 6</a> بيعدّ لمنتصف ليل 19 نوفمبر بتوقيتك، وهذا مطابق للموعد الرسمي.</p>
+<h2>شاري كود من محل؟</h2>
+<p>النسخة الفيزيائية فيها كود تنزيل بس، بدون ديسك. الكود لازم يطابق منطقة حسابك: كودات بلايستيشن المشتراة بالسعودية والإمارات بتشتغل بس على حسابات بلايستيشن مسجّلة بالسعودية أو الإمارات، أما كودات إكسبوكس فمش مقفولة على منطقة. روكستار بتنصح تشتري من محل بنفس بلد حسابك (<a href="https://support.rockstargames.com/articles/4QfG4FmZCf5W1gS8jy4UVT" rel="noopener">المصدر</a>).</p>
 <h2>هل GTA 6 على الكمبيوتر؟</h2>
 <p>ليس عند الإطلاق. لم تُعلن نسخة PC رسميًا حتى الآن؛ أي تاريخ متداول لها هو تقارير غير رسمية.</p>
-<h2>كيف تتجهّز ليوم النزول</h2>
-<ul><li>ابدأ التنزيل المسبق الآن إذا حاجز رقميًا، وفضّي 212 غيغا على الأقل — <a href="/ar/gta-6#consoles">احسب مساحتك</a>.</li>
+<h2>قبل ما تبلّش تلعب</h2>
+<ul><li>إذا ما نزّلتها مسبقًا، التنزيل بيحتاج حتى 212 غيغا فاضية حسب جهازك — <a href="/ar/gta-6#consoles">احسب مساحتك</a>.</li>
 <li>للعب أونلاين على الأجهزة عادة تحتاج اشتراك PlayStation Plus أو Xbox Game Pass Core أو أعلى.</li>
 <li>إذا ناوي تصوّر أو تبث: جهّز التسجيل، واستخدم <a href="/ar/ai-clip-maker">صانع الريلز</a> و<a href="/ar/horizontal-to-vertical-video">تحويل الفيديو لعمودي</a> لمقاطعك.</li>
 <li>تابع <a href="/ar/gta-6#checklist">قائمة التجهيز</a> في منطقة GTA 6 — تنحفظ في متصفحك.</li>
@@ -584,33 +587,37 @@ GUIDES += [
 <h2>هل تشتغل على Xbox One أو PS4؟</h2>
 <p>على PS4 لا. على Xbox One فقط سحابيًا عبر Xbox Cloud Gaming بإعدادات Series S، والجودة حسب سرعة الإنترنت عندك. وفي Remote Play على بلايستيشن وإكسبوكس.</p>
 <h2>المصادر</h2>
-<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">Rockstar Newswire</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener">Tom's Guide</a></p>
+<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">Rockstar Newswire</a> · <a href="https://support.rockstargames.com/articles/29jV3Cv2cCgvwM1XgtMO5o" rel="noopener">دعم روكستار — أوقات الإطلاق</a> · <a href="https://support.rockstargames.com/articles/4QfG4FmZCf5W1gS8jy4UVT" rel="noopener">دعم روكستار — المنصات والنسخ</a></p>
 <p style="font-size:13px;color:var(--muted)">QuickTiny غير تابع لـ Rockstar Games أو Take-Two. Grand Theft Auto علامة تجارية لأصحابها.</p>""",
-      faq=[("متى تنزل GTA 6 في السعودية؟", "الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S. ساعة الفتح لم تُعلن بعد."),
+      faq=[("متى تنزل GTA 6 في السعودية؟", "نزلت الخميس 19 نوفمبر 2026 على PS5 وXbox Series X|S، وبتفتح الساعة 12 منتصف الليل بالتوقيت المحلي حسب روكستار."),
+           ("هل النسخة الفيزيائية فيها ديسك؟", "لا. العلبة فيها كود تنزيل بس، ولازم يطابق منطقة حسابك."),
            ("هل GTA 6 تنزل على PS4؟", "لا. على Xbox One فقط سحابيًا عبر Xbox Cloud Gaming."),
-           ("كم حجم GTA 6؟", "التنزيل المسبق يحتاج حتى 212 غيغا، وهو متاح من 10 نوفمبر."),
+           ("كم حجم GTA 6؟", "التنزيل بيحتاج حتى 212 غيغا حسب جهازك."),
            ("هل في نسخة كمبيوتر؟", "لم تُعلن نسخة الكمبيوتر رسميًا حتى الآن.")]),
- dict(slug="gta-6-release-date-time", lang="en", date="2026-11-12",
+ dict(slug="gta-6-release-date-time", lang="en", date="2026-11-12", updated="2026-11-19",
       title="GTA 6 Release Date, Time & Platforms — What’s Confirmed | QuickTiny",
       h1="GTA 6 Release Date, Time and Platforms — What’s Confirmed",
-      lede="GTA 6 launches Thursday, 19 November 2026 on PS5 and Xbox Series X|S. Here’s only what’s confirmed, with sources — plus a live countdown and a launch-day checklist.",
-      desc="GTA 6 release date: Thursday 19 November 2026 on PS5 and Xbox Series X|S. Is there a PC version? What time does it unlock? Confirmed facts with sources, a live countdown and a launch checklist.",
+      lede="GTA 6 is out today, Thursday 19 November 2026, on PS5 and Xbox Series X|S, unlocking at midnight local time according to Rockstar. Here’s only what’s officially confirmed, with sources.",
+      desc="GTA 6 released 19 November 2026 on PS5 and Xbox Series X|S. Unlock time: midnight local time in every region, per Rockstar. The physical box is a code with no disc, and PC isn’t announced — with official sources.",
       tool=["/gta-6", "Open the GTA 6 Zone countdown"],
       body="""<figure style="margin:0 0 18px;text-align:center"><img src="/assets/gta6/gta6-logo.webp" width="286" height="222" alt="Grand Theft Auto VI logo" loading="lazy" style="display:block;margin:0 auto;max-width:200px;height:auto"><figcaption style="font-size:12px;color:var(--muted)">Grand Theft Auto VI logo © Rockstar Games — shown for news purposes.</figcaption></figure>
-<h2>Confirmed so far</h2>
+<h2>Officially confirmed (launch-day update, 19 November)</h2>
 <table class="guide-table"><tr><th>Item</th><th>Status</th></tr>
-<tr><td>Release date</td><td>Thursday 19 November 2026</td></tr>
+<tr><td>Release date</td><td>Released Thursday 19 November 2026</td></tr>
 <tr><td>Platforms</td><td>PS5, PS5 Pro and Xbox Series X|S (+ Xbox Cloud Gaming, including Xbox One)</td></tr>
 <tr><td>Pre-load</td><td>Live since 10 November — up to 212 GB</td></tr>
 <tr><td>Performance</td><td>Targets 30 fps; PS5 Pro adds PSSR and ray-traced shadows</td></tr>
 <tr><td>PC</td><td>Not announced</td></tr>
-<tr><td>Unlock time</td><td>Not announced</td></tr></table>
+<tr><td>Unlock time</td><td>Midnight local time, in all regions, on PS5 and Xbox Series X|S</td></tr>
+<tr><td>Physical copy</td><td>Download code in the box — no disc</td></tr></table>
 <h2>What time does GTA 6 unlock?</h2>
-<p>Rockstar hasn’t announced an unlock time, or whether it’s a single global moment or midnight per region — so any exact time you see now is a guess. The <a href="/gta-6">GTA 6 Zone countdown</a> counts to midnight on 19 November in your time zone and will be updated when the official time is out.</p>
+<p>According to <a href="https://support.rockstargames.com/articles/29jV3Cv2cCgvwM1XgtMO5o" rel="noopener">Rockstar Support</a>, GTA 6 releases <b>at midnight local time on 19 November 2026 in all regions</b>, on both PS5 and Xbox Series X|S. So it isn’t one global moment — each region unlocks at its own midnight. Any other time quoted for your region (or claims of an earlier unlock on one console) is <b>unconfirmed</b>. The <a href="/gta-6">GTA 6 Zone countdown</a> counts to midnight on 19 November in your time zone, which matches the official time.</p>
+<h2>Bought a boxed copy?</h2>
+<p>The physical version contains a download code only — there’s no disc. Codes must match the region of your platform account: PlayStation codes are region-locked, while Xbox codes aren’t. Rockstar recommends buying from a retailer in the same country as your account (<a href="https://support.rockstargames.com/articles/4QfG4FmZCf5W1gS8jy4UVT" rel="noopener">source</a>).</p>
 <h2>Is GTA 6 on PC?</h2>
 <p>Not at launch. A PC version hasn’t been officially announced; dates floating around are unofficial reports.</p>
-<h2>Get ready for launch day</h2>
-<ul><li>Start the pre-load now if you bought digitally, and free at least 212 GB — <a href="/gta-6#consoles">check your space</a>.</li>
+<h2>Before you start playing</h2>
+<ul><li>Didn’t pre-load? The download needs up to 212 GB free depending on your console — <a href="/gta-6#consoles">check your space</a>.</li>
 <li>Online play on consoles normally needs PlayStation Plus or Xbox Game Pass Core or above.</li>
 <li>Creating content? Use the <a href="/ai-clip-maker">AI Clip Maker</a> and <a href="/horizontal-to-vertical-video">gameplay → vertical</a> for Shorts.</li>
 <li>Tick off the <a href="/gta-6#checklist">launch checklist</a> — it’s saved in your browser.</li>
@@ -618,11 +625,12 @@ GUIDES += [
 <h2>Does it run on Xbox One or PS4?</h2>
 <p>Not on PS4. On Xbox One only through Xbox Cloud Gaming, using Series S settings — quality depends on your connection. Remote Play is supported on PlayStation and Xbox.</p>
 <h2>Sources</h2>
-<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">Rockstar Newswire</a> · <a href="https://www.gamesradar.com/gta-6-guide" rel="noopener">GamesRadar</a> · <a href="https://www.tomsguide.com/news/gta-6" rel="noopener">Tom's Guide</a></p>
+<p><a href="https://www.rockstargames.com/VI" rel="noopener">Rockstar Games — GTA VI</a> · <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">Rockstar Newswire</a> · <a href="https://support.rockstargames.com/articles/29jV3Cv2cCgvwM1XgtMO5o" rel="noopener">Rockstar Support — release times</a> · <a href="https://support.rockstargames.com/articles/4QfG4FmZCf5W1gS8jy4UVT" rel="noopener">Rockstar Support — platforms and versions</a></p>
 <p style="font-size:13px;color:var(--muted)">QuickTiny is not affiliated with Rockstar Games or Take-Two. Grand Theft Auto is a trademark of its owner.</p>""",
-      faq=[("When does GTA 6 come out?", "Thursday 19 November 2026 on PS5 and Xbox Series X|S. The unlock time hasn’t been announced."),
+      faq=[("When does GTA 6 come out?", "It released Thursday 19 November 2026 on PS5 and Xbox Series X|S, unlocking at midnight local time per Rockstar."),
+           ("Does the physical copy have a disc?", "No. The box contains a download code only, and it must match your account’s region."),
            ("Is GTA 6 coming to PS4 or Xbox One?", "Not PS4. Xbox One can play it only via Xbox Cloud Gaming."),
-           ("How big is GTA 6?", "The pre-load needs up to 212 GB and has been live since 10 November."),
+           ("How big is GTA 6?", "The download needs up to 212 GB depending on your console."),
            ("Is GTA 6 on PC?", "A PC version hasn’t been officially announced yet.")]),
 ]
 
@@ -737,11 +745,11 @@ GUIDES += [
       faq=[("ليش تنزيل GTA 6 بطيء؟", "الحجم كبير (حتى 212 غيغا) والسيرفرات مضغوطة وقت الإطلاق. الواي فاي والتنزيلات الثانية بتبطّئه أكثر."),
            ("هل أقدر أنزّل GTA 6 والجهاز مطفي؟", "نعم في وضع الراحة على PS5 أو وضع السكون على إكسبوكس، بشرط تفعيل البقاء متصلًا بالإنترنت."),
            ("كم ساعة ياخد تنزيل GTA 6؟", "حوالي 9 ساعات ونص بسرعة 50 ميغابت، وحوالي 5 ساعات بسرعة 100 ميغابت، تقريبًا.")]),
- dict(slug="gta-6-map-leonida", lang="ar", date="2026-11-15",
+ dict(slug="gta-6-map-leonida", lang="ar", date="2026-11-15", updated="2026-11-19",
       title="خريطة GTA 6: ولاية ليونيدا ومناطقها الست اللي أعلنتها روكستار | QuickTiny",
       h1="خريطة GTA 6: ليونيدا ومناطقها",
       lede="GTA 6 تدور في ولاية ليونيدا الخيالية المستوحاة من فلوريدا. هذا ملخص المناطق الست اللي أعلنتها روكستار، مع خريطة ثلاثية الأبعاد توضيحية تقدر تلف فيها.",
-      desc="خريطة GTA 6 وولاية ليونيدا: فايس سيتي، جزر ليونيدا، غراس ريفرز، بورت جيلهورن، أمبروسيا وجبل كالاغا. وصف كل منطقة، وموعد الخريطة الرسمية، وخريطة ثلاثية الأبعاد تفاعلية.",
+      desc="خريطة GTA 6 وولاية ليونيدا: فايس سيتي، جزر ليونيدا، غراس ريفرز، بورت جيلهورن، أمبروسيا وجبل كالاغا. وصف كل منطقة، وين تلاقي الخريطة الرسمية المجانية للطباعة، وخريطة ثلاثية الأبعاد تفاعلية.",
       tool=["/ar/gta-6#map", "افتح الخريطة ثلاثية الأبعاد"],
       body=_GTA_LOGO_AR + """<h2>ليونيدا: الولاية</h2>
 <p>أحداث GTA 6 في ولاية <b>ليونيدا</b>، وهي نسخة روكستار الساخرة من فلوريدا. المدينة الكبيرة هي <b>فايس سيتي</b>، وحولها مناطق مختلفة كثير بالطبيعة والأجواء.</p>
@@ -754,12 +762,12 @@ GUIDES += [
 <tr><td>أمبروسيا</td><td>مزارع قصب سكر ومصانع حول بحيرة كبيرة</td><td>منطقة بحيرة أوكيتشوبي</td></tr>
 <tr><td>جبل كالاغا</td><td>غابات وأنهار وينابيع في الشمال</td><td>حدائق شمال فلوريدا</td></tr></table>
 <p style="font-size:14px;color:var(--muted)">عمود "مستوحاة من" هو قراءتنا للعروض، مش تصريح رسمي.</p>
-<h2>متى تنزل الخريطة الرسمية؟</h2>
-<p>روكستار تنزّل خريطة ليونيدا والبوستر الرسميين <b>مجانًا للطباعة يوم 19 نوفمبر</b> مع الإطلاق. لحد ذلك، جرّب <a href="/ar/gta-6#map">خريطتنا ثلاثية الأبعاد التوضيحية</a> — مرسومة بأسلوب أصلي على شكل فلوريدا، فيها وضع ليل، وتطير لكل منطقة بضغطة.</p>
+<h2>الخريطة الرسمية (تحديث يوم الإطلاق، 19 نوفمبر)</h2>
+<p>روكستار أعلنت على <a href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" rel="noopener">الـ Newswire</a> إنها بتضيف يوم 19 نوفمبر <b>بوستر الغلاف وخريطة ليونيدا كتحميل رقمي مجاني للطباعة</b> على <a href="https://www.rockstargames.com/VI" rel="noopener">الموقع الرسمي</a>، وبعد الإطلاق بفترة قصيرة نسخة مطبوعة بوجهين من متجر روكستار بـ 0.99 دولار أو هدية مع أي طلب. وقت كتابة هذا التحديث ما كانت الخريطة ظهرت بعد بصفحة التحميلات الرسمية — شيك الموقع الرسمي خلال اليوم، وما تنزّلها من مواقع ثانية. لحد ما تظهر، جرّب <a href="/ar/gta-6#map">خريطتنا ثلاثية الأبعاد التوضيحية</a> — مرسومة بأسلوب أصلي على شكل فلوريدا، فيها وضع ليل، وتطير لكل منطقة بضغطة.</p>
 """ + _GTA_SRC_AR,
       faq=[("وين تدور أحداث GTA 6؟", "في ولاية ليونيدا الخيالية المستوحاة من فلوريدا، ومدينتها الكبرى فايس سيتي."),
            ("كم منطقة في خريطة GTA 6؟", "أعلنت روكستار ست مناطق: فايس سيتي، جزر ليونيدا، غراس ريفرز، بورت جيلهورن، أمبروسيا وجبل كالاغا."),
-           ("متى تنزل خريطة GTA 6 الرسمية؟", "مع الإطلاق يوم 19 نوفمبر 2026، مجانًا للطباعة.")]),
+           ("متى تنزل خريطة GTA 6 الرسمية؟", "روكستار أعلنت إنها بتضيفها يوم الإطلاق 19 نوفمبر 2026 كتحميل مجاني للطباعة على موقعها الرسمي rockstargames.com/VI، ومعها نسخة مطبوعة من متجر روكستار بعد الإطلاق بفترة قصيرة.")]),
  dict(slug="gta-6-record-stream-clips", lang="ar", date="2026-11-15",
       title="كيف تسجّل وتبث GTA 6 وتعمل منها ريلز وتيك توك | QuickTiny",
       h1="كيف تسجّل وتبث GTA 6 وتحوّلها لريلز",
@@ -866,14 +874,14 @@ GUIDES += [
 # ---- launch-season guides (2026-11-15): GTA 6 cheats + crash fixes (living pages, updated at launch) and White/Black Friday ----
 _RS_SUPPORT = '<a href="https://support.rockstargames.com" rel="noopener">support.rockstargames.com</a>'
 GUIDES += [
- dict(slug="gta-6-cheats", lang="ar", date="2026-11-15",
+ dict(slug="gta-6-cheats", lang="ar", date="2026-11-15", updated="2026-11-19",
       title="كودات GTA 6 (الغشات): هل في كودات وكيف تكتبها؟ — يتحدّث يوم الإطلاق | QuickTiny",
       h1="كودات GTA 6: هل في غشات وكيف بتشتغل؟",
-      lede="أكثر سؤال رح ينبحث يوم 19 نوفمبر. لحد الآن روكستار ما أعلنت أي كودات لـ GTA 6. هون بنشرح كيف كانت الكودات بتشتغل بالجزء الخامس، وشو لازم تعرف قبل ما تستعملها — وبنحدّث الصفحة أول ما تنعرف الكودات الحقيقية.",
-      desc="هل في كودات وغشات في GTA 6؟ الوضع الرسمي قبل الإطلاق، كيف كانت كودات GTA 5 تشتغل على البلايستيشن والإكسبوكس، تأثيرها على الكؤوس والإنجازات، وتحديث مباشر يوم 19 نوفمبر.",
+      lede="اللعبة نزلت اليوم 19 نوفمبر، ولحد هلأ روكستار ما نشرت أي قائمة كودات رسمية لـ GTA 6. القوائم اللي بلّشت تنتشر غير مؤكدة. هون بنشرح الوضع، وكيف كانت الكودات بتشتغل بالجزء الخامس، وشو لازم تعرف قبل ما تجرّب أي كود.",
+      desc="هل في كودات وغشات في GTA 6؟ الوضع الرسمي يوم الإطلاق 19 نوفمبر، ليش القوائم المنتشرة غير مؤكدة، كيف كانت كودات GTA 5 تشتغل، وتأثيرها على الكؤوس والإنجازات.",
       tool=["/ar/gta-6", "افتح منطقة GTA 6"],
-      body=_GTA_LOGO_AR + """<h2>الوضع الحالي (15 نوفمبر)</h2>
-<p><b>روكستار ما أعلنت أي كودات لـ GTA 6.</b> أي قائمة كودات منتشرة قبل الإطلاق غالبًا مخترعة أو منقولة من الجزء الخامس. هذه الصفحة بتتحدّث أول ما تطلع كودات مؤكدة بعد نزول اللعبة يوم الخميس 19 نوفمبر 2026.</p>
+      body=_GTA_LOGO_AR + """<h2>الوضع يوم الإطلاق (19 نوفمبر)</h2>
+<p><b>روكستار ما نشرت أي قائمة كودات لـ GTA 6</b> — لا على الـ Newswire ولا على صفحة الدعم ولا على الموقع الرسمي. في مواقع بلّشت تنشر قوائم كاملة بأعداد وأوصاف، بس هذه <b>غير مؤكدة</b>: ما في مصدر رسمي يثبتها، وكثير منها منقول من الجزء الخامس أو مخترع. منحدّث الصفحة لما تتأكد الكودات من روكستار أو من تجربة موثوقة داخل اللعبة.</p>
 <h2>كيف كانت الكودات بتشتغل في GTA 5؟</h2>
 <ul><li><b>على الأجهزة:</b> سلسلة أزرار بتضغطها بسرعة أثناء اللعب (مثل أسهم واتجاهات وأزرار الكتف).</li>
 <li><b>بالجوال داخل اللعبة:</b> أرقام بتتصل فيها من جوال الشخصية لتفعّل الكود.</li>
@@ -886,10 +894,10 @@ GUIDES += [
 <h2>بتسجّل لعبك؟</h2>
 <p>إذا بدك تعمل مقاطع للكودات والفوضى اللي بتصير، <a href="/ar/gta-6#clip-studio">استوديو المقاطع</a> بيطلع أقوى اللحظات من تسجيلك كريلز جاهزة، و<a href="/ar/guides/gta-6-record-stream-clips">دليل التسجيل والبث</a> بيشرح الطريقة.</p>
 """ + _GTA_SRC_AR,
-      faq=[("هل في كودات في GTA 6؟", "لحد 15 نوفمبر ما أعلنت روكستار أي كودات. منحدّث الصفحة أول ما تنعرف الكودات الحقيقية بعد الإطلاق."),
+      faq=[("هل في كودات في GTA 6؟", "لحد يوم الإطلاق 19 نوفمبر ما نشرت روكستار أي كودات رسمية. القوائم المنتشرة غير مؤكدة، ومنحدّث الصفحة لما تتأكد."),
            ("هل الكودات بتشتغل بالأونلاين؟", "في GTA 5 كانت للعب الفردي فقط. ما في معلومات رسمية عن GTA 6 بعد."),
            ("هل الكودات بتوقف الكؤوس؟", "في GTA 5 نعم، كانت توقف الكؤوس والإنجازات لهذاك المشوار. توقع شي مشابه.")]),
- dict(slug="gta-6-crash-fix", lang="ar", date="2026-11-15",
+ dict(slug="gta-6-crash-fix", lang="ar", date="2026-11-15", updated="2026-11-19",
       title="GTA 6 بتعلّق أو بتطلع من اللعبة؟ حلول على PS5 وإكسبوكس | QuickTiny",
       h1="GTA 6 بتعلّق أو بتكرش؟ حلول خطوة بخطوة",
       lede="أيام الإطلاق مشاكل التعليق والخروج المفاجئ والشاشة السوداء شائعة مع أي لعبة كبيرة. هذه حلول مجربة على PS5 وإكسبوكس، من الأسرع للأقوى — وبنضيف أي حل رسمي تنشره روكستار.",
@@ -897,6 +905,10 @@ GUIDES += [
       tool=["/ar/gta-6#gear", "افحص جهازك ومساحتك"],
       body=_GTA_LOGO_AR + """<h2>قبل كل شي</h2>
 <p>إذا المشكلة صارت عند ناس كثير بنفس الوقت (خصوصًا أول يومين)، غالبًا من السيرفرات أو من اللعبة نفسها، وبيصلحها تحديث من روكستار. شيك حالة الخدمة على صفحة الدعم الرسمية: """ + _RS_SUPPORT + """.</p>
+<h2>الوضع الرسمي يوم الإطلاق (19 نوفمبر)</h2>
+<ul><li><b>لحد هلأ ما في إعلان رسمي</b> من روكستار عن مشاكل معروفة أو تحديث يوم أول لـ GTA 6. أي حكي عن "باتش" أو سبب محدد للتعليق منتشر على السوشال <b>غير مؤكد</b>.</li>
+<li><b>مشاكل التنزيل والتثبيت:</b> روكستار بتحوّلك رسميًا لصفحة <a href="https://www.playstation.com/support/games/troubleshoot-downloaded-playstation-game/" rel="noopener">دعم بلايستيشن</a> أو <a href="https://support.xbox.com/help/games-apps/troubleshooting/troubleshoot-game-or-app-installation-problems-on-xbox-one" rel="noopener">دعم إكسبوكس</a> حسب جهازك (<a href="https://support.rockstargames.com/articles/3t8W3cKfObijZuwZuqT2eM" rel="noopener">المصدر</a>).</li>
+<li><b>شاري علبة؟</b> ما فيها ديسك — فيها كود تنزيل، ولازم يطابق منطقة حسابك وإلا ما بيتفعّل.</li></ul>
 <h2>الحلول على PS5</h2>
 <ol><li><b>حدّث اللعبة:</b> على أيقونة GTA 6 اضغط Options ← البحث عن تحديث.</li>
 <li><b>حدّث نظام الجهاز:</b> الإعدادات ← النظام ← برامج النظام ← تحديث برامج النظام.</li>
@@ -917,14 +929,14 @@ GUIDES += [
       faq=[("ليش GTA 6 بتطلع لحالها من اللعبة؟", "أشهر الأسباب: نسخة قديمة من اللعبة أو النظام، مساحة قليلة، أو مشكلة عامة أول أيام الإطلاق. ابدأ بالتحديث والإعادة الكاملة."),
            ("هل إعادة بناء قاعدة البيانات بتمسح ألعابي؟", "لا، بتعيد ترتيب الملفات فقط ولا تمسح الألعاب أو الحفظ."),
            ("وين أبلّغ عن مشكلة في GTA 6؟", "على صفحة دعم روكستار الرسمية support.rockstargames.com.")]),
- dict(slug="gta-6-cheats", lang="en", date="2026-11-15",
+ dict(slug="gta-6-cheats", lang="en", date="2026-11-15", updated="2026-11-19",
       title="GTA 6 Cheats: Are There Cheat Codes? (Updated at Launch) | QuickTiny",
       h1="GTA 6 cheats: are there cheat codes?",
-      lede="Everyone will search this on 19 November. As of now Rockstar hasn’t announced any GTA 6 cheat codes. Here’s how cheats worked in GTA 5 and what to know before using them — and we’ll update this page as soon as real codes are confirmed.",
-      desc="Are there cheats in GTA 6? The official status before launch, how GTA 5 cheats worked on PlayStation and Xbox, what they do to trophies and achievements, and live updates on 19 November.",
+      lede="GTA 6 is out today, 19 November, and Rockstar still hasn’t published any official cheat codes. The lists already circulating are unconfirmed. Here’s the official status, how cheats worked in GTA 5, and what to know before trying any code.",
+      desc="Are there cheats in GTA 6? The official status on launch day (19 November), why the lists going around are unconfirmed, how GTA 5 cheats worked, and what cheats do to trophies and achievements.",
       tool=["/gta-6", "Open the GTA 6 Zone"],
-      body=_GTA_LOGO_EN + """<h2>Current status (15 November)</h2>
-<p><b>Rockstar hasn’t announced any GTA 6 cheat codes.</b> Any list circulating before launch is either made up or copied from GTA 5. This page will be updated as soon as confirmed codes appear after the game releases on Thursday 19 November 2026.</p>
+      body=_GTA_LOGO_EN + """<h2>Launch-day status (19 November)</h2>
+<p><b>Rockstar hasn’t published any GTA 6 cheat codes</b> — not on the Newswire, its support site or the official game site. Some sites are already posting full lists with counts and descriptions, but these are <b>unconfirmed</b>: no official source backs them, and many are copied from GTA 5 or made up. We’ll update this page once codes are confirmed by Rockstar or reliably tested in-game.</p>
 <h2>How cheats worked in GTA 5</h2>
 <ul><li><b>Consoles:</b> a quick sequence of button presses during play.</li>
 <li><b>In-game phone:</b> numbers you dial on your character’s phone.</li>
@@ -936,10 +948,10 @@ GUIDES += [
 <li>Avoid “free cheats” sites that ask you to download software or log in with your account — they’re scams.</li></ul>
 <p>Recording the chaos? The <a href="/gta-6#clip-studio">Clip Studio</a> turns your gameplay into ready-to-post Reels.</p>
 """ + _GTA_SRC_EN,
-      faq=[("Does GTA 6 have cheats?", "As of 15 November, Rockstar hasn’t announced any. We’ll update this page when real codes are confirmed."),
+      faq=[("Does GTA 6 have cheats?", "As of launch day (19 November), Rockstar hasn’t published any. Lists going around are unconfirmed; we’ll update this page when real codes are confirmed."),
            ("Do cheats work online?", "In GTA 5 they were story-mode only. There’s no official word for GTA 6 yet."),
            ("Do cheats disable trophies?", "In GTA 5 they did for that session. Expect something similar.")]),
- dict(slug="gta-6-crash-fix", lang="en", date="2026-11-15",
+ dict(slug="gta-6-crash-fix", lang="en", date="2026-11-15", updated="2026-11-19",
       title="GTA 6 Crashing or Freezing on PS5 or Xbox? Fixes That Work | QuickTiny",
       h1="GTA 6 crashing or freezing? Step-by-step fixes",
       lede="Freezes, crashes to the home screen and black screens are common in the first days of any huge launch. These are proven fixes on PS5 and Xbox, quickest first — plus any official fix Rockstar publishes.",
@@ -947,6 +959,10 @@ GUIDES += [
       tool=["/gta-6#gear", "Check your setup and storage"],
       body=_GTA_LOGO_EN + """<h2>First</h2>
 <p>If lots of people hit the same problem at once — especially in the first two days — it’s usually the servers or the game itself, and a Rockstar patch fixes it. Check the official support site: """ + _RS_SUPPORT + """.</p>
+<h2>Official status on launch day (19 November)</h2>
+<ul><li><b>No official known-issues list or day-one patch notes</b> from Rockstar yet. Any “patch” or specific crash cause going around on social media is <b>unconfirmed</b>.</li>
+<li><b>Download and install problems:</b> Rockstar officially points you to <a href="https://www.playstation.com/support/games/troubleshoot-downloaded-playstation-game/" rel="noopener">PlayStation Support</a> or <a href="https://support.xbox.com/help/games-apps/troubleshooting/troubleshoot-game-or-app-installation-problems-on-xbox-one" rel="noopener">Xbox Support</a> (<a href="https://support.rockstargames.com/articles/3t8W3cKfObijZuwZuqT2eM" rel="noopener">source</a>).</li>
+<li><b>Boxed copy?</b> There’s no disc — it’s a download code, and it must match your account’s region to activate.</li></ul>
 <h2>PS5</h2>
 <ol><li><b>Update the game:</b> highlight GTA 6 → Options → Check for update.</li>
 <li><b>Update system software:</b> Settings → System → System software.</li>
